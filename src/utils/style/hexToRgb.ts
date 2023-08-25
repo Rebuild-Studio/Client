@@ -1,4 +1,4 @@
-import type { CSSHexColor, CSSRgba } from "@/types/style/CssUnits";
+import { CSSHexColor, CSSRgba } from "@/types/style/CssUnits";
 
 const hexToRgb = (hex: CSSHexColor) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
