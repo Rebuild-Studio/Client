@@ -1,4 +1,4 @@
-import { Fonts } from "@/types/style/font";
+import { Fonts } from "@/types/style/Font";
 
 const fonts = {
   small: "12px",

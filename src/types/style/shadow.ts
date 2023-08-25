@@ -1,5 +1,5 @@
 import { shadows } from "@/resources/shadows/shadow";
-import { CSSHexColor, CSSRgba } from "./cssUnits";
+import { CSSHexColor, CSSRgba } from "@/types/style/CssUnits";
 
 type CSSShadow =
   | "none"
