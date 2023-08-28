@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const StyledBar = styled.button<Props>`
+const StyledBar = styled.div<Props>`
   height: 38px;
   width: 100%;
   background-color: ${bgColors[101728]};

@@ -18,7 +18,7 @@ const BasicMenuBar = {
   render: (args) => {
     const ComponentBtn = () => (
       <MenuButton
-        backgroundColor={bgColors[101728]}
+        backgroundcolor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -28,7 +28,7 @@ const BasicMenuBar = {
     );
     const PlugInBtn = () => (
       <MenuButton
-        backgroundColor={bgColors[101728]}
+        backgroundcolor={bgColors[101728]}
         disabled={true}
         color={grayColors[535353]}
         fontSize="small"
@@ -38,7 +38,7 @@ const BasicMenuBar = {
     );
     const ConfigureBtn = () => (
       <MenuButton
-        backgroundColor={bgColors[101728]}
+        backgroundcolor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -48,7 +48,7 @@ const BasicMenuBar = {
     );
     const HelpBtn = () => (
       <MenuButton
-        backgroundColor={bgColors[101728]}
+        backgroundcolor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -58,14 +58,10 @@ const BasicMenuBar = {
     );
 
     // 로그아웃 버튼
-    const StyledButton = styled.button`
+    const StyledButton = styled.img`
       margin-left: auto;
+      margin-right: 10px;
     `;
-    const LogOutBtn = () => (
-      <>
-        <StyledButton>로그아웃</StyledButton>
-      </>
-    );
 
     // 안에 들어갈 내용 컴포넌트
     const Content = styled.div`
@@ -90,10 +86,15 @@ const BasicMenuBar = {
       );
     };
 
+    const StyledLogo = styled.img`
+      margin-left: 10px;
+    `;
+
     return (
       <>
         <>
           <MenuBar>
+            <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
             <PopOver triggerComponent={<ComponentBtn />}>
               <ContentComponent />
             </PopOver>
@@ -106,7 +107,7 @@ const BasicMenuBar = {
             <PopOver triggerComponent={<HelpBtn />}>
               <ContentComponent />
             </PopOver>
-            <LogOutBtn />
+            <StyledButton src="/Icons/Studio/icon_logout.png" alt="logout" />
           </MenuBar>
         </>
       </>

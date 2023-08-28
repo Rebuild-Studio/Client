@@ -6,7 +6,7 @@ import styled from "styled-components";
 type Props = {
   label: string;
   color: CSSHexColor;
-  backgroundColor: CSSHexColor;
+  backgroundcolor: CSSHexColor;
   disabled: boolean;
   fontSize: FontType;
   onClick: () => void;
@@ -15,7 +15,7 @@ type Props = {
 const StyledButton = styled.button<Props>`
   color: ${({ color }) => color};
   font-size: ${({ fontSize }) => fonts[fontSize]};
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
   padding: 6px 8px;
   border: 0px;
   margin: 0px
