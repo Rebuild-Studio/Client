@@ -2,12 +2,6 @@ import { styled } from "styled-components";
 
 type Props = {};
 
-const MenuBar = (props: Props) => {
-  return <StyledBar></StyledBar>;
-};
-
-export default MenuBar;
-
 const StyledBar = styled.button<Props>`
   height: 38px;
   width: 100%;
@@ -16,3 +10,9 @@ const StyledBar = styled.button<Props>`
   justify-content: center;
   align-items: center;
 `;
+
+const MenuBar = (props: Props) => {
+  return <StyledBar></StyledBar>;
+};
+
+export default MenuBar;
