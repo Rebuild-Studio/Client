@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+type PopOverGravity = "TOP";
 
 interface PopOverProps {
   triggerComponent: React.ReactNode;
   children: React.ReactNode;
+  gravity?: PopOverGravity;
 }
 
 const PopOverWrapper = styled.div`
@@ -21,9 +23,17 @@ const PopOverContent = styled.div`
   z-index: 1;
 `;
 
+const PopOverReverseContent = styled.div`
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(0%, -100%);
+`;
+
 const PopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isTriggered, setIsTriggered] = useState(false);
+
   const setOnTriggerListener = () => {
     setIsTriggered(!isTriggered);
   };
@@ -46,18 +56,35 @@ const PopOver = (props: PopOverProps) => {
   }, [isTriggered]);
 
   return (
-    <PopOverWrapper ref={ref}>
-      <PopOverTrigger onClick={setOnTriggerListener}>
-        {props.triggerComponent}
-      </PopOverTrigger>
-      {isTriggered ? (
-        <PopOverContent onClick={setOnTriggerListener}>
-          {props.children}
-        </PopOverContent>
+    <>
+      {props.gravity === undefined ? (
+        <PopOverWrapper ref={ref}>
+          <PopOverTrigger onClick={setOnTriggerListener}>
+            {props.triggerComponent}
+          </PopOverTrigger>
+          {isTriggered ? (
+            <PopOverContent onClick={setOnTriggerListener}>
+              {props.children}
+            </PopOverContent>
+          ) : (
+            ""
+          )}
+        </PopOverWrapper>
       ) : (
-        ""
+        <PopOverWrapper ref={ref}>
+          {isTriggered ? (
+            <PopOverReverseContent onClick={setOnTriggerListener}>
+              {props.children}
+            </PopOverReverseContent>
+          ) : (
+            ""
+          )}
+          <PopOverTrigger onClick={setOnTriggerListener}>
+            {props.triggerComponent}
+          </PopOverTrigger>
+        </PopOverWrapper>
       )}
-    </PopOverWrapper>
+    </>
   );
 };
 
