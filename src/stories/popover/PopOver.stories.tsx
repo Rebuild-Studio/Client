@@ -1,18 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
-import PopOverContainer from "../../components/layout/popover/PopOverContainer";
+import PopOver from "../../components/layout/popover/PopOver";
 import { styled } from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 
 const meta = {
-  component: PopOverContainer,
-  title: "Component/Layout/PopOverContainer",
+  component: PopOver,
+  title: "Component/Layout/PopOver",
   tags: ["autodocs"],
-} satisfies Meta<typeof PopOverContainer>;
+} satisfies Meta<typeof PopOver>;
 
 export default meta;
-type Story = StoryObj<typeof PopOverContainer>;
+type Story = StoryObj<typeof PopOver>;
 
-const PopOver = {
+const BasicPopOver = {
   render: (args) => {
     const Trigger = styled.button`
       width: 156px;
@@ -33,7 +33,13 @@ const PopOver = {
     const ContentComponent = () => {
       return (
         <div>
-          <Content>1번</Content>
+          <Content
+            onClick={() => {
+              console.log("1번");
+            }}
+          >
+            1번
+          </Content>
           <Content>2번</Content>
           <Content>3번</Content>
           <Content>4번</Content>
@@ -42,13 +48,13 @@ const PopOver = {
     };
     return (
       <>
-        <PopOverContainer triggerComponent={<TriggerComponent />}>
+        <PopOver triggerComponent={<TriggerComponent />}>
           <ContentComponent />
-        </PopOverContainer>
+        </PopOver>
         <div>테스트 div</div>
       </>
     );
   },
 } satisfies Story;
 
-export { PopOver };
+export { BasicPopOver };

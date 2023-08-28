@@ -21,7 +21,7 @@ const PopOverContent = styled.div`
   z-index: 1;
 `;
 
-const PopOverContainer = (props: PopOverProps) => {
+const PopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isTriggered, setIsTriggered] = useState(false);
   const setOnTriggerListener = () => {
@@ -35,18 +35,25 @@ const PopOverContainer = (props: PopOverProps) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", setOnOutsideClickListener);
+    if (isTriggered) {
+      document.addEventListener("mousedown", setOnOutsideClickListener);
+    } else {
+      document.removeEventListener("mousedown", setOnOutsideClickListener);
+    }
     return () => {
       document.removeEventListener("mousedown", setOnOutsideClickListener);
     };
   }, [isTriggered]);
+
   return (
-    <PopOverWrapper>
+    <PopOverWrapper ref={ref}>
       <PopOverTrigger onClick={setOnTriggerListener}>
         {props.triggerComponent}
       </PopOverTrigger>
       {isTriggered ? (
-        <PopOverContent ref={ref}>{props.children}</PopOverContent>
+        <PopOverContent onClick={setOnTriggerListener}>
+          {props.children}
+        </PopOverContent>
       ) : (
         ""
       )}
@@ -54,4 +61,4 @@ const PopOverContainer = (props: PopOverProps) => {
   );
 };
 
-export default PopOverContainer;
+export default PopOver;
