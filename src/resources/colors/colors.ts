@@ -7,6 +7,12 @@ type HexColorObject = {
   [key: string]: CSSHexColor;
 };
 
+import { CSSHexColor } from "@/types/style/CssUnits";
+
+type HexColorObject = {
+  [key: string]: CSSHexColor;
+};
+
 const basicColors = {
   white: "#FFFFFF",
   black: "#000000",
@@ -17,4 +23,8 @@ const bgColors = {
   "101728": "#101728",
 } as const satisfies HexColorObject;
 
-export { basicColors, bgColors };
+const grayColors = {
+  "535353": "#535353",
+} as const satisfies HexColorObject;
+
+export { basicColors, bgColors, grayColors };
