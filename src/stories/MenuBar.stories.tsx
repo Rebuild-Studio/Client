@@ -1,10 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import MenuBar from "@/components/layout/MenuBar";
 import MenuButton from "@/components/common/MenuButton";
-import PopOver from "@/components/layout/popover/PopOver";
 import { styled } from "styled-components";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-
+import BottomPopOver from "@/components/layout/popover/BottomPopOver";
 const meta = {
   component: MenuBar,
   title: "Component/Layout/MenuBar",
@@ -95,22 +94,22 @@ const BasicMenuBar = {
         <>
           <MenuBar>
             <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
-            {/* <PopOver triggerComponent={<ComponentBtn />}>
+            <BottomPopOver triggerComponent={<ComponentBtn />}>
               <ContentComponent />
-            </PopOver>
-            <PopOver triggerComponent={<PlugInBtn />}>
+            </BottomPopOver>
+            <BottomPopOver triggerComponent={<PlugInBtn />}>
               <ContentComponent />
-            </PopOver>
-            <PopOver triggerComponent={<ConfigureBtn />}>
+            </BottomPopOver>
+            <BottomPopOver triggerComponent={<ConfigureBtn />}>
               <ContentComponent />
-            </PopOver>
-            <PopOver triggerComponent={<HelpBtn />}>
+            </BottomPopOver>
+            <BottomPopOver triggerComponent={<HelpBtn />}>
               <ContentComponent />
-            </PopOver> */}
-            <ComponentBtn />
+            </BottomPopOver>
+            {/* <ComponentBtn />
             <PlugInBtn />
             <ConfigureBtn />
-            <HelpBtn />
+            <HelpBtn /> */}
             <StyledButton src="/Icons/Studio/icon_logout.png" alt="logout" />
           </MenuBar>
         </>
