@@ -14,9 +14,7 @@ export const NormalButton = {
   args: {
     label: "활성화",
     color: "#ffffff",
-    backgroundcolor: "#101728",
     disabled: false,
-    fontSize: "small",
     onClick: () => {
       alert("활성화");
     },
@@ -27,11 +25,5 @@ export const DisabledButton = {
   args: {
     label: "비활성화",
     color: "#dddddd",
-    backgroundcolor: "#101728",
-    disabled: true,
-    fontSize: "small",
-    onClick: () => {
-      alert("click");
-    },
   },
 } satisfies Story;
