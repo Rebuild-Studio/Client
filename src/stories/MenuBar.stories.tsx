@@ -95,7 +95,7 @@ const BasicMenuBar = {
         <>
           <MenuBar>
             <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
-            <PopOver triggerComponent={<ComponentBtn />}>
+            {/* <PopOver triggerComponent={<ComponentBtn />}>
               <ContentComponent />
             </PopOver>
             <PopOver triggerComponent={<PlugInBtn />}>
@@ -106,7 +106,11 @@ const BasicMenuBar = {
             </PopOver>
             <PopOver triggerComponent={<HelpBtn />}>
               <ContentComponent />
-            </PopOver>
+            </PopOver> */}
+            <ComponentBtn />
+            <PlugInBtn />
+            <ConfigureBtn />
+            <HelpBtn />
             <StyledButton src="/Icons/Studio/icon_logout.png" alt="logout" />
           </MenuBar>
         </>
