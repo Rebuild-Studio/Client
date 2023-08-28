@@ -1,10 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-
-interface PopOverProps {
-  triggerComponent: React.ReactNode;
-  children: React.ReactNode;
-}
+import { styled } from "styled-components";
+import { PopOverProps } from "./PopOverProps";
+import { useRef, useState, useEffect } from "react";
 
 const PopOverWrapper = styled.div`
   position: relative;
@@ -21,9 +17,10 @@ const PopOverContent = styled.div`
   z-index: 1;
 `;
 
-const PopOver = (props: PopOverProps) => {
+const BottomPopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isTriggered, setIsTriggered] = useState(false);
+
   const setOnTriggerListener = () => {
     setIsTriggered(!isTriggered);
   };
@@ -61,4 +58,4 @@ const PopOver = (props: PopOverProps) => {
   );
 };
 
-export default PopOver;
+export default BottomPopOver;
