@@ -1,19 +1,19 @@
 import { Meta, StoryObj } from "@storybook/react";
-import PopOver from "../../components/layout/popover/PopOver";
 import { styled } from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
+import BottomPopOver from "@/components/layout/popover/BottomPopOver";
 
 const meta = {
-  component: PopOver,
-  title: "Component/Layout/PopOver",
+  component: BottomPopOver,
+  title: "Component/Layout/PopOver/BottomPopOver",
   tags: ["autodocs"],
-} satisfies Meta<typeof PopOver>;
+} satisfies Meta<typeof BottomPopOver>;
 
 export default meta;
-type Story = StoryObj<typeof PopOver>;
+type Story = StoryObj<typeof BottomPopOver>;
 
-const BasicPopOver = {
-  render: (args) => {
+const PopOver = {
+  render: () => {
     const Trigger = styled.button`
       width: 156px;
       height: 56px;
@@ -48,13 +48,13 @@ const BasicPopOver = {
     };
     return (
       <>
-        <PopOver triggerComponent={<TriggerComponent />}>
+        <BottomPopOver triggerComponent={<TriggerComponent />}>
           <ContentComponent />
-        </PopOver>
+        </BottomPopOver>
         <div>테스트 div</div>
       </>
     );
   },
 } satisfies Story;
 
-export { BasicPopOver };
+export { PopOver };
