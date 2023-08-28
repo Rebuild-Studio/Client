@@ -13,7 +13,7 @@ const PanelWrapper = styled.div`
   height: 100%;
   background-color: ${bgColors[222222]};
   display: inline-block;
-  z-index: 20;
+  z-index: 1;
   width: 16vw;
   padding: 10px 0;
 `;
