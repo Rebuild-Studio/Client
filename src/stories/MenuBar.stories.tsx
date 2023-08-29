@@ -4,6 +4,7 @@ import MenuButton from "@/components/common/MenuButton";
 import { styled } from "styled-components";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import BottomPopOver from "@/components/layout/popover/BottomPopOver";
+import SubMenu from "@/components/common/SubMenu";
 const meta = {
   component: MenuBar,
   title: "Component/Layout/MenuBar",
@@ -17,7 +18,7 @@ const BasicMenuBar = {
   render: (args) => {
     const ComponentBtn = () => (
       <MenuButton
-        backgroundcolor={bgColors[101728]}
+        backgroundColor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -27,7 +28,7 @@ const BasicMenuBar = {
     );
     const PlugInBtn = () => (
       <MenuButton
-        backgroundcolor={bgColors[101728]}
+        backgroundColor={bgColors[101728]}
         disabled={true}
         color={grayColors[535353]}
         fontSize="small"
@@ -37,7 +38,7 @@ const BasicMenuBar = {
     );
     const ConfigureBtn = () => (
       <MenuButton
-        backgroundcolor={bgColors[101728]}
+        backgroundColor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -47,7 +48,7 @@ const BasicMenuBar = {
     );
     const HelpBtn = () => (
       <MenuButton
-        backgroundcolor={bgColors[101728]}
+        backgroundColor={bgColors[101728]}
         disabled={false}
         color={basicColors.white}
         fontSize="small"
@@ -56,34 +57,66 @@ const BasicMenuBar = {
       />
     );
 
+    const data1 = [
+      {
+        label: "목록",
+        disabled: false,
+        onClick: () => {
+          alert("목록");
+        },
+      },
+      {
+        label: "저장",
+        disabled: true,
+        onClick: () => {
+          alert("저장");
+        },
+      },
+    ];
+    const data2 = [
+      {
+        label: "목록",
+        disabled: false,
+        onClick: () => {
+          alert("목록");
+        },
+      },
+      {
+        label: "저장",
+        disabled: true,
+        onClick: () => {
+          alert("저장");
+        },
+      },
+      {
+        label: "로컬 파일로 저장",
+        disabled: false,
+        children: [
+          { label: "Scene 저장", disabled: false },
+          { label: "선택된 에셋 저장", disabled: false },
+          { label: "선택된 에셋 저장2", disabled: false },
+          { label: "선택된 에셋 저장3", disabled: false },
+        ],
+      },
+      {
+        label: "배포하기",
+        disabled: false,
+        children: [
+          { label: "ffff", disabled: false },
+          {
+            label: "ddddd",
+            disabled: false,
+            children: [{ label: "ㅇㅇㅇㅇㅇ", disabled: false }],
+          },
+        ],
+      },
+    ];
+
     // 로그아웃 버튼
     const StyledButton = styled.img`
       margin-left: auto;
       margin-right: 10px;
     `;
-
-    // 안에 들어갈 내용 컴포넌트
-    const Content = styled.div`
-      color: ${grayColors[535353]};
-      font-size: 24px;
-      background-color: ${basicColors.black};
-    `;
-    const ContentComponent = () => {
-      return (
-        <div>
-          <Content
-            onClick={() => {
-              console.log("1번");
-            }}
-          >
-            1번
-          </Content>
-          <Content>2번</Content>
-          <Content>3번</Content>
-          <Content>4번</Content>
-        </div>
-      );
-    };
 
     const StyledLogo = styled.img`
       margin-left: 10px;
@@ -95,21 +128,17 @@ const BasicMenuBar = {
           <MenuBar>
             <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
             <BottomPopOver triggerComponent={<ComponentBtn />}>
-              <ContentComponent />
+              <SubMenu data={data1} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<PlugInBtn />}>
-              <ContentComponent />
+              <SubMenu data={data2} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<ConfigureBtn />}>
-              <ContentComponent />
+              <SubMenu data={data2} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<HelpBtn />}>
-              <ContentComponent />
+              <SubMenu data={data2} />
             </BottomPopOver>
-            {/* <ComponentBtn />
-            <PlugInBtn />
-            <ConfigureBtn />
-            <HelpBtn /> */}
             <StyledButton src="/Icons/Studio/icon_logout.png" alt="logout" />
           </MenuBar>
         </>

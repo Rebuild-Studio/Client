@@ -2,7 +2,7 @@ import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
 import { CSSHexColor } from "@/types/style/CssUnits";
 import { FontType } from "@/types/style/Font";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 
 type MenuItem = {
@@ -74,7 +74,9 @@ const SubMenu = (props: Props) => {
     top = "0",
     fontSize = "medium",
   } = props;
+
   const [newMenu, setNewMenu] = useState<JSX.Element | null>(null);
+  const ref = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     return () => {
@@ -84,6 +86,7 @@ const SubMenu = (props: Props) => {
   return (
     <>
       <MenuBox
+        ref={ref}
         $color={color}
         $backgroundColor={backgroundColor}
         $top={top}
@@ -98,22 +101,25 @@ const SubMenu = (props: Props) => {
               if (v.onClick && !v.disabled) v.onClick();
             }}
             className={v.disabled ? "disabled" : ""}
-            onMouseEnter={(e) => {
+            onMouseEnter={() => {
               setNewMenu(null);
 
               if (!v.children || v.disabled) return;
-              const element = e.target as HTMLElement;
+
+              const height = ref
+                .current!.getElementsByTagName("li")
+                .item(0)!.clientHeight;
 
               setNewMenu(
                 <SubMenu
                   {...props}
                   data={v.children}
                   left={"calc(100% + 2px)"}
-                  top={`${i * element.clientHeight}px`}
+                  top={`${i * height}px`}
                 />
               );
             }}
-            key={i}
+            key={v.label + i}
           >
             <span>{v.label}</span>
             {v.children && <span style={{ float: "right" }}>{">"}</span>}
