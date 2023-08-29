@@ -21,9 +21,9 @@ interface SCButtonProps {
 // prettier-ignore
 export const SCButton = styled.button<SCButtonProps>`
   width: ${({$size}) => $size};
-  height: 74px;
-  padding: 5px;
+  height: 60px;
   font-family: "Pretendard";
+  font-size: medium;
   color: ${({ $color }) => $color};
   border: none;
   border-radius: 0;
@@ -54,7 +54,7 @@ export const SCButton = styled.button<SCButtonProps>`
     background-image: url(${({ $hoverBackgroundImage }) => $hoverBackgroundImage});
     background-repeat: no-repeat;
     background-color: transparent;
-    background-size: 100% 100% ;
+    background-size: 100% 100%;
     border-radius: 0;
   }
 
