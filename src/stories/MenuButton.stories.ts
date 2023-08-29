@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: MenuButton,
-  title: "Component/Common/MenuButton",
+  title: "Component/Buttons/MenuButton",
   tags: ["autodocs"],
 } satisfies Meta<typeof MenuButton>;
 
@@ -14,9 +14,7 @@ export const NormalButton = {
   args: {
     label: "활성화",
     color: "#ffffff",
-    backgroundColor: "#101728",
     disabled: false,
-    fontSize: "small",
     onClick: () => {
       alert("활성화");
     },
@@ -27,11 +25,5 @@ export const DisabledButton = {
   args: {
     label: "비활성화",
     color: "#dddddd",
-    backgroundColor: "#101728",
-    disabled: true,
-    fontSize: "small",
-    onClick: () => {
-      alert("click");
-    },
   },
 } satisfies Story;
