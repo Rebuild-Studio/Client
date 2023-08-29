@@ -34,7 +34,7 @@ const IconButton = ({
   backgroundImage = "",
   hoverBackgroundImage = "",
   shadow = "none",
-  color = basicColors.black,
+  color = basicColors.white,
   outline = false,
   Icon,
   iconGravity = "right",
