@@ -4,7 +4,7 @@ import MenuButton from "@/components/common/MenuButton";
 import { styled } from "styled-components";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import BottomPopOver from "@/components/layout/popover/BottomPopOver";
-import SubMenu, { MenuItem } from "@/components/common/SubMenu";
+import { MenuItem, SubMenu } from "@/components/common/subMenu/SubMenu";
 const meta = {
   component: MenuBar,
   title: "Component/Layout/MenuBar",

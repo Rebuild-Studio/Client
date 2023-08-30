@@ -1,31 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
+import { useRef, useState } from "react";
+import { basicColors, bgColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
 import { CSSHexColor } from "@/types/style/CssUnits";
 import { FontType } from "@/types/style/Font";
 import { styled } from "styled-components";
-
-/**
- * 일반 메뉴 아이템
- */
-interface Item {
-  label: string;
-  disabled: boolean;
-  onClick: () => void;
-}
-/**
- * 자식이 있는 메뉴 아이템
- */
-interface ItemWithChildren {
-  label: string;
-  disabled: boolean;
-  children: MenuItem[];
-}
-
-export type MenuItem = Item | ItemWithChildren;
+import { ItemChildren } from "./ItemChildren";
+import { MenuItemType } from "./MenuItem.types";
+import { Item } from "./Item";
 
 type Props = {
-  menuItems: MenuItem[];
+  menuItems: MenuItemType[];
   color?: CSSHexColor;
   backgroundColor?: CSSHexColor;
   hoverBackgroundColor?: CSSHexColor;
@@ -43,11 +27,6 @@ type CSSMenuBox = {
   $fontSize: FontType;
 };
 
-type CSSItem = {
-  $hoverBackgroundColor: CSSHexColor;
-  $disabledColor: CSSHexColor;
-};
-
 const MenuBox = styled.ul<CSSMenuBox>`
   position: absolute;
   top: ${({ $top }) => $top};
@@ -63,25 +42,11 @@ const MenuBox = styled.ul<CSSMenuBox>`
   margin: 0;
 `;
 
-const Item = styled.li<CSSItem>`
-  padding: 2px;
-
-  &.disabled {
-    color: ${({ $disabledColor }) => $disabledColor};
-  }
-
-  &:not(.disabled):hover {
-    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-  }
-`;
-
-const SubMenu = (props: Props) => {
+export const SubMenu = (props: Props) => {
   const {
     menuItems,
     color = basicColors.white,
     backgroundColor = bgColors[101728],
-    hoverBackgroundColor = grayColors[535353],
-    disabledColor = grayColors[535353],
     left = "0",
     top = "0",
     fontSize = "medium",
@@ -100,15 +65,17 @@ const SubMenu = (props: Props) => {
         $left={left}
         $fontSize={fontSize}
       >
-        {menuItems.map((item: MenuItem, index: number) => {
+        {menuItems.map((item: MenuItemType, index: number) => {
+          const itemProps = {
+            label: item.label,
+            disabled: item.disabled,
+            key: `${item.label}_${index}`,
+          };
           if ("children" in item) {
             // 자식이 있는 메뉴
             return (
-              <Item
-                key={item.label + index}
-                $hoverBackgroundColor={hoverBackgroundColor}
-                $disabledColor={disabledColor}
-                className={item.disabled ? "disabled" : ""}
+              <ItemChildren
+                {...itemProps}
                 onMouseEnter={() => {
                   setNewMenu(null);
 
@@ -121,31 +88,27 @@ const SubMenu = (props: Props) => {
                   setNewMenu(
                     <SubMenu
                       {...props}
+                      key={`` + index + item.label}
                       menuItems={item.children}
                       left={"calc(100% + 2px)"}
                       top={`${index * height}px`}
                     />
                   );
                 }}
-              >
-                <span>{item.label}</span>
-                <span style={{ float: "right" }}>{">"}</span>
-              </Item>
+              />
             );
           } else {
             // 자식이 없는 일반 메뉴
             return (
               <Item
-                key={item.label + index}
-                $hoverBackgroundColor={hoverBackgroundColor}
-                $disabledColor={disabledColor}
-                className={item.disabled ? "disabled" : ""}
+                {...itemProps}
                 onClick={() => {
                   if (!item.disabled) item.onClick();
                 }}
-              >
-                <span>{item.label}</span>
-              </Item>
+                onMouseEnter={() => {
+                  setNewMenu(null);
+                }}
+              />
             );
           }
         })}
@@ -154,5 +117,3 @@ const SubMenu = (props: Props) => {
     </>
   );
 };
-
-export default SubMenu;
