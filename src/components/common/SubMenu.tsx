@@ -1,16 +1,28 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
 import { CSSHexColor } from "@/types/style/CssUnits";
 import { FontType } from "@/types/style/Font";
 import { styled } from "styled-components";
 
-interface MenuItem {
+/**
+ * 일반 메뉴 아이템
+ */
+interface Item {
   label: string;
   disabled: boolean;
-  children?: MenuItem[];
-  onClick?: () => void;
+  onClick: () => void;
 }
+/**
+ * 자식이 있는 메뉴 아이템
+ */
+interface ItemWithChildren {
+  label: string;
+  disabled: boolean;
+  children: MenuItem[];
+}
+
+export type MenuItem = Item | ItemWithChildren;
 
 type Props = {
   menuItems: MenuItem[];
@@ -88,38 +100,55 @@ const SubMenu = (props: Props) => {
         $left={left}
         $fontSize={fontSize}
       >
-        {menuItems.map((item: MenuItem, index: number) => (
-          <Item
-            $hoverBackgroundColor={hoverBackgroundColor}
-            $disabledColor={disabledColor}
-            onClick={() => {
-              if (item.onClick && !item.disabled) item.onClick();
-            }}
-            className={item.disabled ? "disabled" : ""}
-            onMouseEnter={() => {
-              setNewMenu(null);
+        {menuItems.map((item: MenuItem, index: number) => {
+          if ("children" in item) {
+            // 자식이 있는 메뉴
+            return (
+              <Item
+                key={item.label + index}
+                $hoverBackgroundColor={hoverBackgroundColor}
+                $disabledColor={disabledColor}
+                className={item.disabled ? "disabled" : ""}
+                onMouseEnter={() => {
+                  setNewMenu(null);
 
-              if (!item.children || item.disabled) return;
+                  if (item.disabled) return;
 
-              const height = ref
-                .current!.getElementsByTagName("li")
-                .item(0)!.clientHeight;
+                  const height = ref
+                    .current!.getElementsByTagName("li")
+                    .item(0)!.clientHeight;
 
-              setNewMenu(
-                <SubMenu
-                  {...props}
-                  menuItems={item.children}
-                  left={"calc(100% + 2px)"}
-                  top={`${index * height}px`}
-                />
-              );
-            }}
-            key={item.label + index}
-          >
-            <span>{item.label}</span>
-            {item.children && <span style={{ float: "right" }}>{">"}</span>}
-          </Item>
-        ))}
+                  setNewMenu(
+                    <SubMenu
+                      {...props}
+                      menuItems={item.children}
+                      left={"calc(100% + 2px)"}
+                      top={`${index * height}px`}
+                    />
+                  );
+                }}
+              >
+                <span>{item.label}</span>
+                <span style={{ float: "right" }}>{">"}</span>
+              </Item>
+            );
+          } else {
+            // 자식이 없는 일반 메뉴
+            return (
+              <Item
+                key={item.label + index}
+                $hoverBackgroundColor={hoverBackgroundColor}
+                $disabledColor={disabledColor}
+                className={item.disabled ? "disabled" : ""}
+                onClick={() => {
+                  if (!item.disabled) item.onClick();
+                }}
+              >
+                <span>{item.label}</span>
+              </Item>
+            );
+          }
+        })}
         {newMenu}
       </MenuBox>
     </>

@@ -8,9 +8,9 @@ const meta = {
 } satisfies Meta<typeof SubMenu>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof SubMenu>;
 
-export const BasicSubMenu: Story = {
+export const BasicSubMenu = {
   args: {
     menuItems: [
       {
@@ -31,24 +31,26 @@ export const BasicSubMenu: Story = {
         label: "로컬 파일로 저장",
         disabled: false,
         children: [
-          { label: "Scene 저장", disabled: false },
-          { label: "선택된 에셋 저장", disabled: false },
-          { label: "선택된 에셋 저장2", disabled: false },
-          { label: "선택된 에셋 저장3", disabled: false },
+          { label: "Scene 저장", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
         ],
       },
       {
         label: "배포하기",
         disabled: false,
         children: [
-          { label: "ffff", disabled: false },
+          { label: "ffff", disabled: false, onClick: () => {} },
           {
             label: "ddddd",
             disabled: false,
-            children: [{ label: "ㅇㅇㅇㅇㅇ", disabled: false }],
+            children: [
+              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
+            ],
           },
         ],
       },
     ],
   },
-};
+} satisfies Story;

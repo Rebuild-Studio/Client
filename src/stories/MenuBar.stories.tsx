@@ -4,7 +4,7 @@ import MenuButton from "@/components/common/MenuButton";
 import { styled } from "styled-components";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import BottomPopOver from "@/components/layout/popover/BottomPopOver";
-import SubMenu from "@/components/common/SubMenu";
+import SubMenu, { MenuItem } from "@/components/common/SubMenu";
 const meta = {
   component: MenuBar,
   title: "Component/Layout/MenuBar",
@@ -57,7 +57,7 @@ const BasicMenuBar = {
       />
     );
 
-    const data1 = [
+    const data1: MenuItem[] = [
       {
         label: "목록",
         disabled: false,
@@ -73,7 +73,7 @@ const BasicMenuBar = {
         },
       },
     ];
-    const data2 = [
+    const data2: MenuItem[] = [
       {
         label: "목록",
         disabled: false,
@@ -92,21 +92,23 @@ const BasicMenuBar = {
         label: "로컬 파일로 저장",
         disabled: false,
         children: [
-          { label: "Scene 저장", disabled: false },
-          { label: "선택된 에셋 저장", disabled: false },
-          { label: "선택된 에셋 저장2", disabled: false },
-          { label: "선택된 에셋 저장3", disabled: false },
+          { label: "Scene 저장", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
+          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
         ],
       },
       {
         label: "배포하기",
         disabled: false,
         children: [
-          { label: "ffff", disabled: false },
+          { label: "ffff", disabled: false, onClick: () => {} },
           {
             label: "ddddd",
             disabled: false,
-            children: [{ label: "ㅇㅇㅇㅇㅇ", disabled: false }],
+            children: [
+              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
+            ],
           },
         ],
       },
