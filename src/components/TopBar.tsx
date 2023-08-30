@@ -1,14 +1,18 @@
-import React from "react";
-import { styled } from "styled-components";
-import { bgColors, basicColors } from "@/resources/colors/colors";
-import BottomPopOver from "./layout/popover/BottomPopOver";
-import IconButton from "./buttons/IconButton";
-import CavasBar from "./CanvaseBar";
 import { useState } from "react";
+import CavasBar from "./CanvaseBar";
+import IconButton from "./buttons/IconButton";
+import Button from "./common/Button";
+import { styled } from "styled-components";
+import { basicColors } from "@/resources/colors/colors";
 
 interface Props {}
 
-const BoxWrapper = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Container = styled.div`
   height: 54px;
   width: 100%;
   background-color: #222222;
@@ -17,6 +21,7 @@ const BoxWrapper = styled.div`
   align-items: center;
   position: relative;
 `;
+
 const AppBarWrapper = styled.div`
   width: 100%;
   height: 78px;
@@ -28,6 +33,11 @@ const AppBarWrapper = styled.div`
 
 const AppBarItem = styled.div`
   margin-right: 20px;
+  margin-left: 16px;
+`;
+
+const FlexBox = styled.div`
+  flex-grow: 1;
 `;
 
 const ComponentName = styled.div`
@@ -41,47 +51,45 @@ const ComponentName = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
 `;
+
 const TopBar = (props: Props) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      <BoxWrapper>
+    <Wrapper>
+      <Container>
         <AppBarWrapper>
           <AppBarItem>
-            <div>
-              <span
-                style={{
-                  fontSize: 14,
-                  color: basicColors.white,
-                  marginLeft: "16px",
-                }}
-                onClick={() => {
-                  setOpen(!open);
-                }}
-              >
-                캔버스
-              </span>
-            </div>
+            <Button
+              label="캔버스"
+              shadow="none"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            />
           </AppBarItem>
           <AppBarItem>
-            <span style={{ fontSize: 14, color: basicColors.white }}>
-              인터렉션 에디터
-            </span>
+            <Button
+              label="인터렉션 에디터"
+              shadow="none"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            />
           </AppBarItem>
         </AppBarWrapper>
-        <div style={{ flexGrow: 1 }} />
+        <FlexBox />
         <ComponentName>컴포넌트 네임</ComponentName>
-        <div style={{ flexGrow: 1 }} />
+        <FlexBox />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_씬설정.svg"} />}
         />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
-      </BoxWrapper>
+      </Container>
       {open && <CavasBar />}
-    </div>
+    </Wrapper>
   );
 };
 
