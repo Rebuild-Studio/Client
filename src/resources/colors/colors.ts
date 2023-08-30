@@ -23,6 +23,7 @@ const bgColors = {
 
 const grayColors = {
   "535353": "#535353",
+  "808080": "#808080",
 } as const satisfies HexColorObject;
 
 export { basicColors, bgColors, grayColors };

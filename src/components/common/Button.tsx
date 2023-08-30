@@ -23,7 +23,7 @@ export const SCButton = styled.button<SCButtonProps>`
   width: ${({$size}) => $size};
   height: 60px;
   font-family: "Pretendard";
-  font-size: medium;
+  font-size: 14px;
   color: ${({ $color }) => $color};
   border: none;
   border-radius: 0;
