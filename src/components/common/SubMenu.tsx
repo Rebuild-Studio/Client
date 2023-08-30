@@ -1,19 +1,19 @@
+import { useRef, useState } from "react";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
 import { CSSHexColor } from "@/types/style/CssUnits";
 import { FontType } from "@/types/style/Font";
-import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 
-type MenuItem = {
+interface MenuItem {
   label: string;
   disabled: boolean;
   children?: MenuItem[];
   onClick?: () => void;
-};
+}
 
 type Props = {
-  data: MenuItem[];
+  menuItems: MenuItem[];
   color?: CSSHexColor;
   backgroundColor?: CSSHexColor;
   hoverBackgroundColor?: CSSHexColor;
@@ -65,7 +65,7 @@ const Item = styled.li<CSSItem>`
 
 const SubMenu = (props: Props) => {
   const {
-    data,
+    menuItems,
     color = basicColors.white,
     backgroundColor = bgColors[101728],
     hoverBackgroundColor = grayColors[535353],
@@ -78,11 +78,6 @@ const SubMenu = (props: Props) => {
   const [newMenu, setNewMenu] = useState<JSX.Element | null>(null);
   const ref = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    return () => {
-      setNewMenu(null);
-    };
-  }, [data]);
   return (
     <>
       <MenuBox
@@ -93,18 +88,18 @@ const SubMenu = (props: Props) => {
         $left={left}
         $fontSize={fontSize}
       >
-        {data.map((v, i) => (
+        {menuItems.map((item: MenuItem, index: number) => (
           <Item
             $hoverBackgroundColor={hoverBackgroundColor}
             $disabledColor={disabledColor}
             onClick={() => {
-              if (v.onClick && !v.disabled) v.onClick();
+              if (item.onClick && !item.disabled) item.onClick();
             }}
-            className={v.disabled ? "disabled" : ""}
+            className={item.disabled ? "disabled" : ""}
             onMouseEnter={() => {
               setNewMenu(null);
 
-              if (!v.children || v.disabled) return;
+              if (!item.children || item.disabled) return;
 
               const height = ref
                 .current!.getElementsByTagName("li")
@@ -113,16 +108,16 @@ const SubMenu = (props: Props) => {
               setNewMenu(
                 <SubMenu
                   {...props}
-                  data={v.children}
+                  menuItems={item.children}
                   left={"calc(100% + 2px)"}
-                  top={`${i * height}px`}
+                  top={`${index * height}px`}
                 />
               );
             }}
-            key={v.label + i}
+            key={item.label + index}
           >
-            <span>{v.label}</span>
-            {v.children && <span style={{ float: "right" }}>{">"}</span>}
+            <span>{item.label}</span>
+            {item.children && <span style={{ float: "right" }}>{">"}</span>}
           </Item>
         ))}
         {newMenu}

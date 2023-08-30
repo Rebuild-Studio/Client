@@ -128,16 +128,16 @@ const BasicMenuBar = {
           <MenuBar>
             <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
             <BottomPopOver triggerComponent={<ComponentBtn />}>
-              <SubMenu data={data1} />
+              <SubMenu menuItems={data1} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<PlugInBtn />}>
-              <SubMenu data={data2} />
+              <SubMenu menuItems={data2} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<ConfigureBtn />}>
-              <SubMenu data={data2} />
+              <SubMenu menuItems={data2} />
             </BottomPopOver>
             <BottomPopOver triggerComponent={<HelpBtn />}>
-              <SubMenu data={data2} />
+              <SubMenu menuItems={data2} />
             </BottomPopOver>
             <StyledButton src="/Icons/Studio/icon_logout.png" alt="logout" />
           </MenuBar>

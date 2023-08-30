@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const BasicSubMenu: Story = {
   args: {
-    data: [
+    menuItems: [
       {
         label: "목록",
         disabled: false,
