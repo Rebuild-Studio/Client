@@ -3,7 +3,6 @@ import { Props as ButtonProps, SCButton } from "../common/Button";
 import { basicColors, bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { getShadow } from "@/utils/style/getShadow";
-import { hover } from "node_modules/@testing-library/user-event/dist/types/convenience";
 
 const SCIconButton = styled(SCButton)`
   display: flex;
@@ -35,7 +34,7 @@ const IconButton = ({
   backgroundImage = "",
   hoverBackgroundImage = "",
   shadow = "none",
-  color = basicColors.black,
+  color = basicColors.white,
   outline = false,
   Icon,
   iconGravity = "right",
