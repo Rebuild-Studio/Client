@@ -8,6 +8,12 @@ type HexColorObject = {
   [key: string]: CSSHexColor;
 };
 
+import { CSSHexColor } from "@/types/style/CssUnits";
+
+type HexColorObject = {
+  [key: string]: CSSHexColor;
+};
+
 const basicColors = {
   white: "#FFFFFF",
   black: "#000000",
@@ -18,6 +24,7 @@ const bgColors = {
   "101728": "#101728",
   "282828": "#282828",
   "1c1c1c": "#1c1c1c",
+  sceneBackground: "#333333",
 } as const satisfies HexColorObject;
 
 const grayColors = {
@@ -25,4 +32,10 @@ const grayColors = {
   "808080": "#808080",
 } as const satisfies HexColorObject;
 
-export { basicColors, bgColors, grayColors };
+const gridColor = {
+  gray: 0x888888,
+  black: 0x222222,
+  Xaxis: 0xd14e66,
+  Yaxis: 0x5a93ba,
+} as const;
+export { basicColors, bgColors, grayColors, gridColor };
