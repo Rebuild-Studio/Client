@@ -3,12 +3,6 @@
  * 새로 추가되는 색상을 여기에 추가하시고 import해서 사용하시면 됩니다.
  */
 
-import { CSSHexColor } from "@/types/style/CssUnits";
-
-type HexColorObject = {
-  [key: string]: CSSHexColor;
-};
-
 const basicColors = {
   white: "#FFFFFF",
   black: "#000000",
