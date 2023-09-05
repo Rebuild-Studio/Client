@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@react-three/drei": "^9.81.0",
     "@react-three/fiber": "^8.13.7",
     "@tanstack/react-query": "^4.33.0",
     "axios": "^1.4.0",
@@ -21,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "styled-components": "^6.0.7",
-    "three": "^0.155.0"
+    "three": "^0.156.0"
   },
   "devDependencies": {
     "@types/three": "^0.155.1",
