@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Grid from "./grid";
+import Grid from "./Grid";
 import styled from "styled-components";
 import { basicColors, bgColors } from "@/resources/colors/colors";
 
