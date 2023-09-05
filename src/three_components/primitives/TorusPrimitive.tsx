@@ -1,7 +1,9 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../common/materialSetting";
-import primitiveStore from "@/store/primitiveStore";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
+import { observer } from "mobx-react";
+import storeContainer from "@/store/storeContainer";
+import { PrimitiveProps } from "../common/PrimitiveProps";
 
 interface TorusParams {
   minRadius: number;
@@ -39,27 +41,29 @@ const initTorus: TorusParams = {
   arcUnit: 0.06,
 };
 
-const TorusPrimitive = () => {
+const TorusPrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();
-  const uuid = useId();
-  const store = primitiveStore;
+  const { primitiveStore } = storeContainer;
   const geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100, Math.PI * 2);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = "TORUS";
-  mesh.uuid = uuid;
+  mesh.name = props.uuid;
 
   useEffect(() => {
-    store.addPrimitive(mesh.uuid, mesh);
+    primitiveStore.updatePrimitive(mesh.name, mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
-      object={store.primitives[mesh.uuid] ? store.primitives[mesh.uuid] : mesh}
+      object={
+        primitiveStore.meshes[mesh.name]
+          ? primitiveStore.meshes[mesh.name]
+          : mesh
+      }
     />
   );
-};
+});
 
 export type { TorusParams };
 export { initTorus };

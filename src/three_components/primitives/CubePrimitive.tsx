@@ -1,27 +1,30 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../common/materialSetting";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
-import primitiveStore from "@/store/primitiveStore";
+import storeContainer from "@/store/storeContainer";
+import { PrimitiveProps } from "../common/PrimitiveProps";
 
-const CubePrimitive = observer(() => {
+const CubePrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();
-  const uuid = useId();
-  const store = primitiveStore;
+  const { primitiveStore } = storeContainer;
   const geometry = new THREE.BoxGeometry();
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = "CUBE";
-  mesh.uuid = uuid;
+  mesh.name = props.uuid;
 
   useEffect(() => {
-    store.addPrimitive(mesh.uuid, mesh);
+    primitiveStore.updatePrimitive(mesh.name, mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
-      object={store.primitives[mesh.uuid] ? store.primitives[mesh.uuid] : mesh}
+      object={
+        primitiveStore.meshes[mesh.name]
+          ? primitiveStore.meshes[mesh.name]
+          : mesh
+      }
     />
   );
 });
