@@ -1,7 +1,9 @@
-import primitiveStore from "@/store/primitiveStore";
-import { useRef, useId, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import THREE from "three";
-import { getDefaultMaterialSetting } from "../common/materialSetting";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
+import { observer } from "mobx-react";
+import storeContainer from "@/store/storeContainer";
+import { PrimitiveProps } from "../common/PrimitiveProps";
 
 interface CapsuleParams {
   minRadius: number;
@@ -33,27 +35,30 @@ const initCapsule: CapsuleParams = {
   radialSegments: 1,
 };
 
-const CapsulePrimitive = () => {
+const CapsulePrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();
-  const uuid = useId();
-  const store = primitiveStore;
+  const { primitiveStore } = storeContainer;
   const geometry = new THREE.CapsuleGeometry(0.25, 1, 10, 20);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "CAPSULE";
-  mesh.uuid = uuid;
+  mesh.userData["storeID"] = props.storeID;
 
   useEffect(() => {
-    store.addPrimitive(mesh.uuid, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["storeID"], mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
-      object={store.primitives[mesh.uuid] ? store.primitives[mesh.uuid] : mesh}
+      object={
+        primitiveStore.meshes[mesh.userData["storeID"]]
+          ? primitiveStore.meshes[mesh.userData["storeID"]]
+          : mesh
+      }
     />
   );
-};
+});
 
 export type { CapsuleParams };
 export { initCapsule };
