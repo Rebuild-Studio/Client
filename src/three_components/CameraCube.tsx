@@ -10,7 +10,7 @@ export const CameraCube = (props: any) => {
     <mesh {...props}>
       {textures.map((value, idx) => (
         <meshStandardMaterial
-          key={idx}
+          key={idx + value.uuid}
           attach={`material-${idx}`}
           map={value}
         />
