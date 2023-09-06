@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import THREE from "three";
+import * as THREE from "three";
 import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
