@@ -8,9 +8,9 @@ interface PrimitiveProps {
   primitives: PrimitiveType;
   meshes: MeshType;
   selectedPrimitives: MeshType;
-  addPrimitive: (nnid: string, primitive: JSX.Element) => void;
-  removePrimitive: (nnid: string) => void;
-  updatePrimitive: (nnid: string, mesh: THREE.Mesh) => void;
+  addPrimitive: (storeID: string, primitive: JSX.Element) => void;
+  removePrimitive: (storeID: string) => void;
+  updatePrimitive: (storeID: string, mesh: THREE.Mesh) => void;
   clearPrimitives: () => void;
 }
 
@@ -18,20 +18,20 @@ const primitiveStore = observable<PrimitiveProps>({
   primitives: {},
   meshes: {},
   selectedPrimitives: {},
-  addPrimitive(nnid, primitive) {
+  addPrimitive(storeID, primitive) {
     this.primitives = {
       ...this.primitives,
-      [nnid]: primitive,
+      [storeID]: primitive,
     };
   },
-  removePrimitive(nnid) {
-    delete this.primitives[nnid];
+  removePrimitive(storeID) {
+    delete this.primitives[storeID];
     this.primitives = {
       ...this.primitives,
     };
   },
-  updatePrimitive(nnid, mesh) {
-    this.meshes[nnid] = mesh;
+  updatePrimitive(storeID, mesh) {
+    this.meshes[storeID] = mesh;
     this.meshes = {
       ...this.meshes,
     };
