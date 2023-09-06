@@ -12,7 +12,7 @@ const AssetPrimitive = observer((props: AssetPrimitveProps) => {
   const { primitiveStore } = storeContainer;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(props.mesh.name, props.mesh);
+    primitiveStore.updatePrimitive(props.mesh.userData["nnid"], props.mesh);
   }, []);
 
   return (

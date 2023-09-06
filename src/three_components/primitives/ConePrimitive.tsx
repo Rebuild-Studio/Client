@@ -37,19 +37,19 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
   const geometry = new THREE.ConeGeometry(0.5, 1, 32, 1, false, 0, Math.PI * 2);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = props.uuid;
+  mesh.name = "CONE";
+  mesh.userData["nnid"] = props.nnid;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.name, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["nnid"], mesh);
   }, []);
 
   return (
     <primitive
-      key={mesh.id}
       ref={ref}
       object={
-        primitiveStore.meshes[mesh.name]
-          ? primitiveStore.meshes[mesh.name]
+        primitiveStore.meshes[mesh.userData["nnid"]]
+          ? primitiveStore.meshes[mesh.userData["nnid"]]
           : mesh
       }
     />

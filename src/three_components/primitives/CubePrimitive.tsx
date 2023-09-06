@@ -11,18 +11,19 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
   const geometry = new THREE.BoxGeometry();
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = props.uuid;
+  mesh.name = "CUBE";
+  mesh.userData["nnid"] = props.nnid;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.name, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["nnid"], mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
       object={
-        primitiveStore.meshes[mesh.name]
-          ? primitiveStore.meshes[mesh.name]
+        primitiveStore.meshes[mesh.userData["nnid"]]
+          ? primitiveStore.meshes[mesh.userData["nnid"]]
           : mesh
       }
     />

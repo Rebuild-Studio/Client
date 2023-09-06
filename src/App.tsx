@@ -11,10 +11,17 @@ function App() {
   return (
     <>
       <Canvas
-        onContextMenu={(e) => {
-          e.preventDefault();
-          console.log("dks");
-        }}
+      // onContextMenu={(e) => {
+      //   e.preventDefault();
+      //   console.log("dks");
+      // }}
+      // onDrag={(e) => {
+      //   console.log(e);
+      // }}
+      // onDrag={(e) => {
+      //   console.log
+      // }}
+      // onPointerDown={(e) => {}}
       >
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
@@ -23,7 +30,7 @@ function App() {
       <button
         onClick={() => {
           console.log(uuid);
-          primitiveStore.addPrimitive(uuid, <CubePrimitive uuid={uuid} />);
+          primitiveStore.addPrimitive(uuid, <CubePrimitive nnid={uuid} />);
         }}
       >
         렌더링

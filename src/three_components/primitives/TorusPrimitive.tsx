@@ -47,18 +47,19 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
   const geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100, Math.PI * 2);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = props.uuid;
+  mesh.name = "TORUS";
+  mesh.userData["nnid"] = props.nnid;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.name, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["nnid"], mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
       object={
-        primitiveStore.meshes[mesh.name]
-          ? primitiveStore.meshes[mesh.name]
+        primitiveStore.meshes[mesh.userData["nnid"]]
+          ? primitiveStore.meshes[mesh.userData["nnid"]]
           : mesh
       }
     />

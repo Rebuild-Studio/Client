@@ -41,19 +41,19 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
   const geometry = new THREE.CapsuleGeometry(0.25, 1, 10, 20);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.name = props.uuid;
+  mesh.name = "CAPSULE";
+  mesh.userData["nnid"] = props.nnid;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.name, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["nnid"], mesh);
   }, []);
 
   return (
     <primitive
-      key={mesh.id}
       ref={ref}
       object={
-        primitiveStore.meshes[mesh.name]
-          ? primitiveStore.meshes[mesh.name]
+        primitiveStore.meshes[mesh.userData["nnid"]]
+          ? primitiveStore.meshes[mesh.userData["nnid"]]
           : mesh
       }
     />

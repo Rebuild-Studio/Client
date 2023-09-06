@@ -8,7 +8,7 @@ const RenderScene = observer(() => {
   const raycaster = useThree((state) => state.raycaster);
 
   useFrame((state, delta) => {
-    // console.log(raycaster.intersectObjects(state.scene.children));
+    console.log(raycaster.intersectObjects(state.scene.children));
   });
 
   useEffect(() => {}, []);

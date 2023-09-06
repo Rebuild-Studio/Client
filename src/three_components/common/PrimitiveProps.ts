@@ -1,5 +1,5 @@
 interface PrimitiveProps {
-  uuid: string;
+  nnid: string;
 }
 
 export type { PrimitiveProps };
