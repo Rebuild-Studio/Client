@@ -1,7 +1,9 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../common/materialSetting";
-import primitiveStore from "@/store/primitiveStore";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
+import { observer } from "mobx-react";
+import storeContainer from "@/store/storeContainer";
+import { PrimitiveProps } from "../common/PrimitiveProps";
 
 interface ConeParams {
   minRadius: number;
@@ -29,27 +31,30 @@ const initCone: ConeParams = {
   thetaLengthUnit: 0.06,
 };
 
-const ConePrimitive = () => {
+const ConePrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();
-  const uuid = useId();
-  const store = primitiveStore;
+  const { primitiveStore } = storeContainer;
   const geometry = new THREE.ConeGeometry(0.5, 1, 32, 1, false, 0, Math.PI * 2);
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "CONE";
-  mesh.uuid = uuid;
+  mesh.userData["storeID"] = props.storeID;
 
   useEffect(() => {
-    store.addPrimitive(mesh.uuid, mesh);
+    primitiveStore.updatePrimitive(mesh.userData["storeID"], mesh);
   }, []);
 
   return (
     <primitive
       ref={ref}
-      object={store.primitives[mesh.uuid] ? store.primitives[mesh.uuid] : mesh}
+      object={
+        primitiveStore.meshes[mesh.userData["storeID"]]
+          ? primitiveStore.meshes[mesh.userData["storeID"]]
+          : mesh
+      }
     />
   );
-};
+});
 
 export type { ConeParams };
 export { initCone };
