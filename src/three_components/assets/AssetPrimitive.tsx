@@ -1,28 +1,22 @@
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const AssetPrimitive = observer((mesh: THREE.Mesh) => {
+interface AssetPrimitveProps {
+  mesh: THREE.Mesh;
+}
+
+const AssetPrimitive = observer((props: AssetPrimitveProps) => {
   const ref = useRef();
-  const uuid = useId();
   const { primitiveStore } = storeContainer;
-  mesh.name = "ASSET";
-  mesh.uuid = uuid;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.uuid, mesh);
+    primitiveStore.updatePrimitive(props.mesh.name, props.mesh);
   }, []);
 
   return (
-    <primitive
-      ref={ref}
-      object={
-        primitiveStore.meshes[mesh.uuid]
-          ? primitiveStore.meshes[mesh.uuid]
-          : mesh
-      }
-    />
+    <primitive ref={ref} object={primitiveStore.meshes[props.mesh.name]} />
   );
 });
 

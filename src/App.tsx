@@ -10,7 +10,12 @@ function App() {
   const uuid = nanoid();
   return (
     <>
-      <Canvas>
+      <Canvas
+        onContextMenu={(e) => {
+          e.preventDefault();
+          console.log("dks");
+        }}
+      >
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <RenderScene />
