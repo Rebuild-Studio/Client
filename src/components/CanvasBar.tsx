@@ -1,4 +1,12 @@
 import Button from "./common/Button";
+import storeContainer from "@/store/storeContainer";
+import CubePrimitive from "@/three_components/primitives/CubePrimitive";
+import SpherePrimitive from "@/three_components/primitives/SpherePrimitive";
+import CylinderPrimitive from "@/three_components/primitives/CylinderPrimitive";
+import ConePrimitive from "@/three_components/primitives/ConePrimitive";
+import TorusPrimitive from "@/three_components/primitives/TorusPrimitive";
+import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
+import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
 
@@ -44,6 +52,8 @@ const ButtonGroupName = styled.span`
 `;
 
 const CavasBar = (props: Props) => {
+  const { primitiveStore } = storeContainer;
+
   return (
     <Wrapper>
       <Container height="70px">
@@ -61,36 +71,78 @@ const CavasBar = (props: Props) => {
             shadow="none"
             backgroundImage="/icons/studio/btn_cube.svg"
             hoverBackgroundImage="/icons/studio/btn_cube_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <CubePrimitive storeID={storeId} />
+              );
+            }}
           />
           <Button
             size="50px"
             shadow="none"
             backgroundImage="/icons/studio/btn_sphere.svg"
             hoverBackgroundImage="/icons/studio/btn_sphere_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <SpherePrimitive storeID={storeId} />
+              );
+            }}
           />
           <Button
             size="50px"
             shadow="none"
             backgroundImage="/icons/studio/btn_cylinder.svg"
             hoverBackgroundImage="/icons/studio/btn_cylinder_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <CylinderPrimitive storeID={storeId} />
+              );
+            }}
           />
           <Button
             size="50px"
             shadow="none"
             backgroundImage="/icons/studio/btn_cone.svg"
             hoverBackgroundImage="/icons/studio/btn_cone_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <ConePrimitive storeID={storeId} />
+              );
+            }}
           />
           <Button
             size="50px"
             shadow="none"
             backgroundImage="/icons/studio/btn_Torus.svg"
             hoverBackgroundImage="/icons/studio/btn_Torus_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <TorusPrimitive storeID={storeId} />
+              );
+            }}
           />
           <Button
             size="50px"
             shadow="none"
             backgroundImage="/icons/studio/btn_capsule.svg"
             hoverBackgroundImage="/icons/studio/btn_capsule_active.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <CapsulePrimitive storeID={storeId} />
+              );
+            }}
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="164px">

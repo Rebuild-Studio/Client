@@ -1,34 +1,45 @@
 import { observable } from "mobx";
 import * as THREE from "three";
 
-type PrimitiveType = { [key: string]: THREE.Mesh };
+type PrimitiveType = { [key: string]: JSX.Element };
+type MeshType = { [key: string]: THREE.Mesh };
 
 interface PrimitiveProps {
   primitives: PrimitiveType;
-  addPrimitive: (uuid: string, primitive: THREE.Mesh) => void;
-  removePrimitive: (uuid: string) => void;
-  updatePrimitive: (uuid: string, primitive: THREE.Mesh) => void;
+  meshes: MeshType;
+  selectedPrimitives: MeshType;
+  addPrimitive: (storeID: string, primitive: JSX.Element) => void;
+  removePrimitive: (storeID: string) => void;
+  updatePrimitive: (storeID: string, mesh: THREE.Mesh) => void;
+  clearPrimitives: () => void;
 }
 
 const primitiveStore = observable<PrimitiveProps>({
   primitives: {},
-  addPrimitive(uuid, primitive) {
+  meshes: {},
+  selectedPrimitives: {},
+  addPrimitive(storeID, primitive) {
     this.primitives = {
       ...this.primitives,
-      [uuid]: primitive,
+      [storeID]: primitive,
     };
   },
-  removePrimitive(uuid) {
-    delete this.primitives[uuid];
+  removePrimitive(storeID) {
+    delete this.primitives[storeID];
     this.primitives = {
       ...this.primitives,
     };
   },
-  updatePrimitive(uuid, primitive) {
-    this.primitives[uuid] = primitive;
-    this.primitives = {
-      ...this.primitives,
+  updatePrimitive(storeID, mesh) {
+    this.meshes[storeID] = mesh;
+    this.meshes = {
+      ...this.meshes,
     };
+  },
+  clearPrimitives() {
+    this.primitives = {};
+    this.meshes = {};
+    this.selectedPrimitives = {};
   },
 });
 
