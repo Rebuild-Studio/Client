@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import RenderScene from "../scene/RenderScene";
 import Grid from "./Grid";
 import styled from "styled-components";
 import { basicColors, bgColors } from "@/resources/colors/colors";
@@ -29,7 +30,7 @@ const Scene = () => {
       <Container>
         <CustomCanvas camera={{ fov: 50, position: [0, 2, 3.0] }}>
           <ambientLight
-            intensity={0.3}
+            intensity={1}
             visible={true}
             color={basicColors.white}
           />
@@ -49,6 +50,7 @@ const Scene = () => {
           ></directionalLight>
           <Grid />
           <OrbitControls enableDamping={false} />
+          <RenderScene />
         </CustomCanvas>
       </Container>
     </Wrapper>
