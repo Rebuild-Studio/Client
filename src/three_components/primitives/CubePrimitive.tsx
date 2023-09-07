@@ -4,6 +4,7 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
+import Gizmo from "../gizmo/Gizmo";
 
 const CubePrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();
@@ -19,14 +20,17 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
   }, []);
 
   return (
-    <primitive
-      ref={ref}
-      object={
-        primitiveStore.meshes[mesh.userData["storeID"]]
-          ? primitiveStore.meshes[mesh.userData["storeID"]]
-          : mesh
-      }
-    />
+    <>
+      <Gizmo storeID={props.storeID} />
+      <primitive
+        ref={ref}
+        object={
+          primitiveStore.meshes[props.storeID]
+            ? primitiveStore.meshes[props.storeID]
+            : mesh
+        }
+      />
+    </>
   );
 });
 
