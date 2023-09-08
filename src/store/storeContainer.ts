@@ -1,7 +1,7 @@
-import transformControlStore from "./transformControlStore";
-import mouseEventStore from "./mouseEventStore";
 import primitiveStore from "./primitiveStore";
 import userStore from "./userStore";
+import mouseEventStore from "./mouseEventStore";
+import transformControlStore from "./transformControlStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,

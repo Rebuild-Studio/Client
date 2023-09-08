@@ -3,58 +3,48 @@ import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
 
 interface GizmoProps {
-  storeID: string;
+  storeId: string;
 }
 
 const Gizmo = observer((props: GizmoProps) => {
   const { primitiveStore, transformControlStore } = storeContainer;
+  const hasSelectedPrimitive = primitiveStore.selectedPrimitives[props.storeId]
+    ? true
+    : false;
+
   return (
     <>
-      {transformControlStore.isTranslating ? (
+      {transformControlStore.isTranslating && (
         <TransformControls
-          showX={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showY={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showZ={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
           mode="translate"
-          object={primitiveStore.meshes[props.storeID]}
+          showX={hasSelectedPrimitive}
+          showY={hasSelectedPrimitive}
+          showZ={hasSelectedPrimitive}
+          object={primitiveStore.meshes[props.storeId]}
           onMouseDown={(e) => {
             transformControlStore.setIsTranslating();
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeID].clone();
+            const copyData = primitiveStore.meshes[props.storeId].clone();
             copyData.position.set(
               e?.target.object.position.x,
               e?.target.object.position.y,
               e?.target.object.position.z
             );
-            primitiveStore.updateSelectedPrimitives(props.storeID, copyData);
+            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();
           }}
         />
-      ) : (
-        ""
       )}
-      {transformControlStore.isRotating ? (
+      {transformControlStore.isRotating && (
         <TransformControls
           mode="rotate"
-          showX={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showY={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showZ={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          object={primitiveStore.meshes[props.storeID]}
+          showX={hasSelectedPrimitive}
+          showY={hasSelectedPrimitive}
+          showZ={hasSelectedPrimitive}
+          object={primitiveStore.meshes[props.storeId]}
           size={1.2}
           onMouseDown={(e) => {
             if (transformControlStore.currentControl !== "TRANSFORM") {
@@ -62,53 +52,43 @@ const Gizmo = observer((props: GizmoProps) => {
             }
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeID].clone();
+            const copyData = primitiveStore.meshes[props.storeId].clone();
             copyData.rotation.set(
               e?.target.object.rotation.x,
               e?.target.object.rotation.y,
               e?.target.object.rotation.z
             );
-            primitiveStore.updateSelectedPrimitives(props.storeID, copyData);
+            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();
           }}
         />
-      ) : (
-        ""
       )}
-      {transformControlStore.isScailing ? (
+      {transformControlStore.isScaling && (
         <TransformControls
-          showX={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showY={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
-          showZ={
-            primitiveStore.selectedPrimitives[props.storeID] ? true : false
-          }
           mode="scale"
-          object={primitiveStore.meshes[props.storeID]}
+          showX={hasSelectedPrimitive}
+          showY={hasSelectedPrimitive}
+          showZ={hasSelectedPrimitive}
+          object={primitiveStore.meshes[props.storeId]}
           size={0.8}
           onMouseDown={(e) => {
-            transformControlStore.setIsScailing();
+            transformControlStore.setIsScaling();
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeID].clone();
+            const copyData = primitiveStore.meshes[props.storeId].clone();
             copyData.scale.set(
               e?.target.object.scale.x,
               e?.target.object.scale.y,
               e?.target.object.scale.z
             );
-            primitiveStore.updateSelectedPrimitives(props.storeID, copyData);
+            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();
           }}
         />
-      ) : (
-        ""
       )}
     </>
   );

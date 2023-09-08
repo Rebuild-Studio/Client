@@ -54,22 +54,18 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
   const material = getDefaultMaterialSetting();
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "CYLINDER";
-  mesh.userData["storeID"] = props.storeID;
+  mesh.userData["storeId"] = props.storeId;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.userData["storeID"], mesh);
+    primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
   }, []);
 
   return (
     <>
-      <Gizmo storeID={props.storeID} />
+      <Gizmo storeId={props.storeId} />
       <primitive
         ref={ref}
-        object={
-          primitiveStore.meshes[props.storeID]
-            ? primitiveStore.meshes[props.storeID]
-            : mesh
-        }
+        object={primitiveStore.meshes[props.storeId] ?? mesh}
       />
     </>
   );

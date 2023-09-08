@@ -6,10 +6,10 @@ interface TransformControlProps {
   currentControl: GizmoType;
   isTranslating: boolean;
   isRotating: boolean;
-  isScailing: boolean;
+  isScaling: boolean;
   setIsTranslating: () => void;
   setIsRotating: () => void;
-  setIsScailing: () => void;
+  setIsScaling: () => void;
   clearTransform: () => void;
 }
 
@@ -17,30 +17,30 @@ const transformControlStore = observable<TransformControlProps>({
   currentControl: "NONE",
   isTranslating: true,
   isRotating: true,
-  isScailing: true,
+  isScaling: true,
   setIsTranslating() {
     this.currentControl = "TRANSFORM";
     this.isTranslating = true;
     this.isRotating = false;
-    this.isScailing = false;
+    this.isScaling = false;
   },
   setIsRotating() {
     this.currentControl = "ROTATE";
     this.isTranslating = false;
     this.isRotating = true;
-    this.isScailing = false;
+    this.isScaling = false;
   },
-  setIsScailing() {
+  setIsScaling() {
     this.currentControl = "SCALE";
     this.isTranslating = false;
     this.isRotating = false;
-    this.isScailing = true;
+    this.isScaling = true;
   },
   clearTransform() {
     this.currentControl = "NONE";
     this.isTranslating = true;
     this.isRotating = true;
-    this.isScailing = true;
+    this.isScaling = true;
   },
 });
 

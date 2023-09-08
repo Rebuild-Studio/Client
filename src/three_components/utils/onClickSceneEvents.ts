@@ -11,14 +11,14 @@ const onClickSceneEvents = (
   primitiveStore.clearSelectedPrimitives();
 
   const selectObject = intersectObjects.find((value) => {
-    return primitiveStore.primitives[value.object.userData["storeID"]];
+    return primitiveStore.primitives[value.object.userData["storeId"]];
   });
 
   if (!selectObject) {
     return;
   }
 
-  const selectObjectStoreId = selectObject.object.userData["storeID"];
+  const selectObjectStoreId = selectObject.object.userData["storeId"];
 
   primitiveStore.addSelectedPrimitives(
     selectObjectStoreId,
