@@ -4,43 +4,43 @@ type GizmoType = "TRANSFORM" | "ROTATE" | "SCALE" | "NONE";
 
 interface TransformControlProps {
   currentControl: GizmoType;
-  isTranslating: boolean;
-  isRotating: boolean;
-  isScaling: boolean;
-  setIsTranslating: () => void;
-  setIsRotating: () => void;
-  setIsScaling: () => void;
+  isTranslated: boolean;
+  isRotated: boolean;
+  isScaled: boolean;
+  setIsTranslated: () => void;
+  setIsRotated: () => void;
+  setIsScaled: () => void;
   clearTransform: () => void;
 }
 
 const transformControlStore = observable<TransformControlProps>({
   currentControl: "NONE",
-  isTranslating: true,
-  isRotating: true,
-  isScaling: true,
-  setIsTranslating() {
+  isTranslated: true,
+  isRotated: true,
+  isScaled: true,
+  setIsTranslated() {
     this.currentControl = "TRANSFORM";
-    this.isTranslating = true;
-    this.isRotating = false;
-    this.isScaling = false;
+    this.isTranslated = true;
+    this.isRotated = false;
+    this.isScaled = false;
   },
-  setIsRotating() {
+  setIsRotated() {
     this.currentControl = "ROTATE";
-    this.isTranslating = false;
-    this.isRotating = true;
-    this.isScaling = false;
+    this.isTranslated = false;
+    this.isRotated = true;
+    this.isScaled = false;
   },
-  setIsScaling() {
+  setIsScaled() {
     this.currentControl = "SCALE";
-    this.isTranslating = false;
-    this.isRotating = false;
-    this.isScaling = true;
+    this.isTranslated = false;
+    this.isRotated = false;
+    this.isScaled = true;
   },
   clearTransform() {
     this.currentControl = "NONE";
-    this.isTranslating = true;
-    this.isRotating = true;
-    this.isScaling = true;
+    this.isTranslated = true;
+    this.isRotated = true;
+    this.isScaled = true;
   },
 });
 

@@ -14,7 +14,7 @@ const Gizmo = observer((props: GizmoProps) => {
 
   return (
     <>
-      {transformControlStore.isTranslating && (
+      {transformControlStore.isTranslated && (
         <TransformControls
           mode="translate"
           showX={hasSelectedPrimitive}
@@ -22,7 +22,7 @@ const Gizmo = observer((props: GizmoProps) => {
           showZ={hasSelectedPrimitive}
           object={primitiveStore.meshes[props.storeId]}
           onMouseDown={(e) => {
-            transformControlStore.setIsTranslating();
+            transformControlStore.setIsTranslated();
           }}
           onObjectChange={(e) => {
             const copyData = primitiveStore.meshes[props.storeId].clone();
@@ -38,7 +38,7 @@ const Gizmo = observer((props: GizmoProps) => {
           }}
         />
       )}
-      {transformControlStore.isRotating && (
+      {transformControlStore.isRotated && (
         <TransformControls
           mode="rotate"
           showX={hasSelectedPrimitive}
@@ -48,7 +48,7 @@ const Gizmo = observer((props: GizmoProps) => {
           size={1.2}
           onMouseDown={(e) => {
             if (transformControlStore.currentControl !== "TRANSFORM") {
-              transformControlStore.setIsRotating();
+              transformControlStore.setIsRotated();
             }
           }}
           onObjectChange={(e) => {
@@ -65,7 +65,7 @@ const Gizmo = observer((props: GizmoProps) => {
           }}
         />
       )}
-      {transformControlStore.isScaling && (
+      {transformControlStore.isScaled && (
         <TransformControls
           mode="scale"
           showX={hasSelectedPrimitive}
@@ -74,7 +74,7 @@ const Gizmo = observer((props: GizmoProps) => {
           object={primitiveStore.meshes[props.storeId]}
           size={0.8}
           onMouseDown={(e) => {
-            transformControlStore.setIsScaling();
+            transformControlStore.setIsScaled();
           }}
           onObjectChange={(e) => {
             const copyData = primitiveStore.meshes[props.storeId].clone();
