@@ -1,7 +1,7 @@
-import { useTextureLoader } from "../hooks/loader";
+import { useServerTextureLoader } from "../hooks/loader";
 
 export const CameraCube = (props: any) => {
-  const textures = useTextureLoader(
+  const textures = useServerTextureLoader(
     Array.from({ length: 6 }, (_, idx) => `${idx + 1}.png`),
     "models/CameraCube/"
   );
