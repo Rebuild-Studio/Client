@@ -16,6 +16,7 @@ const PanelWrapper = styled.div`
   z-index: 1;
   width: 16vw;
   padding: 10px 0;
+  position: relative;
 `;
 
 const PanelTitleWrapper = styled.div`
