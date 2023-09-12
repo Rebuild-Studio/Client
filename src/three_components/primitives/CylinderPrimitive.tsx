@@ -62,7 +62,11 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      <Gizmo storeId={props.storeId} />
+      {Object.keys(primitiveStore.selectedPrimitives).length > 1 ? (
+        ""
+      ) : (
+        <Gizmo storeId={props.storeId} />
+      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}
