@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { basicColors, grayColors } from "@/resources/colors/colors";
 import styled from "styled-components";
 
 const SliderContainer = styled.div`
@@ -10,7 +11,7 @@ const SliderInput = styled.input.attrs({ type: "range" })`
   width: 100%;
   height: 2px;
   appearance: none;
-  background: var(--slider-background, #e1f853);
+  background: var(--slider-background, ${basicColors.primary});
   outline: none;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -46,25 +47,44 @@ const SliderValue = styled.span`
   margin-top: 10px;
 `;
 
-const Slider = () => {
+interface SliderProps {
+  min: number;
+  max: number;
+}
+
+const Slider = ({ min = 0, max = 100 }: SliderProps) => {
   const [value, setValue] = useState(50);
+  const sliderInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.target.value);
-    setValue(newValue);
+  const handleChange = () => {
+    if (sliderInputRef.current) {
+      console.log(sliderInputRef.current.value);
+      const newValue = Number(sliderInputRef.current.value);
+      setValue(newValue);
 
-    const thumbPosition = ((newValue - 0) / (100 - 0)) * 100;
-    const sliderBackground = `linear-gradient(to right, #e1f853 ${thumbPosition}%, #d3d3d3 ${thumbPosition}%)`;
+      const thumbPosition = ((newValue - min) / (max - min)) * 100;
+      const sliderBackground = `linear-gradient(to right, ${basicColors.primary} ${thumbPosition}%, ${grayColors.lightGray} ${thumbPosition}%)`;
 
-    document.documentElement.style.setProperty(
-      "--slider-background",
-      sliderBackground
-    );
+      sliderInputRef.current.style.setProperty(
+        "--slider-background",
+        sliderBackground
+      );
+    }
   };
+
+  useEffect(() => {
+    handleChange();
+  }, []);
 
   return (
     <SliderContainer>
-      <SliderInput min={0} max={100} value={value} onChange={handleChange} />
+      <SliderInput
+        ref={sliderInputRef}
+        min={min}
+        max={max}
+        value={value}
+        onChange={handleChange}
+      />
       <SliderValue>{value}</SliderValue>
     </SliderContainer>
   );
