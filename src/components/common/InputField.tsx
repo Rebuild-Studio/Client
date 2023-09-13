@@ -61,7 +61,7 @@ const InputField = ({ label, type = "number", ...otherProps }: Props) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.currentTarget.type === "number") {
       const allowedKeys = [8, 13];
-      const isNumberKey = /^[0-9\b]+$/.test(e.key);
+      const isNumberKey = /^[0-9.\-\b]+$/.test(e.key);
       if (!isNumberKey && !allowedKeys.includes(e.keyCode)) {
         e.preventDefault();
       }
