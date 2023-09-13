@@ -6,8 +6,6 @@ import { basicColors, grayColors } from "@/resources/colors/colors";
 interface Props {
   type: InputType;
   label: string;
-  // id: string;
-  // value: string | number;
   onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
