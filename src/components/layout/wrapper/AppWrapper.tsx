@@ -29,6 +29,7 @@ const AppWrapper = observer((props: AppProps) => {
   const setOnKeyUpListener = (e: KeyboardEvent) => {
     keyboardEventStore.clearKeyEvent();
   };
+
   useEffect(() => {
     window.addEventListener("keydown", setOnKeydownListener);
     window.addEventListener("keyup", setOnKeyUpListener);

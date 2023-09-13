@@ -65,9 +65,7 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      {Object.keys(primitiveStore.selectedPrimitives).length > 1 ? (
-        ""
-      ) : (
+      {!(Object.keys(primitiveStore.selectedPrimitives).length > 1) && (
         <Gizmo storeId={props.storeId} />
       )}
       <primitive
