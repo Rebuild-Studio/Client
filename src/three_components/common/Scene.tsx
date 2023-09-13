@@ -8,7 +8,9 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 
 const Wrapper = styled.div`
+  position: absolute;
   width: 100%;
+  top: 78px;
   height: calc(100vh - ${78}px);
   display: flex;
 `;
