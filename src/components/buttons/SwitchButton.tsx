@@ -12,6 +12,7 @@ const SwitchLabel = styled.label`
   margin-right: 8px;
   user-select: none;
 `;
+
 const SwitchWrapper = styled.div`
   position: relative;
 `;
