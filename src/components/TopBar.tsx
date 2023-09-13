@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   height: 54px;
   width: 100%;
+  z-index: 1;
   background-color: #222222;
   display: flex;
   justify-content: center;
