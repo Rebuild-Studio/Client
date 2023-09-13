@@ -72,7 +72,6 @@ const Scene = observer(() => {
           ></directionalLight>
           <Grid />
           <OrbitControls enableDamping={false} makeDefault={true} />
-
           <RenderScene />
         </CustomCanvas>
       </Container>
