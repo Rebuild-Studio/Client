@@ -24,6 +24,7 @@ const bgColors = {
 
 const grayColors = {
   "535353": "#535353",
+  "3a3a3a": "#3a3a3a",
   "808080": "#808080",
   buttonColor: "#303030",
   lightGray: "#e2e2e2",
