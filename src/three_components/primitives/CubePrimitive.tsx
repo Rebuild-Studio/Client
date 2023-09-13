@@ -20,7 +20,7 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      {!(Object.keys(primitiveStore.selectedPrimitives).length > 1) && (
+      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
         <Gizmo storeId={props.storeId} />
       )}
       <primitive
