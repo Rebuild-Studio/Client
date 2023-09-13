@@ -56,7 +56,7 @@ interface AccordionProps {
 const Accordion = ({ title, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState<number | null>(null);
+  const [contentHeight, setContentHeight] = useState<number | null>(0);
 
   useEffect(() => {
     if (contentRef.current) {
