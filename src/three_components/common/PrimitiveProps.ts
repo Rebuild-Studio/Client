@@ -1,5 +1,5 @@
 interface PrimitiveProps {
-  storeID: string;
+  storeId: string;
 }
 
 export type { PrimitiveProps };

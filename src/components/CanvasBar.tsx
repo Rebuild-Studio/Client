@@ -77,7 +77,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CubePrimitive storeID={storeId} />
+                <CubePrimitive storeId={storeId} />
               );
             }}
           />
@@ -90,7 +90,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <SpherePrimitive storeID={storeId} />
+                <SpherePrimitive storeId={storeId} />
               );
             }}
           />
@@ -103,7 +103,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CylinderPrimitive storeID={storeId} />
+                <CylinderPrimitive storeId={storeId} />
               );
             }}
           />
@@ -116,7 +116,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <ConePrimitive storeID={storeId} />
+                <ConePrimitive storeId={storeId} />
               );
             }}
           />
@@ -129,7 +129,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <TorusPrimitive storeID={storeId} />
+                <TorusPrimitive storeId={storeId} />
               );
             }}
           />
@@ -142,7 +142,7 @@ const CanvasBar = (props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CapsulePrimitive storeID={storeId} />
+                <CapsulePrimitive storeId={storeId} />
               );
             }}
           />

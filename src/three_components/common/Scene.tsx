@@ -4,6 +4,8 @@ import RenderScene from "../scene/RenderScene";
 import Grid from "./Grid";
 import styled from "styled-components";
 import { basicColors, bgColors } from "@/resources/colors/colors";
+import storeContainer from "@/store/storeContainer";
+import { observer } from "mobx-react";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -26,11 +28,29 @@ const CustomCanvas = styled(Canvas)`
   background-color: ${bgColors.sceneBackground};
 `;
 
-const Scene = () => {
+const Scene = observer(() => {
+  const { mouseEventStore } = storeContainer;
   return (
     <Wrapper>
       <Container>
-        <CustomCanvas camera={{ fov: 50, position: [0, 2, 3.0] }}>
+        <CustomCanvas
+          camera={{ fov: 50, position: [0, 2, 3.0] }}
+          onMouseDown={(e) => {
+            mouseEventStore.updateMouseEvent("onMouseDown", e);
+          }}
+          onMouseMove={(e) => {
+            mouseEventStore.updateMouseEvent("onMouseMove", e);
+          }}
+          onMouseUp={(e) => {
+            mouseEventStore.updateMouseEvent("onMouseUp", e);
+          }}
+          onClick={(e) => {
+            mouseEventStore.updateMouseEvent("onClick", e);
+          }}
+          onContextMenu={(e) => {
+            mouseEventStore.updateMouseEvent("onContextMenu", e);
+          }}
+        >
           <ambientLight
             intensity={1}
             visible={true}
@@ -51,12 +71,13 @@ const Scene = () => {
             shadow-camera-bottom={-30}
           ></directionalLight>
           <Grid />
-          <OrbitControls enableDamping={false} />
+          <OrbitControls enableDamping={false} makeDefault={true} />
+
           <RenderScene />
         </CustomCanvas>
       </Container>
     </Wrapper>
   );
-};
+});
 
 export default Scene;

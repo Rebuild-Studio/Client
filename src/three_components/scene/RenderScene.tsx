@@ -2,13 +2,34 @@ import storeContainer from "@/store/storeContainer";
 import { useFrame, useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
+import onClickSceneEvents from "../utils/onClickSceneEvents";
 
 const RenderScene = observer(() => {
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, mouseEventStore } = storeContainer;
   const raycaster = useThree((state) => state.raycaster);
 
   useFrame((state, delta) => {
-    // console.log(raycaster.intersectObjects(state.scene.children));
+    const intersectObjects = raycaster.intersectObject(state.scene);
+    switch (mouseEventStore.currentMouseEvent[0]) {
+      case "onMouseDown": {
+        break;
+      }
+      case "onMouseMove": {
+        break;
+      }
+      case "onMouseUp": {
+        break;
+      }
+      case "onClick": {
+        onClickSceneEvents(intersectObjects);
+        break;
+      }
+      case "onContextMenu": {
+        break;
+      }
+      default: {
+      }
+    }
   });
 
   useEffect(() => {}, []);
