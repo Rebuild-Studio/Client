@@ -25,7 +25,7 @@ const StyledButton = styled.button<CSSProps>`
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   padding: 6px 8px;
   border: 0px;
-  margin: 0px
+  margin: 0px;
   cursor: pointer;
   vertical-align: middle;
   min-width: 64px;
