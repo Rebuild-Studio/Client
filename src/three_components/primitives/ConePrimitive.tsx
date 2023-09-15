@@ -40,6 +40,7 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "CONE";
   mesh.userData["storeId"] = props.storeId;
+  mesh.userData["isLocked"] = false;
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);

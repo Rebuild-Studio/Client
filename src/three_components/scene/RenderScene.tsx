@@ -5,9 +5,11 @@ import { useEffect } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import { nanoid } from "nanoid";
 import SelectedGroup from "../group/SelectedGroup";
+import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
+import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 
 const RenderScene = observer(() => {
-  const { primitiveStore, mouseEventStore } = storeContainer;
+  const { primitiveStore, mouseEventStore, contextMenuStore } = storeContainer;
   const raycaster = useThree((state) => state.raycaster);
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
@@ -17,6 +19,7 @@ const RenderScene = observer(() => {
     const intersectObjects = raycaster.intersectObject(state.scene);
     switch (mouseEventStore.currentMouseEvent[0]) {
       case "onMouseDown": {
+        onMouseDownSceneEvents();
         break;
       }
       case "onMouseMove": {
@@ -30,6 +33,7 @@ const RenderScene = observer(() => {
         break;
       }
       case "onContextMenu": {
+        onContextMenuSceneEvents(intersectObjects);
         break;
       }
       default: {

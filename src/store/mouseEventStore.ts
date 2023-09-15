@@ -11,7 +11,7 @@ type MouseEventType =
 interface MouseEventProps {
   currentMouseEvent: [
     MouseEventType,
-    React.MouseEvent<HTMLDivElement, MouseEvent> | "NONE"
+    React.MouseEvent<HTMLDivElement, MouseEvent> | null
   ];
   updateMouseEvent: (
     mouseEvent: MouseEventType,
@@ -21,12 +21,12 @@ interface MouseEventProps {
 }
 
 const mouseEventStore = observable<MouseEventProps>({
-  currentMouseEvent: ["NONE", "NONE"],
+  currentMouseEvent: ["NONE", null],
   updateMouseEvent(mouseEvent, eventValue) {
     this.currentMouseEvent = [mouseEvent, eventValue];
   },
   clearMouseEvent() {
-    this.currentMouseEvent = ["NONE", "NONE"];
+    this.currentMouseEvent = ["NONE", null];
   },
 });
 

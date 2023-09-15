@@ -58,6 +58,7 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "SPHERE";
   mesh.userData["storeId"] = props.storeId;
+  mesh.userData["isLocked"] = false;
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
