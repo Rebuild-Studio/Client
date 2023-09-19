@@ -3,9 +3,12 @@ import { fonts } from "@/resources/fonts/font";
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { StyledTooltip, Tooltip } from "./Tooltip";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { observer } from "mobx-react";
 
 type Props = {
   label: string;
+  index: number;
 };
 
 const HistoryElement = styled.div`
@@ -27,7 +30,7 @@ const HistoryText = styled.span`
   }
 `;
 
-export const UndoElement = ({ label }: Props) => {
+export const UndoElement = observer(({ label, index }: Props) => {
   const [tooltipPos, setTooltipPos] = useState(0);
 
   useEffect(() => {
@@ -35,10 +38,14 @@ export const UndoElement = ({ label }: Props) => {
   }, []);
   const textRef = useRef<HTMLSpanElement>(null);
   return (
-    <HistoryElement>
-      <img src="/Icons/Studio/icon_비표시.png" />
+    <HistoryElement
+      onClick={() => {
+        canvasHistoryStore.undoListElementClick(index);
+      }}
+    >
+      <img src="/icons/studio/icon_비표시.png" />
       <HistoryText ref={textRef}>{label}</HistoryText>
       <Tooltip left={tooltipPos} label={label} />
     </HistoryElement>
   );
-};
+});

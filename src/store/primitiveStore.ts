@@ -2,7 +2,7 @@ import { observable } from "mobx";
 import * as THREE from "three";
 
 type PrimitiveType = { [key: string]: JSX.Element };
-type MeshType = { [key: string]: THREE.Mesh };
+export type MeshType = { [key: string]: THREE.Mesh };
 type GroupPrimitiveType = [string, JSX.Element | null];
 
 interface PrimitiveProps {

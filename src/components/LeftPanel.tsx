@@ -2,11 +2,17 @@ import styled from "styled-components";
 import { HistoryPanel } from "./layout/HistoryPanel/HistoryPanel";
 import { basicColors, bgColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { observer } from "mobx-react";
+import { useEffect } from "react";
+import primitiveStore from "@/store/primitiveStore";
 
 // TODO : z 인덱스 논의 필요!, 높이 크기도 바 높이에 따라 달라짐
 const StyledLeftPanel = styled.div`
+  position: absolute;
+  top: 60px;
   width: 285px;
-  height: 60vh;
+  height: 80vh;
   background-color: ${bgColors[404040]};
   display: flex;
   flex-direction: column;
@@ -26,49 +32,21 @@ const StyledTab = styled.div`
 
 const StyledContent = styled.div``;
 
-export const LeftPanel = () => {
+export const LeftPanel = observer(() => {
+  useEffect(() => {
+    canvasHistoryStore.differ();
+  }, [primitiveStore.meshes]);
+
   return (
     <StyledLeftPanel>
       <StyledHeader>히스토리</StyledHeader>
       <StyledTab>{`[캔버스] [인터렉션 에디터]`}</StyledTab>
       <StyledContent>
         <HistoryPanel
-          redoList={[
-            {
-              id: "1",
-              type: "object",
-              attribute: "add",
-            },
-            {
-              id: "1",
-              type: "object",
-              attribute: "position",
-            },
-            {
-              id: "1",
-              type: "material",
-              attribute: "color",
-            },
-          ]}
-          undoList={[
-            {
-              id: "1",
-              type: "object",
-              attribute: "add",
-            },
-            {
-              id: "1",
-              type: "object",
-              attribute: "position",
-            },
-            {
-              id: "1",
-              type: "material",
-              attribute: "color",
-            },
-          ]}
+          undoList={canvasHistoryStore.undoList}
+          redoList={canvasHistoryStore.redoList}
         />
       </StyledContent>
     </StyledLeftPanel>
   );
-};
+});

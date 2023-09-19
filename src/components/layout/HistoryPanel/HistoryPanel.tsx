@@ -2,17 +2,13 @@ import { basicColors, bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { UndoElement } from "./UnDoElement";
 import { RedoElement } from "./RedoElement";
+import { CanvasType } from "@/store/canvasHistoryStore";
+import { observer } from "mobx-react";
 
 type Props = {
-  undoList: CanvasHistory[];
-  redoList: CanvasHistory[];
+  undoList: CanvasType[];
+  redoList: CanvasType[];
 };
-
-export interface CanvasHistory {
-  id: string;
-  type: "object" | "material" | "light" | "camera";
-  attribute: string;
-}
 
 const HistoryList = styled.div`
   display: flex;
@@ -24,13 +20,14 @@ const HistoryList = styled.div`
   padding: 10px 11px;
 `;
 
-export const HistoryPanel = ({ undoList, redoList }: Props) => {
+export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
   return (
     <HistoryList>
       {undoList.map((value, idx) => (
         <UndoElement
           label={value.type + " " + value.attribute}
           key={idx + value.id}
+          index={idx}
         />
       ))}
       {redoList.map((value, idx) => (
@@ -42,4 +39,4 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
       ))}
     </HistoryList>
   );
-};
+});

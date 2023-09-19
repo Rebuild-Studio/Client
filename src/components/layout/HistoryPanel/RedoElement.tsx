@@ -2,6 +2,8 @@ import { fonts } from "@/resources/fonts/font";
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { StyledTooltip, Tooltip } from "./Tooltip";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { observer } from "mobx-react";
 
 type Props = {
   label: string;
@@ -32,7 +34,7 @@ const HistoryText = styled.span<CSSHistoryTextType>`
   }
 `;
 
-export const RedoElement = ({ label, index }: Props) => {
+export const RedoElement = observer(({ label, index }: Props) => {
   const [tooltipPos, setTooltipPos] = useState(0);
 
   useEffect(() => {
@@ -40,11 +42,15 @@ export const RedoElement = ({ label, index }: Props) => {
   }, []);
   const textRef = useRef<HTMLSpanElement>(null);
   return (
-    <HistoryElement>
+    <HistoryElement
+      onClick={() => {
+        canvasHistoryStore.redoListElementClick(index);
+      }}
+    >
       {index === 0 ? (
-        <img src="/Icons/Studio/icon_표시_활성화.png" />
+        <img src="/icons/studio/icon_표시_활성화.png" />
       ) : (
-        <img src="/Icons/Studio/icon_표시.png" />
+        <img src="/icons/studio/icon_표시.png" />
       )}
       <HistoryText ref={textRef} $index={index}>
         {label}
@@ -52,4 +58,4 @@ export const RedoElement = ({ label, index }: Props) => {
       <Tooltip left={tooltipPos} label={label} />
     </HistoryElement>
   );
-};
+});
