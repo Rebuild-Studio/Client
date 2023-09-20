@@ -17,7 +17,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
   useFrame((state, delta) => {
     // 선택 컴포넌트 복원 작업
     if (Object.keys(primitiveStore.selectedPrimitives).length === 0) {
-      primitiveStore.tempPrimitives.forEach((storeId) => {
+      Object.values(primitiveStore.tempPrimitives).forEach((storeId) => {
         state.scene.attach(primitiveStore.meshes[storeId]);
       });
       primitiveStore.clearTempPrimitives();

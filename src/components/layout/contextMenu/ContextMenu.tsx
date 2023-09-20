@@ -1,5 +1,6 @@
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ContextMenuItemType } from "@/store/contextMenuStore";
+import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react-lite";
 import { styled } from "styled-components";
 
@@ -54,17 +55,22 @@ const ContextMenuItemDivider = styled.div`
 `;
 
 const ContextMenu = observer((props: ContextMenuProps) => {
-  const renderContextMenuItem = (value: ContextMenuItemType) => {
-    switch (value[0]) {
+  const { contextMenuStore } = storeContainer;
+  const renderContextMenuItem = (
+    title: string,
+    hotKey: string,
+    isEnabled: boolean
+  ) => {
+    switch (title) {
       case "DIVIDER":
         return <ContextMenuItemDivider />;
       default:
         return (
           <>
-            <ContextMenuItemTitle isEnabled={value[3]}>
-              {value[0]}
+            <ContextMenuItemTitle isEnabled={isEnabled}>
+              {title}
             </ContextMenuItemTitle>
-            <ContextMenuItemHotKey>{value[1]}</ContextMenuItemHotKey>
+            <ContextMenuItemHotKey>{hotKey}</ContextMenuItemHotKey>
           </>
         );
     }
@@ -72,18 +78,17 @@ const ContextMenu = observer((props: ContextMenuProps) => {
 
   return (
     <ContextMenuWrapper xPos={props.xPos} yPos={props.yPos}>
-      {props.items.map((value) => {
+      {props.items.map(([title, hotKey, isEnabled]) => {
         return (
           <ContextMenuItemWrapper
             onClick={() => {
-              console.log(value);
-              if (value[3]) {
-                value[2]();
+              if (isEnabled) {
+                contextMenuStore.updateSelectedContextMenu(title);
               }
             }}
-            isEnabled={value[3]}
+            isEnabled={isEnabled}
           >
-            {renderContextMenuItem(value)}
+            {renderContextMenuItem(title, hotKey, isEnabled)}
           </ContextMenuItemWrapper>
         );
       })}

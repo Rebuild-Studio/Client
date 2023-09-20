@@ -4,7 +4,6 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
-import Gizmo from "../gizmo/Gizmo";
 
 interface CylinderParams {
   minRadiusTop: number;
@@ -63,9 +62,6 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
-        <Gizmo storeId={props.storeId} />
-      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}

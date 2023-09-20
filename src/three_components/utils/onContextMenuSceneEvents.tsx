@@ -23,8 +23,27 @@ const onContextMenuSceneEvents = (
   }
 
   const selectObject = intersectObjects.find((value) => {
-    return primitiveStore.primitives[value.object.userData["storeId"]];
+    return primitiveStore.meshes[value.object.userData["storeId"]];
   });
+
+  // 그룹 찾기
+  const selectGroupObject = findRootGroup(
+    intersectObjects.find((value) => {
+      return value.object.parent?.name === "GROUP";
+    })?.object
+  );
+
+  if (selectGroupObject) {
+    const selectGroupObjectStoreId = selectGroupObject.userData["storeId"];
+    primitiveStore.addSelectedPrimitives(
+      selectGroupObjectStoreId,
+      primitiveStore.meshes[selectGroupObjectStoreId]
+    );
+
+    contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
+    contextMenuStore.updateIsContextMenuOpened(true);
+    return;
+  }
 
   if (!selectObject) {
     primitiveStore.clearSelectedPrimitives();
@@ -42,8 +61,21 @@ const onContextMenuSceneEvents = (
   );
 
   contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
-
   contextMenuStore.updateIsContextMenuOpened(true);
+};
+
+const findRootGroup = (
+  intersectObject: THREE.Object3D<THREE.Event> | undefined
+): THREE.Object3D<THREE.Event> | undefined => {
+  if (!intersectObject) {
+    return;
+  }
+
+  if (intersectObject.parent?.type === "Scene") {
+    return intersectObject;
+  }
+
+  return findRootGroup(intersectObject.parent ?? undefined);
 };
 
 export default onContextMenuSceneEvents;

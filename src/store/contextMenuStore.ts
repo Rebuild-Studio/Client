@@ -19,11 +19,11 @@ type ContextMenuType =
   | "DIVIDER";
 
 /**
- * [string, string, () => void, boolean] :
- * 첫 번째 값 기능명, 두 번째 값 기능 단축키, 3번째 동작 함수, 활성화 여부
+ * [string, string, boolean] :
+ * 첫 번째 값 기능명, 두 번째 값 기능 단축키, 활성화 여부
  * 단축키는 변경이 가능하므로 string
  */
-type ContextMenuItemType = [ContextMenuType, string, () => void, boolean];
+type ContextMenuItemType = [ContextMenuType, string, boolean];
 
 type OpenContextMenuType = "CANVAS" | "OBJECT" | "NONE";
 
@@ -35,8 +35,10 @@ interface ContextMenuRenderProps {
 
 interface ContextMenuProps {
   isContextMenuOpened: boolean;
+  currentSelectedContextMenu: ContextMenuType;
   currentContextMenuType: ContextMenuRenderProps | null;
   updateIsContextMenuOpened: (state: boolean) => void;
+  updateSelectedContextMenu: (state: ContextMenuType) => void;
   updateContextMenuType: (
     type: OpenContextMenuType,
     xPos: number,
@@ -48,6 +50,7 @@ interface ContextMenuProps {
   copyObject: () => void;
   pasteObject: () => void;
   groupObjects: () => void;
+  ungroupObject: () => void;
   lockObject: () => void;
   unlockObject: () => void;
   showObject: () => void;
@@ -57,9 +60,14 @@ interface ContextMenuProps {
 
 const contextMenuStore = observable<ContextMenuProps>({
   isContextMenuOpened: false,
+  currentSelectedContextMenu: "NONE",
   currentContextMenuType: null,
   updateIsContextMenuOpened(state) {
     this.isContextMenuOpened = state;
+  },
+  updateSelectedContextMenu(state) {
+    this.currentSelectedContextMenu = state;
+    this.isContextMenuOpened = false;
   },
   updateContextMenuType(type, xPos, yPos) {
     switch (type) {
@@ -87,7 +95,14 @@ const contextMenuStore = observable<ContextMenuProps>({
   saveProject() {},
   copyObject() {},
   pasteObject() {},
-  groupObjects() {},
+  groupObjects() {
+    contextMenuStore.currentSelectedContextMenu = "그룹";
+    contextMenuStore.isContextMenuOpened = false;
+  },
+  ungroupObject() {
+    contextMenuStore.currentSelectedContextMenu = "그룹 해제";
+    contextMenuStore.isContextMenuOpened = false;
+  },
   lockObject() {},
   unlockObject() {},
   showObject() {},
@@ -97,27 +112,27 @@ const contextMenuStore = observable<ContextMenuProps>({
 
 // 좋은 이름이 필요합니다.
 const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
-  preview: ["미리보기", "O", contextMenuStore.showPreview, true],
-  grid: ["그리드 표시", "Z", contextMenuStore.hideGrid, true],
-  save: ["저장", "Ctrl+S", contextMenuStore.saveProject, true],
-  paste: ["붙여넣기", "Ctrl+V", contextMenuStore.pasteObject, true],
-  copy: ["복사", "Ctrl+C", contextMenuStore.copyObject, true],
-  group: ["그룹", "Ctrl+G", contextMenuStore.groupObjects, true],
-  lock: ["잠그기", "Ctrl+L", contextMenuStore.lockObject, true],
-  hide: ["숨기기", "Ctrl+.", contextMenuStore.hideObject, true],
-  visible: ["보이기", "Ctrl+.", contextMenuStore.showObject, true],
-  delete: ["삭제", "Del", contextMenuStore.deleteObject, true],
+  preview: ["미리보기", "O", true],
+  grid: ["그리드 표시", "Z", true],
+  save: ["저장", "Ctrl+S", true],
+  paste: ["붙여넣기", "Ctrl+V", true],
+  copy: ["복사", "Ctrl+C", true],
+  group: ["그룹", "Ctrl+G", true],
+  lock: ["잠그기", "Ctrl+L", true],
+  hide: ["숨기기", "Ctrl+.", true],
+  visible: ["보이기", "Ctrl+.", true],
+  delete: ["삭제", "Del", true],
 };
 
 const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
-  grid: ["그리드 숨기기", "Z", contextMenuStore.hideGrid, true],
-  copy: ["복사", "Ctrl+C", contextMenuStore.copyObject, false],
-  paste: ["붙여넣기", "Ctrl+V", contextMenuStore.pasteObject, false],
-  group: ["그룹 해제", "Ctrl+G", contextMenuStore.groupObjects, true],
-  divider: ["DIVIDER", "", () => {}, false],
-  hide: ["숨기기", "Ctrl+.", contextMenuStore.hideObject, false],
-  visible: ["보이기", "Ctrl+.", contextMenuStore.showObject, false],
-  lock: ["잠금 해제", "Ctrl+L", contextMenuStore.unlockObject, true],
+  grid: ["그리드 숨기기", "Z", true],
+  copy: ["복사", "Ctrl+C", false],
+  paste: ["붙여넣기", "Ctrl+V", false],
+  group: ["그룹 해제", "Ctrl+G", true],
+  divider: ["DIVIDER", "", false],
+  hide: ["숨기기", "Ctrl+.", false],
+  visible: ["보이기", "Ctrl+.", false],
+  lock: ["잠금 해제", "Ctrl+L", true],
 };
 
 const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
@@ -161,8 +176,12 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
     res.push(activeContextMenuItems.group);
   }
 
-  // 그룹인지 아닌지 로직들어 가야함
-  // 그룹 컴포넌트 만들면 추가
+  if (
+    Object.keys(primitiveStore.selectedPrimitives).length === 1 &&
+    Object.values(primitiveStore.selectedPrimitives)[0].name === "GROUP"
+  ) {
+    res.push(inactiveContextMenuItems.group);
+  }
 
   res.push(inactiveContextMenuItems.divider);
 
@@ -196,7 +215,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
         continue;
       }
 
-      res[i][3] = false;
+      res[i][2] = false;
     }
   }
   return res;
