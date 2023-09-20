@@ -37,7 +37,7 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.ConeGeometry(0.5, 1, 32, 1, false, 0, Math.PI * 2);
   const material = getDefaultMaterialSetting();
-  const mesh = new THREE.Mesh(geometry, material);
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CONE";
   mesh.userData["storeId"] = props.storeId;
 
@@ -47,7 +47,9 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      <Gizmo storeId={props.storeId} />
+      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
+        <Gizmo storeId={props.storeId} />
+      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}

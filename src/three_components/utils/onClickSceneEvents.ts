@@ -4,17 +4,26 @@ import * as THREE from "three";
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
 ) => {
-  const { primitiveStore, mouseEventStore } = storeContainer;
+  const { primitiveStore, mouseEventStore, keyboardEventStore } =
+    storeContainer;
 
   mouseEventStore.clearMouseEvent();
-  // 차후 그룹들어 가면 로직 추가되어야 함
-  primitiveStore.clearSelectedPrimitives();
+
+  if (
+    !keyboardEventStore.currentKeyEvent.isCtrlPressed &&
+    primitiveStore.selectedGroupPrimitive[0] === ""
+  ) {
+    // 단일 선택
+    primitiveStore.clearSelectedPrimitives();
+  }
 
   const selectObject = intersectObjects.find((value) => {
     return primitiveStore.primitives[value.object.userData["storeId"]];
   });
 
   if (!selectObject) {
+    primitiveStore.clearSelectedPrimitives();
+    primitiveStore.clearSelectedGroupPrimitive();
     return;
   }
 

@@ -25,13 +25,10 @@ const Gizmo = observer((props: GizmoProps) => {
             transformControlStore.setIsTranslated();
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeId].clone();
-            copyData.position.set(
-              e?.target.object.position.x,
-              e?.target.object.position.y,
-              e?.target.object.position.z
+            primitiveStore.updateSelectedPrimitives(
+              props.storeId,
+              e?.target.object
             );
-            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();
@@ -52,13 +49,10 @@ const Gizmo = observer((props: GizmoProps) => {
             }
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeId].clone();
-            copyData.rotation.set(
-              e?.target.object.rotation.x,
-              e?.target.object.rotation.y,
-              e?.target.object.rotation.z
+            primitiveStore.updateSelectedPrimitives(
+              props.storeId,
+              e?.target.object
             );
-            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();
@@ -77,13 +71,10 @@ const Gizmo = observer((props: GizmoProps) => {
             transformControlStore.setIsScaled();
           }}
           onObjectChange={(e) => {
-            const copyData = primitiveStore.meshes[props.storeId].clone();
-            copyData.scale.set(
-              e?.target.object.scale.x,
-              e?.target.object.scale.y,
-              e?.target.object.scale.z
+            primitiveStore.updateSelectedPrimitives(
+              props.storeId,
+              e?.target.object
             );
-            primitiveStore.updateSelectedPrimitives(props.storeId, copyData);
           }}
           onMouseUp={(e) => {
             transformControlStore.clearTransform();

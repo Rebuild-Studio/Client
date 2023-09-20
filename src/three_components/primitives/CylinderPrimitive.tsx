@@ -52,7 +52,7 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
     Math.PI * 2
   );
   const material = getDefaultMaterialSetting();
-  const mesh = new THREE.Mesh(geometry, material);
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CYLINDER";
   mesh.userData["storeId"] = props.storeId;
 
@@ -62,7 +62,9 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      <Gizmo storeId={props.storeId} />
+      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
+        <Gizmo storeId={props.storeId} />
+      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}

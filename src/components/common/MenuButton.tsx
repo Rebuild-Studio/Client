@@ -1,22 +1,38 @@
-import { bgColors } from "@/resources/colors/colors";
+import { basicColors, bgColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
 import { CSSHexColor } from "@/types/style/CssUnits";
 import { FontType } from "@/types/style/Font";
 import styled from "styled-components";
 
-type Props = {
+export type MenuButtonProps = {
   onClick: () => void;
   label: string;
-  color: CSSHexColor;
-  backgroundColor: CSSHexColor;
   disabled: boolean;
-  fontSize: FontType;
+  fontSize?: FontType;
+  color?: CSSHexColor;
+  backgroundColor?: CSSHexColor;
+  hoverBackgroundColor?: CSSHexColor;
+  width?: string;
+  height?: string;
+  minHeight?: string;
+  minWidth?: string;
+  borderRadius?: string;
+  fontFamily?: string;
+  fontWeight?: number;
 };
 
 type CSSProps = {
-  $color: CSSHexColor;
-  $backgroundColor: CSSHexColor;
   $fontSize: FontType;
+  $color?: CSSHexColor;
+  $backgroundColor?: CSSHexColor;
+  $hoverBackgroundColor?: CSSHexColor;
+  $width?: string;
+  $height?: string;
+  $minHeight?: string;
+  $minWidth?: string;
+  $borderRadius?: string;
+  $fontFamily?: string;
+  $fontWeight?: number;
 };
 
 const StyledButton = styled.button<CSSProps>`
@@ -25,20 +41,41 @@ const StyledButton = styled.button<CSSProps>`
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   padding: 6px 8px;
   border: 0px;
-  margin: 0px
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+  min-height: ${({ $minHeight }) => $minHeight};
+  min-width: ${({ $minWidth }) => $minWidth};
+  border-radius: ${({ $borderRadius }) => $borderRadius};
+  font-family: ${({ $fontFamily }) => $fontFamily};
+  font-weight: ${({ $fontWeight }) => $fontWeight};
+  margin: 0px;
   cursor: pointer;
   vertical-align: middle;
   min-width: 64px;
+
+  &:hover {
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
 `;
 
 const MenuButton = ({
   onClick = () => {},
   label,
-  color,
-  backgroundColor = bgColors[101728],
   disabled = false,
+  color = basicColors.black,
+  backgroundColor = bgColors[101728],
+  hoverBackgroundColor = basicColors.limeGreen,
   fontSize = "small",
-}: Props) => {
+  width = "138px",
+  height = "32px",
+  minWidth = "80px",
+  minHeight = "34px",
+  borderRadius = "6px",
+  fontFamily = "SourceHanSansKR",
+  fontWeight = 500,
+}: MenuButtonProps) => {
   return (
     <StyledButton
       onClick={onClick}
@@ -46,6 +83,14 @@ const MenuButton = ({
       $backgroundColor={backgroundColor}
       $color={color}
       $fontSize={fontSize}
+      $width={width}
+      $height={height}
+      $minHeight={minHeight}
+      $minWidth={minWidth}
+      $borderRadius={borderRadius}
+      $fontFamily={fontFamily}
+      $fontWeight={fontWeight}
+      $hoverBackgroundColor={hoverBackgroundColor}
     >
       {label}
     </StyledButton>
