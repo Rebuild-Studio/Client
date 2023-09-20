@@ -1,4 +1,5 @@
 import MenuButton from "@/components/common/MenuButton";
+import { basicColors, grayColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
@@ -25,5 +26,39 @@ export const DisabledButton = {
   args: {
     label: "비활성화",
     color: "#dddddd",
+  },
+} satisfies Story;
+
+export const confirmButton = {
+  args: {
+    label: "불러오기",
+    width: "138px",
+    height: "32px",
+    minHeight: "34px",
+    minWidth: "80px",
+    borderRadius: "6px",
+    backgroundColor: basicColors.lightLimeGreen,
+    fontFamily: "SourceHanSansKR",
+    fontSize: "small",
+    fontWeight: 500,
+    color: "#101728",
+    hoverBackgroundColor: "#d4ed3e",
+  },
+} satisfies Story;
+
+export const CancelButton = {
+  args: {
+    label: "닫기",
+    width: "138px",
+    height: "32px",
+    minHeight: "34px",
+    minWidth: "80px",
+    borderRadius: "6px",
+    backgroundColor: "#282828",
+    fontFamily: "SpoqaHanSansNeo",
+    fontSize: "small",
+    fontWeight: 500,
+    color: "#fff",
+    hoverBackgroundColor: grayColors[808080],
   },
 } satisfies Story;
