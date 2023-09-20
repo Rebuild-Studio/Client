@@ -33,6 +33,7 @@ const grayColors = {
   E2E2E2: "#E2E2E2",
   buttonColor: "#303030",
   lightGray: "#e2e2e2",
+  panelGray: "#aaaaaa",
 } as const satisfies HexColorObject;
 
 const gridColor = {

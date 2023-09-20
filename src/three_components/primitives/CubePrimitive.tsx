@@ -10,7 +10,7 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.BoxGeometry();
   const material = getDefaultMaterialSetting();
-  const mesh = new THREE.Mesh(geometry, material);
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CUBE";
   mesh.userData["storeId"] = props.storeId;
   mesh.userData["isLocked"] = false;

@@ -9,6 +9,7 @@ import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 import Group from "../group/Group";
 import Gizmo from "../gizmo/Gizmo";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const RenderScene = observer(() => {
   const { primitiveStore, mouseEventStore, contextMenuStore } = storeContainer;

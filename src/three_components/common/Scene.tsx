@@ -7,6 +7,8 @@ import { basicColors, bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
+import { LeftPanel } from "@/components/LeftPanel";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -51,6 +53,8 @@ const Scene = observer(() => {
             mouseEventStore.updateMouseEvent("onMouseMove", e);
           }}
           onMouseUp={(e) => {
+            // TODO : 옮겨야함
+            canvasHistoryStore.differ();
             mouseEventStore.updateMouseEvent("onMouseUp", e);
           }}
           onClick={(e) => {
@@ -84,6 +88,7 @@ const Scene = observer(() => {
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
         </CustomCanvas>
+        <LeftPanel />
       </Container>
     </Wrapper>
   );
