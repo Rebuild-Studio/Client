@@ -1,9 +1,9 @@
-import { fonts } from "@/resources/fonts/font";
-import { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
-import { StyledTooltip, Tooltip } from "./Tooltip";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useRef } from "react";
 import { observer } from "mobx-react";
+import { fonts } from "@/resources/fonts/font";
+import { styled } from "styled-components";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { StyledTooltip } from "./Tooltip";
 
 type Props = {
   label: string;
@@ -35,11 +35,6 @@ const HistoryText = styled.span<CSSHistoryTextType>`
 `;
 
 export const RedoElement = observer(({ label, index }: Props) => {
-  const [tooltipPos, setTooltipPos] = useState(0);
-
-  useEffect(() => {
-    setTooltipPos(textRef.current?.clientWidth ?? 0);
-  }, []);
   const textRef = useRef<HTMLSpanElement>(null);
   return (
     <HistoryElement
@@ -48,14 +43,13 @@ export const RedoElement = observer(({ label, index }: Props) => {
       }}
     >
       {index === 0 ? (
-        <img src="/icons/studio/icon_표시_활성화.png" />
+        <img src="/icons/studio/icon_표시_활성화.png" alt="label-active" />
       ) : (
-        <img src="/icons/studio/icon_표시.png" />
+        <img src="/icons/studio/icon_표시.png" alt="label" />
       )}
       <HistoryText ref={textRef} $index={index}>
         {label}
       </HistoryText>
-      <Tooltip left={tooltipPos} label={label} />
     </HistoryElement>
   );
 });

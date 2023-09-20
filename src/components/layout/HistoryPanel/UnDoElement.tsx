@@ -1,8 +1,8 @@
-import { basicColors, grayColors } from "@/resources/colors/colors";
+import { useRef } from "react";
+import { grayColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
-import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
-import { StyledTooltip, Tooltip } from "./Tooltip";
+import { StyledTooltip } from "./Tooltip";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 import { observer } from "mobx-react";
 
@@ -31,11 +31,6 @@ const HistoryText = styled.span`
 `;
 
 export const UndoElement = observer(({ label, index }: Props) => {
-  const [tooltipPos, setTooltipPos] = useState(0);
-
-  useEffect(() => {
-    setTooltipPos(textRef.current?.clientWidth ?? 0);
-  }, []);
   const textRef = useRef<HTMLSpanElement>(null);
   return (
     <HistoryElement
@@ -43,9 +38,8 @@ export const UndoElement = observer(({ label, index }: Props) => {
         canvasHistoryStore.undoListElementClick(index);
       }}
     >
-      <img src="/icons/studio/icon_비표시.png" />
+      <img src="/icons/studio/icon_비표시.png" alt="non-label" />
       <HistoryText ref={textRef}>{label}</HistoryText>
-      <Tooltip left={tooltipPos} label={label} />
     </HistoryElement>
   );
 });

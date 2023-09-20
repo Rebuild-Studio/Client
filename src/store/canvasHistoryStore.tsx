@@ -9,7 +9,7 @@ import TorusPrimitive from "@/three_components/primitives/TorusPrimitive";
 
 export interface CanvasType {
   id: string;
-  type: "object" | "material" | "light" | "camera" | "initial";
+  type: string;
   attribute: string;
   snapshot: MeshType;
 }
@@ -63,6 +63,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       const mesh = meshes[key];
       const storeId = mesh.userData.storeId ?? mesh.uuid;
 
+      // 추가 or 삭제
       if (!beforeMesh) {
         console.log("add");
         this.addHistory({
@@ -78,6 +79,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         return;
       }
 
+      // mesh의 속성이 다르면 체크
       const attributes: MeshProperty[] = ["position", "rotation", "scale"];
       for (const attr of attributes) {
         if (!(beforeMesh[attr] as any).equals(mesh[attr])) {

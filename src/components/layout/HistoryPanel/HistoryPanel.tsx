@@ -10,6 +10,10 @@ type Props = {
   redoList: CanvasType[];
 };
 
+interface translateType {
+  [attr: string]: any;
+}
+
 const HistoryList = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,18 +25,41 @@ const HistoryList = styled.div`
 `;
 
 export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
+  const type_translate: translateType = {
+    object: "오브젝트",
+    material: "머터리얼",
+    camera: "카메라",
+    light: "빛",
+    initial: "초기상태",
+  };
+
+  const attr_translate: translateType = {
+    add: "추가",
+    position: "변형 (position)",
+    rotation: "변형 (rotation)",
+    scale: "변형 (scale)",
+  };
+
   return (
     <HistoryList>
       {undoList.map((value, idx) => (
         <UndoElement
-          label={value.type + " " + value.attribute}
+          label={
+            (type_translate[value.type] ?? "") +
+            " " +
+            (attr_translate[value.attribute] ?? "")
+          }
           key={idx + value.id}
           index={idx}
         />
       ))}
       {redoList.map((value, idx) => (
         <RedoElement
-          label={value.type + " " + value.attribute}
+          label={
+            (type_translate[value.type] ?? "") +
+            " " +
+            (attr_translate[value.attribute] ?? "")
+          }
           key={idx + value.id}
           index={idx}
         />
