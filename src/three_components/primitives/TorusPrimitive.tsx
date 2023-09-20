@@ -47,7 +47,7 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100, Math.PI * 2);
   const material = getDefaultMaterialSetting();
-  const mesh = new THREE.Mesh(geometry, material);
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "TORUS";
   mesh.userData["storeId"] = props.storeId;
 

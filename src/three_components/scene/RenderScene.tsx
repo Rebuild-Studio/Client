@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import { nanoid } from "nanoid";
 import SelectedGroup from "../group/SelectedGroup";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const RenderScene = observer(() => {
   const { primitiveStore, mouseEventStore } = storeContainer;

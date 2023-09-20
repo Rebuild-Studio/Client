@@ -9,6 +9,9 @@ import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { action, flowResult } from "mobx";
+import { observer } from "mobx-react";
 
 interface Props {}
 
@@ -53,7 +56,7 @@ const ButtonGroupName = styled.span`
   align-self: center;
 `;
 
-const CanvasBar = (props: Props) => {
+const CanvasBar = observer((props: Props) => {
   const { primitiveStore } = storeContainer;
 
   return (
@@ -182,6 +185,6 @@ const CanvasBar = (props: Props) => {
       </Container>
     </Wrapper>
   );
-};
+});
 
 export default CanvasBar;
