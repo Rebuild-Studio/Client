@@ -51,7 +51,9 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      <Gizmo storeId={props.storeId} />
+      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
+        <Gizmo storeId={props.storeId} />
+      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}

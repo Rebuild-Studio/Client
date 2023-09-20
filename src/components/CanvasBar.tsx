@@ -16,14 +16,15 @@ const Wrapper = styled.div`
   width: 100%;
   height: 88px;
   display: flex;
+  z-index: 1;
   flex-direction: column;
   align-items: center;
   background-color: ${bgColors[282828]};
-  border: 1px solid ${bgColors["1c1c1c"]};
 `;
 
 const Container = styled.div<{ height: string }>`
   width: 100%;
+  z-index: 1;
   height: ${(props) => props.height};
   display: flex;
   align-items: center;
@@ -33,6 +34,7 @@ const Container = styled.div<{ height: string }>`
 const CanvasBtnWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
   height: 100%;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +53,7 @@ const ButtonGroupName = styled.span`
   align-self: center;
 `;
 
-const CavasBar = (props: Props) => {
+const CanvasBar = (props: Props) => {
   const { primitiveStore } = storeContainer;
 
   return (
@@ -182,4 +184,4 @@ const CavasBar = (props: Props) => {
   );
 };
 
-export default CavasBar;
+export default CanvasBar;

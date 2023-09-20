@@ -14,14 +14,15 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = "CUBE";
   mesh.userData["storeId"] = props.storeId;
-
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
   }, []);
 
   return (
     <>
-      <Gizmo storeId={props.storeId} />
+      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
+        <Gizmo storeId={props.storeId} />
+      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}
