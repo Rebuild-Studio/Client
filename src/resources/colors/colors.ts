@@ -11,6 +11,8 @@ type HexColorObject = {
 const basicColors = {
   white: "#FFFFFF",
   black: "#000000",
+  lightLimeGreen: "#E3F853",
+  limeGreen: "#d4ed3e",
   primary: "#e1f853",
 } as const satisfies HexColorObject;
 
@@ -19,6 +21,7 @@ const bgColors = {
   "101728": "#101728",
   "282828": "#282828",
   "1c1c1c": "#1c1c1c",
+  "343434": "#343434",
   "404040": "#404040",
   sceneBackground: "#333333",
 } as const satisfies HexColorObject;
@@ -27,6 +30,7 @@ const grayColors = {
   "535353": "#535353",
   "3a3a3a": "#3a3a3a",
   "808080": "#808080",
+  E2E2E2: "#E2E2E2",
   buttonColor: "#303030",
   lightGray: "#e2e2e2",
   panelGray: "#aaaaaa",
