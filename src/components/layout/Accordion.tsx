@@ -16,12 +16,11 @@ const AccordionHeader = styled.div`
   background-color: none;
 `;
 const Icon = styled.div<{ open: boolean }>`
-  margin-left: 5px;
   min-width: 0;
   min-height: 0;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   background-color: ${(props) =>
     props.open ? basicColors.primary : bgColors[282828]};
   border: ${(props) =>

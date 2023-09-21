@@ -6,6 +6,11 @@ const SliderContainer = styled.div`
   width: 200px;
   margin: 20px 0;
 `;
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;
 
 const SliderInput = styled.input.attrs({ type: "range" })`
   width: 100%;
@@ -43,28 +48,33 @@ const SliderInput = styled.input.attrs({ type: "range" })`
 `;
 
 const SliderValue = styled.span`
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 10px;
 `;
 
 interface SliderProps {
+  title: string;
   min: number;
   max: number;
+  step: number;
+  initValue: number;
 }
 
-const Slider = ({ min = 0, max = 100 }: SliderProps) => {
-  const [value, setValue] = useState(50);
+const Slider = ({
+  title = "",
+  min = 0,
+  max = 100,
+  step = 1,
+  initValue = 0,
+}: SliderProps) => {
+  const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = () => {
     if (sliderInputRef.current) {
-      console.log(sliderInputRef.current.value);
       const newValue = Number(sliderInputRef.current.value);
       setValue(newValue);
-
       const thumbPosition = ((newValue - min) / (max - min)) * 100;
       const sliderBackground = `linear-gradient(to right, ${basicColors.primary} ${thumbPosition}%, ${grayColors.lightGray} ${thumbPosition}%)`;
-
       sliderInputRef.current.style.setProperty(
         "--slider-background",
         sliderBackground
@@ -74,18 +84,26 @@ const Slider = ({ min = 0, max = 100 }: SliderProps) => {
 
   useEffect(() => {
     handleChange();
-  }, []);
+  }, [value]);
+
+  useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
 
   return (
     <SliderContainer>
+      <TitleWrapper>
+        <span>{title}</span>
+        <SliderValue>{value}</SliderValue>
+      </TitleWrapper>
       <SliderInput
         ref={sliderInputRef}
         min={min}
         max={max}
+        step={step}
         value={value}
         onChange={handleChange}
       />
-      <SliderValue>{value}</SliderValue>
     </SliderContainer>
   );
 };
