@@ -113,24 +113,7 @@ export const ComponentList = () => {
       </StyledTab>
       <StyledContent>
         {selectedTabIndex == 0 ? (
-          <ProjectCards
-            componentData={[
-              {
-                id: "1",
-                name: "Componenet name(1)",
-                thumbnail: "/Icons/project/projcetListCard_test.png",
-                savedAt: "2023년-09월-07일 13:56",
-                isClicked: false,
-              },
-              {
-                id: "2",
-                name: "Componenet name(2)",
-                thumbnail: "/Icons/project/projcetListCard_test.png",
-                savedAt: "2022년-02월-07일 01:00",
-                isClicked: false,
-              },
-            ]}
-          />
+          <ProjectCards componentData={[]} />
         ) : (
           <ExampleCards
             componentData={[

@@ -10,6 +10,12 @@ import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 import Group from "../group/Group";
 import Gizmo from "../gizmo/Gizmo";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
+import CubePrimitive from "../primitives/CubePrimitive";
+import CapsulePrimitive from "../primitives/CapsulePrimitive";
+import ConePrimitive from "../primitives/ConePrimitive";
+import CylinderPrimitive from "../primitives/CylinderPrimitive";
+import SpherePrimitive from "../primitives/SpherePrimitive";
+import TorusPrimitive from "../primitives/TorusPrimitive";
 
 const RenderScene = observer(() => {
   const { primitiveStore, mouseEventStore, contextMenuStore } = storeContainer;
@@ -115,6 +121,62 @@ const RenderScene = observer(() => {
         break;
     }
   }, [contextMenuStore.currentSelectedContextMenu]);
+
+  useEffect(() => {
+    canvasHistoryStore.differ();
+  }, [primitiveStore.meshes]);
+
+  // history redo update
+  useEffect(() => {
+    const meshEntries = Object.entries(canvasHistoryStore.redoList[0].snapshot);
+
+    primitiveStore.clearPrimitives();
+
+    meshEntries.forEach(([storeId, mesh]) => {
+      switch (mesh.name) {
+        case "CUBE":
+          primitiveStore.addPrimitive(
+            storeId,
+            <CubePrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+
+          break;
+        case "CAPSULE":
+          primitiveStore.addPrimitive(
+            storeId,
+            <CapsulePrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+          break;
+        case "CONE":
+          primitiveStore.addPrimitive(
+            storeId,
+            <ConePrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+          break;
+        case "CYLINDER":
+          primitiveStore.addPrimitive(
+            storeId,
+            <CylinderPrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+          break;
+        case "SPHERE":
+          primitiveStore.addPrimitive(
+            storeId,
+            <SpherePrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+          break;
+        case "TORUS":
+          primitiveStore.addPrimitive(
+            storeId,
+            <TorusPrimitive storeId={storeId} propMesh={mesh.clone()} />
+          );
+          break;
+
+        default:
+          break;
+      }
+    });
+  }, [canvasHistoryStore.redoList[0]]);
 
   return (
     <>

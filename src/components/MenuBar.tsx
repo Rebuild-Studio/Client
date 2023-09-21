@@ -18,6 +18,8 @@ const MenuBar = () => {
   const ComponentBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
@@ -28,6 +30,8 @@ const MenuBar = () => {
   const PlugInBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={true}
       color={grayColors[535353]}
       fontSize="small"
@@ -38,6 +42,8 @@ const MenuBar = () => {
   const ConfigureBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
@@ -48,6 +54,8 @@ const MenuBar = () => {
   const HelpBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
