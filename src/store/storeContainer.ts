@@ -3,6 +3,8 @@ import userStore from "./userStore";
 import mouseEventStore from "./mouseEventStore";
 import transformControlStore from "./transformControlStore";
 import keyboardEventStore from "./keyboardEventStore";
+import contextMenuStore from "./contextMenuStore";
+import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
 
 const storeContainer = {
@@ -11,6 +13,8 @@ const storeContainer = {
   mouseEventStore: mouseEventStore,
   transformControlStore: transformControlStore,
   keyboardEventStore: keyboardEventStore,
+  contextMenuStore: contextMenuStore,
+  projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
 };
 

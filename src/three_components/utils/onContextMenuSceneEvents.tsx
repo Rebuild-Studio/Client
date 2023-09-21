@@ -1,12 +1,17 @@
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 
-const onClickSceneEvents = (
+const onContextMenuSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
 ) => {
-  const { primitiveStore, mouseEventStore, keyboardEventStore } =
-    storeContainer;
+  const {
+    primitiveStore,
+    mouseEventStore,
+    contextMenuStore,
+    keyboardEventStore,
+  } = storeContainer;
 
+  const { clientX, clientY } = mouseEventStore.currentMouseEvent[1]!;
   mouseEventStore.clearMouseEvent();
 
   if (
@@ -30,21 +35,21 @@ const onClickSceneEvents = (
 
   if (selectGroupObject) {
     const selectGroupObjectStoreId = selectGroupObject.userData["storeId"];
-
-    // 이미 선택한 경우 children 찾아가기
-    if (primitiveStore.selectedGroupPrimitive[selectGroupObjectStoreId]) {
-    }
-
     primitiveStore.addSelectedPrimitives(
       selectGroupObjectStoreId,
       primitiveStore.meshes[selectGroupObjectStoreId]
     );
+
+    contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
+    contextMenuStore.updateIsContextMenuOpened(true);
     return;
   }
 
   if (!selectObject) {
     primitiveStore.clearSelectedPrimitives();
     primitiveStore.clearSelectedGroupPrimitive();
+    contextMenuStore.updateContextMenuType("CANVAS", clientX, clientY);
+    contextMenuStore.updateIsContextMenuOpened(true);
     return;
   }
 
@@ -54,6 +59,9 @@ const onClickSceneEvents = (
     selectObjectStoreId,
     primitiveStore.meshes[selectObjectStoreId]
   );
+
+  contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
+  contextMenuStore.updateIsContextMenuOpened(true);
 };
 
 const findRootGroup = (
@@ -70,4 +78,4 @@ const findRootGroup = (
   return findRootGroup(intersectObject.parent ?? undefined);
 };
 
-export default onClickSceneEvents;
+export default onContextMenuSceneEvents;

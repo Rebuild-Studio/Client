@@ -4,7 +4,6 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
-import Gizmo from "../gizmo/Gizmo";
 
 interface CapsuleParams {
   minRadius: number;
@@ -44,6 +43,7 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CAPSULE";
   mesh.userData["storeId"] = props.storeId;
+  mesh.userData["isLocked"] = false;
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
@@ -51,9 +51,6 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
 
   return (
     <>
-      {Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
-        <Gizmo storeId={props.storeId} />
-      )}
       <primitive
         ref={ref}
         object={primitiveStore.meshes[props.storeId] ?? mesh}

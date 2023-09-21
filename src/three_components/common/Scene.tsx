@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { basicColors, bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
+import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { LeftPanel } from "@/components/LeftPanel";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 
@@ -31,10 +32,18 @@ const CustomCanvas = styled(Canvas)`
 `;
 
 const Scene = observer(() => {
-  const { mouseEventStore } = storeContainer;
+  const { mouseEventStore, contextMenuStore } = storeContainer;
+
   return (
     <Wrapper>
       <Container>
+        {contextMenuStore.isContextMenuOpened && (
+          <ContextMenu
+            items={contextMenuStore.currentContextMenuType!.items}
+            xPos={contextMenuStore.currentContextMenuType!.xPos}
+            yPos={contextMenuStore.currentContextMenuType!.yPos}
+          />
+        )}
         <CustomCanvas
           camera={{ fov: 50, position: [0, 2, 3.0] }}
           onMouseDown={(e) => {
@@ -52,6 +61,7 @@ const Scene = observer(() => {
             mouseEventStore.updateMouseEvent("onClick", e);
           }}
           onContextMenu={(e) => {
+            e.preventDefault();
             mouseEventStore.updateMouseEvent("onContextMenu", e);
           }}
         >
