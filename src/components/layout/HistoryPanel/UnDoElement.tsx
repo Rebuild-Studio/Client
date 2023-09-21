@@ -38,7 +38,7 @@ export const UndoElement = observer(({ label, index }: Props) => {
         canvasHistoryStore.undoListElementClick(index);
       }}
     >
-      <img src="/icons/studio/icon_비표시.png" alt="non-label" />
+      <img src="/Icons/Studio/icon_비표시.png" alt="non-label" />
       <HistoryText ref={textRef}>{label}</HistoryText>
     </HistoryElement>
   );

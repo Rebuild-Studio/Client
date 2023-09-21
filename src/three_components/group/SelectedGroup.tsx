@@ -12,9 +12,12 @@ interface SelectedGroupProps {
 
 const SelectedGroup = observer((props: SelectedGroupProps) => {
   const ref = useRef();
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, contextMenuStore } = storeContainer;
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
+    if (contextMenuStore.currentSelectedContextMenu === "삭제") {
+      return;
+    }
     // 선택 컴포넌트 복원 작업
     if (Object.keys(primitiveStore.selectedPrimitives).length === 0) {
       Object.values(primitiveStore.tempPrimitives).forEach((storeId) => {

@@ -43,9 +43,9 @@ export const RedoElement = observer(({ label, index }: Props) => {
       }}
     >
       {index === 0 ? (
-        <img src="/icons/studio/icon_표시_활성화.png" alt="label-active" />
+        <img src="/Icons/Studio/icon_표시_활성화.png" alt="label-active" />
       ) : (
-        <img src="/icons/studio/icon_표시.png" alt="label" />
+        <img src="/Icons/Studio/icon_표시.png" alt="label" />
       )}
       <HistoryText ref={textRef} $index={index}>
         {label}

@@ -32,8 +32,8 @@ export const lightButtonDefault = {
   args: {
     size: "74px",
     shadow: "none",
-    backgroundImage: "/icons/studio/btn_capsule.svg",
-    hoverBackgroundImage: "/icons/studio/btn_capsule_active.svg",
+    backgroundImage: "/Icons/Studio/btn_capsule.svg",
+    hoverBackgroundImage: "/Icons/Studio/btn_capsule_active.svg",
   },
 } satisfies Story;
 
@@ -41,7 +41,7 @@ export const libraryButtonDefault = {
   args: {
     size: "86px",
     shadow: "none",
-    backgroundImage: "/icons/studio/btn_library.svg",
-    hoverBackgroundImage: "/icons/studio/btn_library_active.svg",
+    backgroundImage: "/Icons/Studio/btn_library.svg",
+    hoverBackgroundImage: "/Icons/Studio/btn_library_active.svg",
   },
 } satisfies Story;

@@ -132,7 +132,7 @@ const MenuBar = () => {
   `;
   return (
     <StyledBar>
-      <StyledLogo src="/icons/studio/MX로고.png" alt="logo" />
+      <StyledLogo src="/Icons/Studio/MX로고.png" alt="logo" />
       <BottomPopOver triggerComponent={<ComponentBtn />}>
         <SubMenu menuItems={data1} />
       </BottomPopOver>
@@ -147,7 +147,7 @@ const MenuBar = () => {
       </BottomPopOver>
       <ButtonWrapper>
         <IconButton
-          Icon={() => <img src={"/icons/studio/icon_logout.png"} />}
+          Icon={() => <img src={"/Icons/Studio/icon_logout.png"} />}
         />
       </ButtonWrapper>
     </StyledBar>

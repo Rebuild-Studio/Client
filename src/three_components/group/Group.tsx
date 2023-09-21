@@ -10,7 +10,7 @@ interface GroupProps {
 
 const Group = observer((props: GroupProps) => {
   const ref = useRef();
-  const { primitiveStore, contextMenuStore } = storeContainer;
+  const { primitiveStore } = storeContainer;
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
@@ -51,7 +51,6 @@ const Group = observer((props: GroupProps) => {
       primitiveStore.clearSelectedPrimitives();
       primitiveStore.addSelectedPrimitives(props.storeId, mesh);
       primitiveStore.clearSelectedGroupPrimitive();
-      contextMenuStore.updateSelectedContextMenu("NONE");
     }
   }, []);
 
