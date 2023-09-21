@@ -14,7 +14,7 @@ const PanelWrapper = styled.div`
   background-color: ${bgColors[222222]};
   display: inline-block;
   z-index: 1;
-  width: 16vw;
+  width: 271px;
   padding: 10px 0;
   position: relative;
 `;
@@ -47,7 +47,7 @@ const PanelOptionsWrapper = styled.div`
 `;
 
 const PanelContentWrapper = styled.div`
-  padding: 0 20px;
+  padding: 0 10px;
   box-sizing: inherit;
   color: white;
   font-size: ${fonts.small};

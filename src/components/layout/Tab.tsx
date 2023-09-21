@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
 
@@ -24,10 +24,10 @@ const TabButton = styled.button<{ isActive: boolean }>`
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
-const TabIndicator = styled.div<{ activeTab: number }>`
+const TabIndicator = styled.div<{ activeTab: number; numberOfTabs: number }>`
   height: 2px;
   background-color: ${basicColors.primary};
-  width: calc(100% / 2);
+  width: calc(100% / (${(props) => props.numberOfTabs}));
   transform: translateX(${(props) => `calc(${props.activeTab * 100}%)`});
   transition: transform 0.3s;
 `;
@@ -38,9 +38,10 @@ const TabContent = styled.div`
 
 interface TabProps {
   tabs: string[];
+  tabContents: React.ReactNode[];
 }
 
-const Tab = ({ tabs }: TabProps) => {
+const Tab = ({ tabs, tabContents }: TabProps) => {
   const [activeTab, setActiveTab] = useState(0);
   const handleTabClick = (index: number) => {
     setActiveTab(index);
@@ -59,8 +60,8 @@ const Tab = ({ tabs }: TabProps) => {
           </TabButton>
         ))}
       </TabsContainer>
-      <TabIndicator activeTab={activeTab} />
-      <TabContent>{tabs[activeTab]}</TabContent>
+      <TabIndicator activeTab={activeTab} numberOfTabs={tabs.length} />
+      <TabContent>{tabContents[activeTab]}</TabContent>
     </Wrapper>
   );
 };
