@@ -90,7 +90,7 @@ const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
   group: ["그룹", "Ctrl+G", true],
   lock: ["잠그기", "Ctrl+L", true],
   hide: ["숨기기", "Ctrl+.", true],
-  visible: ["보이기", "Ctrl+.", true],
+  visible: ["보이기", "Ctrl+,", true],
   delete: ["삭제", "Del", true],
 };
 
@@ -101,7 +101,7 @@ const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
   group: ["그룹 해제", "Ctrl+G", true],
   divider: ["DIVIDER", "", false],
   hide: ["숨기기", "Ctrl+.", false],
-  visible: ["보이기", "Ctrl+.", false],
+  visible: ["보이기", "Ctrl+,", false],
   lock: ["잠금 해제", "Ctrl+L", true],
 };
 
