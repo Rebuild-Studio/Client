@@ -7,7 +7,7 @@ import { basicColors, bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
-import { LeftPanel } from "@/components/LeftPanel";
+import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const Wrapper = styled.div`
@@ -88,7 +88,7 @@ const Scene = observer(() => {
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
         </CustomCanvas>
-        <LeftPanel />
+        <CanvasLeftPanel />
       </Container>
     </Wrapper>
   );

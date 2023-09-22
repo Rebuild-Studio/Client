@@ -115,20 +115,7 @@ export const ComponentList = () => {
         {selectedTabIndex == 0 ? (
           <ProjectCards componentData={[]} />
         ) : (
-          <ExampleCards
-            componentData={[
-              {
-                name: "오피스 테마",
-                thumbnail: "/example/StartScene_Office.png",
-                isClicked: false,
-              },
-              {
-                name: "플래피 캣 게임",
-                thumbnail: "/example/game_end.png",
-                isClicked: false,
-              },
-            ]}
-          />
+          <ExampleCards componentData={[]} />
         )}
       </StyledContent>
       <StyledFooter>

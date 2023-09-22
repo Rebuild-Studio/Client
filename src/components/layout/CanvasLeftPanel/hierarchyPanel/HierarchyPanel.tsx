@@ -1,17 +1,15 @@
-import { observer } from "mobx-react";
-import { HistoryPanel } from "./layout/HistoryPanel/HistoryPanel";
 import { basicColors, bgColors } from "@/resources/colors/colors";
+import { styled } from "styled-components";
+
+import { observer } from "mobx-react";
+import { Tabs } from "../../Tabs";
 import { fonts } from "@/resources/fonts/font";
-import { Tabs } from "./layout/Tabs";
-import styled from "styled-components";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+
+type Props = {};
 
 const StyledLeftPanel = styled.div`
-  z-index: 1;
-  position: absolute;
-  top: 100px;
   width: 285px;
-  height: 80vh;
+  height: calc(100vh - 250px);
   background-color: ${bgColors[222222]};
   display: flex;
   flex-direction: column;
@@ -32,26 +30,30 @@ const StyledTab = styled.div`
 
 const StyledContent = styled.div``;
 
-export const LeftPanel = observer(() => {
+const HistoryList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 11px;
+  color: ${basicColors.white};
+  padding: 10px 11px;
+`;
+
+export const HierarchyPanel = observer((props: Props) => {
   return (
     <StyledLeftPanel>
-      <StyledHeader>히스토리</StyledHeader>
+      <StyledHeader>계층 구조</StyledHeader>
       <StyledTab>
         <Tabs
           labelList={["캔버스", "인터렉션 에디터"]}
           width="100%"
           height="30px"
-          backgroundColor={bgColors["1c1c1c"]}
+          backgroundColor={bgColors[222222]}
           selectedColor={basicColors.white}
           underbarColor={basicColors.white}
         />
       </StyledTab>
-      <StyledContent>
-        <HistoryPanel
-          undoList={canvasHistoryStore.undoList}
-          redoList={canvasHistoryStore.redoList}
-        />
-      </StyledContent>
+      <StyledContent></StyledContent>
     </StyledLeftPanel>
   );
 });

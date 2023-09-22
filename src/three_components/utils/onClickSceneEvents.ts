@@ -4,12 +4,8 @@ import * as THREE from "three";
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
 ) => {
-  const {
-    primitiveStore,
-    mouseEventStore,
-    canvasHistoryStore,
-    keyboardEventStore,
-  } = storeContainer;
+  const { primitiveStore, mouseEventStore, keyboardEventStore } =
+    storeContainer;
 
   mouseEventStore.clearMouseEvent();
 
@@ -58,9 +54,6 @@ const onClickSceneEvents = (
     selectObjectStoreId,
     primitiveStore.meshes[selectObjectStoreId]
   );
-
-  // meshes의 변경점 찾기
-  canvasHistoryStore.differ();
 };
 
 const findRootGroup = (
