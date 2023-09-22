@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react";
 import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
 import PropertyValue from "./TransFromationInfo";
 import storeContainer from "@/store/storeContainer";
-import { useObserver } from "mobx-react-lite";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
 import Material from "./MaterialInfo";
-import { materialRoughness } from "three/examples/jsm/nodes/Nodes.js";
 
 const RightPanelContainer = styled.div`
   position: relative;
@@ -19,7 +18,7 @@ const RightPanelContainer = styled.div`
   align-items: flex-end;
 `;
 
-const RightPanel = () => {
+const RightPanel = observer(() => {
   const { primitiveStore } = storeContainer;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
@@ -27,9 +26,7 @@ const RightPanel = () => {
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
 
-  const selectedPrimitives = useObserver(
-    () => primitiveStore.selectedPrimitives
-  );
+  const selectedPrimitives = primitiveStore.selectedPrimitives;
 
   useEffect(() => {
     const keys = Object.keys(selectedPrimitives);
@@ -40,7 +37,6 @@ const RightPanel = () => {
       const value = Object.values(info.material);
       setMetalness(value[materials.indexOf("metalness")]);
       setRoughness(value[materials.indexOf("roughness")]);
-      console.log(metalness, roughness);
       setPosition(info.position);
       setRotation(info.rotation);
       setScale(info.scale);
@@ -79,6 +75,6 @@ const RightPanel = () => {
       </Panel>
     </RightPanelContainer>
   );
-};
+});
 
 export default RightPanel;
