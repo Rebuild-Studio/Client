@@ -9,29 +9,15 @@ const GridContainer = styled.div<{ columns: number }>`
   gap: 20px;
 `;
 
-const GridItem = styled.div`
-  background-color: #f0f0f0;
-  padding: 20px;
-  border: 1px solid #ccc;
-`;
-
 const Grid = ({
   items,
   columns,
 }: {
-  items: React.ReactNode[];
+  items: React.ReactNode;
   columns: number;
+  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }) => {
-  return (
-    <GridContainer columns={columns}>
-      {items.map((item, index) => (
-        <GridItem key={index}>
-          <h2>열 {index + 1}</h2>
-          <p>{item}</p>
-        </GridItem>
-      ))}
-    </GridContainer>
-  );
+  return <GridContainer columns={columns}>{items}</GridContainer>;
 };
 
 export default Grid;
