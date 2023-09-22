@@ -1,12 +1,15 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Slider from "../Slider";
 import CustomMenu from "@/components/layout/Menu";
+import MaterialTemplate from "./MaterialTemplate";
 
 interface MaterialInfoProps {
   metalness: number;
   roughness: number;
 }
+const Wrapper = styled.div`
+  margin-top: 10px;
+`;
 
 const MaterialMenu = styled.div`
   width: 200px;
@@ -21,11 +24,11 @@ const TitleWrapper = styled.div`
 const Material = ({ metalness = 1, roughness = 0.5 }: MaterialInfoProps) => {
   return (
     <>
-      <div style={{ marginTop: "10px" }}>
+      <Wrapper>
         <MaterialMenu>
           <TitleWrapper>
             <span>{"머터리얼 요소 편집"}</span>
-            <CustomMenu title={"머테리얼"} MenuItem={[<span>하이</span>]} />
+            <CustomMenu title={"머테리얼"} MenuItem={<MaterialTemplate />} />
           </TitleWrapper>
           <TitleWrapper>
             <span>{"기본"}</span>
@@ -46,7 +49,7 @@ const Material = ({ metalness = 1, roughness = 0.5 }: MaterialInfoProps) => {
           initValue={roughness}
           title="거칠기"
         />
-      </div>
+      </Wrapper>
     </>
   );
 };

@@ -11,11 +11,13 @@ interface PrimitiveProps {
   selectedPrimitives: MeshType; // 렌더된 threeComponent 중 선택한 컴포넌트
   selectedGroupPrimitive: GroupPrimitiveType; // 다중 선택한 threeComponent 렌더
   tempPrimitives: { [key: string]: string }; // 다중 선택 시 렌더된 threeComponent 임시로 옮겨놓는 곳
+  selectedMaterial: string;
   addPrimitive: (storeId: string, primitive: JSX.Element) => void;
   removePrimitive: (storeId: string) => void;
   updatePrimitive: (storeId: string, mesh: THREE.Mesh) => void;
   clearPrimitives: () => void;
   addSelectedPrimitives: (storeId: string, mesh: THREE.Mesh) => void;
+  setSelectedMaterial: (material: string) => void;
   updateSelectedPrimitives: (storeId: string, mesh: THREE.Mesh) => void;
   removeSelectedPrimitives: (storeId: string) => void;
   clearSelectedPrimitives: () => void;
@@ -31,6 +33,7 @@ const primitiveStore = observable<PrimitiveProps>({
   selectedPrimitives: {},
   selectedGroupPrimitive: ["", null],
   tempPrimitives: {},
+  selectedMaterial: "MX_mat_defalt_white_01",
   addPrimitive(storeId, primitive) {
     this.primitives = {
       ...this.primitives,
@@ -64,6 +67,9 @@ const primitiveStore = observable<PrimitiveProps>({
       ...this.selectedPrimitives,
       [storeId]: mesh,
     };
+  },
+  setSelectedMaterial(material) {
+    this.selectedMaterial = material;
   },
   updateSelectedPrimitives(storeId, mesh) {
     this.selectedPrimitives[storeId] = mesh;

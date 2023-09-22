@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { LeftPanel } from "@/components/LeftPanel";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { MaterialLoader } from "../MaterialLoader";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -32,8 +33,7 @@ const CustomCanvas = styled(Canvas)`
 `;
 
 const Scene = observer(() => {
-  const { mouseEventStore, contextMenuStore } = storeContainer;
-
+  const { mouseEventStore, contextMenuStore, primitiveStore } = storeContainer;
   return (
     <Wrapper>
       <Container>
@@ -87,6 +87,7 @@ const Scene = observer(() => {
           <Grid />
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
+          <MaterialLoader name={primitiveStore.selectedMaterial} />
         </CustomCanvas>
         <LeftPanel />
       </Container>
