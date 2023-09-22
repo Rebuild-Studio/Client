@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { basicColors, grayColors } from "@/resources/colors/colors";
+import storeContainer from "@/store/storeContainer";
 import styled from "styled-components";
+import * as THREE from "three";
 
 const SliderContainer = styled.div`
   width: 200px;
@@ -58,7 +60,13 @@ interface SliderProps {
   step: number;
   initValue: number;
 }
-
+const titleToMaterialProperty: Record<
+  string,
+  { property: string; materialType: any }
+> = {
+  금속성: { property: "metalness", materialType: THREE.MeshStandardMaterial },
+  거칠기: { property: "roughness", materialType: THREE.MeshStandardMaterial },
+};
 const Slider = ({
   title = "",
   min = 0,
@@ -68,6 +76,15 @@ const Slider = ({
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
+  const [mesh, setMesh] = useState(new THREE.Mesh());
+  const { primitiveStore } = storeContainer;
+  const keys = Object.keys(primitiveStore.selectedPrimitives);
+
+  useEffect(() => {
+    if (primitiveStore.selectedPrimitives[keys[0]]) {
+      setMesh(primitiveStore.selectedPrimitives[keys[0]]);
+    }
+  }, [primitiveStore.selectedPrimitives]);
 
   const handleChange = () => {
     if (sliderInputRef.current) {
@@ -79,6 +96,13 @@ const Slider = ({
         "--slider-background",
         sliderBackground
       );
+      const materialProperty = titleToMaterialProperty[title];
+      if (
+        materialProperty &&
+        mesh.material instanceof materialProperty.materialType
+      ) {
+        (mesh.material as any)[materialProperty.property] = newValue;
+      }
     }
   };
 
