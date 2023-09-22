@@ -66,16 +66,16 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="86px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_library.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_library_active.svg"
+            backgroundImage="/icons/studio/btn_library.svg"
+            hoverBackgroundImage="/icons/studio/btn_library_active.svg"
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="326px">
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_cube.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_cube_active.svg"
+            backgroundImage="/icons/studio/btn_cube.svg"
+            hoverBackgroundImage="/icons/studio/btn_cube_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -87,8 +87,8 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_sphere.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_sphere_active.svg"
+            backgroundImage="/icons/studio/btn_sphere.svg"
+            hoverBackgroundImage="/icons/studio/btn_sphere_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -100,8 +100,8 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_cylinder.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_cylinder_active.svg"
+            backgroundImage="/icons/studio/btn_cylinder.svg"
+            hoverBackgroundImage="/icons/studio/btn_cylinder_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -113,8 +113,8 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_cone.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_cone_active.svg"
+            backgroundImage="/icons/studio/btn_cone.svg"
+            hoverBackgroundImage="/icons/studio/btn_cone_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -126,8 +126,8 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_Torus.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_Torus_active.svg"
+            backgroundImage="/icons/studio/btn_Torus.svg"
+            hoverBackgroundImage="/icons/studio/btn_Torus_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -139,8 +139,8 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_capsule.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_capsule_active.svg"
+            backgroundImage="/icons/studio/btn_capsule.svg"
+            hoverBackgroundImage="/icons/studio/btn_capsule_active.svg"
             onClick={() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
@@ -154,22 +154,22 @@ const CanvasBar = observer((props: Props) => {
           <Button
             size="74px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_포인트_라이트.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_포인트_라이트_활성화.svg"
+            backgroundImage="/icons/studio/btn_포인트_라이트.svg"
+            hoverBackgroundImage="/icons/studio/btn_포인트_라이트_활성화.svg"
           />
           <Button
             size="74px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_스포트_라이트.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_스포트_라이트_활성화.svg"
+            backgroundImage="/icons/studio/btn_스포트_라이트.svg"
+            hoverBackgroundImage="/icons/studio/btn_스포트_라이트_활성화.svg"
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="76px">
           <Button
             size="50px"
             shadow="none"
-            backgroundImage="/Icons/Studio/btn_카메라.svg"
-            hoverBackgroundImage="/Icons/Studio/btn_카메라_활성화.svg"
+            backgroundImage="/icons/studio/btn_카메라.svg"
+            hoverBackgroundImage="/icons/studio/btn_카메라_활성화.svg"
           />
         </CanvasBtnWrapper>
         <PaddingBox />

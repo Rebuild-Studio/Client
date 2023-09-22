@@ -83,10 +83,10 @@ const TopBar = (props: Props) => {
         <ComponentName>컴포넌트 네임</ComponentName>
         <FlexBox />
         <IconButton
-          Icon={() => <img src={"/Icons/Studio/icon_씬설정.svg"} />}
+          Icon={() => <img src={"/icons/studio/icon_씬설정.svg"} />}
         />
         <IconButton
-          Icon={() => <img src={"/Icons/Studio/icon_미리보기.svg"} />}
+          Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
       {open && <CavasBar />}
