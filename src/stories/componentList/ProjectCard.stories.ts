@@ -25,7 +25,7 @@ type Story = StoryObj<typeof ProjectCard>;
 export const Project = {
   args: {
     name: "Componenet name(1)",
-    thumbnail: "/Icons/project/projcetListCard_test.png",
+    thumbnail: "/icons/project/projcetListCard_test.png",
     savedAt: "2023년-09월-07일 13:56",
     isClicked: false,
   },
