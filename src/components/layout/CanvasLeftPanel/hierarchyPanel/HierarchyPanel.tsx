@@ -1,47 +1,19 @@
 import { basicColors, bgColors } from "@/resources/colors/colors";
-import { styled } from "styled-components";
 
 import { observer } from "mobx-react";
 import { Tabs } from "../../Tabs";
-import { fonts } from "@/resources/fonts/font";
+import {
+  StyledContent,
+  StyledHeader,
+  StyledPanel,
+  StyledTab,
+} from "../CanvasLeftPanel.style";
 
 type Props = {};
 
-const StyledLeftPanel = styled.div`
-  width: 285px;
-  height: calc(100vh - 250px);
-  background-color: ${bgColors[222222]};
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-`;
-
-const StyledHeader = styled.div`
-  color: ${basicColors.white};
-  padding: 18px;
-  font-size: ${fonts.medium};
-`;
-
-const StyledTab = styled.div`
-  color: ${basicColors.white};
-  padding-right: 30px;
-  padding-bottom: 20px;
-`;
-
-const StyledContent = styled.div``;
-
-const HistoryList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-left: 11px;
-  color: ${basicColors.white};
-  padding: 10px 11px;
-`;
-
 export const HierarchyPanel = observer((props: Props) => {
   return (
-    <StyledLeftPanel>
+    <StyledPanel>
       <StyledHeader>계층 구조</StyledHeader>
       <StyledTab>
         <Tabs
@@ -54,6 +26,6 @@ export const HierarchyPanel = observer((props: Props) => {
         />
       </StyledTab>
       <StyledContent></StyledContent>
-    </StyledLeftPanel>
+    </StyledPanel>
   );
 });

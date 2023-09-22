@@ -6,9 +6,14 @@ import canvasHistoryStore, {
 } from "@/store/canvasHistoryStore";
 import { observer } from "mobx-react";
 import { Tabs } from "../../Tabs";
-import { fonts } from "@/resources/fonts/font";
 import { UndoElement } from "./UnDoElement";
 import { RedoElement } from "./RedoElement";
+import {
+  StyledContent,
+  StyledHeader,
+  StyledPanel,
+  StyledTab,
+} from "../CanvasLeftPanel.style";
 
 type Props = {};
 
@@ -19,28 +24,6 @@ type InstanceTranslate = {
 type AttributeTranslate = {
   [attr in CanvasAttribute]: string;
 };
-const StyledLeftPanel = styled.div`
-  width: 285px;
-  height: calc(100vh - 250px);
-  background-color: ${bgColors[222222]};
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-`;
-
-const StyledHeader = styled.div`
-  color: ${basicColors.white};
-  padding: 18px;
-  font-size: ${fonts.medium};
-`;
-
-const StyledTab = styled.div`
-  color: ${basicColors.white};
-  padding-right: 30px;
-  padding-bottom: 20px;
-`;
-
-const StyledContent = styled.div``;
 
 const HistoryList = styled.div`
   display: flex;
@@ -78,7 +61,7 @@ export const HistoryPanel = observer((props: Props) => {
   };
 
   return (
-    <StyledLeftPanel>
+    <StyledPanel>
       <StyledHeader>히스토리</StyledHeader>
       <StyledTab>
         <Tabs
@@ -116,6 +99,6 @@ export const HistoryPanel = observer((props: Props) => {
           ))}
         </HistoryList>
       </StyledContent>
-    </StyledLeftPanel>
+    </StyledPanel>
   );
 });
