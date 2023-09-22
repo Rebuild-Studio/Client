@@ -42,7 +42,6 @@ const Group = observer((props: GroupProps) => {
 
       selectedPrimitives.forEach((value) => {
         mesh.attach(value);
-        primitiveStore.removeTempPrimitives(value.userData["storeId"]);
         primitiveStore.removePrimitive(value.userData["storeId"]);
       });
 

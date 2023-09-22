@@ -112,7 +112,6 @@ const executeContextMenu = (scene: THREE.Scene) => {
       });
 
       primitiveStore.clearSelectedGroupPrimitive();
-      primitiveStore.clearTempPrimitives();
       primitiveStore.clearSelectedPrimitives();
 
       break;
