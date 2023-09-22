@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import InputField from "../InputField";
 
-type axis = {
+interface axis {
   x: number;
   y: number;
   z: number;
-};
+}
 
 interface Props {
   position: axis;
   rotation: axis;
   scale: axis;
 }
-
+const MarginBox = styled.div`
+  margin-top: 10px;
+`;
 const Wrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 16px;
@@ -48,11 +50,11 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
 
   return (
     <>
-      <div style={{ marginTop: "10px" }}>
+      <MarginBox>
         {_props.map((prop) => {
           const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
           return (
-            <div>
+            <>
               <span>{prop["title"]}</span>
               <Wrapper>
                 {axes.map((axis) => {
@@ -66,10 +68,10 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
                   );
                 })}
               </Wrapper>
-            </div>
+            </>
           );
         })}
-      </div>
+      </MarginBox>
     </>
   );
 };
