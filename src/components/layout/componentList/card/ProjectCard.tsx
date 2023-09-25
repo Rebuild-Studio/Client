@@ -31,7 +31,7 @@ export const ProjectCard = ({
   return (
     <StyledCard $isClicked={isClicked} onClick={onClick}>
       <SytledMenuBtn>
-        <img src="/Icons/project/icon_edit_30px.png" alt="edit" />
+        <img src="/icons/project/icon_edit_30px.png" alt="edit" />
       </SytledMenuBtn>
       <StyledCardImg src={thumbnail} alt="library" />
       <StyledCardTextArea>{name}</StyledCardTextArea>

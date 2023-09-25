@@ -11,76 +11,85 @@ const Gizmo = observer((props: GizmoProps) => {
   const hasSelectedPrimitive = primitiveStore.selectedPrimitives[props.storeId]
     ? true
     : false;
-
+  const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
+    (value) => {
+      return value.userData["isLocked"] === true;
+    }
+  );
   return (
     <>
-      {transformControlStore.isTranslated && (
-        <TransformControls
-          mode="translate"
-          showX={hasSelectedPrimitive}
-          showY={hasSelectedPrimitive}
-          showZ={hasSelectedPrimitive}
-          object={primitiveStore.meshes[props.storeId]}
-          onMouseDown={(e) => {
-            transformControlStore.setIsTranslated();
-          }}
-          onObjectChange={(e) => {
-            primitiveStore.updateSelectedPrimitives(
-              props.storeId,
-              e?.target.object
-            );
-          }}
-          onMouseUp={(e) => {
-            transformControlStore.clearTransform();
-          }}
-        />
-      )}
-      {transformControlStore.isRotated && (
-        <TransformControls
-          mode="rotate"
-          showX={hasSelectedPrimitive}
-          showY={hasSelectedPrimitive}
-          showZ={hasSelectedPrimitive}
-          object={primitiveStore.meshes[props.storeId]}
-          size={1.2}
-          onMouseDown={(e) => {
-            if (transformControlStore.currentControl !== "TRANSFORM") {
-              transformControlStore.setIsRotated();
-            }
-          }}
-          onObjectChange={(e) => {
-            primitiveStore.updateSelectedPrimitives(
-              props.storeId,
-              e?.target.object
-            );
-          }}
-          onMouseUp={(e) => {
-            transformControlStore.clearTransform();
-          }}
-        />
-      )}
-      {transformControlStore.isScaled && (
-        <TransformControls
-          mode="scale"
-          showX={hasSelectedPrimitive}
-          showY={hasSelectedPrimitive}
-          showZ={hasSelectedPrimitive}
-          object={primitiveStore.meshes[props.storeId]}
-          size={0.8}
-          onMouseDown={(e) => {
-            transformControlStore.setIsScaled();
-          }}
-          onObjectChange={(e) => {
-            primitiveStore.updateSelectedPrimitives(
-              props.storeId,
-              e?.target.object
-            );
-          }}
-          onMouseUp={(e) => {
-            transformControlStore.clearTransform();
-          }}
-        />
-      )}
+      {!isLocked &&
+        Object.keys(primitiveStore.selectedPrimitives).length < 2 && (
+          <>
+            {transformControlStore.isTranslated && (
+              <TransformControls
+                mode="translate"
+                showX={hasSelectedPrimitive}
+                showY={hasSelectedPrimitive}
+                showZ={hasSelectedPrimitive}
+                object={primitiveStore.meshes[props.storeId]}
+                onMouseDown={(e) => {
+                  transformControlStore.setIsTranslated();
+                }}
+                onObjectChange={(e) => {
+                  primitiveStore.updateSelectedPrimitives(
+                    props.storeId,
+                    e?.target.object
+                  );
+                }}
+                onMouseUp={(e) => {
+                  transformControlStore.clearTransform();
+                }}
+              />
+            )}
+            {transformControlStore.isRotated && (
+              <TransformControls
+                mode="rotate"
+                showX={hasSelectedPrimitive}
+                showY={hasSelectedPrimitive}
+                showZ={hasSelectedPrimitive}
+                object={primitiveStore.meshes[props.storeId]}
+                size={1.2}
+                onMouseDown={(e) => {
+                  if (transformControlStore.currentControl !== "TRANSFORM") {
+                    transformControlStore.setIsRotated();
+                  }
+                }}
+                onObjectChange={(e) => {
+                  primitiveStore.updateSelectedPrimitives(
+                    props.storeId,
+                    e?.target.object
+                  );
+                }}
+                onMouseUp={(e) => {
+                  transformControlStore.clearTransform();
+                }}
+              />
+            )}
+            {transformControlStore.isScaled && (
+              <TransformControls
+                mode="scale"
+                showX={hasSelectedPrimitive}
+                showY={hasSelectedPrimitive}
+                showZ={hasSelectedPrimitive}
+                object={primitiveStore.meshes[props.storeId]}
+                size={0.8}
+                onMouseDown={(e) => {
+                  transformControlStore.setIsScaled();
+                }}
+                onObjectChange={(e) => {
+                  primitiveStore.updateSelectedPrimitives(
+                    props.storeId,
+                    e?.target.object
+                  );
+                }}
+                onMouseUp={(e) => {
+                  transformControlStore.clearTransform();
+                }}
+              />
+            )}
+          </>
+        )}
     </>
   );
 });

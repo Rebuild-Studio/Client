@@ -44,18 +44,6 @@ interface ContextMenuProps {
     xPos: number,
     yPos: number
   ) => void;
-  showPreview: () => void;
-  hideGrid: () => void;
-  saveProject: () => void;
-  copyObject: () => void;
-  pasteObject: () => void;
-  groupObjects: () => void;
-  ungroupObject: () => void;
-  lockObject: () => void;
-  unlockObject: () => void;
-  showObject: () => void;
-  hideObject: () => void;
-  deleteObject: () => void;
 }
 
 const contextMenuStore = observable<ContextMenuProps>({
@@ -90,24 +78,6 @@ const contextMenuStore = observable<ContextMenuProps>({
         break;
     }
   },
-  showPreview() {},
-  hideGrid() {},
-  saveProject() {},
-  copyObject() {},
-  pasteObject() {},
-  groupObjects() {
-    contextMenuStore.currentSelectedContextMenu = "그룹";
-    contextMenuStore.isContextMenuOpened = false;
-  },
-  ungroupObject() {
-    contextMenuStore.currentSelectedContextMenu = "그룹 해제";
-    contextMenuStore.isContextMenuOpened = false;
-  },
-  lockObject() {},
-  unlockObject() {},
-  showObject() {},
-  hideObject() {},
-  deleteObject() {},
 });
 
 // 좋은 이름이 필요합니다.
@@ -120,7 +90,7 @@ const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
   group: ["그룹", "Ctrl+G", true],
   lock: ["잠그기", "Ctrl+L", true],
   hide: ["숨기기", "Ctrl+.", true],
-  visible: ["보이기", "Ctrl+.", true],
+  visible: ["보이기", "Ctrl+,", true],
   delete: ["삭제", "Del", true],
 };
 
@@ -131,7 +101,7 @@ const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
   group: ["그룹 해제", "Ctrl+G", true],
   divider: ["DIVIDER", "", false],
   hide: ["숨기기", "Ctrl+.", false],
-  visible: ["보이기", "Ctrl+.", false],
+  visible: ["보이기", "Ctrl+,", false],
   lock: ["잠금 해제", "Ctrl+L", true],
 };
 
@@ -141,7 +111,7 @@ const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
 
   res.push(activeContextMenuItems.preview);
 
-  if (projectStateStore.isGridHide) {
+  if (projectStateStore.gridVisible === "VISIBLE") {
     res.push(inactiveContextMenuItems.grid);
   } else {
     res.push(activeContextMenuItems.grid);
@@ -149,7 +119,7 @@ const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
 
   res.push(activeContextMenuItems.save);
 
-  if (projectStateStore.currentCopyPrimitive.length !== 0) {
+  if (Object.keys(projectStateStore.currentCopyPrimitive).length !== 0) {
     res.push(activeContextMenuItems.paste);
   } else {
     res.push(inactiveContextMenuItems.paste);
@@ -161,10 +131,9 @@ const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
 const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const { projectStateStore, primitiveStore } = storeContainer;
   const res: ContextMenuItemType[] = [];
-
   res.push(activeContextMenuItems.copy);
 
-  if (projectStateStore.currentCopyPrimitive.length !== 0) {
+  if (Object.keys(projectStateStore.currentCopyPrimitive).length !== 0) {
     res.push(activeContextMenuItems.paste);
   } else {
     res.push(inactiveContextMenuItems.paste);
@@ -187,7 +156,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
 
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
-      value.userData["isLocked"] === true;
+      return value.userData["isLocked"] === true;
     }
   );
 
@@ -199,7 +168,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
 
   const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
-      value.visible === true;
+      return value.visible === true;
     }
   );
 
@@ -209,15 +178,19 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
     res.push(activeContextMenuItems.visible);
   }
 
-  if (isLocked) {
-    for (let i = 0; i < res.length; i++) {
-      if (i == 3 || i == 5) {
-        continue;
-      }
+  res.push(activeContextMenuItems.delete);
 
-      res[i][2] = false;
+  if (isLocked) {
+    const lockMenu: ContextMenuItemType[] = [];
+    for (let i = 0; i < res.length; i++) {
+      lockMenu.push([res[i][0], res[i][1], false]);
+      if (lockMenu[i][0] === "잠금 해제") {
+        lockMenu[i][2] = true;
+      }
     }
+    return lockMenu;
   }
+
   return res;
 };
 

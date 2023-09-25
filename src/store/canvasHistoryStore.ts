@@ -1,5 +1,6 @@
 import { observable } from "mobx";
 import primitiveStore, { MeshType } from "./primitiveStore";
+import { renderPrimitive } from "@/three_components/utils/renderThreeComponents";
 
 type CanvasInstance =
   | "CUBE"
@@ -34,6 +35,7 @@ interface CanvasHistoryStoreProps {
   undoListElementClick: (index: number) => void;
   redoListElementClick: (index: number) => void;
   createSnapshot: (props: MeshType) => MeshType;
+  update: () => void;
 }
 
 const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
@@ -108,9 +110,24 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       ...this.undoList.splice(index, length - index),
       ...this.redoList,
     ];
+    this.update();
   },
   redoListElementClick(index) {
     this.undoList = [...this.undoList, ...this.redoList.splice(0, index)];
+    this.update();
+  },
+
+  update() {
+    const meshEntries = Object.entries(this.redoList[0].snapshot);
+
+    primitiveStore.clearPrimitives();
+
+    meshEntries.forEach(([storeId, mesh]) => {
+      primitiveStore.addPrimitive(
+        storeId,
+        renderPrimitive(storeId, mesh.clone())
+      );
+    });
   },
 });
 
