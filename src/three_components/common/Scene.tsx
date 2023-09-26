@@ -32,7 +32,8 @@ const CustomCanvas = styled(Canvas)`
 `;
 
 const Scene = observer(() => {
-  const { mouseEventStore, contextMenuStore } = storeContainer;
+  const { mouseEventStore, contextMenuStore, projectStateStore } =
+    storeContainer;
 
   return (
     <Wrapper>
@@ -84,7 +85,7 @@ const Scene = observer(() => {
             shadow-camera-top={30}
             shadow-camera-bottom={-30}
           ></directionalLight>
-          <Grid />
+          {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
         </CustomCanvas>

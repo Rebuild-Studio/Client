@@ -32,7 +32,7 @@ export const AddCard = ({ isClicked, onClick }: Props) => {
     <StyledAddCard $isClicked={isClicked} onClick={onClick}>
       <StyledImgBox>
         <StyledCardImg
-          src={"/icons/Studio/icon_plus-solid.svg"}
+          src={"/icons/studio/icon_plus-solid.svg"}
           alt="icon_plus-solid"
         />
       </StyledImgBox>
