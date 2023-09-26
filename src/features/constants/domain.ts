@@ -30,4 +30,5 @@ const DOMAIN_LIST: { domain: DomainType; domainKR: string }[] = [
   },
 ];
 
+export type { DomainType };
 export default DOMAIN_LIST;
