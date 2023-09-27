@@ -33,8 +33,8 @@ export const confirmButton = {
   args: {
     label: "불러오기",
     width: "138px",
-    height: "32px",
-    minHeight: "34px",
+    height: "34px",
+    minHeight: "32px",
     minWidth: "80px",
     borderRadius: "6px",
     backgroundColor: basicColors.lightLimeGreen,
@@ -50,8 +50,8 @@ export const CancelButton = {
   args: {
     label: "닫기",
     width: "138px",
-    height: "32px",
-    minHeight: "34px",
+    height: "34px",
+    minHeight: "32px",
     minWidth: "80px",
     borderRadius: "6px",
     backgroundColor: "#282828",
