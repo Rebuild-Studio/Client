@@ -25,6 +25,10 @@ export const StackItemWithImage = {
     hoverBackgroundColor: grayColors.lightGray,
   },
   render: (args) => {
-    return <StackItem {...args}>{/* <Icon /> */}</StackItem>;
+    return (
+      <StackItem {...args}>
+        <img src="/icons/common/CaretDown.svg" />
+      </StackItem>
+    );
   },
 } satisfies Story;
