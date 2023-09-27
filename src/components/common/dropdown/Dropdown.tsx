@@ -10,15 +10,25 @@ interface ContainerProps {
   hoverBackgroundColor: Props["hoverBackgroundColor"];
 }
 const Container = styled.div<ContainerProps>`
+  position: relative;
   width: ${({ size }) => size};
   border: 1.5px solid ${grayColors[808080]};
   border-radius: 5px;
-  overflow: hidden;
 `;
 
-const CustomStack = styled(Stack)`
+const CustomStack = styled(Stack)<{ $open: boolean }>`
   max-height: 240px;
+  position: absolute;
+  top: 100%;
+  border: ${({ $open }) =>
+    $open ? `1.5px solid ${grayColors[808080]}` : "none"};
+  border-radius: 5px;
   overflow-y: auto;
+  box-sizing: border-box;
+
+  & > *:hover {
+    color: ${basicColors.black};
+  }
 `;
 
 const OpenButton = styled.button`
@@ -99,7 +109,12 @@ const Dropdown = ({
           <span>{selectedOption?.label || placeholder}</span>
           {openList ? <CaretUp /> : <CaretDown />}
         </OpenButton>
-        <CustomStack role="option-container" width="100%" border="none">
+        <CustomStack
+          role="option-container"
+          width="100%"
+          border="none"
+          $open={openList}
+        >
           {openList &&
             options.map((option) => (
               <StackItem
