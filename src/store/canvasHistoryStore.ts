@@ -1,8 +1,13 @@
-import { observable } from "mobx";
-import primitiveStore, { MeshType } from "./primitiveStore";
-import { renderPrimitive } from "@/three_components/utils/renderThreeComponents";
+import { observable, runInAction, transaction } from "mobx";
+import primitiveStore, { MeshType, PrimitiveType } from "./primitiveStore";
+import {
+  renderGroup,
+  renderPrimitive,
+  renderSelectedGroup,
+} from "@/three_components/utils/renderThreeComponents";
 
 type CanvasInstance =
+  | "OBJECT"
   | "CUBE"
   | "CAPSULE"
   | "CONE"
@@ -10,11 +15,20 @@ type CanvasInstance =
   | "SPHERE"
   | "TORUS"
   | "GROUP"
-  | "material"
-  | "camera"
-  | "light"
-  | "initial";
-type CanvasAttribute = "add" | "position" | "rotation" | "scale" | "none";
+  | "SELECTED_GROUP"
+  | "MATERIAL"
+  | "CAMERA"
+  | "POINTLIGHT"
+  | "SPOTLIGHT"
+  | "INITIAL";
+type CanvasAttribute =
+  | "add"
+  | "position"
+  | "rotation"
+  | "scale"
+  | "delete"
+  | "ungroup"
+  | "none";
 interface CanvasHistoryType {
   id: string;
   instance: CanvasInstance;
@@ -24,6 +38,7 @@ interface CanvasHistoryType {
 
 type MeshProperty = keyof THREE.Mesh;
 interface CanvasHistoryStoreProps {
+  isUpdating: boolean;
   undoList: CanvasHistoryType[];
   redoList: CanvasHistoryType[];
   addHistory: (
@@ -31,7 +46,10 @@ interface CanvasHistoryStoreProps {
     instance: CanvasInstance,
     attr: CanvasAttribute
   ) => void;
-  differ: () => void;
+  differAdd: (storeId: string) => void;
+  differDelete: (storeId: string) => void;
+  differUngroup: (storeId: string) => void;
+  differMeshAttribute: () => void;
   undoListElementClick: (index: number) => void;
   redoListElementClick: (index: number) => void;
   createSnapshot: (props: MeshType) => MeshType;
@@ -39,11 +57,12 @@ interface CanvasHistoryStoreProps {
 }
 
 const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
+  isUpdating: false,
   undoList: [],
   redoList: [
     {
       id: "0",
-      instance: "initial",
+      instance: "INITIAL",
       attribute: "none",
       snapshot: {},
     },
@@ -61,34 +80,43 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       ...this.redoList,
     ];
   },
-
   createSnapshot(meshes) {
     // 깊은 객체 복사
     const snapshot: MeshType = {};
     for (const key in meshes) {
       snapshot[key] = meshes[key].clone();
     }
-
+    // console.log("snapshot : ", snapshot);
     return snapshot;
   },
-
-  differ() {
+  differAdd(storeId) {
+    const beforeMesh = this.redoList[0].snapshot[storeId];
     const meshes = primitiveStore.meshes;
-    const keys = Object.keys(meshes);
+    const mesh = meshes[storeId];
+
+    if (!beforeMesh) {
+      this.addHistory(storeId, mesh.name as CanvasInstance, "add");
+      return;
+    }
+  },
+  differDelete(storeId) {
+    this.addHistory(storeId, "OBJECT" as CanvasInstance, "delete");
+  },
+  differUngroup(storeId) {
+    this.addHistory(storeId, "GROUP" as CanvasInstance, "ungroup");
+  },
+  differMeshAttribute() {
+    const meshes = primitiveStore.meshes;
+    const keys = Object.keys(meshes).sort(
+      (a, b) => meshes[b].children.length - meshes[a].children.length
+    );
 
     for (const key of keys) {
       const beforeMesh = this.redoList[0].snapshot[key];
       const mesh = meshes[key];
       const storeId = mesh.userData.storeId ?? mesh.uuid;
 
-      // 추가 or 삭제
-      if (!beforeMesh) {
-        this.addHistory(storeId, mesh.name as CanvasInstance, "add");
-        return;
-      } else if (!mesh) {
-        // TODO : mesh 지우는 기능 생기면 처리 필요
-        return;
-      }
+      if (mesh.name === "SELECTED_GROUP") continue;
 
       // mesh의 속성이 다르면 체크 (equal 함수가 가능한 속성만)
       const attributes: MeshProperty[] = ["position", "rotation", "scale"];
@@ -119,15 +147,31 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
 
   update() {
     const meshEntries = Object.entries(this.redoList[0].snapshot);
-
     primitiveStore.clearPrimitives();
 
     meshEntries.forEach(([storeId, mesh]) => {
-      primitiveStore.addPrimitive(
-        storeId,
-        renderPrimitive(storeId, mesh.clone())
-      );
+      switch (mesh.name) {
+        case "GROUP":
+          primitiveStore.addPrimitive(
+            storeId,
+            renderGroup(storeId, mesh.clone())
+          );
+          break;
+
+        // case "SELECTED_GROUP":
+        //   primitiveStore.addPrimitive(storeId, renderSelectedGroup(storeId));
+        //   break;
+
+        default:
+          primitiveStore.addPrimitive(
+            storeId,
+            renderPrimitive(storeId, mesh.clone())
+          );
+          break;
+      }
     });
+
+    this.isUpdating = true;
   },
 });
 

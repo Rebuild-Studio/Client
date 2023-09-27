@@ -6,7 +6,6 @@ import onClickSceneEvents from "../utils/onClickSceneEvents";
 import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 import Gizmo from "../gizmo/Gizmo";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
 import keyboardSceneEvents from "../utils/keyboardSceneEvents";
 import makeSelectedGroup from "../utils/makeSelectedGroup";
 import executeContextMenu from "../utils/executeContextMenu";
@@ -67,10 +66,6 @@ const RenderScene = observer(() => {
   useEffect(() => {
     executeContextMenu(scene);
   }, [contextMenuStore.currentSelectedContextMenu]);
-
-  useEffect(() => {
-    canvasHistoryStore.differ();
-  }, [primitiveStore.meshes]);
 
   return (
     <>

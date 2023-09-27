@@ -8,6 +8,7 @@ import { useThree } from "@react-three/fiber";
 
 interface SelectedGroupProps {
   storeId: string;
+  propMesh?: THREE.Mesh;
 }
 
 const SelectedGroup = observer((props: SelectedGroupProps) => {
@@ -20,7 +21,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
   const material = new THREE.MeshPhysicalMaterial({
     transparent: true,
   });
-  const mesh = new THREE.Mesh(geometry, material);
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "SELECTED_GROUP";
   mesh.userData["storeId"] = props.storeId;
 

@@ -55,7 +55,7 @@ const Scene = observer(() => {
           }}
           onMouseUp={(e) => {
             // TODO : 옮겨야함
-            canvasHistoryStore.differ();
+            canvasHistoryStore.differMeshAttribute();
             mouseEventStore.updateMouseEvent("onMouseUp", e);
           }}
           onClick={(e) => {

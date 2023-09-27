@@ -1,10 +1,11 @@
+import { observer } from "mobx-react";
 import { basicColors, bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
-import canvasHistoryStore, {
+import {
   CanvasAttribute,
+  CanvasHistoryType,
   CanvasInstance,
 } from "@/store/canvasHistoryStore";
-import { observer } from "mobx-react";
 import { Tabs } from "../../Tabs";
 import { UndoElement } from "./UnDoElement";
 import { RedoElement } from "./RedoElement";
@@ -15,7 +16,10 @@ import {
   StyledTab,
 } from "../CanvasLeftPanel.style";
 
-type Props = {};
+type Props = {
+  undoList: CanvasHistoryType[];
+  redoList: CanvasHistoryType[];
+};
 
 type InstanceTranslate = {
   [attr in CanvasInstance]: string;
@@ -34,22 +38,22 @@ const HistoryList = styled.div`
   padding: 10px 11px;
 `;
 
-export const HistoryPanel = observer((props: Props) => {
-  const undoList = canvasHistoryStore.undoList;
-  const redoList = canvasHistoryStore.redoList;
-
+export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
   const instance_translate: InstanceTranslate = {
+    OBJECT: "오브젝트",
     CUBE: "정육면체",
     CAPSULE: "캡슐",
     CONE: "원뿔",
     CYLINDER: "원기둥",
     SPHERE: "구",
     TORUS: "도넛",
-    material: "머터리얼",
+    MATERIAL: "머터리얼",
     GROUP: "그룹",
-    camera: "카메라",
-    light: "빛",
-    initial: "초기상태",
+    SELECTED_GROUP: "선택 그룹",
+    CAMERA: "카메라",
+    POINTLIGHT: "포인트 라이트",
+    SPOTLIGHT: "스포트 라이트",
+    INITIAL: "초기상태",
   };
 
   const attr_translate: AttributeTranslate = {
@@ -57,6 +61,8 @@ export const HistoryPanel = observer((props: Props) => {
     position: "변형 (position)",
     rotation: "변형 (rotation)",
     scale: "변형 (scale)",
+    delete: "삭제",
+    ungroup: "해제",
     none: "",
   };
 

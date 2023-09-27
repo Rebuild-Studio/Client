@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: HistoryPanel,
-  title: "Component/layout/HistoryPanel",
+  title: "Component/layout/CanvasLeftPanel/HistoryPanel",
   tags: ["autodocs"],
 } satisfies Meta<typeof HistoryPanel>;
 
