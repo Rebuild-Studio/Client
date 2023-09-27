@@ -1,11 +1,9 @@
+import { Category } from "@/store/assetCategoryStore";
 import { MainCategoryType } from "./mainCategory";
 
 type SubCategoryList = {
   [key in MainCategoryType]?: {
-    subCategories: {
-      subCategory: string;
-      subCategoryKR: string;
-    }[];
+    subCategories: Category[];
   };
 };
 

@@ -1,3 +1,5 @@
+import { Category } from "@/store/assetCategoryStore";
+
 type MainCategoryType =
   | "all"
   | "tem"
@@ -16,7 +18,7 @@ type MainCategoryType =
   | "tra"
   | "wea";
 
-interface MainCategory {
+interface MainCategory extends Category {
   category: MainCategoryType;
   categoryKR: string;
 }

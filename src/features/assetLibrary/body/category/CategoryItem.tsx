@@ -1,6 +1,9 @@
-import { MainCategoryType } from "@/features/constants/mainCategory";
+import {
+  MainCategory,
+  MainCategoryType,
+} from "@/features/constants/mainCategory";
 import { bgColors } from "@/resources/colors/colors";
-import assetCategoryStore from "@/store/assetCategoryStore";
+import assetCategoryStore, { Category } from "@/store/assetCategoryStore";
 import { observer } from "mobx-react";
 import { styled } from "styled-components";
 
@@ -32,12 +35,17 @@ const ItemText = styled.span<{ selected: boolean }>`
 const CategoryItem = observer(({ name, category, type }: Props) => {
   const iconUrl = `/icons/assetLibrary/category/${type}/${category}.svg`;
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;
+  const myCategory: Category = {
+    category: category,
+    categoryKR: name,
+  };
 
   const onClickSetCategory = (): void => {
     if (type === "main") {
-      assetCategoryStore.setCurrentMainCategory(category);
+      myCategory as MainCategory;
+      assetCategoryStore.setCurrentMainCategory(myCategory as MainCategory);
     } else {
-      assetCategoryStore.setCurrentSubCategory(category);
+      assetCategoryStore.setCurrentSubCategory(myCategory);
     }
   };
 
@@ -45,10 +53,14 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
     <ItemContainer onClick={() => onClickSetCategory()}>
       <img src={iconUrl} alt={name} />
       {type === "main" && (
-        <ItemText selected={currentMainCategory === category}>{name}</ItemText>
+        <ItemText selected={currentMainCategory.category === category}>
+          {name}
+        </ItemText>
       )}
       {type === "sub" && (
-        <ItemText selected={currentSubCategory === category}>{name}</ItemText>
+        <ItemText selected={currentSubCategory.category === category}>
+          {name}
+        </ItemText>
       )}
     </ItemContainer>
   );

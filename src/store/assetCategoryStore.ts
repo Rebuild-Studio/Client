@@ -1,21 +1,31 @@
 import { DomainType } from "@/features/constants/domain";
-import { MainCategoryType } from "@/features/constants/mainCategory";
+import { MainCategory } from "@/features/constants/mainCategory";
 import { observable } from "mobx";
 
-interface AssetCategory {
-  currentDomain: DomainType;
-  currentMainCategory: MainCategoryType;
-  currentSubCategory: string;
+interface Category {
+  category: string;
+  categoryKR: string;
+}
+interface AssetCategoryStore {
+  currentDomain: { domain: DomainType; domainKR: string };
+  currentMainCategory: MainCategory;
+  currentSubCategory: Category;
 
-  setCurrentDomain: (domain: DomainType) => void;
-  setCurrentMainCategory: (mainCategory: MainCategoryType) => void;
-  setCurrentSubCategory: (subCategory: string) => void;
+  setCurrentDomain: (domain: { domain: DomainType; domainKR: string }) => void;
+  setCurrentMainCategory: (mainCategory: MainCategory) => void;
+  setCurrentSubCategory: (subCategory: Category) => void;
 }
 
-const assetCategoryStore = observable<AssetCategory>({
-  currentDomain: "all",
-  currentMainCategory: "all",
-  currentSubCategory: "",
+const assetCategoryStore = observable<AssetCategoryStore>({
+  currentDomain: { domain: "all", domainKR: "전체" },
+  currentMainCategory: {
+    category: "all",
+    categoryKR: "전체",
+  },
+  currentSubCategory: {
+    category: "all",
+    categoryKR: "전체",
+  },
 
   setCurrentDomain(domain) {
     this.currentDomain = domain;
@@ -28,4 +38,5 @@ const assetCategoryStore = observable<AssetCategory>({
   },
 });
 
+export type { Category, AssetCategoryStore };
 export default assetCategoryStore;
