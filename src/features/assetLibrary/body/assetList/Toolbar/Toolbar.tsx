@@ -1,14 +1,29 @@
 import { observer } from "mobx-react";
-import { Fragment } from "react";
 import CategoryLabel from "./CategoryLabel";
+import DomainDropdown from "./DomainDropdown";
+import styled from "styled-components";
+import { bgColors } from "@/resources/colors/colors";
+
+const Container = styled.div`
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${bgColors[222222]};
+  color: white;
+  overflow: visible;
+`;
 
 const Toolbar = observer(() => {
   return (
-    <Fragment>
+    <Container>
       <CategoryLabel />
       {/* <SelectedAssetListControl /> */}
-      {/* <DomainDropbox /> */}
-    </Fragment>
+      <DomainDropdown />
+    </Container>
   );
 });
 

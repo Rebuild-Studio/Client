@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Category from "./category/Category";
 import { bgColors } from "@/resources/colors/colors";
+import Toolbar from "./assetList/Toolbar";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const Body = () => {
       {
         //here comes asset list tab
       }
+      <Toolbar />
     </Container>
   );
 };
