@@ -1,8 +1,7 @@
-import React, { ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import styled from "styled-components";
 import { InputType } from "@/types/style/InputField";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import { observer } from "mobx-react";
 
 interface Props {
   type: InputType;

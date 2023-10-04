@@ -77,7 +77,6 @@ const CustomMenu = ({
 }: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
   const [open, setOpen] = useState(openMenu);
-  const [selectedOption, setSelectedOption] = useState("");
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { grayColors } from "@/resources/colors/colors";
-import { hsvaToRgba, hsvaToHex, HsvaColor } from "@uiw/color-convert";
+import { hsvaToRgba } from "@uiw/color-convert";
 import ColorContent from "./ColorContent";
 
 interface ColorPickerProps {
