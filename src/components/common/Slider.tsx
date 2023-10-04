@@ -1,8 +1,6 @@
-import { useState, useRef, useEffect, ChangeEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
 import styled from "styled-components";
-import * as THREE from "three";
 
 const SliderContainer = styled.div`
   width: 200px;
