@@ -1,4 +1,4 @@
-import { ButtonAnimationType } from "@/types/style/buttonAnimations";
+import { ButtonAnimationType } from "@/types/style/ButtonAnimations";
 import { keyframes } from "styled-components";
 
 const ButtonAnimation = {
