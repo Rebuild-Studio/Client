@@ -1,4 +1,4 @@
-import Toolbar from "@/features/assetLibrary/body/assetList/Toolbar";
+import Toolbar from "@/features/assetLibrary/body/assetList/toolbar";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
