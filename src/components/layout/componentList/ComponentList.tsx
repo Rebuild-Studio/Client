@@ -59,8 +59,8 @@ const confirmButtonStyle: Omit<
   "label" | "onClick" | "disabled"
 > = {
   width: "138px",
-  height: "32px",
-  minHeight: "34px",
+  height: "34px",
+  minHeight: "32px",
   minWidth: "80px",
   borderRadius: "6px",
   backgroundColor: basicColors.lightLimeGreen,
@@ -76,8 +76,8 @@ const closeButtonStyle: Omit<
   "label" | "onClick" | "disabled"
 > = {
   width: "138px",
-  height: "32px",
-  minHeight: "34px",
+  height: "34px",
+  minHeight: "32px",
   minWidth: "80px",
   borderRadius: "6px",
   backgroundColor: bgColors[282828],
