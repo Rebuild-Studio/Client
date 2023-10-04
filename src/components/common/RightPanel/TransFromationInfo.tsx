@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import InputField from "../InputField";
+import TransformInput from "./TransformInput";
 
 interface axis {
   x: number;
@@ -12,6 +13,8 @@ interface Props {
   rotation: axis;
   scale: axis;
 }
+
+type TransformType = "position" | "rotation" | "scale";
 const MarginBox = styled.div`
   margin-top: 10px;
 `;
@@ -51,19 +54,19 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
   return (
     <>
       <MarginBox>
-        {_props.map((prop) => {
+        {_props.map((prop, index) => {
           const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
           return (
             <>
-              <span>{prop["title"]}</span>
+              <span key={index}>{prop["title"]}</span>
               <Wrapper>
                 {axes.map((axis) => {
                   return (
-                    <InputField
-                      title={prop["type"]}
+                    <TransformInput
+                      key={axis}
+                      type={prop["type"] as TransformType}
                       initValue={String(prop[axis])}
-                      label={axis}
-                      type={"number"}
+                      axis={axis}
                     />
                   );
                 })}
