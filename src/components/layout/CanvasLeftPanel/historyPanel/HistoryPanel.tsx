@@ -80,32 +80,30 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
           underbarColor={basicColors.white}
         />
       </StyledTab>
-      <StyledContent>
-        <HistoryList>
-          {undoList.map((value, idx) => (
-            <UndoElement
-              label={
-                (instance_translate[value.instance] ?? value.instance) +
-                " " +
-                (attr_translate[value.attribute] ?? value.attribute)
-              }
-              key={idx + value.id}
-              index={idx}
-            />
-          ))}
-          {redoList.map((value, idx) => (
-            <RedoElement
-              label={
-                (instance_translate[value.instance] ?? value.instance) +
-                " " +
-                (attr_translate[value.attribute] ?? value.attribute)
-              }
-              key={idx + value.id}
-              index={idx}
-            />
-          ))}
-        </HistoryList>
-      </StyledContent>
+      <HistoryList>
+        {undoList.map((value, idx) => (
+          <UndoElement
+            label={
+              (instance_translate[value.instance] ?? value.instance) +
+              " " +
+              (attr_translate[value.attribute] ?? value.attribute)
+            }
+            key={idx + value.id}
+            index={idx}
+          />
+        ))}
+        {redoList.map((value, idx) => (
+          <RedoElement
+            label={
+              (instance_translate[value.instance] ?? value.instance) +
+              " " +
+              (attr_translate[value.attribute] ?? value.attribute)
+            }
+            key={idx + value.id}
+            index={idx}
+          />
+        ))}
+      </HistoryList>
     </StyledPanel>
   );
 });

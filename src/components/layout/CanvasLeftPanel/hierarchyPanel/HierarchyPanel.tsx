@@ -2,16 +2,20 @@ import { basicColors, bgColors } from "@/resources/colors/colors";
 
 import { observer } from "mobx-react";
 import { Tabs } from "../../Tabs";
-import {
-  StyledContent,
-  StyledHeader,
-  StyledPanel,
-  StyledTab,
-} from "../CanvasLeftPanel.style";
+import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
+import { MeshType } from "@/store/primitiveStore";
+import { HierarchyElement } from "./HierarchyElement";
+import styled from "styled-components";
 
-type Props = {};
+type Props = {
+  meshes: MeshType;
+};
 
-export const HierarchyPanel = observer((props: Props) => {
+const HierarchyList = styled.div`
+  margin-left: 20px;
+`;
+
+export const HierarchyPanel = observer(({ meshes }: Props) => {
   return (
     <StyledPanel>
       <StyledHeader>계층 구조</StyledHeader>
@@ -25,7 +29,11 @@ export const HierarchyPanel = observer((props: Props) => {
           underbarColor={basicColors.white}
         />
       </StyledTab>
-      <StyledContent></StyledContent>
+      <HierarchyList>
+        {Object.values(meshes).map((mesh) => (
+          <HierarchyElement depth={0} key={mesh.uuid} mesh={mesh} />
+        ))}
+      </HierarchyList>
     </StyledPanel>
   );
 });
