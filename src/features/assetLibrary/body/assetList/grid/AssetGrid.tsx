@@ -5,7 +5,7 @@ import GridItem from "./GridItem";
 
 const Container = styled.div`
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: auto;
 `;
 
 const Grid = styled.div`

@@ -7,3 +7,14 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+
+* {
+  /* 기본 스크롤 */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 10px;
+  }
+}

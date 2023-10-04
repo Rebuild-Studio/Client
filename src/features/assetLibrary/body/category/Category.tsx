@@ -8,8 +8,9 @@ const ListContainer = styled.div`
   flex-direction: column;
   min-width: 130px;
   width: 15%;
-  margin: 5px 0;
-  overflow: scroll;
+  padding: 5px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
 `;
 
 const CategoryList = () => {
