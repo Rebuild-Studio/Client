@@ -18,6 +18,10 @@ const Wrapper = styled.div`
 const AppWrapper = observer((props: AppProps) => {
   const { keyboardEventStore } = storeContainer;
   const setOnKeydownListener = (e: KeyboardEvent) => {
+    if (e.key === "F12") {
+      return;
+    }
+    e.preventDefault();
     keyboardEventStore.updateKeyEvent({
       key: e.key,
       isCtrlPressed: e.ctrlKey,
@@ -27,6 +31,7 @@ const AppWrapper = observer((props: AppProps) => {
   };
 
   const setOnKeyUpListener = (e: KeyboardEvent) => {
+    e.preventDefault();
     keyboardEventStore.clearKeyEvent();
   };
 
