@@ -7,7 +7,7 @@ import { bgColors } from "@/resources/colors/colors";
 const Container = styled.div`
   width: 100%;
   height: 50px;
-  padding: 0 20px;
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;

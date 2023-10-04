@@ -12,6 +12,7 @@ const meta = {
         component: "아이콘 버튼 컴포넌트입니다.",
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof AssetLibrary>;
 

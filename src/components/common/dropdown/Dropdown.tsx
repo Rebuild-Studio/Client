@@ -21,10 +21,12 @@ const CustomStack = styled(Stack)<{ $open: boolean }>`
   position: absolute;
   top: 100%;
   border: ${({ $open }) =>
-    $open ? `1.5px solid ${grayColors[808080]}` : "none"};
+    $open ? `1.5px solid ${grayColors.E2E2E2}` : "none"};
   border-radius: 5px;
   overflow-y: auto;
   box-sizing: border-box;
+  background-color: ${basicColors.black};
+  z-index: 1;
 
   & > *:hover {
     color: ${basicColors.black};

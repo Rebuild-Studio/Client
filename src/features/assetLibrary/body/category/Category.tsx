@@ -7,7 +7,9 @@ const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 130px;
+  width: 15%;
   margin: 5px 0;
+  overflow: scroll;
 `;
 
 const CategoryList = () => {

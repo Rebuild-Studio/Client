@@ -6,7 +6,12 @@ import styled, { css } from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
   width: 100%;
+  height: 50px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 
   & > * {
     margin-left: 10px;

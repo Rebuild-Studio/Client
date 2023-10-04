@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import { basicColors } from "@/resources/colors/colors";
 import Header from "./header";
 import Body from "./body";
+import Footer from "./footer";
 
 const Container = styled.div`
   width: 100%;
@@ -9,11 +10,11 @@ const Container = styled.div`
   min-width: 70vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: ${bgColors["282828"]};
+  justify-content: space-around;
+  background-color: ${basicColors.black};
   border-radius: 10px;
   color: ${basicColors.white};
-  overflow: hidden;
+  box-sizing: border-box;
 `;
 
 const AssetLibrary = () => {
@@ -21,6 +22,7 @@ const AssetLibrary = () => {
     <Container>
       <Header title="라이브러리" />
       <Body />
+      <Footer />
     </Container>
   );
 };

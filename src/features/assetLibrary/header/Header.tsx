@@ -6,12 +6,14 @@ const Container = styled.div`
   height: 44px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 `;
 
 const StyledSpan = styled.span`
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
   font-family: "SourceHanSansKR";
   color: ${basicColors.white};
 `;

@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   background-color: ${bgColors[222222]};
   color: white;
-  height: 100%;
+  height: 85%;
 `;
 
 const ContentContainer = styled.div`
