@@ -5,15 +5,15 @@ import Body from "./body";
 
 const Container = styled.div`
   width: 100%;
-  height: 80%;
+  height: 80vh;
   min-width: 70vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${bgColors["282828"]};
-  overflow: hidden;
   border-radius: 10px;
   color: ${basicColors.white};
+  overflow: hidden;
 `;
 
 const AssetLibrary = () => {
