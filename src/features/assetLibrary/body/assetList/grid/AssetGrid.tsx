@@ -1,6 +1,7 @@
 import { FetchAssetType } from "@/features/assetLibrary/types/fetchAssetType";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import GridItem from "./GridItem";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -21,19 +22,6 @@ const Grid = styled.div`
   }
 `;
 
-const GridItem = styled.div`
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  box-sizing: border-box;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 const AssetGrid = () => {
   const [assets, setAssets] = useState<FetchAssetType[]>([]);
   useEffect(() => {
@@ -49,11 +37,7 @@ const AssetGrid = () => {
     <Container>
       <Grid>
         {assets.map((asset, index) => (
-          <GridItem key={index}>
-            <img
-              src={`https://dev.mxstudio.app/storage/models/Objects/${asset.fileName}.png`}
-            />
-          </GridItem>
+          <GridItem key={index} asset={asset} />
         ))}
       </Grid>
     </Container>
