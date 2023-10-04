@@ -10,6 +10,7 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.BoxGeometry();
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CUBE";
   mesh.userData["storeId"] = props.storeId;
