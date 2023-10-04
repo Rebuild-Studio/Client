@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import storeContainer from "@/store/storeContainer";
 import InputField from "../InputField";
 import { observer } from "mobx-react";
@@ -81,7 +81,6 @@ const TransformInput = observer((props: Props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(e.target.value));
-    console.log(e.target.value);
 
     const prop = props.type;
     const axis: "x" | "y" | "z" = props.axis;
@@ -92,7 +91,7 @@ const TransformInput = observer((props: Props) => {
       scale: { ...scale },
     }[prop];
 
-    let inputValue = Number(e.target.value);
+    const inputValue = Number(e.target.value);
     const newValue = initializeNewValue({
       prop,
       axis,

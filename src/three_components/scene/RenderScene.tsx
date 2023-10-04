@@ -79,7 +79,6 @@ const RenderScene = observer(() => {
       primitiveStore.selectedPrimitives[keys[0]] &&
       selectedObjectStore.selectedMaterial
     ) {
-      console.log(primitiveStore.selectedPrimitives[keys[0]].material);
       setNewMesh(primitiveStore.selectedPrimitives[keys[0]]);
       newMesh.material = material;
       selectedObjectStore.setSelectedMaterial(materialName);

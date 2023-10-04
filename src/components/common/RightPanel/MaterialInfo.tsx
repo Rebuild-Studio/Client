@@ -33,8 +33,6 @@ const Material = ({
   roughness = 0.5,
   color,
 }: MaterialInfoProps) => {
-  // const hsvaColor = rgbaToHsva(color);
-
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
   const keys = Object.keys(primitiveStore.selectedPrimitives);

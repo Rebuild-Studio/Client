@@ -84,11 +84,7 @@ const ColorPicker = observer(({ label, color }: ColorPickerProps) => {
 
   return (
     <Wrapper>
-      <ColorButton
-        color={color}
-        rgbColor={rgbColor}
-        onClick={handleClick}
-      ></ColorButton>
+      <ColorButton color={color} rgbColor={rgbColor} onClick={handleClick} />
       {anchorMenu && (
         <StyledMenu
           anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}

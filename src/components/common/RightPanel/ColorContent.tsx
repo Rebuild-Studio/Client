@@ -66,6 +66,11 @@ const ColorContent = observer(
       updateMaterialAlpha(hsva.a);
       setAlpha(String(hsva.a * 100) + "%");
     };
+
+    const onAlphaChange = (alpha: string) => {
+      const _alpha = Number(alpha.slice(0, -1)) % 100;
+      updateMaterialAlpha(_alpha);
+    };
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
       updateMaterialColor(hsva);
@@ -111,6 +116,9 @@ const ColorContent = observer(
           <InputField value={hsvaToHex(color)} type={"text"} title={"Hex"} />
           <InputField
             value={String(Math.round(color.a * 100)) + "%"}
+            onChange={() => {
+              onAlphaChange;
+            }}
             type={"text"}
             title={""}
             label={""}
