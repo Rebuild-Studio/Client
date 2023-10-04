@@ -1,10 +1,11 @@
-import { observable, runInAction, transaction } from "mobx";
-import primitiveStore, { MeshType, PrimitiveType } from "./primitiveStore";
+import { observable } from "mobx";
+import primitiveStore, { MeshType } from "./primitiveStore";
 import {
   renderGroup,
   renderPrimitive,
   renderSelectedGroup,
 } from "@/three_components/utils/renderThreeComponents";
+import * as THREE from "three";
 
 type CanvasInstance =
   | "OBJECT"
@@ -28,7 +29,8 @@ type CanvasAttribute =
   | "scale"
   | "delete"
   | "ungroup"
-  | "none";
+  | "none"
+  | "change";
 interface CanvasHistoryType {
   id: string;
   instance: CanvasInstance;
@@ -38,7 +40,6 @@ interface CanvasHistoryType {
 
 type MeshProperty = keyof THREE.Mesh;
 interface CanvasHistoryStoreProps {
-  isUpdating: boolean;
   undoList: CanvasHistoryType[];
   redoList: CanvasHistoryType[];
   addHistory: (
@@ -46,6 +47,7 @@ interface CanvasHistoryStoreProps {
     instance: CanvasInstance,
     attr: CanvasAttribute
   ) => void;
+  compareMesh: (beforeMesh: THREE.Mesh, mesh: THREE.Mesh) => void;
   differAdd: (storeId: string) => void;
   differDelete: (storeId: string) => void;
   differUngroup: (storeId: string) => void;
@@ -57,7 +59,6 @@ interface CanvasHistoryStoreProps {
 }
 
 const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
-  isUpdating: false,
   undoList: [],
   redoList: [
     {
@@ -83,8 +84,37 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   createSnapshot(meshes) {
     // 깊은 객체 복사
     const snapshot: MeshType = {};
-    for (const key in meshes) {
-      snapshot[key] = meshes[key].clone();
+
+    // 자식 있는 mesh들부터 처리
+    const storeIds = Object.keys(meshes).sort(
+      (a, b) => meshes[b].children.length - meshes[a].children.length
+    );
+
+    // 이미 저장한 storeId 체크용 (group, selectedGroup)
+    const storeIdSet = new Set<string>();
+
+    for (const storeId of storeIds) {
+      if (storeIdSet.has(storeId)) continue;
+
+      if (meshes[storeId].name === "SELECTED_GROUP") {
+        meshes[storeId].traverse((child) => {
+          const newChild = child.clone() as THREE.Mesh;
+
+          if (newChild.name === "SELECTED_GROUP") return;
+
+          const childStoreId = newChild.userData["storeId"];
+          newChild.position.copy(child.getWorldPosition(new THREE.Vector3()));
+          newChild.quaternion.copy(
+            child.getWorldQuaternion(new THREE.Quaternion())
+          );
+          newChild.scale.copy(child.getWorldScale(new THREE.Vector3()));
+          snapshot[childStoreId] = newChild;
+          storeIdSet.add(childStoreId);
+        });
+      } else {
+        snapshot[storeId] = meshes[storeId].clone();
+        storeIdSet.add(storeId);
+      }
     }
     // console.log("snapshot : ", snapshot);
     return snapshot;
@@ -105,30 +135,48 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   differUngroup(storeId) {
     this.addHistory(storeId, "GROUP" as CanvasInstance, "ungroup");
   },
+  compareMesh(beforeMesh, mesh) {
+    const attributes: MeshProperty[] = ["position", "rotation", "scale"];
+    const storeId = mesh.userData.storeId ?? mesh.uuid;
+
+    for (const attr of attributes) {
+      if (!(beforeMesh[attr] as any).equals(mesh[attr])) {
+        this.addHistory(
+          storeId,
+          mesh.name as CanvasInstance,
+          attr as CanvasAttribute
+        );
+        return;
+      }
+    }
+  },
   differMeshAttribute() {
-    const meshes = primitiveStore.meshes;
-    const keys = Object.keys(meshes).sort(
-      (a, b) => meshes[b].children.length - meshes[a].children.length
-    );
+    const meshes = this.createSnapshot(primitiveStore.meshes);
+    const keys = Object.keys(meshes);
 
     for (const key of keys) {
       const beforeMesh = this.redoList[0].snapshot[key];
       const mesh = meshes[key];
+
+      const attributes: MeshProperty[] = ["position", "rotation", "scale"];
       const storeId = mesh.userData.storeId ?? mesh.uuid;
 
-      if (mesh.name === "SELECTED_GROUP") continue;
+      let difference = [];
 
-      // mesh의 속성이 다르면 체크 (equal 함수가 가능한 속성만)
-      const attributes: MeshProperty[] = ["position", "rotation", "scale"];
       for (const attr of attributes) {
         if (!(beforeMesh[attr] as any).equals(mesh[attr])) {
-          this.addHistory(
-            storeId,
-            mesh.name as CanvasInstance,
-            attr as CanvasAttribute
-          );
-          return;
+          difference.push([mesh.name, attr]);
         }
+      }
+
+      if (difference.length === 1) {
+        this.addHistory(
+          storeId,
+          difference[0][0] as CanvasInstance,
+          difference[0][1] as CanvasAttribute
+        );
+      } else if (difference.length > 1) {
+        this.addHistory(storeId, "OBJECT", "change");
       }
     }
   },
@@ -146,10 +194,13 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   },
 
   update() {
+    // console.log("update : ", this.redoList[0].snapshot);
     const meshEntries = Object.entries(this.redoList[0].snapshot);
-    primitiveStore.clearPrimitives();
 
-    meshEntries.forEach(([storeId, mesh]) => {
+    primitiveStore.clearPrimitives();
+    primitiveStore.clearSelectedGroupPrimitive();
+
+    for (const [storeId, mesh] of meshEntries) {
       switch (mesh.name) {
         case "GROUP":
           primitiveStore.addPrimitive(
@@ -158,9 +209,12 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
           );
           break;
 
-        // case "SELECTED_GROUP":
-        //   primitiveStore.addPrimitive(storeId, renderSelectedGroup(storeId));
-        //   break;
+        case "SELECTED_GROUP":
+          // primitiveStore.addPrimitive(
+          //   storeId,
+          //   renderSelectedGroup(storeId, mesh.clone())
+          // );
+          break;
 
         default:
           primitiveStore.addPrimitive(
@@ -169,9 +223,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
           );
           break;
       }
-    });
-
-    this.isUpdating = true;
+    }
   },
 });
 

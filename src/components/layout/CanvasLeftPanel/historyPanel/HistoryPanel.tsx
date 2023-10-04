@@ -63,6 +63,7 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
     scale: "변형 (scale)",
     delete: "삭제",
     ungroup: "해제",
+    change: "변형",
     none: "",
   };
 
