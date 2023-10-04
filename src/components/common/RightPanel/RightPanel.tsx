@@ -8,6 +8,8 @@ import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
 import Material from "./MaterialInfo";
+import { rgbToHsva } from "./ColorHandler";
+import { HsvaColor } from "@uiw/color-convert";
 
 const RightPanelContainer = styled.div`
   position: relative;
@@ -22,6 +24,7 @@ const RightPanel = observer(() => {
   const { primitiveStore } = storeContainer;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
+  const [color, setColor] = useState<HsvaColor>({ h: 0, s: 0, v: 0, a: 0 });
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
@@ -30,13 +33,16 @@ const RightPanel = observer(() => {
 
   useEffect(() => {
     const keys = Object.keys(selectedPrimitives);
-
     if (selectedPrimitives[keys[0]]) {
       const info = selectedPrimitives[keys[0]];
       const materials = Object.keys(info.material);
       const value = Object.values(info.material);
+      const rgbColor = value[materials.indexOf("color")];
+      const opacity = Number(value[materials.indexOf("opacity")]);
+      const hsva = rgbToHsva(rgbColor, opacity);
       setMetalness(value[materials.indexOf("metalness")]);
       setRoughness(value[materials.indexOf("roughness")]);
+      setColor(hsva);
       setPosition(info.position);
       setRotation(info.rotation);
       setScale(info.scale);
@@ -66,7 +72,11 @@ const RightPanel = observer(() => {
                 />
               </Accordion>
               <Accordion title={"머터리얼"}>
-                <Material metalness={metalness} roughness={roughness} />
+                <Material
+                  metalness={metalness}
+                  roughness={roughness}
+                  color={color}
+                />
               </Accordion>
             </>,
             <div>{"쉐이프"}</div>,
