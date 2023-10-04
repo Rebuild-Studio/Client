@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { grayColors, basicColors } from "@/resources/colors/colors";
-import Grid from "../common/Grid";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ const StyledMenu = styled.div<{
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   z-index: 3;
-  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+  transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
 `;
@@ -64,10 +63,20 @@ const AnchorButton = styled.button`
 interface MenuProps {
   title: string;
   MenuItem: React.ReactNode;
+  openMenu?: boolean;
+  anchorButton?: React.ReactNode;
+  anchorElement?: HTMLElement | null;
+  handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
-const CustomMenu = ({ title, MenuItem }: MenuProps) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(false);
+const CustomMenu = ({
+  title,
+  MenuItem,
+  openMenu = false,
+  anchorButton = <></>,
+  anchorElement = null,
+}: MenuProps) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
+  const [open, setOpen] = useState(openMenu);
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -80,14 +89,10 @@ const CustomMenu = ({ title, MenuItem }: MenuProps) => {
     setOpen(false);
   };
 
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
-    setOpen(false);
-  };
-
   return (
     <Wrapper>
       <AnchorButton onClick={handleClick}>Open Menu</AnchorButton>
+      {anchorButton}
       {anchorEl && (
         <StyledMenu
           anchorTop={anchorEl.offsetTop - anchorEl.clientHeight - 300}
@@ -97,9 +102,7 @@ const CustomMenu = ({ title, MenuItem }: MenuProps) => {
           <TitleWrapper>
             <Title>{title}</Title>
           </TitleWrapper>
-          <ContentWrapper>
-            <Grid items={MenuItem} columns={2}></Grid>
-          </ContentWrapper>
+          <ContentWrapper>{MenuItem}</ContentWrapper>
           <ButtonWrapper>
             <button onClick={handleClose}>Close Menu</button>
           </ButtonWrapper>
