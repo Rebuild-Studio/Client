@@ -1,7 +1,7 @@
 import storeContainer from "@/store/storeContainer";
 import { useFrame, useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import { nanoid } from "nanoid";
 import SelectedGroup from "../group/SelectedGroup";
@@ -9,12 +9,22 @@ import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 import Group from "../group/Group";
 import Gizmo from "../gizmo/Gizmo";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import * as THREE from "three";
+import { useServerMaterialLoader } from "@/hooks/loader";
 
 const RenderScene = observer(() => {
-  const { primitiveStore, mouseEventStore, contextMenuStore } = storeContainer;
+  const {
+    primitiveStore,
+    mouseEventStore,
+    contextMenuStore,
+    selectedObjectStore,
+  } = storeContainer;
+  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+  const keys = Object.keys(primitiveStore.selectedPrimitives);
+  const materialName = selectedObjectStore.selectedMaterial;
+  const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
@@ -96,7 +106,6 @@ const RenderScene = observer(() => {
         while (children.length) {
           scene.attach(primitiveStore.meshes[children[0].userData["storeId"]]);
         }
-
         primitiveStore.removeSelectedPrimitives(selectedGroupStoreId);
         primitiveStore.removePrimitive(selectedGroupStoreId);
         contextMenuStore.updateSelectedContextMenu("NONE");
@@ -115,6 +124,18 @@ const RenderScene = observer(() => {
         break;
     }
   }, [contextMenuStore.currentSelectedContextMenu]);
+
+  useEffect(() => {
+    if (
+      primitiveStore.selectedPrimitives[keys[0]] &&
+      selectedObjectStore.selectedMaterial
+    ) {
+      console.log(primitiveStore.selectedPrimitives[keys[0]].material);
+      setNewMesh(primitiveStore.selectedPrimitives[keys[0]]);
+      newMesh.material = material;
+      primitiveStore.updateSelectedPrimitives(keys[0], newMesh);
+    }
+  }, [selectedObjectStore.selectedMaterial]);
 
   return (
     <>
