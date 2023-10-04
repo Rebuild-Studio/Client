@@ -1,8 +1,7 @@
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import Grid from "../Grid";
-import data_store from "./MaterialData";
-
+import dataStore from "./MaterialData";
 import storeContainer from "@/store/storeContainer";
 
 const ImageStyled = styled.img<{ isSelected: boolean }>`
@@ -13,18 +12,18 @@ const ImageStyled = styled.img<{ isSelected: boolean }>`
 `;
 
 const MaterialTemplate = observer(() => {
-  const { primitiveStore } = storeContainer;
+  const { selectedObjectStore } = storeContainer;
 
   return (
     <Grid
-      items={data_store.mat_tex_list.map((template, index) => (
+      item={dataStore.materialTextureList.map((template, index) => (
         <ImageStyled
           key={index}
           isSelected={true}
-          src={"/icons/rightTab/" + template[1] + ".png"}
+          src={`/icons/rightTab/${template[1]}.png`}
           alt={`item-${index}`}
           onClick={() => {
-            primitiveStore.setSelectedMaterial(template[1]);
+            selectedObjectStore.setSelectedMaterial(template[1]);
           }}
         />
       ))}
