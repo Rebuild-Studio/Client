@@ -9,6 +9,9 @@ import Gizmo from "../gizmo/Gizmo";
 import keyboardSceneEvents from "../utils/keyboardSceneEvents";
 import makeSelectedGroup from "../utils/makeSelectedGroup";
 import executeContextMenu from "../utils/executeContextMenu";
+import SelectedOutline from "../post_processing/SelectedOutline";
+import { EffectComposer } from "@react-three/postprocessing";
+import ChildGizmo from "../gizmo/ChildGizmo";
 
 const RenderScene = observer(() => {
   const {
@@ -69,7 +72,21 @@ const RenderScene = observer(() => {
 
   return (
     <>
-      <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      <EffectComposer autoClear={false}>
+        <SelectedOutline />
+      </EffectComposer>
+
+      {/* 일반 Object 용 */}
+      <Gizmo
+        storeId={
+          primitiveStore.meshes[
+            Object.keys(primitiveStore.selectedPrimitives)[0]
+          ] && Object.keys(primitiveStore.selectedPrimitives)[0]
+        }
+      />
+
+      {/* Group 자식용 */}
+      <ChildGizmo />
 
       {Object.entries(primitiveStore.primitives).map(([id, primitive]) => {
         primitive.key = id;

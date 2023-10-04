@@ -21,8 +21,29 @@ const executeContextMenu = (scene: THREE.Scene) => {
       break;
     case "붙여넣기":
       Object.values(projectStateStore.currentCopyPrimitive).forEach((value) => {
+        if (value.name === "GROUP") {
+          const parent = value.clone();
+          const parentStoreId = nanoid();
+
+          parent.userData["storeId"] = parentStoreId;
+
+          parent.traverse((child) => {
+            if (child.userData["storeId"] !== parentStoreId) {
+              child.userData["storeId"] = nanoid();
+            }
+          });
+
+          primitiveStore.updatePrimitive(parentStoreId, parent);
+          primitiveStore.addPrimitive(
+            parentStoreId,
+            renderGroup(parentStoreId)
+          );
+          return;
+        }
+
         const copyMesh = value.clone();
         const pasteStoreId = nanoid();
+
         copyMesh.userData["storeId"] = pasteStoreId;
 
         primitiveStore.addPrimitive(

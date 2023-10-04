@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import getCenterPoint from "../utils/getCenterPoint";
+import { useThree } from "@react-three/fiber";
 
 interface GroupProps {
   storeId: string;
@@ -11,6 +12,7 @@ interface GroupProps {
 const Group = observer((props: GroupProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
+  const scene = useThree((state) => state.scene);
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
@@ -48,10 +50,26 @@ const Group = observer((props: GroupProps) => {
       primitiveStore.updatePrimitive(props.storeId, mesh);
 
       primitiveStore.clearSelectedPrimitives();
-      primitiveStore.addSelectedPrimitives(props.storeId, mesh);
       primitiveStore.clearSelectedGroupPrimitive();
     }
   }, []);
+
+  useEffect(() => {
+    if (primitiveStore.meshes[props.storeId]?.children.length === 1) {
+      // 자식이 하나이니 그룹 해제
+      const child = primitiveStore.meshes[props.storeId]?.children[0];
+      primitiveStore.updatePrimitive(
+        child.userData["storeId"],
+        child as THREE.Mesh
+      );
+
+      scene.attach(child);
+
+      primitiveStore.removePrimitive(props.storeId);
+    } else {
+      // 포지션 재조정
+    }
+  }, [primitiveStore.meshes[props.storeId]?.children.length]);
 
   return (
     <>
