@@ -11,7 +11,8 @@ interface ColorPickerProps {
 }
 
 const Wrapper = styled.div`
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
   margin-top: 1;
 `;
 const Container = styled.div`
@@ -53,8 +54,6 @@ const StyledMenu = styled.div<{
 
 const ButtonWrapper = styled.div`
   margin-top: 20px;
-  display: flex;
-  align-items: flex-end;
 `;
 const ColorButton = styled.button<{
   color: any;
@@ -94,7 +93,7 @@ const ColorPicker = observer(({ label, color }: ColorPickerProps) => {
         <StyledMenu
           anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
           open={open}
-          anchorLeft={anchorMenu.offsetLeft - 268}
+          anchorLeft={anchorMenu.offsetLeft - 468}
         >
           <Container>
             <Header>{label}</Header>
