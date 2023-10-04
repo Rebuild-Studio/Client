@@ -12,6 +12,7 @@ import Slider from "../Slider";
 import InputField from "../InputField";
 import { updateMaterialAlpha, updateMaterialColor } from "./ColorHandler";
 import { action } from "mobx";
+import { grayColors } from "@/resources/colors/colors";
 
 interface ColorContentProps {
   rgbColor: RgbaColor;
@@ -104,7 +105,9 @@ const ColorContent = observer(
           />
         )}
         <InputFieldWrapper>
-          <InputFieldTitle color={"#666"}>Hex</InputFieldTitle>
+          <InputFieldTitle color={grayColors.panelFontColor}>
+            Hex
+          </InputFieldTitle>
           <InputField value={hsvaToHex(color)} type={"text"} title={"Hex"} />
           <InputField
             value={String(Math.round(color.a * 100)) + "%"}
@@ -116,7 +119,7 @@ const ColorContent = observer(
         <InputFieldWrapper>
           {rgbChannels.map((channel) => (
             <>
-              <InputFieldTitle color={"#BABABA"}>
+              <InputFieldTitle color={grayColors.BABABA}>
                 {channel.label}
               </InputFieldTitle>
               <InputField value={channel.value} type={"number"} />

@@ -26,7 +26,7 @@ const Container = styled.div`
 const Header = styled.div`
   font-family: Inter;
   font-size: 11px;
-  color: #e2e2e2;
+  color: ${grayColors.E2E2E2};
 `;
 
 const StyledMenu = styled.div<{
