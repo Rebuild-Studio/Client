@@ -32,6 +32,7 @@ export const Example = {
     thumbnail: "/example/StartScene_Office.png",
     border: "1px dotted #fff",
     alt: "error",
+    hoverEffect: true,
     isClicked: false,
   },
 } satisfies Story;
