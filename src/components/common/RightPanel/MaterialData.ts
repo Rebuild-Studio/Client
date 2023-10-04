@@ -1,7 +1,5 @@
-import { observable } from "mobx";
-
-const data_store = observable({
-  mat_tex_list: [
+const dataStore = {
+  materialTextureList: [
     ["기본", "MX_mat_defalt_white_01"],
     ["투명한 플라스틱", "MX_mat_plastic_clear_01"],
     ["불투명한 플라스틱", "MX_mat_plastic_base_01"],
@@ -47,6 +45,5 @@ const data_store = observable({
     ["옥", "MX_mat_sub_jade_01"],
     ["카페인트", "MX_mat_metal_carPaint_01"],
   ],
-  materialTextureList: [],
-});
-export default data_store;
+};
+export default dataStore;
