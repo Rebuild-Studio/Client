@@ -87,7 +87,6 @@ const Scene = observer(() => {
           <Grid />
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
-          <MaterialLoader name={primitiveStore.selectedMaterial} />
         </CustomCanvas>
         <LeftPanel />
       </Container>
