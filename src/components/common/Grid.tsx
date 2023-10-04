@@ -10,14 +10,14 @@ const GridContainer = styled.div<{ columns: number }>`
 `;
 
 const Grid = ({
-  items,
+  item,
   columns,
 }: {
-  items: React.ReactNode;
+  item: React.ReactNode;
   columns: number;
   onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }) => {
-  return <GridContainer columns={columns}>{items}</GridContainer>;
+  return <GridContainer columns={columns}>{item}</GridContainer>;
 };
 
 export default Grid;
