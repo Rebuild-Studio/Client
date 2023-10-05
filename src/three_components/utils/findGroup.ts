@@ -60,10 +60,7 @@ const getParent = (
 ): THREE.Object3D<THREE.Event> | null => {
   const { primitiveStore } = storeContainer;
   let res: THREE.Object3D<THREE.Event> | null = null;
-
-  const rootObject = Object.values(primitiveStore.meshes).find((value) => {
-    return value.userData["storeId"] === rootId;
-  });
+  const rootObject = primitiveStore.meshes[rootId];
 
   rootObject?.traverse((child) => {
     if (child.userData["storeId"] === parentId) {

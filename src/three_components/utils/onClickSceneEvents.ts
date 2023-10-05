@@ -39,12 +39,8 @@ const onClickSceneEvents = (
   })?.object;
 
   const selectRootObject = findRootGroup(selectChildObject);
-
-  console.log(intersectObjects, selectChildObject, selectRootObject);
-
   if (selectRootObject) {
     const selectRootObjectStoreId = selectRootObject.userData["storeId"];
-
     // 현재 선택된 그룹의 자식 선택
     if (
       currentSelectObjects &&

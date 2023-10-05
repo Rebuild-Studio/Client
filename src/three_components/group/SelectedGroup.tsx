@@ -55,14 +55,15 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
           if (primitiveStore.meshes[child.userData["storeId"]]) {
             scene.attach(child);
           } else {
-            const rootId = child.userData["rootId"];
-            const parentId = child.userData["parentId"];
-            const parent = getParent(rootId, parentId);
-
-            delete child.userData["rootId"];
-            delete child.userData["parentId"];
-
-            parent?.attach(child);
+            if (!child.userData["isLeave"]) {
+              const parent = getParent(
+                child.userData["rootId"],
+                child.userData["parentId"]
+              );
+              delete child.userData["rootId"];
+              delete child.userData["parentId"];
+              parent?.attach(child);
+            }
           }
         });
       } catch (e) {

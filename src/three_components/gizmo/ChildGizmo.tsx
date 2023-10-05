@@ -1,13 +1,10 @@
 import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
-import { findRootGroup } from "../utils/findGroup";
 import * as THREE from "three";
-import getCenterPoint from "../utils/getCenterPoint";
 
 const ChildGizmo = observer(() => {
   const { primitiveStore, transformControlStore } = storeContainer;
-
   const selectedChild = Object.values(primitiveStore.selectedPrimitives)[0];
 
   return (
@@ -25,22 +22,33 @@ const ChildGizmo = observer(() => {
                   transformControlStore.setIsTranslated();
                 }}
                 onMouseUp={(e) => {
-                  //   const rootObject = findRootGroup(selectedChild);
+                  // 자식 position이 바뀌었으므로 parent position 재지정
+                  const center = new THREE.Vector3();
+                  const parent = selectedChild.parent!;
 
-                  //   let x = 0;
-                  //   let y = 0;
-                  //   let z = 0;
+                  parent.children.forEach((child) => {
+                    center.add(child.getWorldPosition(new THREE.Vector3()));
+                  });
+                  center.divideScalar(parent.children.length);
 
-                  //   rootObject?.children.forEach((value) => {
-                  //     const pos = value.getWorldPosition(new THREE.Vector3());
-                  //     x += pos.x;
-                  //     y += pos.y;
-                  //     z += pos.z;
-                  //   });
+                  const newMesh = new THREE.Mesh();
+                  newMesh.name = "GROUP";
+                  newMesh.userData["storeId"] = parent.userData["storeId"];
+                  newMesh.position.copy(center);
 
-                  //   rootObject?.position.set(
-                  //     ...getCenterPoint(x, y, z, rootObject.children.length)
-                  //   );
+                  while (parent.children.length) {
+                    newMesh.attach(parent.children[0]);
+                  }
+
+                  parent.parent?.attach(newMesh);
+                  parent.removeFromParent();
+
+                  if (primitiveStore.meshes[newMesh.userData["storeId"]]) {
+                    primitiveStore.updatePrimitive(
+                      newMesh.userData["storeId"],
+                      newMesh
+                    );
+                  }
 
                   transformControlStore.clearTransform();
                 }}

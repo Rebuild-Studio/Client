@@ -74,12 +74,10 @@ const executeContextMenu = (scene: THREE.Scene) => {
       const children = primitiveStore.meshes[selectedGroupStoreId].children;
 
       children.forEach((value) => {
-        if (value.userData) {
-          primitiveStore.updatePrimitive(
-            value.userData["storeId"],
-            value as THREE.Mesh
-          );
-        }
+        primitiveStore.updatePrimitive(
+          value.userData["storeId"],
+          value as THREE.Mesh
+        );
       });
 
       while (children.length) {
@@ -129,6 +127,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
       const selectedPrimitives = Object.keys(primitiveStore.selectedPrimitives);
 
       selectedPrimitives.forEach((key) => {
+        scene.remove(primitiveStore.meshes[key]);
         primitiveStore.removePrimitive(key);
       });
 
