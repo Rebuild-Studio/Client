@@ -1,21 +1,31 @@
+import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
 import { observable } from "mobx";
 
 interface AssetLibraryControl {
   isAssetLibraryVisible: boolean;
   currentPage: number;
-}
 
-interface AssetLibraryControlAction {
   toggleAssetLibraryVisibility: () => void;
   setCurrentPage: (page: number) => void;
 }
 
-type AssetLibrary = AssetLibraryControl & AssetLibraryControlAction;
+interface AssetLibraryItems {
+  libraryAssets: LibraryAsset[];
+  selectedAssets: LibraryAsset[];
 
-const assetLibraryStore = observable<AssetLibrary>({
+  setLibraryAssets: (assets: LibraryAsset[]) => void;
+}
+
+type AssetLibraryStore = AssetLibraryControl & AssetLibraryItems;
+
+const assetLibraryStore = observable<AssetLibraryStore>({
   //assetLibrary Controls
   isAssetLibraryVisible: false,
   currentPage: 1,
+
+  //assetLibrary Items
+  libraryAssets: [],
+  selectedAssets: [],
 
   //assetLibrary Controls Actions
   toggleAssetLibraryVisibility() {
@@ -23,6 +33,11 @@ const assetLibraryStore = observable<AssetLibrary>({
   },
   setCurrentPage(page) {
     this.currentPage = page;
+  },
+
+  //assetLibrary Items Actions
+  setLibraryAssets(assets) {
+    this.libraryAssets = assets;
   },
 });
 

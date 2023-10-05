@@ -3,6 +3,8 @@ import { basicColors } from "@/resources/colors/colors";
 import Header from "./header";
 import Body from "./body";
 import Footer from "./footer";
+import { useFetchAssets } from "../hooks/useFetchAssets";
+import { useEffect } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -18,6 +20,11 @@ const Container = styled.div`
 `;
 
 const AssetLibrary = () => {
+  const [, isError] = useFetchAssets();
+  useEffect(() => {
+    isError && alert("에셋 로딩중 에러가 발생했습니다.");
+  }, [isError]);
+
   return (
     <Container>
       <Header title="라이브러리" />

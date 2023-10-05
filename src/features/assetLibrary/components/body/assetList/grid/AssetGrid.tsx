@@ -1,7 +1,7 @@
-import { FetchAssetType } from "@/features/assetLibrary/types/fetchAssetType";
-import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import GridItem from "./GridItem";
+import assetLibraryStore from "@/store/assetLibraryStore";
+import { observer } from "mobx-react";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -22,26 +22,17 @@ const Grid = styled.div`
   }
 `;
 
-const AssetGrid = () => {
-  const [assets, setAssets] = useState<FetchAssetType[]>([]);
-  useEffect(() => {
-    const fetchAssets = async () => {
-      const res = await fetch("/mock/assetLibraryList.json");
-      const assets = await res.json();
-      setAssets(assets);
-    };
-    fetchAssets();
-  }, []);
-
+const AssetGrid = observer(() => {
+  const { libraryAssets } = assetLibraryStore;
   return (
     <Container>
       <Grid>
-        {assets.map((asset, index) => (
+        {libraryAssets.map((asset, index) => (
           <GridItem key={index} asset={asset} />
         ))}
       </Grid>
     </Container>
   );
-};
+});
 
 export default AssetGrid;
