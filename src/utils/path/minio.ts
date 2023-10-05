@@ -20,7 +20,7 @@ type MinioPathKeys = keyof ReturnType<typeof minioPath>;
  * @returns
  */
 const getMinioPath = (fileName: string, type: MinioPathKeys) => {
-  const path = import.meta.env.MINIO_PATH + minioPath(fileName)[type];
+  const path = import.meta.env.VITE_MINIO_PATH + minioPath(fileName)[type];
   return path;
 };
 
