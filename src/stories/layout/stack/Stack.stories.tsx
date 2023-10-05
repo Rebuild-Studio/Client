@@ -69,7 +69,7 @@ export const WithImagedStackItem = {
     return (
       <Stack {...args}>
         <StackItem label="이미지와 함께">
-          <img src="/icons/common/CaretDown.svg" />
+          <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
         </StackItem>
         {mockItems.map((item) => {
           return <StackItem label={item.label}></StackItem>;

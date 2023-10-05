@@ -42,7 +42,6 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
 
   const onClickSetCategory = (): void => {
     if (type === "main") {
-      myCategory as MainCategory;
       assetCategoryStore.setCurrentMainCategory(myCategory as MainCategory);
     } else {
       assetCategoryStore.setCurrentSubCategory(myCategory);
@@ -50,7 +49,7 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
   };
 
   return (
-    <ItemContainer onClick={() => onClickSetCategory()}>
+    <ItemContainer onClick={onClickSetCategory}>
       <img src={iconUrl} alt={name} />
       {type === "main" && (
         <ItemText selected={currentMainCategory.category === category}>

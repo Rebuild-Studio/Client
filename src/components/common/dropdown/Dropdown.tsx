@@ -7,16 +7,21 @@ import StackItem from "../stack/StackItem";
 
 interface ContainerProps {
   size: Props["size"];
-  hoverBackgroundColor: Props["hoverBackgroundColor"];
 }
 const Container = styled.div<ContainerProps>`
   position: relative;
   width: ${({ size }) => size};
-  border: 1.5px solid ${grayColors[808080]};
+  border: 1.5px solid ${grayColors.lightGray};
   border-radius: 5px;
 `;
 
-const CustomStack = styled(Stack)<{ $open: boolean }>`
+interface CustomStackProps {
+  $open: boolean;
+  $backgroundColor?: Props["backgroundColor"];
+  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+}
+
+const CustomStack = styled(Stack)<CustomStackProps>`
   max-height: 240px;
   position: absolute;
   top: 100%;
@@ -25,7 +30,7 @@ const CustomStack = styled(Stack)<{ $open: boolean }>`
   border-radius: 5px;
   overflow-y: auto;
   box-sizing: border-box;
-  background-color: ${basicColors.black};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   z-index: 1;
 
   & > *:hover {
@@ -33,7 +38,12 @@ const CustomStack = styled(Stack)<{ $open: boolean }>`
   }
 `;
 
-const OpenButton = styled.button`
+interface OpenButtonProps {
+  $backgroundColor?: Props["backgroundColor"];
+  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+}
+
+const OpenButton = styled.button<OpenButtonProps>`
   width: 100%;
   min-width: 150px;
   padding: 5px 10px;
@@ -42,13 +52,13 @@ const OpenButton = styled.button`
   justify-content: space-between;
   font-size: 14px;
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   box-shadow: none;
   object-fit: fill;
-  background-color: transparent;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   cursor: pointer;
   &:hover {
-    background-color: ${grayColors.panelGray};
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
     color: ${basicColors.white};
     border-radius: 0;
   }
@@ -62,24 +72,26 @@ export interface Option {
 interface Props {
   placeholder?: string;
   options: Option[];
+  backgroundColor?: CSSColor;
   hoverBackgroundColor?: CSSColor;
   size?: CSSSize;
 }
 
+const CaretDown = () => (
+  <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
+);
+const CaretUp = () => <img src="/icons/common/CaretUp.svg" alt="CaretUp" />;
+
 const Dropdown = ({
   options,
   placeholder = "선택된 옵션",
-  hoverBackgroundColor,
+  backgroundColor = basicColors.white,
+  hoverBackgroundColor = grayColors.panelGray,
   size = "fit-content",
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [openList, setOpenList] = useState(false);
-
-  const CaretDown = () => (
-    <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
-  );
-  const CaretUp = () => <img src="/icons/common/CaretUp.svg" alt="CaretUp" />;
 
   //컴포넌트 외부 클릭시 리스트 닫기
   useEffect(() => {
@@ -96,17 +108,14 @@ const Dropdown = ({
   }, []);
 
   return (
-    <Container
-      ref={ref}
-      role="dropdown"
-      size={size}
-      hoverBackgroundColor={hoverBackgroundColor}
-    >
+    <Container ref={ref} role="dropdown" size={size}>
       <Stack width="100%" border="none">
         <OpenButton
           onClick={() => {
             setOpenList(!openList);
           }}
+          $backgroundColor={backgroundColor}
+          $hoverBackgroundColor={hoverBackgroundColor}
         >
           <span>{selectedOption?.label || placeholder}</span>
           {openList ? <CaretUp /> : <CaretDown />}
@@ -116,6 +125,8 @@ const Dropdown = ({
           width="100%"
           border="none"
           $open={openList}
+          $backgroundColor={backgroundColor}
+          $hoverBackgroundColor={hoverBackgroundColor}
         >
           {openList &&
             options.map((option) => (

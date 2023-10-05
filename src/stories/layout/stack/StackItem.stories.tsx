@@ -27,7 +27,7 @@ export const StackItemWithImage = {
   render: (args) => {
     return (
       <StackItem {...args}>
-        <img src="/icons/common/CaretDown.svg" />
+        <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
       </StackItem>
     );
   },

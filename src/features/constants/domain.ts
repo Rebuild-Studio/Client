@@ -1,34 +1,26 @@
 type DomainType = "all" | "off" | "com" | "edu" | "fin" | "hea" | "etc";
-const DOMAIN_LIST: { domain: DomainType; domainKR: string }[] = [
-  {
-    domain: "all",
-    domainKR: "전체",
-  },
-  {
-    domain: "off",
-    domainKR: "오피스",
-  },
-  {
-    domain: "com",
-    domainKR: "커머스",
-  },
-  {
-    domain: "edu",
-    domainKR: "에듀",
-  },
-  {
-    domain: "fin",
-    domainKR: "핀테크",
-  },
-  {
-    domain: "hea",
-    domainKR: "헬스케어",
-  },
-  {
-    domain: "etc",
-    domainKR: "기타",
-  },
-];
 
-export type { DomainType };
+interface Domain {
+  domain: DomainType;
+  domainKR: string;
+}
+
+const DOMAIN_MAP: Record<DomainType, string> = {
+  all: "전체",
+  off: "오피스",
+  com: "커머스",
+  edu: "에듀",
+  fin: "핀테크",
+  hea: "헬스케어",
+  etc: "기타",
+};
+
+const DOMAIN_LIST: Domain[] = Object.entries(DOMAIN_MAP).map(
+  ([domain, domainKR]) => ({
+    domain: domain as DomainType,
+    domainKR,
+  })
+);
+
+export type { DomainType, Domain };
 export default DOMAIN_LIST;
