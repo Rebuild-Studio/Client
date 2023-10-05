@@ -8,7 +8,6 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -54,8 +53,6 @@ const Scene = observer(() => {
             mouseEventStore.updateMouseEvent("onMouseMove", e);
           }}
           onMouseUp={(e) => {
-            // TODO : 옮겨야함
-            canvasHistoryStore.differMeshAttribute();
             mouseEventStore.updateMouseEvent("onMouseUp", e);
           }}
           onClick={(e) => {
