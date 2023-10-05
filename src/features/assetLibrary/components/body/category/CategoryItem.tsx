@@ -1,7 +1,7 @@
 import {
   MainCategory,
   MainCategoryType,
-} from "@/features/constants/mainCategory";
+} from "@/features/assetLibrary/constants/mainCategory";
 import { bgColors } from "@/resources/colors/colors";
 import assetCategoryStore, { Category } from "@/store/assetCategoryStore";
 import { observer } from "mobx-react";

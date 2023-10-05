@@ -1,5 +1,5 @@
-import { DomainType } from "@/features/constants/domain";
-import { MainCategory } from "@/features/constants/mainCategory";
+import { DomainType } from "@/features/assetLibrary/constants/domain";
+import { MainCategory } from "@/features/assetLibrary/constants/mainCategory";
 import { observable } from "mobx";
 
 interface Category {

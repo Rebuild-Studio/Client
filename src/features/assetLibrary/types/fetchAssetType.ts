@@ -1,4 +1,4 @@
-import { DomainType } from "@/features/constants/domain";
+import { DomainType } from "@/features/assetLibrary/constants/domain";
 
 interface FetchAssetType {
   id: string;

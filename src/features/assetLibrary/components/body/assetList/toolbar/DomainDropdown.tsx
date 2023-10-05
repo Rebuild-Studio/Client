@@ -1,5 +1,5 @@
 import Dropdown, { Option } from "@/components/common/dropdown/Dropdown";
-import DOMAIN_LIST from "@/features/constants/domain";
+import DOMAIN_LIST from "@/features/assetLibrary/constants/domain";
 import styled from "styled-components";
 
 const CustomDropdown = styled(Dropdown)`

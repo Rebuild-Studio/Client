@@ -1,4 +1,4 @@
-import AssetGrid from "@/features/assetLibrary/body/assetList/grid/AssetGrid";
+import AssetGrid from "@/features/assetLibrary/components/body/assetList/grid/AssetGrid";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

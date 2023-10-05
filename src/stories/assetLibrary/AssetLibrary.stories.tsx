@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import AssetLibrary from "@/features/assetLibrary/AssetLibrary";
+import AssetLibrary from "@/features/assetLibrary";
 
 const meta = {
   component: AssetLibrary,
