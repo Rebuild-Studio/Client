@@ -1,5 +1,4 @@
 import { basicColors, bgColors } from "@/resources/colors/colors";
-
 import { observer } from "mobx-react";
 import { Tabs } from "../../Tabs";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
@@ -30,9 +29,11 @@ export const HierarchyPanel = observer(({ meshes }: Props) => {
         />
       </StyledTab>
       <HierarchyList>
-        {Object.values(meshes).map((mesh) => (
-          <HierarchyElement depth={0} key={mesh.uuid} mesh={mesh} />
-        ))}
+        {Object.values(meshes)
+          .filter((mesh) => mesh.name !== "SELECTED_GROUP")
+          .map((mesh) => (
+            <HierarchyElement depth={0} key={mesh.uuid} mesh={mesh} />
+          ))}
       </HierarchyList>
     </StyledPanel>
   );

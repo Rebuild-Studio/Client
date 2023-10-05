@@ -1,36 +1,12 @@
 import { observable } from "mobx";
-import primitiveStore, { MeshType } from "./primitiveStore";
 import {
   renderGroup,
   renderPrimitive,
-  renderSelectedGroup,
 } from "@/three_components/utils/renderThreeComponents";
+import { CanvasAttribute, CanvasInstance } from "@/resources/constants/canvas";
 import * as THREE from "three";
+import primitiveStore, { MeshType } from "./primitiveStore";
 
-type CanvasInstance =
-  | "OBJECT"
-  | "CUBE"
-  | "CAPSULE"
-  | "CONE"
-  | "CYLINDER"
-  | "SPHERE"
-  | "TORUS"
-  | "GROUP"
-  | "SELECTED_GROUP"
-  | "MATERIAL"
-  | "CAMERA"
-  | "POINTLIGHT"
-  | "SPOTLIGHT"
-  | "INITIAL";
-type CanvasAttribute =
-  | "add"
-  | "position"
-  | "rotation"
-  | "scale"
-  | "delete"
-  | "ungroup"
-  | "none"
-  | "change";
 interface CanvasHistoryType {
   id: string;
   instance: CanvasInstance;

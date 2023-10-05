@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
 import Button from "@/components/common/Button";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
+import primitiveStore from "@/store/primitiveStore";
 
 const Wrapper = styled.div`
   z-index: 1;
@@ -46,7 +47,9 @@ export const CanvasLeftPanel = observer(() => {
           redoList={canvasHistoryStore.redoList}
         />
       )}
-      {visibleHierarchyPanel && <HierarchyPanel />}
+      {visibleHierarchyPanel && (
+        <HierarchyPanel meshes={primitiveStore.meshes} />
+      )}
       <MultiButtonBox>
         <ButtonWrapper>
           <Button
