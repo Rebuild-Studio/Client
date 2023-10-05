@@ -22,6 +22,16 @@ type CSSObjectElementProps = {
   $isMouseUp: boolean;
 };
 
+type MouseEvents = {
+  objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;
+  objectClick: React.MouseEventHandler<HTMLDivElement>;
+  objectMouseEnter: React.MouseEventHandler<HTMLDivElement>;
+  objectMouseLeave: React.MouseEventHandler<HTMLDivElement>;
+  objectContextMenu: React.MouseEventHandler<HTMLDivElement>;
+  lockImgClick: React.MouseEventHandler<HTMLImageElement>;
+  visibleImgClick: React.MouseEventHandler<HTMLImageElement>;
+};
+
 const StyledElement = styled.div`
   cursor: pointer;
   color: ${basicColors.white};
@@ -95,27 +105,48 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
     };
   }, []);
 
+  // mouse events
+  const mouseEvents: MouseEvents = {
+    objectDoubleClick: (e) => {
+      e.stopPropagation();
+      setIsOpen((prev) => !prev);
+    },
+    objectClick: () => {
+      primitiveStore.clearSelectedPrimitives();
+      primitiveStore.addSelectedPrimitives(storeId, mesh);
+    },
+    objectMouseEnter: () => {
+      setIsMouseUp(true);
+    },
+    objectMouseLeave: () => {
+      if (!(storeId in primitiveStore.selectedPrimitives) || isLocked) {
+        setIsMouseUp(false);
+      }
+    },
+    objectContextMenu: () => {
+      // TODO : 계층구조 컨텍스트 메뉴
+    },
+    lockImgClick: (e) => {
+      e.stopPropagation();
+      mesh.userData["isLocked"] = !isLocked;
+      primitiveStore.updatePrimitive(storeId, mesh);
+    },
+    visibleImgClick: (e) => {
+      e.stopPropagation();
+      mesh.visible = !visible;
+      primitiveStore.updatePrimitive(storeId, mesh);
+    },
+  };
+
   return (
-    <StyledElement
-      onDoubleClick={(e) => {
-        e.stopPropagation();
-        setIsOpen((prev) => !prev);
-      }}
-      onClick={() => {
-        primitiveStore.clearSelectedPrimitives();
-        primitiveStore.addSelectedPrimitives(storeId, mesh);
-      }}
-    >
+    <StyledElement>
       <ObjectElement
         $isMouseUp={isMouseUp}
-        onMouseEnter={() => {
-          setIsMouseUp(true);
-        }}
-        onMouseLeave={() => {
-          if (!(storeId in primitiveStore.selectedPrimitives) || isLocked) {
-            setIsMouseUp(false);
-          }
-        }}
+        onClick={mouseEvents.objectClick}
+        onDoubleClick={mouseEvents.objectDoubleClick}
+        onMouseEnter={mouseEvents.objectMouseEnter}
+        onMouseLeave={mouseEvents.objectMouseLeave}
+        onContextMenu={mouseEvents.objectContextMenu}
       >
         <Icon
           $depth={depth}
@@ -138,11 +169,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
                 ? "/icons/studio/icon_잠그기.svg"
                 : "/icons/studio/icon_잠금해제.svg"
             }
-            onClick={(e) => {
-              e.stopPropagation();
-              mesh.userData["isLocked"] = !isLocked;
-              primitiveStore.updatePrimitive(storeId, mesh);
-            }}
+            onClick={mouseEvents.lockImgClick}
           />
           <img
             src={
@@ -150,11 +177,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
                 ? "/icons/studio/icon_보이기.svg"
                 : "/icons/studio/icon_가리기.svg"
             }
-            onClick={(e) => {
-              e.stopPropagation();
-              mesh.visible = !visible;
-              primitiveStore.updatePrimitive(storeId, mesh);
-            }}
+            onClick={mouseEvents.visibleImgClick}
           />
         </InteractionButtonBox>
       </ObjectElement>
