@@ -21,9 +21,9 @@ interface CanvasHistoryStoreProps {
   addHistory: (
     id: string,
     instance: CanvasInstance,
-    attr: CanvasAttribute
+    attr: CanvasAttribute,
+    snapshot: MeshType
   ) => void;
-  compareMesh: (beforeMesh: THREE.Mesh, mesh: THREE.Mesh) => void;
   differAdd: (storeId: string) => void;
   differDelete: (storeId: string) => void;
   differUngroup: (storeId: string) => void;
@@ -44,7 +44,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       snapshot: {},
     },
   ],
-  addHistory(id, instance, attribute) {
+  addHistory(id, instance, attribute, snapshot) {
     // console.log("meshes : ", Object.keys(primitiveStore.meshes));
     this.undoList = [];
     this.redoList = [
@@ -52,7 +52,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         id,
         instance,
         attribute,
-        snapshot: this.createSnapshot(primitiveStore.meshes),
+        snapshot,
       },
       ...this.redoList,
     ];
@@ -73,17 +73,14 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       if (storeIdSet.has(storeId)) continue;
 
       if (meshes[storeId].name === "SELECTED_GROUP") {
+        meshes[storeId].updateMatrixWorld();
         meshes[storeId].traverse((child) => {
+          if (child.name === "SELECTED_GROUP") return;
+
           const newChild = child.clone() as THREE.Mesh;
-
-          if (newChild.name === "SELECTED_GROUP") return;
-
           const childStoreId = newChild.userData["storeId"];
-          newChild.position.copy(child.getWorldPosition(new THREE.Vector3()));
-          newChild.quaternion.copy(
-            child.getWorldQuaternion(new THREE.Quaternion())
-          );
-          newChild.scale.copy(child.getWorldScale(new THREE.Vector3()));
+
+          newChild.applyMatrix4(meshes[storeId].matrixWorld);
           snapshot[childStoreId] = newChild;
           storeIdSet.add(childStoreId);
         });
@@ -101,59 +98,66 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
     const mesh = meshes[storeId];
 
     if (!beforeMesh) {
-      this.addHistory(storeId, mesh.name as CanvasInstance, "add");
+      this.addHistory(
+        storeId,
+        mesh.name as CanvasInstance,
+        "add",
+        this.createSnapshot(meshes)
+      );
       return;
     }
   },
   differDelete(storeId) {
-    this.addHistory(storeId, "OBJECT" as CanvasInstance, "delete");
+    const meshes = primitiveStore.meshes;
+
+    this.addHistory(
+      storeId,
+      "OBJECT" as CanvasInstance,
+      "delete",
+      this.createSnapshot(meshes)
+    );
   },
   differUngroup(storeId) {
-    this.addHistory(storeId, "GROUP" as CanvasInstance, "ungroup");
-  },
-  compareMesh(beforeMesh, mesh) {
-    const attributes: MeshProperty[] = ["position", "rotation", "scale"];
-    const storeId = mesh.userData.storeId ?? mesh.uuid;
+    const meshes = primitiveStore.meshes;
 
-    for (const attr of attributes) {
-      if (!(beforeMesh[attr] as any).equals(mesh[attr])) {
-        this.addHistory(
-          storeId,
-          mesh.name as CanvasInstance,
-          attr as CanvasAttribute
-        );
-        return;
-      }
-    }
+    this.addHistory(
+      storeId,
+      "GROUP" as CanvasInstance,
+      "ungroup",
+      this.createSnapshot(meshes)
+    );
   },
   differMeshAttribute() {
     const meshes = this.createSnapshot(primitiveStore.meshes);
     const keys = Object.keys(meshes);
+
+    // 달라진 점 저장 변수
+    let difference = [];
 
     for (const key of keys) {
       const beforeMesh = this.redoList[0].snapshot[key];
       const mesh = meshes[key];
 
       const attributes: MeshProperty[] = ["position", "rotation", "scale"];
-      const storeId = mesh.userData.storeId ?? mesh.uuid;
-
-      let difference = [];
 
       for (const attr of attributes) {
         if (!(beforeMesh[attr] as any).equals(mesh[attr])) {
-          difference.push([mesh.name, attr]);
+          const storeId = mesh.userData.storeId ?? mesh.uuid;
+          difference.push([storeId, mesh.name, attr]);
         }
       }
+    }
 
-      if (difference.length === 1) {
-        this.addHistory(
-          storeId,
-          difference[0][0] as CanvasInstance,
-          difference[0][1] as CanvasAttribute
-        );
-      } else if (difference.length > 1) {
-        this.addHistory(storeId, "OBJECT", "change");
-      }
+    if (difference.length === 1) {
+      this.addHistory(
+        difference[0][0],
+        difference[0][1] as CanvasInstance,
+        difference[0][2] as CanvasAttribute,
+        meshes
+      );
+    } else if (difference.length > 1) {
+      // 달라진 점이 여러개면 OBJECT로
+      this.addHistory(difference[0][0], "OBJECT", "change", meshes);
     }
   },
   undoListElementClick(index) {
