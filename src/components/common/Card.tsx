@@ -14,6 +14,7 @@ type Props = {
   imageHeight?: CSSSize;
   border?: CSSBorder;
   alt?: string;
+  hoverEffect?: boolean;
   onClick?: () => void;
 };
 
@@ -22,14 +23,13 @@ type CSSStyledCardProps = {
   $width: CSSSize;
   $height: CSSSize;
   $border: CSSBorder;
+  $hoverEffect: boolean;
 };
 
 const StyledCard = styled.div<CSSStyledCardProps>`
   cursor: pointer;
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
-  margin-top: 20px;
-  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,12 +50,14 @@ const StyledCard = styled.div<CSSStyledCardProps>`
   outline: ${({ $isClicked, $border }) =>
     $isClicked ? `solid 2px ${basicColors.lightLimeGreen}` : `${$border}`};
 
-  &:hover {
+  ${({ $hoverEffect }) =>
+    $hoverEffect
+      ? `  &:hover {
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: 100% 100%;
-    border-radius: 0;
-  }
+  }`
+      : ``}
 `;
 
 type CSSStyledCardImg = {
@@ -91,6 +93,7 @@ export const Card = ({
   imageHeight = "90%",
   border = "1px dotted #fff",
   alt = "error",
+  hoverEffect = true,
   onClick,
 }: Props) => {
   const [srcError, setSrcError] = useState(false);
@@ -100,6 +103,7 @@ export const Card = ({
       $height={height}
       $border={border}
       $isClicked={isClicked}
+      $hoverEffect={hoverEffect}
       onClick={onClick}
     >
       {srcError ? (
