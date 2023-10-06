@@ -16,12 +16,13 @@ interface SCButtonProps {
   $outline: boolean;
   $color: CSSHexColor;
   $size: CSSSize;
+  $height: CSSSize;
 }
 
 // prettier-ignore
 export const SCButton = styled.button<SCButtonProps>`
   width: ${({$size}) => $size};
-  height: 60px;
+  height: ${({$height}) => $height};
   font-family: "Pretendard";
   font-size: 14px;
   color: ${({ $color }) => $color};
@@ -71,6 +72,7 @@ export interface Props {
   onClick?: () => void;
   label?: string;
   size?: CSSSize;
+  height?: CSSSize;
   animation?: ButtonAnimationType;
   shadow?: ShadowType;
   color?: CSSHexColor;
@@ -87,6 +89,7 @@ const Button = ({
   label,
   disabled = false,
   size = "fit-content",
+  height = "60px",
   animation = "none",
   backgroundColor = bgColors[222222],
   hoverBackgroundColor = bgColors[222222],
@@ -101,6 +104,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       $size={size}
+      $height={height}
       $clickAnimation={animation}
       $backgroundColor={backgroundColor}
       $hoverBackgroundColor={hoverBackgroundColor}

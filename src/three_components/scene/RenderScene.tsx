@@ -1,4 +1,5 @@
 import storeContainer from "@/store/storeContainer";
+import { reaction } from "mobx";
 import { useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import Gizmo from "../gizmo/Gizmo";
 import keyboardSceneEvents from "../utils/keyboardSceneEvents";
 import makeSelectedGroup from "../utils/makeSelectedGroup";
 import executeContextMenu from "../utils/executeContextMenu";
+import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
 
@@ -30,32 +32,44 @@ const RenderScene = observer(() => {
     primitiveStore.selectedPrimitives
   ).length;
 
-  // mouse event
   useEffect(() => {
-    const intersectObjects = raycaster.intersectObject(scene);
-    switch (mouseEventStore.currentMouseEvent[0]) {
-      case "onMouseDown": {
-        onMouseDownSceneEvents();
-        break;
+    // mouse event
+    const dispose = reaction(
+      () => {
+        return mouseEventStore.currentMouseEvent;
+      },
+      (mouseEvent) => {
+        const intersectObjects = raycaster.intersectObject(scene);
+        switch (mouseEvent[0]) {
+          case "onMouseDown": {
+            onMouseDownSceneEvents();
+            break;
+          }
+          case "onMouseMove": {
+            break;
+          }
+          case "onMouseUp": {
+            onMouseUpSceneEvents();
+            break;
+          }
+          case "onClick": {
+            onClickSceneEvents(intersectObjects);
+            break;
+          }
+          case "onContextMenu": {
+            onContextMenuSceneEvents(intersectObjects);
+            break;
+          }
+          default: {
+          }
+        }
       }
-      case "onMouseMove": {
-        break;
-      }
-      case "onMouseUp": {
-        break;
-      }
-      case "onClick": {
-        onClickSceneEvents(intersectObjects);
-        break;
-      }
-      case "onContextMenu": {
-        onContextMenuSceneEvents(intersectObjects);
-        break;
-      }
-      default: {
-      }
-    }
-  }, [mouseEventStore.currentMouseEvent]);
+    );
+
+    return () => {
+      dispose();
+    };
+  }, []);
 
   // 선택 컴포넌트 그룹화 작업
   useEffect(() => {

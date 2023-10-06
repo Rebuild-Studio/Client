@@ -1,9 +1,9 @@
-import { HistoryPanel } from "@/components/layout/HistoryPanel/HistoryPanel";
+import { HistoryPanel } from "@/components/layout/CanvasLeftPanel/historyPanel/HistoryPanel";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: HistoryPanel,
-  title: "Component/layout/HistoryPanel",
+  title: "Component/layout/CanvasLeftPanel/HistoryPanel",
   tags: ["autodocs"],
 } satisfies Meta<typeof HistoryPanel>;
 
@@ -15,35 +15,35 @@ export const Basic = {
     undoList: [
       {
         id: "1",
-        type: "object",
+        instance: "CUBE",
         attribute: "add",
+        snapshot: {},
       },
       {
         id: "1",
-        type: "object",
-        attribute: "position",
-      },
-      {
-        id: "1",
-        type: "material",
-        attribute: "color",
+        instance: "CONE",
+        attribute: "add",
+        snapshot: {},
       },
     ],
     redoList: [
       {
         id: "1",
-        type: "object",
+        instance: "CUBE",
         attribute: "add",
+        snapshot: {},
       },
       {
-        id: "1",
-        type: "object",
-        attribute: "position",
+        id: "3",
+        instance: "CYLINDER",
+        attribute: "add",
+        snapshot: {},
       },
       {
-        id: "1",
-        type: "material",
-        attribute: "color",
+        id: "2",
+        instance: "GROUP",
+        attribute: "add",
+        snapshot: {},
       },
     ],
   },
