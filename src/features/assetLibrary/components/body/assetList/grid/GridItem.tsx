@@ -1,8 +1,8 @@
 import { Card } from "@/components/common/Card";
+import useControlSelectedItem from "@/features/assetLibrary/hooks/useControlSelectedItem";
 import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
 import getMinioPath from "@/utils/path/minio";
 import { observer } from "mobx-react";
-import { useState } from "react";
 
 interface Props {
   asset: LibraryAsset;
@@ -10,7 +10,7 @@ interface Props {
 
 const GridItem = observer(({ asset }: Props) => {
   const thumbnail = getMinioPath(asset.fileName, "libraryThumbnail");
-  const [clicked] = useState(false);
+  const [clicked, updateSelectedAsset] = useControlSelectedItem(asset);
   return (
     <div>
       <Card
@@ -19,6 +19,7 @@ const GridItem = observer(({ asset }: Props) => {
         border="none"
         isClicked={clicked}
         thumbnail={thumbnail}
+        onClick={updateSelectedAsset}
       ></Card>
     </div>
   );

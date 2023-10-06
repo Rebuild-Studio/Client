@@ -14,6 +14,8 @@ interface AssetLibraryItems {
   selectedAssets: LibraryAsset[];
 
   setLibraryAssets: (assets: LibraryAsset[]) => void;
+  addSelectedAsset: (asset: LibraryAsset) => void;
+  removeSelectedAsset: (asset: LibraryAsset) => void;
 }
 
 type AssetLibraryStore = AssetLibraryControl & AssetLibraryItems;
@@ -38,6 +40,14 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   //assetLibrary Items Actions
   setLibraryAssets(assets) {
     this.libraryAssets = assets;
+  },
+  addSelectedAsset(asset) {
+    this.selectedAssets.push(asset);
+  },
+  removeSelectedAsset(asset) {
+    this.selectedAssets = this.selectedAssets.filter(
+      (selectedAsset) => selectedAsset.id !== asset.id
+    );
   },
 });
 
