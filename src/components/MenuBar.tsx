@@ -18,6 +18,8 @@ const MenuBar = () => {
   const ComponentBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
@@ -28,6 +30,8 @@ const MenuBar = () => {
   const PlugInBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={true}
       color={grayColors[535353]}
       fontSize="small"
@@ -38,6 +42,8 @@ const MenuBar = () => {
   const ConfigureBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
@@ -48,6 +54,8 @@ const MenuBar = () => {
   const HelpBtn = () => (
     <MenuButton
       backgroundColor={bgColors[101728]}
+      hoverBackgroundColor={bgColors[101728]}
+      width="50px"
       disabled={false}
       color={basicColors.white}
       fontSize="small"
@@ -56,19 +64,19 @@ const MenuBar = () => {
     />
   );
 
-  const data1: MenuItemType[] = [
+  const componentData: MenuItemType[] = [
     {
       label: "저장",
       disabled: false,
       onClick: () => {
-        alert("목록");
+        alert("저장");
       },
     },
     {
       label: "목록",
       disabled: false,
       onClick: () => {
-        alert("저장");
+        alert("목록");
       },
     },
     {
@@ -82,44 +90,44 @@ const MenuBar = () => {
       onClick: () => {},
     },
   ];
-  const data2: MenuItemType[] = [
+  const configureData: MenuItemType[] = [
     {
-      label: "목록",
+      label: "인터페이스",
       disabled: false,
-      onClick: () => {
-        alert("목록");
-      },
+      onClick: () => {},
     },
     {
-      label: "저장",
+      label: "단축키",
+      disabled: false,
+      onClick: () => {},
+    },
+    {
+      label: "자동저장",
       disabled: true,
-      onClick: () => {
-        alert("저장");
-      },
+      onClick: () => {},
+    },
+  ];
+
+  const helpData: MenuItemType[] = [
+    {
+      label: "사용 안내서",
+      disabled: false,
+      onClick: () => {},
     },
     {
-      label: "로컬 파일로 저장",
-      disabled: false,
-      children: [
-        { label: "Scene 저장", disabled: false, onClick: () => {} },
-        { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
-        { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
-        { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
-      ],
+      label: "새로운 기능",
+      disabled: true,
+      onClick: () => {},
     },
     {
-      label: "배포하기",
+      label: "오류 보고/개선 제안",
       disabled: false,
-      children: [
-        { label: "ffff", disabled: false, onClick: () => {} },
-        {
-          label: "ddddd",
-          disabled: false,
-          children: [
-            { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
-          ],
-        },
-      ],
+      onClick: () => {},
+    },
+    {
+      label: "Copyright 2023 TmaxMetaverse",
+      disabled: true,
+      onClick: () => {},
     },
   ];
 
@@ -134,16 +142,16 @@ const MenuBar = () => {
     <StyledBar>
       <StyledLogo src="/icons/studio/MX로고.png" alt="logo" />
       <BottomPopOver triggerComponent={<ComponentBtn />}>
-        <SubMenu menuItems={data1} />
+        <SubMenu menuItems={componentData} />
       </BottomPopOver>
       <BottomPopOver triggerComponent={<PlugInBtn />}>
-        <SubMenu menuItems={data2} />
+        <></>
       </BottomPopOver>
       <BottomPopOver triggerComponent={<ConfigureBtn />}>
-        <SubMenu menuItems={data2} />
+        <SubMenu menuItems={configureData} />
       </BottomPopOver>
       <BottomPopOver triggerComponent={<HelpBtn />}>
-        <SubMenu menuItems={data2} />
+        <SubMenu menuItems={helpData} />
       </BottomPopOver>
       <ButtonWrapper>
         <IconButton
