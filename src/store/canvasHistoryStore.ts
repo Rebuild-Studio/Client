@@ -129,7 +129,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
     const keys = Object.keys(meshes);
 
     // 달라진 점 저장 변수
-    let difference: [string, CanvasInstance, CanvasAttribute][] = [];
+    const difference: [string, CanvasInstance, CanvasAttribute][] = [];
 
     for (const key of keys) {
       const beforeMesh = this.redoList[0].snapshot[key];
