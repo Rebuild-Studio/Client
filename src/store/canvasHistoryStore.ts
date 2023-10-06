@@ -3,7 +3,12 @@ import {
   renderGroup,
   renderPrimitive,
 } from "@/three_components/utils/renderThreeComponents";
-import { CanvasAttribute, CanvasInstance } from "@/resources/constants/canvas";
+import {
+  CanvasAttribute,
+  CanvasInstance,
+  isCanvasAttribute,
+  isCanvasInstance,
+} from "@/resources/constants/canvas";
 import * as THREE from "three";
 import primitiveStore, { MeshType } from "./primitiveStore";
 
@@ -15,6 +20,8 @@ interface CanvasHistoryType {
 }
 
 type MeshProperty = keyof THREE.Mesh;
+const attributes: MeshProperty[] = ["position", "rotation", "scale"];
+
 interface CanvasHistoryStoreProps {
   undoList: CanvasHistoryType[];
   redoList: CanvasHistoryType[];
@@ -100,7 +107,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
     if (!beforeMesh) {
       this.addHistory(
         storeId,
-        mesh.name as CanvasInstance,
+        isCanvasInstance(mesh.name) ? mesh.name : "OBJECT",
         "add",
         this.createSnapshot(meshes)
       );
@@ -110,40 +117,32 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   differDelete(storeId) {
     const meshes = primitiveStore.meshes;
 
-    this.addHistory(
-      storeId,
-      "OBJECT" as CanvasInstance,
-      "delete",
-      this.createSnapshot(meshes)
-    );
+    this.addHistory(storeId, "OBJECT", "delete", this.createSnapshot(meshes));
   },
   differUngroup(storeId) {
     const meshes = primitiveStore.meshes;
 
-    this.addHistory(
-      storeId,
-      "GROUP" as CanvasInstance,
-      "ungroup",
-      this.createSnapshot(meshes)
-    );
+    this.addHistory(storeId, "GROUP", "ungroup", this.createSnapshot(meshes));
   },
   differMeshAttribute() {
     const meshes = this.createSnapshot(primitiveStore.meshes);
     const keys = Object.keys(meshes);
 
     // 달라진 점 저장 변수
-    let difference = [];
+    let difference: [string, CanvasInstance, CanvasAttribute][] = [];
 
     for (const key of keys) {
       const beforeMesh = this.redoList[0].snapshot[key];
       const mesh = meshes[key];
 
-      const attributes: MeshProperty[] = ["position", "rotation", "scale"];
-
       for (const attr of attributes) {
         if (!(beforeMesh[attr] as any).equals(mesh[attr])) {
           const storeId = mesh.userData.storeId ?? mesh.uuid;
-          difference.push([storeId, mesh.name, attr]);
+          difference.push([
+            storeId,
+            isCanvasInstance(mesh.name) ? mesh.name : "OBJECT",
+            isCanvasAttribute(attr) ? attr : "change",
+          ]);
         }
       }
     }
@@ -151,8 +150,8 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
     if (difference.length === 1) {
       this.addHistory(
         difference[0][0],
-        difference[0][1] as CanvasInstance,
-        difference[0][2] as CanvasAttribute,
+        difference[0][1],
+        difference[0][2],
         meshes
       );
     } else if (difference.length > 1) {

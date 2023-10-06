@@ -6,10 +6,7 @@ import { Tabs } from "../../Tabs";
 import { UndoElement } from "./UnDoElement";
 import { RedoElement } from "./RedoElement";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
-import {
-  attr_translate,
-  instance_translate,
-} from "@/resources/constants/canvas";
+import { instanceTranslate, attrTranslate } from "@/resources/constants/canvas";
 
 type Props = {
   undoList: CanvasHistoryType[];
@@ -43,9 +40,9 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
         {undoList.map((value, idx) => (
           <UndoElement
             label={
-              (instance_translate[value.instance] ?? value.instance) +
+              (instanceTranslate[value.instance] ?? value.instance) +
               " " +
-              (attr_translate[value.attribute] ?? value.attribute)
+              (attrTranslate[value.attribute] ?? value.attribute)
             }
             key={idx + value.id}
             index={idx}
@@ -54,9 +51,9 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
         {redoList.map((value, idx) => (
           <RedoElement
             label={
-              (instance_translate[value.instance] ?? value.instance) +
+              (instanceTranslate[value.instance] ?? value.instance) +
               " " +
-              (attr_translate[value.attribute] ?? value.attribute)
+              (attrTranslate[value.attribute] ?? value.attribute)
             }
             key={idx + value.id}
             index={idx}

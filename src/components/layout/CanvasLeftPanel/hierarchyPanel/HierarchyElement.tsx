@@ -6,7 +6,7 @@ import { styled } from "styled-components";
 import primitiveStore from "@/store/primitiveStore";
 import {
   CanvasInstance,
-  instance_translate,
+  instanceTranslate,
 } from "@/resources/constants/canvas";
 
 type Props = {
@@ -160,7 +160,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
           alt="icon"
         />
         <span>
-          {instance_translate[mesh.name as CanvasInstance] ?? mesh.name}
+          {instanceTranslate[mesh.name as CanvasInstance] ?? mesh.name}
         </span>
         <InteractionButtonBox>
           <img

@@ -31,7 +31,7 @@ type AttributeTranslate = {
   [attr in CanvasAttribute]: string;
 };
 
-const instance_translate: InstanceTranslate = {
+const instanceTranslate: InstanceTranslate = {
   OBJECT: "오브젝트",
   CUBE: "정육면체",
   CAPSULE: "캡슐",
@@ -48,7 +48,7 @@ const instance_translate: InstanceTranslate = {
   INITIAL: "초기상태",
 };
 
-const attr_translate: AttributeTranslate = {
+const attrTranslate: AttributeTranslate = {
   add: "추가",
   position: "변형 (position)",
   rotation: "변형 (rotation)",
@@ -58,5 +58,48 @@ const attr_translate: AttributeTranslate = {
   change: "변형",
   none: "",
 };
+
+// type guard
+const isCanvasInstance = (instance: any): instance is CanvasInstance => {
+  const possibleInstances: CanvasInstance[] = [
+    "OBJECT",
+    "CUBE",
+    "CAPSULE",
+    "CONE",
+    "CYLINDER",
+    "SPHERE",
+    "TORUS",
+    "GROUP",
+    "SELECTED_GROUP",
+    "MATERIAL",
+    "CAMERA",
+    "POINTLIGHT",
+    "SPOTLIGHT",
+    "INITIAL",
+  ];
+
+  return possibleInstances.includes(instance);
+};
+
+const isCanvasAttribute = (attribute: any): attribute is CanvasAttribute => {
+  const possibleAttributes: CanvasAttribute[] = [
+    "add",
+    "position",
+    "rotation",
+    "scale",
+    "delete",
+    "ungroup",
+    "none",
+    "change",
+  ];
+
+  return possibleAttributes.includes(attribute);
+};
+
 export type { CanvasInstance, CanvasAttribute };
-export { instance_translate, attr_translate };
+export {
+  instanceTranslate,
+  attrTranslate,
+  isCanvasAttribute,
+  isCanvasInstance,
+};

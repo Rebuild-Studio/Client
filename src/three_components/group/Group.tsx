@@ -28,7 +28,10 @@ const Group = observer((props: GroupProps) => {
     if (props.propMesh) {
       // 이미 그룹 작업이 되어있으므로 업데이트만
       primitiveStore.updatePrimitive(props.storeId, mesh);
-    } else if (!primitiveStore.meshes[props.storeId]) {
+      return;
+    }
+
+    if (!primitiveStore.meshes[props.storeId]) {
       const selectedPrimitives = Object.values(
         primitiveStore.selectedPrimitives
       );
