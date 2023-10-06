@@ -1,6 +1,13 @@
 import MenuButton from "@/components/common/MenuButton";
+import { useServerGLTFLoader } from "@/hooks/loader";
 import { basicColors, grayColors } from "@/resources/colors/colors";
+import assetLibraryStore from "@/store/assetLibraryStore";
+import primitiveStore from "@/store/primitiveStore";
+import TempPrimitive from "@/three_components/assets/TempPrimitive";
 import { getButtonClickAnimation } from "@/utils/animation/button";
+import { observer } from "mobx-react";
+import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 const Container = styled.div`
@@ -36,15 +43,28 @@ const CancelButton = styled(LoadButton)`
   }
 `;
 
-const Footer = () => {
+const Footer = observer(() => {
+  const selectedAssets = assetLibraryStore.selectedAssets;
+  const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+
   return (
     <Container>
       <LoadButton
         label="불러오기"
         disabled={false}
         onClick={() => {
-          /* 추후 modal close state control 달것 */
-          /* asset Load 기능 구현 */
+          selectedAsssetFileNames.forEach((fileName) => {
+            const storeId = nanoid();
+            primitiveStore.addPrimitive(
+              storeId,
+              <TempPrimitive
+                key={nanoid()}
+                storeId={storeId}
+                dir={`models/Objects/`}
+                name={`${fileName}.glb`}
+              />
+            );
+          });
         }}
       />
       <CancelButton
@@ -56,6 +76,6 @@ const Footer = () => {
       />
     </Container>
   );
-};
+});
 
 export default Footer;
