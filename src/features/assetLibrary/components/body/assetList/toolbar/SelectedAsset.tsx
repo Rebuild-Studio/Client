@@ -12,6 +12,7 @@ const DeselectButton = styled.button`
   height: 32px;
 
   padding: 0px 8px;
+  margin: 0 1px;
   box-sizing: border-box;
 
   border: 1px solid ${grayColors.panelGray};
@@ -21,6 +22,8 @@ const DeselectButton = styled.button`
   background-color: ${basicColors.black};
 
   font-weight: 600;
+
+  white-space: nowrap;
 `;
 
 const CloseIcon = () => <img src="/icons/common/Close.svg" alt="close" />;
