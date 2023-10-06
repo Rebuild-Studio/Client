@@ -7,6 +7,7 @@ import {
   hsvaToHex,
   HsvaColor,
   RgbaColor,
+  rgbaToHsva,
 } from "@uiw/color-convert";
 import Slider from "../Slider";
 import InputField from "../InputField";
@@ -49,7 +50,7 @@ const ColorContent = observer(
     brightnessSlider = true,
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
-    const [alpha, setAlpha] = useState(Math.round(color.a * 100) + "%");
+    const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
     const [rgbColor, setRgbColor] = useState(hsvaToRgba(color));
     const rgbChannels = [
       { label: "R", value: rgbColor.r },
@@ -63,18 +64,58 @@ const ColorContent = observer(
     });
 
     const onChangeAlpha = (hsva: HsvaColor) => {
+      setAlpha(String(Math.round(hsva.a * 100)));
       updateMaterialAlpha(hsva.a);
-      setAlpha(String(hsva.a * 100) + "%");
     };
 
-    const onAlphaChange = (alpha: string) => {
-      const _alpha = Number(alpha.slice(0, -1)) % 100;
-      updateMaterialAlpha(_alpha);
-    };
+    const onChangeRGB = action((channel: string, input: string) => {
+      const RGBType = channel.toLowerCase();
+      let value = input;
+      if (input === "") {
+        value === "0";
+      } else if (value[value.length - 1] === ".") {
+        value = value.replace(/\./g, "");
+      } else if (Number(value) > 255) {
+        return;
+      }
+      switch (RGBType) {
+        case "r":
+          rgbColor.r = Number(value);
+          break;
+        case "g":
+          rgbColor.g = Number(value);
+          break;
+        case "b":
+          rgbColor.b = Number(value);
+          break;
+        default:
+          return;
+      }
+      const _hsva = rgbaToHsva(rgbColor);
+      updateMaterialColor(_hsva);
+      setColor(_hsva);
+      setRgbColor({ ...rgbColor });
+    });
+
+    const onInputAlphaChange = action((e: string) => {
+      let alphavalue = e;
+
+      if (alphavalue === "") {
+        newColor.a = 0;
+      } else if (Number(e) <= 100) {
+        newColor.a = Number(e) / 100;
+      } else {
+        newColor.a = 1;
+        alphavalue = "100";
+      }
+
+      updateMaterialAlpha(Number(e) / 100);
+    });
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
       updateMaterialColor(hsva);
     };
+
     return (
       <Wrapper>
         <Saturation
@@ -105,7 +146,7 @@ const ColorContent = observer(
             hsva={newColor}
             onChange={(newAlpha) => {
               setColor({ ...newColor, ...newAlpha });
-              updateMaterialAlpha(newAlpha.a);
+              onChangeAlpha({ ...newColor, ...newAlpha });
             }}
           />
         )}
@@ -115,10 +156,8 @@ const ColorContent = observer(
           </InputFieldTitle>
           <InputField value={hsvaToHex(color)} type={"text"} title={"Hex"} />
           <InputField
-            value={String(Math.round(color.a * 100)) + "%"}
-            onChange={() => {
-              onAlphaChange;
-            }}
+            value={alpha + "%"}
+            onChange={onInputAlphaChange}
             type={"text"}
             title={""}
             label={""}
@@ -130,7 +169,12 @@ const ColorContent = observer(
               <InputFieldTitle color={grayColors.BABABA}>
                 {channel.label}
               </InputFieldTitle>
-              <InputField value={channel.value} type={"number"} />
+              <InputField
+                value={channel.value}
+                type={"number"}
+                onChange={(value) => onChangeRGB(channel.label, value)}
+                onClickChange={(value) => onChangeRGB(channel.label, value)}
+              />
             </>
           ))}
         </InputFieldWrapper>

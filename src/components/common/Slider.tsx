@@ -91,6 +91,10 @@ const Slider = ({
   };
 
   useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
+
+  useEffect(() => {
     handleChange();
   }, [value]);
 

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { InputType } from "@/types/style/InputField";
 import { basicColors, grayColors } from "@/resources/colors/colors";
@@ -8,8 +8,8 @@ interface Props {
   title?: string;
   label?: string;
   value: number | string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onClickChange?: (e: string) => void;
+  onChange?: (e: string) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -64,16 +64,42 @@ const InputField = ({
   value,
   type = "number",
   onChange = () => {},
+  onClickChange = () => {},
 }: Props) => {
+  const [input, setInput] = useState(value);
+
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.currentTarget.type === "number") {
-      const allowedKeys = ["Backspace", "Enter"];
-      const isNumberKey = /^[0-9.\-\b]+$/.test(e.key);
-      if (!isNumberKey && !allowedKeys.includes(e.key)) {
+    if (e.key === "Backspace") {
+      const newValue = String(input).slice(0, -1);
+      setInput(newValue);
+    } else {
+      const isNumberKey = /^[0-9]+$/.test(e.key);
+      if (!isNumberKey) {
         e.preventDefault();
+      } else {
+        const newValue = input + e.key;
+        setInput(newValue);
+        handleOnChange(newValue);
       }
     }
   };
+
+  const handleOnChange = (newInput: string) => {
+    const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    const valueWithoutKorean = newInput.replace(koreanRegex, "");
+    newInput = valueWithoutKorean;
+    const SingleRegex = /^[0-9]+$/;
+    const isnumericValue = SingleRegex.test(newInput);
+
+    if (isnumericValue) {
+      const NumInput = Math.round(Number(newInput));
+      setInput(String(NumInput));
+      onChange(String(NumInput));
+    }
+  };
+  useEffect(() => {
+    setInput(value);
+  }, [value]);
 
   return (
     <Wrapper>
@@ -81,9 +107,11 @@ const InputField = ({
       <Container>
         <Input
           type={type}
-          onKeyDownCapture={handleKeyPress}
-          onChange={onChange}
-          value={value}
+          onKeyDown={(e) => handleKeyPress(e)}
+          value={input}
+          onChange={(e) => {
+            onClickChange(e.target.value);
+          }}
         />
       </Container>
     </Wrapper>

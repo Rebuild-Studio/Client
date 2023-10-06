@@ -79,8 +79,8 @@ const TransformInput = observer((props: Props) => {
     }
   }, [primitiveStore.selectedPrimitives]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
+  const handleKeyChange = (input: string) => {
+    setValue(Number(input));
 
     const prop = props.type;
     const axis: "x" | "y" | "z" = props.axis;
@@ -91,7 +91,7 @@ const TransformInput = observer((props: Props) => {
       scale: { ...scale },
     }[prop];
 
-    const inputValue = Number(e.target.value);
+    const inputValue = Number(input);
     const newValue = initializeNewValue({
       prop,
       axis,
@@ -109,7 +109,8 @@ const TransformInput = observer((props: Props) => {
       title={props.type}
       label={props.axis}
       value={Number(value)}
-      onChange={handleChange}
+      onClickChange={handleKeyChange}
+      onChange={handleKeyChange}
     />
   );
 });
