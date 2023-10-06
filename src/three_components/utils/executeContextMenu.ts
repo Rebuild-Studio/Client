@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { renderGroup, renderPrimitive } from "./renderThreeComponents";
 import { MeshType } from "@/store/primitiveStore";
 import * as THREE from "three";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 const executeContextMenu = (scene: THREE.Scene) => {
   const { projectStateStore, primitiveStore, contextMenuStore } =
@@ -86,6 +87,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       primitiveStore.removeSelectedPrimitives(selectedGroupStoreId);
       primitiveStore.removePrimitive(selectedGroupStoreId);
+      canvasHistoryStore.differUngroup(selectedGroupStoreId);
       break;
     case "잠그기":
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -133,7 +135,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       primitiveStore.clearSelectedGroupPrimitive();
       primitiveStore.clearSelectedPrimitives();
-
+      canvasHistoryStore.differDelete(selectedPrimitives[0]);
       break;
   }
   contextMenuStore.updateSelectedContextMenu("NONE");

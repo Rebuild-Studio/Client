@@ -4,6 +4,7 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 interface TorusParams {
   minRadius: number;
@@ -53,6 +54,7 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
+    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
   }, []);
 
   return (

@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import { fonts } from "@/resources/fonts/font";
 import { styled } from "styled-components";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
-import { StyledTooltip } from "./Tooltip";
 
 type Props = {
   label: string;
@@ -27,11 +26,6 @@ const HistoryText = styled.span<CSSHistoryTextType>`
   margin-bottom: 3px;
   // TODO : 색 color.ts에서 가져오기
   color: ${({ $index }) => ($index === 0 ? "#E3F853" : "")};
-
-  &:hover + ${StyledTooltip} {
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
-  }
 `;
 
 export const RedoElement = observer(({ label, index }: Props) => {
