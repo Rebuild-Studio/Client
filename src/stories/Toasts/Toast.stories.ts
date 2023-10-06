@@ -39,7 +39,6 @@ export const ShortTimeToast = {
   },
 } satisfies Story;
 
-
 export const CustomizedToastLasting7seconds = {
   args: {
     label: "닫기",
