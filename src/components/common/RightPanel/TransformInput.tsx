@@ -26,8 +26,6 @@ function initializeNewValue<T>({
       if (currentValue instanceof THREE.Vector3) {
         const newValue = new THREE.Vector3().copy(currentValue);
         newValue[axis] = inputValue;
-
-        console.log(inputValue);
         return newValue as T;
       }
       break;
@@ -103,7 +101,6 @@ const TransformInput = observer((props: Props) => {
     }[prop];
 
     const inputValue = Number(input);
-    console.log(currentValue);
     const newValue = initializeNewValue<typeof currentValue>({
       prop,
       axis,
