@@ -4,10 +4,10 @@ import InputField from "../InputField";
 import { observer } from "mobx-react";
 import * as THREE from "three";
 
-interface initNewValueProps<T> {
+interface initNewValueProps {
   prop: string;
   axis: "x" | "y" | "z";
-  currentValue: T;
+  currentValue: THREE.Vector3 | THREE.Euler;
   inputValue: number;
 }
 interface Props {
@@ -15,18 +15,18 @@ interface Props {
   axis: "x" | "y" | "z";
   initValue: string;
 }
-function initializeNewValue<T>({
+function initializeNewValue({
   prop,
   axis,
   currentValue,
   inputValue,
-}: initNewValueProps<T>): T {
+}: initNewValueProps) {
   switch (prop) {
     case "position": {
       if (currentValue instanceof THREE.Vector3) {
         const newValue = new THREE.Vector3().copy(currentValue);
         newValue[axis] = inputValue;
-        return newValue as T;
+        return newValue;
       }
       break;
     }
@@ -35,7 +35,7 @@ function initializeNewValue<T>({
         if (currentValue instanceof THREE.Euler) {
           const newValue = new THREE.Euler().copy(currentValue);
           newValue[axis] = inputValue;
-          return newValue as T;
+          return newValue;
         }
       }
       break;
@@ -44,7 +44,7 @@ function initializeNewValue<T>({
         if (currentValue instanceof THREE.Vector3) {
           const newValue = { ...currentValue };
           newValue[axis] = inputValue;
-          return newValue as T;
+          return newValue;
         }
       }
       break;
@@ -95,13 +95,14 @@ const TransformInput = observer((props: Props) => {
     const axis: "x" | "y" | "z" = props.axis;
 
     const currentValue = {
+      // position: new THREE.Vector3().copy(position),
       position: new THREE.Vector3().copy(position),
       rotation: new THREE.Euler().copy(rotation),
       scale: new THREE.Vector3().copy(scale),
     }[prop];
 
     const inputValue = Number(input);
-    const newValue = initializeNewValue<typeof currentValue>({
+    const newValue = initializeNewValue({
       prop,
       axis,
       currentValue,
