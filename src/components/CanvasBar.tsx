@@ -12,6 +12,7 @@ import { bgColors, grayColors } from "@/resources/colors/colors";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 import { action, flowResult } from "mobx";
 import { observer } from "mobx-react";
+import { useToast } from "@hooks/useToast";
 
 interface Props {}
 
@@ -58,6 +59,7 @@ const ButtonGroupName = styled.span`
 
 const CanvasBar = observer((props: Props) => {
   const { primitiveStore } = storeContainer;
+  const { addToast } = useToast();
 
   return (
     <Wrapper>
@@ -77,10 +79,11 @@ const CanvasBar = observer((props: Props) => {
             backgroundImage="/icons/studio/btn_cube.svg"
             hoverBackgroundImage="/icons/studio/btn_cube_active.svg"
             onClick={() => {
+              addToast("큐브가 추가되었습니다"); //[TBD] should be deleted on production
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CubePrimitive storeId={storeId} />
+                <CubePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -90,10 +93,11 @@ const CanvasBar = observer((props: Props) => {
             backgroundImage="/icons/studio/btn_sphere.svg"
             hoverBackgroundImage="/icons/studio/btn_sphere_active.svg"
             onClick={() => {
+              addToast("구가 추가되었습니다"); //[TBD] should be deleted on production
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <SpherePrimitive storeId={storeId} />
+                <SpherePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -106,7 +110,7 @@ const CanvasBar = observer((props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CylinderPrimitive storeId={storeId} />
+                <CylinderPrimitive storeId={storeId} />,
               );
             }}
           />
@@ -119,7 +123,7 @@ const CanvasBar = observer((props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <ConePrimitive storeId={storeId} />
+                <ConePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -132,7 +136,7 @@ const CanvasBar = observer((props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <TorusPrimitive storeId={storeId} />
+                <TorusPrimitive storeId={storeId} />,
               );
             }}
           />
@@ -145,7 +149,7 @@ const CanvasBar = observer((props: Props) => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CapsulePrimitive storeId={storeId} />
+                <CapsulePrimitive storeId={storeId} />,
               );
             }}
           />
