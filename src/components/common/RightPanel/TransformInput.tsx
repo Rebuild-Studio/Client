@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import storeContainer from "@/store/storeContainer";
 import InputField from "../InputField";
 import { observer } from "mobx-react";
 import * as THREE from "three";
 
-interface initNewValueProps {
+interface initNewValueProps<T> {
   prop: string;
   axis: "x" | "y" | "z";
-  currentValue: any;
+  currentValue: T;
   inputValue: number;
 }
 interface Props {
@@ -15,31 +15,45 @@ interface Props {
   axis: "x" | "y" | "z";
   initValue: string;
 }
-function initializeNewValue({
+function initializeNewValue<T>({
   prop,
   axis,
   currentValue,
   inputValue,
-}: initNewValueProps) {
+}: initNewValueProps<T>): T {
   switch (prop) {
     case "position": {
-      const newValue = new THREE.Vector3().copy(currentValue);
-      newValue[axis] = inputValue;
-      return newValue;
+      if (currentValue instanceof THREE.Vector3) {
+        const newValue = new THREE.Vector3().copy(currentValue);
+        newValue[axis] = inputValue;
+
+        console.log(inputValue);
+        return newValue as T;
+      }
+      break;
     }
-    case "rotation": {
-      const newValue = new THREE.Euler().copy(currentValue);
-      newValue[axis] = inputValue;
-      return newValue;
-    }
-    case "scale": {
-      const newValue = { ...currentValue };
-      newValue[axis] = inputValue;
-      return newValue;
-    }
+    case "rotation":
+      {
+        if (currentValue instanceof THREE.Euler) {
+          const newValue = new THREE.Euler().copy(currentValue);
+          newValue[axis] = inputValue;
+          return newValue as T;
+        }
+      }
+      break;
+    case "scale":
+      {
+        if (currentValue instanceof THREE.Vector3) {
+          const newValue = { ...currentValue };
+          newValue[axis] = inputValue;
+          return newValue as T;
+        }
+      }
+      break;
     default:
       return currentValue;
   }
+  return currentValue;
 }
 
 const updateTransform = (prop: string, newValue: any, newMesh: THREE.Mesh) => {
@@ -63,19 +77,16 @@ const TransformInput = observer((props: Props) => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
-  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
 
-  const keys = Object.keys(primitiveStore.selectedPrimitives);
-  const selectedMeshTransform =
-    primitiveStore.selectedPrimitives[keys[0]]?.[props.type];
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+  const selectedMeshTransform = selectedPrimitive?.[props.type];
   useEffect(() => {
-    if (primitiveStore.selectedPrimitives[keys[0]]) {
+    if (selectedPrimitive) {
       setValue(selectedMeshTransform[props.axis]);
-      setNewMesh(primitiveStore.selectedPrimitives[keys[0]]);
-      setPosition(newMesh.position);
-      setRotation(newMesh.rotation);
-      setScale(newMesh.scale);
+      setPosition(selectedPrimitive.position);
+      setRotation(selectedPrimitive.rotation);
+      setScale(selectedPrimitive.scale);
     }
   }, [primitiveStore.selectedPrimitives]);
 
@@ -86,21 +97,21 @@ const TransformInput = observer((props: Props) => {
     const axis: "x" | "y" | "z" = props.axis;
 
     const currentValue = {
-      position: { ...position },
+      position: new THREE.Vector3().copy(position),
       rotation: new THREE.Euler().copy(rotation),
-      scale: { ...scale },
+      scale: new THREE.Vector3().copy(scale),
     }[prop];
 
     const inputValue = Number(input);
-    const newValue = initializeNewValue({
+    console.log(currentValue);
+    const newValue = initializeNewValue<typeof currentValue>({
       prop,
       axis,
       currentValue,
       inputValue,
     });
 
-    updateTransform(prop, newValue, newMesh);
-    primitiveStore.updateSelectedPrimitives(keys[0], newMesh);
+    updateTransform(prop, newValue, selectedPrimitive);
   };
 
   return (

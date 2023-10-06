@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { Hue, Saturation, Alpha } from "@uiw/react-color";
@@ -165,7 +165,7 @@ const ColorContent = observer(
         </InputFieldWrapper>
         <InputFieldWrapper>
           {rgbChannels.map((channel) => (
-            <>
+            <React.Fragment key={channel.label}>
               <InputFieldTitle color={grayColors.BABABA}>
                 {channel.label}
               </InputFieldTitle>
@@ -175,10 +175,10 @@ const ColorContent = observer(
                 onChange={(value) => onChangeRGB(channel.label, value)}
                 onClickChange={(value) => onChangeRGB(channel.label, value)}
               />
-            </>
+            </React.Fragment>
           ))}
         </InputFieldWrapper>
-        {saturationSilder === true && (
+        {saturationSilder && (
           <Slider
             title={"채도"}
             initValue={Math.round(newColor.s)}
@@ -191,7 +191,7 @@ const ColorContent = observer(
             }}
           />
         )}
-        {brightnessSlider === true && (
+        {brightnessSlider && (
           <Slider
             title={"명도"}
             initValue={Math.round(newColor.v)}

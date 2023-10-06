@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { grayColors } from "@/resources/colors/colors";
-import { hsvaToRgba } from "@uiw/color-convert";
+import { RgbaColor, hsvaToRgba, HsvaColor } from "@uiw/color-convert";
 import ColorContent from "./ColorContent";
 
 interface ColorPickerProps {
@@ -56,8 +56,8 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
 `;
 const ColorButton = styled.button<{
-  color: any;
-  rgbColor: { r: number; g: number; b: number; a: number };
+  color: HsvaColor;
+  rgbColor: RgbaColor;
 }>`
   width: 24px;
   min-width: 0;

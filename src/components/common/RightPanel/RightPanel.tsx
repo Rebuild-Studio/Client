@@ -29,12 +29,11 @@ const RightPanel = observer(() => {
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
 
-  const selectedPrimitives = primitiveStore.selectedPrimitives;
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
   useEffect(() => {
-    const keys = Object.keys(selectedPrimitives);
-    if (selectedPrimitives[keys[0]]) {
-      const info = selectedPrimitives[keys[0]];
+    if (selectedPrimitive) {
+      const info = selectedPrimitive;
       const materials = Object.keys(info.material);
       const value = Object.values(info.material);
       const rgbColor = value[materials.indexOf("color")];
@@ -47,7 +46,7 @@ const RightPanel = observer(() => {
       setRotation(info.rotation);
       setScale(info.scale);
     }
-  }, [selectedPrimitives]);
+  }, [selectedPrimitive]);
 
   return (
     <RightPanelContainer>

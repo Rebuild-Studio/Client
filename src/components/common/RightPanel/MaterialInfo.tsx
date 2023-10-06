@@ -35,10 +35,10 @@ const Material = ({
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
-  const keys = Object.keys(primitiveStore.selectedPrimitives);
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   useEffect(() => {
-    if (primitiveStore.selectedPrimitives[keys[0]]) {
-      setMesh(primitiveStore.selectedPrimitives[keys[0]]);
+    if (selectedPrimitive) {
+      setMesh(selectedPrimitive);
     }
   }, [primitiveStore.selectedPrimitives]);
 

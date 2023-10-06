@@ -23,7 +23,7 @@ const RenderScene = observer(() => {
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
-  const keys = Object.keys(primitiveStore.selectedPrimitives);
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
@@ -75,14 +75,10 @@ const RenderScene = observer(() => {
   }, [contextMenuStore.currentSelectedContextMenu]);
 
   useEffect(() => {
-    if (
-      primitiveStore.selectedPrimitives[keys[0]] &&
-      selectedObjectStore.selectedMaterial
-    ) {
-      setNewMesh(primitiveStore.selectedPrimitives[keys[0]]);
+    if (selectedPrimitive && selectedObjectStore.selectedMaterial) {
+      setNewMesh(selectedPrimitive);
       newMesh.material = material;
       selectedObjectStore.setSelectedMaterial(materialName);
-      primitiveStore.updateSelectedPrimitives(keys[0], newMesh);
     }
   }, [selectedObjectStore.selectedMaterial]);
 

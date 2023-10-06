@@ -18,7 +18,7 @@ const MaterialTemplate = observer(() => {
     <Grid
       item={dataStore.materialTextureList.map((template, index) => (
         <ImageStyled
-          key={index}
+          key={template[1]}
           isSelected={true}
           src={`/icons/rightTab/${template[1]}.png`}
           alt={`item-${index}`}
