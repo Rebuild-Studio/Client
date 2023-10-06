@@ -41,6 +41,7 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.CapsuleGeometry(0.25, 1, 10, 20);
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CAPSULE";
   mesh.userData["storeId"] = props.storeId;

@@ -5,6 +5,7 @@ import { FontType } from "@/types/style/Font";
 import styled from "styled-components";
 
 export type MenuButtonProps = {
+  className?: string;
   onClick: () => void;
   label: string;
   disabled: boolean;
@@ -61,6 +62,7 @@ const StyledButton = styled.button<CSSProps>`
 `;
 
 const MenuButton = ({
+  className,
   onClick = () => {},
   label,
   disabled = false,
@@ -78,6 +80,7 @@ const MenuButton = ({
 }: MenuButtonProps) => {
   return (
     <StyledButton
+      className={className}
       onClick={onClick}
       disabled={disabled}
       $backgroundColor={backgroundColor}

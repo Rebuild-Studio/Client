@@ -1,18 +1,21 @@
 import styled from "styled-components";
-import InputField from "../InputField";
+import TransformInput from "./TransformInput";
 
-type axis = {
+interface axis {
   x: number;
   y: number;
   z: number;
-};
+}
 
 interface Props {
   position: axis;
   rotation: axis;
   scale: axis;
 }
-
+type TransformType = "position" | "rotation" | "scale";
+const MarginBox = styled.div`
+  margin-top: 10px;
+`;
 const Wrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 16px;
@@ -22,6 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const PropertyValue = ({ position, rotation, scale }: Props) => {
+  const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
   const _props = [
     {
       title: "위치",
@@ -48,28 +52,27 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
 
   return (
     <>
-      <div style={{ marginTop: "10px" }}>
+      <MarginBox>
         {_props.map((prop) => {
-          const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
           return (
-            <div>
-              <span>{prop["title"]}</span>
+            <>
+              <span key={prop["title"]}>{prop["title"]}</span>
               <Wrapper>
                 {axes.map((axis) => {
                   return (
-                    <InputField
-                      title={prop["type"]}
+                    <TransformInput
+                      key={axis}
+                      type={prop["type"] as TransformType}
                       initValue={String(prop[axis])}
-                      label={axis}
-                      type={"number"}
+                      axis={axis}
                     />
                   );
                 })}
               </Wrapper>
-            </div>
+            </>
           );
         })}
-      </div>
+      </MarginBox>
     </>
   );
 };

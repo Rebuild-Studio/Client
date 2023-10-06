@@ -37,6 +37,7 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.ConeGeometry(0.5, 1, 32, 1, false, 0, Math.PI * 2);
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CONE";
   mesh.userData["storeId"] = props.storeId;

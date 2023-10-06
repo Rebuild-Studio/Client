@@ -1,0 +1,182 @@
+[
+  {
+    "id": "3597540c-552f-4106-9f27-e823486cf057",
+    "name": "과일바구니_01",
+    "fileName": "MX_com_{mar_foo}_fruitBasket_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "fb812db6-bfa2-4026-b5d1-0f2d107e8839",
+    "name": "귀걸이_01",
+    "fileName": "MX_com_{fas_acc}_earring_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "d610352c-c22b-4a9b-a3f5-7f2e618a60d5",
+    "name": "플로어스텐드_01",
+    "fileName": "MX_com_{hom_fur}_floorStand_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "3fa95b5b-4257-4e76-a20a-295fca27eeb0",
+    "name": "액자_02",
+    "fileName": "MX_com_{hom_pro}_frame_02",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "1830acc4-8eee-4691-876e-87199ef40ad1",
+    "name": "근력운동_03",
+    "fileName": "MX_hea_{sup_spo}_muscle_03",
+    "type": "asset",
+    "domain": "hea",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "4be6ff83-ad24-4357-afbd-6f743be799e5",
+    "name": "포크레인_01",
+    "fileName": "MX_edu_{tra_car}&&{tec_fac}_poclain_01",
+    "type": "asset",
+    "domain": "edu",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "9c0f441b-ccae-4ff9-a732-2f6ea4a6bcf4",
+    "name": "물_01",
+    "fileName": "MX_hea_{mar_dri}_water_01",
+    "type": "asset",
+    "domain": "hea",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "7e87164c-197b-498d-a291-20739109acd3",
+    "name": "덤벨_01",
+    "fileName": "MX_hea_{sup_spo}_dumbbell_01",
+    "type": "asset",
+    "domain": "hea",
+    "createdAt": "2023-09-25 06:32:00",
+    "author": "admin"
+  },
+  {
+    "id": "3791e983-a192-4960-b900-cdc987aef7c8",
+    "name": "소형차_01",
+    "fileName": "MX_com_{tra_car}_sedan_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "5040721d-9a1e-4eea-82e4-d10b1bddd7ee",
+    "name": "vmd집기_03",
+    "fileName": "MX_com_{fas_clo}_vmdRack_03",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "e03871ed-6f5c-4e95-83c5-18085562287d",
+    "name": "식기세척기_01",
+    "fileName": "MX_com_{hom_app}_dishwasher_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "0b9712e3-6294-49f6-abb7-ccd544b63c75",
+    "name": "목걸이_01",
+    "fileName": "MX_com_{fas_acc}_necklace_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "6ff63636-53b0-4256-83db-3405f2421de3",
+    "name": "노트북_01",
+    "fileName": "MX_off_{tec_ele}&&{hom_app}_laptop_01",
+    "type": "asset",
+    "domain": "off",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "e15e4930-3e5c-43df-84df-7574470b5ded",
+    "name": "유적_01",
+    "fileName": "MX_edu_{his_his}_relic_01",
+    "type": "asset",
+    "domain": "edu",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "211f20ac-2011-4885-baa3-777d549950cd",
+    "name": "게임컨트롤러_01",
+    "fileName": "MX_com_{hom_app}&&{tec_ele}_gameControllers_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "b0ee2c86-8cfa-4028-961d-70397c6b82b0",
+    "name": "스마트폰_01",
+    "fileName": "MX_com_{hom_app}&&{tec_ele}_smartPhone_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "67b64cf0-ee69-436d-9ecf-3d34d4064b3a",
+    "name": "포스기_01",
+    "fileName": "MX_fin_{sub_coi}_payment_01",
+    "type": "asset",
+    "domain": "fin",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "64ad1e37-35a0-4d94-8875-aae37911b7ae",
+    "name": "나사탐사기_01",
+    "fileName": "MX_edu_{tec_sci}&&{tra_car}_nasaLanding_01",
+    "type": "asset",
+    "domain": "edu",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "b26a40d8-ef60-4d02-bda2-f2a8e4a59936",
+    "name": "딸기_01",
+    "fileName": "MX_com_{mar_foo}_strawberry_01",
+    "type": "asset",
+    "domain": "com",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  },
+  {
+    "id": "19dde828-a87d-441f-a085-5b52ae517942",
+    "name": "장구_01",
+    "fileName": "MX_edu_{his_his}_janggu_01",
+    "type": "asset",
+    "domain": "edu",
+    "createdAt": "2023-09-25 06:31:59",
+    "author": "admin"
+  }
+]

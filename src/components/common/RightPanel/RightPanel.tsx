@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react";
 import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
 import PropertyValue from "./TransFromationInfo";
 import storeContainer from "@/store/storeContainer";
-import { useObserver } from "mobx-react-lite";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
 import Material from "./MaterialInfo";
-import { materialRoughness } from "three/examples/jsm/nodes/Nodes.js";
+import { rgbToHsva } from "./ColorHandler";
+import { HsvaColor } from "@uiw/color-convert";
 
 const RightPanelContainer = styled.div`
   position: relative;
@@ -19,33 +20,33 @@ const RightPanelContainer = styled.div`
   align-items: flex-end;
 `;
 
-const RightPanel = () => {
+const RightPanel = observer(() => {
   const { primitiveStore } = storeContainer;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
+  const [color, setColor] = useState<HsvaColor>({ h: 0, s: 0, v: 0, a: 0 });
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
 
-  const selectedPrimitives = useObserver(
-    () => primitiveStore.selectedPrimitives
-  );
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
   useEffect(() => {
-    const keys = Object.keys(selectedPrimitives);
-
-    if (selectedPrimitives[keys[0]]) {
-      const info = selectedPrimitives[keys[0]];
+    if (selectedPrimitive) {
+      const info = selectedPrimitive;
       const materials = Object.keys(info.material);
       const value = Object.values(info.material);
+      const rgbColor = value[materials.indexOf("color")];
+      const opacity = Number(value[materials.indexOf("opacity")]);
+      const hsva = rgbToHsva(rgbColor, opacity);
       setMetalness(value[materials.indexOf("metalness")]);
       setRoughness(value[materials.indexOf("roughness")]);
-      console.log(metalness, roughness);
+      setColor(hsva);
       setPosition(info.position);
       setRotation(info.rotation);
       setScale(info.scale);
     }
-  }, [selectedPrimitives]);
+  }, [selectedPrimitive]);
 
   return (
     <RightPanelContainer>
@@ -70,7 +71,11 @@ const RightPanel = () => {
                 />
               </Accordion>
               <Accordion title={"머터리얼"}>
-                <Material metalness={metalness} roughness={roughness} />
+                <Material
+                  metalness={metalness}
+                  roughness={roughness}
+                  color={color}
+                />
               </Accordion>
             </>,
             <div>{"쉐이프"}</div>,
@@ -79,6 +84,6 @@ const RightPanel = () => {
       </Panel>
     </RightPanelContainer>
   );
-};
+});
 
 export default RightPanel;

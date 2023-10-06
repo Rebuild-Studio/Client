@@ -52,6 +52,7 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
     Math.PI * 2
   );
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "CYLINDER";
   mesh.userData["storeId"] = props.storeId;

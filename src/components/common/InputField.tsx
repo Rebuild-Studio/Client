@@ -1,27 +1,19 @@
-import React, { ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { InputType } from "@/types/style/InputField";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { useObserver } from "mobx-react";
-import * as THREE from "three";
 
 interface Props {
   type: InputType;
-  title: string;
-  label: "x" | "y" | "z";
-  initValue: string;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  title?: string;
+  label?: string;
+  value: number | string;
+  onClickChange?: (e: string) => void;
+  onChange?: (e: string) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface initNewValueProps {
-  prop: string;
-  axis: "x" | "y" | "z";
-  currentValue: any;
-  inputValue: number;
-}
 const Wrapper = styled.div`
   width: 78px;
   display: flex;
@@ -67,114 +59,47 @@ const Input = styled.input`
   }
 `;
 
-function initializeNewValue({
-  prop,
-  axis,
-  currentValue,
-  inputValue,
-}: initNewValueProps) {
-  if (prop === "position") {
-    const newValue = new THREE.Vector3().copy(currentValue);
-    newValue[axis] = inputValue;
-    return newValue;
-  } else if (prop === "rotation") {
-    const newValue = new THREE.Euler().copy(currentValue);
-    newValue[axis] = inputValue;
-    return newValue;
-  } else if (prop === "scale") {
-    const newValue = { ...currentValue };
-    newValue[axis] = inputValue;
-    return newValue;
-  }
-  return currentValue;
-}
-
 const InputField = ({
-  label,
-  initValue,
+  label = "",
+  value,
   type = "number",
-  title = "",
-  ...otherProps
+  onChange = () => {},
+  onClickChange = () => {},
 }: Props) => {
-  const [value, setValue] = useState(Number(initValue));
-  const [position, setPosition] = useState(new THREE.Vector3());
-  const [rotation, setRotation] = useState(new THREE.Euler());
-  const [scale, setScale] = useState(new THREE.Vector3());
-  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
-  const { primitiveStore } = storeContainer;
-  const selectedPrimitives = useObserver(
-    () => primitiveStore.selectedPrimitives
-  );
-
-  const updateSelectedPrimitives = useObserver(
-    () => primitiveStore.updateSelectedPrimitives
-  );
-
-  const keys = Object.keys(selectedPrimitives);
-
-  useEffect(() => {
-    const keys = Object.keys(selectedPrimitives);
-
-    if (selectedPrimitives[keys[0]]) {
-      setNewMesh(selectedPrimitives[keys[0]]);
-      setPosition(newMesh.position);
-      setRotation(newMesh.rotation);
-      setScale(newMesh.scale);
-    }
-  }, [selectedPrimitives]);
+  const [input, setInput] = useState(value);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.currentTarget.type === "number") {
-      const allowedKeys = ["Backspace", "Enter"];
-      const isNumberKey = /^[0-9.\-\b]+$/.test(e.key);
-      if (!isNumberKey && !allowedKeys.includes(e.key)) {
+    if (e.key === "Backspace") {
+      const newValue = String(input).slice(0, -1);
+      setInput(newValue);
+    } else {
+      const isNumberKey = /^[0-9]+$/.test(e.key);
+      if (!isNumberKey) {
         e.preventDefault();
+      } else {
+        const newValue = input + e.key;
+        setInput(newValue);
+        handleOnChange(newValue);
       }
     }
   };
 
-  useEffect(() => {
-    setValue(Number(initValue));
-  }, [initValue]);
+  const handleOnChange = (newInput: string) => {
+    const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    const valueWithoutKorean = newInput.replace(koreanRegex, "");
+    newInput = valueWithoutKorean;
+    const SingleRegex = /^[0-9]+$/;
+    const isnumericValue = SingleRegex.test(newInput);
 
-  useEffect(() => {}, [newMesh]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
-
-    const prop = title;
-    const axis: "x" | "y" | "z" = label;
-
-    // 현재 값을 가져오기
-    const currentValue = {
-      position: { ...position },
-      rotation: new THREE.Euler().copy(rotation),
-      scale: { ...scale },
-    }[prop];
-
-    // newValue 초기화
-    let inputValue = Number(e.target.value);
-    const newValue = initializeNewValue({
-      prop,
-      axis,
-      currentValue,
-      inputValue,
-    });
-
-    // 상태 업데이트
-    if (prop === "position") {
-      setPosition(newValue);
-      newMesh.position.set(position.x, position.y, position.z);
-    } else if (prop === "rotation") {
-      setRotation(newValue);
-      newMesh.rotation.set(rotation.x, rotation.y, rotation.z);
-    } else if (prop === "scale") {
-      setScale(newValue);
-      newMesh.scale.set(scale.x, scale.y, scale.z);
+    if (isnumericValue) {
+      const NumInput = Math.round(Number(newInput));
+      setInput(String(NumInput));
+      onChange(String(NumInput));
     }
-
-    updateSelectedPrimitives(keys[0], newMesh);
   };
+  useEffect(() => {
+    setInput(value);
+  }, [value]);
 
   return (
     <Wrapper>
@@ -182,9 +107,11 @@ const InputField = ({
       <Container>
         <Input
           type={type}
-          onKeyDownCapture={handleKeyPress}
-          value={value}
-          onChange={handleChange}
+          onKeyDown={(e) => handleKeyPress(e)}
+          value={input}
+          onChange={(e) => {
+            onClickChange(e.target.value);
+          }}
         />
       </Container>
     </Wrapper>
