@@ -2,7 +2,7 @@ import storeContainer from "@/store/storeContainer";
 import { reaction } from "mobx";
 import { useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
@@ -11,6 +11,8 @@ import keyboardSceneEvents from "../utils/keyboardSceneEvents";
 import makeSelectedGroup from "../utils/makeSelectedGroup";
 import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
+import * as THREE from "three";
+import { useServerMaterialLoader } from "@/hooks/loader";
 
 const RenderScene = observer(() => {
   const {
@@ -18,9 +20,14 @@ const RenderScene = observer(() => {
     mouseEventStore,
     contextMenuStore,
     keyboardEventStore,
+    selectedObjectStore,
   } = storeContainer;
+  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+  const materialName = selectedObjectStore.selectedMaterial;
+  const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
@@ -80,6 +87,14 @@ const RenderScene = observer(() => {
   useEffect(() => {
     executeContextMenu(scene);
   }, [contextMenuStore.currentSelectedContextMenu]);
+
+  useEffect(() => {
+    if (selectedPrimitive && selectedObjectStore.selectedMaterial) {
+      setNewMesh(selectedPrimitive);
+      newMesh.material = material;
+      selectedObjectStore.setSelectedMaterial(materialName);
+    }
+  }, [selectedObjectStore.selectedMaterial]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 import styled from "styled-components";
 
@@ -57,6 +57,10 @@ interface SliderProps {
   max: number;
   step: number;
   initValue: number;
+  onMouseDown?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onMaterialChange?: (newVlaue: number) => void;
+  onChange?: (e: number) => void;
 }
 
 const Slider = ({
@@ -65,6 +69,8 @@ const Slider = ({
   max = 100,
   step = 1,
   initValue = 0,
+  onMaterialChange = () => {},
+  onChange = () => {},
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
@@ -79,16 +85,18 @@ const Slider = ({
         "--slider-background",
         sliderBackground
       );
+      onMaterialChange(newValue);
+      onChange(newValue);
     }
   };
 
   useEffect(() => {
-    handleChange();
-  }, [value]);
-
-  useEffect(() => {
     setValue(initValue);
   }, [initValue]);
+
+  useEffect(() => {
+    handleChange();
+  }, [value]);
 
   return (
     <SliderContainer>
