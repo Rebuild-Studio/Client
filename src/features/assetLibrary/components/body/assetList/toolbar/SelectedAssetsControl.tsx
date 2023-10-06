@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { useRef } from "react";
 
 const Container = styled.div`
-  width: 65vw;
+  width: 65%;
+  max-width: 65vw;
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
