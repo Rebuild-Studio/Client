@@ -2,6 +2,9 @@ import { styled } from "styled-components";
 import GridItem from "./GridItem";
 import assetLibraryStore from "@/store/assetLibraryStore";
 import { observer } from "mobx-react";
+import { useEffect, useRef, useState } from "react";
+import infiniteScroll from "@/utils/infiniteScroll/infiniteScroll";
+import setThrottle from "@/utils/throttle/throttle";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -23,9 +26,31 @@ const Grid = styled.div`
 `;
 
 const AssetGrid = observer(() => {
-  const { libraryAssets } = assetLibraryStore;
+  const { libraryAssets, currentPage } = assetLibraryStore;
+  const [page, setPage] = useState(currentPage);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const handleScroll = setThrottle(() => {
+      return infiniteScroll(containerRef, page, setPage, 400);
+    }, 100);
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, [currentPage, page]);
+
+  useEffect(() => {
+    assetLibraryStore.setCurrentPage(page);
+  }, [page]);
+
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Grid>
         {libraryAssets.map((asset, index) => (
           <GridItem key={index} asset={asset} />
