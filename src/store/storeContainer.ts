@@ -7,6 +7,7 @@ import keyboardEventStore from "./keyboardEventStore";
 import contextMenuStore from "./contextMenuStore";
 import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
+import renderStore from "./renderStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -18,6 +19,7 @@ const storeContainer = {
   contextMenuStore: contextMenuStore,
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
+  renderStore: renderStore,
 };
 
 export default storeContainer;

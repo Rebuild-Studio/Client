@@ -8,6 +8,7 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel";
+import { OrientationHelper } from "./OrientationHelper";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -86,6 +87,7 @@ const Scene = observer(() => {
           <OrbitControls enableDamping={false} makeDefault={true} />
           <RenderScene />
         </CustomCanvas>
+        <OrientationHelper />
         <CanvasLeftPanel />
       </Container>
     </Wrapper>

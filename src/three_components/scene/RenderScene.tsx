@@ -13,6 +13,7 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
+import renderStore from "@/store/renderStore";
 
 const RenderScene = observer(() => {
   const {
@@ -25,12 +26,15 @@ const RenderScene = observer(() => {
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+  const camera = useThree((state) => state.camera);
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
+
+  renderStore.setCamera(camera);
 
   useEffect(() => {
     // mouse event
