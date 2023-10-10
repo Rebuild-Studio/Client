@@ -59,22 +59,10 @@ const TopBar = () => {
       <Container>
         <AppBarWrapper>
           <AppBarItem>
-            <Button
-              label="캔버스"
-              shadow="none"
-              onClick={() => {
-                setOpen(!open);
-              }}
-            />
+            <Button label="캔버스" shadow="none" />
           </AppBarItem>
           <AppBarItem>
-            <Button
-              label="인터렉션 에디터"
-              shadow="none"
-              onClick={() => {
-                setOpen(!open);
-              }}
-            />
+            <Button label="인터렉션 에디터" shadow="none" disabled={true} />
           </AppBarItem>
         </AppBarWrapper>
         <FlexBox />
@@ -87,7 +75,7 @@ const TopBar = () => {
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
-      {open && <CavasBar />}
+      <CavasBar />
     </Wrapper>
   );
 };
