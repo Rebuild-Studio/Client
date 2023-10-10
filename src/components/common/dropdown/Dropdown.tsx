@@ -70,6 +70,7 @@ export interface Option {
 }
 
 interface Props {
+  onClick?: (option: Option) => void;
   placeholder?: string;
   options: Option[];
   backgroundColor?: CSSColor;
@@ -83,6 +84,7 @@ const CaretDown = () => (
 const CaretUp = () => <img src="/icons/common/CaretUp.svg" alt="CaretUp" />;
 
 const Dropdown = ({
+  onClick = () => {},
   options,
   placeholder = "선택된 옵션",
   backgroundColor = basicColors.white,
@@ -136,6 +138,7 @@ const Dropdown = ({
                 onClick={() => {
                   setSelectedOption(option);
                   setOpenList(false);
+                  onClick(option);
                 }}
               />
             ))}

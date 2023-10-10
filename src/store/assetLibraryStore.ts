@@ -37,7 +37,6 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   initLibrary() {
     this.resetCurrentPage();
     this.clearLibraryAssets();
-    this.clearSelectedAssets();
   },
 
   //assetLibrary Controls Actions

@@ -4,6 +4,7 @@ import {
 } from "@/features/assetLibrary/constants/mainCategory";
 import { bgColors } from "@/resources/colors/colors";
 import assetCategoryStore, { Category } from "@/store/assetCategoryStore";
+import assetLibraryStore from "@/store/assetLibraryStore";
 import { observer } from "mobx-react";
 import { styled } from "styled-components";
 
@@ -41,6 +42,7 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
   };
 
   const onClickSetCategory = (): void => {
+    assetLibraryStore.initLibrary();
     if (type === "main") {
       assetCategoryStore.setCurrentMainCategory(myCategory as MainCategory);
     } else {

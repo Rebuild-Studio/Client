@@ -20,7 +20,6 @@ const infiniteScroll = <T extends HTMLElement>(
     ref.current.scrollHeight - ref.current.scrollTop <=
       ref.current.clientHeight + offset
   ) {
-    console.log(page);
     setPage(page + 1);
   }
 };

@@ -36,6 +36,8 @@ const AssetGrid = observer(() => {
     if (!container) return;
 
     const handleScroll = setThrottle(() => {
+      // 이슈 - setPage 에 mobx action을 인자로 넘길수가 없어, 내부 상태로 위임
+      // 아래처럼 useEffect를 많이쓰게됨,,,
       return infiniteScroll(containerRef, page, setPage, 400);
     }, 100);
     container.addEventListener("scroll", handleScroll);
@@ -48,6 +50,18 @@ const AssetGrid = observer(() => {
   useEffect(() => {
     assetLibraryStore.setCurrentPage(page);
   }, [page]);
+
+  useEffect(() => {
+    if (currentPage === 1) {
+      setPage(1);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    return () => {
+      assetLibraryStore.initLibrary();
+    };
+  }, []);
 
   return (
     <Container ref={containerRef}>
