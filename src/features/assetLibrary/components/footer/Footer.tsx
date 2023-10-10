@@ -1,13 +1,11 @@
 import MenuButton from "@/components/common/MenuButton";
-import { useServerGLTFLoader } from "@/hooks/loader";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import primitiveStore from "@/store/primitiveStore";
-import TempPrimitive from "@/three_components/assets/TempPrimitive";
+// import assetLibraryStore from "@/store/assetLibraryStore";
+// import primitiveStore from "@/store/primitiveStore";
+// import TempPrimitive from "@/three_components/assets/TempPrimitive";
 import { getButtonClickAnimation } from "@/utils/animation/button";
 import { observer } from "mobx-react";
-import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
+// import { nanoid } from "nanoid";
 import styled, { css } from "styled-components";
 
 const Container = styled.div`
@@ -18,7 +16,6 @@ const Container = styled.div`
   height: 50px;
   padding: 20px;
   box-sizing: border-box;
-  flex-shrink: 0;
 
   & > * {
     margin-left: 10px;
@@ -44,37 +41,37 @@ const CancelButton = styled(LoadButton)`
 `;
 
 const Footer = observer(() => {
-  const selectedAssets = assetLibraryStore.selectedAssets;
-  const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+  // const selectedAssets = assetLibraryStore.selectedAssets;
+  // const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+
+  const onClickLoad = () => {
+    // selectedAsssetFileNames.forEach((fileName) => {
+    // const storeId = nanoid();
+    // primitiveStore.addPrimitive(
+    //   storeId,
+    //   <TempPrimitive
+    //     key={nanoid()}
+    //     storeId={storeId}
+    //     dir={`models/Objects/`}
+    //     name={`${fileName}.glb`}
+    //   />
+    // );
+    // });
+  };
 
   return (
-    <Container>
-      <LoadButton
-        label="불러오기"
-        disabled={false}
-        onClick={() => {
-          selectedAsssetFileNames.forEach((fileName) => {
-            const storeId = nanoid();
-            primitiveStore.addPrimitive(
-              storeId,
-              <TempPrimitive
-                key={nanoid()}
-                storeId={storeId}
-                dir={`models/Objects/`}
-                name={`${fileName}.glb`}
-              />
-            );
-          });
-        }}
-      />
-      <CancelButton
-        label="닫기"
-        disabled={false}
-        onClick={() => {
-          /* 추후 modal close state control 달것 */
-        }}
-      />
-    </Container>
+    <div>
+      <Container>
+        <LoadButton label="불러오기" disabled={false} onClick={onClickLoad} />
+        <CancelButton
+          label="닫기"
+          disabled={false}
+          onClick={() => {
+            /* 추후 modal close state control 달것 */
+          }}
+        />
+      </Container>
+    </div>
   );
 });
 
