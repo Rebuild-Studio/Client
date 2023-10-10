@@ -1,9 +1,9 @@
-import { useState } from "react";
-import CavasBar from "./CanvasBar";
+import CanvasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
+import storeContainer from "@/store/storeContainer";
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,7 +52,13 @@ const ComponentName = styled.div`
 `;
 
 const TopBar = () => {
-  const [open, setOpen] = useState(false);
+  const sceneSettingToggle = () => {
+    if (storeContainer.rightPanelStore.getType() !== "scene") {
+      storeContainer.rightPanelStore.setType("scene");
+    } else {
+      storeContainer.rightPanelStore.setType("none");
+    }
+  };
 
   return (
     <Wrapper>
@@ -70,12 +76,13 @@ const TopBar = () => {
         <FlexBox />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_씬설정.svg"} />}
+          onClick={sceneSettingToggle}
         />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
-      <CavasBar />
+      <CanvasBar />
     </Wrapper>
   );
 };
