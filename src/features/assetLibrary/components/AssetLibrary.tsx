@@ -3,8 +3,12 @@ import { basicColors } from "@/resources/colors/colors";
 import Header from "./header";
 import Body from "./body";
 import Footer from "./footer";
-import { useFetchAssets } from "../hooks/useFetchAssets";
 import { useEffect } from "react";
+import { LibraryAsset } from "../types/fetchAssetType";
+import { observer } from "mobx-react";
+import assetCategoryStore from "@/store/assetCategoryStore";
+import assetLibraryStore from "@/store/assetLibraryStore";
+import { useFetchLibraryAssets } from "../hooks/useFetchLibraryAssets query";
 
 const Container = styled.div`
   width: 100%;
@@ -19,11 +23,34 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const AssetLibrary = () => {
-  const [, isError] = useFetchAssets();
+const AssetLibrary = observer(() => {
+  const { currentPage } = assetLibraryStore;
+  const { currentDomain, currentMainCategory, currentSubCategory } =
+    assetCategoryStore;
+  const { data, refetch } = useFetchLibraryAssets({
+    domain: currentDomain.domain,
+    majorCategories: currentMainCategory.category,
+    minorCategories: currentSubCategory.category,
+    page: currentPage,
+  });
+
   useEffect(() => {
-    isError && alert("에셋 로딩중 에러가 발생했습니다.");
-  }, [isError]);
+    data &&
+      assetLibraryStore.setLibraryAssets([
+        ...assetLibraryStore.libraryAssets,
+        ...data,
+      ] as LibraryAsset[]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
+  }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, [currentPage, refetch]);
+
+  useEffect(() => {
+    return () => {
+      assetLibraryStore.initLibrary();
+    };
+  }, []);
 
   return (
     <Container>
@@ -32,6 +59,6 @@ const AssetLibrary = () => {
       <Footer />
     </Container>
   );
-};
+});
 
 export default AssetLibrary;
