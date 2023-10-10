@@ -7,6 +7,8 @@ interface AssetLibraryControl {
 
   toggleAssetLibraryVisibility: () => void;
   setCurrentPage: (page: number) => void;
+  resetCurrentPage: () => void;
+  initLibrary: () => void;
 }
 
 interface AssetLibraryItems {
@@ -14,8 +16,11 @@ interface AssetLibraryItems {
   selectedAssets: LibraryAsset[];
 
   setLibraryAssets: (assets: LibraryAsset[]) => void;
+  clearLibraryAssets: () => void;
+
   addSelectedAsset: (asset: LibraryAsset) => void;
   removeSelectedAsset: (asset: LibraryAsset) => void;
+  clearSelectedAssets: () => void;
 }
 
 type AssetLibraryStore = AssetLibraryControl & AssetLibraryItems;
@@ -29,6 +34,12 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   libraryAssets: [],
   selectedAssets: [],
 
+  initLibrary() {
+    this.resetCurrentPage();
+    this.clearLibraryAssets();
+    this.clearSelectedAssets();
+  },
+
   //assetLibrary Controls Actions
   toggleAssetLibraryVisibility() {
     this.isAssetLibraryVisible = !this.isAssetLibraryVisible;
@@ -36,11 +47,19 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   setCurrentPage(page) {
     this.currentPage = page;
   },
+  resetCurrentPage() {
+    this.currentPage = 1;
+  },
 
   //assetLibrary Items Actions
   setLibraryAssets(assets) {
     this.libraryAssets = assets;
   },
+  clearLibraryAssets() {
+    this.libraryAssets = [];
+  },
+
+  //selectedAssetLibrary Items Actions
   addSelectedAsset(asset) {
     this.selectedAssets.push(asset);
   },
@@ -48,6 +67,9 @@ const assetLibraryStore = observable<AssetLibraryStore>({
     this.selectedAssets = this.selectedAssets.filter(
       (selectedAsset) => selectedAsset.id !== asset.id
     );
+  },
+  clearSelectedAssets() {
+    this.selectedAssets = [];
   },
 });
 
