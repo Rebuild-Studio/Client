@@ -1,4 +1,5 @@
 import primitiveStore from "./primitiveStore";
+import selectedobjectStore from "./selectedObjectStore";
 import userStore from "./userStore";
 import mouseEventStore from "./mouseEventStore";
 import transformControlStore from "./transformControlStore";
@@ -11,6 +12,7 @@ import assetCategoryStore from "./assetCategoryStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
+  selectedObjectStore: selectedobjectStore,
   userStore: userStore,
   mouseEventStore: mouseEventStore,
   transformControlStore: transformControlStore,

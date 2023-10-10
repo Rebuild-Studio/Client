@@ -3,9 +3,11 @@ import { observer } from "mobx-react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import getCenterPoint from "../utils/getCenterPoint";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 interface GroupProps {
   storeId: string;
+  propMesh?: THREE.Mesh;
 }
 
 const Group = observer((props: GroupProps) => {
@@ -16,13 +18,19 @@ const Group = observer((props: GroupProps) => {
   const material = new THREE.MeshPhysicalMaterial({
     transparent: true,
   });
-  const mesh = new THREE.Mesh(geometry, material);
-
+  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "GROUP";
   mesh.userData["storeId"] = props.storeId;
 
   useEffect(() => {
     //selected 추가
+
+    if (props.propMesh) {
+      // 이미 그룹 작업이 되어있으므로 업데이트만
+      primitiveStore.updatePrimitive(props.storeId, mesh);
+      return;
+    }
+
     if (!primitiveStore.meshes[props.storeId]) {
       const selectedPrimitives = Object.values(
         primitiveStore.selectedPrimitives
@@ -50,6 +58,7 @@ const Group = observer((props: GroupProps) => {
       primitiveStore.clearSelectedPrimitives();
       primitiveStore.addSelectedPrimitives(props.storeId, mesh);
       primitiveStore.clearSelectedGroupPrimitive();
+      canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }
   }, []);
 

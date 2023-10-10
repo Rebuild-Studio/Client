@@ -28,12 +28,15 @@ const bgColors = {
 
 const grayColors = {
   "535353": "#535353",
+  "303030": "#303030",
   "3a3a3a": "#3a3a3a",
   "808080": "#808080",
   E2E2E2: "#E2E2E2",
+  BABABA: "#BABABA",
   buttonColor: "#303030",
   lightGray: "#e2e2e2",
   panelGray: "#aaaaaa",
+  panelFontColor: "#666",
 } as const satisfies HexColorObject;
 
 const gridColor = {

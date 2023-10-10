@@ -30,12 +30,12 @@ const renderPrimitive = (storeId: string, mesh: THREE.Mesh) => {
   }
 };
 
-const renderGroup = (storeId: string) => {
-  return <Group storeId={storeId} />;
+const renderGroup = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <Group storeId={storeId} propMesh={propMesh} />;
 };
 
-const renderSelectedGroup = (storeId: string) => {
-  return <SelectedGroup storeId={storeId} />;
+const renderSelectedGroup = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <SelectedGroup storeId={storeId} propMesh={propMesh} />;
 };
 
 export { renderPrimitive, renderGroup, renderSelectedGroup };

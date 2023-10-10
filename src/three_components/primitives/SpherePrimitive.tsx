@@ -4,6 +4,7 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 interface SphereParams {
   minWidthSegments: number;
@@ -54,6 +55,7 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
     Math.PI * 2
   );
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "SPHERE";
   mesh.userData["storeId"] = props.storeId;
@@ -61,6 +63,7 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
+    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
   }, []);
 
   return (

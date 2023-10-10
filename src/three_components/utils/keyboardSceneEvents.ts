@@ -8,8 +8,7 @@ const keyboardSceneEvents = () => {
     contextMenuStore,
   } = storeContainer;
 
-  const { isAltPressed, isCtrlPressed, isShiftPressed } =
-    keyboardEventStore.currentKeyEvent;
+  const { isCtrlPressed } = keyboardEventStore.currentKeyEvent;
 
   switch (keyboardEventStore.currentKeyEvent.key.toLowerCase()) {
     case "z": {

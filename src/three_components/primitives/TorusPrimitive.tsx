@@ -4,6 +4,7 @@ import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
+import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 interface TorusParams {
   minRadius: number;
@@ -46,6 +47,7 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100, Math.PI * 2);
   const material = getDefaultMaterialSetting();
+  material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "TORUS";
   mesh.userData["storeId"] = props.storeId;
@@ -53,6 +55,7 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
 
   useEffect(() => {
     primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
+    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
   }, []);
 
   return (

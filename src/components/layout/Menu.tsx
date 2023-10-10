@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { grayColors, basicColors } from "@/resources/colors/colors";
-import Grid from "../common/Grid";
 
+const Wrapper = styled.div`
+  display: flex;
+`;
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -35,13 +37,21 @@ const StyledMenu = styled.div<{
   background-color: ${grayColors["3a3a3a"]};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  z-index: 1000;
-  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+  z-index: 3;
+  transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
 `;
 
+const ContentWrapper = styled.div`
+  overflow: auto;
+  height: 57vh;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+`;
 const ButtonWrapper = styled.div`
+  margin-top: 20px;
   display: flex;
   align-items: flex-end;
 `;
@@ -52,12 +62,21 @@ const AnchorButton = styled.button`
 
 interface MenuProps {
   title: string;
-  MenuItem: React.ReactNode[];
+  MenuItem: React.ReactNode;
+  openMenu?: boolean;
+  anchorButton?: React.ReactNode;
+  anchorElement?: HTMLElement | null;
+  handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
-const CustomMenu = ({ title, MenuItem }: MenuProps) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+const CustomMenu = ({
+  title,
+  MenuItem,
+  openMenu = false,
+  anchorButton = <></>,
+  anchorElement = null,
+}: MenuProps) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
+  const [open, setOpen] = useState(openMenu);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정
@@ -69,14 +88,10 @@ const CustomMenu = ({ title, MenuItem }: MenuProps) => {
     setOpen(false);
   };
 
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
-    setOpen(false);
-  };
-
   return (
-    <div style={{ display: "flex" }}>
+    <Wrapper>
       <AnchorButton onClick={handleClick}>Open Menu</AnchorButton>
+      {anchorButton}
       {anchorEl && (
         <StyledMenu
           anchorTop={anchorEl.offsetTop - anchorEl.clientHeight - 300}
@@ -86,14 +101,13 @@ const CustomMenu = ({ title, MenuItem }: MenuProps) => {
           <TitleWrapper>
             <Title>{title}</Title>
           </TitleWrapper>
-          <Grid items={MenuItem} columns={2}></Grid>
-          <div style={{ flexGrow: "1" }} />
+          <ContentWrapper>{MenuItem}</ContentWrapper>
           <ButtonWrapper>
             <button onClick={handleClose}>Close Menu</button>
           </ButtonWrapper>
         </StyledMenu>
       )}
-    </div>
+    </Wrapper>
   );
 };
 export default CustomMenu;
