@@ -28,7 +28,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 showY={hasSelectedPrimitive}
                 showZ={hasSelectedPrimitive}
                 object={primitiveStore.meshes[props.storeId]}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   transformControlStore.setIsTranslated();
                 }}
                 onObjectChange={(e) => {
@@ -37,7 +37,7 @@ const Gizmo = observer((props: GizmoProps) => {
                     e?.target.object
                   );
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   transformControlStore.clearTransform();
                 }}
               />
@@ -50,7 +50,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 showZ={hasSelectedPrimitive}
                 object={primitiveStore.meshes[props.storeId]}
                 size={1.2}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   if (transformControlStore.currentControl !== "TRANSFORM") {
                     transformControlStore.setIsRotated();
                   }
@@ -61,7 +61,7 @@ const Gizmo = observer((props: GizmoProps) => {
                     e?.target.object
                   );
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   transformControlStore.clearTransform();
                 }}
               />
@@ -74,7 +74,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 showZ={hasSelectedPrimitive}
                 object={primitiveStore.meshes[props.storeId]}
                 size={0.8}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   transformControlStore.setIsScaled();
                 }}
                 onObjectChange={(e) => {
@@ -83,7 +83,7 @@ const Gizmo = observer((props: GizmoProps) => {
                     e?.target.object
                   );
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   transformControlStore.clearTransform();
                 }}
               />
