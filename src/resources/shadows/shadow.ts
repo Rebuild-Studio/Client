@@ -1,4 +1,4 @@
-import { Shadows } from "@/types/style/Shadow";
+import { Shadows } from "@/types/style/shadow";
 import { hexToRgba } from "@/utils/style/hexToRgb";
 
 const shadows = {
