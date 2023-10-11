@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "allowJs": true, // it stands for interaction(legacy JS)
 
     /* Bundler mode */
     "moduleResolution": "bundler",
