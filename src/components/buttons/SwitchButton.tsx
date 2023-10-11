@@ -47,13 +47,16 @@ const SwitchLever = styled.div<{ checked: boolean }>`
 
 interface SwitchProps {
   label: string;
+  checked: boolean;
+  onChange: (e: boolean) => void;
 }
 
-const Switch = ({ label }: SwitchProps) => {
-  const [checked, setChecked] = useState(false);
+const Switch = ({ label, checked, onChange }: SwitchProps) => {
+  // const [checked, setChecked] = useState(checked);
 
   const handleSwitchChange = () => {
-    setChecked(!checked);
+    // setChecked(!checked);
+    onChange(!checked);
   };
 
   return (
@@ -63,8 +66,10 @@ const Switch = ({ label }: SwitchProps) => {
         <SwitchInput
           type="checkbox"
           checked={checked}
+          // onChange={onChange()}
           onChange={handleSwitchChange}
         />
+        {/* <SwitchLever checked={checked} onClick={onChange()} /> */}
         <SwitchLever checked={checked} onClick={handleSwitchChange} />
       </SwitchWrapper>
     </SwitchContainer>
