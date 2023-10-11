@@ -11,17 +11,19 @@ import Material from "./MaterialInfo";
 import { rgbToHsva } from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
 
-const RightPanelContainer = styled.div`
+const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
   position: relative;
   background-color: #282828;
   display: flex;
-  height: calc(100vh - ${93}px);
+  height: ${(props) =>
+    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
   flex-direction: column;
   align-items: flex-end;
 `;
 
-const RightPanel = observer(() => {
+const RightPanel = observer((props: { isOpen: boolean }) => {
   const { primitiveStore } = storeContainer;
+  const { isOpen } = props;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
   const [color, setColor] = useState<HsvaColor>({ h: 0, s: 0, v: 0, a: 0 });
@@ -49,7 +51,7 @@ const RightPanel = observer(() => {
   }, [selectedPrimitive]);
 
   return selectedPrimitive ? (
-    <RightPanelContainer>
+    <RightPanelContainer $isOpen={isOpen}>
       <Panel label={"속성값"} options={undefined}>
         <Tab
           tabs={["오브젝트", "쉐이프"]}
