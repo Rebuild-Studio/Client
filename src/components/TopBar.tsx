@@ -5,8 +5,6 @@ import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
 
-interface Props {}
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,7 +51,7 @@ const ComponentName = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const TopBar = (props: Props) => {
+const TopBar = () => {
   const [open, setOpen] = useState(false);
 
   return (
