@@ -4,10 +4,12 @@ import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
+import App from "@/interaction(legacyJS)/src/App";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -52,7 +54,7 @@ const ComponentName = styled.div`
 `;
 
 const TopBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <Wrapper>
@@ -88,6 +90,7 @@ const TopBar = () => {
         />
       </Container>
       {open && <CavasBar />}
+      {!open && <App />}
     </Wrapper>
   );
 };
