@@ -49,14 +49,16 @@ const HdriSetting = observer(() => {
         </TitleWrapper>
 
         <Slider
+          initValue={storeContainer.sceneStore.hdriIntensity}
+          onChange={storeContainer.sceneStore.setHdriIntensity}
           min={0}
           max={5}
-          initValue={storeContainer.sceneStore.hdriIntensity}
           title={"환경강도"}
           step={0.1}
         />
         <Slider
           initValue={storeContainer.sceneStore.hdriYRotation}
+          onChange={storeContainer.sceneStore.setHdriYRotation}
           title={"회전"}
           min={-180}
           max={180}
@@ -65,9 +67,10 @@ const HdriSetting = observer(() => {
       </Accordion>
       <Accordion title={"주변광"}>
         <Slider
+          initValue={storeContainer.sceneStore.ambientLightIntensity}
+          onChange={storeContainer.sceneStore.setAmbientLightIntensity}
           min={0}
           max={2}
-          initValue={storeContainer.sceneStore.ambientLightIntensity}
           title={"강도"}
           step={0.1}
         />
@@ -78,9 +81,10 @@ const HdriSetting = observer(() => {
       </Accordion>
       <Accordion title={"직사광"}>
         <Slider
+          initValue={storeContainer.sceneStore.directionalLightIntensity}
+          onChange={storeContainer.sceneStore.setDirectionalLightIntensity}
           min={0}
           max={5}
-          initValue={storeContainer.sceneStore.directionalLightIntensity}
           title={"강도"}
           step={0.1}
         />
