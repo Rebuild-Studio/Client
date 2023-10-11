@@ -9,7 +9,7 @@ const DeselectButton = styled.button`
   justify-content: space-between;
   gap: 8px;
 
-  height: 32px;
+  height: 100%;
 
   padding: 0px 8px;
   margin: 0 1px;
