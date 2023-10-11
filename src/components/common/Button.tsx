@@ -1,5 +1,5 @@
 import { basicColors, bgColors } from "@/resources/colors/colors";
-import { ButtonAnimationType } from "@/types/style/ButtonAnimations";
+import { ButtonAnimationType } from "@/types/style/buttonAnimations";
 import { CSSHexColor, CSSSize } from "@/types/style/CssUnits";
 import { CSSShadow, ShadowType } from "@/types/style/Shadow";
 import { getButtonClickAnimation } from "@/utils/animation/button";
