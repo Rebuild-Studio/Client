@@ -3,15 +3,15 @@ import { observable } from "mobx";
 interface Scene {
   type: string;
   hdriToggle: boolean;
-  hdriBackgroundToggle: boolean;
+  hdriBackgroundVisibleToggle: boolean;
   hdriIntensity: number;
   hdriXRotation: number;
   hdriYRotation: number;
   hdriZRotation: number;
 
-  ambientLigitToggle: boolean;
-  ambientLigitIntensity: number;
-  ambientLigitColor: { h: number; s: number; v: number; a: number };
+  ambientLightToggle: boolean;
+  ambientLightIntensity: number;
+  ambientLightColor: { h: number; s: number; v: number; a: number };
 
   directionalLightToggle: boolean;
   directionalLightIntensity: number;
@@ -31,16 +31,16 @@ const sceneStore = observable<Scene>({
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
   hdriToggle: true,
-  hdriBackgroundToggle: false,
+  hdriBackgroundVisibleToggle: false,
   hdriIntensity: 1,
   hdriXRotation: 0,
   hdriYRotation: 0,
   hdriZRotation: 0,
 
   // 주변광
-  ambientLigitToggle: true,
-  ambientLigitIntensity: 0.3,
-  ambientLigitColor: { h: 0, s: 0, v: 100, a: 1 },
+  ambientLightToggle: true,
+  ambientLightIntensity: 0.3,
+  ambientLightColor: { h: 0, s: 0, v: 100, a: 1 },
 
   // 직사광
   directionalLightToggle: true,
