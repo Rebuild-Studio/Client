@@ -1,11 +1,10 @@
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
+import { findRootGroup, hasChildGroup, isChildInGroup } from "./findGroup";
 import {
-  findParentGroup,
-  findRootGroup,
-  hasChildGroup,
-  isChildInGroup,
-} from "./findGroup";
+  selectChildGroupInGroup,
+  selectChildObjectInGroup,
+} from "./selectInGroup";
 
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -39,75 +38,40 @@ const onClickSceneEvents = (
   })?.object;
 
   const selectRootObject = findRootGroup(selectChildObject);
+
   if (selectRootObject) {
-    const selectRootObjectStoreId = selectRootObject.userData["storeId"];
-    // 현재 선택된 그룹의 자식 선택
-    if (
-      currentSelectObjects &&
-      currentSelectObjects.length === 1 &&
-      currentSelectObjects[0].userData["storeId"] !== selectRootObjectStoreId &&
-      isChildInGroup(
-        currentSelectObjects[0],
-        selectChildObject?.userData["storeId"]
-      )
-    ) {
-      selectChildObject!.userData["parentId"] =
-        selectChildObject!.parent?.userData["storeId"];
-      selectChildObject!.userData["rootId"] = selectRootObjectStoreId;
+    const selectRootObjectStoreId: string =
+      selectRootObject.userData["storeId"];
 
-      primitiveStore.addSelectedPrimitives(
-        selectChildObject?.userData["storeId"],
-        selectChildObject as THREE.Mesh
-      );
+    if (currentSelectObjects && currentSelectObjects.length === 1) {
+      const selectedObject = currentSelectObjects[0];
+      const selectedObjectStoreId: string = selectedObject.userData["storeId"];
 
-      return;
-    }
-
-    if (
-      currentSelectObjects &&
-      currentSelectObjects.length === 1 &&
-      currentSelectObjects[0].userData["storeId"] === selectRootObjectStoreId
-    ) {
       if (
-        selectChildObject?.parent?.userData["storeId"] ===
-        selectRootObjectStoreId
+        selectedObjectStoreId !== selectRootObjectStoreId &&
+        isChildInGroup(selectedObject, selectChildObject?.userData["storeId"])
       ) {
-        // 자식 object 선택
-        selectChildObject!.userData["parentId"] =
-          selectChildObject!.parent?.userData["storeId"];
-        selectChildObject!.userData["rootId"] = selectRootObjectStoreId;
-
-        primitiveStore.addSelectedPrimitives(
-          selectChildObject?.userData["storeId"],
-          selectChildObject as THREE.Mesh
-        );
-
+        selectChildObjectInGroup(selectRootObjectStoreId, selectChildObject!);
         return;
       }
 
-      if (hasChildGroup(selectRootObject)) {
-        // 자식 group 선택
-        const group = findParentGroup(selectChildObject);
-        group!.userData["parentId"] = group!.parent?.userData["storeId"];
-        group!.userData["rootId"] = selectRootObjectStoreId;
+      if (selectedObjectStoreId === selectRootObjectStoreId) {
+        if (
+          selectChildObject?.parent?.userData["storeId"] ===
+          selectRootObjectStoreId
+        ) {
+          selectChildObjectInGroup(selectRootObjectStoreId, selectChildObject!);
+          return;
+        }
 
-        primitiveStore.addSelectedPrimitives(
-          group?.userData["storeId"],
-          group as THREE.Mesh
-        );
-      } else {
-        // 자식 object 선택
-        selectChildObject!.userData["parentId"] =
-          selectChildObject!.parent?.userData["storeId"];
-        selectChildObject!.userData["rootId"] = selectRootObjectStoreId;
-
-        primitiveStore.addSelectedPrimitives(
-          selectChildObject?.userData["storeId"],
-          selectChildObject as THREE.Mesh
-        );
+        if (hasChildGroup(selectRootObject)) {
+          selectChildGroupInGroup(selectRootObjectStoreId, selectChildObject!);
+          return;
+        } else {
+          selectChildObjectInGroup(selectRootObjectStoreId, selectChildObject!);
+          return;
+        }
       }
-
-      return;
     }
 
     primitiveStore.addSelectedPrimitives(

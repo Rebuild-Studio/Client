@@ -7,6 +7,32 @@ const ChildGizmo = observer(() => {
   const { primitiveStore, transformControlStore } = storeContainer;
   const selectedChild = Object.values(primitiveStore.selectedPrimitives)[0];
 
+  const rePositionParent = () => {
+    const center = new THREE.Vector3();
+    const parent = selectedChild.parent!;
+
+    parent.children.forEach((child) => {
+      center.add(child.getWorldPosition(new THREE.Vector3()));
+    });
+    center.divideScalar(parent.children.length);
+
+    const newMesh = new THREE.Mesh();
+    newMesh.name = "GROUP";
+    newMesh.userData["storeId"] = parent.userData["storeId"];
+    newMesh.position.copy(center);
+
+    while (parent.children.length) {
+      newMesh.attach(parent.children[0]);
+    }
+
+    parent.parent?.attach(newMesh);
+    parent.removeFromParent();
+
+    if (primitiveStore.meshes[newMesh.userData["storeId"]]) {
+      primitiveStore.updatePrimitive(newMesh.userData["storeId"], newMesh);
+    }
+  };
+
   return (
     <>
       {selectedChild &&
@@ -18,38 +44,12 @@ const ChildGizmo = observer(() => {
               <TransformControls
                 mode="translate"
                 object={selectedChild}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   transformControlStore.setIsTranslated();
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   // 자식 position이 바뀌었으므로 parent position 재지정
-                  const center = new THREE.Vector3();
-                  const parent = selectedChild.parent!;
-
-                  parent.children.forEach((child) => {
-                    center.add(child.getWorldPosition(new THREE.Vector3()));
-                  });
-                  center.divideScalar(parent.children.length);
-
-                  const newMesh = new THREE.Mesh();
-                  newMesh.name = "GROUP";
-                  newMesh.userData["storeId"] = parent.userData["storeId"];
-                  newMesh.position.copy(center);
-
-                  while (parent.children.length) {
-                    newMesh.attach(parent.children[0]);
-                  }
-
-                  parent.parent?.attach(newMesh);
-                  parent.removeFromParent();
-
-                  if (primitiveStore.meshes[newMesh.userData["storeId"]]) {
-                    primitiveStore.updatePrimitive(
-                      newMesh.userData["storeId"],
-                      newMesh
-                    );
-                  }
-
+                  rePositionParent();
                   transformControlStore.clearTransform();
                 }}
               />
@@ -59,12 +59,12 @@ const ChildGizmo = observer(() => {
                 mode="rotate"
                 object={selectedChild}
                 size={1.2}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   if (transformControlStore.currentControl !== "TRANSFORM") {
                     transformControlStore.setIsRotated();
                   }
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   transformControlStore.clearTransform();
                 }}
               />
@@ -74,10 +74,10 @@ const ChildGizmo = observer(() => {
                 mode="scale"
                 object={selectedChild}
                 size={0.8}
-                onMouseDown={(e) => {
+                onMouseDown={() => {
                   transformControlStore.setIsScaled();
                 }}
-                onMouseUp={(e) => {
+                onMouseUp={() => {
                   transformControlStore.clearTransform();
                 }}
               />

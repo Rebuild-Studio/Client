@@ -68,7 +68,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
           }
         });
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
 
       primitiveStore.removePrimitive(props.storeId);
