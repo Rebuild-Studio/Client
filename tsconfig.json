@@ -38,6 +38,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["**/*.stories.ts", "**/*.stories.tsx"],
+  "exclude": ["node_modules", "dist", "build", "coverage", "storybook-static"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
