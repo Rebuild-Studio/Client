@@ -48,7 +48,7 @@ const RightPanel = observer(() => {
     }
   }, [selectedPrimitive]);
 
-  return (
+  return selectedPrimitive ? (
     <RightPanelContainer>
       <Panel label={"속성값"} options={undefined}>
         <Tab
@@ -83,6 +83,8 @@ const RightPanel = observer(() => {
         />
       </Panel>
     </RightPanelContainer>
+  ) : (
+    <></>
   );
 });
 
