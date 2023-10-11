@@ -1,16 +1,53 @@
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
+import styled from "styled-components";
 import storeContainer from "@/store/storeContainer";
 import Accordion from "@/components/layout/Accordion";
 import Slider from "@/components/common/Slider";
+import CustomMenu from "@/components/layout/Menu";
+import Switch from "@/components/buttons/SwitchButton";
+import ColorPicker from "@/components/common/RightPanel/ColorPicker";
+import { HsvaColor } from "@uiw/color-convert";
+import MaterialTemplate from "@/components/common/RightPanel/MaterialTemplate";
+
+const TitleWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;
 
 const HdriSetting = observer(() => {
+  const [ambientLightColor, setAmbientLightColor] = useState<HsvaColor>({
+    h: 0,
+    s: 0,
+    v: 0,
+    a: 0,
+  });
+  const [directionalLightColor, setDirectionalLightColor] = useState<HsvaColor>(
+    { h: 0, s: 0, v: 0, a: 0 }
+  );
+
+  useEffect(() => {
+    setAmbientLightColor(storeContainer.sceneStore.ambientLightColor);
+    // }, [storeContainer.sceneStore.ambientLightColor]);
+  }, []);
+
+  useEffect(() => {
+    setDirectionalLightColor(storeContainer.sceneStore.directionalLightColor);
+    //   }, [storeContainer.sceneStore.directionalLightColor]);
+  }, []);
+
   return (
     <>
-      <Accordion
-        title={"환경이미지"}
-        hasSwitch={true}
-        toggle={storeContainer.sceneStore.hdriToggle}
-      >
+      <Accordion title={"환경이미지"}>
+        <Switch label={""} />
+
+        <TitleWrapper>
+          <span>{"환경이미지"}</span>
+          <CustomMenu title={"머테리얼"} MenuItem={<MaterialTemplate />} />
+        </TitleWrapper>
+
         <Slider
           min={0}
           max={5}
@@ -30,10 +67,14 @@ const HdriSetting = observer(() => {
         <Slider
           min={0}
           max={2}
-          initValue={storeContainer.sceneStore.ambientLigitIntensity}
+          initValue={storeContainer.sceneStore.ambientLightIntensity}
           title={"강도"}
           step={0.1}
         />
+        <TitleWrapper>
+          <span>{"컬러"}</span>
+          <ColorPicker label={"컬러"} color={ambientLightColor} />
+        </TitleWrapper>
       </Accordion>
       <Accordion title={"직사광"}>
         <Slider
@@ -43,6 +84,10 @@ const HdriSetting = observer(() => {
           title={"강도"}
           step={0.1}
         />
+        <TitleWrapper>
+          <span>{"컬러"}</span>
+          <ColorPicker label={"컬러"} color={directionalLightColor} />
+        </TitleWrapper>
       </Accordion>
     </>
   );
