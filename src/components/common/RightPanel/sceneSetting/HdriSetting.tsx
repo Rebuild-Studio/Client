@@ -41,7 +41,11 @@ const HdriSetting = observer(() => {
   return (
     <>
       <Accordion title={"환경이미지"}>
-        <Switch label={""} />
+        <Switch
+          label={""}
+          checked={storeContainer.sceneStore.hdriToggle}
+          onChange={storeContainer.sceneStore.setHdriToggle}
+        />
 
         <TitleWrapper>
           <span>{"환경이미지"}</span>

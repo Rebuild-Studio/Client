@@ -5,6 +5,7 @@ import Accordion from "@/components/layout/Accordion";
 import Switch from "@/components/buttons/SwitchButton";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
+import storeContainer from "@/store/storeContainer";
 
 const TitleWrapper = styled.div`
   margin-top: 10px;
@@ -31,8 +32,16 @@ const DisplaySetting = observer(() => {
       </Accordion>
 
       <Accordion title={"그리드"}>
-        <Switch label={"사각형 그리드"} />
-        <Switch label={"중심선 그리드"} />
+        <Switch
+          label={"사각형 그리드"}
+          checked={storeContainer.sceneStore.isGridVisible}
+          onChange={storeContainer.sceneStore.setIsGridVisible}
+        />
+        <Switch
+          label={"중심선 그리드"}
+          checked={storeContainer.sceneStore.isAxisVisible}
+          onChange={storeContainer.sceneStore.setIsAxisVisible}
+        />
       </Accordion>
     </>
   );
