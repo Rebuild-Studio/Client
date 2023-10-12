@@ -103,6 +103,12 @@ const RenderScene = observer(() => {
     }
   }, [selectedObjectStore.selectedMaterial]);
 
+  useEffect(() => {
+    // 저장 로깅 - TODO : 나중에 실질적으로 로딩창 구현시 필요
+    isProcessing && console.info("저장중입니다.");
+    isSuccess && console.info("저장이 완료되었습니다.");
+  }, [isProcessing, isSuccess]);
+
   return (
     <>
       <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
