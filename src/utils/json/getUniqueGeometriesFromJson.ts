@@ -1,11 +1,6 @@
 import { SceneJson } from "@/types/scene/scene";
 import hash from "object-hash";
 
-interface Geometry {
-  data: string;
-  uuid: string;
-}
-
 /**
  * @description 지오메트리 값을 object hash를 통해 hash값으로 변환하고, 중복된 지오메트리를 제거합니다.
  * @param {JSON Object/Scene format} sceneJson - 씬 정보가 담긴 JSON 객체
