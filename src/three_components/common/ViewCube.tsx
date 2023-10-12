@@ -5,6 +5,20 @@ import renderStore from "@/store/renderStore";
 import * as THREE from "three";
 
 export const ViewCube = (props: MeshProps) => {
+  const faceArray = [
+    "RIGHT",
+    "RIGHT",
+    "LEFT",
+    "LEFT",
+    "TOP",
+    "TOP",
+    "BOTTOM",
+    "BOTTOM",
+    "FRONT",
+    "FRONT",
+    "BACK",
+    "BACK",
+  ];
   const textures = useServerTextureLoader(
     Array.from({ length: 6 }, (_, idx) => `${idx + 1}.png`),
     "models/CameraCube/"
@@ -14,14 +28,71 @@ export const ViewCube = (props: MeshProps) => {
   const euler = new THREE.Euler();
 
   useFrame(() => {
-    if (!ref.current || !renderStore.camera) return;
+    if (!ref.current || !renderStore.controls) return;
 
-    euler.setFromRotationMatrix(renderStore.camera.matrixWorldInverse);
-    ref.current.rotation.copy(euler);
+    const cube = ref.current;
+    const camera = renderStore.controls.camera;
+
+    euler.setFromRotationMatrix(camera.matrixWorldInverse);
+    cube.rotation.copy(euler);
   });
 
+  const faceClick = (face: string) => {
+    if (!renderStore.controls) return;
+
+    const controls = renderStore.controls;
+    const camera = controls.camera;
+    const target = new THREE.Vector3();
+    controls.getTarget(target);
+
+    switch (face) {
+      case "TOP":
+      case "BOTTOM":
+        controls.setLookAt(
+          target.x,
+          camera.position.y,
+          target.z,
+          target.x,
+          0,
+          target.z
+        );
+        break;
+
+      case "FRONT":
+      case "BACK":
+        controls.setLookAt(
+          target.x,
+          target.y,
+          camera.position.z,
+          target.x,
+          target.y,
+          0
+        );
+        break;
+      case "LEFT":
+      case "RIGHT":
+        controls.setLookAt(
+          camera.position.x,
+          target.y,
+          target.z,
+          0,
+          target.y,
+          target.z
+        );
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <mesh ref={ref} {...props}>
+    <mesh
+      ref={ref}
+      {...props}
+      onClick={(e) => {
+        faceClick(faceArray[e.faceIndex!]);
+      }}
+    >
       {textures.map((value, idx) => (
         <meshStandardMaterial
           key={idx + value.uuid}

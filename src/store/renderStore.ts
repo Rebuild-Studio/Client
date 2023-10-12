@@ -1,15 +1,16 @@
+import { CameraControls } from "@react-three/drei";
 import { observable } from "mobx";
-import * as THREE from "three";
 
 interface renderStore {
-  camera: THREE.Camera | null;
-  setCamera: (prop: THREE.Camera) => void;
+  controls: CameraControls | null;
+  setControls: (prop: CameraControls) => void;
 }
 
 const renderStore = observable<renderStore>({
-  camera: null,
-  setCamera(camera) {
-    this.camera = camera;
+  controls: null,
+
+  setControls(state) {
+    this.controls = state;
   },
 });
 

@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import RenderScene from "../scene/RenderScene";
 import Grid from "./Grid";
 import styled from "styled-components";
@@ -9,6 +8,7 @@ import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel";
 import { OrientationHelper } from "./OrientationHelper";
+import { CanvasHelper } from "./CanvasHelper";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -84,7 +84,7 @@ const Scene = observer(() => {
             shadow-camera-bottom={-30}
           ></directionalLight>
           {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
-          <OrbitControls enableDamping={false} makeDefault={true} />
+          <CanvasHelper />
           <RenderScene />
         </CustomCanvas>
         <OrientationHelper />

@@ -2,7 +2,7 @@ import storeContainer from "@/store/storeContainer";
 import { reaction } from "mobx";
 import { useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
@@ -13,7 +13,6 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
-import renderStore from "@/store/renderStore";
 
 const RenderScene = observer(() => {
   const {
@@ -24,17 +23,16 @@ const RenderScene = observer(() => {
     selectedObjectStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
+
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
-  const camera = useThree((state) => state.camera);
+
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
-
-  renderStore.setCamera(camera);
 
   useEffect(() => {
     // mouse event
