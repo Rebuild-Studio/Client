@@ -1,10 +1,11 @@
+import getMinioPath from "@/utils/path/minio";
 import { useServerTextureLoader } from "../hooks/loader";
 
 export const CameraCube = (props: any) => {
-  const textures = useServerTextureLoader(
-    Array.from({ length: 6 }, (_, idx) => `${idx + 1}.png`),
-    "models/CameraCube/"
+  const urls = Array.from({ length: 6 }, (_, idx) =>
+    getMinioPath(`${idx + 1}`, "cameraCubeMaterial")
   );
+  const textures = urls.map((url) => useServerTextureLoader(url));
 
   return (
     <mesh {...props}>
