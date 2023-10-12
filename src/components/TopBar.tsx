@@ -1,9 +1,13 @@
-import { useState } from "react";
 import CavasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
+
+interface TopBarProps {
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,9 +55,7 @@ const ComponentName = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const TopBar = () => {
-  const [open, setOpen] = useState(false);
-
+const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
   return (
     <Wrapper>
       <Container>
@@ -63,7 +65,7 @@ const TopBar = () => {
               label="캔버스"
               shadow="none"
               onClick={() => {
-                setOpen(!open);
+                setOpen(!isOpen);
               }}
             />
           </AppBarItem>
@@ -72,7 +74,7 @@ const TopBar = () => {
               label="인터렉션 에디터"
               shadow="none"
               onClick={() => {
-                setOpen(!open);
+                setOpen(!isOpen);
               }}
             />
           </AppBarItem>
@@ -87,7 +89,7 @@ const TopBar = () => {
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
-      {open && <CavasBar />}
+      {isOpen && <CavasBar />}
     </Wrapper>
   );
 };

@@ -1,5 +1,5 @@
 import { grayColors } from "@/resources/colors/colors";
-import { CSSColor, CSSSize } from "@/types/style/CssUnits";
+import { CSSColor, CSSSize } from "@/types/style/cssUnits";
 import { styled } from "styled-components";
 
 interface ContainerProps {

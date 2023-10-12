@@ -8,7 +8,6 @@ const Container = styled.div`
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  flex-shrink: 0;
 `;
 
 const StyledSpan = styled.span`

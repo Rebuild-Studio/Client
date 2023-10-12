@@ -1,4 +1,4 @@
-import CategoryList from "@/features/assetLibrary/body/category/Category";
+import CategoryList from "@/features/assetLibrary/components/body/category/Category";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
