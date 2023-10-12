@@ -1,3 +1,4 @@
+import renderStore from "@/store/renderStore";
 import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
@@ -16,6 +17,7 @@ const Gizmo = observer((props: GizmoProps) => {
       return value.userData["isLocked"] === true;
     }
   );
+
   return (
     <>
       {!isLocked &&
@@ -30,6 +32,8 @@ const Gizmo = observer((props: GizmoProps) => {
                 object={primitiveStore.meshes[props.storeId]}
                 onMouseDown={() => {
                   transformControlStore.setIsTranslated();
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = false;
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -39,6 +43,8 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = true;
                 }}
               />
             )}
@@ -54,6 +60,8 @@ const Gizmo = observer((props: GizmoProps) => {
                   if (transformControlStore.currentControl !== "TRANSFORM") {
                     transformControlStore.setIsRotated();
                   }
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = false;
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -63,6 +71,8 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = true;
                 }}
               />
             )}
@@ -76,6 +86,8 @@ const Gizmo = observer((props: GizmoProps) => {
                 size={0.8}
                 onMouseDown={() => {
                   transformControlStore.setIsScaled();
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = false;
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -85,6 +97,8 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  if (!renderStore.controls) return;
+                  renderStore.controls.enabled = true;
                 }}
               />
             )}
