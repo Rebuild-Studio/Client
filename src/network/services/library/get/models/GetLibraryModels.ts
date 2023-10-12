@@ -1,3 +1,5 @@
+import { DomainType } from "@/features/assetLibrary/constants/domain";
+
 interface RequestGetAsset {
   domain: string;
   majorCategories: string;
@@ -11,7 +13,7 @@ interface ResponseGetAsset {
   name: string;
   fileName: string;
   type: string;
-  domain: string;
+  domain: DomainType;
   majorCategories: string[];
   minorCategories: string[];
   createdAt: string;

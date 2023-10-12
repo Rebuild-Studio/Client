@@ -1,7 +1,7 @@
 import { basicColors, bgColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
-import { CSSHexColor } from "@/types/style/CssUnits";
-import { FontType } from "@/types/style/Font";
+import { CSSHexColor } from "@/types/style/cssUnits";
+import { FontType } from "@/types/style/font";
 import styled from "styled-components";
 
 export type MenuButtonProps = {

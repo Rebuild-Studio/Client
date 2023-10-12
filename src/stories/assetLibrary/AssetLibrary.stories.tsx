@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import AssetLibrary from "@/features/assetLibrary/AssetLibrary";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import AssetLibrary from "@/features/assetLibrary";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const meta = {
   component: AssetLibrary,
@@ -19,6 +20,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof AssetLibrary>;
 
+const client = new QueryClient();
+
 export const AssetLibraryContainer = {
   args: {},
+  decorators: [
+    (Story: StoryFn) => (
+      <QueryClientProvider client={client}>
+        <Story />
+      </QueryClientProvider>
+    ),
+  ],
 } satisfies Story;

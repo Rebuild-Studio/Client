@@ -1,5 +1,5 @@
-import { DomainType } from "@/features/constants/domain";
-import { MainCategory } from "@/features/constants/mainCategory";
+import { Domain } from "@/features/assetLibrary/constants/domain";
+import { MainCategory } from "@/features/assetLibrary/constants/mainCategory";
 import { observable } from "mobx";
 
 interface Category {
@@ -7,11 +7,11 @@ interface Category {
   categoryKR: string;
 }
 interface AssetCategoryStore {
-  currentDomain: { domain: DomainType; domainKR: string };
+  currentDomain: Domain;
   currentMainCategory: MainCategory;
   currentSubCategory: Category;
 
-  setCurrentDomain: (domain: { domain: DomainType; domainKR: string }) => void;
+  setCurrentDomain: (domain: Domain) => void;
   setCurrentMainCategory: (mainCategory: MainCategory) => void;
   setCurrentSubCategory: (subCategory: Category) => void;
 }
