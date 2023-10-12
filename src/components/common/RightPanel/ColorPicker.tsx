@@ -8,6 +8,8 @@ import ColorContent from "./ColorContent";
 interface ColorPickerProps {
   label: string;
   color: any;
+  onChangeHsv: (hsva: HsvaColor) => void;
+  onChangeA: (alpha: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -68,39 +70,46 @@ const ColorButton = styled.button<{
     `rgba(${props.rgbColor.r},${props.rgbColor.g},${props.rgbColor.b},${props.rgbColor.a})`};
 `;
 
-const ColorPicker = observer(({ label, color }: ColorPickerProps) => {
-  const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(true);
-  const rgbColor = hsvaToRgba(color);
+const ColorPicker = observer(
+  ({ label, color, onChangeHsv, onChangeA }: ColorPickerProps) => {
+    const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
+    const [open, setOpen] = useState(true);
+    const rgbColor = hsvaToRgba(color);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setAnchorMenu(null);
-    setOpen(false);
-  };
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setAnchorMenu(null);
+      setOpen(false);
+    };
 
-  return (
-    <Wrapper>
-      <ColorButton color={color} rgbColor={rgbColor} onClick={handleClick} />
-      {anchorMenu && (
-        <StyledMenu
-          anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
-          open={open}
-          anchorLeft={anchorMenu.offsetLeft - 468}
-        >
-          <Container>
-            <Header>{label}</Header>
-            <ColorContent rgbColor={rgbColor} color={color} />
-            <ButtonWrapper>
-              <button onClick={handleClose}>Close Menu</button>
-            </ButtonWrapper>
-          </Container>
-        </StyledMenu>
-      )}
-    </Wrapper>
-  );
-});
+    return (
+      <Wrapper>
+        <ColorButton color={color} rgbColor={rgbColor} onClick={handleClick} />
+        {anchorMenu && (
+          <StyledMenu
+            anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
+            open={open}
+            anchorLeft={anchorMenu.offsetLeft - 468}
+          >
+            <Container>
+              <Header>{label}</Header>
+              <ColorContent
+                rgbColor={rgbColor}
+                color={color}
+                onChangeHsv={onChangeHsv}
+                onChangeA={onChangeA}
+              />
+              <ButtonWrapper>
+                <button onClick={handleClose}>Close Menu</button>
+              </ButtonWrapper>
+            </Container>
+          </StyledMenu>
+        )}
+      </Wrapper>
+    );
+  }
+);
 export default ColorPicker;

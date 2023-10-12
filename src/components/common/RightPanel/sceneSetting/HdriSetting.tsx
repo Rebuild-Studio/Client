@@ -8,6 +8,12 @@ import CustomMenu from "@/components/layout/Menu";
 import Switch from "@/components/buttons/SwitchButton";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
+import {
+  updateAmbientLightColor,
+  updateAmbientLightAlpha,
+  updateDirectionalLightColor,
+  updateDirectionalLightAlpha,
+} from "@/components/common/RightPanel/ColorHandler";
 import MaterialTemplate from "@/components/common/RightPanel/MaterialTemplate";
 
 const TitleWrapper = styled.div`
@@ -30,13 +36,11 @@ const HdriSetting = observer(() => {
 
   useEffect(() => {
     setAmbientLightColor(storeContainer.sceneStore.ambientLightColor);
-    // }, [storeContainer.sceneStore.ambientLightColor]);
-  }, []);
+  }, [storeContainer.sceneStore.ambientLightColor]);
 
   useEffect(() => {
     setDirectionalLightColor(storeContainer.sceneStore.directionalLightColor);
-    //   }, [storeContainer.sceneStore.directionalLightColor]);
-  }, []);
+  }, [storeContainer.sceneStore.directionalLightColor]);
 
   return (
     <>
@@ -80,7 +84,12 @@ const HdriSetting = observer(() => {
         />
         <TitleWrapper>
           <span>{"컬러"}</span>
-          <ColorPicker label={"컬러"} color={ambientLightColor} />
+          <ColorPicker
+            label={"컬러"}
+            color={ambientLightColor}
+            onChangeHsv={updateAmbientLightColor}
+            onChangeA={updateAmbientLightAlpha}
+          />
         </TitleWrapper>
       </Accordion>
       <Accordion title={"직사광"}>
@@ -94,7 +103,12 @@ const HdriSetting = observer(() => {
         />
         <TitleWrapper>
           <span>{"컬러"}</span>
-          <ColorPicker label={"컬러"} color={directionalLightColor} />
+          <ColorPicker
+            label={"컬러"}
+            color={directionalLightColor}
+            onChangeHsv={updateDirectionalLightColor}
+            onChangeA={updateDirectionalLightAlpha}
+          />
         </TitleWrapper>
       </Accordion>
     </>

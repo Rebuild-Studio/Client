@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import Accordion from "@/components/layout/Accordion";
 import Switch from "@/components/buttons/SwitchButton";
+import {
+  updateCanvasBackgroundColor,
+  updateCanvasBackgroundAlpha,
+} from "@/components/common/RightPanel/ColorHandler";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
@@ -16,18 +20,25 @@ const TitleWrapper = styled.div`
 
 const DisplaySetting = observer(() => {
   //white
-  const [color, setColor] = useState<HsvaColor>({
-    h: 0,
-    s: 0,
-    v: 100,
-    a: 0,
-  });
+  const [color, setColor] = useState<HsvaColor>(
+    storeContainer.sceneStore.canvasBackgroundColor
+  );
+
+  useEffect(() => {
+    setColor(storeContainer.sceneStore.canvasBackgroundColor);
+  }, [storeContainer.sceneStore.canvasBackgroundColor]);
+
   return (
     <>
       <Accordion title={"배경 컬러"}>
         <TitleWrapper>
           <span>{"배경 컬러"}</span>
-          <ColorPicker label={"컬러"} color={color} />
+          <ColorPicker
+            label={"컬러"}
+            color={color}
+            onChangeHsv={updateCanvasBackgroundColor}
+            onChangeA={updateCanvasBackgroundAlpha}
+          />
         </TitleWrapper>
       </Accordion>
 

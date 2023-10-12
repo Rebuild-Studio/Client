@@ -1,8 +1,45 @@
 import * as THREE from "three";
 import { HsvaColor, RgbColor, hsvaToHex, rgbaToHsva } from "@uiw/color-convert";
-import primitiveStore from "@/store/primitiveStore";
+import storeContainer from "@/store/storeContainer";
+
+export const updateAmbientLightColor = (phsva: HsvaColor) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.ambientLightColor = phsva;
+};
+
+export const updateAmbientLightAlpha = (alpha: number) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.ambientLightColor.a = alpha;
+};
+
+export const updateDirectionalLightColor = (phsva: HsvaColor) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.directionalLightColor = phsva;
+};
+
+export const updateDirectionalLightAlpha = (alpha: number) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.directionalLightColor.a = alpha;
+};
+
+export const updateCanvasBackgroundColor = (phsva: HsvaColor) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.canvasBackgroundColor = phsva;
+};
+
+export const updateCanvasBackgroundAlpha = (alpha: number) => {
+  const { sceneStore } = storeContainer;
+
+  sceneStore.canvasBackgroundColor.a = alpha;
+};
 
 export const updateMaterialColor = (phsva: HsvaColor) => {
+  const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const selectedMaterial = selectedPrimitive.material;
   const hexColor = hsvaToHex(phsva);
@@ -15,6 +52,7 @@ export const updateMaterialColor = (phsva: HsvaColor) => {
 };
 
 export const updateMaterialAlpha = (alpha: number) => {
+  const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const selectedMaterial = selectedPrimitive.material;
 
