@@ -13,6 +13,7 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
+import useExportMxJson from "../hooks/useExportMxJson";
 
 const RenderScene = observer(() => {
   const {
@@ -21,6 +22,7 @@ const RenderScene = observer(() => {
     contextMenuStore,
     keyboardEventStore,
     selectedObjectStore,
+    sceneControlStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const raycaster = useThree((state) => state.raycaster);
@@ -31,6 +33,11 @@ const RenderScene = observer(() => {
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
+
+  const [isSuccess, isProcessing] = useExportMxJson({
+    scene,
+    sceneControlStore,
+  });
 
   useEffect(() => {
     // mouse event
@@ -60,8 +67,8 @@ const RenderScene = observer(() => {
             onContextMenuSceneEvents(intersectObjects);
             break;
           }
-          default: {
-          }
+          default:
+            break;
         }
       }
     );
@@ -86,7 +93,7 @@ const RenderScene = observer(() => {
   // contextMenu 실행
   useEffect(() => {
     executeContextMenu(scene);
-  }, [contextMenuStore.currentSelectedContextMenu]);
+  }, [contextMenuStore.currentSelectedContextMenu, scene]);
 
   useEffect(() => {
     if (selectedPrimitive && selectedObjectStore.selectedMaterial) {

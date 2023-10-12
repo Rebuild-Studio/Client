@@ -1,10 +1,11 @@
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
+import { basicColors, bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import BottomPopOver from "./layout/popover/BottomPopOver";
 import { SubMenu } from "./common/subMenu/SubMenu";
 import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
+import sceneControlStore from "@/store/sceneControlStore";
 
 const StyledBar = styled.div`
   height: 38px;
@@ -14,55 +15,24 @@ const StyledBar = styled.div`
   align-items: center;
 `;
 
+const Menu = ({ label }: { label: string }) => (
+  <MenuButton
+    backgroundColor={bgColors[101728]}
+    hoverBackgroundColor={bgColors[101728]}
+    width="50px"
+    disabled={false}
+    color={basicColors.white}
+    fontSize="small"
+    label={label}
+    onClick={() => {}}
+  />
+);
+
 const MenuBar = () => {
-  const ComponentBtn = () => (
-    <MenuButton
-      backgroundColor={bgColors[101728]}
-      hoverBackgroundColor={bgColors[101728]}
-      width="50px"
-      disabled={false}
-      color={basicColors.white}
-      fontSize="small"
-      label="컴포넌트"
-      onClick={() => {}}
-    />
-  );
-  const PlugInBtn = () => (
-    <MenuButton
-      backgroundColor={bgColors[101728]}
-      hoverBackgroundColor={bgColors[101728]}
-      width="50px"
-      disabled={true}
-      color={grayColors[535353]}
-      fontSize="small"
-      label="플러그인"
-      onClick={() => {}}
-    />
-  );
-  const ConfigureBtn = () => (
-    <MenuButton
-      backgroundColor={bgColors[101728]}
-      hoverBackgroundColor={bgColors[101728]}
-      width="50px"
-      disabled={false}
-      color={basicColors.white}
-      fontSize="small"
-      label="설정"
-      onClick={() => {}}
-    />
-  );
-  const HelpBtn = () => (
-    <MenuButton
-      backgroundColor={bgColors[101728]}
-      hoverBackgroundColor={bgColors[101728]}
-      width="50px"
-      disabled={false}
-      color={basicColors.white}
-      fontSize="small"
-      label="도움말"
-      onClick={() => {}}
-    />
-  );
+  const ComponentBtn = () => <Menu label="컴포넌트" />;
+  const PlugInBtn = () => <Menu label="플러그인" />;
+  const ConfigureBtn = () => <Menu label="설정" />;
+  const HelpBtn = () => <Menu label="도움말" />;
 
   const componentData: MenuItemType[] = [
     {
@@ -88,6 +58,11 @@ const MenuBar = () => {
       label: "GLB로 내보내기(전체)",
       disabled: false,
       onClick: () => {},
+    },
+    {
+      label: "MX-JSON으로 내보내기",
+      disabled: false,
+      onClick: () => sceneControlStore.setExportSceneJsonTrigger(true),
     },
   ];
   const configureData: MenuItemType[] = [
