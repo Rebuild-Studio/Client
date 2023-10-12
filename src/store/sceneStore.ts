@@ -64,6 +64,8 @@ interface Scene {
 
   setSSAOToggle: (state: boolean) => void;
   setBloomToggle: (state: boolean) => void;
+
+  templates: string[];
 }
 
 const sceneStore = observable<Scene>({
@@ -161,7 +163,18 @@ const sceneStore = observable<Scene>({
     sceneStore.bloomToggle = state;
   },
 
-  // 씬(Scene) 설정 - setter
+  templates: [
+    "MX_hdr_indoor_3pointLightStudio_01",
+    "MX_hdr_indoor_artistWorkroom_01",
+    "MX_hdr_indoor_ballroom_01",
+    "MX_hdr_outdoor_cityStreet_01",
+    "MX_hdr_outdoor_clearedCloud_01",
+    "MX_hdr_outdoor_dayLight_01",
+    "MX_hdr_outdoor_forest_01",
+    "MX_hdr_outdoor_night_01",
+    "MX_hdr_outdoor_sunsetLight_01",
+    "MX_hdr_outdoor_sunsetLight_02",
+  ],
 } as Scene);
 
 export default sceneStore;

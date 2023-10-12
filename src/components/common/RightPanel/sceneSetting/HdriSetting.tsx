@@ -14,7 +14,7 @@ import {
   updateDirectionalLightColor,
   updateDirectionalLightAlpha,
 } from "@/components/common/RightPanel/ColorHandler";
-import MaterialTemplate from "@/components/common/RightPanel/MaterialTemplate";
+import BackgroundImageTemplate from "./BackgroundImageTemplate";
 
 const TitleWrapper = styled.div`
   margin-top: 10px;
@@ -53,7 +53,10 @@ const HdriSetting = observer(() => {
 
         <TitleWrapper>
           <span>{"환경이미지"}</span>
-          <CustomMenu title={"머테리얼"} MenuItem={<MaterialTemplate />} />
+          <CustomMenu
+            title={"환경이미지 템플릿"}
+            MenuItem={<BackgroundImageTemplate />}
+          />
         </TitleWrapper>
 
         <Slider
