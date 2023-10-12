@@ -71,6 +71,8 @@ interface Scene {
 }
 
 const sceneStore = observable<Scene>({
+  type: "none",
+
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
   hdriToggle: true,
@@ -177,6 +179,6 @@ const sceneStore = observable<Scene>({
     "MX_hdr_outdoor_sunsetLight_01",
     "MX_hdr_outdoor_sunsetLight_02",
   ],
-} as Scene);
+});
 
 export default sceneStore;

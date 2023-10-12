@@ -19,6 +19,6 @@ const rightPanelStore: RightPanelStore = observable<RightPanelStore>({
   setType(type: string) {
     this.type = type;
   },
-} as RightPanelStore);
+});
 
 export default rightPanelStore;
