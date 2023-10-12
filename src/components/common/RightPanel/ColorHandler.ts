@@ -4,34 +4,34 @@ import storeContainer from "@/store/storeContainer";
 
 const colorHandler = {
   updateAmbientLightColor: (phsva: HsvaColor) => {
-    const { sceneStore } = storeContainer;
+    const { sceneSettingStore } = storeContainer;
 
-    sceneStore.ambientLightColor = phsva;
+    sceneSettingStore.ambientLightColor = phsva;
   },
 
   updateAmbientLightAlpha: (alpha: number) => {
-    const { sceneStore } = storeContainer;
-    sceneStore.ambientLightColor.a = alpha;
+    const { sceneSettingStore } = storeContainer;
+    sceneSettingStore.ambientLightColor.a = alpha;
   },
 
   updateDirectionalLightColor: (phsva: HsvaColor) => {
-    const { sceneStore } = storeContainer;
-    sceneStore.directionalLightColor = phsva;
+    const { sceneSettingStore } = storeContainer;
+    sceneSettingStore.directionalLightColor = phsva;
   },
 
   updateDirectionalLightAlpha: (alpha: number) => {
-    const { sceneStore } = storeContainer;
-    sceneStore.directionalLightColor.a = alpha;
+    const { sceneSettingStore } = storeContainer;
+    sceneSettingStore.directionalLightColor.a = alpha;
   },
 
   updateCanvasBackgroundColor: (phsva: HsvaColor) => {
-    const { sceneStore } = storeContainer;
-    sceneStore.canvasBackgroundColor = phsva;
+    const { sceneSettingStore } = storeContainer;
+    sceneSettingStore.canvasBackgroundColor = phsva;
   },
 
   updateCanvasBackgroundAlpha: (alpha: number) => {
-    const { sceneStore } = storeContainer;
-    sceneStore.canvasBackgroundColor.a = alpha;
+    const { sceneSettingStore } = storeContainer;
+    sceneSettingStore.canvasBackgroundColor.a = alpha;
   },
 
   updateMaterialColor: (phsva: HsvaColor) => {
