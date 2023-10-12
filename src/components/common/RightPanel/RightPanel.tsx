@@ -50,43 +50,45 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
     }
   }, [selectedPrimitive]);
 
-  return selectedPrimitive ? (
-    <RightPanelContainer $isOpen={isOpen}>
-      <Panel label={"속성값"} options={undefined}>
-        <Tab
-          tabs={["오브젝트", "쉐이프"]}
-          tabContents={[
-            <>
-              <Accordion title={"트랜스포메이션"}>
-                <PropertyValue
-                  position={{ x: position.x, y: position.y, z: position.z }}
-                  rotation={{
-                    x: rotation.x,
-                    y: rotation.y,
-                    z: rotation.z,
-                  }}
-                  scale={{
-                    x: scale.x,
-                    y: scale.y,
-                    z: scale.z,
-                  }}
-                />
-              </Accordion>
-              <Accordion title={"머터리얼"}>
-                <Material
-                  metalness={metalness}
-                  roughness={roughness}
-                  color={color}
-                />
-              </Accordion>
-            </>,
-            <div>{"쉐이프"}</div>,
-          ]}
-        />
-      </Panel>
-    </RightPanelContainer>
-  ) : (
-    <></>
+  return (
+    <>
+      {selectedPrimitive && (
+        <RightPanelContainer $isOpen={isOpen}>
+          <Panel label={"속성값"} options={undefined}>
+            <Tab
+              tabs={["오브젝트", "쉐이프"]}
+              tabContents={[
+                <>
+                  <Accordion title={"트랜스포메이션"}>
+                    <PropertyValue
+                      position={{ x: position.x, y: position.y, z: position.z }}
+                      rotation={{
+                        x: rotation.x,
+                        y: rotation.y,
+                        z: rotation.z,
+                      }}
+                      scale={{
+                        x: scale.x,
+                        y: scale.y,
+                        z: scale.z,
+                      }}
+                    />
+                  </Accordion>
+                  <Accordion title={"머터리얼"}>
+                    <Material
+                      metalness={metalness}
+                      roughness={roughness}
+                      color={color}
+                    />
+                  </Accordion>
+                </>,
+                <div>{"쉐이프"}</div>,
+              ]}
+            />
+          </Panel>
+        </RightPanelContainer>
+      )}
+    </>
   );
 });
 
