@@ -2,6 +2,13 @@ import { observable } from "mobx";
 
 type SceneType = "scene" | "none";
 
+interface SceneSettingColor {
+  h: number;
+  s: number;
+  v: number;
+  a: number;
+}
+
 interface Scene {
   type: SceneType;
 
@@ -23,40 +30,25 @@ interface Scene {
 
   ambientLightToggle: boolean;
   ambientLightIntensity: number;
-  ambientLightColor: { h: number; s: number; v: number; a: number };
+  ambientLightColor: SceneSettingColor;
 
   setAmbientLightToggle: (state: boolean) => void;
   setAmbientLightIntensity: (state: number) => void;
-  setAmbientLightColor: (state: {
-    h: number;
-    s: number;
-    v: number;
-    a: number;
-  }) => void;
+  setAmbientLightColor: (state: SceneSettingColor) => void;
 
   directionalLightToggle: boolean;
   directionalLightIntensity: number;
-  directionalLightColor: { h: number; s: number; v: number; a: number };
+  directionalLightColor: SceneSettingColor;
 
   setDirectionalLightToggle: (state: boolean) => void;
   setDirectionalLightIntensity: (state: number) => void;
-  setDirectionalLightColor: (state: {
-    h: number;
-    s: number;
-    v: number;
-    a: number;
-  }) => void;
+  setDirectionalLightColor: (state: SceneSettingColor) => void;
 
   canvasBackgroundColorToggle: boolean;
-  canvasBackgroundColor: { h: number; s: number; v: number; a: number };
+  canvasBackgroundColor: SceneSettingColor;
 
   setCanvasBackgroundColorToggle: (state: boolean) => void;
-  setCanvasBackgroundColor: (state: {
-    h: number;
-    s: number;
-    v: number;
-    a: number;
-  }) => void;
+  setCanvasBackgroundColor: (state: SceneSettingColor) => void;
 
   isGridVisible: boolean;
   isAxisVisible: boolean;
