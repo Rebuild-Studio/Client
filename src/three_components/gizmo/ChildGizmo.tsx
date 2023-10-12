@@ -33,57 +33,63 @@ const ChildGizmo = observer(() => {
     }
   };
 
+  const isChildGizmoActivated = () => {
+    return (
+      selectedChild &&
+      Object.keys(primitiveStore.selectedPrimitives).length < 2 &&
+      !primitiveStore.meshes[selectedChild.userData["storeId"]] &&
+      !selectedChild.userData["isLocked"]
+    );
+  };
+
   return (
     <>
-      {selectedChild &&
-        Object.keys(primitiveStore.selectedPrimitives).length < 2 &&
-        !primitiveStore.meshes[selectedChild.userData["storeId"]] &&
-        !selectedChild.userData["isLocked"] && (
-          <>
-            {transformControlStore.isTranslated && (
-              <TransformControls
-                mode="translate"
-                object={selectedChild}
-                onMouseDown={() => {
-                  transformControlStore.setIsTranslated();
-                }}
-                onMouseUp={() => {
-                  // 자식 position이 바뀌었으므로 parent position 재지정
-                  rePositionParent();
-                  transformControlStore.clearTransform();
-                }}
-              />
-            )}
-            {transformControlStore.isRotated && (
-              <TransformControls
-                mode="rotate"
-                object={selectedChild}
-                size={1.2}
-                onMouseDown={() => {
-                  if (transformControlStore.currentControl !== "TRANSFORM") {
-                    transformControlStore.setIsRotated();
-                  }
-                }}
-                onMouseUp={() => {
-                  transformControlStore.clearTransform();
-                }}
-              />
-            )}
-            {transformControlStore.isScaled && (
-              <TransformControls
-                mode="scale"
-                object={selectedChild}
-                size={0.8}
-                onMouseDown={() => {
-                  transformControlStore.setIsScaled();
-                }}
-                onMouseUp={() => {
-                  transformControlStore.clearTransform();
-                }}
-              />
-            )}
-          </>
-        )}
+      {isChildGizmoActivated() && (
+        <>
+          {transformControlStore.isTranslated && (
+            <TransformControls
+              mode="translate"
+              object={selectedChild}
+              onMouseDown={() => {
+                transformControlStore.setIsTranslated();
+              }}
+              onMouseUp={() => {
+                // 자식 position이 바뀌었으므로 parent position 재지정
+                rePositionParent();
+                transformControlStore.clearTransform();
+              }}
+            />
+          )}
+          {transformControlStore.isRotated && (
+            <TransformControls
+              mode="rotate"
+              object={selectedChild}
+              size={1.2}
+              onMouseDown={() => {
+                if (transformControlStore.currentControl !== "TRANSFORM") {
+                  transformControlStore.setIsRotated();
+                }
+              }}
+              onMouseUp={() => {
+                transformControlStore.clearTransform();
+              }}
+            />
+          )}
+          {transformControlStore.isScaled && (
+            <TransformControls
+              mode="scale"
+              object={selectedChild}
+              size={0.8}
+              onMouseDown={() => {
+                transformControlStore.setIsScaled();
+              }}
+              onMouseUp={() => {
+                transformControlStore.clearTransform();
+              }}
+            />
+          )}
+        </>
+      )}
     </>
   );
 });
