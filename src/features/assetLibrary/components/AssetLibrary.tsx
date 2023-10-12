@@ -4,7 +4,6 @@ import Header from "./header";
 import Body from "./body";
 import Footer from "./footer";
 import { useEffect } from "react";
-import { LibraryAsset } from "../types/fetchAssetType";
 import { observer } from "mobx-react";
 import assetCategoryStore from "@/store/assetCategoryStore";
 import assetLibraryStore from "@/store/assetLibraryStore";
