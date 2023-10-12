@@ -8,7 +8,7 @@ import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
 import Material from "./MaterialInfo";
-import { rgbToHsva } from "./ColorHandler";
+import colorHandler from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
 
 const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
@@ -30,6 +30,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
+  const { rgbToHsva } = colorHandler;
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 

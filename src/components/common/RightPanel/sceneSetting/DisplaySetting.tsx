@@ -3,13 +3,10 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import Accordion from "@/components/layout/Accordion";
 import Switch from "@/components/buttons/SwitchButton";
-import {
-  updateCanvasBackgroundColor,
-  updateCanvasBackgroundAlpha,
-} from "@/components/common/RightPanel/ColorHandler";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
+import colorHandler from "@/components/common/RightPanel/ColorHandler";
 
 const TitleWrapper = styled.div`
   margin-top: 10px;
@@ -19,6 +16,8 @@ const TitleWrapper = styled.div`
 `;
 
 const DisplaySetting = observer(() => {
+  const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
+    colorHandler;
   const { sceneStore } = storeContainer;
   const [color, setColor] = useState<HsvaColor>(
     sceneStore.canvasBackgroundColor

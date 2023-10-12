@@ -8,12 +8,7 @@ import CustomMenu from "@/components/layout/Menu";
 import Switch from "@/components/buttons/SwitchButton";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
-import {
-  updateAmbientLightColor,
-  updateAmbientLightAlpha,
-  updateDirectionalLightColor,
-  updateDirectionalLightAlpha,
-} from "@/components/common/RightPanel/ColorHandler";
+import colorHandler from "@/components/common/RightPanel/ColorHandler";
 import BackgroundImageTemplate from "./BackgroundImageTemplate";
 
 const TitleWrapper = styled.div`
@@ -25,6 +20,12 @@ const TitleWrapper = styled.div`
 
 const HdriSetting = observer(() => {
   const { sceneStore } = storeContainer;
+  const {
+    updateAmbientLightColor,
+    updateAmbientLightAlpha,
+    updateDirectionalLightColor,
+    updateDirectionalLightAlpha,
+  } = colorHandler;
   const [ambientLightColor, setAmbientLightColor] = useState<HsvaColor>({
     h: 0,
     s: 0,
