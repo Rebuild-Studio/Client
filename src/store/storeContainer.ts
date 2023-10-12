@@ -8,7 +8,7 @@ import contextMenuStore from "./contextMenuStore";
 import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
 import rightPanelStore from "./rightPanelStore";
-import sceneStore from "./sceneStore";
+import sceneSettingStore from "./sceneSettingStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -21,7 +21,7 @@ const storeContainer = {
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
   rightPanelStore: rightPanelStore,
-  sceneStore: sceneStore,
+  sceneSettingStore: sceneSettingStore,
 };
 
 export default storeContainer;

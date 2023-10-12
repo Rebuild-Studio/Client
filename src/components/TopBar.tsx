@@ -57,12 +57,13 @@ const ComponentName = styled.div`
 `;
 
 const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
-  const { rightPanelStore } = storeContainer;
+  const { sceneSettingStore } = storeContainer;
+
   const sceneSettingToggle = () => {
-    if (rightPanelStore.getType() !== "scene") {
-      rightPanelStore.setType("scene");
+    if (sceneSettingStore.type !== "scene") {
+      sceneSettingStore.setType("scene");
     } else {
-      rightPanelStore.setType("none");
+      sceneSettingStore.setType("none");
     }
   };
 

@@ -18,14 +18,14 @@ const TitleWrapper = styled.div`
 const DisplaySetting = observer(() => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
     colorHandler;
-  const { sceneStore } = storeContainer;
+  const { sceneSettingStore } = storeContainer;
   const [color, setColor] = useState<HsvaColor>(
-    sceneStore.canvasBackgroundColor
+    sceneSettingStore.canvasBackgroundColor
   );
 
   useEffect(() => {
-    setColor(sceneStore.canvasBackgroundColor);
-  }, [sceneStore.canvasBackgroundColor]);
+    setColor(sceneSettingStore.canvasBackgroundColor);
+  }, [sceneSettingStore.canvasBackgroundColor]);
 
   return (
     <>
@@ -44,13 +44,13 @@ const DisplaySetting = observer(() => {
       <Accordion title={"그리드"}>
         <Switch
           label={"사각형 그리드"}
-          checked={sceneStore.isGridVisible}
-          onChange={sceneStore.setIsGridVisible}
+          checked={sceneSettingStore.isGridVisible}
+          onChange={sceneSettingStore.setIsGridVisible}
         />
         <Switch
           label={"중심선 그리드"}
-          checked={sceneStore.isAxisVisible}
-          onChange={sceneStore.setIsAxisVisible}
+          checked={sceneSettingStore.isAxisVisible}
+          onChange={sceneSettingStore.setIsAxisVisible}
         />
       </Accordion>
     </>

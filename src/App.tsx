@@ -8,13 +8,13 @@ import Scene from "./three_components/common/Scene";
 import ToastContainer from "@components/common/ToastContainer.tsx";
 
 const App = observer(() => {
-  const { rightPanelStore } = storeContainer;
+  const { sceneSettingStore } = storeContainer;
 
   return (
     <AppWrapper>
       <MenuBar />
       <StudioLayout />
-      {rightPanelStore.getType() === "scene" && <SceneSettingPanel />}
+      {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
       <Scene />
       <ToastContainer />
     </AppWrapper>

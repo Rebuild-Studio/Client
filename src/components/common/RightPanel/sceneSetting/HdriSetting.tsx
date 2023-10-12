@@ -19,7 +19,7 @@ const TitleWrapper = styled.div`
 `;
 
 const HdriSetting = observer(() => {
-  const { sceneStore } = storeContainer;
+  const { sceneSettingStore } = storeContainer;
   const {
     updateAmbientLightColor,
     updateAmbientLightAlpha,
@@ -37,20 +37,20 @@ const HdriSetting = observer(() => {
   );
 
   useEffect(() => {
-    setAmbientLightColor(sceneStore.ambientLightColor);
-  }, [sceneStore.ambientLightColor]);
+    setAmbientLightColor(sceneSettingStore.ambientLightColor);
+  }, [sceneSettingStore.ambientLightColor]);
 
   useEffect(() => {
-    setDirectionalLightColor(sceneStore.directionalLightColor);
-  }, [sceneStore.directionalLightColor]);
+    setDirectionalLightColor(sceneSettingStore.directionalLightColor);
+  }, [sceneSettingStore.directionalLightColor]);
 
   return (
     <>
       <Accordion title={"환경이미지"}>
         <Switch
           label={""}
-          checked={sceneStore.hdriToggle}
-          onChange={sceneStore.setHdriToggle}
+          checked={sceneSettingStore.hdriToggle}
+          onChange={sceneSettingStore.setHdriToggle}
         />
 
         <TitleWrapper>
@@ -62,16 +62,16 @@ const HdriSetting = observer(() => {
         </TitleWrapper>
 
         <Slider
-          initValue={sceneStore.hdriIntensity}
-          onChange={sceneStore.setHdriIntensity}
+          initValue={sceneSettingStore.hdriIntensity}
+          onChange={sceneSettingStore.setHdriIntensity}
           min={0}
           max={5}
           title={"환경강도"}
           step={0.1}
         />
         <Slider
-          initValue={sceneStore.hdriYRotation}
-          onChange={sceneStore.setHdriYRotation}
+          initValue={sceneSettingStore.hdriYRotation}
+          onChange={sceneSettingStore.setHdriYRotation}
           title={"회전"}
           min={-180}
           max={180}
@@ -80,8 +80,8 @@ const HdriSetting = observer(() => {
       </Accordion>
       <Accordion title={"주변광"}>
         <Slider
-          initValue={sceneStore.ambientLightIntensity}
-          onChange={sceneStore.setAmbientLightIntensity}
+          initValue={sceneSettingStore.ambientLightIntensity}
+          onChange={sceneSettingStore.setAmbientLightIntensity}
           min={0}
           max={2}
           title={"강도"}
@@ -99,8 +99,8 @@ const HdriSetting = observer(() => {
       </Accordion>
       <Accordion title={"직사광"}>
         <Slider
-          initValue={sceneStore.directionalLightIntensity}
-          onChange={sceneStore.setDirectionalLightIntensity}
+          initValue={sceneSettingStore.directionalLightIntensity}
+          onChange={sceneSettingStore.setDirectionalLightIntensity}
           min={0}
           max={5}
           title={"강도"}

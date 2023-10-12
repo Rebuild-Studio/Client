@@ -4,6 +4,9 @@ type SceneType = "scene" | "none";
 
 interface Scene {
   type: SceneType;
+
+  setType(type: SceneType): void;
+
   hdriToggle: boolean;
   hdriBackgroundVisibleToggle: boolean;
   hdriIntensity: number;
@@ -72,6 +75,10 @@ interface Scene {
 
 const sceneStore = observable<Scene>({
   type: "none",
+
+  setType(type) {
+    sceneStore.type = type;
+  },
 
   // 씬(Scene) 설정 - 환경광
   // 환경이미지

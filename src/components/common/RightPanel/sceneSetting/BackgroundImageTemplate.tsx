@@ -10,22 +10,22 @@ import storeContainer from "@/store/storeContainer";
 // `;
 
 const MaterialTemplate = observer(() => {
-  const { sceneStore } = storeContainer;
+  const { sceneSettingStore } = storeContainer;
 
   return (
     <>
-      {sceneStore.templates.map((template, index) => (
+      {sceneSettingStore.templates.map((template) => (
         <h1>{template}</h1>
       ))}
       {/* <Grid
-        item={sceneStore.templates.map((template, index) => (
+        item={sceneSettingStore.templates.map((template, index) => (
           <ImageStyled
             key={template[1]}
             isSelected={true}
             src={`/icons/rightTab/${template[1]}.png`}
             alt={`item-${index}`}
             onClick={() => {
-                sceneStore.setSelectedMaterial(template[1]);
+                sceneSettingStore.setSelectedMaterial(template[1]);
             }}
           />
         ))}
