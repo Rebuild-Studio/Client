@@ -9,12 +9,8 @@ import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
-import { action, flowResult } from "mobx";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
-
-interface Props {}
 
 const Wrapper = styled.div`
   width: 100%;
@@ -57,7 +53,7 @@ const ButtonGroupName = styled.span`
   align-self: center;
 `;
 
-const CanvasBar = observer((props: Props) => {
+const CanvasBar = observer(() => {
   const { primitiveStore } = storeContainer;
   const { addToast } = useToast();
 

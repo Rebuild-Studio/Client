@@ -1,7 +1,6 @@
 import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
-import * as THREE from "three";
 
 interface GroupGizmoProps {
   storeId: string;
@@ -15,10 +14,10 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
         <TransformControls
           mode="translate"
           object={primitiveStore.meshes[props.storeId]}
-          onMouseDown={(e) => {
+          onMouseDown={() => {
             transformControlStore.setIsTranslated();
           }}
-          onMouseUp={(e) => {
+          onMouseUp={() => {
             transformControlStore.clearTransform();
           }}
         />
@@ -28,12 +27,12 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           mode="rotate"
           object={primitiveStore.meshes[props.storeId]}
           size={1.2}
-          onMouseDown={(e) => {
+          onMouseDown={() => {
             if (transformControlStore.currentControl !== "TRANSFORM") {
               transformControlStore.setIsRotated();
             }
           }}
-          onMouseUp={(e) => {
+          onMouseUp={() => {
             transformControlStore.clearTransform();
           }}
         />
@@ -43,10 +42,10 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           mode="scale"
           object={primitiveStore.meshes[props.storeId]}
           size={0.8}
-          onMouseDown={(e) => {
+          onMouseDown={() => {
             transformControlStore.setIsScaled();
           }}
-          onMouseUp={(e) => {
+          onMouseUp={() => {
             transformControlStore.clearTransform();
           }}
         />

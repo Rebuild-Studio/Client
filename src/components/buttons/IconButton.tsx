@@ -1,6 +1,6 @@
 import { ComponentProps, ComponentType, useEffect, useState } from "react";
 import { Props as ButtonProps, SCButton } from "../common/Button";
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import { basicColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { getShadow } from "@/utils/style/getShadow";
 
@@ -53,7 +53,7 @@ const IconButton = ({
     setIconPosition(
       iconGravity === "left"
         ? { left: <Icon />, right: label }
-        : { left: label, right: <Icon /> }
+        : { left: label, right: <Icon /> },
     );
   }, [iconGravity, label, Icon]);
 
