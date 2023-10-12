@@ -4,20 +4,22 @@ import Switch from "@/components/buttons/SwitchButton";
 import storeContainer from "@/store/storeContainer";
 
 const PostEffectSetting = observer(() => {
+  const { sceneStore } = storeContainer;
+
   return (
     <>
       <Accordion title={"명암 고급 효과"}>
         <Switch
           label={""}
-          checked={storeContainer.sceneStore.SSAOToggle}
-          onChange={storeContainer.sceneStore.setSSAOToggle}
+          checked={sceneStore.SSAOToggle}
+          onChange={sceneStore.setSSAOToggle}
         />
       </Accordion>
       <Accordion title={"반짝임 효과"}>
         <Switch
           label={""}
-          checked={storeContainer.sceneStore.bloomToggle}
-          onChange={storeContainer.sceneStore.setBloomToggle}
+          checked={sceneStore.bloomToggle}
+          onChange={sceneStore.setBloomToggle}
         />
       </Accordion>
     </>
