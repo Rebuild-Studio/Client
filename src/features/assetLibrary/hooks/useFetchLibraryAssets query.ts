@@ -1,12 +1,34 @@
 import getLibraryServices from "@/network/services/library/get/getLibraryServices";
-import { RequestGetAsset } from "@/network/services/library/get/models/GetLibraryModels";
+import {
+  RequestGetAsset,
+  ResponseGetAsset,
+} from "@/network/services/library/get/models/GetLibraryModels";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { LibraryAsset } from "../types/fetchAssetType";
+
+const assetDataMapper = (data: ResponseGetAsset[]) => {
+  const mappedData: LibraryAsset[] = data.map((asset) => {
+    return {
+      id: asset.id,
+      name: asset.name,
+      fileName: asset.fileName,
+      type: "asset",
+      domain: asset.domain,
+      createdAt: asset.createdAt,
+      author: asset.author,
+    };
+  });
+  return mappedData;
+};
 
 export const useFetchLibraryAssets = (queryParam: RequestGetAsset) => {
   const query = useQuery({
     queryKey: ["libraryAssets", queryParam],
-    queryFn: () => getLibraryServices.getAssets(queryParam),
+    queryFn: () =>
+      getLibraryServices
+        .getAssets(queryParam)
+        .then((res) => assetDataMapper(res)),
     keepPreviousData: true,
   });
   useEffect(() => {

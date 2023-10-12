@@ -39,7 +39,7 @@ const AssetLibrary = observer(() => {
       assetLibraryStore.setLibraryAssets([
         ...assetLibraryStore.libraryAssets,
         ...data,
-      ] as LibraryAsset[]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
+      ]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
   }, [data]);
 
   useEffect(() => {
