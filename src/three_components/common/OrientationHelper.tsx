@@ -3,13 +3,24 @@ import { basicColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
+import primitiveStore from "@/store/primitiveStore";
 
-const CanvasWrapper = styled.div`
+type Props = {
+  isOpen: boolean;
+};
+
+type CSSCanvasWrapper = {
+  $barIsOpen: boolean;
+  $panelIsOpen: boolean;
+};
+
+const CanvasWrapper = styled.div<CSSCanvasWrapper>`
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 50px;
-  left: 50px;
+  top: ${({ $barIsOpen }) => ($barIsOpen ? "calc(100px + 88px)" : "100px")};
+  right: ${({ $panelIsOpen }) =>
+    $panelIsOpen ? "calc(50px + 271px)" : "50px"};
   z-index: 1;
 `;
 
@@ -17,9 +28,12 @@ const CustomCanvas = styled(Canvas)`
   width: "100%";
   height: "100%";
 `;
-export const OrientationHelper = observer(() => {
+
+export const OrientationHelper = observer(({ isOpen }: Props) => {
+  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+
   return (
-    <CanvasWrapper>
+    <CanvasWrapper $barIsOpen={isOpen} $panelIsOpen={!!selectedPrimitive}>
       <CustomCanvas>
         <ambientLight intensity={1} visible={true} color={basicColors.white} />
         <directionalLight
