@@ -29,7 +29,7 @@ const BaseContextMenu = {
       setIsMouseRightClicked(true);
     };
 
-    const setOnMouseDownListener = (e: MouseEvent) => {
+    const setOnMouseDownListener = () => {
       setIsMouseRightClicked(false);
     };
 
@@ -49,46 +49,11 @@ const BaseContextMenu = {
             xPos={postion.xPos}
             yPos={postion.yPos}
             items={[
-              [
-                "미리보기",
-                "O",
-                () => {
-                  setIsMouseRightClicked(false);
-                },
-                true,
-              ],
-              [
-                "그리드 숨기기",
-                "Z",
-                () => {
-                  setIsMouseRightClicked(false);
-                },
-                true,
-              ],
-              [
-                "저장",
-                "Ctrl+S",
-                () => {
-                  setIsMouseRightClicked(false);
-                },
-                false,
-              ],
-              [
-                "붙여넣기",
-                "Ctrl+V",
-                () => {
-                  setIsMouseRightClicked(false);
-                },
-                false,
-              ],
-              [
-                "DIVIDER",
-                "",
-                () => {
-                  setIsMouseRightClicked(false);
-                },
-                false,
-              ],
+              ["미리보기", "O", true],
+              ["그리드 숨기기", "Z", true],
+              ["저장", "Ctrl+S", false],
+              ["붙여넣기", "Ctrl+V", false],
+              ["DIVIDER", "", false],
             ]}
           />
         )}

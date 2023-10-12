@@ -1,6 +1,6 @@
 import { useToast } from "@hooks/useToast";
 import ToastContainer from "@components/common/ToastContainer";
-import { ToastPosition } from "@/types/style/ToastPosition";
+import { ToastPosition } from "@/types/style/toastPosition";
 
 interface ToastContainerTestProps {
   position?: ToastPosition;

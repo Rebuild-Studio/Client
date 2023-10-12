@@ -7,6 +7,8 @@ import keyboardEventStore from "./keyboardEventStore";
 import contextMenuStore from "./contextMenuStore";
 import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
+import assetLibraryStore from "./assetLibraryStore";
+import assetCategoryStore from "./assetCategoryStore";
 import rightPanelStore from "./rightPanelStore";
 import sceneSettingStore from "./sceneSettingStore";
 
@@ -20,6 +22,8 @@ const storeContainer = {
   contextMenuStore: contextMenuStore,
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
+  assetLibraryStore: assetLibraryStore,
+  assetCategoryStore: assetCategoryStore,
   rightPanelStore: rightPanelStore,
   sceneSettingStore: sceneSettingStore,
 };
