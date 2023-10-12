@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Slider from "../Slider";
 import CustomMenu from "@/components/layout/Menu";
-import colorHandler from "@/components/common/RightPanel/ColorHandler";
+import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 import MaterialTemplate from "./MaterialTemplate";
 import ColorPicker from "./ColorPicker";
 import * as THREE from "three";
@@ -36,7 +36,7 @@ const Material = ({
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
-  const { updateMaterialColor, updateMaterialAlpha } = colorHandler;
+  const { updateMaterialColor, updateMaterialAlpha } = ColorHandler;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
   useEffect(() => {

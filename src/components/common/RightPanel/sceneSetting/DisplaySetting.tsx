@@ -6,7 +6,7 @@ import Switch from "@/components/buttons/SwitchButton";
 import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
-import colorHandler from "@/components/common/RightPanel/ColorHandler";
+import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 
 const TitleWrapper = styled.div`
   margin-top: 10px;
@@ -17,7 +17,7 @@ const TitleWrapper = styled.div`
 
 const DisplaySetting = observer(() => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
-    colorHandler;
+    ColorHandler;
   const { sceneSettingStore } = storeContainer;
   const [color, setColor] = useState<HsvaColor>(
     sceneSettingStore.canvasBackgroundColor

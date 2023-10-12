@@ -2,39 +2,39 @@ import * as THREE from "three";
 import { HsvaColor, RgbColor, hsvaToHex, rgbaToHsva } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
 
-const colorHandler = {
-  updateAmbientLightColor: (phsva: HsvaColor) => {
+class ColorHandler {
+  static updateAmbientLightColor(phsva: HsvaColor) {
     const { sceneSettingStore } = storeContainer;
 
     sceneSettingStore.ambientLightColor = phsva;
-  },
+  }
 
-  updateAmbientLightAlpha: (alpha: number) => {
+  static updateAmbientLightAlpha(alpha: number) {
     const { sceneSettingStore } = storeContainer;
     sceneSettingStore.ambientLightColor.a = alpha;
-  },
+  }
 
-  updateDirectionalLightColor: (phsva: HsvaColor) => {
+  static updateDirectionalLightColor(phsva: HsvaColor) {
     const { sceneSettingStore } = storeContainer;
     sceneSettingStore.directionalLightColor = phsva;
-  },
+  }
 
-  updateDirectionalLightAlpha: (alpha: number) => {
+  static updateDirectionalLightAlpha(alpha: number) {
     const { sceneSettingStore } = storeContainer;
     sceneSettingStore.directionalLightColor.a = alpha;
-  },
+  }
 
-  updateCanvasBackgroundColor: (phsva: HsvaColor) => {
+  static updateCanvasBackgroundColor(phsva: HsvaColor) {
     const { sceneSettingStore } = storeContainer;
     sceneSettingStore.canvasBackgroundColor = phsva;
-  },
+  }
 
-  updateCanvasBackgroundAlpha: (alpha: number) => {
+  static updateCanvasBackgroundAlpha(alpha: number) {
     const { sceneSettingStore } = storeContainer;
     sceneSettingStore.canvasBackgroundColor.a = alpha;
-  },
+  }
 
-  updateMaterialColor: (phsva: HsvaColor) => {
+  static updateMaterialColor(phsva: HsvaColor) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
       primitiveStore.selectedPrimitives
@@ -47,9 +47,9 @@ const colorHandler = {
       selectedMaterial.opacity = phsva.a;
       selectedPrimitive.material = selectedMaterial;
     }
-  },
+  }
 
-  updateMaterialAlpha: (alpha: number) => {
+  static updateMaterialAlpha(alpha: number) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
       primitiveStore.selectedPrimitives
@@ -61,13 +61,18 @@ const colorHandler = {
       selectedMaterial.opacity = alpha;
       selectedPrimitive.material = selectedMaterial;
     }
-  },
+  }
 
-  rgbToHsva: (rgb: RgbColor, opacity: number) => {
-    const rgba = { r: rgb.r * 255, g: rgb.g * 255, b: rgb.b * 255, a: opacity };
+  static rgbToHsva(rgb: RgbColor, opacity: number) {
+    const rgba = {
+      r: rgb.r * 255,
+      g: rgb.g * 255,
+      b: rgb.b * 255,
+      a: opacity,
+    };
     const hsva = rgbaToHsva(rgba);
     return hsva;
-  },
-};
+  }
+}
 
-export default colorHandler;
+export default ColorHandler;
