@@ -4,7 +4,6 @@ import Header from "./header";
 import Body from "./body";
 import Footer from "./footer";
 import { useEffect } from "react";
-import { LibraryAsset } from "../types/fetchAssetType";
 import { observer } from "mobx-react";
 import assetCategoryStore from "@/store/assetCategoryStore";
 import assetLibraryStore from "@/store/assetLibraryStore";
@@ -39,7 +38,7 @@ const AssetLibrary = observer(() => {
       assetLibraryStore.setLibraryAssets([
         ...assetLibraryStore.libraryAssets,
         ...data,
-      ] as LibraryAsset[]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
+      ]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
   }, [data]);
 
   useEffect(() => {

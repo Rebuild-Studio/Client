@@ -15,9 +15,7 @@ const DomainDropdown = () => {
     label: domain.domainKR,
     value: domain.domain,
   }));
-  const [selectedOption, setSelectedOption] = useState<Option | null>(
-    domains[0]
-  );
+  const [selectedOption, setSelectedOption] = useState<Option>(domains[0]);
 
   const onClickOption = (option: Option) => {
     setSelectedOption(option);
