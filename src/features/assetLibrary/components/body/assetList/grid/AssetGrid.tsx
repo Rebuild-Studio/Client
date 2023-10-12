@@ -3,8 +3,7 @@ import GridItem from "./GridItem";
 import assetLibraryStore from "@/store/assetLibraryStore";
 import { observer } from "mobx-react";
 import { useEffect, useRef, useState } from "react";
-import infiniteScroll from "@/utils/infiniteScroll/infiniteScroll";
-import setThrottle from "@/utils/throttle/throttle";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -30,22 +29,7 @@ const AssetGrid = observer(() => {
   const [page, setPage] = useState(currentPage);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (!container) return;
-
-    const handleScroll = setThrottle(() => {
-      // 이슈 - setPage 에 mobx action을 인자로 넘길수가 없어, 내부 상태로 위임
-      // 아래처럼 useEffect를 많이쓰게됨,,,
-      return infiniteScroll(containerRef, page, setPage, 400);
-    }, 100);
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-    };
-  }, [currentPage, page]);
+  useInfiniteScroll(containerRef, currentPage, page, setPage);
 
   useEffect(() => {
     assetLibraryStore.setCurrentPage(page);
