@@ -5,6 +5,11 @@ import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 
+interface TopBarProps {
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,7 +56,7 @@ const ComponentName = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const TopBar = () => {
+const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
   const sceneSettingToggle = () => {
     if (storeContainer.rightPanelStore.getType() !== "scene") {
       storeContainer.rightPanelStore.setType("scene");
@@ -65,10 +70,23 @@ const TopBar = () => {
       <Container>
         <AppBarWrapper>
           <AppBarItem>
-            <Button label="캔버스" shadow="none" />
+            <Button
+              label="캔버스"
+              shadow="none"
+              onClick={() => {
+                setOpen(!isOpen);
+              }}
+            />
           </AppBarItem>
           <AppBarItem>
-            <Button label="인터렉션 에디터" shadow="none" disabled={true} />
+            <Button
+              label="인터렉션 에디터"
+              shadow="none"
+              onClick={() => {
+                setOpen(!isOpen);
+              }}
+              disabled={true}
+            />
           </AppBarItem>
         </AppBarWrapper>
         <FlexBox />
@@ -82,7 +100,7 @@ const TopBar = () => {
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
-      <CanvasBar />
+      {isOpen && <CanvasBar />}
     </Wrapper>
   );
 };
