@@ -5,6 +5,7 @@ import * as THREE from "three";
 import GroupGizmo from "../gizmo/GroupGizmo";
 import getCenterPoint from "../utils/getCenterPoint";
 import { useThree } from "@react-three/fiber";
+import { getParent } from "../utils/findGroup";
 
 interface SelectedGroupProps {
   storeId: string;
@@ -15,7 +16,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const scene = useThree((state) => state.scene);
-  const childrenStoreIds: Array<string> = [];
+  const childrenMeshes: Array<THREE.Mesh> = [];
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
@@ -42,7 +43,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
     mesh.position.set(...getCenterPoint(x, y, z, selectedPrimitives.length));
 
     selectedPrimitives.forEach((value) => {
-      childrenStoreIds.push(value.userData["storeId"]);
+      childrenMeshes.push(value);
       mesh.attach(value);
     });
 
@@ -50,10 +51,25 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
 
     return () => {
       try {
-        childrenStoreIds.forEach((storeId) => {
-          scene.attach(primitiveStore.meshes[storeId]);
+        childrenMeshes.forEach((child) => {
+          // meshes에 있는 지 확인
+          if (primitiveStore.meshes[child.userData["storeId"]]) {
+            scene.attach(child);
+          } else {
+            if (!child.userData["isLeave"]) {
+              const parent = getParent(
+                child.userData["rootId"],
+                child.userData["parentId"]
+              );
+              delete child.userData["rootId"];
+              delete child.userData["parentId"];
+              parent?.attach(child);
+            }
+          }
         });
-      } catch (e) {}
+      } catch (e) {
+        console.error(e);
+      }
 
       primitiveStore.removePrimitive(props.storeId);
     };
