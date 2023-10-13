@@ -9,7 +9,6 @@ import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
 import assetLibraryStore from "./assetLibraryStore";
 import assetCategoryStore from "./assetCategoryStore";
-import rightPanelStore from "./rightPanelStore";
 import sceneSettingStore from "./sceneSettingStore";
 
 const storeContainer = {
@@ -24,7 +23,6 @@ const storeContainer = {
   canvasHistoryStore: canvasHistoryStore,
   assetLibraryStore: assetLibraryStore,
   assetCategoryStore: assetCategoryStore,
-  rightPanelStore: rightPanelStore,
   sceneSettingStore: sceneSettingStore,
 };
 
