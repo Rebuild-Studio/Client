@@ -63,7 +63,7 @@ const Scene = observer(() => {
           }}
         >
           <ambientLight
-            intensity={1}
+            intensity={0.3}
             visible={true}
             color={basicColors.white}
           />
