@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
+import PointLight from "@/three_components/lights/PointLight";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -79,7 +80,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CubePrimitive storeId={storeId} />,
+                <CubePrimitive storeId={storeId} />
               );
             }}
           />
@@ -93,7 +94,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <SpherePrimitive storeId={storeId} />,
+                <SpherePrimitive storeId={storeId} />
               );
             }}
           />
@@ -106,7 +107,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CylinderPrimitive storeId={storeId} />,
+                <CylinderPrimitive storeId={storeId} />
               );
             }}
           />
@@ -119,7 +120,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <ConePrimitive storeId={storeId} />,
+                <ConePrimitive storeId={storeId} />
               );
             }}
           />
@@ -132,7 +133,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <TorusPrimitive storeId={storeId} />,
+                <TorusPrimitive storeId={storeId} />
               );
             }}
           />
@@ -145,7 +146,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CapsulePrimitive storeId={storeId} />,
+                <CapsulePrimitive storeId={storeId} />
               );
             }}
           />
@@ -156,6 +157,13 @@ const CanvasBar = observer(() => {
             shadow="none"
             backgroundImage="/icons/studio/btn_포인트_라이트.svg"
             hoverBackgroundImage="/icons/studio/btn_포인트_라이트_활성화.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <PointLight storeId={storeId} />
+              );
+            }}
           />
           <Button
             size="74px"
