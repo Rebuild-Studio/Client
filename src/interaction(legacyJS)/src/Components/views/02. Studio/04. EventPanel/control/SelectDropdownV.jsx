@@ -38,9 +38,9 @@ const SelectDropdown = observer((props) => {
       case "Object":
         args.key = "object";
         if (dropdownData.map.get(data.value)) {
-          setdefaultValue(data.value);
+          // setdefaultValue(data.value);
         } else {
-          setdefaultValue("");
+          // setdefaultValue("");
           removeObjectValue(args);
         }
         break;
