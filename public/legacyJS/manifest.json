@@ -1,0 +1,15 @@
+{
+  "short_name": "Scon",
+  "name": "Scon Studio",
+  "icons": [
+    {
+      "src": "Logo_Solid.png",
+      "type": "image/png",
+      "sizes": "134x136"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
