@@ -1,3 +1,4 @@
+import renderStore from "@/store/renderStore";
 import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
@@ -16,6 +17,13 @@ const Gizmo = observer((props: GizmoProps) => {
       return value.userData["isLocked"] === true;
     }
   );
+
+  // gizmo 이용중 카메라 이동 방지
+  const setCameraControlEnabled = (props: boolean) => {
+    if (!renderStore.controls) return;
+    renderStore.controls.enabled = props;
+  };
+
   return (
     <>
       {!isLocked &&
@@ -30,6 +38,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 object={primitiveStore.meshes[props.storeId]}
                 onMouseDown={() => {
                   transformControlStore.setIsTranslated();
+                  setCameraControlEnabled(false);
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -39,6 +48,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  setCameraControlEnabled(true);
                 }}
               />
             )}
@@ -54,6 +64,7 @@ const Gizmo = observer((props: GizmoProps) => {
                   if (transformControlStore.currentControl !== "TRANSFORM") {
                     transformControlStore.setIsRotated();
                   }
+                  setCameraControlEnabled(false);
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -63,6 +74,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  setCameraControlEnabled(true);
                 }}
               />
             )}
@@ -76,6 +88,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 size={0.8}
                 onMouseDown={() => {
                   transformControlStore.setIsScaled();
+                  setCameraControlEnabled(false);
                 }}
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
@@ -85,6 +98,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 }}
                 onMouseUp={() => {
                   transformControlStore.clearTransform();
+                  setCameraControlEnabled(true);
                 }}
               />
             )}

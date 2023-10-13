@@ -5,6 +5,8 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": false,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -37,6 +39,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["**/*.stories.ts", "**/*.stories.tsx"],
+  "exclude": ["node_modules", "dist", "build", "coverage", "storybook-static"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

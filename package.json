@@ -9,11 +9,13 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "jest"
   },
   "dependencies": {
     "@react-three/drei": "^9.81.0",
     "@react-three/fiber": "^8.13.7",
+    "@react-three/postprocessing": "^2.15.1",
     "@tanstack/react-query": "^4.33.0",
     "@uiw/color-convert": "^1.4.2",
     "@uiw/react-color": "^1.4.2",
@@ -21,11 +23,12 @@
     "mobx": "^6.10.0",
     "mobx-react": "^9.0.0",
     "nanoid": "^4.0.2",
+    "postprocessing": "^6.33.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "styled-components": "^6.0.7",
-    "three": "^0.156.0"
+    "three": "^0.156.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.3.2",

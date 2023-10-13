@@ -8,9 +8,14 @@ interface GroupGizmoProps {
 
 const GroupGizmo = observer((props: GroupGizmoProps) => {
   const { primitiveStore, transformControlStore } = storeContainer;
+  const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
+    (value) => {
+      return value.userData["isLocked"] === true;
+    }
+  );
   return (
     <>
-      {transformControlStore.isTranslated && (
+      {!isLocked && transformControlStore.isTranslated && (
         <TransformControls
           mode="translate"
           object={primitiveStore.meshes[props.storeId]}
@@ -22,7 +27,7 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           }}
         />
       )}
-      {transformControlStore.isRotated && (
+      {!isLocked && transformControlStore.isRotated && (
         <TransformControls
           mode="rotate"
           object={primitiveStore.meshes[props.storeId]}
@@ -37,7 +42,7 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           }}
         />
       )}
-      {transformControlStore.isScaled && (
+      {!isLocked && transformControlStore.isScaled && (
         <TransformControls
           mode="scale"
           object={primitiveStore.meshes[props.storeId]}
