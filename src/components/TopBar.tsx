@@ -3,6 +3,7 @@ import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
+import App from "@/interaction(legacyJS)/src/App";
 import storeContainer from "@/store/storeContainer";
 
 interface TopBarProps {
@@ -13,6 +14,7 @@ interface TopBarProps {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -103,6 +105,8 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
         />
       </Container>
       {isOpen && <CanvasBar />}
+      {!isOpen && <App />}
+      {/* [TBD] should not use isOpen, open state should be used repectively */}
     </Wrapper>
   );
 };
