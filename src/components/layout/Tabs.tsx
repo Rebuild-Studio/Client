@@ -1,5 +1,5 @@
 import { basicColors, bgColors } from "@/resources/colors/colors";
-import { CSSHexColor } from "@/types/style/CssUnits";
+import { CSSHexColor } from "@/types/style/cssUnits";
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 

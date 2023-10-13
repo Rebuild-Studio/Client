@@ -1,4 +1,4 @@
-import { CSSHexColor } from "@/types/style/CssUnits";
+import { CSSHexColor } from "@/types/style/cssUnits";
 
 /**
  * 사용하는 색상을 명세하는 곳 입니다.

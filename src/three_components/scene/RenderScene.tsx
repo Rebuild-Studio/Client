@@ -26,8 +26,10 @@ const RenderScene = observer(() => {
     selectedObjectStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
+
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
