@@ -1,6 +1,18 @@
 import { observable } from "mobx";
 
 type SceneType = "scene" | "none";
+type BackgroundImageType =
+  | "MX_hdr_indoor_3pointLightStudio_01"
+  | "MX_hdr_indoor_artistWorkroom_01"
+  | "MX_hdr_indoor_ballroom_01"
+  | "MX_hdr_outdoor_cityStreet_01"
+  | "MX_hdr_outdoor_clearedCloud_01"
+  | "MX_hdr_outdoor_dayLight_01"
+  | "MX_hdr_outdoor_forest_01"
+  | "MX_hdr_outdoor_night_01"
+  | "MX_hdr_outdoor_sunsetLight_01"
+  | "MX_hdr_outdoor_sunsetLight_02"
+  | "none";
 
 interface SceneSettingColor {
   h: number;
@@ -62,14 +74,17 @@ interface Scene {
   setSSAOToggle: (state: boolean) => void;
   setBloomToggle: (state: boolean) => void;
 
-  templates: string[];
+  backgroundImages: string[];
+  selectedBackgroundImage: BackgroundImageType;
+
+  setBackgroundImage: (state: BackgroundImageType) => void;
 }
 
-const sceneStore = observable<Scene>({
+const sceneSettingStore = observable<Scene>({
   type: "none",
 
   setType(type) {
-    sceneStore.type = type;
+    sceneSettingStore.type = type;
   },
 
   // 씬(Scene) 설정 - 환경광
@@ -82,22 +97,22 @@ const sceneStore = observable<Scene>({
   hdriZRotation: 0,
 
   setHdriToggle(state) {
-    sceneStore.hdriToggle = state;
+    sceneSettingStore.hdriToggle = state;
   },
   setHdriBackgroundVisibleToggle(state) {
-    sceneStore.hdriBackgroundVisibleToggle = state;
+    sceneSettingStore.hdriBackgroundVisibleToggle = state;
   },
   setHdriIntensity(state) {
-    sceneStore.hdriIntensity = state;
+    sceneSettingStore.hdriIntensity = state;
   },
   setHdriXRotation(state) {
-    sceneStore.hdriXRotation = state;
+    sceneSettingStore.hdriXRotation = state;
   },
   setHdriYRotation(state) {
-    sceneStore.hdriYRotation = state;
+    sceneSettingStore.hdriYRotation = state;
   },
   setHdriZRotation(state) {
-    sceneStore.hdriZRotation = state;
+    sceneSettingStore.hdriZRotation = state;
   },
 
   // 주변광
@@ -106,13 +121,13 @@ const sceneStore = observable<Scene>({
   ambientLightColor: { h: 0, s: 0, v: 100, a: 1 },
 
   setAmbientLightToggle(state) {
-    sceneStore.ambientLightToggle = state;
+    sceneSettingStore.ambientLightToggle = state;
   },
   setAmbientLightIntensity(state) {
-    sceneStore.ambientLightIntensity = state;
+    sceneSettingStore.ambientLightIntensity = state;
   },
   setAmbientLightColor(state) {
-    sceneStore.ambientLightColor = state;
+    sceneSettingStore.ambientLightColor = state;
   },
 
   // 직사광
@@ -121,13 +136,13 @@ const sceneStore = observable<Scene>({
   directionalLightColor: { h: 0, s: 0, v: 100, a: 1 },
 
   setDirectionalLightToggle(state) {
-    sceneStore.directionalLightToggle = state;
+    sceneSettingStore.directionalLightToggle = state;
   },
   setDirectionalLightIntensity(state) {
-    sceneStore.directionalLightIntensity = state;
+    sceneSettingStore.directionalLightIntensity = state;
   },
   setDirectionalLightColor(state) {
-    sceneStore.directionalLightColor = state;
+    sceneSettingStore.directionalLightColor = state;
   },
 
   // 씬(Scene) 설정 - 디스플레이
@@ -136,10 +151,10 @@ const sceneStore = observable<Scene>({
   canvasBackgroundColor: { h: 0, s: 0, v: 20, a: 1 },
 
   setCanvasBackgroundColorToggle(state) {
-    sceneStore.canvasBackgroundColorToggle = state;
+    sceneSettingStore.canvasBackgroundColorToggle = state;
   },
   setCanvasBackgroundColor(state) {
-    sceneStore.canvasBackgroundColor = state;
+    sceneSettingStore.canvasBackgroundColor = state;
   },
 
   // 그리드
@@ -149,10 +164,10 @@ const sceneStore = observable<Scene>({
   isAxisVisible: true,
 
   setIsGridVisible(state) {
-    sceneStore.isGridVisible = state;
+    sceneSettingStore.isGridVisible = state;
   },
   setIsAxisVisible(state) {
-    sceneStore.isAxisVisible = state;
+    sceneSettingStore.isAxisVisible = state;
   },
 
   // 씬(Scene) 설정 - 포스트 효과
@@ -160,13 +175,13 @@ const sceneStore = observable<Scene>({
   bloomToggle: false,
 
   setSSAOToggle(state) {
-    sceneStore.SSAOToggle = state;
+    sceneSettingStore.SSAOToggle = state;
   },
   setBloomToggle(state) {
-    sceneStore.bloomToggle = state;
+    sceneSettingStore.bloomToggle = state;
   },
 
-  templates: [
+  backgroundImages: [
     "MX_hdr_indoor_3pointLightStudio_01",
     "MX_hdr_indoor_artistWorkroom_01",
     "MX_hdr_indoor_ballroom_01",
@@ -178,6 +193,11 @@ const sceneStore = observable<Scene>({
     "MX_hdr_outdoor_sunsetLight_01",
     "MX_hdr_outdoor_sunsetLight_02",
   ],
+  selectedBackgroundImage: "none",
+
+  setBackgroundImage(state) {
+    sceneSettingStore.selectedBackgroundImage = state;
+  },
 });
 
-export default sceneStore;
+export default sceneSettingStore;
