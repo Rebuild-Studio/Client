@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { grayColors } from "@/resources/colors/colors";
@@ -89,49 +89,36 @@ const ColorPicker = observer(
       setOpen(false);
     };
 
-    // useRef를 사용하여 ColorPicker 컴포넌트의 루트 엘리먼트를 추적
-    const rootRef = useRef<HTMLDivElement>(null);
-
-    // 클릭 이벤트가 발생했을 때 다른 컴포넌트 닫기
-    const handleGlobalClick = (event: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
-
-    useEffect(() => {
-      // 컴포넌트가 마운트될 때 전역 클릭 이벤트 핸들러를 등록
-      window.addEventListener("click", handleGlobalClick);
-      return () => {
-        // 컴포넌트가 언마운트될 때 이벤트 핸들러를 해제
-        window.removeEventListener("click", handleGlobalClick);
-      };
-    }, []);
-
     return (
-      <Wrapper ref={rootRef}>
-        <ColorButton color={color} rgbColor={rgbColor} onClick={handleToggle} />
-        {anchorMenu && (
-          <StyledMenu
-            anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
-            open={open}
-            anchorLeft={anchorMenu.offsetLeft - 468}
-          >
-            <Container>
-              <Header>{label}</Header>
-              <ColorContent
-                rgbColor={rgbColor}
-                color={color}
-                onChangeHsvaProp={onChangeHsvaProp}
-                onChangeAlphaProp={onChangeAlphaProp}
-              />
-              <ButtonWrapper>
-                <button onClick={handleClose}>Close Menu</button>
-              </ButtonWrapper>
-            </Container>
-          </StyledMenu>
-        )}
-      </Wrapper>
+      <>
+        <Wrapper>
+          <ColorButton
+            color={color}
+            rgbColor={rgbColor}
+            onClick={handleToggle}
+          />
+          {anchorMenu && (
+            <StyledMenu
+              anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
+              open={open}
+              anchorLeft={anchorMenu.offsetLeft - 468}
+            >
+              <Container>
+                <Header>{label}</Header>
+                <ColorContent
+                  rgbColor={rgbColor}
+                  color={color}
+                  onChangeHsvaProp={onChangeHsvaProp}
+                  onChangeAlphaProp={onChangeAlphaProp}
+                />
+                <ButtonWrapper>
+                  <button onClick={handleClose}>Close Menu</button>
+                </ButtonWrapper>
+              </Container>
+            </StyledMenu>
+          )}
+        </Wrapper>
+      </>
     );
   }
 );
