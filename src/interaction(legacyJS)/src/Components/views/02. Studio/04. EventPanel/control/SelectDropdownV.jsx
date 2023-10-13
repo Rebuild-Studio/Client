@@ -38,10 +38,10 @@ const SelectDropdown = observer((props) => {
       case "Object":
         args.key = "object";
         if (dropdownData.map.get(data.value)) {
-          setdefaultValue(data.value);
+          // setdefaultValue(data.value);
         } else {
-          setdefaultValue("");
-          removeObjectValue(args);
+          // setdefaultValue("");
+          // removeObjectValue(args);
         }
         break;
       case "Light":
@@ -51,32 +51,32 @@ const SelectDropdown = observer((props) => {
       case "SpotLight":
         args.key = "light";
         if (dropdownData.map.get(data.value)) {
-          setdefaultValue(data.value);
+          // setdefaultValue(data.value);
         } else {
-          setdefaultValue("");
-          removeObjectValue(args);
+          // setdefaultValue("");
+          // removeObjectValue(args);
         }
         break;
       case "Function":
         args.key = "function";
         if (dropdownData.map.get(data.value)) {
-          setdefaultValue(data.value);
+          // setdefaultValue(data.value);
         } else {
-          setdefaultValue("");
-          removeObjectValue(args);
+          // setdefaultValue("");
+          // removeObjectValue(args);
         }
         break;
       case "Asset":
         args.key = "function";
         if (dropdownData.map.get(data.value)) {
-          setdefaultValue(data.value);
+          // setdefaultValue(data.value);
         } else {
-          setdefaultValue("");
-          removeObjectValue(args);
+          // setdefaultValue("");
+          // removeObjectValue(args);
         }
         break;
       default:
-        setdefaultValue(data.value);
+        // setdefaultValue(data.value);
         break;
     }
   }, [dropdownData, data.type, node.type, data.value, removeObjectValue]);

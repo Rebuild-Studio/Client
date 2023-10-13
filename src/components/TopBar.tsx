@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CavasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
