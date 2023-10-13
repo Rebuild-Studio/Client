@@ -1,5 +1,5 @@
 import { fonts } from "@resources/fonts/font";
-import { CSSSize } from "./CssUnits";
+import { CSSSize } from "./cssUnits";
 
 type Fonts = { [key: string]: CSSSize };
 

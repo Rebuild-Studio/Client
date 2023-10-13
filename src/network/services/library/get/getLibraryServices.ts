@@ -1,12 +1,18 @@
 import apiModule from "@/network/module/apiModule";
-import { RequestGetAsset, RequestSearchAsset } from "./models/GetLibraryModels";
+import {
+  RequestGetAsset,
+  RequestSearchAsset,
+  ResponseGetAsset,
+} from "./models/GetLibraryModels";
 
-const getAssets = async (params: RequestGetAsset) => {
-  const res = await apiModule.get("/library", {
+const getAssets = async (
+  params: RequestGetAsset
+): Promise<ResponseGetAsset[]> => {
+  const res = await apiModule.get<ResponseGetAsset[]>("/library", {
     params: params,
   });
 
-  return res;
+  return res.data;
 };
 
 const searchAsset = async (params: RequestSearchAsset) => {

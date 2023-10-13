@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
-import { CSSHexColor } from "@/types/style/CssUnits";
-import { FontType } from "@/types/style/Font";
+import { CSSHexColor } from "@/types/style/cssUnits";
+import { FontType } from "@/types/style/font";
 import styled, { keyframes, css } from "styled-components";
 
 export type ToastProps = {

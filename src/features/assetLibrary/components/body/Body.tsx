@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   background-color: ${bgColors[222222]};
   color: white;
-  height: 85%;
+  overflow: hidden;
 `;
 
 const ContentContainer = styled.div`
@@ -22,9 +22,6 @@ const Body = () => {
   return (
     <Container>
       <Category />
-      {
-        //here comes asset list tab
-      }
       <ContentContainer>
         <Toolbar />
         <AssetGrid />

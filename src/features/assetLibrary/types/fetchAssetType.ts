@@ -1,6 +1,6 @@
-import { DomainType } from "@/features/constants/domain";
+import { DomainType } from "@/features/assetLibrary/constants/domain";
 
-interface FetchAssetType {
+interface LibraryAsset {
   id: string;
   name: string;
   fileName: string;
@@ -10,4 +10,4 @@ interface FetchAssetType {
   author: string;
 }
 
-export type { FetchAssetType };
+export type { LibraryAsset };

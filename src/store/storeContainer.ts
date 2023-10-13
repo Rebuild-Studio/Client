@@ -8,6 +8,8 @@ import contextMenuStore from "./contextMenuStore";
 import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
 import renderStore from "./renderStore";
+import assetLibraryStore from "./assetLibraryStore";
+import assetCategoryStore from "./assetCategoryStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -20,6 +22,8 @@ const storeContainer = {
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
   renderStore: renderStore,
+  assetLibraryStore: assetLibraryStore,
+  assetCategoryStore: assetCategoryStore,
 };
 
 export default storeContainer;

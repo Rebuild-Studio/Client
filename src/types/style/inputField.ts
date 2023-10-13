@@ -1,4 +1,4 @@
-import { CSSHexColor, CSSRgba, CSSSize } from "./CssUnits";
+import { CSSHexColor, CSSRgba, CSSSize } from "./cssUnits";
 
 type InputType =
   | "text"
