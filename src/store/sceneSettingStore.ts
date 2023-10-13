@@ -74,7 +74,18 @@ interface Scene {
   setSSAOToggle: (state: boolean) => void;
   setBloomToggle: (state: boolean) => void;
 
-  backgroundImages: string[];
+  backgroundImages: [
+    "MX_hdr_indoor_3pointLightStudio_01",
+    "MX_hdr_indoor_artistWorkroom_01",
+    "MX_hdr_indoor_ballroom_01",
+    "MX_hdr_outdoor_cityStreet_01",
+    "MX_hdr_outdoor_clearedCloud_01",
+    "MX_hdr_outdoor_dayLight_01",
+    "MX_hdr_outdoor_forest_01",
+    "MX_hdr_outdoor_night_01",
+    "MX_hdr_outdoor_sunsetLight_01",
+    "MX_hdr_outdoor_sunsetLight_02"
+  ];
   selectedBackgroundImage: BackgroundImageType;
 
   setBackgroundImage: (state: BackgroundImageType) => void;

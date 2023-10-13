@@ -13,6 +13,7 @@ const ImageStyled = styled.img<{ isSelected: boolean }>`
 const BackgroundImageTemplate = observer(() => {
   const { sceneSettingStore } = storeContainer;
   const selectedBgImage = sceneSettingStore.selectedBackgroundImage;
+  // const backgroundImageList = sceneSettingStore.backgroundImages;
 
   return (
     <>
