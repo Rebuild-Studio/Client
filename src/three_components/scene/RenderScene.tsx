@@ -13,6 +13,7 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
+import onDropSceneEvents from "../utils/onDropSceneEvents";
 
 const RenderScene = observer(() => {
   const {
@@ -60,6 +61,11 @@ const RenderScene = observer(() => {
             onContextMenuSceneEvents(intersectObjects);
             break;
           }
+          case "onDrop": {
+            onDropSceneEvents(mouseEvent[1] as React.DragEvent<HTMLDivElement>);
+            break;
+          }
+
           default: {
           }
         }
