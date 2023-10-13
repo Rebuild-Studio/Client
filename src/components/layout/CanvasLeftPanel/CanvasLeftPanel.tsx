@@ -8,19 +8,28 @@ import Button from "@/components/common/Button";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 import primitiveStore from "@/store/primitiveStore";
 
-const Wrapper = styled.div`
+type Props = {
+  isOpen: boolean;
+};
+
+type CSSWrapper = {
+  $isOpen: boolean;
+};
+
+const Wrapper = styled.div<CSSWrapper>`
   z-index: 1;
   position: absolute;
-  top: 100px;
+  top: ${({ $isOpen }) => ($isOpen ? "180px" : "92px")};
 `;
 
 const MultiButtonBox = styled.div`
+  z-index: 1;
   position: absolute;
-  top: calc(100vh - 220px);
+  left: 0px;
+  bottom: 0px;
   display: flex;
   background-color: ${bgColors[222222]};
   border-radius: 0px 10px 0px 10px;
-  display: flex;
 `;
 
 const ButtonWrapper = styled.div`
@@ -35,21 +44,23 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-export const CanvasLeftPanel = observer(() => {
+export const CanvasLeftPanel = observer(({ isOpen }: Props) => {
   const [visibleHistoryPanel, setVisibleHistoryPanel] = useState(false);
   const [visibleHierarchyPanel, setVisibleHierarchyPanel] = useState(false);
 
   return (
-    <Wrapper>
-      {visibleHistoryPanel && (
-        <HistoryPanel
-          undoList={canvasHistoryStore.undoList}
-          redoList={canvasHistoryStore.redoList}
-        />
-      )}
-      {visibleHierarchyPanel && (
-        <HierarchyPanel meshes={primitiveStore.meshes} />
-      )}
+    <>
+      <Wrapper $isOpen={isOpen}>
+        {visibleHistoryPanel && (
+          <HistoryPanel
+            undoList={canvasHistoryStore.undoList}
+            redoList={canvasHistoryStore.redoList}
+          />
+        )}
+        {visibleHierarchyPanel && (
+          <HierarchyPanel meshes={primitiveStore.meshes} />
+        )}
+      </Wrapper>
       <MultiButtonBox>
         <ButtonWrapper>
           <Button
@@ -86,6 +97,6 @@ export const CanvasLeftPanel = observer(() => {
           />
         </ButtonWrapper>
       </MultiButtonBox>
-    </Wrapper>
+    </>
   );
 });
