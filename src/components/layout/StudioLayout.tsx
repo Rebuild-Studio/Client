@@ -6,7 +6,7 @@ import { OrientationHelper } from "@/three_components/common/OrientationHelper";
 import { CanvasLeftPanel } from "./CanvasLeftPanel/CanvasLeftPanel";
 
 const StudioLayout = observer(() => {
-  const [barOpen, setBarOpen] = useState(false);
+  const [barOpen, setBarOpen] = useState(true);
 
   return (
     <>
