@@ -4,6 +4,7 @@ import { renderGroup, renderPrimitive } from "./renderThreeComponents";
 import { MeshType } from "@/store/primitiveStore";
 import * as THREE from "three";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { copyGroup, copyObject } from "./copyObject";
 
 const executeContextMenu = (scene: THREE.Scene) => {
   const { projectStateStore, primitiveStore, contextMenuStore } =
@@ -22,24 +23,30 @@ const executeContextMenu = (scene: THREE.Scene) => {
       break;
     case "붙여넣기":
       Object.values(projectStateStore.currentCopyPrimitive).forEach((value) => {
-        const copyMesh = value.clone();
-        const pasteStoreId = nanoid();
-        copyMesh.userData["storeId"] = pasteStoreId;
-
-        primitiveStore.addPrimitive(
-          pasteStoreId,
-          renderPrimitive(pasteStoreId, copyMesh)
-        );
+        if (value.name === "GROUP") {
+          const { storeId, newGroup } = copyGroup(value);
+          primitiveStore.addPrimitive(storeId, renderGroup(storeId, newGroup));
+        } else {
+          const { storeId, newMesh } = copyObject(value);
+          primitiveStore.addPrimitive(
+            storeId,
+            renderPrimitive(storeId, newMesh)
+          );
+        }
       });
       break;
     case "복사":
       const copyMeshes: MeshType = {};
 
-      Object.values(primitiveStore.selectedPrimitives).forEach(
-        (value, index) => {
-          copyMeshes[index] = value;
+      Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
+        if (value.name === "GROUP") {
+          const { storeId, newGroup } = copyGroup(value);
+          copyMeshes[storeId] = newGroup;
+        } else {
+          const { storeId, newMesh } = copyObject(value);
+          copyMeshes[storeId] = newMesh;
         }
-      );
+      });
 
       projectStateStore.updateCurrentCopyPrimitive(copyMeshes);
       break;
@@ -54,12 +61,10 @@ const executeContextMenu = (scene: THREE.Scene) => {
       const children = primitiveStore.meshes[selectedGroupStoreId].children;
 
       children.forEach((value) => {
-        if (value.userData) {
-          primitiveStore.updatePrimitive(
-            value.userData["storeId"],
-            value as THREE.Mesh
-          );
-        }
+        primitiveStore.updatePrimitive(
+          value.userData["storeId"],
+          value as THREE.Mesh
+        );
       });
 
       while (children.length) {
@@ -75,7 +80,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.userData["isLocked"] = true;
 
-          primitiveStore.updatePrimitive(key, value);
+          primitiveStore.updatePrimitive(key, value.clone());
         }
       );
       break;
@@ -84,7 +89,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.userData["isLocked"] = false;
 
-          primitiveStore.updatePrimitive(key, value);
+          primitiveStore.updatePrimitive(key, value.clone());
         }
       );
       break;
@@ -93,7 +98,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.visible = false;
 
-          primitiveStore.updatePrimitive(key, value);
+          primitiveStore.updatePrimitive(key, value.clone());
         }
       );
       break;
@@ -102,7 +107,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.visible = true;
 
-          primitiveStore.updatePrimitive(key, value);
+          primitiveStore.updatePrimitive(key, value.clone());
         }
       );
       break;
@@ -110,6 +115,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
       const selectedPrimitives = Object.keys(primitiveStore.selectedPrimitives);
 
       selectedPrimitives.forEach((key) => {
+        scene.remove(primitiveStore.meshes[key]);
         primitiveStore.removePrimitive(key);
       });
 

@@ -1,0 +1,124 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: bold;
+  src: url("./font/Pretendard-Bold.ttf") format("truetype"),
+    url("./font/Pretendard-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./font/Pretendard-Light.ttf") format("truetype"),
+    url("./font/Pretendard-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/Pretendard-Regular.ttf") format("truetype"),
+    url("./font/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./font/Pretendard-Medium.ttf") format("truetype"),
+    url("./font/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./font/Pretendard-SemiBold.ttf") format("truetype"),
+    url("./font/Pretendard-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Tenada";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/Tenada.ttf") format("truetype");
+}
+@font-face {
+  font-family: "NotoSans";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/NotoSansKR-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "NotoSans";
+  font-style: normal;
+  font-weight: bold;
+  src: url("./font/NotoSansKR-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "SourceHanSansKR";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/SourceHanSansKR-Normal.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "SourceHanSansKR";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./font/SourceHanSansKR-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./font/SpoqaHanSansNeo-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./font/SpoqaHanSansNeo-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/SpoqaHanSansNeo-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./font/Inter-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./font/Inter-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/Inter-Regular.ttf") format("truetype");
+}

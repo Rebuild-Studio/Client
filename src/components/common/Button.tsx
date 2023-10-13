@@ -39,14 +39,14 @@ export const SCButton = styled.button<SCButtonProps>`
   cursor: pointer;
 
   &:disabled {
-    color: ${basicColors.white};
-    background-color: ${bgColors[222222]};
-    border: 1px solid ${bgColors[222222]};
-    box-shadow: "none";
+    color: ${basicColors.grey};
+    // background-color: ${bgColors[222222]};
+    // border: 1px solid ${bgColors[222222]};
+    // box-shadow: "none";
   }
 
   &:disabled:hover {
-    color: ${basicColors.white};
+    color: ${basicColors.grey};
     background-color: ${bgColors[101728]};
     border: 1px solid ${bgColors[101728]};
   }

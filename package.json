@@ -13,21 +13,30 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.13",
+    "@mui/material": "^5.14.13",
+    "@mui/styles": "^5.14.13",
     "@react-three/drei": "^9.81.0",
     "@react-three/fiber": "^8.13.7",
+    "@react-three/postprocessing": "^2.15.1",
     "@tanstack/react-query": "^4.33.0",
     "@uiw/color-convert": "^1.4.2",
     "@uiw/react-color": "^1.4.2",
     "axios": "^1.4.0",
+    "i18next": "^23.5.1",
     "mobx": "^6.10.0",
     "mobx-react": "^9.0.0",
     "nanoid": "^4.0.2",
     "object-hash": "^3.0.0",
+    "postprocessing": "^6.33.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.2.2",
     "react-router-dom": "^6.15.0",
     "styled-components": "^6.0.7",
-    "three": "^0.156.0"
+    "three": "^0.156.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.3.2",

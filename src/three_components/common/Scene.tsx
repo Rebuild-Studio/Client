@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import RenderScene from "../scene/RenderScene";
 import Grid from "./Grid";
 import styled from "styled-components";
@@ -11,6 +10,7 @@ import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftP
 import { Suspense, useState } from "react";
 import { useFileLoader } from "@/hooks/loader";
 import * as THREE from "three";
+import { CanvasHelper } from "./CanvasHelper";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -119,13 +119,12 @@ const Scene = observer(() => {
             shadow-camera-bottom={-30}
           ></directionalLight>
           {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
-          <OrbitControls enableDamping={false} makeDefault={true} />
+          <CanvasHelper />
           <RenderScene />
           <Suspense fallback={null}>
             {fileList && <LoadedObject fileList={fileList} />}
           </Suspense>
         </CustomCanvas>
-        <CanvasLeftPanel />
       </Container>
     </Wrapper>
   );

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 
@@ -47,13 +46,13 @@ const SwitchLever = styled.div<{ checked: boolean }>`
 
 interface SwitchProps {
   label: string;
+  checked: boolean;
+  onChange: (e: boolean) => void;
 }
 
-const Switch = ({ label }: SwitchProps) => {
-  const [checked, setChecked] = useState(false);
-
+const Switch = ({ label, checked, onChange }: SwitchProps) => {
   const handleSwitchChange = () => {
-    setChecked(!checked);
+    onChange(!checked);
   };
 
   return (

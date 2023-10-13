@@ -14,6 +14,9 @@ import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
 import useExportMxJson from "../hooks/useExportMxJson";
+import SelectedOutline from "../post_processing/SelectedOutline";
+import { EffectComposer } from "@react-three/postprocessing";
+import ChildGizmo from "../gizmo/ChildGizmo";
 
 const RenderScene = observer(() => {
   const {
@@ -25,8 +28,10 @@ const RenderScene = observer(() => {
     sceneControlStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
+
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
@@ -112,7 +117,21 @@ const RenderScene = observer(() => {
 
   return (
     <>
-      <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      <EffectComposer autoClear={false}>
+        <SelectedOutline />
+      </EffectComposer>
+
+      {/* 일반 Object 용 */}
+      <Gizmo
+        storeId={
+          primitiveStore.meshes[
+            Object.keys(primitiveStore.selectedPrimitives)[0]
+          ] && Object.keys(primitiveStore.selectedPrimitives)[0]
+        }
+      />
+
+      {/* Group 자식용 */}
+      <ChildGizmo />
 
       {Object.entries(primitiveStore.primitives).map(([id, primitive]) => {
         primitive.key = id;

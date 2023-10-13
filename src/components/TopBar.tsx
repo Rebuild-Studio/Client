@@ -1,8 +1,10 @@
-import CavasBar from "./CanvasBar";
+import CanvasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
+import App from "@/interaction(legacyJS)/src/App";
+import storeContainer from "@/store/storeContainer";
 
 interface TopBarProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface TopBarProps {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -56,6 +59,16 @@ const ComponentName = styled.div`
 `;
 
 const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
+  const { sceneSettingStore } = storeContainer;
+
+  const sceneSettingToggle = () => {
+    if (sceneSettingStore.type !== "scene") {
+      sceneSettingStore.setType("scene");
+    } else {
+      sceneSettingStore.setType("none");
+    }
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -76,6 +89,7 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
               onClick={() => {
                 setOpen(!isOpen);
               }}
+              disabled={true}
             />
           </AppBarItem>
         </AppBarWrapper>
@@ -84,12 +98,15 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
         <FlexBox />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_씬설정.svg"} />}
+          onClick={sceneSettingToggle}
         />
         <IconButton
           Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
         />
       </Container>
-      {isOpen && <CavasBar />}
+      {isOpen && <CanvasBar />}
+      {!isOpen && <App />}
+      {/* [TBD] should not use isOpen, open state should be used repectively */}
     </Wrapper>
   );
 };
