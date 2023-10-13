@@ -18,9 +18,8 @@ const CanvasWrapper = styled.div<CSSCanvasWrapper>`
   position: absolute;
   width: 100px;
   height: 100px;
-  top: ${({ $barIsOpen }) => ($barIsOpen ? "calc(100px + 88px)" : "100px")};
-  right: ${({ $panelIsOpen }) =>
-    $panelIsOpen ? "calc(50px + 271px)" : "50px"};
+  top: ${({ $barIsOpen }) => ($barIsOpen ? "188px" : "100px")};
+  right: ${({ $panelIsOpen }) => ($panelIsOpen ? "321px" : "50px")};
   z-index: 1;
 `;
 

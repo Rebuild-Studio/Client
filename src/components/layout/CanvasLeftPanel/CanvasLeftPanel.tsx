@@ -19,7 +19,7 @@ type CSSWrapper = {
 const Wrapper = styled.div<CSSWrapper>`
   z-index: 1;
   position: absolute;
-  top: ${({ $isOpen }) => ($isOpen ? "calc(88px + 92px)" : "92px")};
+  top: ${({ $isOpen }) => ($isOpen ? "180px" : "92px")};
 `;
 
 const MultiButtonBox = styled.div`

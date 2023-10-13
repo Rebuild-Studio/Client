@@ -2,7 +2,7 @@ import storeContainer from "@/store/storeContainer";
 import { reaction } from "mobx";
 import { useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
