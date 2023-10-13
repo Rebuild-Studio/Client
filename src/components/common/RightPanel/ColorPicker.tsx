@@ -8,8 +8,8 @@ import ColorContent from "./ColorContent";
 interface ColorPickerProps {
   label: string;
   color: any;
-  onChangeHsv: (hsva: HsvaColor) => void;
-  onChangeA: (alpha: number) => void;
+  onChangeHsvaProp: (hsva: HsvaColor) => void;
+  onChangeAlphaProp: (alpha: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -71,7 +71,7 @@ const ColorButton = styled.button<{
 `;
 
 const ColorPicker = observer(
-  ({ label, color, onChangeHsv, onChangeA }: ColorPickerProps) => {
+  ({ label, color, onChangeHsvaProp, onChangeAlphaProp }: ColorPickerProps) => {
     const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
     const [open, setOpen] = useState(true);
     const rgbColor = hsvaToRgba(color);
@@ -122,8 +122,8 @@ const ColorPicker = observer(
               <ColorContent
                 rgbColor={rgbColor}
                 color={color}
-                onChangeHsv={onChangeHsv}
-                onChangeA={onChangeA}
+                onChangeHsvaProp={onChangeHsvaProp}
+                onChangeAlphaProp={onChangeAlphaProp}
               />
               <ButtonWrapper>
                 <button onClick={handleClose}>Close Menu</button>

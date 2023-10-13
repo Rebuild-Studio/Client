@@ -70,8 +70,8 @@ const Material = ({
             <ColorPicker
               label={"기본 컬러"}
               color={color}
-              onChangeHsv={updateMaterialColor}
-              onChangeA={updateMaterialAlpha}
+              onChangeHsvaProp={updateMaterialColor}
+              onChangeAlphaProp={updateMaterialAlpha}
             />
           </TitleWrapper>
         </MaterialMenu>

@@ -35,8 +35,8 @@ const DisplaySetting = observer(() => {
           <ColorPicker
             label={"컬러"}
             color={color}
-            onChangeHsv={updateCanvasBackgroundColor}
-            onChangeA={updateCanvasBackgroundAlpha}
+            onChangeHsvaProp={updateCanvasBackgroundColor}
+            onChangeAlphaProp={updateCanvasBackgroundAlpha}
           />
         </TitleWrapper>
       </Accordion>

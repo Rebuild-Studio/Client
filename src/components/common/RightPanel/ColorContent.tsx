@@ -20,8 +20,8 @@ interface ColorContentProps {
   saturationSilder?: boolean;
   brightnessSlider?: boolean;
   alpha?: boolean;
-  onChangeHsv: (hsva: HsvaColor) => void;
-  onChangeA: (alpha: number) => void;
+  onChangeHsvaProp: (hsva: HsvaColor) => void;
+  onChangeAlphaProp: (alpha: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -49,8 +49,8 @@ const ColorContent = observer(
     color,
     saturationSilder = true,
     brightnessSlider = true,
-    onChangeHsv,
-    onChangeA,
+    onChangeHsvaProp,
+    onChangeAlphaProp,
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
@@ -63,12 +63,12 @@ const ColorContent = observer(
 
     const onChangeSaturation = action((newColor: HsvaColor) => {
       setRgbColor(hsvaToRgba(newColor));
-      onChangeHsv(newColor);
+      onChangeHsvaProp(newColor);
     });
 
     const onChangeAlpha = (hsva: HsvaColor) => {
       setAlpha(String(Math.round(hsva.a * 100)));
-      onChangeA(hsva.a);
+      onChangeAlphaProp(hsva.a);
     };
 
     const onChangeRGB = action((channel: string, input: string) => {
@@ -95,7 +95,7 @@ const ColorContent = observer(
           return;
       }
       const _hsva = rgbaToHsva(rgbColor);
-      onChangeHsv(_hsva);
+      onChangeHsvaProp(_hsva);
       setColor(_hsva);
       setRgbColor({ ...rgbColor });
     });
@@ -112,11 +112,11 @@ const ColorContent = observer(
         alphavalue = "100";
       }
 
-      onChangeA(Number(e) / 100);
+      onChangeAlphaProp(Number(e) / 100);
     });
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
-      onChangeHsv(hsva);
+      onChangeHsvaProp(hsva);
     };
 
     return (

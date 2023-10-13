@@ -92,8 +92,8 @@ const HdriSetting = observer(() => {
           <ColorPicker
             label={"컬러"}
             color={ambientLightColor}
-            onChangeHsv={updateAmbientLightColor}
-            onChangeA={updateAmbientLightAlpha}
+            onChangeHsvaProp={updateAmbientLightColor}
+            onChangeAlphaProp={updateAmbientLightAlpha}
           />
         </TitleWrapper>
       </Accordion>
@@ -111,8 +111,8 @@ const HdriSetting = observer(() => {
           <ColorPicker
             label={"컬러"}
             color={directionalLightColor}
-            onChangeHsv={updateDirectionalLightColor}
-            onChangeA={updateDirectionalLightAlpha}
+            onChangeHsvaProp={updateDirectionalLightColor}
+            onChangeAlphaProp={updateDirectionalLightAlpha}
           />
         </TitleWrapper>
       </Accordion>
