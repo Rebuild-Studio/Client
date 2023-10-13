@@ -34,6 +34,7 @@ const RenderScene = observer(() => {
     primitiveStore.selectedPrimitives
   ).length;
 
+  // scene 제어롤 틍한 mxJson 파일로 내보내기
   const [isSuccess, isProcessing] = useExportMxJson({
     scene,
     sceneControlStore,

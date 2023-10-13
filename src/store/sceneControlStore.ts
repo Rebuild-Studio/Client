@@ -1,20 +1,29 @@
 import { observable } from "mobx";
 
+type Triggers = {
+  file: boolean;
+  post: boolean;
+};
 interface SceneControlStore {
-  exportSceneJsonTrigger: boolean;
+  exportMxJsonTrigger: Triggers;
 
-  setExportSceneJsonTrigger: (trigger: boolean) => void;
-  initExportSceneJsonTrigger: () => void;
+  setExportMxJsonTrigger: (triggerType: "file" | "post") => void;
+  initExportMxJsonTrigger: () => void;
 }
 
-const sceneControlStore = observable<SceneControlStore>({
-  exportSceneJsonTrigger: false,
+const initialTriggers: Triggers = {
+  file: false,
+  post: false,
+};
 
-  setExportSceneJsonTrigger(trigger) {
-    this.exportSceneJsonTrigger = trigger;
+const sceneControlStore = observable<SceneControlStore>({
+  exportMxJsonTrigger: initialTriggers,
+
+  setExportMxJsonTrigger(triggerType) {
+    this.exportMxJsonTrigger[triggerType] = true;
   },
-  initExportSceneJsonTrigger() {
-    this.exportSceneJsonTrigger = false;
+  initExportMxJsonTrigger() {
+    this.exportMxJsonTrigger = initialTriggers;
   },
 });
 

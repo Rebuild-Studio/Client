@@ -62,7 +62,12 @@ const MenuBar = () => {
     {
       label: "MX-JSON으로 내보내기",
       disabled: false,
-      onClick: () => sceneControlStore.setExportSceneJsonTrigger(true),
+      onClick: () => sceneControlStore.setExportMxJsonTrigger("file"),
+    },
+    {
+      label: "PMX 저장",
+      disabled: false,
+      onClick: () => sceneControlStore.setExportMxJsonTrigger("post"),
     },
   ];
   const configureData: MenuItemType[] = [
