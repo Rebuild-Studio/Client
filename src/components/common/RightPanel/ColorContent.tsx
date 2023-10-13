@@ -11,7 +11,6 @@ import {
 } from "@uiw/color-convert";
 import Slider from "../Slider";
 import InputField from "../InputField";
-import { updateMaterialAlpha, updateMaterialColor } from "./ColorHandler";
 import { action } from "mobx";
 import { grayColors } from "@/resources/colors/colors";
 
@@ -21,6 +20,8 @@ interface ColorContentProps {
   saturationSilder?: boolean;
   brightnessSlider?: boolean;
   alpha?: boolean;
+  onChangeHsvaProp: (hsva: HsvaColor) => void;
+  onChangeAlphaProp: (alpha: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -48,6 +49,8 @@ const ColorContent = observer(
     color,
     saturationSilder = true,
     brightnessSlider = true,
+    onChangeHsvaProp,
+    onChangeAlphaProp,
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
@@ -60,12 +63,12 @@ const ColorContent = observer(
 
     const onChangeSaturation = action((newColor: HsvaColor) => {
       setRgbColor(hsvaToRgba(newColor));
-      updateMaterialColor(newColor);
+      onChangeHsvaProp(newColor);
     });
 
     const onChangeAlpha = (hsva: HsvaColor) => {
       setAlpha(String(Math.round(hsva.a * 100)));
-      updateMaterialAlpha(hsva.a);
+      onChangeAlphaProp(hsva.a);
     };
 
     const onChangeRGB = action((channel: string, input: string) => {
@@ -92,7 +95,7 @@ const ColorContent = observer(
           return;
       }
       const _hsva = rgbaToHsva(rgbColor);
-      updateMaterialColor(_hsva);
+      onChangeHsvaProp(_hsva);
       setColor(_hsva);
       setRgbColor({ ...rgbColor });
     });
@@ -109,11 +112,11 @@ const ColorContent = observer(
         alphavalue = "100";
       }
 
-      updateMaterialAlpha(Number(e) / 100);
+      onChangeAlphaProp(Number(e) / 100);
     });
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
-      updateMaterialColor(hsva);
+      onChangeHsvaProp(hsva);
     };
 
     return (

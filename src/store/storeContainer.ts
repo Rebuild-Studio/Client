@@ -10,6 +10,7 @@ import canvasHistoryStore from "./canvasHistoryStore";
 import renderStore from "./renderStore";
 import assetLibraryStore from "./assetLibraryStore";
 import assetCategoryStore from "./assetCategoryStore";
+import sceneSettingStore from "./sceneSettingStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -24,6 +25,7 @@ const storeContainer = {
   renderStore: renderStore,
   assetLibraryStore: assetLibraryStore,
   assetCategoryStore: assetCategoryStore,
+  sceneSettingStore: sceneSettingStore,
 };
 
 export default storeContainer;
