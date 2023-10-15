@@ -11,16 +11,6 @@ import Material from "./MaterialInfo";
 import ColorHandler from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
 
-const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
-  position: relative;
-  background-color: #282828;
-  display: flex;
-  height: ${(props) =>
-    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
 const RightPanel = observer((props: { isOpen: boolean }) => {
   const { primitiveStore } = storeContainer;
   const { isOpen } = props;
@@ -93,3 +83,13 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
 });
 
 export default RightPanel;
+
+const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
+  position: relative;
+  background-color: #282828;
+  display: flex;
+  height: ${(props) =>
+    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
+  flex-direction: column;
+  align-items: flex-end;
+`;

@@ -17,37 +17,17 @@ import { grayColors } from "@/resources/colors/colors";
 interface ColorContentProps {
   rgbColor: RgbaColor;
   color: HsvaColor;
-  saturationSilder?: boolean;
+  saturationSlider?: boolean;
   brightnessSlider?: boolean;
   alpha?: boolean;
   onChangeHsvaProp: (hsva: HsvaColor) => void;
   onChangeAlphaProp: (alpha: number) => void;
 }
 
-const Wrapper = styled.div`
-  position: relative;
-  width: 213px;
-  height: auto;
-`;
-
-const InputFieldWrapper = styled.div`
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const InputFieldTitle = styled.div<{ color: string }>`
-  font-family: Pretendard;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${(props) => props.color};
-`;
-
 const ColorContent = observer(
   ({
     color,
-    saturationSilder = true,
+    saturationSlider = true,
     brightnessSlider = true,
     onChangeHsvaProp,
     onChangeAlphaProp,
@@ -181,7 +161,7 @@ const ColorContent = observer(
             </React.Fragment>
           ))}
         </InputFieldWrapper>
-        {saturationSilder && (
+        {saturationSlider && (
           <Slider
             title={"채도"}
             initValue={Math.round(newColor.s)}
@@ -212,3 +192,23 @@ const ColorContent = observer(
   }
 );
 export default ColorContent;
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 213px;
+  height: auto;
+`;
+
+const InputFieldWrapper = styled.div`
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const InputFieldTitle = styled.div<{ color: string }>`
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${(props) => props.color};
+`;

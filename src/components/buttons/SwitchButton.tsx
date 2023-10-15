@@ -1,6 +1,34 @@
 import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 
+interface SwitchProps {
+  label: string;
+  checked: boolean;
+  onChange: (e: boolean) => void;
+}
+
+const Switch = ({ label, checked, onChange }: SwitchProps) => {
+  const handleSwitchChange = () => {
+    onChange(!checked);
+  };
+
+  return (
+    <SwitchContainer>
+      <SwitchLabel>{label}</SwitchLabel>
+      <SwitchWrapper>
+        <SwitchInput
+          type="checkbox"
+          checked={checked}
+          onChange={handleSwitchChange}
+        />
+        <SwitchLever checked={checked} onClick={handleSwitchChange} />
+      </SwitchWrapper>
+    </SwitchContainer>
+  );
+};
+
+export default Switch;
+
 const SwitchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -43,31 +71,3 @@ const SwitchLever = styled.div<{ checked: boolean }>`
   transform: ${(props) =>
     props.checked ? "translateX(14px)" : "translateX(3px)"};
 `;
-
-interface SwitchProps {
-  label: string;
-  checked: boolean;
-  onChange: (e: boolean) => void;
-}
-
-const Switch = ({ label, checked, onChange }: SwitchProps) => {
-  const handleSwitchChange = () => {
-    onChange(!checked);
-  };
-
-  return (
-    <SwitchContainer>
-      <SwitchLabel>{label}</SwitchLabel>
-      <SwitchWrapper>
-        <SwitchInput
-          type="checkbox"
-          checked={checked}
-          onChange={handleSwitchChange}
-        />
-        <SwitchLever checked={checked} onClick={handleSwitchChange} />
-      </SwitchWrapper>
-    </SwitchContainer>
-  );
-};
-
-export default Switch;

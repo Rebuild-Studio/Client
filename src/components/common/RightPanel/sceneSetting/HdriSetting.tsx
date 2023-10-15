@@ -11,13 +11,6 @@ import { HsvaColor } from "@uiw/color-convert";
 import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 import BackgroundImageTemplate from "./BackgroundImageTemplate";
 
-const TitleWrapper = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-`;
-
 const HdriSetting = observer(() => {
   const { sceneSettingStore } = storeContainer;
   const {
@@ -121,3 +114,10 @@ const HdriSetting = observer(() => {
 });
 
 export default HdriSetting;
+
+const TitleWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;

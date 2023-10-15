@@ -2,13 +2,6 @@ import { observer } from "mobx-react";
 // import styled from "styled-components";
 import storeContainer from "@/store/storeContainer";
 
-// const ImageStyled = styled.img<{ isSelected: boolean }>`
-//   width: 10.1vh;
-//   height: 10.1vh;
-//   border-radius: 5px;
-//   outline: ${(props) => (props.isSelected ? "solid 0.15vh #e3f853" : "none")};
-// `;
-
 const MaterialTemplate = observer(() => {
   const { sceneSettingStore } = storeContainer;
 
@@ -36,3 +29,10 @@ const MaterialTemplate = observer(() => {
 });
 
 export default MaterialTemplate;
+
+// const ImageStyled = styled.img<{ isSelected: boolean }>`
+//   width: 10.1vh;
+//   height: 10.1vh;
+//   border-radius: 5px;
+//   outline: ${(props) => (props.isSelected ? "solid 0.15vh #e3f853" : "none")};
+// `;

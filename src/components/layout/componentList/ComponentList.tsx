@@ -6,6 +6,54 @@ import { ProjectCards } from "./ProjectCards";
 import { ExampleCards } from "./ExampleCards";
 import { Tabs } from "../Tabs";
 
+export const ComponentList = () => {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
+  return (
+    <StyledComponentList>
+      <StyledHeader>
+        <StyledTitle>컴포넌트 목록</StyledTitle>
+        {/* <input type="text" placeholder="에셋을 입력해주세요"></input> */}
+      </StyledHeader>
+      <StyledTab>
+        <Tabs
+          labelList={["내 컴포넌트", "컴포넌트 템플릿"]}
+          selectedColor={basicColors.white}
+          backgroundColor={bgColors[343434]}
+          color={grayColors[535353]}
+          underbarColor={basicColors.lightLimeGreen}
+          width="400px"
+          height="50px"
+          onChange={(idx) => {
+            setSelectedTabIndex(idx);
+          }}
+        />
+      </StyledTab>
+      <StyledContent>
+        {selectedTabIndex == 0 ? (
+          <ProjectCards componentData={[]} />
+        ) : (
+          <ExampleCards componentData={[]} />
+        )}
+      </StyledContent>
+      <StyledFooter>
+        <MenuButton
+          {...confirmButtonStyle}
+          label="불러오기"
+          onClick={() => {}}
+          disabled={false}
+        />
+        <MenuButton
+          {...closeButtonStyle}
+          label="닫기"
+          onClick={() => {}}
+          disabled={false}
+        />
+      </StyledFooter>
+    </StyledComponentList>
+  );
+};
+
 const StyledComponentList = styled.div`
   width: 100%;
   height: 100%;
@@ -86,52 +134,4 @@ const closeButtonStyle: Omit<
   fontWeight: 500,
   color: basicColors.white,
   hoverBackgroundColor: grayColors[808080],
-};
-
-export const ComponentList = () => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-
-  return (
-    <StyledComponentList>
-      <StyledHeader>
-        <StyledTitle>컴포넌트 목록</StyledTitle>
-        {/* <input type="text" placeholder="에셋을 입력해주세요"></input> */}
-      </StyledHeader>
-      <StyledTab>
-        <Tabs
-          labelList={["내 컴포넌트", "컴포넌트 템플릿"]}
-          selectedColor={basicColors.white}
-          backgroundColor={bgColors[343434]}
-          color={grayColors[535353]}
-          underbarColor={basicColors.lightLimeGreen}
-          width="400px"
-          height="50px"
-          onChange={(idx) => {
-            setSelectedTabIndex(idx);
-          }}
-        />
-      </StyledTab>
-      <StyledContent>
-        {selectedTabIndex == 0 ? (
-          <ProjectCards componentData={[]} />
-        ) : (
-          <ExampleCards componentData={[]} />
-        )}
-      </StyledContent>
-      <StyledFooter>
-        <MenuButton
-          {...confirmButtonStyle}
-          label="불러오기"
-          onClick={() => {}}
-          disabled={false}
-        />
-        <MenuButton
-          {...closeButtonStyle}
-          label="닫기"
-          onClick={() => {}}
-          disabled={false}
-        />
-      </StyledFooter>
-    </StyledComponentList>
-  );
 };
