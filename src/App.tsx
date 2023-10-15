@@ -6,6 +6,7 @@ import AppWrapper from "./components/layout/wrapper/AppWrapper";
 import storeContainer from "./store/storeContainer";
 import Scene from "./three_components/common/Scene";
 import ToastContainer from "@components/common/ToastContainer.tsx";
+import ControllerBar from "@components/ControllerBar";
 
 const App = observer(() => {
   const { sceneSettingStore } = storeContainer;
@@ -16,6 +17,7 @@ const App = observer(() => {
       <StudioLayout />
       {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
       <Scene />
+      <ControllerBar />
       <ToastContainer />
     </AppWrapper>
   );
