@@ -45,7 +45,7 @@ export const useServerMaterialLoader = (name: string): THREE.Material => {
 //////////////////////////////////// minio 서버가 아닌 load
 
 // 로컬 파일 로더
-export const useFileLoader = (
+export const useFileListLoader = (
   fileList: FileList
 ): ((GLTF & ObjectMap) | THREE.Group)[] => {
   // 파일 array, map, name array
@@ -113,4 +113,62 @@ export const useFileLoader = (
   });
 
   return result;
+};
+
+export const useFileLoader = (
+  file: File
+): (GLTF & ObjectMap) | THREE.Group | null => {
+  // loadingManger
+  const manager = new THREE.LoadingManager();
+  const objectURLList: string[] = [];
+
+  const filesMap = {
+    [file.name]: file,
+  };
+
+  manager.setURLModifier((url) => {
+    url = url.replace(/^(\.?\/)/, ""); // remove './'
+
+    const file = filesMap[url];
+
+    if (file) {
+      const objURL = URL.createObjectURL(filesMap[url]);
+      objectURLList.push(objURL);
+      return objURL;
+    }
+
+    return url;
+  });
+
+  const extension = file.name.split(".").pop()?.toLocaleLowerCase();
+  let LoaderClass: LoaderProto<any> = GLTFLoader;
+  let loaderCallback: (loader?: any) => void = () => {};
+
+  switch (extension) {
+    case "glb":
+    case "gltf":
+      LoaderClass = GLTFLoader;
+      loaderCallback = (loader: GLTFLoader) => {
+        //set Draco decoder for loading
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath("/gltf/draco/");
+        loader.setDRACOLoader(dracoLoader);
+
+        loader.manager = manager;
+      };
+      break;
+    case "obj":
+      LoaderClass = OBJLoader;
+      loaderCallback = (loader: OBJLoader) => {
+        loader.manager = manager;
+      };
+      break;
+    default:
+      console.warn("불가능한 확장자 : ", file.name);
+      return null;
+  }
+
+  URL.revokeObjectURL(file.name);
+
+  return useLoader(LoaderClass, file.name, loaderCallback);
 };
