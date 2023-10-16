@@ -7,6 +7,7 @@ import Accordion from "@/components/layout/Accordion";
 import * as THREE from "three";
 import { observer } from "mobx-react";
 import { useState } from "react";
+import { useToast } from "@hooks/useToast";
 
 interface geometryParameter {
   [key: string]: string | number | boolean;
@@ -34,7 +35,12 @@ const getGeometryParameters = (
   }
 };
 
-const createGeometry = (geometryType: string, parameter: number[]) => {
+const createGeometry = (
+  geometryType: string,
+  parameter: number[],
+  selectedPrimitive: THREE.Mesh
+) => {
+  const { addToast } = useToast();
   try {
     switch (geometryType) {
       case "BoxGeometry":
@@ -62,8 +68,8 @@ const createGeometry = (geometryType: string, parameter: number[]) => {
         throw new Error(`Unsupported geometry type: ${geometryType}`);
     }
   } catch {
-    console.error("Error in createGeometry:");
-    return new THREE.BoxGeometry(...parameter);
+    addToast("Error in createGeometry");
+    return selectedPrimitive.geometry;
   }
 };
 
@@ -87,7 +93,12 @@ const Shape = observer(() => {
     for (const pr in parameter) {
       paramDatas.push(parameter[pr] as number);
     }
-    const newGeometry = createGeometry(geometryType, paramDatas);
+
+    const newGeometry = createGeometry(
+      geometryType,
+      paramDatas,
+      selectedPrimitive
+    );
     selectedPrimitive.geometry as
       | THREE.BoxGeometry
       | THREE.CylinderGeometry
@@ -95,6 +106,7 @@ const Shape = observer(() => {
       | THREE.TorusGeometry
       | THREE.PlaneGeometry
       | THREE.CapsuleGeometry;
+
     selectedPrimitive.geometry = newGeometry;
   };
 
