@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
 import PropertyValue from "./TransFromationInfo";
+import SceneSettingPanel from "./SceneSettingPanel";
+
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
@@ -22,6 +24,8 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
   const [scale, setScale] = useState(new THREE.Vector3());
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+
+  const { sceneSettingStore } = storeContainer;
 
   useEffect(() => {
     if (selectedPrimitive) {
@@ -42,7 +46,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
 
   return (
     <>
-      {selectedPrimitive && (
+      {selectedPrimitive ? (
         <RightPanelContainer $isOpen={isOpen}>
           <Panel label={"속성값"} options={undefined}>
             <Tab
@@ -77,6 +81,10 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
             />
           </Panel>
         </RightPanelContainer>
+      ) : sceneSettingStore.type === "scene" ? (
+        <SceneSettingPanel />
+      ) : (
+        <></>
       )}
     </>
   );
