@@ -5,10 +5,12 @@ import dataStore from "./MaterialGeometryData";
 import storeContainer from "@/store/storeContainer";
 import Accordion from "@/components/layout/Accordion";
 import * as THREE from "three";
+import { observer } from "mobx-react";
+import { useState } from "react";
 
-type geometryParameter = {
+interface geometryParameter {
   [key: string]: string | number | boolean;
-};
+}
 
 const getGeometryParameters = (
   geometryType: string,
@@ -32,51 +34,56 @@ const getGeometryParameters = (
   }
 };
 
-const createGeometry = (
-  geometryType: string,
-  parameter: (number | undefined)[]
-) => {
-  switch (geometryType) {
-    case "BoxGeometry":
-      return new THREE.BoxGeometry(...parameter);
+const createGeometry = (geometryType: string, parameter: number[]) => {
+  try {
+    switch (geometryType) {
+      case "BoxGeometry":
+        return new THREE.BoxGeometry(...parameter);
 
-    case "SphereGeometry":
-      return new THREE.SphereGeometry(...parameter);
+      case "SphereGeometry":
+        return new THREE.SphereGeometry(...parameter);
 
-    case "CylinderGeometry":
-      return new THREE.CylinderGeometry(...parameter);
+      case "CylinderGeometry":
+        return new THREE.CylinderGeometry(...parameter);
 
-    case "ConeGeometry":
-      return new THREE.ConeGeometry(...parameter);
+      case "ConeGeometry":
+        return new THREE.ConeGeometry(...parameter);
 
-    case "TorusGeometry":
-      return new THREE.TorusGeometry(...parameter);
+      case "TorusGeometry":
+        return new THREE.TorusGeometry(...parameter);
 
-    case "PlaneGeometry":
-      return new THREE.PlaneGeometry(...parameter);
+      case "PlaneGeometry":
+        return new THREE.PlaneGeometry(...parameter);
 
-    case "CapsuleGeometry":
-      return new THREE.CapsuleGeometry(...parameter);
+      case "CapsuleGeometry":
+        return new THREE.CapsuleGeometry(...parameter);
 
-    default:
-      throw new Error(`Unsupported geometry type: ${geometryType}`);
+      default:
+        throw new Error(`Unsupported geometry type: ${geometryType}`);
+    }
+  } catch {
+    console.error("Error in createGeometry:");
+    return new THREE.BoxGeometry(...parameter);
   }
 };
 
-const Shape = () => {
+const Shape = observer(() => {
   const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const shapeName =
     selectedPrimitive.name.toLowerCase() as keyof typeof dataStore;
   const geometryType = selectedPrimitive.geometry.type;
-  const parameter = getGeometryParameters(
-    geometryType,
-    selectedPrimitive
-  ) as geometryParameter;
+  const [parameter, setParameter] = useState<geometryParameter>(
+    getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter
+  );
 
   const handleShapeChange = (prop: string, value: number | boolean) => {
-    parameter[prop] = value;
-    const paramDatas = [] as (number | undefined)[];
+    const updatedParameter = { ...parameter };
+    updatedParameter[prop] = value;
+
+    setParameter(updatedParameter);
+
+    const paramDatas = [] as number[];
     for (const pr in parameter) {
       paramDatas.push(parameter[pr] as number);
     }
@@ -91,6 +98,7 @@ const Shape = () => {
     selectedPrimitive.geometry = newGeometry;
   };
 
+  console.log(parameter);
   return (
     <>
       <Accordion title={"쉐이프"}>
@@ -131,7 +139,7 @@ const Shape = () => {
       </Accordion>
     </>
   );
-};
+});
 export default Shape;
 
 const Wrapper = styled.div`
