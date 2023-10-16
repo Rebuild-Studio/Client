@@ -1,5 +1,5 @@
 import ControlButton from "@components/ControllerBar/ControlButton";
-import FocusIcon from "../icons/focus.svg?react";
+import FocusIcon from "@components/ControllerBar/icons/FocusIcon";
 
 const ObjectFocus = () => {
   const handleObjectFocus = () => {

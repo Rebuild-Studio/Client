@@ -1,7 +1,7 @@
+import { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
 
-import CheckboxUncheckedIcon from "../icons/checkbox-unchecked.svg?react";
-import CheckboxCheckedIcon from "../icons/checkbox-checked.svg?react";
+import CheckboxIcon from "@components/ControllerBar/icons/CheckboxIcon";
 
 interface Props {
   value: string;
@@ -9,6 +9,12 @@ interface Props {
 }
 
 const Checkbox = ({ value, name }: Props) => {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+  };
+
   return (
     <label htmlFor={value} key={value}>
       <InputWrapper>
@@ -17,13 +23,9 @@ const Checkbox = ({ value, name }: Props) => {
           name={value}
           type={"checkbox"}
           value={value}
+          onChange={handleChange}
         />
-        <div className={"select-checked"}>
-          <CheckboxCheckedIcon />
-        </div>
-        <div className={"select-unchecked"}>
-          <CheckboxUncheckedIcon />
-        </div>
+        <CheckboxIcon checked={checked} />
         <span>{name}</span>
         {value === "grid" && <Shortcut>G</Shortcut>}
         {value === "rotate" && <Shortcut>A</Shortcut>}
@@ -45,19 +47,6 @@ const InputWrapper = styled.div`
 
 const CheckboxInput = styled.input`
   display: none;
-
-  &:checked ~ .select-unchecked {
-    display: none;
-  }
-  &:checked ~ .select-checked {
-    display: block;
-  }
-  &:not(:checked) ~ .select-unchecked {
-    display: block;
-  }
-  &:not(:checked) ~ .select-checked {
-    display: none;
-  }
 `;
 
 const Shortcut = styled.span`

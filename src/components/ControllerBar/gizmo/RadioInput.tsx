@@ -1,32 +1,19 @@
 import { styled } from "styled-components";
-
-import RadioCheckedIcon from "../icons/radio-checked.svg?react";
-import RadioUncheckedIcon from "../icons/radio-unchecked.svg?react";
+import RadioIcon from "@components/ControllerBar/icons/RadioIcon";
 
 interface Props {
   value: string;
   name: string;
-  defaultValue: string;
   radioGroup: string;
+  selected: boolean;
 }
 
-const RadioInput = ({ value, name, defaultValue, radioGroup }: Props) => {
+const RadioInput = ({ value, name, radioGroup, selected }: Props) => {
   return (
     <label htmlFor={value} key={value}>
       <InputWrapper>
-        <Input
-          id={value}
-          type={"radio"}
-          name={radioGroup}
-          value={value}
-          defaultChecked={value === defaultValue}
-        />
-        <div className={"radio-checked"}>
-          <RadioCheckedIcon />
-        </div>
-        <div className={"radio-unchecked"}>
-          <RadioUncheckedIcon />
-        </div>
+        <Input id={value} type={"radio"} name={radioGroup} value={value} />
+        <RadioIcon checked={selected} />
         <span>{name}</span>
       </InputWrapper>
     </label>
@@ -45,17 +32,4 @@ const InputWrapper = styled.div`
 
 const Input = styled.input`
   appearance: none;
-
-  &:checked ~ .radio-checked {
-    display: block;
-  }
-  &:checked ~ .radio-unchecked {
-    display: none;
-  }
-  &:not(:checked) ~ .radio-checked {
-    display: none;
-  }
-  &:not(:checked) ~ .radio-unchecked {
-    display: block;
-  }
 `;

@@ -4,7 +4,7 @@ import useDropdown from "@components/ControllerBar/dropdown/useDropdown";
 import ControlButton from "@components/ControllerBar/ControlButton";
 import ControlDropdownMenu from "@components/ControllerBar/dropdown/ControlDropdownMenu";
 import { basicColors } from "@resources/colors/colors";
-import ArrowUpIcon from "../icons/arrow-up.svg?react";
+import ArrowIcon from "@components/ControllerBar/icons/ArrowIcon";
 
 interface Props {
   icon: JSX.Element;
@@ -19,11 +19,7 @@ const ControlDropdown = ({ icon, menu, activated }: Props) => {
     <Wrapper ref={ref}>
       <Trigger onClick={toggleDropdown}>
         <ControlButton icon={icon} activated={activated} />
-        <ArrowUpIcon
-          style={{
-            transform: dropdownOpen ? "rotate(180deg)" : undefined,
-          }}
-        />
+        <ArrowIcon direction={dropdownOpen ? "down" : "up"} />
       </Trigger>
       <ControlDropdownMenu isOpen={dropdownOpen}>{menu}</ControlDropdownMenu>
     </Wrapper>
