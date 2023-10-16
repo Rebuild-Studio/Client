@@ -42,7 +42,6 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
               onClick={() => {
                 setOpen(!isOpen);
               }}
-              disabled={true}
             />
           </AppBarItem>
         </AppBarWrapper>
