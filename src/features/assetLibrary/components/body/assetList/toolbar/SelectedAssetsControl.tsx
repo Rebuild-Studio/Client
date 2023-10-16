@@ -4,25 +4,6 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useRef } from "react";
 
-const Container = styled.div`
-  width: 65%;
-  max-width: 65vw;
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: flex-start;
-
-  box-sizing: border-box;
-
-  gap: 8px;
-  overflow-x: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 const SelectedAssetsControl = observer(() => {
   const selectedAssets = assetLibraryStore.selectedAssets;
   const ref = useRef<HTMLDivElement>(null);
@@ -43,3 +24,22 @@ const SelectedAssetsControl = observer(() => {
 });
 
 export default SelectedAssetsControl;
+
+const Container = styled.div`
+  width: 65%;
+  max-width: 65vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+
+  gap: 8px;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

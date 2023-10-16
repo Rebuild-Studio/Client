@@ -1,6 +1,20 @@
 import { basicColors } from "@/resources/colors/colors";
 import styled from "styled-components";
 
+interface Props {
+  title: string;
+}
+
+const Header = ({ title }: Props) => {
+  return (
+    <Container>
+      <StyledSpan>{title}</StyledSpan>
+    </Container>
+  );
+};
+
+export default Header;
+
 const Container = styled.div`
   width: 100%;
   height: 44px;
@@ -16,17 +30,3 @@ const StyledSpan = styled.span`
   font-family: "SourceHanSansKR";
   color: ${basicColors.white};
 `;
-
-interface Props {
-  title: string;
-}
-
-const Header = ({ title }: Props) => {
-  return (
-    <Container>
-      <StyledSpan>{title}</StyledSpan>
-    </Container>
-  );
-};
-
-export default Header;

@@ -8,48 +8,27 @@ import Button from "@/components/common/Button";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 import primitiveStore from "@/store/primitiveStore";
 
-const Wrapper = styled.div`
-  z-index: 1;
-  position: absolute;
-  top: 100px;
-`;
+type Props = {
+  isOpen: boolean;
+};
 
-const MultiButtonBox = styled.div`
-  position: absolute;
-  top: calc(100vh - 220px);
-  display: flex;
-  background-color: ${bgColors[222222]};
-  border-radius: 0px 10px 0px 10px;
-  display: flex;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-
-  &:hover {
-    background-color: ${grayColors["3a3a3a"]};
-  }
-`;
-
-export const CanvasLeftPanel = observer(() => {
+export const CanvasLeftPanel = observer(({ isOpen }: Props) => {
   const [visibleHistoryPanel, setVisibleHistoryPanel] = useState(false);
   const [visibleHierarchyPanel, setVisibleHierarchyPanel] = useState(false);
 
   return (
-    <Wrapper>
-      {visibleHistoryPanel && (
-        <HistoryPanel
-          undoList={canvasHistoryStore.undoList}
-          redoList={canvasHistoryStore.redoList}
-        />
-      )}
-      {visibleHierarchyPanel && (
-        <HierarchyPanel meshes={primitiveStore.meshes} />
-      )}
+    <>
+      <Wrapper $isOpen={isOpen}>
+        {visibleHistoryPanel && (
+          <HistoryPanel
+            undoList={canvasHistoryStore.undoList}
+            redoList={canvasHistoryStore.redoList}
+          />
+        )}
+        {visibleHierarchyPanel && (
+          <HierarchyPanel meshes={primitiveStore.meshes} />
+        )}
+      </Wrapper>
       <MultiButtonBox>
         <ButtonWrapper>
           <Button
@@ -86,6 +65,38 @@ export const CanvasLeftPanel = observer(() => {
           />
         </ButtonWrapper>
       </MultiButtonBox>
-    </Wrapper>
+    </>
   );
 });
+
+type CSSWrapper = {
+  $isOpen: boolean;
+};
+
+const Wrapper = styled.div<CSSWrapper>`
+  z-index: 1;
+  position: absolute;
+  top: ${({ $isOpen }) => ($isOpen ? "180px" : "92px")};
+`;
+
+const MultiButtonBox = styled.div`
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  background-color: ${bgColors[222222]};
+  border-radius: 0px 10px 0px 10px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+
+  &:hover {
+    background-color: ${grayColors["3a3a3a"]};
+  }
+`;

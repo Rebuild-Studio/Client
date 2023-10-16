@@ -3,6 +3,22 @@ import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 import styled from "styled-components";
 
+interface Props {
+  asset: LibraryAsset;
+}
+
+const SelectedAsset = ({ asset }: Props) => {
+  const [, updateSelectedAsset] = useControlSelectedItem(asset);
+  return (
+    <DeselectButton onClick={updateSelectedAsset}>
+      <span>{asset.name}</span>
+      <CloseIcon />
+    </DeselectButton>
+  );
+};
+
+export default SelectedAsset;
+
 const DeselectButton = styled.button`
   display: flex;
   align-items: center;
@@ -27,19 +43,3 @@ const DeselectButton = styled.button`
 `;
 
 const CloseIcon = () => <img src="/icons/common/Close.svg" alt="close" />;
-
-interface Props {
-  asset: LibraryAsset;
-}
-
-const SelectedAsset = ({ asset }: Props) => {
-  const [, updateSelectedAsset] = useControlSelectedItem(asset);
-  return (
-    <DeselectButton onClick={updateSelectedAsset}>
-      <span>{asset.name}</span>
-      <CloseIcon />
-    </DeselectButton>
-  );
-};
-
-export default SelectedAsset;

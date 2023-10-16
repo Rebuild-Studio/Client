@@ -3,28 +3,6 @@ import { fonts } from "@/resources/fonts/font";
 import { CSSColor } from "@/types/style/cssUnits";
 import { styled } from "styled-components";
 
-interface ContainerProps {
-  $hoverBackgroundColor: Props["hoverBackgroundColor"];
-  $cursor: Props["cursor"];
-}
-
-const Container = styled.div<ContainerProps>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid ${grayColors.E2E2E2};
-  padding: 5px 10px;
-  box-sizing: border-box;
-  width: 100%;
-  cursor: ${({ $cursor }) => $cursor};
-  font-size: ${fonts.default};
-
-  &:hover {
-    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-    color: ${basicColors.white};
-  }
-`;
-
 interface Props {
   className?: string;
   onClick?: () => void;
@@ -56,3 +34,25 @@ const StackItem = ({
 };
 
 export default StackItem;
+
+interface ContainerProps {
+  $hoverBackgroundColor: Props["hoverBackgroundColor"];
+  $cursor: Props["cursor"];
+}
+
+const Container = styled.div<ContainerProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid ${grayColors.E2E2E2};
+  padding: 5px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: ${({ $cursor }) => $cursor};
+  font-size: ${fonts.default};
+
+  &:hover {
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
+    color: ${basicColors.white};
+  }
+`;

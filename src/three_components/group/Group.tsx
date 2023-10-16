@@ -49,6 +49,9 @@ const Group = observer((props: GroupProps) => {
       mesh.position.set(...getCenterPoint(x, y, z, selectedPrimitives.length));
 
       selectedPrimitives.forEach((value) => {
+        if (!primitiveStore.meshes[value.userData["storeId"]]) {
+          value.userData["isLeave"] = true;
+        }
         mesh.attach(value);
         primitiveStore.removePrimitive(value.userData["storeId"]);
       });
@@ -56,7 +59,6 @@ const Group = observer((props: GroupProps) => {
       primitiveStore.updatePrimitive(props.storeId, mesh);
 
       primitiveStore.clearSelectedPrimitives();
-      primitiveStore.addSelectedPrimitives(props.storeId, mesh);
       primitiveStore.clearSelectedGroupPrimitive();
       canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }

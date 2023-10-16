@@ -10,10 +10,6 @@ type Props = {
   meshes: MeshType;
 };
 
-const HierarchyList = styled.div`
-  margin-left: 20px;
-`;
-
 export const HierarchyPanel = observer(({ meshes }: Props) => {
   return (
     <StyledPanel>
@@ -38,3 +34,7 @@ export const HierarchyPanel = observer(({ meshes }: Props) => {
     </StyledPanel>
   );
 });
+
+const HierarchyList = styled.div`
+  margin-left: 20px;
+`;

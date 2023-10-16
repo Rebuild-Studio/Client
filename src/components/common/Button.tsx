@@ -6,6 +6,59 @@ import { getButtonClickAnimation } from "@/utils/animation/button";
 import { getShadow } from "@utils/style/getShadow";
 import styled, { css } from "styled-components";
 
+export interface Props {
+  onClick?: () => void;
+  label?: string;
+  size?: CSSSize;
+  height?: CSSSize;
+  animation?: ButtonAnimationType;
+  shadow?: ShadowType;
+  color?: CSSHexColor;
+  backgroundColor?: CSSHexColor;
+  hoverBackgroundColor?: CSSHexColor;
+  backgroundImage?: string;
+  hoverBackgroundImage?: string;
+  disabled?: boolean;
+  outline?: boolean;
+}
+
+const Button = ({
+  onClick = () => {},
+  label,
+  disabled = false,
+  size = "fit-content",
+  height = "60px",
+  animation = "none",
+  backgroundColor = bgColors[222222],
+  hoverBackgroundColor = bgColors[222222],
+  shadow = "default",
+  backgroundImage = "",
+  hoverBackgroundImage = "",
+  color = basicColors.white,
+  outline = false,
+}: Props) => {
+  return (
+    <SCButton
+      onClick={onClick}
+      disabled={disabled}
+      $size={size}
+      $height={height}
+      $clickAnimation={animation}
+      $backgroundColor={backgroundColor}
+      $hoverBackgroundColor={hoverBackgroundColor}
+      $backgroundImage={backgroundImage}
+      $hoverBackgroundImage={hoverBackgroundImage}
+      $color={color}
+      $shadow={disabled ? "none" : getShadow(backgroundColor, shadow)}
+      $outline={outline}
+    >
+      {label}
+    </SCButton>
+  );
+};
+
+export default Button;
+
 interface SCButtonProps {
   $backgroundColor: CSSHexColor;
   $hoverBackgroundColor: CSSHexColor;
@@ -61,62 +114,9 @@ export const SCButton = styled.button<SCButtonProps>`
 
   &:active {
     animation: ${({ $clickAnimation }) =>
-      css`
+  css`
         ${getButtonClickAnimation($clickAnimation)} 0.2s ease-in-out
       `};
     box-shadow: "none";
   }
 `;
-
-export interface Props {
-  onClick?: () => void;
-  label?: string;
-  size?: CSSSize;
-  height?: CSSSize;
-  animation?: ButtonAnimationType;
-  shadow?: ShadowType;
-  color?: CSSHexColor;
-  backgroundColor?: CSSHexColor;
-  hoverBackgroundColor?: CSSHexColor;
-  backgroundImage?: string;
-  hoverBackgroundImage?: string;
-  disabled?: boolean;
-  outline?: boolean;
-}
-
-const Button = ({
-  onClick = () => {},
-  label,
-  disabled = false,
-  size = "fit-content",
-  height = "60px",
-  animation = "none",
-  backgroundColor = bgColors[222222],
-  hoverBackgroundColor = bgColors[222222],
-  shadow = "default",
-  backgroundImage = "",
-  hoverBackgroundImage = "",
-  color = basicColors.white,
-  outline = false,
-}: Props) => {
-  return (
-    <SCButton
-      onClick={onClick}
-      disabled={disabled}
-      $size={size}
-      $height={height}
-      $clickAnimation={animation}
-      $backgroundColor={backgroundColor}
-      $hoverBackgroundColor={hoverBackgroundColor}
-      $backgroundImage={backgroundImage}
-      $hoverBackgroundImage={hoverBackgroundImage}
-      $color={color}
-      $shadow={disabled ? "none" : getShadow(backgroundColor, shadow)}
-      $outline={outline}
-    >
-      {label}
-    </SCButton>
-  );
-};
-
-export default Button;
