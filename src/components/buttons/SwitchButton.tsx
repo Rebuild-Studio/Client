@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
+import { useState } from "react";
 
 interface SwitchProps {
   label: string;
   checked: boolean;
   onChange: (e: boolean) => void;
+  onClick?: (e: boolean) => void;
 }
 
 const Switch = ({ label, checked, onChange }: SwitchProps) => {
+  console.log(checked);
+  const [isChecked, setIsChecked] = useState(checked);
   const handleSwitchChange = () => {
-    onChange(!checked);
+    onChange(!isChecked);
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -18,10 +23,10 @@ const Switch = ({ label, checked, onChange }: SwitchProps) => {
       <SwitchWrapper>
         <SwitchInput
           type="checkbox"
-          checked={checked}
+          checked={isChecked}
           onChange={handleSwitchChange}
         />
-        <SwitchLever checked={checked} onClick={handleSwitchChange} />
+        <SwitchLever checked={isChecked} onClick={handleSwitchChange} />
       </SwitchWrapper>
     </SwitchContainer>
   );
