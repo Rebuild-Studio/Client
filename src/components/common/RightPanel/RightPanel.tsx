@@ -30,25 +30,31 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
+  const [materials, setMaterials] = useState<string[]>([]);
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
   useEffect(() => {
     if (selectedPrimitive) {
       const info = selectedPrimitive;
-      const materials = Object.keys(info.material);
-      const value = Object.values(info.material);
+      setPosition(info.position);
+      setRotation(info.rotation);
+      setScale(info.scale);
+      if (info.material) setMaterials(Object.keys(info.material));
+    }
+  }, [selectedPrimitive]);
+
+  useEffect(() => {
+    if (materials.length !== 0 && selectedPrimitive.material) {
+      const value = Object.values(selectedPrimitive.material);
       const rgbColor = value[materials.indexOf("color")];
       const opacity = Number(value[materials.indexOf("opacity")]);
       const hsva = rgbToHsva(rgbColor, opacity);
       setMetalness(value[materials.indexOf("metalness")]);
       setRoughness(value[materials.indexOf("roughness")]);
       setColor(hsva);
-      setPosition(info.position);
-      setRotation(info.rotation);
-      setScale(info.scale);
     }
-  }, [selectedPrimitive]);
+  }, [materials]);
 
   return (
     <>
@@ -74,13 +80,15 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                       }}
                     />
                   </Accordion>
-                  <Accordion title={"머터리얼"}>
-                    <Material
-                      metalness={metalness}
-                      roughness={roughness}
-                      color={color}
-                    />
-                  </Accordion>
+                  {materials.length !== 0 && (
+                    <Accordion title={"머터리얼"}>
+                      <Material
+                        metalness={metalness}
+                        roughness={roughness}
+                        color={color}
+                      />
+                    </Accordion>
+                  )}
                 </>,
                 <div>{"쉐이프"}</div>,
               ]}
