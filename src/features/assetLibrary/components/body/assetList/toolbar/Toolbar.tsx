@@ -5,6 +5,18 @@ import styled from "styled-components";
 import { bgColors } from "@/resources/colors/colors";
 import SelectedAssetsControl from "./SelectedAssetsControl";
 
+const Toolbar = observer(() => {
+  return (
+    <Container>
+      <CategoryLabel />
+      <SelectedAssetsControl />
+      <DomainDropdown />
+    </Container>
+  );
+});
+
+export default Toolbar;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -19,15 +31,3 @@ const Container = styled.div`
   background-color: ${bgColors[222222]};
   overflow: visible;
 `;
-
-const Toolbar = observer(() => {
-  return (
-    <Container>
-      <CategoryLabel />
-      <SelectedAssetsControl />
-      <DomainDropdown />
-    </Container>
-  );
-});
-
-export default Toolbar;

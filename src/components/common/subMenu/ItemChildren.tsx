@@ -10,23 +10,6 @@ type Props = {
   onMouseEnter: () => void;
 };
 
-type CSSItem = {
-  $hoverBackgroundColor: CSSHexColor;
-  $disabledColor: CSSHexColor;
-};
-
-const StyledItem = styled.li<CSSItem>`
-  padding: 2px;
-
-  &.disabled {
-    color: ${({ $disabledColor }) => $disabledColor};
-  }
-
-  &:not(.disabled):hover {
-    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-  }
-`;
-
 export const ItemChildren = ({
   label,
   disabled,
@@ -46,3 +29,20 @@ export const ItemChildren = ({
     </StyledItem>
   );
 };
+
+type CSSItem = {
+  $hoverBackgroundColor: CSSHexColor;
+  $disabledColor: CSSHexColor;
+};
+
+const StyledItem = styled.li<CSSItem>`
+  padding: 2px;
+
+  &.disabled {
+    color: ${({ $disabledColor }) => $disabledColor};
+  }
+
+  &:not(.disabled):hover {
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
+  }
+`;

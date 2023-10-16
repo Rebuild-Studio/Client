@@ -13,15 +13,6 @@ type Props = {
   redoList: CanvasHistoryType[];
 };
 
-const HistoryList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-left: 11px;
-  color: ${basicColors.white};
-  padding: 10px 11px;
-`;
-
 export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
   return (
     <StyledPanel>
@@ -63,3 +54,12 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
     </StyledPanel>
   );
 });
+
+const HistoryList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 11px;
+  color: ${basicColors.white};
+  padding: 10px 11px;
+`;

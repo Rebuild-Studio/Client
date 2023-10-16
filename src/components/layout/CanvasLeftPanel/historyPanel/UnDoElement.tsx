@@ -10,20 +10,6 @@ type Props = {
   index: number;
 };
 
-const HistoryElement = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  gap: 4px;
-  cursor: pointer;
-  color: ${grayColors.panelGray};
-`;
-
-const HistoryText = styled.span`
-  font-size: ${fonts.default};
-  margin-bottom: 3px;
-`;
-
 export const UndoElement = observer(({ label, index }: Props) => {
   const textRef = useRef<HTMLSpanElement>(null);
   return (
@@ -37,3 +23,17 @@ export const UndoElement = observer(({ label, index }: Props) => {
     </HistoryElement>
   );
 });
+
+const HistoryElement = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 4px;
+  cursor: pointer;
+  color: ${grayColors.panelGray};
+`;
+
+const HistoryText = styled.span`
+  font-size: ${fonts.default};
+  margin-bottom: 3px;
+`;

@@ -5,25 +5,6 @@ import { observer } from "mobx-react";
 import { useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
-const Container = styled.div`
-  box-sizing: border-box;
-  overflow-y: auto;
-`;
-
-const Grid = styled.div`
-  padding: 20px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  transition: all 0.3s ease-in-out;
-  box-sizing: border-box;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
-
 const AssetGrid = observer(() => {
   const { libraryAssets, currentPage } = assetLibraryStore;
   const [page, setPage] = useState(currentPage);
@@ -59,3 +40,22 @@ const AssetGrid = observer(() => {
 });
 
 export default AssetGrid;
+
+const Container = styled.div`
+  box-sizing: border-box;
+  overflow-y: auto;
+`;
+
+const Grid = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;

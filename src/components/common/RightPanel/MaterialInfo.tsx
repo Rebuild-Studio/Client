@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Slider from "../Slider";
 import CustomMenu from "@/components/layout/Menu";
+import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 import MaterialTemplate from "./MaterialTemplate";
 import ColorPicker from "./ColorPicker";
 import * as THREE from "three";
@@ -13,20 +14,6 @@ interface MaterialInfoProps {
   roughness: number;
   color: HsvaColor;
 }
-const Wrapper = styled.div`
-  margin-top: 10px;
-`;
-
-const MaterialMenu = styled.div`
-  width: 200px;
-  margin: 20 0;
-`;
-const TitleWrapper = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-`;
 
 const Material = ({
   metalness = 1,
@@ -35,7 +22,9 @@ const Material = ({
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
+  const { updateMaterialColor, updateMaterialAlpha } = ColorHandler;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+
   useEffect(() => {
     if (selectedPrimitive) {
       setMesh(selectedPrimitive);
@@ -64,7 +53,12 @@ const Material = ({
           </TitleWrapper>
           <TitleWrapper>
             <span>{"기본 컬러"}</span>
-            <ColorPicker label={"기본 컬러"} color={color} />
+            <ColorPicker
+              label={"기본 컬러"}
+              color={color}
+              onChangeHsvaProp={updateMaterialColor}
+              onChangeAlphaProp={updateMaterialAlpha}
+            />
           </TitleWrapper>
         </MaterialMenu>
         <Slider
@@ -89,3 +83,18 @@ const Material = ({
 };
 
 export default Material;
+
+const Wrapper = styled.div`
+  margin-top: 10px;
+`;
+
+const MaterialMenu = styled.div`
+  width: 200px;
+  margin: 20 0;
+`;
+const TitleWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;

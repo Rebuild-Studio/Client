@@ -7,22 +7,13 @@ interface axis {
   z: number;
 }
 
+type TransformType = "position" | "rotation" | "scale";
+
 interface Props {
   position: axis;
   rotation: axis;
   scale: axis;
 }
-type TransformType = "position" | "rotation" | "scale";
-const MarginBox = styled.div`
-  margin-top: 10px;
-`;
-const Wrapper = styled.div`
-  margin-top: 10px;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
 
 const PropertyValue = ({ position, rotation, scale }: Props) => {
   const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
@@ -78,3 +69,14 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
 };
 
 export default PropertyValue;
+
+const MarginBox = styled.div`
+  margin-top: 10px;
+`;
+const Wrapper = styled.div`
+  margin-top: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

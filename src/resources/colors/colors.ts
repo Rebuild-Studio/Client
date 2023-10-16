@@ -14,6 +14,7 @@ const basicColors = {
   lightLimeGreen: "#E3F853",
   limeGreen: "#d4ed3e",
   primary: "#e1f853",
+  grey: "#808080",
 } as const satisfies HexColorObject;
 
 const bgColors = {
