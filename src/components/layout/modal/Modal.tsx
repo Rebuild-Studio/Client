@@ -1,15 +1,14 @@
+import storeContainer from "@/store/storeContainer";
 import { styled } from "styled-components";
 
 // 실제로 사용시에는 ReactDOM.createPortal에 감싸서 사용해야 함
 // id는 modal-root
-interface ModalProps {
-  setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  children: React.ReactNode;
-}
 
-const Modal = (props: ModalProps) => {
+const Modal = () => {
+  const { projectStateStore } = storeContainer;
+
   const setOnClickListener = () => {
-    props.setIsOpened(false);
+    projectStateStore.clearModal();
   };
 
   const stopPropagation = (event: React.MouseEvent) => {
@@ -21,7 +20,7 @@ const Modal = (props: ModalProps) => {
       <ModalBackground>
         <ModalWrapper onClick={setOnClickListener}>
           <ModalContentWrapper onClick={stopPropagation}>
-            {props.children}
+            {projectStateStore.modalComponent}
           </ModalContentWrapper>
         </ModalWrapper>
       </ModalBackground>
