@@ -35,7 +35,12 @@ self.addEventListener(
         {
           const mxJson = createMxJson(e.data.sceneJson);
           try {
-            const res = await postProjectServices.uploadPmxProject(mxJson);
+            const reqParam = {
+              projectName: "test",
+              thumnail: "test",
+              mxJson,
+            };
+            const res = await postProjectServices.createPmxProject(reqParam);
             postMessage({
               type: MX_WORKER_MESSAGE_TYPE.POST_SUCCESS,
               res,

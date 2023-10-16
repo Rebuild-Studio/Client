@@ -1,24 +1,29 @@
 import apiModule from "@/network/module/apiModule";
 import {
-  RequestSearchProject,
-  RequestUploadProject,
-} from "./models/PostProjectModels";
+  RequestCreatePmxProject,
+  ResponseCreatePmxProject,
+} from "./models/postPmxProject.model";
 import {
-  RequestUploadPmxProject,
-  ResponseUploadPmxProject,
-} from "./models/PostPmxProjectModels";
+  RequestCreateMxProject,
+  ResponseCreateMxProject,
+} from "./models/postMxProject.model";
 
-const uploadProject = async (params: RequestUploadProject) => {
-  const res = await apiModule.post("/project", params);
-
-  return res;
+const createMxProject = async (params: RequestCreateMxProject) => {
+  try {
+    const res = await apiModule.post<ResponseCreateMxProject>(
+      "/mx-project/create",
+      params
+    );
+    return res;
+  } catch (e) {
+    console.error("MX 생성 실패 : ", e);
+  }
 };
 
-//TODO: 바뀔 api parameter 적용 필요
-const uploadPmxProject = async (params: RequestUploadPmxProject) => {
+const createPmxProject = async (params: RequestCreatePmxProject) => {
   try {
-    const res = await apiModule.post<ResponseUploadPmxProject>(
-      "/store-pmx",
+    const res = await apiModule.post<ResponseCreatePmxProject>(
+      "/pmx-project/create",
       params
     );
     return res;
@@ -27,16 +32,9 @@ const uploadPmxProject = async (params: RequestUploadPmxProject) => {
   }
 };
 
-const searchProject = async (params: RequestSearchProject) => {
-  const res = await apiModule.post("/project/search", params);
-
-  return res;
-};
-
 const postProjectServices = {
-  uploadProject: uploadProject,
-  uploadPmxProject: uploadPmxProject,
-  searchProject: searchProject,
+  createMxProject: createMxProject,
+  createPmxProject: createPmxProject,
 };
 
 export default postProjectServices;
