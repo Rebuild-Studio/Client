@@ -6,8 +6,10 @@ import AppWrapper from "./components/layout/wrapper/AppWrapper";
 import storeContainer from "./store/storeContainer";
 import Scene from "./three_components/common/Scene";
 import ToastContainer from "@components/common/ToastContainer.tsx";
+import ControllerBar from "@/features/controllerBar";
 import Modal from "./components/layout/modal/Modal";
 import ReactDOM from "react-dom";
+
 
 const App = observer(() => {
   const { sceneSettingStore, projectStateStore } = storeContainer;
@@ -23,6 +25,7 @@ const App = observer(() => {
       <StudioLayout />
       {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
       <Scene />
+      <ControllerBar />
       <ToastContainer />
     </AppWrapper>
   );
