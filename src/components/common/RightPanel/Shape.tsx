@@ -98,7 +98,6 @@ const Shape = observer(() => {
     selectedPrimitive.geometry = newGeometry;
   };
 
-  console.log(parameter);
   return (
     <>
       <Accordion title={"쉐이프"}>
