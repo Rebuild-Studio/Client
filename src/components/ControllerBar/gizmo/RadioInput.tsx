@@ -12,7 +12,7 @@ const RadioInput = ({ value, name, radioGroup, selected }: Props) => {
   return (
     <label htmlFor={value} key={value}>
       <InputWrapper>
-        <Input id={value} type={"radio"} name={radioGroup} value={value} />
+        <Input id={value} type="radio" name={radioGroup} value={value} />
         <RadioIcon checked={selected} />
         <span>{name}</span>
       </InputWrapper>

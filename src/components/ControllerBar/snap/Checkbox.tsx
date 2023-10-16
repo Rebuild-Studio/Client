@@ -21,7 +21,7 @@ const Checkbox = ({ value, name }: Props) => {
         <CheckboxInput
           id={value}
           name={value}
-          type={"checkbox"}
+          type="checkbox"
           value={value}
           onChange={handleChange}
         />

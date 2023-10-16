@@ -32,7 +32,7 @@ const GizmoModeControl = observer(() => {
             key={option.value}
             value={option.value}
             name={option.name}
-            radioGroup={"gizmo-mode"}
+            radioGroup="gizmo-mode"
             selected={option.value === gizmoMode}
           />
         ))}
