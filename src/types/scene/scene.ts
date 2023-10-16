@@ -13,4 +13,8 @@ interface SceneJson {
   geometries: Geometry[];
 }
 
-export type { SceneJson };
+export type {
+  SceneJson,
+  Geometry as SceneJsonGeometry,
+  Image as SceneJsonImage,
+};
