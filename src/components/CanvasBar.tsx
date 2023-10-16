@@ -179,15 +179,6 @@ const CanvasBar = observer(() => {
             backgroundImage="/icons/studio/btn_카메라.svg"
             hoverBackgroundImage="/icons/studio/btn_카메라_활성화.svg"
           />
-          <Button
-            size="50px"
-            shadow="none"
-            backgroundImage="/icons/studio/btn_카메라.svg"
-            hoverBackgroundImage="/icons/studio/btn_카메라_활성화.svg"
-            onClick={() => {
-              Object.values(primitiveStore.selectedPrimitives)[0];
-            }}
-          />
         </CanvasBtnWrapper>
         <PaddingBox />
       </Container>

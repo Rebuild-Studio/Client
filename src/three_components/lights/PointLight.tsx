@@ -3,7 +3,7 @@ import { PrimitiveProps } from "../common/PrimitiveProps";
 import { useEffect, useRef } from "react";
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const PointLight = observer((props: PrimitiveProps) => {
@@ -13,17 +13,10 @@ const PointLight = observer((props: PrimitiveProps) => {
     "/glb/light/point_light.glb"
   ).scene;
   const { primitiveStore } = storeContainer;
-  // const mesh = new THREE.Mesh();
-  const geometry = new THREE.SphereGeometry(0.23);
-  const material = new THREE.MeshPhysicalMaterial();
-  material.transparent = true;
-  // const mesh = new THREE.Mesh(geometry, material);
-  const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(0.23),
-    new THREE.MeshBasicMaterial()
-  );
+  const mesh = pointLight;
   mesh.name = "POINT_LIGHT";
   mesh.userData["storeId"] = props.storeId;
+
   // mesh.geometry = new THREE.SphereGeometry();
   // mesh.material.wire
   // const geometry = new THREE.SphereGeometry(0.23, 16, 8);
@@ -59,7 +52,6 @@ const PointLight = observer((props: PrimitiveProps) => {
       // console.log(loader.scene);
       // mesh.attach(pointLight);
       // mesh.attach(loader.scene);
-      mesh.attach(pointLight.children[0]);
       console.log(mesh);
       primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
       // history 추가 필요
