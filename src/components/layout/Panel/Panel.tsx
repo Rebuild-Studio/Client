@@ -8,6 +8,22 @@ interface PanelProps {
   children: React.ReactNode;
 }
 
+const Panel = ({
+  label = "",
+  options = <></>,
+  children = <></>,
+}: PanelProps) => {
+  return (
+    <PanelWrapper>
+      <PanelTitleWrapper>{label}</PanelTitleWrapper>
+      <PanelOptionsWrapper>{options}</PanelOptionsWrapper>
+      <PanelContentWrapper>{children}</PanelContentWrapper>
+    </PanelWrapper>
+  );
+};
+
+export default Panel;
+
 const PanelWrapper = styled.div`
   box-sizing: border-box;
   height: 100%;
@@ -52,19 +68,3 @@ const PanelContentWrapper = styled.div`
   color: white;
   font-size: ${fonts.small};
 `;
-
-const Panel = ({
-  label = "",
-  options = <></>,
-  children = <></>,
-}: PanelProps) => {
-  return (
-    <PanelWrapper>
-      <PanelTitleWrapper>{label}</PanelTitleWrapper>
-      <PanelOptionsWrapper>{options}</PanelOptionsWrapper>
-      <PanelContentWrapper>{children}</PanelContentWrapper>
-    </PanelWrapper>
-  );
-};
-
-export default Panel;

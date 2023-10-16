@@ -7,30 +7,6 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const ModalBackground = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  box-sizing: border-box;
-  z-index: 10;
-  width: 100vw;
-  height: 100vh;
-`;
-
-const ModalWrapper = styled.div`
-  box-sizing: inherit;
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-const ModalContentWrapper = styled.div`
-  position: absolute;
-  display: inline-block;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
-
 const Modal = (props: ModalProps) => {
   const setOnClickListener = () => {
     props.setIsOpened(false);
@@ -54,3 +30,27 @@ const Modal = (props: ModalProps) => {
 };
 
 export default Modal;
+
+const ModalBackground = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const ModalWrapper = styled.div`
+  box-sizing: inherit;
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const ModalContentWrapper = styled.div`
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;

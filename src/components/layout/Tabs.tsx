@@ -16,6 +16,61 @@ type Props = {
   onChange?: (index: number) => void;
 };
 
+export const Tabs = ({
+  color = basicColors.white,
+  backgroundColor = bgColors[222222],
+  selectedColor = "#2307a1",
+  underbarColor = "#2307a1",
+  labelList,
+  width,
+  height,
+  underbarHeight = "4px",
+  underbarWidth = "50px",
+  onChange = () => {},
+}: Props) => {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const tabCount = labelList.length;
+
+  useEffect(() => {
+    if (!sliderRef.current) return;
+
+    sliderRef.current.style.transform = `translateX(${selectedIndex * 100}%)`;
+    onChange(selectedIndex);
+  }, [selectedIndex]);
+
+  return (
+    <StyledTabs
+      $backgroundColor={backgroundColor}
+      $width={width}
+      $height={height}
+      $underbarHeight={underbarHeight}
+    >
+      <TapWrapper>
+        {labelList.map((label, index) => (
+          <Tab
+            $tabCount={tabCount}
+            $color={selectedIndex === index ? selectedColor : color}
+            key={label}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+          >
+            <p>{label}</p>
+          </Tab>
+        ))}
+      </TapWrapper>
+      <Slider ref={sliderRef} $tabCount={tabCount}>
+        <Indicator
+          $height={underbarHeight}
+          $width={underbarWidth}
+          $color={underbarColor}
+        />
+      </Slider>
+    </StyledTabs>
+  );
+};
+
 type CSSStyledTabProps = {
   $backgroundColor: CSSHexColor;
   $width: string;
@@ -74,58 +129,3 @@ const Indicator = styled.div<CSSIndicatorProps>`
   background: ${({ $color }) => $color};
   border-radius: 1px;
 `;
-
-export const Tabs = ({
-  color = basicColors.white,
-  backgroundColor = bgColors[222222],
-  selectedColor = "#2307a1",
-  underbarColor = "#2307a1",
-  labelList,
-  width,
-  height,
-  underbarHeight = "4px",
-  underbarWidth = "50px",
-  onChange = () => {},
-}: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const tabCount = labelList.length;
-
-  useEffect(() => {
-    if (!sliderRef.current) return;
-
-    sliderRef.current.style.transform = `translateX(${selectedIndex * 100}%)`;
-    onChange(selectedIndex);
-  }, [selectedIndex]);
-
-  return (
-    <StyledTabs
-      $backgroundColor={backgroundColor}
-      $width={width}
-      $height={height}
-      $underbarHeight={underbarHeight}
-    >
-      <TapWrapper>
-        {labelList.map((label, index) => (
-          <Tab
-            $tabCount={tabCount}
-            $color={selectedIndex === index ? selectedColor : color}
-            key={label}
-            onClick={() => {
-              setSelectedIndex(index);
-            }}
-          >
-            <p>{label}</p>
-          </Tab>
-        ))}
-      </TapWrapper>
-      <Slider ref={sliderRef} $tabCount={tabCount}>
-        <Indicator
-          $height={underbarHeight}
-          $width={underbarWidth}
-          $color={underbarColor}
-        />
-      </Slider>
-    </StyledTabs>
-  );
-};

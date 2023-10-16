@@ -6,10 +6,6 @@ import assetLibraryStore from "@/store/assetLibraryStore";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const CustomDropdown = styled(Dropdown)`
-  position: relative;
-`;
-
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({
     label: domain.domainKR,
@@ -43,3 +39,7 @@ const DomainDropdown = () => {
 };
 
 export default DomainDropdown;
+
+const CustomDropdown = styled(Dropdown)`
+  position: relative;
+`;

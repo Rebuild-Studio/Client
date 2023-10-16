@@ -9,19 +9,6 @@ import assetCategoryStore from "@/store/assetCategoryStore";
 import assetLibraryStore from "@/store/assetLibraryStore";
 import { useFetchLibraryAssets } from "../hooks/useFetchLibraryAssets query";
 
-const Container = styled.div`
-  width: 100%;
-  height: 80vh;
-  min-width: 70vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: ${basicColors.black};
-  border-radius: 10px;
-  color: ${basicColors.white};
-  box-sizing: border-box;
-`;
-
 const AssetLibrary = observer(() => {
   const { currentPage } = assetLibraryStore;
   const { currentDomain, currentMainCategory, currentSubCategory } =
@@ -61,3 +48,16 @@ const AssetLibrary = observer(() => {
 });
 
 export default AssetLibrary;
+
+const Container = styled.div`
+  width: 100%;
+  height: 80vh;
+  min-width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: ${basicColors.black};
+  border-radius: 10px;
+  color: ${basicColors.white};
+  box-sizing: border-box;
+`;

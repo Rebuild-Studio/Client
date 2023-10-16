@@ -5,65 +5,6 @@ import { basicColors, grayColors } from "@/resources/colors/colors";
 import { CSSColor, CSSSize } from "@/types/style/cssUnits";
 import StackItem from "../stack/StackItem";
 
-interface ContainerProps {
-  size: Props["size"];
-}
-const Container = styled.div<ContainerProps>`
-  position: relative;
-  width: ${({ size }) => size};
-  border: 1.5px solid ${grayColors.lightGray};
-  border-radius: 5px;
-`;
-
-interface CustomStackProps {
-  $open: boolean;
-  $backgroundColor?: Props["backgroundColor"];
-  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
-}
-
-const CustomStack = styled(Stack)<CustomStackProps>`
-  max-height: 240px;
-  position: absolute;
-  top: 100%;
-  border: ${({ $open }) =>
-    $open ? `1.5px solid ${grayColors.E2E2E2}` : "none"};
-  border-radius: 5px;
-  overflow-y: auto;
-  box-sizing: border-box;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  z-index: 1;
-
-  & > *:hover {
-    color: ${basicColors.black};
-  }
-`;
-
-interface OpenButtonProps {
-  $backgroundColor?: Props["backgroundColor"];
-  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
-}
-
-const OpenButton = styled.button<OpenButtonProps>`
-  width: 100%;
-  min-width: 150px;
-  padding: 5px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: none;
-  object-fit: fill;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-    color: ${basicColors.white};
-    border-radius: 0;
-  }
-`;
-
 export interface Option {
   label: string;
   value: string;
@@ -77,11 +18,6 @@ interface Props {
   hoverBackgroundColor?: CSSColor;
   size?: CSSSize;
 }
-
-const CaretDown = () => (
-  <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
-);
-const CaretUp = () => <img src="/icons/common/CaretUp.svg" alt="CaretUp" />;
 
 const Dropdown = ({
   onClick = () => {},
@@ -156,3 +92,67 @@ const Dropdown = ({
 };
 
 export default Dropdown;
+
+interface ContainerProps {
+  size: Props["size"];
+}
+const Container = styled.div<ContainerProps>`
+  position: relative;
+  width: ${({ size }) => size};
+  border: 1.5px solid ${grayColors.lightGray};
+  border-radius: 5px;
+`;
+
+interface CustomStackProps {
+  $open: boolean;
+  $backgroundColor?: Props["backgroundColor"];
+  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+}
+
+const CustomStack = styled(Stack)<CustomStackProps>`
+  max-height: 240px;
+  position: absolute;
+  top: 100%;
+  border: ${({ $open }) =>
+    $open ? `1.5px solid ${grayColors.E2E2E2}` : "none"};
+  border-radius: 5px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  z-index: 1;
+
+  & > *:hover {
+    color: ${basicColors.black};
+  }
+`;
+
+interface OpenButtonProps {
+  $backgroundColor?: Props["backgroundColor"];
+  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+}
+
+const OpenButton = styled.button<OpenButtonProps>`
+  width: 100%;
+  min-width: 150px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  object-fit: fill;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
+    color: ${basicColors.white};
+    border-radius: 0;
+  }
+`;
+
+const CaretDown = () => (
+  <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
+);
+const CaretUp = () => <img src="/icons/common/CaretUp.svg" alt="CaretUp" />;

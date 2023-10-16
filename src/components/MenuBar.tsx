@@ -6,14 +6,6 @@ import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
 
-const StyledBar = styled.div`
-  height: 38px;
-  width: 100%;
-  background-color: ${bgColors[101728]};
-  display: flex;
-  align-items: center;
-`;
-
 const MenuBar = () => {
   const ComponentBtn = () => (
     <MenuButton
@@ -163,3 +155,11 @@ const MenuBar = () => {
 };
 
 export default MenuBar;
+
+const StyledBar = styled.div`
+  height: 38px;
+  width: 100%;
+  background-color: ${bgColors[101728]};
+  display: flex;
+  align-items: center;
+`;

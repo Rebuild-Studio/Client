@@ -12,47 +12,6 @@ import { bgColors, grayColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
 
-const Wrapper = styled.div`
-  width: 100%;
-  height: 88px;
-  display: flex;
-  z-index: 1;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${bgColors[282828]};
-`;
-
-const Container = styled.div<{ height: string }>`
-  width: 100%;
-  z-index: 1;
-  height: ${(props) => props.height};
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid ${bgColors["1c1c1c"]};
-`;
-
-const CanvasBtnWrapper = styled.div<{ width: string }>`
-  width: ${(props) => props.width};
-  height: 100%;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-left: 1px solid ${bgColors["1c1c1c"]};
-`;
-
-const PaddingBox = styled.div`
-  height: 100%;
-  flex-grow: 1;
-  border: 1px solid ${bgColors["1c1c1c"]};
-`;
-
-const ButtonGroupName = styled.span`
-  font-size: 10px;
-  color: ${grayColors["808080"]};
-  align-self: center;
-`;
-
 const CanvasBar = observer(() => {
   const { primitiveStore } = storeContainer;
   const { addToast } = useToast();
@@ -79,7 +38,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CubePrimitive storeId={storeId} />,
+                <CubePrimitive storeId={storeId} />
               );
             }}
           />
@@ -93,7 +52,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <SpherePrimitive storeId={storeId} />,
+                <SpherePrimitive storeId={storeId} />
               );
             }}
           />
@@ -106,7 +65,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CylinderPrimitive storeId={storeId} />,
+                <CylinderPrimitive storeId={storeId} />
               );
             }}
           />
@@ -119,7 +78,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <ConePrimitive storeId={storeId} />,
+                <ConePrimitive storeId={storeId} />
               );
             }}
           />
@@ -132,7 +91,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <TorusPrimitive storeId={storeId} />,
+                <TorusPrimitive storeId={storeId} />
               );
             }}
           />
@@ -145,7 +104,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CapsulePrimitive storeId={storeId} />,
+                <CapsulePrimitive storeId={storeId} />
               );
             }}
           />
@@ -188,3 +147,44 @@ const CanvasBar = observer(() => {
 });
 
 export default CanvasBar;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 88px;
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${bgColors[282828]};
+`;
+
+const Container = styled.div<{ height: string }>`
+  width: 100%;
+  z-index: 1;
+  height: ${(props) => props.height};
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid ${bgColors["1c1c1c"]};
+`;
+
+const CanvasBtnWrapper = styled.div<{ width: string }>`
+  width: ${(props) => props.width};
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid ${bgColors["1c1c1c"]};
+`;
+
+const PaddingBox = styled.div`
+  height: 100%;
+  flex-grow: 1;
+  border: 1px solid ${bgColors["1c1c1c"]};
+`;
+
+const ButtonGroupName = styled.span`
+  font-size: 10px;
+  color: ${grayColors["808080"]};
+  align-self: center;
+`;

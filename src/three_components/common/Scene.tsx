@@ -8,27 +8,6 @@ import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasHelper } from "./CanvasHelper";
 
-const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 78px;
-  height: calc(100vh - ${78}px);
-  display: flex;
-`;
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  bottom: 0%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CustomCanvas = styled(Canvas)`
-  width: "100%";
-  height: "100%";
-  background-color: ${bgColors.sceneBackground};
-`;
-
 const Scene = observer(() => {
   const { mouseEventStore, contextMenuStore, projectStateStore } =
     storeContainer;
@@ -91,3 +70,24 @@ const Scene = observer(() => {
 });
 
 export default Scene;
+
+const Wrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 78px;
+  height: calc(100vh - ${78}px);
+  display: flex;
+`;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CustomCanvas = styled(Canvas)`
+  width: "100%";
+  height: "100%";
+  background-color: ${bgColors.sceneBackground};
+`;

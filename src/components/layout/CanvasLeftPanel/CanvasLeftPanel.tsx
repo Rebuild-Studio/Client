@@ -12,38 +12,6 @@ type Props = {
   isOpen: boolean;
 };
 
-type CSSWrapper = {
-  $isOpen: boolean;
-};
-
-const Wrapper = styled.div<CSSWrapper>`
-  z-index: 1;
-  position: absolute;
-  top: ${({ $isOpen }) => ($isOpen ? "180px" : "92px")};
-`;
-
-const MultiButtonBox = styled.div`
-  z-index: 1;
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  display: flex;
-  background-color: ${bgColors[222222]};
-  border-radius: 0px 10px 0px 10px;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-
-  &:hover {
-    background-color: ${grayColors["3a3a3a"]};
-  }
-`;
-
 export const CanvasLeftPanel = observer(({ isOpen }: Props) => {
   const [visibleHistoryPanel, setVisibleHistoryPanel] = useState(false);
   const [visibleHierarchyPanel, setVisibleHierarchyPanel] = useState(false);
@@ -100,3 +68,35 @@ export const CanvasLeftPanel = observer(({ isOpen }: Props) => {
     </>
   );
 });
+
+type CSSWrapper = {
+  $isOpen: boolean;
+};
+
+const Wrapper = styled.div<CSSWrapper>`
+  z-index: 1;
+  position: absolute;
+  top: ${({ $isOpen }) => ($isOpen ? "180px" : "92px")};
+`;
+
+const MultiButtonBox = styled.div`
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  background-color: ${bgColors[222222]};
+  border-radius: 0px 10px 0px 10px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+
+  &:hover {
+    background-color: ${grayColors["3a3a3a"]};
+  }
+`;
