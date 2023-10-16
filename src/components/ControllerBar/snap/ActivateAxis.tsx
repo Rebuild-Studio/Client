@@ -34,6 +34,7 @@ const ActivateAxis = observer(({ enabled }: Props) => {
 export default ActivateAxis;
 
 const Wrapper = styled.div<{ $disabled: boolean }>`
+  display: flex;
   color: ${basicColors.grey};
 
   ${({ $disabled }) =>
@@ -45,7 +46,9 @@ const Wrapper = styled.div<{ $disabled: boolean }>`
 `;
 
 const Button = styled.button<{ $highlight: boolean }>`
-  width: 70px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
   padding: 4px 6px;
   border: 1px solid ${bgColors["404040"]};
   font-size: ${fonts.xs};
