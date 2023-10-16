@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
+import Shape from "./Shape";
 import PropertyValue from "./TransFromationInfo";
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
@@ -82,7 +83,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                     />
                   </Accordion>
                 </>,
-                <div>{"쉐이프"}</div>,
+                <Shape />,
               ]}
             />
           </Panel>
