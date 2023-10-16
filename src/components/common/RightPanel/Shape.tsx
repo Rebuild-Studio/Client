@@ -10,20 +10,6 @@ type geometryParameter = {
   [key: string]: string | number | boolean;
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-`;
-const InputWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const getGeometryParameters = (
   geometryType: string,
   selectedPrimitive: THREE.Mesh
@@ -71,6 +57,7 @@ const createGeometry = (
 
     case "CapsuleGeometry":
       return new THREE.CapsuleGeometry(...parameter);
+
     default:
       throw new Error(`Unsupported geometry type: ${geometryType}`);
   }
@@ -145,5 +132,18 @@ const Shape = () => {
     </>
   );
 };
-
 export default Shape;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`;
+const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
