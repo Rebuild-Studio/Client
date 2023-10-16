@@ -1,6 +1,8 @@
 import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
+import { setCameraControlEnabled } from "../utils/cameraControl";
+import { TorusGeometry } from "three";
 
 interface GroupGizmoProps {
   storeId: string;
@@ -21,9 +23,11 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           object={primitiveStore.meshes[props.storeId]}
           onMouseDown={() => {
             transformControlStore.setIsTranslated();
+            setCameraControlEnabled(false);
           }}
           onMouseUp={() => {
             transformControlStore.clearTransform();
+            setCameraControlEnabled(true);
           }}
         />
       )}
@@ -35,10 +39,12 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           onMouseDown={() => {
             if (transformControlStore.currentControl !== "TRANSFORM") {
               transformControlStore.setIsRotated();
+              setCameraControlEnabled(false);
             }
           }}
           onMouseUp={() => {
             transformControlStore.clearTransform();
+            setCameraControlEnabled(true);
           }}
         />
       )}
@@ -49,9 +55,11 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
           size={0.8}
           onMouseDown={() => {
             transformControlStore.setIsScaled();
+            setCameraControlEnabled(false);
           }}
           onMouseUp={() => {
             transformControlStore.clearTransform();
+            setCameraControlEnabled(true);
           }}
         />
       )}
