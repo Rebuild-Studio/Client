@@ -9,25 +9,6 @@ type Props = {
   isOpen: boolean;
 };
 
-type CSSCanvasWrapper = {
-  $barIsOpen: boolean;
-  $panelIsOpen: boolean;
-};
-
-const CanvasWrapper = styled.div<CSSCanvasWrapper>`
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: ${({ $barIsOpen }) => ($barIsOpen ? "188px" : "100px")};
-  right: ${({ $panelIsOpen }) => ($panelIsOpen ? "321px" : "50px")};
-  z-index: 1;
-`;
-
-const CustomCanvas = styled(Canvas)`
-  width: "100%";
-  height: "100%";
-`;
-
 export const OrientationHelper = observer(({ isOpen }: Props) => {
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
@@ -54,3 +35,22 @@ export const OrientationHelper = observer(({ isOpen }: Props) => {
     </CanvasWrapper>
   );
 });
+
+type CSSCanvasWrapper = {
+  $barIsOpen: boolean;
+  $panelIsOpen: boolean;
+};
+
+const CanvasWrapper = styled.div<CSSCanvasWrapper>`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: ${({ $barIsOpen }) => ($barIsOpen ? "188px" : "100px")};
+  right: ${({ $panelIsOpen }) => ($panelIsOpen ? "321px" : "50px")};
+  z-index: 1;
+`;
+
+const CustomCanvas = styled(Canvas)`
+  width: "100%";
+  height: "100%";
+`;

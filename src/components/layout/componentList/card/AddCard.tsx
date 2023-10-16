@@ -4,9 +4,26 @@ import {
   StyledCard,
   StyledCardTextAreaBox,
 } from "../componentList.Styles";
+
 type Props = {
   isClicked: boolean;
   onClick?: () => void;
+};
+
+export const AddCard = ({ isClicked, onClick }: Props) => {
+  return (
+    <StyledAddCard $isClicked={isClicked} onClick={onClick}>
+      <StyledImgBox>
+        <StyledCardImg
+          src={"/icons/studio/icon_plus-solid.svg"}
+          alt="icon_plus-solid"
+        />
+      </StyledImgBox>
+      <StyledCardTextAreaBox>
+        <StyledCardTextArea>{"새 컴포넌트 만들기"}</StyledCardTextArea>
+      </StyledCardTextAreaBox>
+    </StyledAddCard>
+  );
 };
 
 const StyledAddCard = styled(StyledCard)`
@@ -26,19 +43,3 @@ const StyledImgBox = styled.div`
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
 `;
-
-export const AddCard = ({ isClicked, onClick }: Props) => {
-  return (
-    <StyledAddCard $isClicked={isClicked} onClick={onClick}>
-      <StyledImgBox>
-        <StyledCardImg
-          src={"/icons/studio/icon_plus-solid.svg"}
-          alt="icon_plus-solid"
-        />
-      </StyledImgBox>
-      <StyledCardTextAreaBox>
-        <StyledCardTextArea>{"새 컴포넌트 만들기"}</StyledCardTextArea>
-      </StyledCardTextAreaBox>
-    </StyledAddCard>
-  );
-};

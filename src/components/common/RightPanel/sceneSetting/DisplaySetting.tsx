@@ -8,13 +8,6 @@ import { HsvaColor } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
 import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 
-const TitleWrapper = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-`;
-
 const DisplaySetting = observer(() => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
     ColorHandler;
@@ -58,3 +51,10 @@ const DisplaySetting = observer(() => {
 });
 
 export default DisplaySetting;
+
+const TitleWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;

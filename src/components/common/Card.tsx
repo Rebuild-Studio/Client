@@ -18,6 +18,47 @@ type Props = {
   onClick?: () => void;
 };
 
+export const Card = ({
+  thumbnail,
+  isClicked,
+  name = "",
+  width = "245px",
+  height = "245px",
+  imageWidth = "90%",
+  imageHeight = "90%",
+  border = "1px dotted #fff",
+  alt = "error",
+  hoverEffect = true,
+  onClick,
+}: Props) => {
+  const [srcError, setSrcError] = useState(false);
+  return (
+    <StyledCard
+      $width={width}
+      $height={height}
+      $border={border}
+      $isClicked={isClicked}
+      $hoverEffect={hoverEffect}
+      onClick={onClick}
+    >
+      {srcError ? (
+        <StyledAlt>{alt}</StyledAlt>
+      ) : (
+        <StyledCardImg
+          onError={() => {
+            setSrcError(true);
+          }}
+          $imageWidth={imageWidth}
+          $ImageHeight={imageHeight}
+          src={thumbnail}
+          alt="library"
+        />
+      )}
+      <StyledCardTextArea>{name}</StyledCardTextArea>
+    </StyledCard>
+  );
+};
+
 type CSSStyledCardProps = {
   $isClicked: boolean;
   $width: CSSSize;
@@ -82,44 +123,3 @@ const StyledCardTextArea = styled.div`
   line-height: 1.5;
   letter-spacing: 0.00938em;
 `;
-
-export const Card = ({
-  thumbnail,
-  isClicked,
-  name = "",
-  width = "245px",
-  height = "245px",
-  imageWidth = "90%",
-  imageHeight = "90%",
-  border = "1px dotted #fff",
-  alt = "error",
-  hoverEffect = true,
-  onClick,
-}: Props) => {
-  const [srcError, setSrcError] = useState(false);
-  return (
-    <StyledCard
-      $width={width}
-      $height={height}
-      $border={border}
-      $isClicked={isClicked}
-      $hoverEffect={hoverEffect}
-      onClick={onClick}
-    >
-      {srcError ? (
-        <StyledAlt>{alt}</StyledAlt>
-      ) : (
-        <StyledCardImg
-          onError={() => {
-            setSrcError(true);
-          }}
-          $imageWidth={imageWidth}
-          $ImageHeight={imageHeight}
-          src={thumbnail}
-          alt="library"
-        />
-      )}
-      <StyledCardTextArea>{name}</StyledCardTextArea>
-    </StyledCard>
-  );
-};

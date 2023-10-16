@@ -9,25 +9,6 @@ type Props = {
   index: number;
 };
 
-type CSSHistoryTextType = {
-  $index: number;
-};
-
-const HistoryElement = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  gap: 4px;
-  cursor: pointer;
-`;
-
-const HistoryText = styled.span<CSSHistoryTextType>`
-  font-size: ${fonts.default};
-  margin-bottom: 3px;
-  // TODO : 색 color.ts에서 가져오기
-  color: ${({ $index }) => ($index === 0 ? "#E3F853" : "")};
-`;
-
 export const RedoElement = observer(({ label, index }: Props) => {
   const textRef = useRef<HTMLSpanElement>(null);
   return (
@@ -47,3 +28,22 @@ export const RedoElement = observer(({ label, index }: Props) => {
     </HistoryElement>
   );
 });
+
+const HistoryElement = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 4px;
+  cursor: pointer;
+`;
+
+type CSSHistoryTextType = {
+  $index: number;
+};
+
+const HistoryText = styled.span<CSSHistoryTextType>`
+  font-size: ${fonts.default};
+  margin-bottom: 3px;
+  // TODO : 색 color.ts에서 가져오기
+  color: ${({ $index }) => ($index === 0 ? "#E3F853" : "")};
+`;

@@ -22,45 +22,6 @@ export type MenuButtonProps = {
   fontWeight?: number;
 };
 
-type CSSProps = {
-  $fontSize: FontType;
-  $color?: CSSHexColor;
-  $backgroundColor?: CSSHexColor;
-  $hoverBackgroundColor?: CSSHexColor;
-  $width?: string;
-  $height?: string;
-  $minHeight?: string;
-  $minWidth?: string;
-  $borderRadius?: string;
-  $fontFamily?: string;
-  $fontWeight?: number;
-};
-
-const StyledButton = styled.button<CSSProps>`
-  color: ${({ $color }) => $color};
-  font-size: ${({ $fontSize }) => fonts[$fontSize]};
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  padding: 6px 8px;
-  border: 0px;
-  width: ${({ $width }) => $width};
-  height: ${({ $height }) => $height};
-  min-height: ${({ $minHeight }) => $minHeight};
-  min-width: ${({ $minWidth }) => $minWidth};
-  border-radius: ${({ $borderRadius }) => $borderRadius};
-  font-family: ${({ $fontFamily }) => $fontFamily};
-  font-weight: ${({ $fontWeight }) => $fontWeight};
-  margin: 0px;
-  cursor: pointer;
-  vertical-align: middle;
-  min-width: 64px;
-
-  &:hover {
-    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-`;
-
 const MenuButton = ({
   className,
   onClick = () => {},
@@ -101,3 +62,42 @@ const MenuButton = ({
 };
 
 export default MenuButton;
+
+type CSSProps = {
+  $fontSize: FontType;
+  $color?: CSSHexColor;
+  $backgroundColor?: CSSHexColor;
+  $hoverBackgroundColor?: CSSHexColor;
+  $width?: string;
+  $height?: string;
+  $minHeight?: string;
+  $minWidth?: string;
+  $borderRadius?: string;
+  $fontFamily?: string;
+  $fontWeight?: number;
+};
+
+const StyledButton = styled.button<CSSProps>`
+  color: ${({ $color }) => $color};
+  font-size: ${({ $fontSize }) => fonts[$fontSize]};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  padding: 6px 8px;
+  border: 0px;
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+  min-height: ${({ $minHeight }) => $minHeight};
+  min-width: ${({ $minWidth }) => $minWidth};
+  border-radius: ${({ $borderRadius }) => $borderRadius};
+  font-family: ${({ $fontFamily }) => $fontFamily};
+  font-weight: ${({ $fontWeight }) => $fontWeight};
+  margin: 0px;
+  cursor: pointer;
+  vertical-align: middle;
+  min-width: 64px;
+
+  &:hover {
+    background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+`;
