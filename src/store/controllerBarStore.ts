@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { observable } from "mobx";
 
 export enum GIZMO_MODE {
   GLOBAL = "GLOBAL",
@@ -11,36 +11,36 @@ export enum SNAP_MODE {
   SURFACE = "SURFACE",
 }
 
-class ControllerBarStore {
-  gizmoMode = GIZMO_MODE.GLOBAL;
-  snapMode = {
+interface ControllerBarStoreProps {
+  gizmoMode: GIZMO_MODE;
+  snapMode: Record<SNAP_MODE, boolean>;
+  surfaceSnapAxisEnabled: boolean;
+  isAnySnapModeActivated: boolean;
+  setGizmoMode: (mode: GIZMO_MODE) => void;
+  toggleSnapMode: (mode: SNAP_MODE) => void;
+  setSurfaceSnapAxis: (enabled: boolean) => void;
+}
+
+const controllerBarStore = observable<ControllerBarStoreProps>({
+  gizmoMode: GIZMO_MODE.GLOBAL,
+  snapMode: {
     [SNAP_MODE.GRID]: false,
     [SNAP_MODE.ROTATE]: false,
     [SNAP_MODE.SURFACE]: false,
-  };
-  surfaceSnapAxisEnabled = true;
-
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  get isAnySnapModeActivated() {
-    return Object.values(this.snapMode).some((v) => v);
-  }
-
-  setGizmoMode = (mode: GIZMO_MODE) => {
-    this.gizmoMode = mode;
-  };
-
-  toggleSnapMode = (mode: SNAP_MODE) => {
-    this.snapMode[mode] = !this.snapMode[mode];
-  };
-
-  setSurfaceSnapAxis = (enabled: boolean) => {
-    this.surfaceSnapAxisEnabled = enabled;
-  };
-}
-
-const controllerBarStore = new ControllerBarStore();
+  },
+  surfaceSnapAxisEnabled: true,
+  get isAnySnapModeActivated(): boolean {
+    return Object.values(controllerBarStore.snapMode).some((v) => v);
+  },
+  setGizmoMode: (mode: GIZMO_MODE) => {
+    controllerBarStore.gizmoMode = mode;
+  },
+  toggleSnapMode: (mode: SNAP_MODE) => {
+    controllerBarStore.snapMode[mode] = !controllerBarStore.snapMode[mode];
+  },
+  setSurfaceSnapAxis: (enabled: boolean) => {
+    controllerBarStore.surfaceSnapAxisEnabled = enabled;
+  },
+});
 
 export default controllerBarStore;
