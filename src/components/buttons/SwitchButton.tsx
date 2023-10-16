@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
 
 const SwitchContainer = styled.div`
+  width: 200px;
+  margin: 20px 0;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 `;
-
 const SwitchLabel = styled.label`
+  font-size: 10px;
   margin-right: 8px;
   user-select: none;
 `;
@@ -47,13 +50,16 @@ const SwitchLever = styled.div<{ checked: boolean }>`
 
 interface SwitchProps {
   label: string;
+  checked: boolean;
+  onChange: (newChecked: boolean) => void;
 }
 
-const Switch = ({ label }: SwitchProps) => {
-  const [checked, setChecked] = useState(false);
+const Switch = ({ label, checked, onChange }: SwitchProps) => {
+  const [isChecked, setIsChecked] = useState(checked);
 
   const handleSwitchChange = () => {
-    setChecked(!checked);
+    setIsChecked(!isChecked);
+    onChange(!isChecked);
   };
 
   return (
@@ -62,10 +68,10 @@ const Switch = ({ label }: SwitchProps) => {
       <SwitchWrapper>
         <SwitchInput
           type="checkbox"
-          checked={checked}
+          checked={isChecked}
           onChange={handleSwitchChange}
         />
-        <SwitchLever checked={checked} onClick={handleSwitchChange} />
+        <SwitchLever checked={isChecked} onClick={handleSwitchChange} />
       </SwitchWrapper>
     </SwitchContainer>
   );
