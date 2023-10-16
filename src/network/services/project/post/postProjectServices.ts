@@ -9,27 +9,23 @@ import {
 } from "./models/postMxProject.model";
 
 const createMxProject = async (params: RequestCreateMxProject) => {
-  try {
-    const res = await apiModule.post<ResponseCreateMxProject>(
-      "/mx-project/create",
-      params
-    );
-    return res;
-  } catch (e) {
-    console.error("MX 생성 실패 : ", e);
-  }
+  const res = await apiModule
+    .post<ResponseCreateMxProject>("/mx-project/create", params)
+    .catch((e) => {
+      console.error("PMX 생성 실패 : ", e);
+    });
+  if (!res?.data) throw new Error("no data");
+  return res.data;
 };
 
 const createPmxProject = async (params: RequestCreatePmxProject) => {
-  try {
-    const res = await apiModule.post<ResponseCreatePmxProject>(
-      "/pmx-project/create",
-      params
-    );
-    return res;
-  } catch (e) {
-    console.error("PMX 생성 실패 : ", e);
-  }
+  const res = await apiModule
+    .post<ResponseCreatePmxProject>("/pmx-project/create", params)
+    .catch((e) => {
+      console.error("PMX 생성 실패 : ", e);
+    });
+  if (!res?.data) throw new Error("no data");
+  return res.data;
 };
 
 const postProjectServices = {
