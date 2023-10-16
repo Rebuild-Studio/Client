@@ -2,10 +2,12 @@ import { FormEvent } from "react";
 import { styled } from "styled-components";
 import { observer } from "mobx-react-lite";
 
-import ActivateAxis from "@components/ControllerBar/snap/ActivateAxis";
-import Checkbox from "@components/ControllerBar/snap/Checkbox";
-import controllerBarStore, { SNAP_MODE } from "@store/controllerBarStore";
+import ActivateAxis from "@/features/controllerBar/components/snap/ActivateAxis";
+import Checkbox from "@/features/controllerBar/components/snap/Checkbox";
 import { grayColors } from "@resources/colors/colors";
+import { SNAP_MODE } from "@/features/controllerBar/constants/snap";
+import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
+import { SnapModeType } from "@/features/controllerBar/types/snap";
 
 const SNAP_OPTIONS = [
   { value: SNAP_MODE.GRID, name: "그리드 스냅" },
@@ -18,7 +20,7 @@ const SnapModeControl = observer(() => {
 
   const handleChange = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as HTMLInputElement;
-    toggleSnapMode(target.value as SNAP_MODE);
+    toggleSnapMode(target.value as SnapModeType);
   };
 
   return (

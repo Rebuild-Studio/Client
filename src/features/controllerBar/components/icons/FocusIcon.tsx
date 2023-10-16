@@ -1,4 +1,4 @@
-import ControlIcon from "@components/ControllerBar/icons/ControlIcon";
+import ControlIcon from "@/features/controllerBar/components/icons/ControlIcon";
 
 const FocusIcon = () => {
   return (

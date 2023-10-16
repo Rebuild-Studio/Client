@@ -1,5 +1,5 @@
-import ControlButton from "@components/ControllerBar/ControlButton";
-import FocusIcon from "@components/ControllerBar/icons/FocusIcon";
+import ControlButton from "@/features/controllerBar/components/ControlButton";
+import FocusIcon from "@/features/controllerBar/components/icons/FocusIcon";
 
 const ObjectFocus = () => {
   const handleObjectFocus = () => {

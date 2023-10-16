@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
-import ObjectFocus from "@components/ControllerBar/focus/ObjectFocus";
-import GizmoMode from "@components/ControllerBar/gizmo/GizmoMode";
-import SnapMode from "@components/ControllerBar/snap/SnapMode";
+import ObjectFocus from "@/features/controllerBar/components/focus/ObjectFocus";
+import GizmoMode from "@/features/controllerBar/components/gizmo/GizmoMode";
+import SnapMode from "@/features/controllerBar/components/snap/SnapMode";
 import { bgColors } from "@resources/colors/colors";
 
 const ControllerBar = () => {

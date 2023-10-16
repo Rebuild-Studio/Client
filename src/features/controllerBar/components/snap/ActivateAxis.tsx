@@ -2,8 +2,8 @@ import { observer } from "mobx-react-lite";
 import { css, styled } from "styled-components";
 
 import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
-import controllerBarStore from "@store/controllerBarStore";
 import { fonts } from "@resources/fonts/font";
+import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
 
 interface Props {
   enabled: boolean;

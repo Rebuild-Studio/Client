@@ -2,8 +2,10 @@ import { FormEvent } from "react";
 import { styled } from "styled-components";
 import { observer } from "mobx-react-lite";
 
-import controllerBarStore, { GIZMO_MODE } from "@store/controllerBarStore";
-import RadioInput from "@components/ControllerBar/gizmo/RadioInput";
+import RadioInput from "@/features/controllerBar/components/gizmo/RadioInput";
+import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
+import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
+import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
 
 const GIZMO_OPTIONS = [
   {
@@ -21,7 +23,7 @@ const GizmoModeControl = observer(() => {
 
   const handleChange = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as HTMLInputElement;
-    setGizmoMode(target.value as GIZMO_MODE);
+    setGizmoMode(target.value as GizmoModeType);
   };
 
   return (

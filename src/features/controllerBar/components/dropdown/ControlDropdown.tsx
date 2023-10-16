@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
-import useDropdown from "@components/ControllerBar/dropdown/useDropdown";
-import ControlButton from "@components/ControllerBar/ControlButton";
-import ControlDropdownMenu from "@components/ControllerBar/dropdown/ControlDropdownMenu";
+import useDropdown from "@/features/controllerBar/components/dropdown/useDropdown";
+import ControlButton from "@/features/controllerBar/components/ControlButton";
+import ControlDropdownMenu from "@/features/controllerBar/components/dropdown/ControlDropdownMenu";
 import { basicColors } from "@resources/colors/colors";
-import ArrowIcon from "@components/ControllerBar/icons/ArrowIcon";
+import ArrowIcon from "@/features/controllerBar/components/icons/ArrowIcon";
 
 interface Props {
   icon: JSX.Element;

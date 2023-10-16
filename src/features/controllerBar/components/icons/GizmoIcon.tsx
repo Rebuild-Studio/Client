@@ -1,8 +1,10 @@
-import ControlIcon from "@components/ControllerBar/icons/ControlIcon";
-import { GIZMO_MODE } from "@store/controllerBarStore";
+import ControlIcon from "@/features/controllerBar/components/icons/ControlIcon";
+
+import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
+import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
 
 interface Props {
-  mode: GIZMO_MODE;
+  mode: GizmoModeType;
 }
 
 const GizmoIcon = ({ mode }: Props) => {

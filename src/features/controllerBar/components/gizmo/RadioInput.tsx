@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import RadioIcon from "@components/ControllerBar/icons/RadioIcon";
+import RadioIcon from "@/features/controllerBar/components/icons/RadioIcon";
 
 interface Props {
   value: string;

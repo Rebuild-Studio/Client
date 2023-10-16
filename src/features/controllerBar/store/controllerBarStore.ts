@@ -1,23 +1,17 @@
 import { observable } from "mobx";
 
-export enum GIZMO_MODE {
-  GLOBAL = "GLOBAL",
-  LOCAL = "LOCAL",
-}
-
-export enum SNAP_MODE {
-  GRID = "GRID",
-  ROTATE = "ROTATE",
-  SURFACE = "SURFACE",
-}
+import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
+import { SNAP_MODE } from "@/features/controllerBar/constants/snap";
+import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
+import { SnapModeType } from "@/features/controllerBar/types/snap";
 
 interface ControllerBarStoreProps {
-  gizmoMode: GIZMO_MODE;
-  snapMode: Record<SNAP_MODE, boolean>;
+  gizmoMode: GizmoModeType;
+  snapMode: Record<SnapModeType, boolean>;
   surfaceSnapAxisEnabled: boolean;
   isAnySnapModeActivated: boolean;
-  setGizmoMode: (mode: GIZMO_MODE) => void;
-  toggleSnapMode: (mode: SNAP_MODE) => void;
+  setGizmoMode: (mode: GizmoModeType) => void;
+  toggleSnapMode: (mode: SnapModeType) => void;
   setSurfaceSnapAxis: (enabled: boolean) => void;
 }
 
@@ -32,10 +26,10 @@ const controllerBarStore = observable<ControllerBarStoreProps>({
   get isAnySnapModeActivated(): boolean {
     return Object.values(controllerBarStore.snapMode).some((v) => v);
   },
-  setGizmoMode: (mode: GIZMO_MODE) => {
+  setGizmoMode: (mode: GizmoModeType) => {
     controllerBarStore.gizmoMode = mode;
   },
-  toggleSnapMode: (mode: SNAP_MODE) => {
+  toggleSnapMode: (mode: SnapModeType) => {
     controllerBarStore.snapMode[mode] = !controllerBarStore.snapMode[mode];
   },
   setSurfaceSnapAxis: (enabled: boolean) => {
