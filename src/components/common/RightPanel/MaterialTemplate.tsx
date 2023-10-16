@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import Grid from "../Grid";
-import dataStore from "./MaterialData";
+import dataStore from "./MaterialGeometryData";
 import storeContainer from "@/store/storeContainer";
 
 const MaterialTemplate = observer(() => {
