@@ -6,7 +6,7 @@ import AppWrapper from "./components/layout/wrapper/AppWrapper";
 import storeContainer from "./store/storeContainer";
 import Scene from "./three_components/common/Scene";
 import ToastContainer from "@components/common/ToastContainer.tsx";
-import ControllerBar from "@/features/ControllerBar";
+import ControllerBar from "@/features/controllerBar";
 
 const App = observer(() => {
   const { sceneSettingStore } = storeContainer;
