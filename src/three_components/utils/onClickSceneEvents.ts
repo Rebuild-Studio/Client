@@ -32,11 +32,7 @@ const onClickSceneEvents = (
     return primitiveStore.meshes[value.object.userData["storeId"]];
   });
 
-  console.log(
-    intersectObjects.find((value) => {
-      return value.object.name === "POINT_LIGHT";
-    })
-  );
+  console.log(intersectObjects);
 
   // 그룹 찾기
   const selectChildObject = intersectObjects.find((value) => {

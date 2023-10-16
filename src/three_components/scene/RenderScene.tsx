@@ -44,7 +44,9 @@ const RenderScene = observer(() => {
         return mouseEventStore.currentMouseEvent;
       },
       (mouseEvent) => {
-        const intersectObjects = raycaster.intersectObject(scene);
+        const intersectObjects = raycaster.intersectObjects(
+          Object.values(primitiveStore.meshes)
+        );
         switch (mouseEvent[0]) {
           case "onMouseDown": {
             onMouseDownSceneEvents();
