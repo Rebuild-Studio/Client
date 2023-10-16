@@ -29,14 +29,14 @@ const BaseModal = {
 
     return (
       <>
-        {isOpened &&
+        {/* {isOpened &&
           ReactDOM.createPortal(
-            <Modal setIsOpened={setIsOpened}>
+            <Modal>
               <TestComponent></TestComponent>
             </Modal>,
             document.getElementById("storybook-root")! // 실제 코드에서는 modal-root로 변경
           )}
-        <button onClick={openModal}>열려라 모달</button>
+        <button onClick={openModal}>열려라 모달</button> */}
       </>
     );
   },
