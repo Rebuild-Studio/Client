@@ -12,9 +12,9 @@ const meta = {
   argTypes: {
     size: {
       control: "text",
-      description: textsStoryDesc.size,
-    },
-  },
+      description: textsStoryDesc.size
+    }
+  }
 } satisfies Meta<typeof Dropdown>;
 
 export default meta;
@@ -70,8 +70,8 @@ export const Default: Story = {
     options: [
       { label: "옵션1", value: "option1" },
       { label: "옵션2", value: "option2" },
-      { label: "옵션3", value: "option3" },
+      { label: "옵션3", value: "option3" }
     ],
-    size: "100%",
-  },
+    size: "100%"
+  }
 };

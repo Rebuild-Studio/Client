@@ -12,7 +12,7 @@ const ContextMenu = observer((props: ContextMenuProps) => {
   const renderContextMenuItem = (
     title: string,
     hotKey: string,
-    isEnabled: boolean,
+    isEnabled: boolean
   ) => {
     switch (title) {
       case "DIVIDER":

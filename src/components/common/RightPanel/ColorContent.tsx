@@ -6,7 +6,7 @@ import {
   RgbaColor,
   hsvaToHex,
   hsvaToRgba,
-  rgbaToHsva,
+  rgbaToHsva
 } from "@uiw/color-convert";
 import { Alpha, Hue, Saturation } from "@uiw/react-color";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ const ColorContent = observer(
     saturationSlider = true,
     brightnessSlider = true,
     onChangeHsvaProp,
-    onChangeAlphaProp,
+    onChangeAlphaProp
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
@@ -38,7 +38,7 @@ const ColorContent = observer(
     const rgbChannels = [
       { label: "R", value: rgbColor.r },
       { label: "G", value: rgbColor.g },
-      { label: "B", value: rgbColor.b },
+      { label: "B", value: rgbColor.b }
     ];
 
     const onChangeSaturation = action((newColor: HsvaColor) => {
@@ -189,7 +189,7 @@ const ColorContent = observer(
         )}
       </Wrapper>
     );
-  },
+  }
 );
 export default ColorContent;
 

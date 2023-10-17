@@ -12,11 +12,11 @@ const meta = {
       values: [
         {
           name: "my-custom-background",
-          value: bgColors[282828],
-        },
-      ],
-    },
-  },
+          value: bgColors[282828]
+        }
+      ]
+    }
+  }
 } satisfies Meta<typeof AddCard>;
 
 export default meta;
@@ -24,6 +24,6 @@ type Story = StoryObj<typeof AddCard>;
 
 export const BasicComponentList = {
   args: {
-    isClicked: false,
-  },
+    isClicked: false
+  }
 } satisfies Story;

@@ -2,14 +2,14 @@ import apiModule from "@network/module/apiModule";
 import {
   RequestGetAsset,
   RequestSearchAsset,
-  ResponseGetAsset,
+  ResponseGetAsset
 } from "./models/GetLibraryModels";
 
 const getAssets = async (
-  params: RequestGetAsset,
+  params: RequestGetAsset
 ): Promise<ResponseGetAsset[]> => {
   const res = await apiModule.get<ResponseGetAsset[]>("/library", {
-    params: params,
+    params: params
   });
 
   return res.data;
@@ -17,7 +17,7 @@ const getAssets = async (
 
 const searchAsset = async (params: RequestSearchAsset) => {
   const res = await apiModule.get("/libray/search", {
-    params: params,
+    params: params
   });
 
   return res;
@@ -25,7 +25,7 @@ const searchAsset = async (params: RequestSearchAsset) => {
 
 const getLibraryServices = {
   getAssets: getAssets,
-  searchAsset: searchAsset,
+  searchAsset: searchAsset
 };
 
 export default getLibraryServices;

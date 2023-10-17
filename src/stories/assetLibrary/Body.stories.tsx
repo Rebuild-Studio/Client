@@ -10,10 +10,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 바디입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 바디입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof Body>;
 
 export default meta;
@@ -25,6 +25,6 @@ export const AssetLibraryBody = {
       <div style={{ backgroundColor: basicColors.black }}>
         <Story />
       </div>
-    ),
-  ],
+    )
+  ]
 } satisfies Story;

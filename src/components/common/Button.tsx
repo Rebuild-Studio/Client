@@ -35,7 +35,7 @@ const Button = ({
   backgroundImage = "",
   hoverBackgroundImage = "",
   color = basicColors.white,
-  outline = false,
+  outline = false
 }: Props) => {
   return (
     <SCButton

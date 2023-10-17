@@ -35,7 +35,7 @@ const initCylinder: CylinderParams = {
   toggleOpenEnded: false,
   minThetaLength: 0,
   maxThetaLength: Math.PI * 2,
-  thetaLengthUnit: 0.06,
+  thetaLengthUnit: 0.06
 };
 
 const CylinderPrimitive = observer((props: PrimitiveProps) => {
@@ -49,7 +49,7 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
     1,
     false,
     0,
-    Math.PI * 2,
+    Math.PI * 2
   );
   const material = getDefaultMaterialSetting();
   material.transparent = true;

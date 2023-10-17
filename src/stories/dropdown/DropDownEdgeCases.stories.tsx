@@ -8,7 +8,7 @@ const meta = {
   component: Dropdown,
   title: "Component/Dropdown/Edges",
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {}
 } satisfies Meta<typeof Dropdown>;
 
 export default meta;
@@ -29,18 +29,18 @@ export const WithoutOptions = {
     // dropdown option 미 생성 확인 및 안내 메세지 확인
     const dropdownOptions = canvas.getByRole("option-container");
     await expect(dropdownOptions.childNodes[0]).toHaveTextContent(
-      "옵션이 없습니다.",
+      "옵션이 없습니다."
     );
     // 기본 커서 확인
     await expect(dropdownOptions.childNodes[0]).toHaveStyle({
-      cursor: "default",
+      cursor: "default"
     });
   },
   args: {
     hoverBackgroundColor: grayColors.lightGray,
     placeholder: "선택된 옵션",
-    options: [],
-  },
+    options: []
+  }
 } satisfies Story;
 
 const options = () => {
@@ -48,7 +48,7 @@ const options = () => {
   for (let i = 0; i < 50; i++) {
     options.push({
       label: `옵션 ${i}`,
-      value: `${i}`,
+      value: `${i}`
     });
   }
   return options;
@@ -61,10 +61,10 @@ export const WithMultipleOptions = {
     await userEvent.click(dropdownButton);
     const dropdownOptions = canvas.getByRole("option-container");
     await expect(dropdownOptions).toHaveStyle({
-      height: `${10 * 24}px`,
+      height: `${10 * 24}px`
     });
   },
   render: (args) => {
     return <Dropdown {...args} options={options()} />;
-  },
+  }
 } satisfies Story;

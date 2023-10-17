@@ -25,5 +25,5 @@ interface ResponseMySpecificProject {
 export type {
   ResponseMyProject,
   RequestMySpecificProject,
-  ResponseMySpecificProject,
+  ResponseMySpecificProject
 };

@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 const userStore = observable({
-  accessToken: "",
+  accessToken: ""
 });
 
 export default userStore;

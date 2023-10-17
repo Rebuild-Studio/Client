@@ -26,7 +26,7 @@ export const Tabs = ({
   height,
   underbarHeight = "4px",
   underbarWidth = "50px",
-  onChange = () => {},
+  onChange = () => {}
 }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const sliderRef = useRef<HTMLDivElement>(null);

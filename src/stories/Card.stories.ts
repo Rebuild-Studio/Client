@@ -12,11 +12,11 @@ const meta = {
       values: [
         {
           name: "my-custom-background",
-          value: bgColors[282828],
-        },
-      ],
-    },
-  },
+          value: bgColors[282828]
+        }
+      ]
+    }
+  }
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -33,6 +33,6 @@ export const Example = {
     border: "1px dotted #fff",
     alt: "error",
     hoverEffect: true,
-    isClicked: false,
-  },
+    isClicked: false
+  }
 } satisfies Story;

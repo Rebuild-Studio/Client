@@ -9,7 +9,7 @@ const useInfiniteScroll = (
   ref: RefObject<HTMLElement>,
   globalPage: number,
   localPage: number,
-  setLocalpage: Dispatch<SetStateAction<number>>,
+  setLocalpage: Dispatch<SetStateAction<number>>
 ) => {
   useEffect(() => {
     const container = ref.current;

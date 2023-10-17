@@ -6,11 +6,11 @@ const textsCommon = {
   api: "API",
   test: "TEST",
   dau: "DAU",
-  header: "MX DashBoard",
+  header: "MX DashBoard"
 };
 
 const textsAPI = {
-  title_find: "확인할 API를 선택해주세요",
+  title_find: "확인할 API를 선택해주세요"
 };
 
 const textsTest = {
@@ -18,7 +18,7 @@ const textsTest = {
   stability_test: "STABILITY TEST",
   spike_test: "SPIKE TEST",
   stress_test: "STRESS TEST",
-  parameter: "파라미터",
+  parameter: "파라미터"
 };
 
 const textsUpload = {
@@ -28,11 +28,11 @@ const textsUpload = {
   title_sub_category: "올리실 파일의 서브 카테고리를 선택해주세요",
   title_filename: "올리실 파일의 이름을 입력해주세요",
   notice_drag_and_drop:
-    "업로드할 파일을 드래그 앤 드롭 혹은\n이미지를 클릭하여 선택해주세요",
+    "업로드할 파일을 드래그 앤 드롭 혹은\n이미지를 클릭하여 선택해주세요"
 };
 
 const textsStoryDesc = {
-  size: ' ```"fit-content"``` ```"%"``` ```"px"``` ```"rem"``` ```"vw"``` ',
+  size: ' ```"fit-content"``` ```"%"``` ```"px"``` ```"rem"``` ```"vw"``` '
 };
 
 export { textsCommon, textsAPI, textsTest, textsUpload, textsStoryDesc };

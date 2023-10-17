@@ -13,7 +13,7 @@ const DisplaySetting = observer(() => {
     ColorHandler;
   const { sceneSettingStore } = storeContainer;
   const [color, setColor] = useState<HsvaColor>(
-    sceneSettingStore.canvasBackgroundColor,
+    sceneSettingStore.canvasBackgroundColor
   );
 
   useEffect(() => {

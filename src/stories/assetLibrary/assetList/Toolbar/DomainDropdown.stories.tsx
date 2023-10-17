@@ -9,10 +9,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 도메인 드랍다운 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 도메인 드랍다운 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof DomainDropdown>;
 
 export default meta;

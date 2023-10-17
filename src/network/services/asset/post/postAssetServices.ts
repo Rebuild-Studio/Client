@@ -11,7 +11,7 @@ const uploadAsset = async (params: RequestUploadAsset) => {
 };
 
 const postAssetServices = {
-  uploadAsset: uploadAsset,
+  uploadAsset: uploadAsset
 };
 
 export default postAssetServices;

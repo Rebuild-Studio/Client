@@ -116,7 +116,7 @@ const confirmButtonStyle: Omit<
   fontSize: "small",
   fontWeight: 500,
   color: bgColors[101728],
-  hoverBackgroundColor: basicColors.limeGreen,
+  hoverBackgroundColor: basicColors.limeGreen
 };
 
 const closeButtonStyle: Omit<
@@ -133,5 +133,5 @@ const closeButtonStyle: Omit<
   fontSize: "small",
   fontWeight: 500,
   color: basicColors.white,
-  hoverBackgroundColor: grayColors[808080],
+  hoverBackgroundColor: grayColors[808080]
 };

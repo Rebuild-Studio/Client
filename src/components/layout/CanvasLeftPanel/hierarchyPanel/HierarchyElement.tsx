@@ -52,7 +52,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
           setIsMouseUp(false);
         }
       },
-      { fireImmediately: true },
+      { fireImmediately: true }
     );
 
     return () => {
@@ -90,7 +90,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
       e.stopPropagation();
       mesh.visible = !visible;
       primitiveStore.updatePrimitive(storeId, mesh);
-    },
+    }
   };
 
   return (

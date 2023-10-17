@@ -15,7 +15,7 @@ const deleteSpecificProject = async (params: RequestSpecificProject) => {
 
 const deleteProjectServices = {
   deleteProject: deleteProject,
-  deleteSpecificProject: deleteSpecificProject,
+  deleteSpecificProject: deleteSpecificProject
 };
 
 export default deleteProjectServices;

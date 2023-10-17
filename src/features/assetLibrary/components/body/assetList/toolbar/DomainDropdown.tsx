@@ -9,7 +9,7 @@ import { grayColors } from "@resources/colors/colors";
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({
     label: domain.domainKR,
-    value: domain.domain,
+    value: domain.domain
   }));
   const [selectedOption, setSelectedOption] = useState<Option>(domains[0]);
 
@@ -21,7 +21,7 @@ const DomainDropdown = () => {
     assetLibraryStore.initLibrary();
     assetCategoryStore.setCurrentDomain({
       domain: selectedOption!.value,
-      domainKR: selectedOption!.label,
+      domainKR: selectedOption!.label
     } as Domain);
   }, [selectedOption]);
 

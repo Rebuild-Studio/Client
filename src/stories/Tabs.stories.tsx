@@ -5,7 +5,7 @@ import { basicColors, bgColors } from "@resources/colors/colors";
 const meta = {
   component: Tabs,
   title: "Component/Layout/Tabs",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -24,6 +24,6 @@ export const BasicTab = {
     underbarWidth: "50px",
     onChange: (index) => {
       console.log(index);
-    },
-  },
+    }
+  }
 } satisfies Story;

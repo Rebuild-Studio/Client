@@ -12,11 +12,11 @@ const meta = {
       values: [
         {
           name: "my-custom-background",
-          value: bgColors[282828],
-        },
-      ],
-    },
-  },
+          value: bgColors[282828]
+        }
+      ]
+    }
+  }
 } satisfies Meta<typeof ExampleCard>;
 
 export default meta;
@@ -26,6 +26,6 @@ export const Example = {
   args: {
     name: "오피스 테마",
     thumbnail: "/example/StartScene_Office.png",
-    isClicked: false,
-  },
+    isClicked: false
+  }
 } satisfies Story;

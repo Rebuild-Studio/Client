@@ -15,7 +15,7 @@ const deleteSpecificAsset = async (params: RequestDeleteAsset) => {
 
 const deleteAssetServices = {
   deleteAsset: deleteAsset,
-  deleteSpecificAsset: deleteSpecificAsset,
+  deleteSpecificAsset: deleteSpecificAsset
 };
 
 export default deleteAssetServices;

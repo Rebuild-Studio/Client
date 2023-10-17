@@ -1,4 +1,4 @@
 export const GIZMO_MODE = {
   GLOBAL: "GLOBAL",
-  LOCAL: "LOCAL",
+  LOCAL: "LOCAL"
 } as const;

@@ -12,7 +12,7 @@ export const ExampleCard = ({
   name,
   thumbnail,
   isClicked,
-  onClick,
+  onClick
 }: ExampleCardProps) => {
   return (
     <StyledCard $isClicked={isClicked} onClick={onClick}>

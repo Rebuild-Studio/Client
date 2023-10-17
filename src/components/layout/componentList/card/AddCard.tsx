@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   StyledCard,
   StyledCardTextArea,
-  StyledCardTextAreaBox,
+  StyledCardTextAreaBox
 } from "../componentList.Styles";
 
 type Props = {

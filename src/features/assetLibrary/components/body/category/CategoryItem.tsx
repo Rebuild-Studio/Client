@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import { styled } from "styled-components";
 import {
   MainCategory,
-  MainCategoryType,
+  MainCategoryType
 } from "@/features/assetLibrary/constants/mainCategory";
 import assetCategoryStore, { Category } from "@store/assetCategoryStore";
 import assetLibraryStore from "@store/assetLibraryStore";
@@ -19,7 +19,7 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;
   const myCategory: Category = {
     category: category,
-    categoryKR: name,
+    categoryKR: name
   };
 
   const onClickSetCategory = (): void => {

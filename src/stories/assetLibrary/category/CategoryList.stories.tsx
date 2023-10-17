@@ -10,10 +10,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 카테고리 아이템 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 카테고리 아이템 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof CategoryItem>;
 
 export default meta;
@@ -21,13 +21,13 @@ type Story = StoryObj<typeof CategoryItem>;
 
 const mainCategory: MainCategory = {
   category: "hom",
-  categoryKR: "집",
+  categoryKR: "집"
 };
 
 export const AssetLibraryCategoryList = {
   args: {
     name: mainCategory.categoryKR,
     category: mainCategory.category,
-    type: "main",
-  },
+    type: "main"
+  }
 } satisfies Story;

@@ -7,7 +7,7 @@ const getPublicPrefab = async () => {
 };
 
 const getPrefabServices = {
-  getPublicPrefab: getPublicPrefab,
+  getPublicPrefab: getPublicPrefab
 };
 
 export default getPrefabServices;

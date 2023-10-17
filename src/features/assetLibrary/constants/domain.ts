@@ -12,14 +12,14 @@ const DOMAIN_MAP: Record<DomainType, string> = {
   edu: "에듀",
   fin: "핀테크",
   hea: "헬스케어",
-  etc: "기타",
+  etc: "기타"
 };
 
 const DOMAIN_LIST: Domain[] = Object.entries(DOMAIN_MAP).map(
   ([domain, domainKR]) => ({
     domain: domain as DomainType,
-    domainKR,
-  }),
+    domainKR
+  })
 );
 
 export type { DomainType, Domain };

@@ -18,7 +18,7 @@ const Stack = ({
   children,
   width = "fit-content",
   height = "fit-content",
-  border,
+  border
 }: Props) => {
   return (
     <Container

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Grid = ({
   item,
-  columns,
+  columns
 }: {
   item: React.ReactNode;
   columns: number;

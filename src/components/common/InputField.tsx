@@ -19,7 +19,7 @@ const InputField = ({
   value,
   type = "number",
   onChange = () => {},
-  onClickChange = () => {},
+  onClickChange = () => {}
 }: Props) => {
   const [input, setInput] = useState(value);
 

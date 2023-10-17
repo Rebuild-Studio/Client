@@ -11,7 +11,7 @@ const renderStore = observable<renderStore>({
 
   setControls(state) {
     this.controls = state;
-  },
+  }
 });
 
 export default renderStore;

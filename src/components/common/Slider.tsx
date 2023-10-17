@@ -21,7 +21,7 @@ const Slider = ({
   step = 1,
   initValue = 0,
   onMaterialChange = () => {},
-  onChange = () => {},
+  onChange = () => {}
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
@@ -34,7 +34,7 @@ const Slider = ({
       const sliderBackground = `linear-gradient(to right, ${basicColors.primary} ${thumbPosition}%, ${grayColors.lightGray} ${thumbPosition}%)`;
       sliderInputRef.current.style.setProperty(
         "--slider-background",
-        sliderBackground,
+        sliderBackground
       );
       onMaterialChange(newValue);
       onChange(newValue);

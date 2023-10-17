@@ -4,18 +4,18 @@ import ToastContainerTest from "./ToastContainerTest";
 const meta = {
   component: ToastContainerTest,
   title: "Component/Common/ToastContainer",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof ToastContainerTest>;
 
 export default meta;
 type Story = StoryObj<typeof ToastContainerTest>;
 
 export const Default = {
-  args: {},
+  args: {}
 } satisfies Story;
 
 export const PositionBottomLeft = {
   args: {
-    position: "bottomLeft",
-  },
+    position: "bottomLeft"
+  }
 } satisfies Story;

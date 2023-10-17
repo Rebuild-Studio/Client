@@ -26,7 +26,7 @@ export const SubMenu = (props: Props) => {
     backgroundColor = bgColors[101728],
     left = "0",
     top = "0",
-    fontSize = "medium",
+    fontSize = "medium"
   } = props;
 
   const [newMenu, setNewMenu] = useState<JSX.Element | null>(null);
@@ -46,7 +46,7 @@ export const SubMenu = (props: Props) => {
           const itemProps = {
             label: item.label,
             disabled: item.disabled,
-            key: `${item.label}_${index}`,
+            key: `${item.label}_${index}`
           };
           if ("children" in item) {
             // 자식이 있는 메뉴
@@ -69,7 +69,7 @@ export const SubMenu = (props: Props) => {
                       menuItems={item.children}
                       left={"calc(100% + 2px)"}
                       top={`${index * height}px`}
-                    />,
+                    />
                   );
                 }}
               />

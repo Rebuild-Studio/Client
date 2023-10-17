@@ -6,7 +6,7 @@ const meta = {
   component: StackItem,
   title: "Layout/StackItem",
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {}
 } satisfies Meta<typeof StackItem>;
 
 export default meta;
@@ -15,14 +15,14 @@ type Story = StoryObj<typeof StackItem>;
 export const Default = {
   args: {
     label: "옵션1",
-    hoverBackgroundColor: grayColors.lightGray,
-  },
+    hoverBackgroundColor: grayColors.lightGray
+  }
 } satisfies Story;
 
 export const StackItemWithImage = {
   args: {
     label: "옵션1",
-    hoverBackgroundColor: grayColors.lightGray,
+    hoverBackgroundColor: grayColors.lightGray
   },
   render: (args) => {
     return (
@@ -30,5 +30,5 @@ export const StackItemWithImage = {
         <img src="/icons/common/CaretDown.svg" alt="CaretDown" />
       </StackItem>
     );
-  },
+  }
 } satisfies Story;

@@ -37,7 +37,7 @@ const MenuButton = ({
   minHeight = "32px",
   borderRadius = "6px",
   fontFamily = "SourceHanSansKR",
-  fontWeight = 500,
+  fontWeight = 500
 }: MenuButtonProps) => {
   return (
     <StyledButton

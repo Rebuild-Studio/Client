@@ -33,7 +33,7 @@ const initCapsule: CapsuleParams = {
   capSegmentsUnit: 1,
   minRadialSegments: 1,
   maxRadialSegments: 64,
-  radialSegments: 1,
+  radialSegments: 1
 };
 
 const CapsulePrimitive = observer((props: PrimitiveProps) => {

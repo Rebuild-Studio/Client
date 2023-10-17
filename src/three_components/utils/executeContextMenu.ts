@@ -30,7 +30,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           const { storeId, newMesh } = copyObject(value);
           primitiveStore.addPrimitive(
             storeId,
-            renderPrimitive(storeId, newMesh),
+            renderPrimitive(storeId, newMesh)
           );
         }
       });
@@ -56,14 +56,14 @@ const executeContextMenu = (scene: THREE.Scene) => {
       break;
     case "그룹 해제":
       const selectedGroupStoreId = Object.keys(
-        primitiveStore.selectedPrimitives,
+        primitiveStore.selectedPrimitives
       )[0];
       const children = primitiveStore.meshes[selectedGroupStoreId].children;
 
       children.forEach((value) => {
         primitiveStore.updatePrimitive(
           value.userData["storeId"],
-          value as THREE.Mesh,
+          value as THREE.Mesh
         );
       });
 
@@ -81,7 +81,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           value.userData["isLocked"] = true;
 
           primitiveStore.updatePrimitive(key, value.clone());
-        },
+        }
       );
       break;
     case "잠금 해제":
@@ -90,7 +90,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           value.userData["isLocked"] = false;
 
           primitiveStore.updatePrimitive(key, value.clone());
-        },
+        }
       );
       break;
     case "숨기기":
@@ -99,7 +99,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           value.visible = false;
 
           primitiveStore.updatePrimitive(key, value.clone());
-        },
+        }
       );
       break;
     case "보이기":
@@ -108,7 +108,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           value.visible = true;
 
           primitiveStore.updatePrimitive(key, value.clone());
-        },
+        }
       );
       break;
     case "삭제":

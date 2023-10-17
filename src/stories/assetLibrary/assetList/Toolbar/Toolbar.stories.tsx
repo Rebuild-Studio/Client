@@ -9,10 +9,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 리스트 툴바 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 리스트 툴바 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof Toolbar>;
 
 export default meta;

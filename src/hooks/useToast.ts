@@ -24,13 +24,13 @@ export function useToast() {
   const addToast = (content: string) => {
     const newMessage = {
       id: nanoid(),
-      content,
+      content
     };
 
     // Keep only MAX_TOAST_QUEUE_COUNT messages, it will be sliced by <ToastContainer>
     toastMessages = [newMessage, ...toastMessages].slice(
       0,
-      MAX_TOAST_QUEUE_COUNT,
+      MAX_TOAST_QUEUE_COUNT
     );
     listeners.forEach((listener) => listener());
   };

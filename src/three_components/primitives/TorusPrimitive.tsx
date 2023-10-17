@@ -39,7 +39,7 @@ const initTorus: TorusParams = {
   tubularSegmentsUnit: 2,
   minArc: 0,
   maxArc: Math.PI * 2,
-  arcUnit: 0.06,
+  arcUnit: 0.06
 };
 
 const TorusPrimitive = observer((props: PrimitiveProps) => {

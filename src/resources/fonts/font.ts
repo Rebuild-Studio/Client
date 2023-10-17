@@ -7,7 +7,7 @@ const fonts = {
   large: "16px",
   xl: "20px",
   titleSize: "24px",
-  default: "14px",
+  default: "14px"
 } as const satisfies Fonts;
 
 export { fonts };

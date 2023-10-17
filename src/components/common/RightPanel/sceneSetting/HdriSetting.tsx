@@ -17,16 +17,16 @@ const HdriSetting = observer(() => {
     updateAmbientLightColor,
     updateAmbientLightAlpha,
     updateDirectionalLightColor,
-    updateDirectionalLightAlpha,
+    updateDirectionalLightAlpha
   } = ColorHandler;
   const [ambientLightColor, setAmbientLightColor] = useState<HsvaColor>({
     h: 0,
     s: 0,
     v: 0,
-    a: 0,
+    a: 0
   });
   const [directionalLightColor, setDirectionalLightColor] = useState<HsvaColor>(
-    { h: 0, s: 0, v: 0, a: 0 },
+    { h: 0, s: 0, v: 0, a: 0 }
   );
 
   useEffect(() => {

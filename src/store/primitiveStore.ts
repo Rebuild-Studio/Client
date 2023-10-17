@@ -30,7 +30,7 @@ const primitiveStore = observable<PrimitiveProps>({
   addPrimitive(storeId, primitive) {
     this.primitives = {
       ...this.primitives,
-      [storeId]: primitive,
+      [storeId]: primitive
     };
   },
   removePrimitive(storeId) {
@@ -38,16 +38,16 @@ const primitiveStore = observable<PrimitiveProps>({
     delete this.meshes[storeId];
 
     this.primitives = {
-      ...this.primitives,
+      ...this.primitives
     };
     this.meshes = {
-      ...this.meshes,
+      ...this.meshes
     };
   },
   updatePrimitive(storeId, mesh) {
     this.meshes[storeId] = mesh;
     this.meshes = {
-      ...this.meshes,
+      ...this.meshes
     };
   },
   clearPrimitives() {
@@ -58,19 +58,19 @@ const primitiveStore = observable<PrimitiveProps>({
   addSelectedPrimitives(storeId, mesh) {
     this.selectedPrimitives = {
       ...this.selectedPrimitives,
-      [storeId]: mesh,
+      [storeId]: mesh
     };
   },
   updateSelectedPrimitives(storeId, mesh) {
     this.selectedPrimitives[storeId] = mesh;
     this.selectedPrimitives = {
-      ...this.selectedPrimitives,
+      ...this.selectedPrimitives
     };
   },
   removeSelectedPrimitives(storeId) {
     delete this.selectedPrimitives[storeId];
     this.selectedPrimitives = {
-      ...this.selectedPrimitives,
+      ...this.selectedPrimitives
     };
   },
   clearSelectedPrimitives() {
@@ -81,7 +81,7 @@ const primitiveStore = observable<PrimitiveProps>({
   },
   clearSelectedGroupPrimitive() {
     this.selectedGroupPrimitive = ["", null];
-  },
+  }
 });
 
 export type { PrimitiveType, MeshType };

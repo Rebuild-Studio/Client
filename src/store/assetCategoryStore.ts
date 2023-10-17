@@ -20,11 +20,11 @@ const assetCategoryStore = observable<AssetCategoryStore>({
   currentDomain: { domain: "all", domainKR: "전체" },
   currentMainCategory: {
     category: "all",
-    categoryKR: "전체",
+    categoryKR: "전체"
   },
   currentSubCategory: {
     category: "all",
-    categoryKR: "전체",
+    categoryKR: "전체"
   },
 
   setCurrentDomain(domain) {
@@ -35,7 +35,7 @@ const assetCategoryStore = observable<AssetCategoryStore>({
   },
   setCurrentSubCategory(subCategory) {
     this.currentSubCategory = subCategory;
-  },
+  }
 });
 
 export type { Category, AssetCategoryStore };

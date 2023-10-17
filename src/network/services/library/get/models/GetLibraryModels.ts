@@ -41,5 +41,5 @@ export type {
   RequestGetAsset,
   ResponseGetAsset,
   RequestSearchAsset,
-  ResponseSearchAsset,
+  ResponseSearchAsset
 };

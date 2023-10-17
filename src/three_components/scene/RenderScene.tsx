@@ -23,7 +23,7 @@ const RenderScene = observer(() => {
     mouseEventStore,
     contextMenuStore,
     keyboardEventStore,
-    selectedObjectStore,
+    selectedObjectStore
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
 
@@ -34,7 +34,7 @@ const RenderScene = observer(() => {
   const materialName = selectedObjectStore.selectedMaterial;
   const material = useServerMaterialLoader(materialName);
   const selectedPrimitivesLength = Object.keys(
-    primitiveStore.selectedPrimitives,
+    primitiveStore.selectedPrimitives
   ).length;
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const RenderScene = observer(() => {
           default: {
           }
         }
-      },
+      }
     );
 
     return () => {

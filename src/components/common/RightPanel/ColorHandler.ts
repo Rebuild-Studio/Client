@@ -37,7 +37,7 @@ class ColorHandler {
   static updateMaterialColor(phsva: HsvaColor) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
-      primitiveStore.selectedPrimitives,
+      primitiveStore.selectedPrimitives
     )[0];
     const selectedMaterial = selectedPrimitive.material;
     const hexColor = hsvaToHex(phsva);
@@ -52,7 +52,7 @@ class ColorHandler {
   static updateMaterialAlpha(alpha: number) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
-      primitiveStore.selectedPrimitives,
+      primitiveStore.selectedPrimitives
     )[0];
     const selectedMaterial = selectedPrimitive.material;
 
@@ -68,7 +68,7 @@ class ColorHandler {
       r: rgb.r * 255,
       g: rgb.g * 255,
       b: rgb.b * 255,
-      a: opacity,
+      a: opacity
     };
     const hsva = rgbaToHsva(rgba);
     return hsva;

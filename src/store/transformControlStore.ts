@@ -41,7 +41,7 @@ const transformControlStore = observable<TransformControlProps>({
     this.isTranslated = true;
     this.isRotated = true;
     this.isScaled = true;
-  },
+  }
 });
 
 export default transformControlStore;

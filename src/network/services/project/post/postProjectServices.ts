@@ -1,7 +1,7 @@
 import apiModule from "@network/module/apiModule";
 import {
   RequestSearchProject,
-  RequestUploadProject,
+  RequestUploadProject
 } from "./models/PostProjectModels";
 
 const uploadProject = async (params: RequestUploadProject) => {
@@ -18,7 +18,7 @@ const searchProject = async (params: RequestSearchProject) => {
 
 const postProjectServices = {
   uploadProject: uploadProject,
-  searchProject: searchProject,
+  searchProject: searchProject
 };
 
 export default postProjectServices;

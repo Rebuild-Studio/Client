@@ -15,7 +15,7 @@ export const ProjectCard = ({
   thumbnail,
   savedAt,
   isClicked,
-  onClick,
+  onClick
 }: ProjectCardProps) => {
   return (
     <StyledCard $isClicked={isClicked} onClick={onClick}>

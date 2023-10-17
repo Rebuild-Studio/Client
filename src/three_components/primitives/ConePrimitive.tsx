@@ -29,7 +29,7 @@ const initCone: ConeParams = {
   toggleOpenEnded: false,
   minThetaLength: 0,
   maxThetaLength: Math.PI * 2,
-  thetaLengthUnit: 0.06,
+  thetaLengthUnit: 0.06
 };
 
 const ConePrimitive = observer((props: PrimitiveProps) => {

@@ -30,5 +30,5 @@ export type {
   CSSPoint,
   CSSFitContent,
   CSSRgb,
-  CSSRgba,
+  CSSRgba
 };

@@ -4,7 +4,7 @@ import { SubMenu } from "@components/common/subMenu/SubMenu";
 const meta = {
   title: "Component/Common/SubMenu",
   component: SubMenu,
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof SubMenu>;
 
 export default meta;
@@ -18,14 +18,14 @@ export const BasicSubMenu = {
         disabled: false,
         onClick: () => {
           alert("목록");
-        },
+        }
       },
       {
         label: "저장",
         disabled: true,
         onClick: () => {
           alert("저장");
-        },
+        }
       },
       {
         label: "로컬 파일로 저장",
@@ -34,8 +34,8 @@ export const BasicSubMenu = {
           { label: "Scene 저장", disabled: false, onClick: () => {} },
           { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
           { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
-        ],
+          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} }
+        ]
       },
       {
         label: "배포하기",
@@ -46,11 +46,11 @@ export const BasicSubMenu = {
             label: "ddddd",
             disabled: false,
             children: [
-              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 } satisfies Story;

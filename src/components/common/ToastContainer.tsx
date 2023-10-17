@@ -29,7 +29,7 @@ const ToastContainer = ({ position = "topCenter" }: ToastContainerProps) => {
         ))
         .reverse()}
     </StyledToastContainer>,
-    toastRoot,
+    toastRoot
   );
 };
 

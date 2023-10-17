@@ -18,7 +18,7 @@ const StackItem = ({
   label,
   hoverBackgroundColor = grayColors.lightGray,
   children,
-  cursor = "pointer",
+  cursor = "pointer"
 }: Props) => {
   return (
     <Container

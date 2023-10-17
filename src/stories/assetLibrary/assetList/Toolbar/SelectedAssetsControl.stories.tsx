@@ -9,10 +9,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 선택된 에셋 컨트롤 바 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 선택된 에셋 컨트롤 바 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof SelectedAssetsControl>;
 
 export default meta;

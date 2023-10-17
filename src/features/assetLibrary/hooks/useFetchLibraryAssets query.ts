@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import getLibraryServices from "@network/services/library/get/getLibraryServices";
 import {
   RequestGetAsset,
-  ResponseGetAsset,
+  ResponseGetAsset
 } from "@network/services/library/get/models/GetLibraryModels";
 import { LibraryAsset } from "../types/fetchAssetType";
 
@@ -16,7 +16,7 @@ const assetDataMapper = (data: ResponseGetAsset[]) => {
       type: "asset",
       domain: asset.domain,
       createdAt: asset.createdAt,
-      author: asset.author,
+      author: asset.author
     };
   });
   return mappedData;
@@ -29,7 +29,7 @@ export const useFetchLibraryAssets = (queryParam: RequestGetAsset) => {
       getLibraryServices
         .getAssets(queryParam)
         .then((res) => assetDataMapper(res)),
-    keepPreviousData: true,
+    keepPreviousData: true
   });
   useEffect(() => {
     query.isError && alert("에셋 로딩중 에러가 발생했습니다.");

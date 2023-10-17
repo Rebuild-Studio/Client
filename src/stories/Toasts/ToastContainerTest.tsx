@@ -7,7 +7,7 @@ interface ToastContainerTestProps {
 }
 
 const ToastContainerTest = ({
-  position = "topCenter",
+  position = "topCenter"
 }: ToastContainerTestProps) => {
   const { addToast } = useToast();
 

@@ -11,7 +11,7 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.userData["isLocked"] === true;
-    },
+    }
   );
   return (
     <>

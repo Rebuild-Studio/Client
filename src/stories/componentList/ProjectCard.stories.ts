@@ -12,11 +12,11 @@ const meta = {
       values: [
         {
           name: "my-custom-background",
-          value: bgColors[282828],
-        },
-      ],
-    },
-  },
+          value: bgColors[282828]
+        }
+      ]
+    }
+  }
 } satisfies Meta<typeof ProjectCard>;
 
 export default meta;
@@ -27,6 +27,6 @@ export const Project = {
     name: "Componenet name(1)",
     thumbnail: "/icons/project/projcetListCard_test.png",
     savedAt: "2023년-09월-07일 13:56",
-    isClicked: false,
-  },
+    isClicked: false
+  }
 } satisfies Story;

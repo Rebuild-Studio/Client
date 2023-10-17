@@ -12,16 +12,16 @@ const meta = {
     width: {
       control: {
         type: "text",
-        description: ` ${textsStoryDesc.size}`,
-      },
+        description: ` ${textsStoryDesc.size}`
+      }
     },
     height: {
       control: {
         type: "text",
-        description: ` ${textsStoryDesc.size}`,
-      },
-    },
-  },
+        description: ` ${textsStoryDesc.size}`
+      }
+    }
+  }
 } satisfies Meta<typeof Stack>;
 
 export default meta;
@@ -30,23 +30,23 @@ type Story = StoryObj<typeof Stack>;
 const mockItems = [
   {
     label: "옵션1",
-    value: "option1",
+    value: "option1"
   },
   {
     label: "옵션2",
-    value: "option2",
+    value: "option2"
   },
   {
     label: "옵션3",
-    value: "option3",
-  },
+    value: "option3"
+  }
 ];
 
 export const Default = {
   args: {
     hoverBackgroundColor: grayColors.lightGray,
     height: "fit-content",
-    width: "200px",
+    width: "200px"
   },
   render: (args) => {
     return (
@@ -56,14 +56,14 @@ export const Default = {
         })}
       </Stack>
     );
-  },
+  }
 } satisfies Story;
 
 export const WithImagedStackItem = {
   args: {
     hoverBackgroundColor: grayColors.lightGray,
     height: "fit-content",
-    width: "200px",
+    width: "200px"
   },
   render: (args) => {
     return (
@@ -76,5 +76,5 @@ export const WithImagedStackItem = {
         })}
       </Stack>
     );
-  },
+  }
 } satisfies Story;

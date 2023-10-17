@@ -6,8 +6,8 @@ const meta = {
   title: "Component/Input/SwitchButton",
   tags: ["autodocs"],
   argTypes: {
-    label: { control: "text" },
-  },
+    label: { control: "text" }
+  }
 } satisfies Meta<typeof Switch>;
 
 export default meta;

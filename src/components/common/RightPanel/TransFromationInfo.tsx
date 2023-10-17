@@ -23,22 +23,22 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
       type: "position",
       x: position.x,
       y: position.y,
-      z: position.z,
+      z: position.z
     },
     {
       title: "회전",
       type: "rotation",
       x: rotation.x,
       y: rotation.y,
-      z: rotation.z,
+      z: rotation.z
     },
     {
       title: "크기",
       type: "scale",
       x: scale.x,
       y: scale.y,
-      z: scale.z,
-    },
+      z: scale.z
+    }
   ];
 
   return (

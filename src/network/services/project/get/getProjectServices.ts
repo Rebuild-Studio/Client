@@ -15,7 +15,7 @@ const getMySpecificProject = async (params: RequestMySpecificProject) => {
 
 const getProjectServices = {
   getMyProject: getMyProject,
-  getMySpecificProject: getMySpecificProject,
+  getMySpecificProject: getMySpecificProject
 };
 
 export default getProjectServices;

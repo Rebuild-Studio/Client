@@ -48,7 +48,7 @@ const projectStateStore = observable<ProjectStateProps>({
   clearModal() {
     this.isModalOpened = false;
     this.modalComponent = null;
-  },
+  }
 });
 
 export default projectStateStore;

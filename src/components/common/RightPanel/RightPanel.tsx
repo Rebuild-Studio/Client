@@ -59,12 +59,12 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                       rotation={{
                         x: rotation.x,
                         y: rotation.y,
-                        z: rotation.z,
+                        z: rotation.z
                       }}
                       scale={{
                         x: scale.x,
                         y: scale.y,
-                        z: scale.z,
+                        z: scale.z
                       }}
                     />
                   </Accordion>
@@ -76,7 +76,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                     />
                   </Accordion>
                 </>,
-                <Shape />,
+                <Shape />
               ]}
             />
           </Panel>

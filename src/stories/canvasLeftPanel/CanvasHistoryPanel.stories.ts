@@ -4,7 +4,7 @@ import { HistoryPanel } from "@components/layout/CanvasLeftPanel/historyPanel/Hi
 const meta = {
   component: HistoryPanel,
   title: "Component/layout/CanvasLeftPanel/HistoryPanel",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof HistoryPanel>;
 
 export default meta;
@@ -17,34 +17,34 @@ export const Basic = {
         id: "1",
         instance: "CUBE",
         attribute: "add",
-        snapshot: {},
+        snapshot: {}
       },
       {
         id: "1",
         instance: "CONE",
         attribute: "add",
-        snapshot: {},
-      },
+        snapshot: {}
+      }
     ],
     redoList: [
       {
         id: "1",
         instance: "CUBE",
         attribute: "add",
-        snapshot: {},
+        snapshot: {}
       },
       {
         id: "3",
         instance: "CYLINDER",
         attribute: "add",
-        snapshot: {},
+        snapshot: {}
       },
       {
         id: "2",
         instance: "GROUP",
         attribute: "add",
-        snapshot: {},
-      },
-    ],
-  },
+        snapshot: {}
+      }
+    ]
+  }
 } satisfies Story;

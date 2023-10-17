@@ -20,7 +20,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
-    transparent: true,
+    transparent: true
   });
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "SELECTED_GROUP";
@@ -59,7 +59,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
             if (!child.userData["isLeave"]) {
               const parent = getParent(
                 child.userData["rootId"],
-                child.userData["parentId"],
+                child.userData["parentId"]
               );
               delete child.userData["rootId"];
               delete child.userData["parentId"];

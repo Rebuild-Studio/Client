@@ -9,12 +9,12 @@ import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
 const GIZMO_OPTIONS = [
   {
     value: GIZMO_MODE.GLOBAL,
-    name: "글로벌",
+    name: "글로벌"
   },
   {
     value: GIZMO_MODE.LOCAL,
-    name: "로컬",
-  },
+    name: "로컬"
+  }
 ];
 
 const GizmoModeControl = observer(() => {

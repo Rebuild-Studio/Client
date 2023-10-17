@@ -2,13 +2,13 @@ import * as THREE from "three";
 import storeContainer from "@store/storeContainer";
 
 const onContextMenuSceneEvents = (
-  intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[],
+  intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
 ) => {
   const {
     primitiveStore,
     mouseEventStore,
     contextMenuStore,
-    keyboardEventStore,
+    keyboardEventStore
   } = storeContainer;
 
   const { clientX, clientY } = mouseEventStore.currentMouseEvent[1]!;
@@ -30,14 +30,14 @@ const onContextMenuSceneEvents = (
   const selectGroupObject = findRootGroup(
     intersectObjects.find((value) => {
       return value.object.parent?.name === "GROUP";
-    })?.object,
+    })?.object
   );
 
   if (selectGroupObject) {
     const selectGroupObjectStoreId = selectGroupObject.userData["storeId"];
     primitiveStore.addSelectedPrimitives(
       selectGroupObjectStoreId,
-      primitiveStore.meshes[selectGroupObjectStoreId],
+      primitiveStore.meshes[selectGroupObjectStoreId]
     );
 
     contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
@@ -57,7 +57,7 @@ const onContextMenuSceneEvents = (
 
   primitiveStore.addSelectedPrimitives(
     selectObjectStoreId,
-    primitiveStore.meshes[selectObjectStoreId],
+    primitiveStore.meshes[selectObjectStoreId]
   );
 
   contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
@@ -65,7 +65,7 @@ const onContextMenuSceneEvents = (
 };
 
 const findRootGroup = (
-  intersectObject: THREE.Object3D<THREE.Event> | undefined,
+  intersectObject: THREE.Object3D<THREE.Event> | undefined
 ): THREE.Object3D<THREE.Event> | undefined => {
   if (!intersectObject) {
     return;

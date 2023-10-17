@@ -9,7 +9,7 @@ const makeSelectedGroup = () => {
   const storeId = nanoid();
   primitiveStore.addSelectedGroupPrimitive(
     storeId,
-    renderSelectedGroup(storeId),
+    renderSelectedGroup(storeId)
   );
 };
 

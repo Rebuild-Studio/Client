@@ -42,7 +42,7 @@ interface ContextMenuProps {
   updateContextMenuType: (
     type: OpenContextMenuType,
     xPos: number,
-    yPos: number,
+    yPos: number
   ) => void;
 }
 
@@ -63,21 +63,21 @@ const contextMenuStore = observable<ContextMenuProps>({
         this.currentContextMenuType = {
           xPos: xPos,
           yPos: yPos,
-          items: renderCanvasContextMenuItems(),
+          items: renderCanvasContextMenuItems()
         };
         break;
       case "OBJECT":
         this.currentContextMenuType = {
           xPos: xPos,
           yPos: yPos,
-          items: renderObjectContextMenuItems(),
+          items: renderObjectContextMenuItems()
         };
         break;
       case "NONE":
         this.currentContextMenuType = null;
         break;
     }
-  },
+  }
 });
 
 // 좋은 이름이 필요합니다.
@@ -91,7 +91,7 @@ const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
   lock: ["잠그기", "Ctrl+L", true],
   hide: ["숨기기", "Ctrl+.", true],
   visible: ["보이기", "Ctrl+,", true],
-  delete: ["삭제", "Del", true],
+  delete: ["삭제", "Del", true]
 };
 
 const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
@@ -102,7 +102,7 @@ const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
   divider: ["DIVIDER", "", false],
   hide: ["숨기기", "Ctrl+.", false],
   visible: ["보이기", "Ctrl+,", false],
-  lock: ["잠금 해제", "Ctrl+L", true],
+  lock: ["잠금 해제", "Ctrl+L", true]
 };
 
 const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
@@ -157,7 +157,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.userData["isLocked"] === true;
-    },
+    }
   );
 
   if (isLocked) {
@@ -169,7 +169,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.visible === true;
-    },
+    }
   );
 
   if (isVisible) {

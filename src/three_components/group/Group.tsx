@@ -16,7 +16,7 @@ const Group = observer((props: GroupProps) => {
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
-    transparent: true,
+    transparent: true
   });
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
   mesh.name = "GROUP";
@@ -33,7 +33,7 @@ const Group = observer((props: GroupProps) => {
 
     if (!primitiveStore.meshes[props.storeId]) {
       const selectedPrimitives = Object.values(
-        primitiveStore.selectedPrimitives,
+        primitiveStore.selectedPrimitives
       );
 
       let x = 0;

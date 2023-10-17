@@ -19,7 +19,7 @@ const controllerBarStore = observable<ControllerBarStoreProps>({
   snapMode: {
     [SNAP_MODE.GRID]: false,
     [SNAP_MODE.ROTATE]: false,
-    [SNAP_MODE.SURFACE]: false,
+    [SNAP_MODE.SURFACE]: false
   },
   surfaceSnapAxisEnabled: true,
   get isAnySnapModeActivated(): boolean {
@@ -33,7 +33,7 @@ const controllerBarStore = observable<ControllerBarStoreProps>({
   },
   setSurfaceSnapAxis: (enabled: boolean) => {
     controllerBarStore.surfaceSnapAxisEnabled = enabled;
-  },
+  }
 });
 
 export default controllerBarStore;

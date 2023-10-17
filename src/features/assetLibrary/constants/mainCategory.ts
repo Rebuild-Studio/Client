@@ -39,14 +39,14 @@ const CATEGORY_MAP: Record<MainCategoryType, string> = {
   sup: "용품",
   mar: "음식·음료",
   tra: "교통",
-  wea: "무기",
+  wea: "무기"
 };
 
 const MAIN_CATEGORY_LIST: MainCategory[] = Object.entries(CATEGORY_MAP).map(
   ([category, categoryKR]) => ({
     category: category as MainCategoryType,
-    categoryKR,
-  }),
+    categoryKR
+  })
 );
 export type { MainCategoryType, MainCategory };
 export default MAIN_CATEGORY_LIST;

@@ -10,11 +10,11 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "아이콘 버튼 컴포넌트입니다.",
-      },
+        component: "아이콘 버튼 컴포넌트입니다."
+      }
     },
-    layout: "centered",
-  },
+    layout: "centered"
+  }
 } satisfies Meta<typeof AssetLibrary>;
 
 export default meta;
@@ -29,6 +29,6 @@ export const AssetLibraryContainer = {
       <QueryClientProvider client={client}>
         <Story />
       </QueryClientProvider>
-    ),
-  ],
+    )
+  ]
 } satisfies Story;

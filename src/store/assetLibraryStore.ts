@@ -64,12 +64,12 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   },
   removeSelectedAsset(asset) {
     this.selectedAssets = this.selectedAssets.filter(
-      (selectedAsset) => selectedAsset.id !== asset.id,
+      (selectedAsset) => selectedAsset.id !== asset.id
     );
   },
   clearSelectedAssets() {
     this.selectedAssets = [];
-  },
+  }
 });
 
 export default assetLibraryStore;

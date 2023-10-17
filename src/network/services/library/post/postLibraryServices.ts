@@ -1,7 +1,7 @@
 import apiModule from "@network/module/apiModule";
 import {
   RequestRegisterAsset,
-  RequestRegisterPrefab,
+  RequestRegisterPrefab
 } from "./models/PostLibraryModels";
 
 const registerPrefab = async (params: RequestRegisterPrefab) => {
@@ -18,7 +18,7 @@ const registerAsset = async (params: RequestRegisterAsset) => {
 
 const postLibraryServices = {
   registerPrefab: registerPrefab,
-  registerAsset: registerAsset,
+  registerAsset: registerAsset
 };
 
 export default postLibraryServices;

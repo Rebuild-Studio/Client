@@ -43,7 +43,7 @@ const dataStore = {
     ["대리석_03", "MX_mat_marble_type_03"],
     ["진주", "MX_mat_marble_peal_01"],
     ["옥", "MX_mat_sub_jade_01"],
-    ["카페인트", "MX_mat_metal_carPaint_01"],
+    ["카페인트", "MX_mat_metal_carPaint_01"]
   ],
 
   cube: [],
@@ -51,7 +51,7 @@ const dataStore = {
     ["radius", "반지름", "slider", 0.5, 0, 30, 0.1],
     ["radialSegments", "옆면 개수", "slider", 32, 3, 64, 1],
     ["openEnded", "밑면 보이기", "toggle", false],
-    ["thetaLength", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.01],
+    ["thetaLength", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.01]
   ],
 
   cylinder: [
@@ -59,7 +59,7 @@ const dataStore = {
     ["radiusBottom", "아래 반지름", "slider", 0.5, 0, 30, 0.1],
     ["radialSegments", "옆면 개수", "slider", 32, 3, 64, 1],
     ["openEnded", "밑면 보이기", "toggle", false],
-    ["thetaLength", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.001],
+    ["thetaLength", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.001]
   ],
 
   sphere: [
@@ -67,14 +67,14 @@ const dataStore = {
     ["heightSegments", "세로 면 개수", "slider", 16, 2, 32, 1],
     ["phiLength", "가로 호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.001],
     ["thetaStart", "세타 시작점", "slider", 0, 0, 2 * Math.PI, 0.06],
-    ["thetaLength", "세로 호 길이", "slider", Math.PI, 0, 2 * Math.PI, 0.001],
+    ["thetaLength", "세로 호 길이", "slider", Math.PI, 0, 2 * Math.PI, 0.001]
   ],
 
   capsule: [
     ["radius", "반지름", "slider", 0.25, 0, 30, 0.01],
     ["height", "길이", "slider", 1, 0, 30, 0.1],
     ["capSegments", "캡슐 면 개수", "slider", 10, 1, 32, 1],
-    ["radialSegments", "기둥 면 개수", "slider", 20, 1, 64, 1],
+    ["radialSegments", "기둥 면 개수", "slider", 20, 1, 64, 1]
   ],
 
   torus: [
@@ -82,12 +82,12 @@ const dataStore = {
     ["tube", "두께", "slider", 0.2, 0.1, 10, 0.01],
     ["radialSegments", "세로 면 개수", "slider", 16, 2, 30, 1],
     ["tubularSegments", "가로 면 개수", "slider", 100, 3, 200, 2],
-    ["arc", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.001],
+    ["arc", "호 길이", "slider", 2 * Math.PI, 0, 2 * Math.PI, 0.001]
   ],
 
   plane: [
     ["width", "slider", 1, 0, 30, 0.001],
-    ["height", "slider", 1, 0, 30, 0.001],
-  ],
+    ["height", "slider", 1, 0, 30, 0.001]
+  ]
 };
 export default dataStore;

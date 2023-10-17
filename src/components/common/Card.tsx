@@ -29,7 +29,7 @@ export const Card = ({
   border = "1px dotted #fff",
   alt = "error",
   hoverEffect = true,
-  onClick,
+  onClick
 }: Props) => {
   const [srcError, setSrcError] = useState(false);
   return (

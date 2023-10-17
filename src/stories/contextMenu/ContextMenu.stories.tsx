@@ -7,7 +7,7 @@ import ContextMenu from "@components/layout/contextMenu/ContextMenu";
 const meta = {
   component: ContextMenu,
   title: "Component/Layout/ContextMenu",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof ContextMenu>;
 
 export default meta;
@@ -53,14 +53,14 @@ const BaseContextMenu = {
               ["그리드 숨기기", "Z", true],
               ["저장", "Ctrl+S", false],
               ["붙여넣기", "Ctrl+V", false],
-              ["DIVIDER", "", false],
+              ["DIVIDER", "", false]
             ]}
           />
         )}
         <Scene />
       </Wrapper>
     );
-  },
+  }
 } satisfies Story;
 
 export { BaseContextMenu };

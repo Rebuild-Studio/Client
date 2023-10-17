@@ -19,7 +19,7 @@ const AppWrapper = observer((props: AppProps) => {
       key: e.key,
       isCtrlPressed: e.ctrlKey,
       isShiftPressed: e.shiftKey,
-      isAltPressed: e.altKey,
+      isAltPressed: e.altKey
     });
   };
 

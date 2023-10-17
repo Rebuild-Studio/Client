@@ -62,65 +62,65 @@ const MenuBar = () => {
       disabled: false,
       onClick: () => {
         alert("저장");
-      },
+      }
     },
     {
       label: "목록",
       disabled: false,
       onClick: () => {
         alert("목록");
-      },
+      }
     },
     {
       label: "GLB로 내보내기(선택)",
       disabled: false,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "GLB로 내보내기(전체)",
       disabled: false,
-      onClick: () => {},
-    },
+      onClick: () => {}
+    }
   ];
   const configureData: MenuItemType[] = [
     {
       label: "인터페이스",
       disabled: false,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "단축키",
       disabled: false,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "자동저장",
       disabled: true,
-      onClick: () => {},
-    },
+      onClick: () => {}
+    }
   ];
 
   const helpData: MenuItemType[] = [
     {
       label: "사용 안내서",
       disabled: false,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "새로운 기능",
       disabled: true,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "오류 보고/개선 제안",
       disabled: false,
-      onClick: () => {},
+      onClick: () => {}
     },
     {
       label: "Copyright 2023 TmaxMetaverse",
       disabled: true,
-      onClick: () => {},
-    },
+      onClick: () => {}
+    }
   ];
 
   const StyledLogo = styled.img`

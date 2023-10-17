@@ -14,7 +14,7 @@ const getPublicAsset = async () => {
 
 const getAssetServices = {
   getAsset: getAsset,
-  getPublicAsset: getPublicAsset,
+  getPublicAsset: getPublicAsset
 };
 
 export default getAssetServices;

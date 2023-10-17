@@ -8,7 +8,7 @@ import { basicColors } from "@resources/colors/colors";
 const meta = {
   component: Modal,
   title: "Component/Layout/Modal",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -39,7 +39,7 @@ const BaseModal = {
         <button onClick={openModal}>열려라 모달</button> */}
       </>
     );
-  },
+  }
 } satisfies Story;
 
 export { BaseModal };

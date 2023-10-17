@@ -45,7 +45,7 @@ const instanceTranslate: InstanceTranslate = {
   CAMERA: "카메라",
   POINTLIGHT: "포인트 라이트",
   SPOTLIGHT: "스포트 라이트",
-  INITIAL: "초기상태",
+  INITIAL: "초기상태"
 };
 
 const attrTranslate: AttributeTranslate = {
@@ -56,7 +56,7 @@ const attrTranslate: AttributeTranslate = {
   delete: "삭제",
   ungroup: "해제",
   change: "변형",
-  none: "",
+  none: ""
 };
 
 // type guard
@@ -75,7 +75,7 @@ const isCanvasInstance = (instance: any): instance is CanvasInstance => {
     "CAMERA",
     "POINTLIGHT",
     "SPOTLIGHT",
-    "INITIAL",
+    "INITIAL"
   ];
 
   return possibleInstances.includes(instance);
@@ -90,7 +90,7 @@ const isCanvasAttribute = (attribute: any): attribute is CanvasAttribute => {
     "delete",
     "ungroup",
     "none",
-    "change",
+    "change"
   ];
 
   return possibleAttributes.includes(attribute);
@@ -101,5 +101,5 @@ export {
   instanceTranslate,
   attrTranslate,
   isCanvasAttribute,
-  isCanvasInstance,
+  isCanvasInstance
 };

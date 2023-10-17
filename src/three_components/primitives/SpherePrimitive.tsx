@@ -39,7 +39,7 @@ const initSphere: SphereParams = {
   thetaStartUnit: 0.06,
   minThetaLength: 0,
   maxThetaLength: Math.PI * 2,
-  thetaLengthUnit: 0.06,
+  thetaLengthUnit: 0.06
 };
 
 const SpherePrimitive = observer((props: PrimitiveProps) => {
@@ -52,7 +52,7 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
     0,
     Math.PI * 2,
     0,
-    Math.PI * 2,
+    Math.PI * 2
   );
   const material = getDefaultMaterialSetting();
   material.transparent = true;

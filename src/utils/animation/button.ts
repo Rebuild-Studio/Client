@@ -6,7 +6,7 @@ const ButtonAnimation = {
   bounce: "bounce",
   shrink: "shrink",
   enlarge: "enlarge",
-  none: "none",
+  none: "none"
 } as const satisfies { [key in ButtonAnimationType]: ButtonAnimationType };
 
 const BounceAnimation = keyframes`

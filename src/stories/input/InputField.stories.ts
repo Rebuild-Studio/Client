@@ -22,10 +22,10 @@ const meta = {
         "color",
         "file",
         "hidden",
-        "search",
-      ],
-    },
-  },
+        "search"
+      ]
+    }
+  }
 } satisfies Meta<typeof InputField>;
 
 export default meta;
@@ -34,15 +34,15 @@ type Story = StoryObj<typeof InputField>;
 const BasicNumberInputField = {
   args: {
     label: "X",
-    type: "number",
-  },
+    type: "number"
+  }
 } satisfies Story;
 
 const BasicTextInputField = {
   args: {
     label: "X",
-    type: "text",
-  },
+    type: "text"
+  }
 } satisfies Story;
 
 export { BasicNumberInputField, BasicTextInputField };

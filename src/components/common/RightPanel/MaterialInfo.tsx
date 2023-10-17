@@ -18,7 +18,7 @@ interface MaterialInfoProps {
 const Material = ({
   metalness = 1,
   roughness = 0.5,
-  color,
+  color
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;

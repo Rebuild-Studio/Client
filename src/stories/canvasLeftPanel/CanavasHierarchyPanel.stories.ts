@@ -6,7 +6,7 @@ import { MeshType } from "@store/primitiveStore";
 const meta = {
   component: HierarchyPanel,
   title: "Component/layout/CanvasLeftPanel/HierarchyPanel",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof HierarchyPanel>;
 
 export default meta;
@@ -17,9 +17,9 @@ const material = new THREE.MeshPhysicalMaterial();
 const mesh = new THREE.Mesh(geometry, material);
 
 const meshes: MeshType = {
-  HI: mesh,
+  HI: mesh
 };
 
 export const Basic = {
-  args: meshes,
+  args: meshes
 } satisfies Story;

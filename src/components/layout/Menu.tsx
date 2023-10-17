@@ -16,7 +16,7 @@ const CustomMenu = ({
   MenuItem,
   openMenu = true,
   anchorButton = <></>,
-  anchorElement = null,
+  anchorElement = null
 }: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
   const [open, setOpen] = useState(openMenu);

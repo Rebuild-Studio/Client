@@ -37,7 +37,7 @@ const TransformInput = observer((props: Props) => {
       // position: new THREE.Vector3().copy(position),
       position: new THREE.Vector3().copy(position),
       rotation: new THREE.Euler().copy(rotation),
-      scale: new THREE.Vector3().copy(scale),
+      scale: new THREE.Vector3().copy(scale)
     }[prop];
 
     const inputValue = Number(input);
@@ -45,7 +45,7 @@ const TransformInput = observer((props: Props) => {
       prop,
       axis,
       currentValue,
-      inputValue,
+      inputValue
     });
 
     updateTransform(prop, newValue, selectedPrimitive);
@@ -75,7 +75,7 @@ function initializeNewValue({
   prop,
   axis,
   currentValue,
-  inputValue,
+  inputValue
 }: initNewValueProps) {
   switch (prop) {
     case "position": {

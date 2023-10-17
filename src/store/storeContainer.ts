@@ -27,7 +27,7 @@ const storeContainer = {
   assetLibraryStore: assetLibraryStore,
   assetCategoryStore: assetCategoryStore,
   sceneSettingStore: sceneSettingStore,
-  controllerBarStore: controllerBarStore,
+  controllerBarStore: controllerBarStore
 };
 
 export default storeContainer;

@@ -3,5 +3,5 @@ export {
   textsAPI,
   textsTest,
   textsUpload,
-  textsStoryDesc,
+  textsStoryDesc
 } from "./text";

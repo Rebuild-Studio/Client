@@ -8,7 +8,7 @@ const modifyProject = async (params: RequestModifyProject) => {
 };
 
 const modifyProjectServices = {
-  modifyProject: modifyProject,
+  modifyProject: modifyProject
 };
 
 export default modifyProjectServices;

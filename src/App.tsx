@@ -17,7 +17,7 @@ const App = observer(() => {
       {projectStateStore.isModalOpened &&
         ReactDOM.createPortal(
           <Modal />,
-          document.getElementById("modal-root")!,
+          document.getElementById("modal-root")!
         )}
       <MenuBar />
       <StudioLayout />

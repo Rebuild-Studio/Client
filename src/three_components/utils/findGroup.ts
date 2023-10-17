@@ -2,7 +2,7 @@ import * as THREE from "three";
 import storeContainer from "@store/storeContainer";
 
 const findRootGroup = (
-  intersectObject: THREE.Object3D<THREE.Event> | undefined,
+  intersectObject: THREE.Object3D<THREE.Event> | undefined
 ): THREE.Object3D<THREE.Event> | undefined => {
   if (!intersectObject) {
     return;
@@ -16,7 +16,7 @@ const findRootGroup = (
 };
 
 const findParentGroup = (
-  intersectObject: THREE.Object3D<THREE.Event> | undefined,
+  intersectObject: THREE.Object3D<THREE.Event> | undefined
 ): THREE.Object3D<THREE.Event> | undefined => {
   if (!intersectObject) {
     return;
@@ -27,7 +27,7 @@ const findParentGroup = (
 
 const isChildInGroup = (
   parentObject: THREE.Object3D<THREE.Event>,
-  childId: string,
+  childId: string
 ): boolean => {
   let res = false;
   parentObject.traverse((child) => {
@@ -40,7 +40,7 @@ const isChildInGroup = (
 };
 
 const hasChildGroup = (
-  intersectObject: THREE.Object3D<THREE.Event>,
+  intersectObject: THREE.Object3D<THREE.Event>
 ): boolean => {
   let res = false;
   intersectObject.traverse((child) => {
@@ -56,7 +56,7 @@ const hasChildGroup = (
 
 const getParent = (
   rootId: string,
-  parentId: string,
+  parentId: string
 ): THREE.Object3D<THREE.Event> | null => {
   const { primitiveStore } = storeContainer;
   let res: THREE.Object3D<THREE.Event> | null = null;
@@ -75,5 +75,5 @@ export {
   findParentGroup,
   isChildInGroup,
   hasChildGroup,
-  getParent,
+  getParent
 };

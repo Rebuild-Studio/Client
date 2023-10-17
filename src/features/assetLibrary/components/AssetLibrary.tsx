@@ -17,14 +17,14 @@ const AssetLibrary = observer(() => {
     domain: currentDomain.domain,
     majorCategories: currentMainCategory.category,
     minorCategories: currentSubCategory.category,
-    page: currentPage,
+    page: currentPage
   });
 
   useEffect(() => {
     data &&
       assetLibraryStore.setLibraryAssets([
         ...assetLibraryStore.libraryAssets,
-        ...data,
+        ...data
       ]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
   }, [data]);
 

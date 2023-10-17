@@ -11,7 +11,7 @@ import { grayColors } from "@resources/colors/colors";
 const SNAP_OPTIONS = [
   { value: SNAP_MODE.GRID, name: "그리드 스냅" },
   { value: SNAP_MODE.ROTATE, name: "45° 회전 스냅" },
-  { value: SNAP_MODE.SURFACE, name: "표면 스냅" },
+  { value: SNAP_MODE.SURFACE, name: "표면 스냅" }
 ];
 
 const SnapModeControl = observer(() => {

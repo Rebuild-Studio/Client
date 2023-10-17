@@ -6,7 +6,7 @@ import { useFileLoader } from "@hooks/loader";
 
 const meta = {
   title: "Component/Three/useLocalFileLoader",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 };
 
 export default meta;
@@ -55,6 +55,6 @@ const FileLoad = {
         </Canvas>
       </>
     );
-  },
+  }
 };
 export { FileLoad };

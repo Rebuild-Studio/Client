@@ -15,7 +15,7 @@ export const ItemChildren = ({
   disabled,
   hoverBackgroundColor = grayColors[535353],
   disabledColor = grayColors[535353],
-  onMouseEnter,
+  onMouseEnter
 }: Props) => {
   return (
     <StyledItem

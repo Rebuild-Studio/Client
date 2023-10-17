@@ -15,7 +15,7 @@ const SceneSettingPanel = observer(() => {
           tabContents={[
             <HdriSetting />,
             <DisplaySetting />,
-            <PostEffectSetting />,
+            <PostEffectSetting />
           ]}
         />
       </Panel>

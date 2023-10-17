@@ -18,7 +18,7 @@ const keyboardEventStore = observable<KeyboardEventProps>({
     key: "",
     isCtrlPressed: false,
     isShiftPressed: false,
-    isAltPressed: false,
+    isAltPressed: false
   },
   updateKeyEvent(keyEvent) {
     this.currentKeyEvent = keyEvent;
@@ -28,9 +28,9 @@ const keyboardEventStore = observable<KeyboardEventProps>({
       key: "",
       isCtrlPressed: false,
       isShiftPressed: false,
-      isAltPressed: false,
+      isAltPressed: false
     };
-  },
+  }
 });
 
 export default keyboardEventStore;

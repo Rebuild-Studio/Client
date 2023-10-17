@@ -9,10 +9,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 선택된 에셋 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 선택된 에셋 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof SelectedAsset>;
 
 export default meta;
@@ -27,7 +27,7 @@ export const AssetLibrarySelectedAsset = {
       type: "asset",
       domain: "all",
       createdAt: "2023-10-06T07:00:00.000Z",
-      author: "junman",
-    },
-  },
+      author: "junman"
+    }
+  }
 } satisfies Story;

@@ -14,7 +14,7 @@ const basicColors = {
   lightLimeGreen: "#E3F853",
   limeGreen: "#d4ed3e",
   primary: "#e1f853",
-  grey: "#808080",
+  grey: "#808080"
 } as const satisfies HexColorObject;
 
 const bgColors = {
@@ -24,7 +24,7 @@ const bgColors = {
   "1c1c1c": "#1c1c1c",
   "343434": "#343434",
   "404040": "#404040",
-  sceneBackground: "#333333",
+  sceneBackground: "#333333"
 } as const satisfies HexColorObject;
 
 const grayColors = {
@@ -37,13 +37,13 @@ const grayColors = {
   buttonColor: "#303030",
   lightGray: "#e2e2e2",
   panelGray: "#aaaaaa",
-  panelFontColor: "#666",
+  panelFontColor: "#666"
 } as const satisfies HexColorObject;
 
 const gridColor = {
   gray: 0x888888,
   black: 0x222222,
   Xaxis: 0xd14e66,
-  Yaxis: 0x5a93ba,
+  Yaxis: 0x5a93ba
 } as const;
 export { basicColors, bgColors, grayColors, gridColor };

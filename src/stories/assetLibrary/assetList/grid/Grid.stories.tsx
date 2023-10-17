@@ -10,10 +10,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 리스트 그리드 입니다.",
-      },
-    },
-  },
+        component: "에셋 라이브러리 리스트 그리드 입니다."
+      }
+    }
+  }
 } satisfies Meta<typeof AssetGrid>;
 
 export default meta;
@@ -26,7 +26,7 @@ export const AssetLibraryGrid = {
         domain: "all",
         majorCategories: "all",
         minorCategories: "all",
-        page: 1,
+        page: 1
       });
 
       return (
@@ -34,6 +34,6 @@ export const AssetLibraryGrid = {
           <Story />
         </div>
       );
-    },
-  ],
+    }
+  ]
 } satisfies Story;

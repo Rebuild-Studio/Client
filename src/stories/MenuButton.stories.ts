@@ -5,7 +5,7 @@ import { basicColors, grayColors } from "@resources/colors/colors";
 const meta = {
   component: MenuButton,
   title: "Component/Buttons/MenuButton",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof MenuButton>;
 
 export default meta;
@@ -18,15 +18,15 @@ export const NormalButton = {
     disabled: false,
     onClick: () => {
       alert("활성화");
-    },
-  },
+    }
+  }
 } satisfies Story;
 
 export const DisabledButton = {
   args: {
     label: "비활성화",
-    color: "#dddddd",
-  },
+    color: "#dddddd"
+  }
 } satisfies Story;
 
 export const confirmButton = {
@@ -42,8 +42,8 @@ export const confirmButton = {
     fontSize: "small",
     fontWeight: 500,
     color: "#101728",
-    hoverBackgroundColor: "#d4ed3e",
-  },
+    hoverBackgroundColor: "#d4ed3e"
+  }
 } satisfies Story;
 
 export const CancelButton = {
@@ -59,6 +59,6 @@ export const CancelButton = {
     fontSize: "small",
     fontWeight: 500,
     color: "#fff",
-    hoverBackgroundColor: grayColors[808080],
-  },
+    hoverBackgroundColor: grayColors[808080]
+  }
 } satisfies Story;

@@ -4,7 +4,7 @@ import Panel from "@components/layout/Panel/Panel";
 const meta = {
   component: Panel,
   title: "Component/Layout/Panel",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof Panel>;
 
 export default meta;
@@ -39,7 +39,7 @@ const BasicPanel = {
         <Contents />
       </Panel>
     );
-  },
+  }
 } satisfies Story;
 
 export { BasicPanel };

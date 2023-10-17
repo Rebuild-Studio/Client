@@ -26,21 +26,21 @@ const IconButton = ({
   outline = false,
   Icon,
   iconGravity = "right",
-  role = "icon-button",
+  role = "icon-button"
 }: Props) => {
   const [iconPosition, setIconPosition] = useState<{
     left: React.ReactElement | string;
     right: React.ReactElement | string;
   }>({
     left: label,
-    right: <Icon />,
+    right: <Icon />
   });
 
   useEffect(() => {
     setIconPosition(
       iconGravity === "left"
         ? { left: <Icon />, right: label }
-        : { left: label, right: <Icon /> },
+        : { left: label, right: <Icon /> }
     );
   }, [iconGravity, label, Icon]);
 

@@ -6,7 +6,7 @@ import { basicColors, grayColors } from "@resources/colors/colors";
 const meta = {
   component: BottomPopOver,
   title: "Component/Layout/PopOver/BottomPopOver",
-  tags: ["autodocs"],
+  tags: ["autodocs"]
 } satisfies Meta<typeof BottomPopOver>;
 
 export default meta;
@@ -54,7 +54,7 @@ const PopOver = {
         <div>테스트 div</div>
       </>
     );
-  },
+  }
 } satisfies Story;
 
 export { PopOver };

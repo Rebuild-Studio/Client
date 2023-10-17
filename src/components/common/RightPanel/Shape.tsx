@@ -15,7 +15,7 @@ interface geometryParameter {
 
 const getGeometryParameters = (
   geometryType: string,
-  selectedPrimitive: THREE.Mesh,
+  selectedPrimitive: THREE.Mesh
 ) => {
   switch (geometryType) {
     case "BoxGeometry":
@@ -38,7 +38,7 @@ const getGeometryParameters = (
 const createGeometry = (
   geometryType: string,
   parameter: number[],
-  selectedPrimitive: THREE.Mesh,
+  selectedPrimitive: THREE.Mesh
 ) => {
   const { addToast } = useToast();
   try {
@@ -80,7 +80,7 @@ const Shape = observer(() => {
     selectedPrimitive.name.toLowerCase() as keyof typeof dataStore;
   const geometryType = selectedPrimitive.geometry.type;
   const [parameter, setParameter] = useState<geometryParameter>(
-    getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter,
+    getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter
   );
 
   const handleShapeChange = (prop: string, value: number | boolean) => {
@@ -97,7 +97,7 @@ const Shape = observer(() => {
     const newGeometry = createGeometry(
       geometryType,
       paramDatas,
-      selectedPrimitive,
+      selectedPrimitive
     );
     selectedPrimitive.geometry as
       | THREE.BoxGeometry

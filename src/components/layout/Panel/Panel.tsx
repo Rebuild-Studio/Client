@@ -11,7 +11,7 @@ interface PanelProps {
 const Panel = ({
   label = "",
   options = <></>,
-  children = <></>,
+  children = <></>
 }: PanelProps) => {
   return (
     <PanelWrapper>

@@ -62,7 +62,7 @@ const ColorPicker = observer(
         </Wrapper>
       </>
     );
-  },
+  }
 );
 export default ColorPicker;
 

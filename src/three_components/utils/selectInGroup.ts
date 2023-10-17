@@ -3,7 +3,7 @@ import { findParentGroup } from "./findGroup";
 
 const selectChildObjectInGroup = (
   rootObjectStoreId: string,
-  childObject: THREE.Object3D<THREE.Event>,
+  childObject: THREE.Object3D<THREE.Event>
 ) => {
   const { primitiveStore } = storeContainer;
   childObject!.userData["parentId"] = childObject!.parent?.userData["storeId"];
@@ -11,13 +11,13 @@ const selectChildObjectInGroup = (
 
   primitiveStore.addSelectedPrimitives(
     childObject?.userData["storeId"],
-    childObject as THREE.Mesh,
+    childObject as THREE.Mesh
   );
 };
 
 const selectChildGroupInGroup = (
   rootObjectStoreId: string,
-  childObject: THREE.Object3D<THREE.Event>,
+  childObject: THREE.Object3D<THREE.Event>
 ) => {
   const { primitiveStore } = storeContainer;
   const group = findParentGroup(childObject);
@@ -26,7 +26,7 @@ const selectChildGroupInGroup = (
 
   primitiveStore.addSelectedPrimitives(
     group?.userData["storeId"],
-    group as THREE.Mesh,
+    group as THREE.Mesh
   );
 };
 
