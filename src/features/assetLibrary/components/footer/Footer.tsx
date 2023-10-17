@@ -1,7 +1,11 @@
 import { observer } from "mobx-react";
-// import { nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 import styled, { css } from "styled-components";
+import AssetPrimitive from "@/three_components/assets/AssetPrimitive";
+import getMinioPath from "@/utils/path/minio";
 import MenuButton from "@components/common/MenuButton";
+import assetLibraryStore from "@store/assetLibraryStore";
+import primitiveStore from "@store/primitiveStore";
 // import assetLibraryStore from "@store/assetLibraryStore";
 // import primitiveStore from "@store/primitiveStore";
 // import TempPrimitive from "@/three_components/assets/TempPrimitive";
@@ -9,22 +13,21 @@ import { getButtonClickAnimation } from "@utils/animation/button";
 import { basicColors, grayColors } from "@resources/colors/colors";
 
 const Footer = observer(() => {
-  // const selectedAssets = assetLibraryStore.selectedAssets;
-  // const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+  const selectedAssets = assetLibraryStore.selectedAssets;
+  const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
 
   const onClickLoad = () => {
-    // selectedAsssetFileNames.forEach((fileName) => {
-    // const storeId = nanoid();
-    // primitiveStore.addPrimitive(
-    //   storeId,
-    //   <TempPrimitive
-    //     key={nanoid()}
-    //     storeId={storeId}
-    //     dir={`models/Objects/`}
-    //     name={`${fileName}.glb`}
-    //   />
-    // );
-    // });
+    selectedAsssetFileNames.forEach((fileName) => {
+      const storeId = nanoid();
+      primitiveStore.addPrimitive(
+        storeId,
+        <AssetPrimitive
+          key={storeId}
+          storeId={storeId}
+          url={getMinioPath(fileName, "libraryGlb")}
+        />
+      );
+    });
   };
 
   return (

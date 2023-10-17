@@ -2,7 +2,7 @@ import { Suspense, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useFileLoader } from "@hooks/loader";
+import { useFileListLoader } from "@hooks/loader";
 
 const meta = {
   title: "Component/Three/useLocalFileLoader",
@@ -23,7 +23,7 @@ const FileLoad = {
     };
 
     const LoadedObject = ({ fileList }: { fileList: FileList }) => {
-      const result = useFileLoader(fileList);
+      const result = useFileListLoader(fileList);
 
       return (
         <>

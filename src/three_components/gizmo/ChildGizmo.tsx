@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { observer } from "mobx-react";
 import { TransformControls } from "@react-three/drei";
 import storeContainer from "@store/storeContainer";
+import { setCameraControlEnabled } from "../utils/cameraControl";
 
 const ChildGizmo = observer(() => {
   const { primitiveStore, transformControlStore } = storeContainer;
@@ -52,11 +53,13 @@ const ChildGizmo = observer(() => {
               object={selectedChild}
               onMouseDown={() => {
                 transformControlStore.setIsTranslated();
+                setCameraControlEnabled(false);
               }}
               onMouseUp={() => {
                 // 자식 position이 바뀌었으므로 parent position 재지정
                 rePositionParent();
                 transformControlStore.clearTransform();
+                setCameraControlEnabled(true);
               }}
             />
           )}
@@ -68,10 +71,12 @@ const ChildGizmo = observer(() => {
               onMouseDown={() => {
                 if (transformControlStore.currentControl !== "TRANSFORM") {
                   transformControlStore.setIsRotated();
+                  setCameraControlEnabled(false);
                 }
               }}
               onMouseUp={() => {
                 transformControlStore.clearTransform();
+                setCameraControlEnabled(true);
               }}
             />
           )}
@@ -82,9 +87,11 @@ const ChildGizmo = observer(() => {
               size={0.8}
               onMouseDown={() => {
                 transformControlStore.setIsScaled();
+                setCameraControlEnabled(false);
               }}
               onMouseUp={() => {
                 transformControlStore.clearTransform();
+                setCameraControlEnabled(true);
               }}
             />
           )}

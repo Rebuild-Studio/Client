@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import { TransformControls } from "@react-three/drei";
-import renderStore from "@store/renderStore";
 import storeContainer from "@store/storeContainer";
+import { setCameraControlEnabled } from "../utils/cameraControl";
 
 interface GizmoProps {
   storeId: string;
@@ -17,12 +17,6 @@ const Gizmo = observer((props: GizmoProps) => {
       return value.userData["isLocked"] === true;
     }
   );
-
-  // gizmo 이용중 카메라 이동 방지
-  const setCameraControlEnabled = (props: boolean) => {
-    if (!renderStore.controls) return;
-    renderStore.controls.enabled = props;
-  };
 
   return (
     <>

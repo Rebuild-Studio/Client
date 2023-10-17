@@ -4,8 +4,10 @@ import { reaction } from "mobx";
 import { observer } from "mobx-react";
 import { useThree } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
+import { ErrorBoundary } from "react-error-boundary";
 import storeContainer from "@store/storeContainer";
 import { useServerMaterialLoader } from "@hooks/loader";
+import { useToast } from "@hooks/useToast";
 import ChildGizmo from "../gizmo/ChildGizmo";
 import Gizmo from "../gizmo/Gizmo";
 import SelectedOutline from "../post_processing/SelectedOutline";
@@ -14,6 +16,7 @@ import keyboardSceneEvents from "../utils/keyboardSceneEvents";
 import makeSelectedGroup from "../utils/makeSelectedGroup";
 import onClickSceneEvents from "../utils/onClickSceneEvents";
 import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
+import onDropSceneEvents from "../utils/onDropSceneEvents";
 import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 
@@ -26,6 +29,7 @@ const RenderScene = observer(() => {
     selectedObjectStore
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
+  const { addToast } = useToast();
 
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
@@ -65,6 +69,11 @@ const RenderScene = observer(() => {
             onContextMenuSceneEvents(intersectObjects);
             break;
           }
+          case "onDrop": {
+            onDropSceneEvents(mouseEvent[1] as React.DragEvent<HTMLDivElement>);
+            break;
+          }
+
           default: {
           }
         }
@@ -122,7 +131,17 @@ const RenderScene = observer(() => {
       {Object.entries(primitiveStore.primitives).map(([id, primitive]) => {
         primitive.key = id;
 
-        return primitive;
+        return (
+          <ErrorBoundary
+            key={id}
+            fallback={<></>}
+            onError={(e) => {
+              addToast("오브젝트 에러!");
+            }}
+          >
+            {primitive}
+          </ErrorBoundary>
+        );
       })}
       {primitiveStore.selectedGroupPrimitive[1]}
     </>
