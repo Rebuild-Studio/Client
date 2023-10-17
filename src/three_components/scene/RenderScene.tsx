@@ -17,6 +17,8 @@ import SelectedOutline from "../post_processing/SelectedOutline";
 import { EffectComposer } from "@react-three/postprocessing";
 import ChildGizmo from "../gizmo/ChildGizmo";
 import onDropSceneEvents from "../utils/onDropSceneEvents";
+import { ErrorBoundary } from "react-error-boundary";
+import { useToast } from "@/hooks/useToast";
 
 const RenderScene = observer(() => {
   const {
@@ -27,6 +29,7 @@ const RenderScene = observer(() => {
     selectedObjectStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
+  const { addToast } = useToast();
 
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
@@ -128,7 +131,17 @@ const RenderScene = observer(() => {
       {Object.entries(primitiveStore.primitives).map(([id, primitive]) => {
         primitive.key = id;
 
-        return primitive;
+        return (
+          <ErrorBoundary
+            key={id}
+            fallback={<></>}
+            onError={(e) => {
+              addToast("오브젝트 에러!");
+            }}
+          >
+            {primitive}
+          </ErrorBoundary>
+        );
       })}
       {primitiveStore.selectedGroupPrimitive[1]}
     </>

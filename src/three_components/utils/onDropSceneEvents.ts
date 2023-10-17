@@ -11,9 +11,7 @@ const onDropSceneEvents = (event: React.DragEvent<HTMLDivElement>) => {
 
   fileList.forEach((file) => {
     const storeId = nanoid();
-    const localAssetElement = renderLocalAsset(storeId, file);
-    if (localAssetElement)
-      primitiveStore.addPrimitive(storeId, renderLocalAsset(storeId, file));
+    primitiveStore.addPrimitive(storeId, renderLocalAsset(storeId, file));
   });
 };
 

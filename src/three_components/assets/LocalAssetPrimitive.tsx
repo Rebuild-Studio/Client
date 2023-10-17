@@ -16,8 +16,6 @@ const LocalAssetPrimitveProps = observer((props: LocalAssetPrimitveProps) => {
 
   const loadedData = useFileLoader(props.file);
 
-  if (!loadedData) return <></>;
-
   let object: THREE.Object3D;
 
   if (!(loadedData instanceof THREE.Group)) {

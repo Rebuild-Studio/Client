@@ -115,9 +115,7 @@ export const useFileListLoader = (
   return result;
 };
 
-export const useFileLoader = (
-  file: File
-): (GLTF & ObjectMap) | THREE.Group | null => {
+export const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
   // loadingManger
   const manager = new THREE.LoadingManager();
   const objectURLList: string[] = [];
@@ -164,8 +162,7 @@ export const useFileLoader = (
       };
       break;
     default:
-      console.warn("불가능한 확장자 : ", file.name);
-      return null;
+      break;
   }
 
   URL.revokeObjectURL(file.name);
