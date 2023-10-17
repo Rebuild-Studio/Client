@@ -12,15 +12,7 @@ interface TopBarProps {
 }
 
 const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
-  const { sceneSettingStore } = storeContainer;
-
-  const sceneSettingToggle = () => {
-    if (sceneSettingStore.type !== "scene") {
-      sceneSettingStore.setType("scene");
-    } else {
-      sceneSettingStore.setType("none");
-    }
-  };
+  const { sceneSettingStore, primitiveStore } = storeContainer;
 
   return (
     <Wrapper>
@@ -49,7 +41,10 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
           Icon={() => (
             <img src={"/icons/studio/icon_씬설정.svg"} alt="씬설정" />
           )}
-          onClick={sceneSettingToggle}
+          onClick={() => {
+            sceneSettingStore.toggleVisibility();
+            primitiveStore.clearSelectedPrimitives();
+          }}
         />
         <IconButton
           Icon={() => (

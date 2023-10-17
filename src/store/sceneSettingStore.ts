@@ -63,6 +63,9 @@ interface Scene {
   setBloomToggle: (state: boolean) => void;
 
   templates: string[];
+
+  isOpen: boolean;
+  toggleVisibility: () => void;
 }
 
 const sceneStore = observable<Scene>({
@@ -178,6 +181,17 @@ const sceneStore = observable<Scene>({
     "MX_hdr_outdoor_sunsetLight_01",
     "MX_hdr_outdoor_sunsetLight_02",
   ],
+
+  get isOpen(): boolean {
+    return sceneStore.type === "scene";
+  },
+  toggleVisibility: () => {
+    if (sceneStore.type !== "scene") {
+      sceneStore.setType("scene");
+    } else {
+      sceneStore.setType("none");
+    }
+  },
 });
 
 export default sceneStore;

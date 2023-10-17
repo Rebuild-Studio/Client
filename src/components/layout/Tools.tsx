@@ -28,7 +28,7 @@ const Tools = observer(({ canvasBarIsOpen }: Props) => {
               <OrientationHelper />
             </OrientationHelperWrapper>
             <PanelWrapper>
-              {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
+              {sceneSettingStore.isOpen && <SceneSettingPanel />}
               <RightPanel />
             </PanelWrapper>
           </Right>
