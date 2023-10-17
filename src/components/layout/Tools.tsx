@@ -16,24 +16,26 @@ const Tools = observer(({ canvasBarIsOpen }: Props) => {
   const { sceneSettingStore } = storeContainer;
 
   return (
-    <Layout>
-      <Top>{canvasBarIsOpen && <CanvasBar />}</Top>
-      <Bottom>
-        <Left>
-          <CanvasLeftPanel />
-        </Left>
-        <Right>
-          <OrientationHelperWrapper>
-            <OrientationHelper />
-          </OrientationHelperWrapper>
-          <PanelWrapper>
-            {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
-            <RightPanel />
-          </PanelWrapper>
-        </Right>
-      </Bottom>
+    <>
+      <Layout>
+        <Top>{canvasBarIsOpen && <CanvasBar />}</Top>
+        <Bottom>
+          <Left>
+            <CanvasLeftPanel />
+          </Left>
+          <Right>
+            <OrientationHelperWrapper>
+              <OrientationHelper />
+            </OrientationHelperWrapper>
+            <PanelWrapper>
+              {sceneSettingStore.type === "scene" && <SceneSettingPanel />}
+              <RightPanel />
+            </PanelWrapper>
+          </Right>
+        </Bottom>
+      </Layout>
       <ControllerBar />
-    </Layout>
+    </>
   );
 });
 
