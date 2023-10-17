@@ -140,7 +140,7 @@ const RenderScene = observer(() => {
           <ErrorBoundary
             key={id}
             fallback={<></>}
-            onError={(e) => {
+            onError={() => {
               addToast("오브젝트 에러!");
             }}
           >
