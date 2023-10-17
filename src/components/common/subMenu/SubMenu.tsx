@@ -19,29 +19,6 @@ type Props = {
   left?: string;
 };
 
-type CSSMenuBox = {
-  $left: string;
-  $top: string;
-  $color: CSSHexColor;
-  $backgroundColor: CSSHexColor;
-  $fontSize: FontType;
-};
-
-const MenuBox = styled.ul<CSSMenuBox>`
-  position: absolute;
-  top: ${({ $top }) => $top};
-  left: ${({ $left }) => $left};
-  color: ${({ $color }) => $color};
-  padding: 2px 4px;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: 4px;
-  width: 200px;
-  font-size: ${({ $fontSize }) => fonts[$fontSize]};
-  z-index: 1;
-  list-style-type: none;
-  margin: 0;
-`;
-
 export const SubMenu = (props: Props) => {
   const {
     menuItems,
@@ -117,3 +94,26 @@ export const SubMenu = (props: Props) => {
     </>
   );
 };
+
+type CSSMenuBox = {
+  $left: string;
+  $top: string;
+  $color: CSSHexColor;
+  $backgroundColor: CSSHexColor;
+  $fontSize: FontType;
+};
+
+const MenuBox = styled.ul<CSSMenuBox>`
+  position: absolute;
+  top: ${({ $top }) => $top};
+  left: ${({ $left }) => $left};
+  color: ${({ $color }) => $color};
+  padding: 2px 4px;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  border-radius: 4px;
+  width: 200px;
+  font-size: ${({ $fontSize }) => fonts[$fontSize]};
+  z-index: 1;
+  list-style-type: none;
+  margin: 0;
+`;

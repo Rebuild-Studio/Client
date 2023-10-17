@@ -8,7 +8,63 @@ import ColorContent from "./ColorContent";
 interface ColorPickerProps {
   label: string;
   color: any;
+  onChangeHsvaProp: (hsva: HsvaColor) => void;
+  onChangeAlphaProp: (alpha: number) => void;
 }
+
+const ColorPicker = observer(
+  ({ label, color, onChangeHsvaProp, onChangeAlphaProp }: ColorPickerProps) => {
+    const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
+    const [open, setOpen] = useState(true);
+    const rgbColor = hsvaToRgba(color);
+
+    const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+      !open ? handleOpen(event) : handleClose();
+    };
+
+    const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setAnchorMenu(null);
+      setOpen(false);
+    };
+
+    return (
+      <>
+        <Wrapper>
+          <ColorButton
+            color={color}
+            rgbColor={rgbColor}
+            onClick={handleToggle}
+          />
+          {anchorMenu && (
+            <StyledMenu
+              anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
+              open={open}
+              anchorLeft={anchorMenu.offsetLeft - 468}
+            >
+              <Container>
+                <Header>{label}</Header>
+                <ColorContent
+                  rgbColor={rgbColor}
+                  color={color}
+                  onChangeHsvaProp={onChangeHsvaProp}
+                  onChangeAlphaProp={onChangeAlphaProp}
+                />
+                <ButtonWrapper>
+                  <button onClick={handleClose}>Close Menu</button>
+                </ButtonWrapper>
+              </Container>
+            </StyledMenu>
+          )}
+        </Wrapper>
+      </>
+    );
+  }
+);
+export default ColorPicker;
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,7 +103,7 @@ const StyledMenu = styled.div<{
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   z-index: 3;
-  transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
+  // transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
 `;
@@ -67,40 +123,3 @@ const ColorButton = styled.button<{
     typeof props.color !== "undefined" &&
     `rgba(${props.rgbColor.r},${props.rgbColor.g},${props.rgbColor.b},${props.rgbColor.a})`};
 `;
-
-const ColorPicker = observer(({ label, color }: ColorPickerProps) => {
-  const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(true);
-  const rgbColor = hsvaToRgba(color);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setAnchorMenu(null);
-    setOpen(false);
-  };
-
-  return (
-    <Wrapper>
-      <ColorButton color={color} rgbColor={rgbColor} onClick={handleClick} />
-      {anchorMenu && (
-        <StyledMenu
-          anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
-          open={open}
-          anchorLeft={anchorMenu.offsetLeft - 468}
-        >
-          <Container>
-            <Header>{label}</Header>
-            <ColorContent rgbColor={rgbColor} color={color} />
-            <ButtonWrapper>
-              <button onClick={handleClose}>Close Menu</button>
-            </ButtonWrapper>
-          </Container>
-        </StyledMenu>
-      )}
-    </Wrapper>
-  );
-});
-export default ColorPicker;

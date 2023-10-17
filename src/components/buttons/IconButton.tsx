@@ -4,19 +4,6 @@ import { basicColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { getShadow } from "@/utils/style/getShadow";
 
-const SCIconButton = styled(SCButton)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  & > * {
-    margin: 0 5px;
-  }
-
-  &:hover {
-  }
-`;
-
 interface Props extends ButtonProps {
   Icon: ComponentType<ComponentProps<"svg">>;
   iconGravity?: "left" | "right";
@@ -53,7 +40,7 @@ const IconButton = ({
     setIconPosition(
       iconGravity === "left"
         ? { left: <Icon />, right: label }
-        : { left: label, right: <Icon /> },
+        : { left: label, right: <Icon /> }
     );
   }, [iconGravity, label, Icon]);
 
@@ -80,3 +67,16 @@ const IconButton = ({
 };
 
 export default IconButton;
+
+const SCIconButton = styled(SCButton)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > * {
+    margin: 0 5px;
+  }
+
+  &:hover {
+  }
+`;

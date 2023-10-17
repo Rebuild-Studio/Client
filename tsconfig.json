@@ -7,6 +7,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": false,
+    "allowJs": true, // it stands for interaction(legacy JS)
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -39,6 +40,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "build", "coverage", "storybook-static"],
+  "exclude": ["**/*.stories.ts", "**/*.stories.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

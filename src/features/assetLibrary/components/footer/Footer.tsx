@@ -9,38 +9,6 @@ import { observer } from "mobx-react";
 import { nanoid } from "nanoid";
 import styled, { css } from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  padding: 20px;
-  box-sizing: border-box;
-
-  & > * {
-    margin-left: 10px;
-  }
-`;
-
-const LoadButton = styled(MenuButton)`
-  background-color: ${basicColors.limeGreen};
-  border: 1px solid ${grayColors.lightGray};
-  &:active {
-    animation: ${css`
-      ${getButtonClickAnimation("translate")} 0.2s ease-in-out
-    `};
-  }
-`;
-
-const CancelButton = styled(LoadButton)`
-  background-color: ${basicColors.black};
-  color: ${basicColors.white};
-  &:hover {
-    background-color: ${grayColors.panelGray};
-  }
-`;
-
 const Footer = observer(() => {
   const selectedAssets = assetLibraryStore.selectedAssets;
   const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
@@ -76,3 +44,35 @@ const Footer = observer(() => {
 });
 
 export default Footer;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  & > * {
+    margin-left: 10px;
+  }
+`;
+
+const LoadButton = styled(MenuButton)`
+  background-color: ${basicColors.limeGreen};
+  border: 1px solid ${grayColors.lightGray};
+  &:active {
+    animation: ${css`
+      ${getButtonClickAnimation("translate")} 0.2s ease-in-out
+    `};
+  }
+`;
+
+const CancelButton = styled(LoadButton)`
+  background-color: ${basicColors.black};
+  color: ${basicColors.white};
+  &:hover {
+    background-color: ${grayColors.panelGray};
+  }
+`;
