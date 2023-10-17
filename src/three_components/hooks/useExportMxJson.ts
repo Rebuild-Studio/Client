@@ -1,8 +1,7 @@
-import { SceneControlStore } from "@/store/sceneControlStore";
 import downloadFile from "@/utils/file/downloadFile";
 import { Dispatch, useCallback, useEffect, useState } from "react";
 import MxWorker from "./workerScript?worker";
-import { ProjectType } from "@/store/projectStore";
+import { ProjectStore, ProjectType } from "@/store/projectStore";
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE,
@@ -36,17 +35,26 @@ const exportJsonFile = async (
 
 const exportJsonPost = async (
   scene: THREE.Scene,
-  createProjectType: ProjectType,
+  projectType: ProjectType,
+  projectStore: ProjectStore,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
+  const { projectName, thumbnail } = projectStore;
   const mxWorker = new MxWorker();
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
+
+  const projectInfo = {
+    projectType,
+    projectName,
+    thumbnail,
+  };
+
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_POST,
     sceneJson,
-    projectType: createProjectType,
+    projectInfo,
   });
   mxWorker.onmessage = (e) => {
     setIsProcessing(false);
@@ -63,39 +71,51 @@ const exportJsonPost = async (
   };
 };
 interface Props {
-  scene: THREE.Scene;
-  sceneControlStore: SceneControlStore;
+  projectStore: ProjectStore;
 }
-const useExportMxJson = ({ scene, sceneControlStore }: Props) => {
-  const { file: fileTrigger, post: postTrigger } =
-    sceneControlStore.exportMxJsonTrigger;
-  const { createProjectType } = sceneControlStore;
 
+type hookReturnType = [
+  isSuccess: boolean,
+  isProcessing: boolean,
+  createProject: (projectType: ProjectType) => void,
+  downloadProject: () => void
+];
+
+const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    // 트리거 둘다 false 일때 return
-    if (!fileTrigger && !postTrigger) return;
-    setIsSuccess(false);
+    projectStore.initAfterExport();
+  }, [isProcessing, projectStore]);
+
+  // 프로젝트 저장 함수("MX" | "PMX")
+  const createProject = useCallback(
+    (projectType: ProjectType) => {
+      if (!projectStore.scene) return;
+      setIsProcessing(true);
+      setIsSuccess(false);
+
+      exportJsonPost(
+        projectStore.scene,
+        projectType,
+        projectStore,
+        setIsProcessing,
+        setIsSuccess
+      );
+    },
+    [projectStore]
+  );
+
+  //다운로드 함수
+  const downloadProject = useCallback(() => {
+    if (!projectStore.scene) return;
     setIsProcessing(true);
+    setIsSuccess(false);
+    exportJsonFile(projectStore.scene, setIsProcessing, setIsSuccess);
+  }, [projectStore.scene]);
 
-    // 파일 내보내기 트리거 발동 시
-    fileTrigger && exportJsonFile(scene, setIsProcessing, setIsSuccess);
-    // 프로젝트 저장(POST) 트리거 발동 시
-    postTrigger &&
-      exportJsonPost(scene, createProjectType, setIsProcessing, setIsSuccess);
-
-    sceneControlStore.initExportMxJsonTrigger();
-  }, [fileTrigger, postTrigger, createProjectType, scene, sceneControlStore]);
-
-  useEffect(() => {
-    isSuccess && setIsSuccess(false);
-  }, [isSuccess]);
-
-  useCallback(() => {}, []);
-
-  return [isSuccess, isProcessing];
+  return [isSuccess, isProcessing, createProject, downloadProject];
 };
 
 export default useExportMxJson;

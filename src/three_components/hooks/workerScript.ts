@@ -1,4 +1,4 @@
-import { ResponseCreateMxProject } from "@/network/services/project/post/models/postMxProject.model";
+import { RequestCreateMxProject } from "@/network/services/project/post/models/postMxProject.model";
 import postProjectServices from "@/network/services/project/post/postProjectServices";
 import { ProjectType } from "@/store/projectStore";
 import { MxJson } from "@/types/mxJson/mxJson";
@@ -16,31 +16,36 @@ export const MX_WORKER_RESPONSE_TYPE = {
   POST_FAIL: "postFail",
 } as const;
 
+type ProjectInfo = {
+  projectType: ProjectType;
+  projectName: string;
+  thumbnail: string;
+};
+
 export type MxWorkerRequestType =
   (typeof MX_WORKER_REQUEST_TYPE)[keyof typeof MX_WORKER_REQUEST_TYPE];
 
-const requestCreateProject = async (type: ProjectType, mxJson: MxJson) => {
-  const reqParam = {
-    projectName: "test", //TODO 유저가 입력하도록 변경 예정
-    thumbnail: "test",
+const CREATE_PROJECT_SERVICE = {
+  MX: (reqParam: RequestCreateMxProject) =>
+    postProjectServices.createMxProject(reqParam),
+  PMX: (reqParam: RequestCreateMxProject) =>
+    postProjectServices.createPmxProject(reqParam),
+};
+const requestCreateProject = async (
+  projectInfo: ProjectInfo,
+  mxJson: MxJson
+) => {
+  const { projectType, projectName, thumbnail } = projectInfo;
+  const reqParam: RequestCreateMxProject = {
+    projectName, //TODO 유저가 입력하도록 변경 예정
+    thumbnail,
     mxJson,
   };
-  let res: ResponseCreateMxProject;
-  if (type === "MX") {
-    res = await postProjectServices.createMxProject(reqParam);
-    postMessage({
-      type: MX_WORKER_RESPONSE_TYPE.POST_SUCCESS,
-      res,
-    });
-  } else if (type === "PMX") {
-    res = await postProjectServices.createPmxProject(reqParam);
-    postMessage({
-      type: MX_WORKER_RESPONSE_TYPE.POST_SUCCESS,
-      res,
-    });
-  } else {
-    throw new Error("잘못된 프로젝트 타입입니다.");
-  }
+  const res = await CREATE_PROJECT_SERVICE[projectType](reqParam);
+  postMessage({
+    type: MX_WORKER_RESPONSE_TYPE.POST_SUCCESS,
+    res,
+  });
 };
 
 self.addEventListener(
@@ -49,10 +54,10 @@ self.addEventListener(
     data: {
       type: MxWorkerRequestType;
       sceneJson: SceneJson;
-      projectType?: ProjectType;
+      projectInfo?: ProjectInfo;
     };
   }) => {
-    const { type, sceneJson, projectType } = e.data;
+    const { type, sceneJson, projectInfo } = e.data;
     switch (type) {
       case MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE:
         {
@@ -68,10 +73,8 @@ self.addEventListener(
         {
           const mxJson = createMxJson(sceneJson);
           try {
-            if (!projectType)
-              throw new Error("생성할 프로젝트 타입이 없습니다.");
-
-            await requestCreateProject(projectType, mxJson);
+            if (!projectInfo) throw new Error("프로젝트 정보가 없습니다.");
+            await requestCreateProject(projectInfo, mxJson);
           } catch (error) {
             postMessage({
               type: MX_WORKER_RESPONSE_TYPE.POST_FAIL,

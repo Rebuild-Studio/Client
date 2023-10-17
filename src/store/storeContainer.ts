@@ -13,6 +13,7 @@ import assetLibraryStore from "./assetLibraryStore";
 import assetCategoryStore from "./assetCategoryStore";
 import sceneSettingStore from "./sceneSettingStore";
 import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
+import projectStore from "./projectStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -30,6 +31,7 @@ const storeContainer = {
   assetCategoryStore: assetCategoryStore,
   sceneSettingStore: sceneSettingStore,
   controllerBarStore: controllerBarStore,
+  projectStore: projectStore,
 };
 
 export default storeContainer;

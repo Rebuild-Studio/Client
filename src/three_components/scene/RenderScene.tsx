@@ -13,7 +13,6 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
-import useExportMxJson from "../hooks/useExportMxJson";
 import SelectedOutline from "../post_processing/SelectedOutline";
 import { EffectComposer } from "@react-three/postprocessing";
 import ChildGizmo from "../gizmo/ChildGizmo";
@@ -25,7 +24,7 @@ const RenderScene = observer(() => {
     contextMenuStore,
     keyboardEventStore,
     selectedObjectStore,
-    sceneControlStore,
+    projectStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
 
@@ -39,11 +38,9 @@ const RenderScene = observer(() => {
     primitiveStore.selectedPrimitives
   ).length;
 
-  // scene 제어롤 틍한 mxJson 파일로 내보내기
-  const [isSuccess, isProcessing] = useExportMxJson({
-    scene,
-    sceneControlStore,
-  });
+  useEffect(() => {
+    projectStore.setScene(scene);
+  }, [scene, projectStore]);
 
   useEffect(() => {
     // mouse event
@@ -108,12 +105,6 @@ const RenderScene = observer(() => {
       selectedObjectStore.setSelectedMaterial(materialName);
     }
   }, [selectedObjectStore.selectedMaterial]);
-
-  useEffect(() => {
-    // 저장 로깅 - TODO : 나중에 실질적으로 로딩창 구현시 필요
-    isProcessing && console.info("저장중입니다.");
-    isSuccess && console.info("저장이 완료되었습니다.");
-  }, [isProcessing, isSuccess]);
 
   return (
     <>
