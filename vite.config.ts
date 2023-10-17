@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,7 +15,6 @@ export default defineConfig({
       { find: "@hooks", replacement: "/src/hooks" },
       { find: "@stories", replacement: "/src/stories" },
       { find: "@network", replacement: "/src/network" },
-      { find: "@types", replacement: "/src/types" },
       { find: "@utils", replacement: "/src/utils" },
     ],
   },

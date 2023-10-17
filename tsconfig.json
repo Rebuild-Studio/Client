@@ -35,7 +35,6 @@
       "@hooks/*": ["src/hooks/*"],
       "@stories/*": ["src/stories/*"],
       "@network/*": ["src/network/*"],
-      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
