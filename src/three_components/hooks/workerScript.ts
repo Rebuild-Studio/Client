@@ -1,5 +1,6 @@
 import { ResponseCreateMxProject } from "@/network/services/project/post/models/postMxProject.model";
 import postProjectServices from "@/network/services/project/post/postProjectServices";
+import { ProjectType } from "@/store/projectStore";
 import { MxJson } from "@/types/mxJson/mxJson";
 import { SceneJson } from "@/types/scene/scene";
 import createMxJson from "@/utils/json/createMxJson";
@@ -18,7 +19,7 @@ export const MX_WORKER_RESPONSE_TYPE = {
 export type MxWorkerRequestType =
   (typeof MX_WORKER_REQUEST_TYPE)[keyof typeof MX_WORKER_REQUEST_TYPE];
 
-const requestCreateProject = async (type: "MX" | "PMX", mxJson: MxJson) => {
+const requestCreateProject = async (type: ProjectType, mxJson: MxJson) => {
   const reqParam = {
     projectName: "test", //TODO 유저가 입력하도록 변경 예정
     thumnail: "test",
@@ -48,7 +49,7 @@ self.addEventListener(
     data: {
       type: MxWorkerRequestType;
       sceneJson: SceneJson;
-      projectType?: "MX" | "PMX";
+      projectType?: ProjectType;
     };
   }) => {
     const { type, sceneJson, projectType } = e.data;

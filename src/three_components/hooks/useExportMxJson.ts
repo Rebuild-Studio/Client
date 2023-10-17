@@ -6,6 +6,7 @@ import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE,
 } from "./workerScript";
+import { ProjectType } from "@/store/projectStore";
 
 const exportJsonFile = async (
   scene: THREE.Scene,
@@ -35,7 +36,7 @@ const exportJsonFile = async (
 
 const exportJsonPost = async (
   scene: THREE.Scene,
-  createProjectType: "MX" | "PMX",
+  createProjectType: ProjectType,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
