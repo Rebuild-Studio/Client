@@ -1,12 +1,12 @@
 import { SceneControlStore } from "@/store/sceneControlStore";
 import downloadFile from "@/utils/file/downloadFile";
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, useCallback, useEffect, useState } from "react";
 import MxWorker from "./workerScript?worker";
+import { ProjectType } from "@/store/projectStore";
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE,
 } from "./workerScript";
-import { ProjectType } from "@/store/projectStore";
 
 const exportJsonFile = async (
   scene: THREE.Scene,
@@ -92,6 +92,8 @@ const useExportMxJson = ({ scene, sceneControlStore }: Props) => {
   useEffect(() => {
     isSuccess && setIsSuccess(false);
   }, [isSuccess]);
+
+  useCallback(() => {}, []);
 
   return [isSuccess, isProcessing];
 };

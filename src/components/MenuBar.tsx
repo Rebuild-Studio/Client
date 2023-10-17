@@ -5,6 +5,7 @@ import { SubMenu } from "./common/subMenu/SubMenu";
 import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
+import sceneControlStore from "@/store/sceneControlStore";
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton

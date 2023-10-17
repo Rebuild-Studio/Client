@@ -2,7 +2,7 @@ import { MxJson } from "@/types/mxJson/mxJson";
 
 interface RequestCreateMxProject {
   projectName: string;
-  thumnail: string;
+  thumbnail: string;
   mxJson: MxJson;
 }
 

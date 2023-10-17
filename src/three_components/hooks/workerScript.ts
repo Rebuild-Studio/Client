@@ -22,7 +22,7 @@ export type MxWorkerRequestType =
 const requestCreateProject = async (type: ProjectType, mxJson: MxJson) => {
   const reqParam = {
     projectName: "test", //TODO 유저가 입력하도록 변경 예정
-    thumnail: "test",
+    thumbnail: "test",
     mxJson,
   };
   let res: ResponseCreateMxProject;
