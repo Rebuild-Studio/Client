@@ -24,63 +24,6 @@ export type ToastProps = {
   duration?: number;
 };
 
-type CSSProps = {
-  $fadeIn: boolean;
-  $fadeOut: boolean;
-  $fontSize: FontType;
-  $color?: CSSHexColor;
-  $backgroundColor?: CSSHexColor;
-  $width?: string;
-  $height?: string;
-  $minHeight?: string;
-  $minWidth?: string;
-  $borderRadius?: string;
-  $border?: string;
-  $fontFamily?: string;
-  $fontWeight?: number;
-};
-
-const fadeOutAnimation = keyframes`
-  from { opacity: 1; }
-  to { opacity: 0; }
-`;
-
-const fadeInAnimation = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-const StyledToast = styled.button<CSSProps>`
-  color: ${({ $color }) => $color};
-  font-size: ${({ $fontSize }) => fonts[$fontSize]};
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  padding: 6px 8px;
-  border: ${({ $border }) => $border};
-  width: ${({ $width }) => $width};
-  height: ${({ $height }) => $height};
-  min-height: ${({ $minHeight }) => $minHeight};
-  min-width: ${({ $minWidth }) => $minWidth};
-  border-radius: ${({ $borderRadius }) => $borderRadius};
-  font-family: ${({ $fontFamily }) => $fontFamily};
-  font-weight: ${({ $fontWeight }) => $fontWeight};
-  margin: 0;
-  cursor: pointer;
-  vertical-align: middle;
-  animation: ${({ $fadeOut, $fadeIn }) => {
-    if ($fadeIn) {
-      return css`
-        ${fadeInAnimation} 0.5s ease-in-out
-      `;
-    }
-    if ($fadeOut) {
-      return css`
-        ${fadeOutAnimation} 0.5s ease-in-out forwards
-      `;
-    }
-    return "none";
-  }};
-`;
-
 const Toast = ({
   fadeOut = true,
   fadeIn = true,
@@ -142,3 +85,60 @@ const Toast = ({
 };
 
 export default Toast;
+
+const fadeOutAnimation = keyframes`
+  from { opacity: 1; }
+  to { opacity: 0; }
+`;
+
+const fadeInAnimation = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+type CSSProps = {
+  $fadeIn: boolean;
+  $fadeOut: boolean;
+  $fontSize: FontType;
+  $color?: CSSHexColor;
+  $backgroundColor?: CSSHexColor;
+  $width?: string;
+  $height?: string;
+  $minHeight?: string;
+  $minWidth?: string;
+  $borderRadius?: string;
+  $border?: string;
+  $fontFamily?: string;
+  $fontWeight?: number;
+};
+
+const StyledToast = styled.button<CSSProps>`
+  color: ${({ $color }) => $color};
+  font-size: ${({ $fontSize }) => fonts[$fontSize]};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  padding: 6px 8px;
+  border: ${({ $border }) => $border};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+  min-height: ${({ $minHeight }) => $minHeight};
+  min-width: ${({ $minWidth }) => $minWidth};
+  border-radius: ${({ $borderRadius }) => $borderRadius};
+  font-family: ${({ $fontFamily }) => $fontFamily};
+  font-weight: ${({ $fontWeight }) => $fontWeight};
+  margin: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  animation: ${({ $fadeOut, $fadeIn }) => {
+    if ($fadeIn) {
+      return css`
+        ${fadeInAnimation} 0.5s ease-in-out
+      `;
+    }
+    if ($fadeOut) {
+      return css`
+        ${fadeOutAnimation} 0.5s ease-in-out forwards
+      `;
+    }
+    return "none";
+  }};
+`;

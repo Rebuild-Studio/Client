@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 import { MeshType } from "./primitiveStore";
 
-type DisplayType = "CANVAS" | "INTERACTION" | "PREVIEW" | "LOADING";
+type DisplayType = "CANVAS" | "INTERACTION" | "PREVIEW";
 type GridVisibleType = "VISIBLE" | "INVISIBLE";
 
 interface ProjectStateProps {
@@ -9,10 +9,15 @@ interface ProjectStateProps {
   gridVisible: GridVisibleType;
   currentCopyPrimitive: MeshType; // 복사한 prmitive storeId
   canGrouping: boolean; // 다중 선택인 경우 true
+  isModalOpened: boolean;
+  modalComponent: JSX.Element | null;
   updateDisplay: (type: DisplayType) => void;
   updateGridVisible: (state: GridVisibleType) => void;
   updateCurrentCopyPrimitive: (copyMeshes: MeshType) => void;
   updateCanGrouping: (state: boolean) => void;
+  updateModalState: (isOpened: boolean) => void;
+  updateModalComponent: (component: JSX.Element) => void;
+  clearModal: () => void;
 }
 
 const projectStateStore = observable<ProjectStateProps>({
@@ -20,6 +25,8 @@ const projectStateStore = observable<ProjectStateProps>({
   gridVisible: "VISIBLE",
   currentCopyPrimitive: {},
   canGrouping: false,
+  isModalOpened: false,
+  modalComponent: null,
   updateDisplay(type) {
     this.currentDisplay = type;
   },
@@ -31,6 +38,16 @@ const projectStateStore = observable<ProjectStateProps>({
   },
   updateCanGrouping(state) {
     this.canGrouping = state;
+  },
+  updateModalState(isOpened) {
+    this.isModalOpened = isOpened;
+  },
+  updateModalComponent(component) {
+    this.modalComponent = component;
+  },
+  clearModal() {
+    this.isModalOpened = false;
+    this.modalComponent = null;
   },
 });
 

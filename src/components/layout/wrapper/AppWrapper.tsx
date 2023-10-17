@@ -8,13 +8,6 @@ interface AppProps {
   children: React.ReactNode;
 }
 
-const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  background-color: ${bgColors.sceneBackground};
-`;
-
 const AppWrapper = observer((props: AppProps) => {
   const { keyboardEventStore } = storeContainer;
   const setOnKeydownListener = (e: KeyboardEvent) => {
@@ -47,4 +40,12 @@ const AppWrapper = observer((props: AppProps) => {
 
   return <Wrapper>{props.children}</Wrapper>;
 });
+
 export default AppWrapper;
+
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: ${bgColors.sceneBackground};
+`;

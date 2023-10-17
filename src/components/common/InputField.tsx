@@ -14,51 +14,6 @@ interface Props {
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Wrapper = styled.div`
-  width: 78px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-const Container = styled.div`
-  width: 60px;
-  height: 24px;
-  margin-left: 3px;
-  border-radius: 3px;
-  background-color: ${grayColors.buttonColor};
-  display: flex;
-  position: relative;
-`;
-const Label = styled.div`
-  font-family: Inter;
-  font-size: 12px;
-  text-align: left;
-  color: ${grayColors.lightGray};
-`;
-const Input = styled.input`
-  width: 100%;
-  height: 100%;
-  padding: 0 3px;
-  border: none;
-  border-radius: 3px;
-  outline: none;
-  background-color: ${grayColors.buttonColor};
-  color: ${basicColors.white};
-  &:focus {
-    border: solid 1px ${basicColors.primary};
-    margin: 0;
-  }
-
-  -moz-appearance: textfield;
-  appearance: textfield;
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: inner-spin-button;
-    appearance: inner-spin-button;
-    margin: 0;
-  }
-`;
-
 const InputField = ({
   label = "",
   value,
@@ -119,3 +74,48 @@ const InputField = ({
 };
 
 export default InputField;
+
+const Wrapper = styled.div`
+  width: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+const Container = styled.div`
+  width: 60px;
+  height: 24px;
+  margin-left: 3px;
+  border-radius: 3px;
+  background-color: ${grayColors.buttonColor};
+  display: flex;
+  position: relative;
+`;
+const Label = styled.div`
+  font-family: Inter;
+  font-size: 12px;
+  text-align: left;
+  color: ${grayColors.lightGray};
+`;
+const Input = styled.input`
+  width: 100%;
+  height: 100%;
+  padding: 0 3px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  background-color: ${grayColors.buttonColor};
+  color: ${basicColors.white};
+  &:focus {
+    border: solid 1px ${basicColors.primary};
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+  appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button;
+    appearance: inner-spin-button;
+    margin: 0;
+  }
+`;

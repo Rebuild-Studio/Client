@@ -11,43 +11,26 @@ import {
 } from "@uiw/color-convert";
 import Slider from "../Slider";
 import InputField from "../InputField";
-import { updateMaterialAlpha, updateMaterialColor } from "./ColorHandler";
 import { action } from "mobx";
 import { grayColors } from "@/resources/colors/colors";
 
 interface ColorContentProps {
   rgbColor: RgbaColor;
   color: HsvaColor;
-  saturationSilder?: boolean;
+  saturationSlider?: boolean;
   brightnessSlider?: boolean;
   alpha?: boolean;
+  onChangeHsvaProp: (hsva: HsvaColor) => void;
+  onChangeAlphaProp: (alpha: number) => void;
 }
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 213px;
-  height: auto;
-`;
-
-const InputFieldWrapper = styled.div`
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const InputFieldTitle = styled.div<{ color: string }>`
-  font-family: Pretendard;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${(props) => props.color};
-`;
 
 const ColorContent = observer(
   ({
     color,
-    saturationSilder = true,
+    saturationSlider = true,
     brightnessSlider = true,
+    onChangeHsvaProp,
+    onChangeAlphaProp,
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
@@ -60,12 +43,12 @@ const ColorContent = observer(
 
     const onChangeSaturation = action((newColor: HsvaColor) => {
       setRgbColor(hsvaToRgba(newColor));
-      updateMaterialColor(newColor);
+      onChangeHsvaProp(newColor);
     });
 
     const onChangeAlpha = (hsva: HsvaColor) => {
       setAlpha(String(Math.round(hsva.a * 100)));
-      updateMaterialAlpha(hsva.a);
+      onChangeAlphaProp(hsva.a);
     };
 
     const onChangeRGB = action((channel: string, input: string) => {
@@ -92,7 +75,7 @@ const ColorContent = observer(
           return;
       }
       const _hsva = rgbaToHsva(rgbColor);
-      updateMaterialColor(_hsva);
+      onChangeHsvaProp(_hsva);
       setColor(_hsva);
       setRgbColor({ ...rgbColor });
     });
@@ -109,11 +92,11 @@ const ColorContent = observer(
         alphavalue = "100";
       }
 
-      updateMaterialAlpha(Number(e) / 100);
+      onChangeAlphaProp(Number(e) / 100);
     });
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
-      updateMaterialColor(hsva);
+      onChangeHsvaProp(hsva);
     };
 
     return (
@@ -178,7 +161,7 @@ const ColorContent = observer(
             </React.Fragment>
           ))}
         </InputFieldWrapper>
-        {saturationSilder && (
+        {saturationSlider && (
           <Slider
             title={"채도"}
             initValue={Math.round(newColor.s)}
@@ -209,3 +192,23 @@ const ColorContent = observer(
   }
 );
 export default ColorContent;
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 213px;
+  height: auto;
+`;
+
+const InputFieldWrapper = styled.div`
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const InputFieldTitle = styled.div<{ color: string }>`
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${(props) => props.color};
+`;

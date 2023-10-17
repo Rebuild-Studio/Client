@@ -2,20 +2,6 @@ import { grayColors } from "@/resources/colors/colors";
 import { CSSColor, CSSSize } from "@/types/style/cssUnits";
 import { styled } from "styled-components";
 
-interface ContainerProps {
-  $width: Props["width"];
-  $height: Props["height"];
-  $border: Props["border"];
-}
-
-const Container = styled.div<ContainerProps>`
-  display: flex;
-  flex-direction: column;
-  border: ${({ $border }) => $border || `1px solid ${grayColors.E2E2E2}`};
-  width: ${({ $width }) => $width};
-  height: ${({ $height }) => $height};
-`;
-
 interface Props {
   className?: string;
   role?: string;
@@ -48,3 +34,17 @@ const Stack = ({
 };
 
 export default Stack;
+
+interface ContainerProps {
+  $width: Props["width"];
+  $height: Props["height"];
+  $border: Props["border"];
+}
+
+const Container = styled.div<ContainerProps>`
+  display: flex;
+  flex-direction: column;
+  border: ${({ $border }) => $border || `1px solid ${grayColors.E2E2E2}`};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+`;

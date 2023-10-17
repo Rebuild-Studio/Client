@@ -2,21 +2,6 @@ import { styled } from "styled-components";
 import { PopOverProps } from "./PopOverProps";
 import { useRef, useState, useEffect } from "react";
 
-const PopOverWrapper = styled.div`
-  position: relative;
-  display: inline-block;
-`;
-
-const PopOverTrigger = styled.div`
-  padding: 8px 12px;
-`;
-
-const PopOverContent = styled.div`
-  width: 100%;
-  position: absolute;
-  z-index: 2;
-`;
-
 const BottomPopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isTriggered, setIsTriggered] = useState(false);
@@ -59,3 +44,18 @@ const BottomPopOver = (props: PopOverProps) => {
 };
 
 export default BottomPopOver;
+
+const PopOverWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const PopOverTrigger = styled.div`
+  padding: 8px 12px;
+`;
+
+const PopOverContent = styled.div`
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+`;
