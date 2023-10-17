@@ -4,13 +4,23 @@ import { HistoryPanel } from "./historyPanel/HistoryPanel";
 import { HierarchyPanel } from "./hierarchyPanel/HierarchyPanel";
 import styled from "styled-components";
 import { bgColors } from "@/resources/colors/colors";
-import Button from "@/components/common/Button";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 import primitiveStore from "@/store/primitiveStore";
+import Icon from "@components/common/Icon.tsx";
 
 export const CanvasLeftPanel = observer(() => {
   const [visibleHistoryPanel, setVisibleHistoryPanel] = useState(false);
   const [visibleHierarchyPanel, setVisibleHierarchyPanel] = useState(false);
+
+  const handleHistoryClick = () => {
+    setVisibleHierarchyPanel(false);
+    setVisibleHistoryPanel((prev) => !prev);
+  };
+
+  const handleHierarchyClick = () => {
+    setVisibleHistoryPanel(false);
+    setVisibleHierarchyPanel((prev) => !prev);
+  };
 
   return (
     <Wrapper>
@@ -26,36 +36,22 @@ export const CanvasLeftPanel = observer(() => {
         )}
       </PanelWrapper>
       <MultiButtonBox>
-        <Button
-          size="32px"
-          height="32px"
-          shadow="none"
-          backgroundImage={
-            visibleHistoryPanel
-              ? "/icons/studio/icon_history_활성화.svg"
-              : "/icons/studio/icon_history.svg"
-          }
-          hoverBackgroundImage={"/icons/studio/icon_history_활성화.svg"}
-          onClick={() => {
-            setVisibleHierarchyPanel(false);
-            setVisibleHistoryPanel((prev) => !prev);
-          }}
-        />
-        <Button
-          size="32px"
-          height="32px"
-          shadow="none"
-          backgroundImage={
-            visibleHierarchyPanel
-              ? "/icons/studio/icon_hierarchy_활성화.svg"
-              : "/icons/studio/icon_hierarchy.svg"
-          }
-          hoverBackgroundImage={"/icons/studio/icon_hierarchy_활성화.svg"}
-          onClick={() => {
-            setVisibleHistoryPanel(false);
-            setVisibleHierarchyPanel((prev) => !prev);
-          }}
-        />
+        <Button onClick={handleHistoryClick}>
+          <Icon
+            defaultSrc="/icons/studio/icon_history.svg"
+            activeSrc="/icons/studio/icon_history_active.svg"
+            alt="히스토리"
+            activated={visibleHistoryPanel}
+          />
+        </Button>
+        <Button onClick={handleHierarchyClick}>
+          <Icon
+            defaultSrc="/icons/studio/icon_hierarchy.svg"
+            activeSrc="/icons/studio/icon_hierarchy_active.svg"
+            alt="계층구조"
+            activated={visibleHierarchyPanel}
+          />
+        </Button>
       </MultiButtonBox>
     </Wrapper>
   );
@@ -75,8 +71,16 @@ const PanelWrapper = styled.div`
 
 const MultiButtonBox = styled.div`
   display: flex;
-  background-color: ${bgColors[222222]};
   border-radius: 0 10px 0 10px;
   width: fit-content;
   pointer-events: auto;
+`;
+
+const Button = styled.button`
+  padding: 6px;
+  background-color: ${bgColors[222222]};
+
+  &:hover {
+    background-color: transparent;
+  }
 `;

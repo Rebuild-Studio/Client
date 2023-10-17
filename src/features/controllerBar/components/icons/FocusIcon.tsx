@@ -1,8 +1,8 @@
-import ControlIcon from "@/features/controllerBar/components/icons/ControlIcon";
+import Icon from "@components/common/Icon.tsx";
 
 const FocusIcon = () => {
   return (
-    <ControlIcon
+    <Icon
       defaultSrc="/icons/controllerBar/focus.svg"
       activeSrc="/icons/controllerBar/focus-active.svg"
       alt="포커스 아이콘"
