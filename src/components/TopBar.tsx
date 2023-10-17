@@ -1,10 +1,10 @@
-import CanvasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
 import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
-import App from "@/interaction(legacyJS)/src/App";
 import storeContainer from "@/store/storeContainer";
+import { fonts } from "@resources/fonts/font";
+// import App from "@/interaction(legacyJS)/src/App";
 
 interface TopBarProps {
   isOpen: boolean;
@@ -24,41 +24,40 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
 
   return (
     <Wrapper>
-      <Container>
-        <AppBarWrapper>
-          <AppBarItem>
-            <Button
-              label="캔버스"
-              shadow="none"
-              onClick={() => {
-                setOpen(!isOpen);
-              }}
-            />
-          </AppBarItem>
-          <AppBarItem>
-            <Button
-              label="인터렉션 에디터"
-              shadow="none"
-              onClick={() => {
-                setOpen(!isOpen);
-              }}
-              disabled={true}
-            />
-          </AppBarItem>
-        </AppBarWrapper>
-        <FlexBox />
+      <Left>
+        <Button
+          label="캔버스"
+          shadow="none"
+          onClick={() => {
+            setOpen(!isOpen);
+          }}
+        />
+        <Button
+          label="인터렉션 에디터"
+          shadow="none"
+          onClick={() => {
+            setOpen(!isOpen);
+          }}
+          disabled={true}
+        />
+      </Left>
+      <Center>
         <ComponentName>컴포넌트 네임</ComponentName>
-        <FlexBox />
+      </Center>
+      <Right>
         <IconButton
-          Icon={() => <img src={"/icons/studio/icon_씬설정.svg"} />}
+          Icon={() => (
+            <img src={"/icons/studio/icon_씬설정.svg"} alt="씬설정" />
+          )}
           onClick={sceneSettingToggle}
         />
         <IconButton
-          Icon={() => <img src={"/icons/studio/icon_미리보기.svg"} />}
+          Icon={() => (
+            <img src={"/icons/studio/icon_미리보기.svg"} alt="미리보기" />
+          )}
         />
-      </Container>
-      {isOpen && <CanvasBar />}
-      {!isOpen && <App />}
+      </Right>
+      {/*{!isOpen && <App />}*/}
       {/* [TBD] should not use isOpen, open state should be used repectively */}
     </Wrapper>
   );
@@ -67,48 +66,37 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
 export default TopBar;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   position: relative;
-`;
-
-const Container = styled.div`
-  height: 54px;
-  width: 100%;
-  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
   background-color: #222222;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+
+  img {
+    margin: 0;
+  }
 `;
 
-const AppBarWrapper = styled.div`
-  width: 100%;
-  height: 78px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: transparent;
-`;
-
-const AppBarItem = styled.div`
-  margin-right: 20px;
-  margin-left: 16px;
-`;
-
-const FlexBox = styled.div`
-  flex-grow: 1;
-`;
-
-const ComponentName = styled.div`
+const ComponentName = styled.span`
   font-family: SpoqaHanSansNeo;
-  font-size: 14px;
+  font-size: ${fonts.default};
   font-weight: 400;
   color: ${basicColors.white};
-  text-transform: none;
+`;
+
+const Left = styled.div`
+  display: flex;
+  gap: 32px;
+`;
+
+const Center = styled.div`
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+`;
+
+const Right = styled.div`
+  display: flex;
 `;
