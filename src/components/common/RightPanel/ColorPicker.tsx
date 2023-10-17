@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { grayColors } from "@/resources/colors/colors";
