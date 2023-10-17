@@ -10,33 +10,35 @@ interface LocalAssetPrimitveProps extends PrimitiveProps {
   file: File;
 }
 
-const LocalAssetPrimitveProps = observer((props: LocalAssetPrimitveProps) => {
-  const ref = useRef();
-  const { primitiveStore } = storeContainer;
+const LocalAssetPrimitveProps = observer(
+  ({ file, storeId }: LocalAssetPrimitveProps) => {
+    const ref = useRef();
+    const { primitiveStore } = storeContainer;
 
-  const loadedData = useFileLoader(props.file);
+    const loadedData = useFileLoader(file);
 
-  let object: THREE.Object3D;
+    let object: THREE.Object3D;
 
-  if (!(loadedData instanceof THREE.Group)) {
-    object = loadedData.scene;
-  } else {
-    object = loadedData;
+    if (!(loadedData instanceof THREE.Group)) {
+      object = loadedData.scene;
+    } else {
+      object = loadedData;
+    }
+
+    object.name = "ASSET";
+    object.userData["storeId"] = storeId;
+    object.userData["isLocked"] = false;
+
+    useEffect(() => {
+      primitiveStore.updatePrimitive(
+        object.userData["storeId"],
+        object as THREE.Mesh
+      );
+      canvasHistoryStore.differAdd(object.userData["storeId"]);
+    }, []);
+
+    return <primitive ref={ref} object={object} />;
   }
-
-  object.name = "ASSET";
-  object.userData["storeId"] = props.storeId;
-  object.userData["isLocked"] = false;
-
-  useEffect(() => {
-    primitiveStore.updatePrimitive(
-      object.userData["storeId"],
-      object as THREE.Mesh
-    );
-    canvasHistoryStore.differAdd(object.userData["storeId"]);
-  }, []);
-
-  return <primitive ref={ref} object={object} />;
-});
+);
 
 export default LocalAssetPrimitveProps;

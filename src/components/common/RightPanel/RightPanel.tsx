@@ -30,7 +30,9 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
-  const [materials, setMaterials] = useState<string[]>([]);
+  const [material, setMaterial] = useState<THREE.MeshStandardMaterial | null>(
+    null
+  );
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
@@ -40,21 +42,26 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
       setPosition(info.position);
       setRotation(info.rotation);
       setScale(info.scale);
-      if (info.material) setMaterials(Object.keys(info.material));
+      if (info.material) {
+        const standardMaterial = Array.isArray(info.material)
+          ? info.material[0]
+          : info.material;
+        if (standardMaterial instanceof THREE.MeshStandardMaterial)
+          setMaterial(standardMaterial);
+      }
     }
   }, [selectedPrimitive]);
 
   useEffect(() => {
-    if (materials.length !== 0 && selectedPrimitive.material) {
-      const value = Object.values(selectedPrimitive.material);
-      const rgbColor = value[materials.indexOf("color")];
-      const opacity = Number(value[materials.indexOf("opacity")]);
+    if (material) {
+      const rgbColor = material.color;
+      const opacity = material.opacity;
       const hsva = rgbToHsva(rgbColor, opacity);
-      setMetalness(value[materials.indexOf("metalness")]);
-      setRoughness(value[materials.indexOf("roughness")]);
       setColor(hsva);
+      setMetalness(material.metalness);
+      setRoughness(material.roughness);
     }
-  }, [materials]);
+  }, [material]);
 
   return (
     <>
@@ -80,7 +87,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                       }}
                     />
                   </Accordion>
-                  {materials.length !== 0 && (
+                  {material && (
                     <Accordion title={"머터리얼"}>
                       <Material
                         metalness={metalness}

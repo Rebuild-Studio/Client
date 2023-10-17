@@ -10,33 +10,35 @@ interface AssetPrimitveProps extends PrimitiveProps {
   url?: string;
 }
 
-const AssetPrimitive = observer((props: AssetPrimitveProps) => {
-  const ref = useRef();
-  const { primitiveStore } = storeContainer;
-  let mesh: THREE.Mesh;
+const AssetPrimitive = observer(
+  ({ url, propMesh, storeId }: AssetPrimitveProps) => {
+    const ref = useRef();
+    const { primitiveStore } = storeContainer;
+    let mesh: THREE.Mesh;
 
-  if (props.url) {
-    const group = useServerGLTFLoader(props.url).scene;
-    mesh = (group.children[0].clone() as THREE.Mesh) ?? props.propMesh;
-  } else if (props.propMesh) {
-    mesh = props.propMesh;
-  } else {
-    return <></>;
+    if (url) {
+      const group = useServerGLTFLoader(url).scene;
+      mesh = (group.children[0].clone() as THREE.Mesh) ?? propMesh;
+    } else if (propMesh) {
+      mesh = propMesh;
+    } else {
+      return <></>;
+    }
+
+    mesh.name = "ASSET";
+    mesh.userData["storeId"] = storeId;
+    mesh.userData["isLocked"] = false;
+
+    useEffect(() => {
+      primitiveStore.updatePrimitive(
+        mesh.userData["storeId"],
+        mesh as THREE.Mesh
+      );
+      canvasHistoryStore.differAdd(mesh.userData["storeId"]);
+    }, []);
+
+    return <primitive ref={ref} object={mesh} />;
   }
-
-  mesh.name = "ASSET";
-  mesh.userData["storeId"] = props.storeId;
-  mesh.userData["isLocked"] = false;
-
-  useEffect(() => {
-    primitiveStore.updatePrimitive(
-      mesh.userData["storeId"],
-      mesh as THREE.Mesh
-    );
-    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
-  }, []);
-
-  return <primitive ref={ref} object={mesh} />;
-});
+);
 
 export default AssetPrimitive;

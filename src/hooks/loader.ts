@@ -12,7 +12,7 @@ import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 import getMinioPath from "@/utils/path/minio";
 
 // 서버에서 glb, gltf 로더
-export const useServerGLTFLoader = (url: string): GLTF & ObjectMap => {
+const useServerGLTFLoader = (url: string): GLTF & ObjectMap => {
   const gl = useThree((state) => state.gl);
 
   return useLoader(GLTFLoader, url, (loader: GLTFLoader) => {
@@ -30,12 +30,12 @@ export const useServerGLTFLoader = (url: string): GLTF & ObjectMap => {
 };
 
 // 서버에서 텍스쳐 로더
-export const useServerTextureLoader = (input: string): THREE.Texture => {
+const useServerTextureLoader = (input: string): THREE.Texture => {
   return useLoader(THREE.TextureLoader, input);
 };
 
 // 서버에서 머테리얼 오브젝트 로드하여 머테리얼 반환
-export const useServerMaterialLoader = (name: string): THREE.Material => {
+const useServerMaterialLoader = (name: string): THREE.Material => {
   const object = useServerGLTFLoader(getMinioPath(name, "libraryMaterial"));
 
   const materials = object.materials;
@@ -45,7 +45,7 @@ export const useServerMaterialLoader = (name: string): THREE.Material => {
 //////////////////////////////////// minio 서버가 아닌 load
 
 // 로컬 파일 로더
-export const useFileListLoader = (
+const useFileListLoader = (
   fileList: FileList
 ): ((GLTF & ObjectMap) | THREE.Group)[] => {
   // 파일 array, map, name array
@@ -115,7 +115,7 @@ export const useFileListLoader = (
   return result;
 };
 
-export const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
+const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
   // loadingManger
   const manager = new THREE.LoadingManager();
   const objectURLList: string[] = [];
@@ -168,4 +168,12 @@ export const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
   URL.revokeObjectURL(file.name);
 
   return useLoader(LoaderClass, file.name, loaderCallback);
+};
+
+export {
+  useServerGLTFLoader,
+  useServerTextureLoader,
+  useServerMaterialLoader,
+  useFileLoader,
+  useFileListLoader,
 };
