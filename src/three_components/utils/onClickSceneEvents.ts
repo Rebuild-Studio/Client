@@ -32,15 +32,16 @@ const onClickSceneEvents = (
     return primitiveStore.meshes[value.object.userData["storeId"]];
   });
 
-  console.log(intersectObjects);
-
-  // 그룹 찾기
+  // 그룹 애셋 찾기
   const selectChildObject = intersectObjects.find((value) => {
-    return value.object.parent?.name === "GROUP";
+    return (
+      value.object.parent?.name === "GROUP" ||
+      value.object.parent?.name === "ASSET"
+    );
   })?.object;
 
   const selectRootObject = findRootGroup(selectChildObject);
-
+  console.log(selectRootObject);
   if (selectRootObject) {
     const selectRootObjectStoreId: string =
       selectRootObject.userData["storeId"];

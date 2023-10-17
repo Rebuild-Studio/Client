@@ -12,6 +12,7 @@ import { bgColors, grayColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
 import PointLight from "@/three_components/lights/PointLight";
+import SpotLight from "@/three_components/lights/SpotLight";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -170,6 +171,13 @@ const CanvasBar = observer(() => {
             shadow="none"
             backgroundImage="/icons/studio/btn_스포트_라이트.svg"
             hoverBackgroundImage="/icons/studio/btn_스포트_라이트_활성화.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <SpotLight storeId={storeId} />
+              );
+            }}
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="76px">

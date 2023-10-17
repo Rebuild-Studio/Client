@@ -26,10 +26,13 @@ const onContextMenuSceneEvents = (
     return primitiveStore.meshes[value.object.userData["storeId"]];
   });
 
-  // 그룹 찾기
+  // 그룹 애셋 찾기
   const selectGroupObject = findRootGroup(
     intersectObjects.find((value) => {
-      return value.object.parent?.name === "GROUP";
+      return (
+        value.object.parent?.name === "GROUP" ||
+        value.object.parent?.name === "ASSET"
+      );
     })?.object
   );
 
