@@ -6,6 +6,8 @@ import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
+import projectStore from "@/store/projectStore";
+import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton
@@ -19,19 +21,23 @@ const Menu = ({ label }: { label: string }) => (
     onClick={() => {}}
   />
 );
+const ComponentBtn = () => <Menu label="컴포넌트" />;
+const PlugInBtn = () => <Menu label="플러그인" />;
+const ConfigureBtn = () => <Menu label="설정" />;
+const HelpBtn = () => <Menu label="도움말" />;
 
 const MenuBar = () => {
-  const ComponentBtn = () => <Menu label="컴포넌트" />;
-  const PlugInBtn = () => <Menu label="플러그인" />;
-  const ConfigureBtn = () => <Menu label="설정" />;
-  const HelpBtn = () => <Menu label="도움말" />;
+  const [, , createProject, downloadProject] = useExportMxJson({
+    projectStore,
+  });
 
   const componentData: MenuItemType[] = [
     {
       label: "저장",
       disabled: false,
       onClick: () => {
-        alert("저장");
+        sceneControlStore.setExportScene(true);
+        createProject("MX");
       },
     },
     {
@@ -42,24 +48,31 @@ const MenuBar = () => {
       },
     },
     {
-      label: "GLB로 내보내기(선택)",
-      disabled: false,
-      onClick: () => {},
-    },
-    {
-      label: "GLB로 내보내기(전체)",
-      disabled: false,
-      onClick: () => {},
-    },
-    {
       label: "MX-JSON으로 내보내기",
       disabled: false,
-      onClick: () => sceneControlStore.setExportMxJsonTrigger("file"),
+      onClick: () => {
+        sceneControlStore.setExportScene(true);
+        downloadProject();
+      },
     },
     {
       label: "PMX 저장",
       disabled: false,
-      onClick: () => sceneControlStore.setExportMxJsonTrigger("post"),
+
+      onClick: () => {
+        sceneControlStore.setExportScene(true);
+        createProject("PMX");
+      },
+    },
+    {
+      label: "GLB로 내보내기(선택)",
+      disabled: true,
+      onClick: () => {},
+    },
+    {
+      label: "GLB로 내보내기(전체)",
+      disabled: true,
+      onClick: () => {},
     },
   ];
   const configureData: MenuItemType[] = [
@@ -103,13 +116,6 @@ const MenuBar = () => {
     },
   ];
 
-  const StyledLogo = styled.img`
-    margin-left: 10px;
-  `;
-  const ButtonWrapper = styled.div`
-    margin-left: auto;
-    margin-right: 10px;
-  `;
   return (
     <StyledBar>
       <StyledLogo src="/icons/studio/MX로고.png" alt="logo" />
@@ -135,6 +141,14 @@ const MenuBar = () => {
 };
 
 export default MenuBar;
+
+const StyledLogo = styled.img`
+  margin-left: 10px;
+`;
+const ButtonWrapper = styled.div`
+  margin-left: auto;
+  margin-right: 10px;
+`;
 
 const StyledBar = styled.div`
   height: 38px;
