@@ -1,5 +1,5 @@
 import apiModule from "@/network/module/apiModule";
-import { Project } from "./models/Project.model";
+import { Project } from "./models/project.model";
 
 const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {
   try {

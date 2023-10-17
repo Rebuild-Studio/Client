@@ -1,4 +1,4 @@
-import { Project, ProjectList } from "./Project.model";
+import { Project, ProjectList } from "./project.model";
 
 interface ResponseGetPmxProjectList extends ProjectList<Project> {}
 
