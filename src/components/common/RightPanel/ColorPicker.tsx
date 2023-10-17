@@ -12,6 +12,60 @@ interface ColorPickerProps {
   onChangeAlphaProp: (alpha: number) => void;
 }
 
+const ColorPicker = observer(
+  ({ label, color, onChangeHsvaProp, onChangeAlphaProp }: ColorPickerProps) => {
+    const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
+    const [open, setOpen] = useState(true);
+    const rgbColor = hsvaToRgba(color);
+
+    const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+      !open ? handleOpen(event) : handleClose();
+    };
+
+    const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setAnchorMenu(null);
+      setOpen(false);
+    };
+
+    return (
+      <>
+        <Wrapper>
+          <ColorButton
+            color={color}
+            rgbColor={rgbColor}
+            onClick={handleToggle}
+          />
+          {anchorMenu && (
+            <StyledMenu
+              anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
+              open={open}
+              anchorLeft={anchorMenu.offsetLeft - 468}
+            >
+              <Container>
+                <Header>{label}</Header>
+                <ColorContent
+                  rgbColor={rgbColor}
+                  color={color}
+                  onChangeHsvaProp={onChangeHsvaProp}
+                  onChangeAlphaProp={onChangeAlphaProp}
+                />
+                <ButtonWrapper>
+                  <button onClick={handleClose}>Close Menu</button>
+                </ButtonWrapper>
+              </Container>
+            </StyledMenu>
+          )}
+        </Wrapper>
+      </>
+    );
+  }
+);
+export default ColorPicker;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -69,70 +123,3 @@ const ColorButton = styled.button<{
     typeof props.color !== "undefined" &&
     `rgba(${props.rgbColor.r},${props.rgbColor.g},${props.rgbColor.b},${props.rgbColor.a})`};
 `;
-
-const ColorPicker = observer(
-  ({ label, color, onChangeHsvaProp, onChangeAlphaProp }: ColorPickerProps) => {
-    const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
-    const [open, setOpen] = useState(true);
-    const rgbColor = hsvaToRgba(color);
-
-    const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
-      !open ? handleOpen(event) : handleClose();
-    };
-
-    const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorMenu(event.currentTarget); // 클릭한 버튼을 앵커로 설정
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setAnchorMenu(null);
-      setOpen(false);
-    };
-
-    // useRef를 사용하여 ColorPicker 컴포넌트의 루트 엘리먼트를 추적
-    const rootRef = useRef<HTMLDivElement>(null);
-
-    // 클릭 이벤트가 발생했을 때 다른 컴포넌트 닫기
-    const handleGlobalClick = (event: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
-
-    useEffect(() => {
-      // 컴포넌트가 마운트될 때 전역 클릭 이벤트 핸들러를 등록
-      window.addEventListener("click", handleGlobalClick);
-      return () => {
-        // 컴포넌트가 언마운트될 때 이벤트 핸들러를 해제
-        window.removeEventListener("click", handleGlobalClick);
-      };
-    }, []);
-
-    return (
-      <Wrapper ref={rootRef}>
-        <ColorButton color={color} rgbColor={rgbColor} onClick={handleToggle} />
-        {anchorMenu && (
-          <StyledMenu
-            anchorTop={anchorMenu.offsetTop - anchorMenu.clientHeight - 200}
-            open={open}
-            anchorLeft={anchorMenu.offsetLeft - 468}
-          >
-            <Container>
-              <Header>{label}</Header>
-              <ColorContent
-                rgbColor={rgbColor}
-                color={color}
-                onChangeHsvaProp={onChangeHsvaProp}
-                onChangeAlphaProp={onChangeAlphaProp}
-              />
-              <ButtonWrapper>
-                <button onClick={handleClose}>Close Menu</button>
-              </ButtonWrapper>
-            </Container>
-          </StyledMenu>
-        )}
-      </Wrapper>
-    );
-  }
-);
-export default ColorPicker;

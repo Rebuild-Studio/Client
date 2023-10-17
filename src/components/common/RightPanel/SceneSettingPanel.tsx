@@ -6,15 +6,6 @@ import HdriSetting from "./sceneSetting/HdriSetting";
 import DisplaySetting from "./sceneSetting/DisplaySetting";
 import PostEffectSetting from "./sceneSetting/PostEffectSetting";
 
-const RightPanelContainer = styled.div`
-  position: relative;
-  background-color: #282828;
-  display: flex;
-  height: calc(100vh - ${93}px);
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
 const SceneSettingPanel = observer(() => {
   return (
     <RightPanelContainer>
@@ -33,3 +24,12 @@ const SceneSettingPanel = observer(() => {
 });
 
 export default SceneSettingPanel;
+
+const RightPanelContainer = styled.div`
+  position: relative;
+  background-color: #282828;
+  display: flex;
+  height: calc(100vh - ${93}px);
+  flex-direction: column;
+  align-items: flex-end;
+`;

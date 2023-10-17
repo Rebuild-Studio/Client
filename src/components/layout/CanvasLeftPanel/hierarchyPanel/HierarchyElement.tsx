@@ -9,19 +9,6 @@ import {
   instanceTranslate,
 } from "@/resources/constants/canvas";
 
-type Props = {
-  mesh: THREE.Mesh;
-  depth: number;
-};
-
-type CSSIconProps = {
-  $depth: number;
-};
-
-type CSSObjectElementProps = {
-  $isMouseUp: boolean;
-};
-
 type MouseEvents = {
   objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;
   objectClick: React.MouseEventHandler<HTMLDivElement>;
@@ -32,39 +19,10 @@ type MouseEvents = {
   visibleImgClick: React.MouseEventHandler<HTMLImageElement>;
 };
 
-const StyledElement = styled.div`
-  cursor: pointer;
-  color: ${basicColors.white};
-  user-select: none;
-  font-size: ${fonts.medium};
-`;
-
-const Icon = styled.img<CSSIconProps>`
-  margin-right: 10px;
-  margin-left: ${({ $depth }) => `${$depth * 16 + 6}px`};
-  height: ${fonts.large};
-`;
-const InteractionButtonBox = styled.div`
-  position: absolute;
-  right: 5px;
-  display: flex;
-  gap: 3px;
-`;
-
-const ObjectElement = styled.div<CSSObjectElementProps>`
-  position: relative;
-  border-radius: 3px;
-  width: 90%;
-  display: flex;
-  align-items: center;
-  padding: 6px 0px;
-  background-color: ${({ $isMouseUp }) =>
-    $isMouseUp ? grayColors["303030"] : "inherit"};
-  ${InteractionButtonBox} {
-    visibility: ${({ $isMouseUp }) => ($isMouseUp ? "visible" : "hidden")};
-  }
-`;
-
+type Props = {
+  mesh: THREE.Mesh;
+  depth: number;
+};
 export const HierarchyElement = ({ mesh, depth }: Props) => {
   const storeId = mesh.userData["storeId"];
   const isLocked = mesh.userData["isLocked"];
@@ -192,3 +150,44 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
     </StyledElement>
   );
 };
+
+const StyledElement = styled.div`
+  cursor: pointer;
+  color: ${basicColors.white};
+  user-select: none;
+  font-size: ${fonts.medium};
+`;
+
+type CSSIconProps = {
+  $depth: number;
+};
+
+const Icon = styled.img<CSSIconProps>`
+  margin-right: 10px;
+  margin-left: ${({ $depth }) => `${$depth * 16 + 6}px`};
+  height: ${fonts.large};
+`;
+const InteractionButtonBox = styled.div`
+  position: absolute;
+  right: 5px;
+  display: flex;
+  gap: 3px;
+`;
+
+type CSSObjectElementProps = {
+  $isMouseUp: boolean;
+};
+
+const ObjectElement = styled.div<CSSObjectElementProps>`
+  position: relative;
+  border-radius: 3px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  padding: 6px 0px;
+  background-color: ${({ $isMouseUp }) =>
+    $isMouseUp ? grayColors["303030"] : "inherit"};
+  ${InteractionButtonBox} {
+    visibility: ${({ $isMouseUp }) => ($isMouseUp ? "visible" : "hidden")};
+  }
+`;

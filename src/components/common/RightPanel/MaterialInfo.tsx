@@ -14,20 +14,6 @@ interface MaterialInfoProps {
   roughness: number;
   color: HsvaColor;
 }
-const Wrapper = styled.div`
-  margin-top: 10px;
-`;
-
-const MaterialMenu = styled.div`
-  width: 200px;
-  margin: 20 0;
-`;
-const TitleWrapper = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-`;
 
 const Material = ({
   metalness = 1,
@@ -97,3 +83,18 @@ const Material = ({
 };
 
 export default Material;
+
+const Wrapper = styled.div`
+  margin-top: 10px;
+`;
+
+const MaterialMenu = styled.div`
+  width: 200px;
+  margin: 20 0;
+`;
+const TitleWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+`;

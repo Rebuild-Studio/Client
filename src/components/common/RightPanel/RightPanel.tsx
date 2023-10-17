@@ -3,23 +3,16 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
+import Shape from "./Shape";
 import PropertyValue from "./TransFromationInfo";
+import SceneSettingPanel from "./SceneSettingPanel";
+
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
 import Material from "./MaterialInfo";
 import ColorHandler from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
-
-const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
-  position: relative;
-  background-color: #282828;
-  display: flex;
-  height: ${(props) =>
-    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
-  flex-direction: column;
-  align-items: flex-end;
-`;
 
 const RightPanel = observer((props: { isOpen: boolean }) => {
   const { primitiveStore } = storeContainer;
@@ -32,6 +25,8 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
   const [scale, setScale] = useState(new THREE.Vector3());
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+
+  const { sceneSettingStore } = storeContainer;
 
   useEffect(() => {
     if (selectedPrimitive) {
@@ -52,7 +47,7 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
 
   return (
     <>
-      {selectedPrimitive && (
+      {selectedPrimitive ? (
         <RightPanelContainer $isOpen={isOpen}>
           <Panel label={"속성값"} options={undefined}>
             <Tab
@@ -82,14 +77,28 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
                     />
                   </Accordion>
                 </>,
-                <div>{"쉐이프"}</div>,
+                <Shape />,
               ]}
             />
           </Panel>
         </RightPanelContainer>
+      ) : sceneSettingStore.type === "scene" ? (
+        <SceneSettingPanel />
+      ) : (
+        <></>
       )}
     </>
   );
 });
 
 export default RightPanel;
+
+const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
+  position: relative;
+  background-color: #282828;
+  display: flex;
+  height: ${(props) =>
+    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
+  flex-direction: column;
+  align-items: flex-end;
+`;

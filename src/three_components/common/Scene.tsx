@@ -6,32 +6,10 @@ import { basicColors, bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
-import { CanvasLeftPanel } from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel";
 import { Suspense, useState } from "react";
 import { useFileLoader } from "@/hooks/loader";
 import * as THREE from "three";
 import { CanvasHelper } from "./CanvasHelper";
-
-const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 78px;
-  height: calc(100vh - ${78}px);
-  display: flex;
-`;
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  bottom: 0%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CustomCanvas = styled(Canvas)`
-  width: "100%";
-  height: "100%";
-  background-color: ${bgColors.sceneBackground};
-`;
 
 // TODO : 코드 분리 필요
 // TODO : 트랜스 컨트롤 적용 되도록 구현해야함
@@ -131,3 +109,24 @@ const Scene = observer(() => {
 });
 
 export default Scene;
+
+const Wrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 78px;
+  height: calc(100vh - ${78}px);
+  display: flex;
+`;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CustomCanvas = styled(Canvas)`
+  width: "100%";
+  height: "100%";
+  background-color: ${bgColors.sceneBackground};
+`;

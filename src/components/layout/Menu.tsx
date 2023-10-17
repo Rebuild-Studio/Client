@@ -2,6 +2,63 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { grayColors, basicColors } from "@/resources/colors/colors";
 
+interface MenuProps {
+  title: string;
+  MenuItem: React.ReactNode;
+  openMenu?: boolean;
+  anchorButton?: React.ReactNode;
+  anchorElement?: HTMLElement | null;
+  handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+}
+
+const CustomMenu = ({
+  title,
+  MenuItem,
+  openMenu = true,
+  anchorButton = <></>,
+  anchorElement = null,
+}: MenuProps) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
+  const [open, setOpen] = useState(openMenu);
+
+  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    !open ? handleOpen(event) : handleClose();
+  };
+
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null); // 메뉴 닫기
+    setOpen(false);
+  };
+
+  return (
+    <Wrapper>
+      <AnchorButton onClick={handleToggle}>Open Menu</AnchorButton>
+      {anchorButton}
+      {anchorEl && (
+        <StyledMenu
+          anchorTop={anchorEl.offsetTop - anchorEl.clientHeight - 300}
+          open={open}
+          anchorLeft={anchorEl.offsetLeft - 368}
+        >
+          <TitleWrapper>
+            <Title>{title}</Title>
+          </TitleWrapper>
+          <ContentWrapper>{MenuItem}</ContentWrapper>
+          <ButtonWrapper>
+            <button onClick={handleClose}>Close Menu</button>
+          </ButtonWrapper>
+        </StyledMenu>
+      )}
+    </Wrapper>
+  );
+};
+export default CustomMenu;
+
 const Wrapper = styled.div`
   display: flex;
 `;
@@ -59,55 +116,3 @@ const ButtonWrapper = styled.div`
 const AnchorButton = styled.button`
   position: relative;
 `;
-
-interface MenuProps {
-  title: string;
-  MenuItem: React.ReactNode;
-  openMenu?: boolean;
-  anchorButton?: React.ReactNode;
-  anchorElement?: HTMLElement | null;
-  handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-}
-const CustomMenu = ({
-  title,
-  MenuItem,
-  openMenu = false,
-  anchorButton = <></>,
-  anchorElement = null,
-}: MenuProps) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
-  const [open, setOpen] = useState(openMenu);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null); // 메뉴 닫기
-    setOpen(false);
-  };
-
-  return (
-    <Wrapper>
-      <AnchorButton onClick={handleClick}>Open Menu</AnchorButton>
-      {anchorButton}
-      {anchorEl && (
-        <StyledMenu
-          anchorTop={anchorEl.offsetTop - anchorEl.clientHeight - 300}
-          open={open}
-          anchorLeft={anchorEl.offsetLeft - 368}
-        >
-          <TitleWrapper>
-            <Title>{title}</Title>
-          </TitleWrapper>
-          <ContentWrapper>{MenuItem}</ContentWrapper>
-          <ButtonWrapper>
-            <button onClick={handleClose}>Close Menu</button>
-          </ButtonWrapper>
-        </StyledMenu>
-      )}
-    </Wrapper>
-  );
-};
-export default CustomMenu;
