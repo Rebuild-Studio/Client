@@ -1,5 +1,6 @@
 import { observable } from "mobx";
 import {
+  renderAsset,
   renderGroup,
   renderPrimitive,
 } from "@/three_components/utils/renderThreeComponents";
@@ -189,17 +190,27 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
           break;
 
         case "SELECTED_GROUP":
-          // primitiveStore.addPrimitive(
-          //   storeId,
-          //   renderSelectedGroup(storeId, mesh.clone())
-          // );
           break;
 
-        default:
+        case "ASSET":
+          primitiveStore.addPrimitive(
+            storeId,
+            renderAsset(storeId, mesh.clone())
+          );
+          break;
+
+        case "CUBE":
+        case "CAPSULE":
+        case "CONE":
+        case "CYLINDER":
+        case "SPHERE":
+        case "TORUS":
           primitiveStore.addPrimitive(
             storeId,
             renderPrimitive(storeId, mesh.clone())
           );
+          break;
+        default:
           break;
       }
     }

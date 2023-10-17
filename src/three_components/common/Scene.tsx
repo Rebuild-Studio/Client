@@ -40,6 +40,13 @@ const Scene = observer(() => {
             e.preventDefault();
             mouseEventStore.updateMouseEvent("onContextMenu", e);
           }}
+          onDragOver={(e) => {
+            e.preventDefault();
+          }}
+          onDrop={(e) => {
+            e.preventDefault();
+            mouseEventStore.updateMouseEvent("onDrop", e);
+          }}
         >
           <ambientLight
             intensity={0.3}
