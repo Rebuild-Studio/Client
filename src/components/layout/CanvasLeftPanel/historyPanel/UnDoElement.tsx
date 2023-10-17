@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { styled } from "styled-components";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
 import { observer } from "mobx-react";
+import { styled } from "styled-components";
+import canvasHistoryStore from "@store/canvasHistoryStore";
+import { grayColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
 
 type Props = {
   label: string;

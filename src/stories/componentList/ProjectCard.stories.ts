@@ -1,6 +1,6 @@
-import { ProjectCard } from "@/components/layout/componentList/card/ProjectCard";
-import { bgColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ProjectCard } from "@components/layout/componentList/card/ProjectCard";
+import { bgColors } from "@resources/colors/colors";
 
 const meta = {
   component: ProjectCard,

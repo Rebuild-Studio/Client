@@ -1,5 +1,5 @@
-import { observable } from "mobx";
 import * as THREE from "three";
+import { observable } from "mobx";
 
 type PrimitiveType = { [key: string]: JSX.Element };
 type MeshType = { [key: string]: THREE.Mesh };

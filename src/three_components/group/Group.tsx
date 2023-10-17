@@ -1,9 +1,9 @@
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { observer } from "mobx-react";
+import canvasHistoryStore from "@store/canvasHistoryStore";
+import storeContainer from "@store/storeContainer";
 import getCenterPoint from "../utils/getCenterPoint";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
 
 interface GroupProps {
   storeId: string;
@@ -33,7 +33,7 @@ const Group = observer((props: GroupProps) => {
 
     if (!primitiveStore.meshes[props.storeId]) {
       const selectedPrimitives = Object.values(
-        primitiveStore.selectedPrimitives
+        primitiveStore.selectedPrimitives,
       );
 
       let x = 0;

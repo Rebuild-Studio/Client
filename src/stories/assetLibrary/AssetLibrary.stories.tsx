@@ -1,6 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import AssetLibrary from "@/features/assetLibrary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AssetLibrary from "@/features/assetLibrary";
 
 const meta = {
   component: AssetLibrary,

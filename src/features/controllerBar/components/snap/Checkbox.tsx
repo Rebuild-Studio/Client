@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
-
 import CheckboxIcon from "@/features/controllerBar/components/icons/CheckboxIcon";
 
 interface Props {

@@ -1,5 +1,5 @@
-import { ComponentList } from "@/components/layout/componentList/ComponentList";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentList } from "@components/layout/componentList/ComponentList";
 
 const meta = {
   component: ComponentList,

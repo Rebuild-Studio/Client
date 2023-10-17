@@ -42,7 +42,7 @@ interface ContextMenuProps {
   updateContextMenuType: (
     type: OpenContextMenuType,
     xPos: number,
-    yPos: number
+    yPos: number,
   ) => void;
 }
 
@@ -157,7 +157,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.userData["isLocked"] === true;
-    }
+    },
   );
 
   if (isLocked) {
@@ -169,7 +169,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.visible === true;
-    }
+    },
   );
 
   if (isVisible) {

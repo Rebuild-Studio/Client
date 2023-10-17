@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { ProjectCards } from "./ProjectCards";
+import MenuButton, { MenuButtonProps } from "@components/common/MenuButton";
+import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
 import { ExampleCards } from "./ExampleCards";
+import { ProjectCards } from "./ProjectCards";
 import { Tabs } from "../Tabs";
 
 export const ComponentList = () => {

@@ -1,5 +1,5 @@
-import SelectedAsset from "@/features/assetLibrary/components/body/assetList/toolbar/SelectedAsset";
 import type { Meta, StoryObj } from "@storybook/react";
+import SelectedAsset from "@/features/assetLibrary/components/body/assetList/toolbar/SelectedAsset";
 
 const meta = {
   component: SelectedAsset,

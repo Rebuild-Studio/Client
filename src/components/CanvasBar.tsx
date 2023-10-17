@@ -1,16 +1,16 @@
-import Button from "./common/Button";
-import storeContainer from "@/store/storeContainer";
-import CubePrimitive from "@/three_components/primitives/CubePrimitive";
-import SpherePrimitive from "@/three_components/primitives/SpherePrimitive";
-import CylinderPrimitive from "@/three_components/primitives/CylinderPrimitive";
-import ConePrimitive from "@/three_components/primitives/ConePrimitive";
-import TorusPrimitive from "@/three_components/primitives/TorusPrimitive";
-import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
+import { observer } from "mobx-react";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
-import { bgColors, grayColors } from "@/resources/colors/colors";
-import { observer } from "mobx-react";
+import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
+import ConePrimitive from "@/three_components/primitives/ConePrimitive";
+import CubePrimitive from "@/three_components/primitives/CubePrimitive";
+import CylinderPrimitive from "@/three_components/primitives/CylinderPrimitive";
+import SpherePrimitive from "@/three_components/primitives/SpherePrimitive";
+import TorusPrimitive from "@/three_components/primitives/TorusPrimitive";
+import storeContainer from "@store/storeContainer";
 import { useToast } from "@hooks/useToast";
+import { bgColors, grayColors } from "@resources/colors/colors";
+import Button from "./common/Button";
 
 const CanvasBar = observer(() => {
   const { primitiveStore } = storeContainer;
@@ -38,7 +38,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CubePrimitive storeId={storeId} />
+                <CubePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -52,7 +52,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <SpherePrimitive storeId={storeId} />
+                <SpherePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -65,7 +65,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CylinderPrimitive storeId={storeId} />
+                <CylinderPrimitive storeId={storeId} />,
               );
             }}
           />
@@ -78,7 +78,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <ConePrimitive storeId={storeId} />
+                <ConePrimitive storeId={storeId} />,
               );
             }}
           />
@@ -91,7 +91,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <TorusPrimitive storeId={storeId} />
+                <TorusPrimitive storeId={storeId} />,
               );
             }}
           />
@@ -104,7 +104,7 @@ const CanvasBar = observer(() => {
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
-                <CapsulePrimitive storeId={storeId} />
+                <CapsulePrimitive storeId={storeId} />,
               );
             }}
           />

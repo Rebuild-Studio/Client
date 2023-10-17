@@ -1,4 +1,4 @@
-import apiModule from "@/network/module/apiModule";
+import apiModule from "@network/module/apiModule";
 import { RequestModifyProject } from "./models/PatchProjectModels";
 
 const modifyProject = async (params: RequestModifyProject) => {

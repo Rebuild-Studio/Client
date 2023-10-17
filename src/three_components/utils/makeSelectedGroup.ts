@@ -1,5 +1,5 @@
-import storeContainer from "@/store/storeContainer";
 import { nanoid } from "nanoid";
+import storeContainer from "@store/storeContainer";
 import { renderSelectedGroup } from "./renderThreeComponents";
 
 const makeSelectedGroup = () => {
@@ -9,7 +9,7 @@ const makeSelectedGroup = () => {
   const storeId = nanoid();
   primitiveStore.addSelectedGroupPrimitive(
     storeId,
-    renderSelectedGroup(storeId)
+    renderSelectedGroup(storeId),
   );
 };
 

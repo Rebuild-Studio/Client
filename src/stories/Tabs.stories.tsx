@@ -1,6 +1,6 @@
-import { Tabs } from "@/components/layout/Tabs";
-import { basicColors, bgColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Tabs } from "@components/layout/Tabs";
+import { basicColors, bgColors } from "@resources/colors/colors";
 
 const meta = {
   component: Tabs,

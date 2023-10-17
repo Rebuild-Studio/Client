@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
+import { basicColors } from "@resources/colors/colors";
 
 interface TabProps {
   tabs: string[];
@@ -54,7 +54,9 @@ const TabButton = styled.button<{ isActive: boolean }>`
   cursor: pointer;
   outline: none;
   background-color: transparent;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 `;
 
 const TabIndicator = styled.div<{ activeTab: number; numberOfTabs: number }>`

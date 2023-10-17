@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import styled from "styled-components";
-import Accordion from "@/components/layout/Accordion";
-import Switch from "@/components/buttons/SwitchButton";
-import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
-import storeContainer from "@/store/storeContainer";
-import ColorHandler from "@/components/common/RightPanel/ColorHandler";
+import styled from "styled-components";
+import Switch from "@components/buttons/SwitchButton";
+import ColorHandler from "@components/common/RightPanel/ColorHandler";
+import ColorPicker from "@components/common/RightPanel/ColorPicker";
+import Accordion from "@components/layout/Accordion";
+import storeContainer from "@store/storeContainer";
 
 const DisplaySetting = observer(() => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
     ColorHandler;
   const { sceneSettingStore } = storeContainer;
   const [color, setColor] = useState<HsvaColor>(
-    sceneSettingStore.canvasBackgroundColor
+    sceneSettingStore.canvasBackgroundColor,
   );
 
   useEffect(() => {

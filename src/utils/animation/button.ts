@@ -1,5 +1,5 @@
-import { ButtonAnimationType } from "@/types/style/buttonAnimations";
 import { keyframes } from "styled-components";
+import { ButtonAnimationType } from "@/types/style/buttonAnimations";
 
 const ButtonAnimation = {
   translate: "translate",

@@ -1,4 +1,4 @@
-import apiModule from "@/network/module/apiModule";
+import apiModule from "@network/module/apiModule";
 import { RequestUploadAsset } from "./models/PostAssetModels";
 
 const uploadAsset = async (params: RequestUploadAsset) => {

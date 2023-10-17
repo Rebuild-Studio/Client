@@ -1,10 +1,10 @@
 import { observer } from "mobx-react";
+import styled from "styled-components";
+import DisplaySetting from "./sceneSetting/DisplaySetting";
+import HdriSetting from "./sceneSetting/HdriSetting";
+import PostEffectSetting from "./sceneSetting/PostEffectSetting";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
-import styled from "styled-components";
-import HdriSetting from "./sceneSetting/HdriSetting";
-import DisplaySetting from "./sceneSetting/DisplaySetting";
-import PostEffectSetting from "./sceneSetting/PostEffectSetting";
 
 const SceneSettingPanel = observer(() => {
   return (

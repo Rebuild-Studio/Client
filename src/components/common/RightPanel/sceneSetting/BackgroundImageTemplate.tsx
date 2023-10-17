@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import styled from "styled-components";
-import Grid from "@/components/common/Grid";
-import storeContainer from "@/store/storeContainer";
+import Grid from "@components/common/Grid";
+import storeContainer from "@store/storeContainer";
 
 const BackgroundImageTemplate = observer(() => {
   const { sceneSettingStore } = storeContainer;

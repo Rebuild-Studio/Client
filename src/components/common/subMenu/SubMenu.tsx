@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
-import { basicColors, bgColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
+import { styled } from "styled-components";
 import { CSSHexColor } from "@/types/style/cssUnits";
 import { FontType } from "@/types/style/font";
-import { styled } from "styled-components";
+import { basicColors, bgColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
+import { Item } from "./Item";
 import { ItemChildren } from "./ItemChildren";
 import { MenuItemType } from "./MenuItem.types";
-import { Item } from "./Item";
 
 type Props = {
   menuItems: MenuItemType[];
@@ -69,7 +69,7 @@ export const SubMenu = (props: Props) => {
                       menuItems={item.children}
                       left={"calc(100% + 2px)"}
                       top={`${index * height}px`}
-                    />
+                    />,
                   );
                 }}
               />

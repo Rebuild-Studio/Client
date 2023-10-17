@@ -1,4 +1,4 @@
-import { Category } from "@/store/assetCategoryStore";
+import { Category } from "@store/assetCategoryStore";
 import { MainCategoryType } from "./mainCategory";
 
 type SubCategoryList = {

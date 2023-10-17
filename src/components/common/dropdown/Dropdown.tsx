@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Stack from "../stack/Stack";
-import { basicColors, grayColors } from "@/resources/colors/colors";
 import { CSSColor, CSSSize } from "@/types/style/cssUnits";
+import { basicColors, grayColors } from "@resources/colors/colors";
+import Stack from "../stack/Stack";
 import StackItem from "../stack/StackItem";
 
 export interface Option {

@@ -1,4 +1,4 @@
-import { Category } from "@/store/assetCategoryStore";
+import { Category } from "@store/assetCategoryStore";
 
 type MainCategoryType =
   | "all"
@@ -46,7 +46,7 @@ const MAIN_CATEGORY_LIST: MainCategory[] = Object.entries(CATEGORY_MAP).map(
   ([category, categoryKR]) => ({
     category: category as MainCategoryType,
     categoryKR,
-  })
+  }),
 );
 export type { MainCategoryType, MainCategory };
 export default MAIN_CATEGORY_LIST;

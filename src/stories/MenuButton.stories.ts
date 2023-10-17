@@ -1,6 +1,6 @@
-import MenuButton from "@/components/common/MenuButton";
-import { basicColors, grayColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
+import MenuButton from "@components/common/MenuButton";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 const meta = {
   component: MenuButton,

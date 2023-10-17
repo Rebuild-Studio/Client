@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { InputType } from "@/types/style/inputField";
-import { basicColors, grayColors } from "@/resources/colors/colors";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 interface Props {
   type: InputType;

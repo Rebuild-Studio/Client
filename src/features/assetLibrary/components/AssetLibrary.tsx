@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
-import Header from "./header";
-import Body from "./body";
-import Footer from "./footer";
 import { useEffect } from "react";
 import { observer } from "mobx-react";
-import assetCategoryStore from "@/store/assetCategoryStore";
-import assetLibraryStore from "@/store/assetLibraryStore";
+import styled from "styled-components";
+import assetCategoryStore from "@store/assetCategoryStore";
+import assetLibraryStore from "@store/assetLibraryStore";
+import { basicColors } from "@resources/colors/colors";
+import Body from "./body";
+import Footer from "./footer";
+import Header from "./header";
 import { useFetchLibraryAssets } from "../hooks/useFetchLibraryAssets query";
 
 const AssetLibrary = observer(() => {

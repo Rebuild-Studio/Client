@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { observer } from "mobx-react";
-import { HistoryPanel } from "./historyPanel/HistoryPanel";
-import { HierarchyPanel } from "./hierarchyPanel/HierarchyPanel";
 import styled from "styled-components";
-import { bgColors, grayColors } from "@/resources/colors/colors";
-import Button from "@/components/common/Button";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
-import primitiveStore from "@/store/primitiveStore";
+import Button from "@components/common/Button";
+import canvasHistoryStore from "@store/canvasHistoryStore";
+import primitiveStore from "@store/primitiveStore";
+import { bgColors, grayColors } from "@resources/colors/colors";
+import { HierarchyPanel } from "./hierarchyPanel/HierarchyPanel";
+import { HistoryPanel } from "./historyPanel/HistoryPanel";
 
 type Props = {
   isOpen: boolean;

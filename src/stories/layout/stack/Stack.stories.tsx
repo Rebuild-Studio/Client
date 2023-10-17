@@ -1,8 +1,8 @@
-import { textsStoryDesc } from "@/resources/texts";
 import type { Meta, StoryObj } from "@storybook/react";
-import Stack from "@/components/common/stack/Stack";
-import { grayColors } from "@/resources/colors/colors";
-import StackItem from "@/components/common/stack/StackItem";
+import Stack from "@components/common/stack/Stack";
+import StackItem from "@components/common/stack/StackItem";
+import { grayColors } from "@resources/colors/colors";
+import { textsStoryDesc } from "@resources/texts";
 
 const meta = {
   component: Stack,

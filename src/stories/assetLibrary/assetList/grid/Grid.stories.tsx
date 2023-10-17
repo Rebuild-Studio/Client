@@ -1,6 +1,6 @@
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import AssetGrid from "@/features/assetLibrary/components/body/assetList/grid/AssetGrid";
 import { useFetchLibraryAssets } from "@/features/assetLibrary/hooks/useFetchLibraryAssets query";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 
 const meta = {
   component: AssetGrid,

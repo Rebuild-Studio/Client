@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { observable } from "mobx";
 import {
   renderGroup,
@@ -8,8 +9,7 @@ import {
   CanvasInstance,
   isCanvasAttribute,
   isCanvasInstance,
-} from "@/resources/constants/canvas";
-import * as THREE from "three";
+} from "@resources/constants/canvas";
 import primitiveStore, { MeshType } from "./primitiveStore";
 
 interface CanvasHistoryType {
@@ -29,7 +29,7 @@ interface CanvasHistoryStoreProps {
     id: string,
     instance: CanvasInstance,
     attr: CanvasAttribute,
-    snapshot: MeshType
+    snapshot: MeshType,
   ) => void;
   differAdd: (storeId: string) => void;
   differDelete: (storeId: string) => void;
@@ -70,7 +70,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
 
     // 자식 있는 mesh들부터 처리
     const storeIds = Object.keys(meshes).sort(
-      (a, b) => meshes[b].children.length - meshes[a].children.length
+      (a, b) => meshes[b].children.length - meshes[a].children.length,
     );
 
     // 이미 저장한 storeId 체크용 (group, selectedGroup)
@@ -109,7 +109,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         storeId,
         isCanvasInstance(mesh.name) ? mesh.name : "OBJECT",
         "add",
-        this.createSnapshot(meshes)
+        this.createSnapshot(meshes),
       );
       return;
     }
@@ -152,7 +152,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         difference[0][0],
         difference[0][1],
         difference[0][2],
-        meshes
+        meshes,
       );
     } else if (difference.length > 1) {
       // 달라진 점이 여러개면 OBJECT로
@@ -184,7 +184,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         case "GROUP":
           primitiveStore.addPrimitive(
             storeId,
-            renderGroup(storeId, mesh.clone())
+            renderGroup(storeId, mesh.clone()),
           );
           break;
 
@@ -198,7 +198,7 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
         default:
           primitiveStore.addPrimitive(
             storeId,
-            renderPrimitive(storeId, mesh.clone())
+            renderPrimitive(storeId, mesh.clone()),
           );
           break;
       }

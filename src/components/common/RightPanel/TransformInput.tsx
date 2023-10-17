@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import storeContainer from "@/store/storeContainer";
-import InputField from "../InputField";
-import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
+import { observer } from "mobx-react";
+import storeContainer from "@store/storeContainer";
+import InputField from "../InputField";
 
 interface Props {
   type: "position" | "rotation" | "scale";

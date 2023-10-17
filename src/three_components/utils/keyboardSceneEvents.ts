@@ -1,4 +1,4 @@
-import storeContainer from "@/store/storeContainer";
+import storeContainer from "@store/storeContainer";
 
 const keyboardSceneEvents = () => {
   const {
@@ -69,7 +69,7 @@ const keyboardSceneEvents = () => {
       const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
         (value) => {
           return value.userData["isLocked"] === true;
-        }
+        },
       );
 
       if (isLocked) {
@@ -89,7 +89,7 @@ const keyboardSceneEvents = () => {
       const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
         (value) => {
           return value.visible === true;
-        }
+        },
       );
 
       if (isVisible) {

@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
-
-import { fonts } from "@resources/fonts/font";
 import { bgColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
 
 interface Props {
   isOpen: boolean;

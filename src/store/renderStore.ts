@@ -1,5 +1,5 @@
-import { CameraControls } from "@react-three/drei";
 import { observable } from "mobx";
+import { CameraControls } from "@react-three/drei";
 
 interface renderStore {
   controls: CameraControls | null;

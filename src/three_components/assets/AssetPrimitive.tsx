@@ -1,7 +1,7 @@
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { observer } from "mobx-react";
+import storeContainer from "@store/storeContainer";
 
 interface AssetPrimitveProps {
   mesh: THREE.Mesh;

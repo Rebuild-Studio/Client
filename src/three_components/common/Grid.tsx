@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { gridColor } from "@/resources/colors/colors";
+import { gridColor } from "@resources/colors/colors";
 
 const Grid = () => {
   const axisLength = 25;
@@ -13,11 +13,11 @@ const Grid = () => {
   // Set the position attribute using setAttribute
   xAxisBufferGeometry.setAttribute(
     "position",
-    new THREE.BufferAttribute(xAxisGeometry, 3)
+    new THREE.BufferAttribute(xAxisGeometry, 3),
   );
   yAxisBufferGeometry.setAttribute(
     "position",
-    new THREE.BufferAttribute(yAxisGeometry, 3)
+    new THREE.BufferAttribute(yAxisGeometry, 3),
   );
   return (
     <>

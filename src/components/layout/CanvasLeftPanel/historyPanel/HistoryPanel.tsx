@@ -1,12 +1,12 @@
 import { observer } from "mobx-react";
-import { basicColors, bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
-import { CanvasHistoryType } from "@/store/canvasHistoryStore";
-import { Tabs } from "../../Tabs";
-import { UndoElement } from "./UnDoElement";
+import { CanvasHistoryType } from "@store/canvasHistoryStore";
+import { basicColors, bgColors } from "@resources/colors/colors";
+import { attrTranslate, instanceTranslate } from "@resources/constants/canvas";
 import { RedoElement } from "./RedoElement";
+import { UndoElement } from "./UnDoElement";
+import { Tabs } from "../../Tabs";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
-import { instanceTranslate, attrTranslate } from "@/resources/constants/canvas";
 
 type Props = {
   undoList: CanvasHistoryType[];

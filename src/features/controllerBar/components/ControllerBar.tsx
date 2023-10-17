@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-
 import ObjectFocus from "@/features/controllerBar/components/focus/ObjectFocus";
 import GizmoMode from "@/features/controllerBar/components/gizmo/GizmoMode";
 import SnapMode from "@/features/controllerBar/components/snap/SnapMode";

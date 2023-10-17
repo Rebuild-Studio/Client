@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
+import { useEffect, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 import { CSSHexColor } from "@/types/style/cssUnits";
 import { FontType } from "@/types/style/font";
-import styled, { keyframes, css } from "styled-components";
+import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
 
 export type ToastProps = {
   label: string;

@@ -1,8 +1,8 @@
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { ContextMenuItemType } from "@/store/contextMenuStore";
-import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react-lite";
 import { styled } from "styled-components";
+import { ContextMenuItemType } from "@store/contextMenuStore";
+import storeContainer from "@store/storeContainer";
+import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
 
 interface ContextMenuProps extends ContextMenuPositionProps {
   items: ContextMenuItemType[];
@@ -12,7 +12,7 @@ const ContextMenu = observer((props: ContextMenuProps) => {
   const renderContextMenuItem = (
     title: string,
     hotKey: string,
-    isEnabled: boolean
+    isEnabled: boolean,
   ) => {
     switch (title) {
       case "DIVIDER":

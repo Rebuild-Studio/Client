@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { grayColors, basicColors } from "@/resources/colors/colors";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 interface MenuProps {
   title: string;
@@ -95,7 +95,9 @@ const StyledMenu = styled.div<{
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   z-index: 3;
-  transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
+  transition:
+    opacity 0.5ms ease-in-out,
+    transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
 `;

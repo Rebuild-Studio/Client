@@ -1,4 +1,4 @@
-import apiModule from "@/network/module/apiModule";
+import apiModule from "@network/module/apiModule";
 import {
   RequestGetAsset,
   RequestSearchAsset,
@@ -6,7 +6,7 @@ import {
 } from "./models/GetLibraryModels";
 
 const getAssets = async (
-  params: RequestGetAsset
+  params: RequestGetAsset,
 ): Promise<ResponseGetAsset[]> => {
   const res = await apiModule.get<ResponseGetAsset[]>("/library", {
     params: params,

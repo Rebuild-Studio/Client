@@ -1,8 +1,8 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
+import styled from "styled-components";
 import { CSSHexColor } from "@/types/style/cssUnits";
 import { FontType } from "@/types/style/font";
-import styled from "styled-components";
+import { basicColors, bgColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
 
 export type MenuButtonProps = {
   className?: string;

@@ -1,5 +1,5 @@
-import { ExampleCards } from "@/components/layout/componentList/ExampleCards";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ExampleCards } from "@components/layout/componentList/ExampleCards";
 
 const meta = {
   component: ExampleCards,

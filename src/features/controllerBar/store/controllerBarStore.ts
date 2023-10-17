@@ -1,5 +1,4 @@
 import { observable } from "mobx";
-
 import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
 import { SNAP_MODE } from "@/features/controllerBar/constants/snap";
 import { GizmoModeType } from "@/features/controllerBar/types/gizmo";

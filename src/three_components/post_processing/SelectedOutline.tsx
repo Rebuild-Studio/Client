@@ -1,7 +1,7 @@
-import storeContainer from "@/store/storeContainer";
+import * as THREE from "three";
 import { Outline } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import * as THREE from "three";
+import storeContainer from "@store/storeContainer";
 
 const SelectedOutline = () => {
   const { primitiveStore } = storeContainer;

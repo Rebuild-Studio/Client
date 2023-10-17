@@ -1,4 +1,4 @@
-import apiModule from "@/network/module/apiModule";
+import apiModule from "@network/module/apiModule";
 
 const getPublicPrefab = async () => {
   const res = await apiModule.get("/prefab/public");

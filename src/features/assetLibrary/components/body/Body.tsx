@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Category from "./category/Category";
-import { bgColors } from "@/resources/colors/colors";
-import Toolbar from "./assetList/toolbar";
+import { bgColors } from "@resources/colors/colors";
 import AssetGrid from "./assetList/grid/AssetGrid";
+import Toolbar from "./assetList/toolbar";
+import Category from "./category/Category";
 
 const Body = () => {
   return (

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
-import storeContainer from "@/store/storeContainer";
+import canvasHistoryStore from "@store/canvasHistoryStore";
+import storeContainer from "@store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
 
 interface CylinderParams {
   minRadiusTop: number;
@@ -49,7 +49,7 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
     1,
     false,
     0,
-    Math.PI * 2
+    Math.PI * 2,
   );
   const material = getDefaultMaterialSetting();
   material.transparent = true;

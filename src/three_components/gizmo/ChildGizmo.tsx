@@ -1,7 +1,7 @@
-import storeContainer from "@/store/storeContainer";
-import { TransformControls } from "@react-three/drei";
-import { observer } from "mobx-react";
 import * as THREE from "three";
+import { observer } from "mobx-react";
+import { TransformControls } from "@react-three/drei";
+import storeContainer from "@store/storeContainer";
 
 const ChildGizmo = observer(() => {
   const { primitiveStore, transformControlStore } = storeContainer;

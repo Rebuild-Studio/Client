@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
+import styled from "styled-components";
+import { bgColors } from "@resources/colors/colors";
 import CategoryLabel from "./CategoryLabel";
 import DomainDropdown from "./DomainDropdown";
-import styled from "styled-components";
-import { bgColors } from "@/resources/colors/colors";
 import SelectedAssetsControl from "./SelectedAssetsControl";
 
 const Toolbar = observer(() => {

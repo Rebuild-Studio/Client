@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledCardTextArea, StyledCard } from "../componentList.Styles";
+import { StyledCard, StyledCardTextArea } from "../componentList.Styles";
 
 export type ProjectCardProps = {
   id: string;

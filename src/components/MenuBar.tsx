@@ -1,10 +1,10 @@
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
-import BottomPopOver from "./layout/popover/BottomPopOver";
-import { SubMenu } from "./common/subMenu/SubMenu";
+import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
+import IconButton from "./buttons/IconButton";
 import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
-import IconButton from "./buttons/IconButton";
+import { SubMenu } from "./common/subMenu/SubMenu";
+import BottomPopOver from "./layout/popover/BottomPopOver";
 
 const MenuBar = () => {
   const ComponentBtn = () => (

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { HsvaColor, RgbColor, hsvaToHex, rgbaToHsva } from "@uiw/color-convert";
-import storeContainer from "@/store/storeContainer";
+import storeContainer from "@store/storeContainer";
 
 class ColorHandler {
   static updateAmbientLightColor(phsva: HsvaColor) {
@@ -37,7 +37,7 @@ class ColorHandler {
   static updateMaterialColor(phsva: HsvaColor) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
-      primitiveStore.selectedPrimitives
+      primitiveStore.selectedPrimitives,
     )[0];
     const selectedMaterial = selectedPrimitive.material;
     const hexColor = hsvaToHex(phsva);
@@ -52,7 +52,7 @@ class ColorHandler {
   static updateMaterialAlpha(alpha: number) {
     const { primitiveStore } = storeContainer;
     const selectedPrimitive = Object.values(
-      primitiveStore.selectedPrimitives
+      primitiveStore.selectedPrimitives,
     )[0];
     const selectedMaterial = selectedPrimitive.material;
 

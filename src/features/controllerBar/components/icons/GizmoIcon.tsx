@@ -1,5 +1,4 @@
 import ControlIcon from "@/features/controllerBar/components/icons/ControlIcon";
-
 import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
 import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
 

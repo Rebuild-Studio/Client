@@ -1,8 +1,8 @@
-import { Card } from "@/components/common/Card";
+import { observer } from "mobx-react";
 import useControlSelectedItem from "@/features/assetLibrary/hooks/useControlSelectedItem";
 import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
-import getMinioPath from "@/utils/path/minio";
-import { observer } from "mobx-react";
+import { Card } from "@components/common/Card";
+import getMinioPath from "@utils/path/minio";
 
 interface Props {
   asset: LibraryAsset;

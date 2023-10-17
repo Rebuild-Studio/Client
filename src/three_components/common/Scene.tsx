@@ -1,12 +1,12 @@
-import { Canvas } from "@react-three/fiber";
-import RenderScene from "../scene/RenderScene";
-import Grid from "./Grid";
-import styled from "styled-components";
-import { basicColors, bgColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
+import { Canvas } from "@react-three/fiber";
+import styled from "styled-components";
+import ContextMenu from "@components/layout/contextMenu/ContextMenu";
+import storeContainer from "@store/storeContainer";
+import { basicColors, bgColors } from "@resources/colors/colors";
 import { CanvasHelper } from "./CanvasHelper";
+import Grid from "./Grid";
+import RenderScene from "../scene/RenderScene";
 
 const Scene = observer(() => {
   const { mouseEventStore, contextMenuStore, projectStateStore } =

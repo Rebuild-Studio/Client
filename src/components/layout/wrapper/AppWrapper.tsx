@@ -1,8 +1,8 @@
-import { bgColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
 import { useEffect } from "react";
+import { observer } from "mobx-react";
 import { styled } from "styled-components";
+import storeContainer from "@store/storeContainer";
+import { bgColors } from "@resources/colors/colors";
 
 interface AppProps {
   children: React.ReactNode;

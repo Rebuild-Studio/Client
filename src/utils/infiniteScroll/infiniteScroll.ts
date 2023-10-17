@@ -12,7 +12,7 @@ const infiniteScroll = <T extends HTMLElement>(
   ref: React.RefObject<T>,
   page: number,
   setPage: React.Dispatch<React.SetStateAction<number>>,
-  offset = 0
+  offset = 0,
 ) => {
   if (
     ref &&

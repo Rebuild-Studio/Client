@@ -1,5 +1,5 @@
-import DomainDropdown from "@/features/assetLibrary/components/body/assetList/toolbar/DomainDropdown";
 import type { Meta, StoryObj } from "@storybook/react";
+import DomainDropdown from "@/features/assetLibrary/components/body/assetList/toolbar/DomainDropdown";
 
 const meta = {
   component: DomainDropdown,

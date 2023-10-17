@@ -1,8 +1,8 @@
 import { ComponentProps, ComponentType, useEffect, useState } from "react";
-import { Props as ButtonProps, SCButton } from "../common/Button";
-import { basicColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
-import { getShadow } from "@/utils/style/getShadow";
+import { getShadow } from "@utils/style/getShadow";
+import { basicColors } from "@resources/colors/colors";
+import { Props as ButtonProps, SCButton } from "../common/Button";
 
 interface Props extends ButtonProps {
   Icon: ComponentType<ComponentProps<"svg">>;
@@ -40,7 +40,7 @@ const IconButton = ({
     setIconPosition(
       iconGravity === "left"
         ? { left: <Icon />, right: label }
-        : { left: label, right: <Icon /> }
+        : { left: label, right: <Icon /> },
     );
   }, [iconGravity, label, Icon]);
 

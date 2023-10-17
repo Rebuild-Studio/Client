@@ -1,5 +1,5 @@
-import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
 import { observable } from "mobx";
+import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
 
 interface AssetLibraryControl {
   isAssetLibraryVisible: boolean;
@@ -64,7 +64,7 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   },
   removeSelectedAsset(asset) {
     this.selectedAssets = this.selectedAssets.filter(
-      (selectedAsset) => selectedAsset.id !== asset.id
+      (selectedAsset) => selectedAsset.id !== asset.id,
     );
   },
   clearSelectedAssets() {

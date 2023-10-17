@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import CategoryItem from "@/features/assetLibrary/components/body/category/CategoryItem";
 import { MainCategory } from "@/features/assetLibrary/constants/mainCategory";
-import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: CategoryItem,

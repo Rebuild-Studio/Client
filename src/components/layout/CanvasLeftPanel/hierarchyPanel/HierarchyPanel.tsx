@@ -1,10 +1,10 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
+import styled from "styled-components";
+import { MeshType } from "@store/primitiveStore";
+import { basicColors, bgColors } from "@resources/colors/colors";
+import { HierarchyElement } from "./HierarchyElement";
 import { Tabs } from "../../Tabs";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
-import { MeshType } from "@/store/primitiveStore";
-import { HierarchyElement } from "./HierarchyElement";
-import styled from "styled-components";
 
 type Props = {
   meshes: MeshType;

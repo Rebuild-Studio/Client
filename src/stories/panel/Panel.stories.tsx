@@ -1,5 +1,5 @@
-import Panel from "@/components/layout/Panel/Panel";
 import { Meta, StoryObj } from "@storybook/react";
+import Panel from "@components/layout/Panel/Panel";
 
 const meta = {
   component: Panel,

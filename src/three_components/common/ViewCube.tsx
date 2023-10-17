@@ -1,8 +1,8 @@
-import { MeshProps, useFrame } from "@react-three/fiber";
-import { useServerTextureLoader } from "../../hooks/loader";
 import { useRef } from "react";
-import renderStore from "@/store/renderStore";
 import * as THREE from "three";
+import { MeshProps, useFrame } from "@react-three/fiber";
+import renderStore from "@store/renderStore";
+import { useServerTextureLoader } from "../../hooks/loader";
 
 export const ViewCube = (props: MeshProps) => {
   const faceArray = [
@@ -21,7 +21,7 @@ export const ViewCube = (props: MeshProps) => {
   ];
   const textures = useServerTextureLoader(
     Array.from({ length: 6 }, (_, idx) => `${idx + 1}.png`),
-    "models/CameraCube/"
+    "models/CameraCube/",
   );
 
   const ref = useRef<THREE.Mesh>(null!);

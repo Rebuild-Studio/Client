@@ -1,7 +1,6 @@
 import { FormEvent } from "react";
-import { styled } from "styled-components";
 import { observer } from "mobx-react-lite";
-
+import { styled } from "styled-components";
 import RadioInput from "@/features/controllerBar/components/gizmo/RadioInput";
 import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
 import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";

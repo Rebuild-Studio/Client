@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
+import { HsvaColor, RgbaColor, hsvaToRgba } from "@uiw/color-convert";
 import styled from "styled-components";
-import { grayColors } from "@/resources/colors/colors";
-import { RgbaColor, hsvaToRgba, HsvaColor } from "@uiw/color-convert";
+import { grayColors } from "@resources/colors/colors";
 import ColorContent from "./ColorContent";
 
 interface ColorPickerProps {
@@ -62,7 +62,7 @@ const ColorPicker = observer(
         </Wrapper>
       </>
     );
-  }
+  },
 );
 export default ColorPicker;
 

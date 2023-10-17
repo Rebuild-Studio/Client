@@ -1,12 +1,12 @@
-import MenuButton from "@/components/common/MenuButton";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-// import assetLibraryStore from "@/store/assetLibraryStore";
-// import primitiveStore from "@/store/primitiveStore";
-// import TempPrimitive from "@/three_components/assets/TempPrimitive";
-import { getButtonClickAnimation } from "@/utils/animation/button";
 import { observer } from "mobx-react";
 // import { nanoid } from "nanoid";
 import styled, { css } from "styled-components";
+import MenuButton from "@components/common/MenuButton";
+// import assetLibraryStore from "@store/assetLibraryStore";
+// import primitiveStore from "@store/primitiveStore";
+// import TempPrimitive from "@/three_components/assets/TempPrimitive";
+import { getButtonClickAnimation } from "@utils/animation/button";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 const Footer = observer(() => {
   // const selectedAssets = assetLibraryStore.selectedAssets;

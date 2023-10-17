@@ -1,6 +1,6 @@
-import storeContainer from "@/store/storeContainer";
-import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
+import { TransformControls } from "@react-three/drei";
+import storeContainer from "@store/storeContainer";
 
 interface GroupGizmoProps {
   storeId: string;
@@ -11,7 +11,7 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.userData["isLocked"] === true;
-    }
+    },
   );
   return (
     <>

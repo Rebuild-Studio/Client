@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import { action } from "mobx";
 import { observer } from "mobx-react";
-import styled from "styled-components";
-import { Hue, Saturation, Alpha } from "@uiw/react-color";
 import {
-  hsvaToRgba,
-  hsvaToHex,
   HsvaColor,
   RgbaColor,
+  hsvaToHex,
+  hsvaToRgba,
   rgbaToHsva,
 } from "@uiw/color-convert";
-import Slider from "../Slider";
+import { Alpha, Hue, Saturation } from "@uiw/react-color";
+import styled from "styled-components";
+import { grayColors } from "@resources/colors/colors";
 import InputField from "../InputField";
-import { action } from "mobx";
-import { grayColors } from "@/resources/colors/colors";
+import Slider from "../Slider";
 
 interface ColorContentProps {
   rgbColor: RgbaColor;
@@ -189,7 +189,7 @@ const ColorContent = observer(
         )}
       </Wrapper>
     );
-  }
+  },
 );
 export default ColorContent;
 

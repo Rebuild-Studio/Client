@@ -1,13 +1,13 @@
-import Slider from "../Slider";
-import Switch from "@/components/buttons/SwitchButton";
-import styled from "styled-components";
-import dataStore from "./MaterialGeometryData";
-import storeContainer from "@/store/storeContainer";
-import Accordion from "@/components/layout/Accordion";
+import { useState } from "react";
 import * as THREE from "three";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import styled from "styled-components";
+import Switch from "@components/buttons/SwitchButton";
+import Accordion from "@components/layout/Accordion";
+import storeContainer from "@store/storeContainer";
 import { useToast } from "@hooks/useToast";
+import dataStore from "./MaterialGeometryData";
+import Slider from "../Slider";
 
 interface geometryParameter {
   [key: string]: string | number | boolean;
@@ -15,7 +15,7 @@ interface geometryParameter {
 
 const getGeometryParameters = (
   geometryType: string,
-  selectedPrimitive: THREE.Mesh
+  selectedPrimitive: THREE.Mesh,
 ) => {
   switch (geometryType) {
     case "BoxGeometry":
@@ -38,7 +38,7 @@ const getGeometryParameters = (
 const createGeometry = (
   geometryType: string,
   parameter: number[],
-  selectedPrimitive: THREE.Mesh
+  selectedPrimitive: THREE.Mesh,
 ) => {
   const { addToast } = useToast();
   try {
@@ -80,7 +80,7 @@ const Shape = observer(() => {
     selectedPrimitive.name.toLowerCase() as keyof typeof dataStore;
   const geometryType = selectedPrimitive.geometry.type;
   const [parameter, setParameter] = useState<geometryParameter>(
-    getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter
+    getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter,
   );
 
   const handleShapeChange = (prop: string, value: number | boolean) => {
@@ -97,7 +97,7 @@ const Shape = observer(() => {
     const newGeometry = createGeometry(
       geometryType,
       paramDatas,
-      selectedPrimitive
+      selectedPrimitive,
     );
     selectedPrimitive.geometry as
       | THREE.BoxGeometry

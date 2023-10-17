@@ -1,8 +1,8 @@
-import Dropdown, { Option } from "@/components/common/dropdown/Dropdown";
-import { grayColors } from "@/resources/colors/colors";
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
+import Dropdown, { Option } from "@components/common/dropdown/Dropdown";
+import { grayColors } from "@resources/colors/colors";
 
 const meta = {
   component: Dropdown,
@@ -29,7 +29,7 @@ export const WithoutOptions = {
     // dropdown option 미 생성 확인 및 안내 메세지 확인
     const dropdownOptions = canvas.getByRole("option-container");
     await expect(dropdownOptions.childNodes[0]).toHaveTextContent(
-      "옵션이 없습니다."
+      "옵션이 없습니다.",
     );
     // 기본 커서 확인
     await expect(dropdownOptions.childNodes[0]).toHaveStyle({

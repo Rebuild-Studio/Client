@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ExampleCard, ExampleCardProps } from "./card/ExampleCard";
 import { AddCard } from "./card/AddCard";
+import { ExampleCard, ExampleCardProps } from "./card/ExampleCard";
 import { StyledGrid } from "./componentList.Styles";
 
 type Props = {

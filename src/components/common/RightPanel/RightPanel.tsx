@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import * as THREE from "three";
 import { observer } from "mobx-react";
+import { HsvaColor } from "@uiw/color-convert";
 import styled from "styled-components";
-import Panel from "../../layout/Panel/Panel";
-import Tab from "../../layout/Tab";
+import Accordion from "@components/layout/Accordion";
+import storeContainer from "@store/storeContainer";
+import ColorHandler from "./ColorHandler";
+import Material from "./MaterialInfo";
+import SceneSettingPanel from "./SceneSettingPanel";
 import Shape from "./Shape";
 import PropertyValue from "./TransFromationInfo";
-import SceneSettingPanel from "./SceneSettingPanel";
-
-import storeContainer from "@/store/storeContainer";
-import * as THREE from "three";
-import Accordion from "@/components/layout/Accordion";
-import Material from "./MaterialInfo";
-import ColorHandler from "./ColorHandler";
-import { HsvaColor } from "@uiw/color-convert";
+import Panel from "../../layout/Panel/Panel";
+import Tab from "../../layout/Tab";
 
 const RightPanel = observer((props: { isOpen: boolean }) => {
   const { primitiveStore } = storeContainer;

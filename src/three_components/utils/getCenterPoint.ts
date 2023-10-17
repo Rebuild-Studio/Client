@@ -7,7 +7,7 @@ const getCenterPoint = (
   totalX: number,
   totalY: number,
   totalZ: number,
-  totalCount: number
+  totalCount: number,
 ): CenterPointType => {
   return [totalX / totalCount, totalY / totalCount, totalZ / totalCount];
 };

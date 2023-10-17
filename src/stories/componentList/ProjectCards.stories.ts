@@ -1,5 +1,5 @@
-import { ProjectCards } from "@/components/layout/componentList/ProjectCards";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ProjectCards } from "@components/layout/componentList/ProjectCards";
 
 const meta = {
   component: ProjectCards,

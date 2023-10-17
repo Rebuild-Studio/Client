@@ -84,7 +84,7 @@ interface Scene {
     "MX_hdr_outdoor_forest_01",
     "MX_hdr_outdoor_night_01",
     "MX_hdr_outdoor_sunsetLight_01",
-    "MX_hdr_outdoor_sunsetLight_02"
+    "MX_hdr_outdoor_sunsetLight_02",
   ];
   selectedBackgroundImage: BackgroundImageType;
 

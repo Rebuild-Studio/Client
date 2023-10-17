@@ -1,7 +1,7 @@
-import renderStore from "@/store/renderStore";
-import storeContainer from "@/store/storeContainer";
-import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
+import { TransformControls } from "@react-three/drei";
+import renderStore from "@store/renderStore";
+import storeContainer from "@store/storeContainer";
 
 interface GizmoProps {
   storeId: string;
@@ -15,7 +15,7 @@ const Gizmo = observer((props: GizmoProps) => {
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
       return value.userData["isLocked"] === true;
-    }
+    },
   );
 
   // gizmo 이용중 카메라 이동 방지
@@ -43,7 +43,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
                     props.storeId,
-                    e?.target.object
+                    e?.target.object,
                   );
                 }}
                 onMouseUp={() => {
@@ -69,7 +69,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
                     props.storeId,
-                    e?.target.object
+                    e?.target.object,
                   );
                 }}
                 onMouseUp={() => {
@@ -93,7 +93,7 @@ const Gizmo = observer((props: GizmoProps) => {
                 onObjectChange={(e) => {
                   primitiveStore.updateSelectedPrimitives(
                     props.storeId,
-                    e?.target.object
+                    e?.target.object,
                   );
                 }}
                 onMouseUp={() => {

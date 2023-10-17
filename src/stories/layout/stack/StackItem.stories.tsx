@@ -1,6 +1,6 @@
-import StackItem from "@/components/common/stack/StackItem";
-import { grayColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
+import StackItem from "@components/common/stack/StackItem";
+import { grayColors } from "@resources/colors/colors";
 
 const meta = {
   component: StackItem,

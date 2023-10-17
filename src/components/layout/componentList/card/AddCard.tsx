@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
-  StyledCardTextArea,
   StyledCard,
+  StyledCardTextArea,
   StyledCardTextAreaBox,
 } from "../componentList.Styles";
 

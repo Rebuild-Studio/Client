@@ -1,5 +1,5 @@
-import MAIN_CATEGORY_LIST from "@/features/assetLibrary/constants/mainCategory";
 import styled from "styled-components";
+import MAIN_CATEGORY_LIST from "@/features/assetLibrary/constants/mainCategory";
 import CategoryItem from "./CategoryItem";
 
 const CategoryList = () => {

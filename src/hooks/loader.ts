@@ -5,8 +5,8 @@ import {
   useLoader,
   useThree,
 } from "@react-three/fiber";
-import { GLTFLoader, GLTF } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { GLTF, GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { KTX2Loader } from "three/addons/loaders/KTX2Loader.js";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 
@@ -17,7 +17,7 @@ const MATERIAL_DIR = "models/MaterialTemplates/";
 // 서버에서 glb, gltf 로더
 export const useServerGLTFLoader = <T extends string | string[]>(
   input: T,
-  dir: string
+  dir: string,
 ): T extends any[] ? (GLTF & ObjectMap)[] : GLTF & ObjectMap => {
   const gl = useThree((state) => state.gl);
 
@@ -41,7 +41,7 @@ export const useServerGLTFLoader = <T extends string | string[]>(
 // 서버에서 텍스쳐 로더
 export const useServerTextureLoader = <T extends string | string[]>(
   input: T,
-  dir: string
+  dir: string,
 ): T extends any[] ? THREE.Texture[] : THREE.Texture => {
   const url = Array.isArray(input)
     ? input.map((value) => MINIO_URL + dir + value)
@@ -61,7 +61,7 @@ export const useServerMaterialLoader = (name: string): THREE.Material => {
 
 // 로컬 파일 로더
 export const useFileLoader = (
-  fileList: FileList
+  fileList: FileList,
 ): ((GLTF & ObjectMap) | THREE.Group)[] => {
   // 파일 array, map, name array
   const files = Array.from(fileList);

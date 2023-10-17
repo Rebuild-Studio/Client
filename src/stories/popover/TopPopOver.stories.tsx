@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { styled } from "styled-components";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import TopPopOver from "@/components/layout/popover/TopPopOver";
+import TopPopOver from "@components/layout/popover/TopPopOver";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 const meta = {
   component: TopPopOver,

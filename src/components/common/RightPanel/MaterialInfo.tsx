@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import Slider from "../Slider";
-import CustomMenu from "@/components/layout/Menu";
-import ColorHandler from "@/components/common/RightPanel/ColorHandler";
-import MaterialTemplate from "./MaterialTemplate";
-import ColorPicker from "./ColorPicker";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { HsvaColor } from "@uiw/color-convert";
-import { useEffect, useState } from "react";
-import storeContainer from "@/store/storeContainer";
+import styled from "styled-components";
+import ColorHandler from "@components/common/RightPanel/ColorHandler";
+import CustomMenu from "@components/layout/Menu";
+import storeContainer from "@store/storeContainer";
+import ColorPicker from "./ColorPicker";
+import MaterialTemplate from "./MaterialTemplate";
+import Slider from "../Slider";
 
 interface MaterialInfoProps {
   metalness: number;

@@ -1,5 +1,5 @@
-import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
+import storeContainer from "@store/storeContainer";
 import { findRootGroup, hasChildGroup, isChildInGroup } from "./findGroup";
 import {
   selectChildGroupInGroup,
@@ -7,13 +7,13 @@ import {
 } from "./selectInGroup";
 
 const onClickSceneEvents = (
-  intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
+  intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[],
 ) => {
   const { primitiveStore, mouseEventStore, keyboardEventStore } =
     storeContainer;
 
   const currentSelectObjects = Object.values(
-    primitiveStore.selectedPrimitives
+    primitiveStore.selectedPrimitives,
   ).map((value) => {
     return value;
   });
@@ -76,7 +76,7 @@ const onClickSceneEvents = (
 
     primitiveStore.addSelectedPrimitives(
       selectRootObjectStoreId,
-      primitiveStore.meshes[selectRootObjectStoreId]
+      primitiveStore.meshes[selectRootObjectStoreId],
     );
 
     return;
@@ -92,7 +92,7 @@ const onClickSceneEvents = (
 
   primitiveStore.addSelectedPrimitives(
     selectObjectStoreId,
-    primitiveStore.meshes[selectObjectStoreId]
+    primitiveStore.meshes[selectObjectStoreId],
   );
 };
 

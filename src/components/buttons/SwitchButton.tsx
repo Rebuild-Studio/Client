@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { basicColors, grayColors } from "@/resources/colors/colors";
 import { useState } from "react";
+import styled from "styled-components";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 interface SwitchProps {
   label: string;

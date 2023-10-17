@@ -1,7 +1,7 @@
-import { HierarchyPanel } from "@/components/layout/CanvasLeftPanel/hierarchyPanel/HierarchyPanel";
-import { MeshType } from "@/store/primitiveStore";
-import type { Meta, StoryObj } from "@storybook/react";
 import * as THREE from "three";
+import type { Meta, StoryObj } from "@storybook/react";
+import { HierarchyPanel } from "@components/layout/CanvasLeftPanel/hierarchyPanel/HierarchyPanel";
+import { MeshType } from "@store/primitiveStore";
 
 const meta = {
   component: HierarchyPanel,

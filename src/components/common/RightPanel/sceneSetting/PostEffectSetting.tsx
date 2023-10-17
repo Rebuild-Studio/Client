@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
-import Accordion from "@/components/layout/Accordion";
-import Switch from "@/components/buttons/SwitchButton";
-import storeContainer from "@/store/storeContainer";
+import Switch from "@components/buttons/SwitchButton";
+import Accordion from "@components/layout/Accordion";
+import storeContainer from "@store/storeContainer";
 
 const PostEffectSetting = observer(() => {
   const { sceneSettingStore } = storeContainer;

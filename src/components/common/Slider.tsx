@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import { basicColors, grayColors } from "@/resources/colors/colors";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { basicColors, grayColors } from "@resources/colors/colors";
 
 interface SliderProps {
   title: string;
@@ -34,7 +34,7 @@ const Slider = ({
       const sliderBackground = `linear-gradient(to right, ${basicColors.primary} ${thumbPosition}%, ${grayColors.lightGray} ${thumbPosition}%)`;
       sliderInputRef.current.style.setProperty(
         "--slider-background",
-        sliderBackground
+        sliderBackground,
       );
       onMaterialChange(newValue);
       onChange(newValue);

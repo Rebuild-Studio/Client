@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import styled from "styled-components";
-import storeContainer from "@/store/storeContainer";
-import Accordion from "@/components/layout/Accordion";
-import Slider from "@/components/common/Slider";
-import CustomMenu from "@/components/layout/Menu";
-import Switch from "@/components/buttons/SwitchButton";
-import ColorPicker from "@/components/common/RightPanel/ColorPicker";
 import { HsvaColor } from "@uiw/color-convert";
-import ColorHandler from "@/components/common/RightPanel/ColorHandler";
+import styled from "styled-components";
+import Switch from "@components/buttons/SwitchButton";
+import ColorHandler from "@components/common/RightPanel/ColorHandler";
+import ColorPicker from "@components/common/RightPanel/ColorPicker";
+import Slider from "@components/common/Slider";
+import Accordion from "@components/layout/Accordion";
+import CustomMenu from "@components/layout/Menu";
+import storeContainer from "@store/storeContainer";
 import BackgroundImageTemplate from "./BackgroundImageTemplate";
 
 const HdriSetting = observer(() => {
@@ -26,7 +26,7 @@ const HdriSetting = observer(() => {
     a: 0,
   });
   const [directionalLightColor, setDirectionalLightColor] = useState<HsvaColor>(
-    { h: 0, s: 0, v: 0, a: 0 }
+    { h: 0, s: 0, v: 0, a: 0 },
   );
 
   useEffect(() => {

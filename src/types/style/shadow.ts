@@ -1,4 +1,4 @@
-import { shadows } from "@/resources/shadows/shadow";
+import { shadows } from "@resources/shadows/shadow";
 import { CSSHexColor, CSSRgba } from "./cssUnits";
 
 type CSSShadow =

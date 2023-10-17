@@ -1,9 +1,9 @@
-import Modal from "@/components/layout/modal/Modal";
-import { basicColors } from "@/resources/colors/colors";
-import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import ReactDOM from "react-dom";
 import { styled } from "styled-components";
+import Modal from "@components/layout/modal/Modal";
+import { basicColors } from "@resources/colors/colors";
 
 const meta = {
   component: Modal,

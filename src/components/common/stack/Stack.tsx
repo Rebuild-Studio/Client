@@ -1,6 +1,6 @@
-import { grayColors } from "@/resources/colors/colors";
-import { CSSColor, CSSSize } from "@/types/style/cssUnits";
 import { styled } from "styled-components";
+import { CSSColor, CSSSize } from "@/types/style/cssUnits";
+import { grayColors } from "@resources/colors/colors";
 
 interface Props {
   className?: string;

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../utils/materialSetting";
 import { observer } from "mobx-react";
-import storeContainer from "@/store/storeContainer";
+import canvasHistoryStore from "@store/canvasHistoryStore";
+import storeContainer from "@store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { getDefaultMaterialSetting } from "../utils/materialSetting";
 
 const CubePrimitive = observer((props: PrimitiveProps) => {
   const ref = useRef();

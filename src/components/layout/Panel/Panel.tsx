@@ -1,6 +1,6 @@
-import { bgColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
 import { styled } from "styled-components";
+import { bgColors } from "@resources/colors/colors";
+import { fonts } from "@resources/fonts/font";
 
 interface PanelProps {
   label: string;

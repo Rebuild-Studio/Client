@@ -1,10 +1,10 @@
-import Dropdown, { Option } from "@/components/common/dropdown/Dropdown";
-import DOMAIN_LIST, { Domain } from "@/features/assetLibrary/constants/domain";
-import { grayColors } from "@/resources/colors/colors";
-import assetCategoryStore from "@/store/assetCategoryStore";
-import assetLibraryStore from "@/store/assetLibraryStore";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import DOMAIN_LIST, { Domain } from "@/features/assetLibrary/constants/domain";
+import Dropdown, { Option } from "@components/common/dropdown/Dropdown";
+import assetCategoryStore from "@store/assetCategoryStore";
+import assetLibraryStore from "@store/assetLibraryStore";
+import { grayColors } from "@resources/colors/colors";
 
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({

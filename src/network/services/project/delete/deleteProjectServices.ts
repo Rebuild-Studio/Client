@@ -1,4 +1,4 @@
-import apiModule from "@/network/module/apiModule";
+import apiModule from "@network/module/apiModule";
 import { RequestSpecificProject } from "./models/DeleteProjectModels";
 
 const deleteProject = async () => {

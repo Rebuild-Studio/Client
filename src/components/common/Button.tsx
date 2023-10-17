@@ -1,10 +1,10 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import styled, { css } from "styled-components";
 import { ButtonAnimationType } from "@/types/style/buttonAnimations";
 import { CSSHexColor, CSSSize } from "@/types/style/cssUnits";
 import { CSSShadow, ShadowType } from "@/types/style/shadow";
-import { getButtonClickAnimation } from "@/utils/animation/button";
+import { getButtonClickAnimation } from "@utils/animation/button";
 import { getShadow } from "@utils/style/getShadow";
-import styled, { css } from "styled-components";
+import { basicColors, bgColors } from "@resources/colors/colors";
 
 export interface Props {
   onClick?: () => void;

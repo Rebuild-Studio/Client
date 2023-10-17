@@ -1,10 +1,10 @@
+import { styled } from "styled-components";
+import App from "@/interaction(legacyJS)/src/App";
+import storeContainer from "@store/storeContainer";
+import { basicColors } from "@resources/colors/colors";
 import CanvasBar from "./CanvasBar";
 import IconButton from "./buttons/IconButton";
 import Button from "./common/Button";
-import { styled } from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
-import App from "@/interaction(legacyJS)/src/App";
-import storeContainer from "@/store/storeContainer";
 
 interface TopBarProps {
   isOpen: boolean;

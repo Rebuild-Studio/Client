@@ -1,6 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import Header from "@/features/assetLibrary/components/header";
-import { basicColors } from "@/resources/colors/colors";
+import { basicColors } from "@resources/colors/colors";
 
 const meta = {
   component: Header,

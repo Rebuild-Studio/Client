@@ -1,11 +1,11 @@
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import GroupGizmo from "../gizmo/GroupGizmo";
-import getCenterPoint from "../utils/getCenterPoint";
+import { observer } from "mobx-react";
 import { useThree } from "@react-three/fiber";
+import storeContainer from "@store/storeContainer";
+import GroupGizmo from "../gizmo/GroupGizmo";
 import { getParent } from "../utils/findGroup";
+import getCenterPoint from "../utils/getCenterPoint";
 
 interface SelectedGroupProps {
   storeId: string;
@@ -59,7 +59,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
             if (!child.userData["isLeave"]) {
               const parent = getParent(
                 child.userData["rootId"],
-                child.userData["parentId"]
+                child.userData["parentId"],
               );
               delete child.userData["rootId"];
               delete child.userData["parentId"];

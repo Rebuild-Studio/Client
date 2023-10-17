@@ -19,7 +19,7 @@ const DOMAIN_LIST: Domain[] = Object.entries(DOMAIN_MAP).map(
   ([domain, domainKR]) => ({
     domain: domain as DomainType,
     domainKR,
-  })
+  }),
 );
 
 export type { DomainType, Domain };

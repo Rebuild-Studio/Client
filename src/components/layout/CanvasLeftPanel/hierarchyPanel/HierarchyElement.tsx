@@ -1,13 +1,10 @@
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { reaction } from "mobx";
 import { useEffect, useState } from "react";
+import { reaction } from "mobx";
 import { styled } from "styled-components";
-import primitiveStore from "@/store/primitiveStore";
-import {
-  CanvasInstance,
-  instanceTranslate,
-} from "@/resources/constants/canvas";
+import primitiveStore from "@store/primitiveStore";
+import { basicColors, grayColors } from "@resources/colors/colors";
+import { CanvasInstance, instanceTranslate } from "@resources/constants/canvas";
+import { fonts } from "@resources/fonts/font";
 
 type MouseEvents = {
   objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;
@@ -55,7 +52,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
           setIsMouseUp(false);
         }
       },
-      { fireImmediately: true }
+      { fireImmediately: true },
     );
 
     return () => {
