@@ -4,6 +4,8 @@ import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
 import Shape from "./Shape";
 import PropertyValue from "./TransFromationInfo";
+import SceneSettingPanel from "./SceneSettingPanel";
+
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 import Accordion from "@/components/layout/Accordion";
@@ -19,28 +21,47 @@ const RightPanel = observer(() => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
+  const [material, setMaterial] = useState<THREE.MeshStandardMaterial | null>(
+    null
+  );
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+
+  const { sceneSettingStore } = storeContainer;
 
   useEffect(() => {
     if (selectedPrimitive) {
       const info = selectedPrimitive;
-      const materials = Object.keys(info.material);
-      const value = Object.values(info.material);
-      const rgbColor = value[materials.indexOf("color")];
-      const opacity = Number(value[materials.indexOf("opacity")]);
-      const hsva = ColorHandler.rgbToHsva(rgbColor, opacity);
-      setMetalness(value[materials.indexOf("metalness")]);
-      setRoughness(value[materials.indexOf("roughness")]);
-      setColor(hsva);
       setPosition(info.position);
       setRotation(info.rotation);
       setScale(info.scale);
+      if (info.material) {
+        const standardMaterial = Array.isArray(info.material)
+          ? info.material[0]
+          : info.material;
+        if (standardMaterial instanceof THREE.MeshStandardMaterial)
+          setMaterial(standardMaterial);
+      }
     }
   }, [selectedPrimitive]);
 
+  useEffect(() => {
+    if (material) {
+      const rgbColor = material.color;
+      const opacity = material.opacity;
+      const hsva = ColorHandler.rgbToHsva(rgbColor, opacity);
+      setColor(hsva);
+      setMetalness(material.metalness);
+      setRoughness(material.roughness);
+    }
+  }, [material]);
+
   if (!selectedPrimitive) {
     return null;
+  }
+
+  if (sceneSettingStore.type === "scene") {
+    return <SceneSettingPanel />;
   }
 
   return (

@@ -9,25 +9,11 @@ import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasHelper } from "./CanvasHelper";
 
 const Scene = observer(() => {
-  const {
-    mouseEventStore,
-    contextMenuStore,
-    projectStateStore,
-    sceneSettingStore,
-  } = storeContainer;
-
-  const handleClickCanvas = () => {
-    closeSceneSetting();
-  };
-
-  const closeSceneSetting = () => {
-    if (sceneSettingStore.type === "scene") {
-      sceneSettingStore.toggleVisibility();
-    }
-  };
+  const { mouseEventStore, contextMenuStore, projectStateStore } =
+    storeContainer;
 
   return (
-    <Wrapper onClick={handleClickCanvas}>
+    <Wrapper>
       {contextMenuStore.isContextMenuOpened && (
         <ContextMenu
           items={contextMenuStore.currentContextMenuType!.items}
@@ -52,6 +38,13 @@ const Scene = observer(() => {
         onContextMenu={(e) => {
           e.preventDefault();
           mouseEventStore.updateMouseEvent("onContextMenu", e);
+        }}
+        onDragOver={(e) => {
+          e.preventDefault();
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          mouseEventStore.updateMouseEvent("onDrop", e);
         }}
       >
         <ambientLight intensity={1} visible={true} color={basicColors.white} />

@@ -3,6 +3,7 @@ import { useServerTextureLoader } from "../../hooks/loader";
 import { useRef } from "react";
 import renderStore from "@/store/renderStore";
 import * as THREE from "three";
+import getMinioPath from "@/utils/path/minio";
 
 export const ViewCube = (props: MeshProps) => {
   const faceArray = [
@@ -19,10 +20,11 @@ export const ViewCube = (props: MeshProps) => {
     "BACK",
     "BACK",
   ];
-  const textures = useServerTextureLoader(
-    Array.from({ length: 6 }, (_, idx) => `${idx + 1}.png`),
-    "models/CameraCube/"
+
+  const urls = Array.from({ length: 6 }, (_, idx) =>
+    getMinioPath(`${idx + 1}`, "cameraCubeMaterial")
   );
+  const textures = urls.map((url) => useServerTextureLoader(url));
 
   const ref = useRef<THREE.Mesh>(null!);
   const euler = new THREE.Euler();
