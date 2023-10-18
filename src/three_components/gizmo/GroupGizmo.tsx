@@ -2,7 +2,6 @@ import storeContainer from "@/store/storeContainer";
 import { TransformControls } from "@react-three/drei";
 import { observer } from "mobx-react";
 import { setCameraControlEnabled } from "../utils/cameraControl";
-import { TorusGeometry } from "three";
 
 interface GroupGizmoProps {
   storeId: string;

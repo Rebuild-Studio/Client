@@ -27,6 +27,7 @@ const RenderScene = observer(() => {
     contextMenuStore,
     keyboardEventStore,
     selectedObjectStore,
+    projectStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
@@ -40,6 +41,10 @@ const RenderScene = observer(() => {
   const selectedPrimitivesLength = Object.keys(
     primitiveStore.selectedPrimitives
   ).length;
+
+  useEffect(() => {
+    projectStore.setScene(scene);
+  }, [scene, projectStore]);
 
   useEffect(() => {
     // mouse event
@@ -74,8 +79,8 @@ const RenderScene = observer(() => {
             break;
           }
 
-          default: {
-          }
+          default: 
+            break;
         }
       }
     );
@@ -100,7 +105,7 @@ const RenderScene = observer(() => {
   // contextMenu 실행
   useEffect(() => {
     executeContextMenu(scene);
-  }, [contextMenuStore.currentSelectedContextMenu]);
+  }, [contextMenuStore.currentSelectedContextMenu, scene]);
 
   useEffect(() => {
     if (selectedPrimitive && selectedObjectStore.selectedMaterial) {
@@ -135,7 +140,7 @@ const RenderScene = observer(() => {
           <ErrorBoundary
             key={id}
             fallback={<></>}
-            onError={(e) => {
+            onError={() => {
               addToast("오브젝트 에러!");
             }}
           >
