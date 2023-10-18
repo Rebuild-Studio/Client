@@ -182,5 +182,5 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   },
 });
 
-export type { CanvasInstance, CanvasAttribute, CanvasHistoryType };
+export type { CanvasHistoryStoreProps, CanvasInstance, CanvasAttribute, CanvasHistoryType };
 export default canvasHistoryStore;

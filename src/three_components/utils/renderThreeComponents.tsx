@@ -1,7 +1,7 @@
+
 import { PrimitiveStore } from "@/store/primitiveStore";
 import AssetPrimitive from "../assets/AssetPrimitive";
 import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
-import { PrimitiveProps } from "../common/PrimitiveProps";
 import Group from "../group/Group";
 import SelectedGroup from "../group/SelectedGroup";
 import CapsulePrimitive from "../primitives/CapsulePrimitive";

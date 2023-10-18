@@ -33,4 +33,5 @@ const keyboardEventStore = observable<KeyboardEventProps>({
   },
 });
 
+export type {KeyType, KeyboardEventProps}
 export default keyboardEventStore;

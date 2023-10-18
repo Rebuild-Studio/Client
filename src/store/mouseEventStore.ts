@@ -37,4 +37,5 @@ const mouseEventStore = observable<MouseEventProps>({
   },
 });
 
+export type {MouseEventType, MouseEventProps}
 export default mouseEventStore;
