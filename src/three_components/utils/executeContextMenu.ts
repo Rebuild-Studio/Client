@@ -59,8 +59,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
         switch (value.name) {
-          case "ASSET": {
-          }
+          case "ASSET":
           case "GROUP": {
             const { storeId, newGroup } = copyGroup(value);
             copyMeshes[storeId] = newGroup;
