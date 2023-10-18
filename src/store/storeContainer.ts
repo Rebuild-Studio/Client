@@ -7,12 +7,14 @@ import keyboardEventStore from "./keyboardEventStore";
 import contextMenuStore from "./contextMenuStore";
 import projectStateStore from "./projectStateStore";
 import canvasHistoryStore from "./canvasHistoryStore";
+import sceneControlStore from "./sceneControlStore";
 import renderStore from "./renderStore";
 import assetLibraryStore from "./assetLibraryStore";
 import assetCategoryStore from "./assetCategoryStore";
 import sceneSettingStore from "./sceneSettingStore";
 import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
 import editorModeStore from "@store/editorModeStore";
+import projectStore from "./projectStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -24,12 +26,14 @@ const storeContainer = {
   contextMenuStore: contextMenuStore,
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
+  sceneControlStore: sceneControlStore,
   renderStore: renderStore,
   assetLibraryStore: assetLibraryStore,
   assetCategoryStore: assetCategoryStore,
   sceneSettingStore: sceneSettingStore,
   controllerBarStore: controllerBarStore,
   editorModeStore: editorModeStore,
+  projectStore: projectStore,
 };
 
 export default storeContainer;

@@ -69,11 +69,21 @@ export default TopBar;
 
 const Wrapper = styled.div`
   position: relative;
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   padding: 0 18px;
+=======
+  position: relative;
+`;
+
+const Container = styled.div`
+  height: 54px;
+  width: 100%;
+  z-index: 1;
+>>>>>>> aebe572cb0dfb299a9cf665df6224b32153e58e7
   background-color: #222222;
 
   img {
