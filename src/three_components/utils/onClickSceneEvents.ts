@@ -5,6 +5,7 @@ import {
   selectChildGroupInGroup,
   selectChildObjectInGroup,
 } from "./selectInGroup";
+import { findRootAsset, hasAsset } from "./findAsset";
 
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -36,12 +37,13 @@ const onClickSceneEvents = (
   const selectChildObject = intersectObjects.find((value) => {
     return (
       value.object.parent?.name === "GROUP" ||
-      value.object.parent?.name === "ASSET"
+      hasAsset(value.object, value.object)
     );
   })?.object;
+  console.log(selectChildObject);
 
   const selectRootObject = findRootGroup(selectChildObject);
-  console.log(selectRootObject);
+
   if (selectRootObject) {
     const selectRootObjectStoreId: string =
       selectRootObject.userData["storeId"];
@@ -82,6 +84,18 @@ const onClickSceneEvents = (
       primitiveStore.meshes[selectRootObjectStoreId]
     );
 
+    return;
+  }
+
+  // scene에 있는 Asset 선택
+  if (selectChildObject && !selectRootObject) {
+    const assetRoot = findRootAsset(selectChildObject);
+    const assetRootStoreId = assetRoot?.userData["storeId"];
+
+    primitiveStore.addSelectedPrimitives(
+      assetRootStoreId,
+      primitiveStore.meshes[assetRootStoreId]
+    );
     return;
   }
 

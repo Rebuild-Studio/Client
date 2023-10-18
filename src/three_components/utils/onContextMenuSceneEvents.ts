@@ -1,5 +1,6 @@
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
+import { hasAsset } from "./findAsset";
 
 const onContextMenuSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -31,7 +32,7 @@ const onContextMenuSceneEvents = (
     intersectObjects.find((value) => {
       return (
         value.object.parent?.name === "GROUP" ||
-        value.object.parent?.name === "ASSET"
+        hasAsset(value.object, value.object)
       );
     })?.object
   );

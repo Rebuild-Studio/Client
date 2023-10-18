@@ -48,6 +48,10 @@ const RenderScene = observer(() => {
         return mouseEventStore.currentMouseEvent;
       },
       (mouseEvent) => {
+        console.log(
+          Object.values(primitiveStore.meshes),
+          Object.values(primitiveStore.selectedPrimitives)
+        );
         const intersectObjects = raycaster.intersectObjects(
           Object.values(primitiveStore.meshes)
         );
