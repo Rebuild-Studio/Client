@@ -1,4 +1,5 @@
-import storeContainer from "../../../../stores/storeContainer";
+import legacyStoreContainer from "../../../../stores/storeContainer";
+import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import SetNodeDataCommand from "../../../../class/commands/Interaction/SetNodeDataCommand";
@@ -6,15 +7,17 @@ import SetNodeObjectCommand from "../../../../class/commands/Interaction/SetNode
 
 const SelectDropdown = observer((props) => {
   const { eventSystem_store, string_store, interactionhistory_store } =
-    storeContainer;
-  const { node, entry, dropdownData } = props;
+    legacyStoreContainer;
+  const { primitiveStore } = storeContainer;
+  const { node, entry } = props;
   const key = entry[0];
   const data = entry[1];
   const { uuid } = node;
-  const [defaultValue, setdefaultValue] = useState("");
+  const [defaultValue, setDefaultValue] = useState("오브젝트");
+  const dropdownData = primitiveStore.meshes;
   const disable = useMemo(() => {
-    return dropdownData.list?.length > 0 ? false : true;
-  }, [dropdownData.list?.length]);
+    return Object.values(dropdownData).length > 0 ? false : true;
+  }, [Object.values(dropdownData).length]);
 
   const removeObjectValue = useCallback(
     (args) => {
@@ -37,11 +40,11 @@ const SelectDropdown = observer((props) => {
       case "ObjectSensor":
       case "Object":
         args.key = "object";
-        if (dropdownData.map.get(data.value)) {
-          // setdefaultValue(data.value);
+        if (dropdownData[data.value]) {
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          // setdefaultValue("");
-          // removeObjectValue(args);
+          setDefaultValue("");
+          removeObjectValue(args);
         }
         break;
       case "Light":
@@ -50,33 +53,32 @@ const SelectDropdown = observer((props) => {
       case "PointLight":
       case "SpotLight":
         args.key = "light";
-        if (dropdownData.map.get(data.value)) {
-          // setdefaultValue(data.value);
+        if (dropdownData[data.value]) {
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          // setdefaultValue("");
-          // removeObjectValue(args);
+          setDefaultValue("");
+          removeObjectValue(args);
         }
         break;
       case "Function":
         args.key = "function";
-        if (dropdownData.map.get(data.value)) {
-          // setdefaultValue(data.value);
+        if (dropdownData[data.value]) {
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          // setdefaultValue("");
-          // removeObjectValue(args);
+          setDefaultValue("");
+          removeObjectValue(args);
         }
         break;
       case "Asset":
-        args.key = "function";
-        if (dropdownData.map.get(data.value)) {
-          // setdefaultValue(data.value);
+        if (dropdownData[data.value]) {
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          // setdefaultValue("");
-          // removeObjectValue(args);
+          setDefaultValue("");
+          removeObjectValue(args);
         }
         break;
       default:
-        // setdefaultValue(data.value);
+        setDefaultValue(data.value);
         break;
     }
   }, [dropdownData, data.type, node.type, data.value, removeObjectValue]);
@@ -87,29 +89,27 @@ const SelectDropdown = observer((props) => {
       case "Sensor":
       case "PointLight":
       case "SpotLight":
-        return dropdownData.list?.map(
-          ({ objectId, type, name = type + objectId }) => (
-            <option key={`${uuid}-option-${objectId}`} value={objectId}>
-              {name}
-            </option>
-          )
-        );
+        return Object.entries(dropdownData).map(([key, mesh]) => (
+          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
+            {mesh.name}
+          </option>
+        ));
       case "Function":
-        return dropdownData.list?.map(({ uuid, type, name = type + uuid }) => (
-          <option key={`${uuid}-option-${uuid}`} value={uuid}>
-            {name}
+        return Object.entries(dropdownData).map(([key, mesh]) => (
+          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
+            {mesh.name}
           </option>
         ));
       case "Asset":
-        return dropdownData.list?.map(({ uuid, type, name = type + uuid }) => (
-          <option key={`${uuid}-option-${uuid}`} value={uuid}>
-            {name}
+        return Object.entries(dropdownData).map(([key, mesh]) => (
+          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
+            {mesh.name}
           </option>
         ));
       default:
-        return dropdownData.list?.map((type) => (
-          <option key={`${uuid}-option-${type}`} value={type}>
-            {string_store.string(type) || type}
+        return Object.entries(dropdownData).map(([key, mesh]) => (
+          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
+            {mesh.name}
           </option>
         ));
     }
@@ -124,7 +124,7 @@ const SelectDropdown = observer((props) => {
           case "Animation": {
             const value = {
               value: targetValue,
-              name: dropdownData.map.get(targetValue),
+              name: dropdownData[targetValue],
             };
             interactionhistory_store.execute(
               new SetNodeObjectCommand(
@@ -140,7 +140,7 @@ const SelectDropdown = observer((props) => {
           case "Object": {
             const value = {
               value: targetValue,
-              name: dropdownData.map.get(targetValue),
+              name: dropdownData[targetValue].name,
             };
             interactionhistory_store.execute(
               new SetNodeObjectCommand(
@@ -207,7 +207,7 @@ const SelectDropdown = observer((props) => {
       }}
     >
       <option key={`${uuid}-option-blank`} hidden value="">
-        {`${string_store.string(entry[1].extras)} 선택`}
+        {`${defaultValue} 선택`}
       </option>
       <Options />
     </select>

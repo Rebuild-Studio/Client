@@ -6,18 +6,22 @@ import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE,
 } from "./workerScript";
+import EventSystemStore from "@/interaction(legacyJS)/src/Components/stores/EventSystem_Store";
 
 const exportJsonFile = async (
   scene: THREE.Scene,
+  interactionJson: any,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
   const mxWorker = new MxWorker();
+  interactionJson = JSON.parse(JSON.stringify(interactionJson));
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE,
     sceneJson,
+    interactionJson,
   });
   mxWorker.onmessage = (e) => {
     if (e.data.type === MX_WORKER_RESPONSE_TYPE.DOWNLOAD) {
@@ -72,6 +76,7 @@ const exportJsonPost = async (
 };
 interface Props {
   projectStore: ProjectStore;
+  interactionStore: EventSystemStore;
 }
 
 type hookReturnType = [
@@ -81,7 +86,10 @@ type hookReturnType = [
   downloadProject: () => void
 ];
 
-const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
+const useExportMxJson = ({
+  projectStore,
+  interactionStore,
+}: Props): hookReturnType => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -112,8 +120,14 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
-    exportJsonFile(projectStore.scene, setIsProcessing, setIsSuccess);
-  }, [projectStore.scene]);
+    const interactionJson = interactionStore.toJSON();
+    exportJsonFile(
+      projectStore.scene,
+      interactionJson,
+      setIsProcessing,
+      setIsSuccess
+    );
+  }, [projectStore.scene, interactionStore]);
 
   return [isSuccess, isProcessing, createProject, downloadProject];
 };

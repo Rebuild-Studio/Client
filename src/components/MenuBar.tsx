@@ -11,6 +11,7 @@ import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { ComponentList } from "./layout/componentList/ComponentList";
+import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton
@@ -31,8 +32,10 @@ const HelpBtn = () => <Menu label="도움말" />;
 
 const MenuBar = observer(() => {
   const { projectStateStore } = storeContainer;
+  const { eventSystem_store } = legacyStoreContainer;
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
+    interactionStore: eventSystem_store,
   });
 
   const componentData: MenuItemType[] = [

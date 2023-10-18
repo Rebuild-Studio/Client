@@ -1,12 +1,12 @@
 import { CameraControls } from "@react-three/drei";
 import { observable } from "mobx";
 
-interface renderStore {
+interface RenderStoreProps {
   controls: CameraControls | null;
   setControls: (prop: CameraControls) => void;
 }
 
-const renderStore = observable<renderStore>({
+const renderStore = observable<RenderStoreProps>({
   controls: null,
 
   setControls(state) {
@@ -14,4 +14,5 @@ const renderStore = observable<renderStore>({
   },
 });
 
+export type {RenderStoreProps}
 export default renderStore;

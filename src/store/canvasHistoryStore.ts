@@ -1,8 +1,6 @@
 import { observable } from "mobx";
 import {
-  renderAsset,
-  renderGroup,
-  renderPrimitive,
+  renderObjects,
 } from "@/three_components/utils/renderThreeComponents";
 import {
   CanvasAttribute,
@@ -174,48 +172,15 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   },
 
   update() {
-    // console.log("update : ", this.redoList[0].snapshot);
-    const meshEntries = Object.entries(this.redoList[0].snapshot);
 
     primitiveStore.clearPrimitives();
     primitiveStore.clearSelectedGroupPrimitive();
+    const meshList = Object.values(this.redoList[0].snapshot);
 
-    for (const [storeId, mesh] of meshEntries) {
-      switch (mesh.name) {
-        case "GROUP":
-          primitiveStore.addPrimitive(
-            storeId,
-            renderGroup(storeId, mesh.clone())
-          );
-          break;
+    renderObjects(primitiveStore, meshList);
 
-        case "SELECTED_GROUP":
-          break;
-
-        case "ASSET":
-          primitiveStore.addPrimitive(
-            storeId,
-            renderAsset(storeId, mesh.clone())
-          );
-          break;
-
-        case "CUBE":
-        case "CAPSULE":
-        case "CONE":
-        case "CYLINDER":
-        case "SPHERE":
-        case "TORUS":
-          primitiveStore.addPrimitive(
-            storeId,
-            renderPrimitive(storeId, mesh.clone())
-          );
-          break;
-        default:
-          break;
-      }
-    }
   },
 });
 
-export type { CanvasInstance, CanvasAttribute, CanvasHistoryType };
+export type { CanvasHistoryStoreProps, CanvasInstance, CanvasAttribute, CanvasHistoryType };
 export default canvasHistoryStore;
