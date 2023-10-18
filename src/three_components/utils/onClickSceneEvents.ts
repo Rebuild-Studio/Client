@@ -40,10 +40,9 @@ const onClickSceneEvents = (
       hasAsset(value.object, value.object)
     );
   })?.object;
-  console.log(selectChildObject);
 
   const selectRootObject = findRootGroup(selectChildObject);
-
+  console.log(intersectObjects);
   if (selectRootObject) {
     const selectRootObjectStoreId: string =
       selectRootObject.userData["storeId"];

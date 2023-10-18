@@ -1,6 +1,10 @@
 import storeContainer from "@/store/storeContainer";
 import { nanoid } from "nanoid";
-import { renderGroup, renderPrimitive } from "./renderThreeComponents";
+import {
+  renderAsset,
+  renderGroup,
+  renderPrimitive,
+} from "./renderThreeComponents";
 import { MeshType } from "@/store/primitiveStore";
 import * as THREE from "three";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
@@ -23,15 +27,30 @@ const executeContextMenu = (scene: THREE.Scene) => {
       break;
     case "붙여넣기":
       Object.values(projectStateStore.currentCopyPrimitive).forEach((value) => {
-        if (value.name === "GROUP") {
-          const { storeId, newGroup } = copyGroup(value);
-          primitiveStore.addPrimitive(storeId, renderGroup(storeId, newGroup));
-        } else {
-          const { storeId, newMesh } = copyObject(value);
-          primitiveStore.addPrimitive(
-            storeId,
-            renderPrimitive(storeId, newMesh)
-          );
+        switch (value.name) {
+          case "ASSET": {
+            const { storeId, newGroup } = copyGroup(value);
+            primitiveStore.addPrimitive(
+              storeId,
+              renderAsset(storeId, newGroup)
+            );
+            break;
+          }
+          case "GROUP": {
+            const { storeId, newGroup } = copyGroup(value);
+            primitiveStore.addPrimitive(
+              storeId,
+              renderGroup(storeId, newGroup)
+            );
+            break;
+          }
+          default: {
+            const { storeId, newMesh } = copyObject(value);
+            primitiveStore.addPrimitive(
+              storeId,
+              renderPrimitive(storeId, newMesh)
+            );
+          }
         }
       });
       break;
@@ -39,12 +58,18 @@ const executeContextMenu = (scene: THREE.Scene) => {
       const copyMeshes: MeshType = {};
 
       Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
-        if (value.name === "GROUP") {
-          const { storeId, newGroup } = copyGroup(value);
-          copyMeshes[storeId] = newGroup;
-        } else {
-          const { storeId, newMesh } = copyObject(value);
-          copyMeshes[storeId] = newMesh;
+        switch (value.name) {
+          case "ASSET": {
+          }
+          case "GROUP": {
+            const { storeId, newGroup } = copyGroup(value);
+            copyMeshes[storeId] = newGroup;
+            break;
+          }
+          default: {
+            const { storeId, newMesh } = copyObject(value);
+            copyMeshes[storeId] = newMesh;
+          }
         }
       });
 
