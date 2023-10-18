@@ -1,3 +1,5 @@
+import AssetPrimitive from "../assets/AssetPrimitive";
+import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
 import Group from "../group/Group";
 import SelectedGroup from "../group/SelectedGroup";
 import CapsulePrimitive from "../primitives/CapsulePrimitive";
@@ -38,4 +40,18 @@ const renderSelectedGroup = (storeId: string, propMesh?: THREE.Mesh) => {
   return <SelectedGroup storeId={storeId} propMesh={propMesh} />;
 };
 
-export { renderPrimitive, renderGroup, renderSelectedGroup };
+const renderAsset = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <AssetPrimitive storeId={storeId} propMesh={propMesh} />;
+};
+
+const renderLocalAsset = (storeId: string, file: File) => {
+  return <LocalAssetPrimitive storeId={storeId} file={file} />;
+};
+
+export {
+  renderPrimitive,
+  renderGroup,
+  renderSelectedGroup,
+  renderAsset,
+  renderLocalAsset,
+};

@@ -10,17 +10,22 @@ interface MenuProps {
   anchorElement?: HTMLElement | null;
   handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
+
 const CustomMenu = ({
   title,
   MenuItem,
-  openMenu = false,
+  openMenu = true,
   anchorButton = <></>,
   anchorElement = null,
 }: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
   const [open, setOpen] = useState(openMenu);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    !open ? handleOpen(event) : handleClose();
+  };
+
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정
     setOpen(true);
   };
@@ -32,7 +37,7 @@ const CustomMenu = ({
 
   return (
     <Wrapper>
-      <AnchorButton onClick={handleClick}>Open Menu</AnchorButton>
+      <AnchorButton onClick={handleToggle}>Open Menu</AnchorButton>
       {anchorButton}
       {anchorEl && (
         <StyledMenu
@@ -52,7 +57,6 @@ const CustomMenu = ({
     </Wrapper>
   );
 };
-
 export default CustomMenu;
 
 const Wrapper = styled.div`

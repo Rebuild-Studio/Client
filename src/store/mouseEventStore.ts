@@ -6,16 +6,23 @@ type MouseEventType =
   | "onMouseUp"
   | "onClick"
   | "onContextMenu"
+  | "onDrop"
   | "NONE";
 
 interface MouseEventProps {
   currentMouseEvent: [
     MouseEventType,
-    React.MouseEvent<HTMLDivElement, MouseEvent> | null
+    (
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.DragEventHandler<HTMLDivElement>
+      | null
+    )
   ];
   updateMouseEvent: (
     mouseEvent: MouseEventType,
-    eventValue: React.MouseEvent<HTMLDivElement, MouseEvent>
+    eventValue:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.DragEvent<HTMLDivElement>
   ) => void;
   clearMouseEvent: () => void;
 }
