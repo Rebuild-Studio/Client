@@ -18,4 +18,5 @@ const sceneControlStore = observable<SceneControlStore>({
   },
 });
 
+export type {SceneControlStore}
 export default sceneControlStore;
