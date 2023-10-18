@@ -6,7 +6,6 @@ const createMxJson = (sceneJson: SceneJson, interactionJson: any): MxJson => {
   optimizeSceneJson(sceneJson);
   const mxJson = {
     scene: sceneJson,
-    //TODO - 추후 인터랙션 반영시 구현(최준만)
     interaction: interactionJson,
     editableScene: [],
     editableInteraction: [],

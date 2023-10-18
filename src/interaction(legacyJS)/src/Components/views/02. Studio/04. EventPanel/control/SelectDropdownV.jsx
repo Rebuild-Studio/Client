@@ -1,5 +1,5 @@
-import storeContainer from "../../../../stores/storeContainer";
-import primitiveStore from "@/store/primitiveStore";
+import legacyStoreContainer from "../../../../stores/storeContainer";
+import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import SetNodeDataCommand from "../../../../class/commands/Interaction/SetNodeDataCommand";
@@ -7,12 +7,13 @@ import SetNodeObjectCommand from "../../../../class/commands/Interaction/SetNode
 
 const SelectDropdown = observer((props) => {
   const { eventSystem_store, string_store, interactionhistory_store } =
-    storeContainer;
+    legacyStoreContainer;
+  const { primitiveStore } = storeContainer;
   const { node, entry } = props;
   const key = entry[0];
   const data = entry[1];
   const { uuid } = node;
-  const [defaultValue, setdefaultValue] = useState("오브젝트");
+  const [defaultValue, setDefaultValue] = useState("오브젝트");
   const dropdownData = primitiveStore.meshes;
   const disable = useMemo(() => {
     return Object.values(dropdownData).length > 0 ? false : true;
@@ -40,9 +41,9 @@ const SelectDropdown = observer((props) => {
       case "Object":
         args.key = "object";
         if (dropdownData[data.value]) {
-          setdefaultValue(dropdownData[data.value].name);
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          setdefaultValue("");
+          setDefaultValue("");
           removeObjectValue(args);
         }
         break;
@@ -53,31 +54,31 @@ const SelectDropdown = observer((props) => {
       case "SpotLight":
         args.key = "light";
         if (dropdownData[data.value]) {
-          setdefaultValue(dropdownData[data.value].name);
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          setdefaultValue("");
+          setDefaultValue("");
           removeObjectValue(args);
         }
         break;
       case "Function":
         args.key = "function";
         if (dropdownData[data.value]) {
-          setdefaultValue(dropdownData[data.value].name);
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          setdefaultValue("");
+          setDefaultValue("");
           removeObjectValue(args);
         }
         break;
       case "Asset":
         if (dropdownData[data.value]) {
-          setdefaultValue(dropdownData[data.value].name);
+          setDefaultValue(dropdownData[data.value].name);
         } else {
-          setdefaultValue("");
+          setDefaultValue("");
           removeObjectValue(args);
         }
         break;
       default:
-        setdefaultValue(data.value);
+        setDefaultValue(data.value);
         break;
     }
   }, [dropdownData, data.type, node.type, data.value, removeObjectValue]);

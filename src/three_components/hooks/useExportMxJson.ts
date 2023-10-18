@@ -16,7 +16,6 @@ const exportJsonFile = async (
 ) => {
   const mxWorker = new MxWorker();
   interactionJson = JSON.parse(JSON.stringify(interactionJson));
-  console.log(interactionJson);
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
   mxWorker.postMessage({
