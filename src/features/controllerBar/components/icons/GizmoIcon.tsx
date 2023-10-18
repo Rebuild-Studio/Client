@@ -1,4 +1,4 @@
-import ControlIcon from "@/features/controllerBar/components/icons/ControlIcon";
+import Icon from "@components/common/Icon.tsx";
 
 import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
 import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
@@ -20,7 +20,7 @@ const GizmoIcon = ({ mode }: Props) => {
   }
 
   return (
-    <ControlIcon
+    <Icon
       defaultSrc={defaultSrc}
       activeSrc={activeSrc}
       alt="기즈모 아이콘"

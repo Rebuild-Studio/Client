@@ -3,18 +3,11 @@ import { basicColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
-import primitiveStore from "@/store/primitiveStore";
 
-type Props = {
-  isOpen: boolean;
-};
-
-export const OrientationHelper = observer(({ isOpen }: Props) => {
-  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
-
+export const OrientationHelper = observer(() => {
   return (
-    <CanvasWrapper $barIsOpen={isOpen} $panelIsOpen={!!selectedPrimitive}>
-      <CustomCanvas>
+    <CanvasWrapper>
+      <Canvas>
         <ambientLight intensity={1} visible={true} color={basicColors.white} />
         <directionalLight
           castShadow
@@ -31,26 +24,12 @@ export const OrientationHelper = observer(({ isOpen }: Props) => {
           shadow-camera-bottom={-30}
         ></directionalLight>
         <ViewCube scale={[3, 3, 3]} />
-      </CustomCanvas>
+      </Canvas>
     </CanvasWrapper>
   );
 });
 
-type CSSCanvasWrapper = {
-  $barIsOpen: boolean;
-  $panelIsOpen: boolean;
-};
-
-const CanvasWrapper = styled.div<CSSCanvasWrapper>`
-  position: absolute;
+const CanvasWrapper = styled.div`
   width: 100px;
   height: 100px;
-  top: ${({ $barIsOpen }) => ($barIsOpen ? "188px" : "100px")};
-  right: ${({ $panelIsOpen }) => ($panelIsOpen ? "321px" : "50px")};
-  z-index: 1;
-`;
-
-const CustomCanvas = styled(Canvas)`
-  width: "100%";
-  height: "100%";
 `;
