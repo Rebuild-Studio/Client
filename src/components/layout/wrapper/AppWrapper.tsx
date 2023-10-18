@@ -44,8 +44,10 @@ const AppWrapper = observer((props: AppProps) => {
 export default AppWrapper;
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   background-color: ${bgColors.sceneBackground};
 `;

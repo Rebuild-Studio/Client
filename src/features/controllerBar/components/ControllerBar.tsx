@@ -24,10 +24,11 @@ export default ControllerBar;
 const Wrapper = styled.section`
   display: flex;
   gap: 8px;
-  position: fixed;
-  bottom: 4%;
+  position: absolute;
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 `;
 
 const Group = styled.div`
