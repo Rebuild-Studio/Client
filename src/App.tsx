@@ -6,7 +6,7 @@ import Scene from "./three_components/common/Scene";
 import ToastContainer from "@components/common/ToastContainer";
 import Modal from "./components/layout/modal/Modal";
 import ReactDOM from "react-dom";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useState } from "react";
 import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
