@@ -10,21 +10,29 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
+import InteractionEditor from "@/interaction(legacyJS)/src/App";
+import editorModeStore from "@store/editorModeStore.ts";
 
 const App = observer(() => {
   const { projectStateStore } = storeContainer;
-  const [barOpen, setBarOpen] = useState(true);
+  const [canvasBarOpen, setCanvasBarOpen] = useState(true);
+  const { editorMode } = editorModeStore;
 
   return (
     <>
       <AppWrapper>
         <Header>
           <MenuBar />
-          <TopBar isOpen={barOpen} setOpen={setBarOpen} />
+          <TopBar isOpen={canvasBarOpen} setOpen={setCanvasBarOpen} />
         </Header>
         <Main>
-          <Scene />
-          <Tools canvasBarIsOpen={barOpen} />
+          <EditorWrapper $visible={editorMode === "canvas"}>
+            <Scene />
+            <Tools canvasBarIsOpen={canvasBarOpen} />
+          </EditorWrapper>
+          <EditorWrapper $visible={editorMode === "interaction"}>
+            <InteractionEditor />
+          </EditorWrapper>
         </Main>
       </AppWrapper>
       {projectStateStore.isModalOpened &&
@@ -44,4 +52,9 @@ const Header = styled.header``;
 const Main = styled.main`
   position: relative;
   flex: 1;
+`;
+
+const EditorWrapper = styled.div<{ $visible: boolean }>`
+  display: ${({ $visible }) => ($visible ? "block" : "none")};
+  height: 100%;
 `;

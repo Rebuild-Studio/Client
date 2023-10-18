@@ -4,15 +4,17 @@ import { styled } from "styled-components";
 import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
-// import App from "@/interaction(legacyJS)/src/App";
+import editorModeStore from "@store/editorModeStore";
+import { observer } from "mobx-react-lite";
 
 interface TopBarProps {
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
+const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
   const { sceneSettingStore, primitiveStore } = storeContainer;
+  const { editorMode, setEditorMode } = editorModeStore;
 
   return (
     <Wrapper>
@@ -21,16 +23,23 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
           label="캔버스"
           shadow="none"
           onClick={() => {
-            setOpen(!isOpen);
+            if (editorMode === "canvas") {
+              setOpen(!isOpen);
+            } else {
+              setEditorMode("canvas");
+            }
           }}
+          color={editorMode === "canvas" ? basicColors.white : basicColors.grey}
         />
         <Button
           label="인터렉션 에디터"
           shadow="none"
           onClick={() => {
-            setOpen(!isOpen);
+            setEditorMode("interaction");
           }}
-          disabled={true}
+          color={
+            editorMode === "interaction" ? basicColors.white : basicColors.grey
+          }
         />
       </Left>
       <Center>
@@ -52,11 +61,9 @@ const TopBar = ({ isOpen, setOpen }: TopBarProps) => {
           )}
         />
       </Right>
-      {/*{!isOpen && <App />}*/}
-      {/* [TBD] should not use isOpen, open state should be used repectively */}
     </Wrapper>
   );
-};
+});
 
 export default TopBar;
 
