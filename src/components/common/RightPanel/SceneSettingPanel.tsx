@@ -26,10 +26,5 @@ const SceneSettingPanel = observer(() => {
 export default SceneSettingPanel;
 
 const RightPanelContainer = styled.div`
-  position: relative;
-  background-color: #282828;
-  display: flex;
-  height: calc(100vh - ${93}px);
-  flex-direction: column;
-  align-items: flex-end;
+  height: 100%;
 `;

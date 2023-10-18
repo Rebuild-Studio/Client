@@ -123,33 +123,30 @@ const MenuBar = () => {
     },
   ];
 
-  const StyledLogo = styled.img`
-    margin-left: 10px;
-  `;
-  const ButtonWrapper = styled.div`
-    margin-left: auto;
-    margin-right: 10px;
-  `;
   return (
     <StyledBar>
-      <StyledLogo src="/icons/studio/MX로고.png" alt="logo" />
-      <BottomPopOver triggerComponent={<ComponentBtn />}>
-        <SubMenu menuItems={componentData} />
-      </BottomPopOver>
-      <BottomPopOver triggerComponent={<PlugInBtn />}>
-        <></>
-      </BottomPopOver>
-      <BottomPopOver triggerComponent={<ConfigureBtn />}>
-        <SubMenu menuItems={configureData} />
-      </BottomPopOver>
-      <BottomPopOver triggerComponent={<HelpBtn />}>
-        <SubMenu menuItems={helpData} />
-      </BottomPopOver>
-      <ButtonWrapper>
+      <Left>
+        <img src="/icons/studio/MX로고.png" alt="logo" />
+        <BottomPopOver triggerComponent={<ComponentBtn />}>
+          <SubMenu menuItems={componentData} />
+        </BottomPopOver>
+        <BottomPopOver triggerComponent={<PlugInBtn />}>
+          <></>
+        </BottomPopOver>
+        <BottomPopOver triggerComponent={<ConfigureBtn />}>
+          <SubMenu menuItems={configureData} />
+        </BottomPopOver>
+        <BottomPopOver triggerComponent={<HelpBtn />}>
+          <SubMenu menuItems={helpData} />
+        </BottomPopOver>
+      </Left>
+      <Right>
         <IconButton
-          Icon={() => <img src={"/icons/studio/icon_logout.png"} />}
+          Icon={() => (
+            <img src={"/icons/studio/icon_logout.png"} alt="로그아웃" />
+          )}
         />
-      </ButtonWrapper>
+      </Right>
     </StyledBar>
   );
 };
@@ -157,9 +154,19 @@ const MenuBar = () => {
 export default MenuBar;
 
 const StyledBar = styled.div`
+  display: flex;
+  justify-content: space-between;
   height: 38px;
-  width: 100%;
+  padding: 0 2px;
   background-color: ${bgColors[101728]};
+`;
+
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Right = styled.div`
   display: flex;
   align-items: center;
 `;

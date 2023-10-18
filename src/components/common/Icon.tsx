@@ -8,7 +8,7 @@ interface Props {
   activated: boolean;
 }
 
-const ControlIcon = ({ defaultSrc, activeSrc, alt, activated }: Props) => {
+const Icon = ({ defaultSrc, activeSrc, alt, activated }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const useActiveSrc = isHover || activated;
 
@@ -26,7 +26,7 @@ const ControlIcon = ({ defaultSrc, activeSrc, alt, activated }: Props) => {
   );
 };
 
-export default ControlIcon;
+export default Icon;
 
 const Wrapper = styled.div`
   display: flex;
