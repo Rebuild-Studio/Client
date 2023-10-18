@@ -23,6 +23,8 @@ async function downloadFile<T extends BlobPart, R extends "json" | "txt">(
     a.href = downloadUrl;
     a.download = fileName;
     a.click();
+
+    URL.revokeObjectURL(downloadUrl);
   } catch (error) {
     console.error("Download failed:", error);
   } finally {

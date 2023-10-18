@@ -19,7 +19,7 @@ const Menu = ({ label }: { label: string }) => (
     color={basicColors.white}
     fontSize="small"
     label={label}
-    onClick={() => {}}
+    onClick={() => { }}
   />
 );
 const ComponentBtn = () => <Menu label="컴포넌트" />;
@@ -70,29 +70,29 @@ const MenuBar = () => {
     {
       label: "GLB로 내보내기(선택)",
       disabled: true,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "GLB로 내보내기(전체)",
       disabled: true,
-      onClick: () => {},
+      onClick: () => { },
     },
   ];
   const configureData: MenuItemType[] = [
     {
       label: "인터페이스",
       disabled: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "단축키",
       disabled: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "자동저장",
       disabled: true,
-      onClick: () => {},
+      onClick: () => { },
     },
   ];
 
@@ -100,22 +100,22 @@ const MenuBar = () => {
     {
       label: "사용 안내서",
       disabled: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "새로운 기능",
       disabled: true,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "오류 보고/개선 제안",
       disabled: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       label: "Copyright 2023 TmaxMetaverse",
       disabled: true,
-      onClick: () => {},
+      onClick: () => { },
     },
   ];
 
