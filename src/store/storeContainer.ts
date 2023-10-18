@@ -24,11 +24,13 @@ const storeContainer = {
   contextMenuStore: contextMenuStore,
   projectStateStore: projectStateStore,
   canvasHistoryStore: canvasHistoryStore,
+  sceneControlStore: sceneControlStore,
   renderStore: renderStore,
   assetLibraryStore: assetLibraryStore,
   assetCategoryStore: assetCategoryStore,
   sceneSettingStore: sceneSettingStore,
   controllerBarStore: controllerBarStore,
+  projectStore: projectStore,
   editorModeStore: editorModeStore,
 };
 

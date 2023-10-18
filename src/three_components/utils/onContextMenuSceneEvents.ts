@@ -1,4 +1,5 @@
 import storeContainer from "@/store/storeContainer";
+import { MouseEvent } from "react";
 import * as THREE from "three";
 
 const onContextMenuSceneEvents = (
@@ -11,7 +12,7 @@ const onContextMenuSceneEvents = (
     keyboardEventStore,
   } = storeContainer;
 
-  const { clientX, clientY } = mouseEventStore.currentMouseEvent[1]!;
+  const { clientX, clientY } = mouseEventStore.currentMouseEvent[1] as MouseEvent;
   mouseEventStore.clearMouseEvent();
 
   if (
