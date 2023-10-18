@@ -13,6 +13,8 @@ import assetCategoryStore, { AssetCategoryStore } from "./assetCategoryStore";
 import sceneSettingStore, { SceneSettingStoreProps } from "./sceneSettingStore";
 import controllerBarStore, { ControllerBarStoreProps } from "@/features/controllerBar/store/controllerBarStore";
 import editorModeStore, { EditorModeStoreProps } from "@store/editorModeStore";
+import sceneControlStore, { SceneControlStore } from "./sceneControlStore";
+import projectStore from "./projectStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -41,15 +43,17 @@ interface StoreContainerProps  {
   mouseEventStore: MouseEventProps;
   transformControlStore: TransformControlProps;
   keyboardEventStore: KeyboardEventProps;
-  contextMenuStore: ContextMenuRenderProps,
-  projectStateStore: ProjectStateProps,
-  canvasHistoryStore: CanvasHistoryStoreProps,
-  renderStore: RenderStoreProps,
-  assetLibraryStore: AssetLibraryStoreProps,
-  assetCategoryStore: AssetCategoryStore,
-  sceneSettingStore: SceneSettingStoreProps,
-  controllerBarStore: ControllerBarStoreProps,
-  editorModeStore: EditorModeStoreProps,
+  contextMenuStore: ContextMenuRenderProps;
+  projectStateStore: ProjectStateProps;
+  canvasHistoryStore: CanvasHistoryStoreProps;
+  renderStore: RenderStoreProps;
+  assetLibraryStore: AssetLibraryStoreProps;
+  assetCategoryStore: AssetCategoryStore;
+  sceneSettingStore: SceneSettingStoreProps;
+  controllerBarStore: ControllerBarStoreProps;
+  editorModeStore: EditorModeStoreProps;
+  projectStore: ProjectStateProps;
+  sceneControlStore : SceneControlStore
 }
 
 export type  { StoreContainerProps };
