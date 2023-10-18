@@ -44,9 +44,9 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
   return (
     <>
       <MarginBox>
-        {_props.map((prop) => {
+        {_props.map((prop, i) => {
           return (
-            <>
+            <div key={i}>
               <span key={prop["title"]}>{prop["title"]}</span>
               <Wrapper>
                 {axes.map((axis) => {
@@ -60,7 +60,7 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
                   );
                 })}
               </Wrapper>
-            </>
+            </div>
           );
         })}
       </MarginBox>

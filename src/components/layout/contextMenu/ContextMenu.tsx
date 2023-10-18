@@ -31,9 +31,10 @@ const ContextMenu = observer((props: ContextMenuProps) => {
 
   return (
     <ContextMenuWrapper $xPos={props.$xPos} $yPos={props.$yPos}>
-      {props.items.map(([title, hotKey, isEnabled]) => {
+      {props.items.map(([title, hotKey, isEnabled], i) => {
         return (
           <ContextMenuItemWrapper
+            key={i}
             onClick={() => {
               if (isEnabled) {
                 contextMenuStore.updateSelectedContextMenu(title);
