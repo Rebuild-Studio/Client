@@ -112,10 +112,4 @@ const Input = styled.input`
 
   -moz-appearance: textfield;
   appearance: textfield;
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: inner-spin-button;
-    appearance: inner-spin-button;
-    margin: 0;
-  }
 `;
