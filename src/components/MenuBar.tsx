@@ -8,6 +8,7 @@ import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
 import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
+import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton
@@ -27,8 +28,10 @@ const ConfigureBtn = () => <Menu label="설정" />;
 const HelpBtn = () => <Menu label="도움말" />;
 
 const MenuBar = () => {
+  const { eventSystem_store } = legacyStoreContainer;
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
+    interactionStore: eventSystem_store,
   });
 
   const componentData: MenuItemType[] = [

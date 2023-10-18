@@ -10,7 +10,6 @@ interface SwitchProps {
 }
 
 const Switch = ({ label, checked, onChange }: SwitchProps) => {
-  console.log(checked);
   const [isChecked, setIsChecked] = useState(checked);
   const handleSwitchChange = () => {
     onChange(!isChecked);
