@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import styled from "styled-components";
 import Panel from "../../layout/Panel/Panel";
 import Tab from "../../layout/Tab";
 import Shape from "./Shape";
@@ -14,9 +13,8 @@ import Material from "./MaterialInfo";
 import ColorHandler from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
 
-const RightPanel = observer((props: { isOpen: boolean }) => {
+const RightPanel = observer(() => {
   const { primitiveStore } = storeContainer;
-  const { isOpen } = props;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
   const [color, setColor] = useState<HsvaColor>({ h: 0, s: 0, v: 0, a: 0 });
@@ -58,62 +56,48 @@ const RightPanel = observer((props: { isOpen: boolean }) => {
     }
   }, [material]);
 
+  if (!selectedPrimitive) {
+    return null;
+  }
+
+  if (sceneSettingStore.type === "scene") {
+    return <SceneSettingPanel />;
+  }
+
   return (
-    <>
-      {selectedPrimitive ? (
-        <RightPanelContainer $isOpen={isOpen}>
-          <Panel label={"속성값"} options={undefined}>
-            <Tab
-              tabs={["오브젝트", "쉐이프"]}
-              tabContents={[
-                <>
-                  <Accordion title={"트랜스포메이션"}>
-                    <PropertyValue
-                      position={{ x: position.x, y: position.y, z: position.z }}
-                      rotation={{
-                        x: rotation.x,
-                        y: rotation.y,
-                        z: rotation.z,
-                      }}
-                      scale={{
-                        x: scale.x,
-                        y: scale.y,
-                        z: scale.z,
-                      }}
-                    />
-                  </Accordion>
-                  {material && (
-                    <Accordion title={"머터리얼"}>
-                      <Material
-                        metalness={metalness}
-                        roughness={roughness}
-                        color={color}
-                      />
-                    </Accordion>
-                  )}
-                </>,
-                <Shape />,
-              ]}
-            />
-          </Panel>
-        </RightPanelContainer>
-      ) : sceneSettingStore.type === "scene" ? (
-        <SceneSettingPanel />
-      ) : (
-        <></>
-      )}
-    </>
+    <Panel label={"속성값"} options={undefined}>
+      <Tab
+        tabs={["오브젝트", "쉐이프"]}
+        tabContents={[
+          <>
+            <Accordion title={"트랜스포메이션"}>
+              <PropertyValue
+                position={{ x: position.x, y: position.y, z: position.z }}
+                rotation={{
+                  x: rotation.x,
+                  y: rotation.y,
+                  z: rotation.z,
+                }}
+                scale={{
+                  x: scale.x,
+                  y: scale.y,
+                  z: scale.z,
+                }}
+              />
+            </Accordion>
+            <Accordion title={"머터리얼"}>
+              <Material
+                metalness={metalness}
+                roughness={roughness}
+                color={color}
+              />
+            </Accordion>
+          </>,
+          <Shape />,
+        ]}
+      />
+    </Panel>
   );
 });
 
 export default RightPanel;
-
-const RightPanelContainer = styled.div<{ $isOpen: boolean }>`
-  position: relative;
-  background-color: #282828;
-  display: flex;
-  height: ${(props) =>
-    props.$isOpen ? "calc(100vh - 180px)" : "calc(100vh - 93px)"};
-  flex-direction: column;
-  align-items: flex-end;
-`;

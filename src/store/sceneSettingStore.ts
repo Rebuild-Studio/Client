@@ -89,6 +89,9 @@ interface Scene {
   selectedBackgroundImage: BackgroundImageType;
 
   setBackgroundImage: (state: BackgroundImageType) => void;
+
+  isOpen: boolean;
+  toggleVisibility: () => void;
 }
 
 const sceneSettingStore = observable<Scene>({
@@ -208,6 +211,17 @@ const sceneSettingStore = observable<Scene>({
 
   setBackgroundImage(state) {
     sceneSettingStore.selectedBackgroundImage = state;
+  },
+
+  get isOpen(): boolean {
+    return sceneSettingStore.type === "scene";
+  },
+  toggleVisibility: () => {
+    if (sceneSettingStore.type !== "scene") {
+      sceneSettingStore.setType("scene");
+    } else {
+      sceneSettingStore.setType("none");
+    }
   },
 });
 

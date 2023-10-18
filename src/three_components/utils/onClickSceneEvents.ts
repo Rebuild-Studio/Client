@@ -10,8 +10,12 @@ import { findRootAsset, hasAsset } from "./findAsset";
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
 ) => {
-  const { primitiveStore, mouseEventStore, keyboardEventStore } =
-    storeContainer;
+  const {
+    primitiveStore,
+    mouseEventStore,
+    keyboardEventStore,
+    sceneSettingStore,
+  } = storeContainer;
 
   const currentSelectObjects = Object.values(
     primitiveStore.selectedPrimitives
@@ -27,6 +31,11 @@ const onClickSceneEvents = (
     primitiveStore.selectedGroupPrimitive[0] === ""
   ) {
     primitiveStore.clearSelectedPrimitives();
+  }
+
+  // 씬 설정 닫기
+  if (sceneSettingStore.isOpen) {
+    sceneSettingStore.toggleVisibility();
   }
 
   const selectObject = intersectObjects.find((value) => {

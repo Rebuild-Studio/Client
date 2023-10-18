@@ -1,14 +1,14 @@
 import apiModule from "@/network/module/apiModule";
-import { RequestModifyProject } from "./models/PatchProjectModels";
+import { RequestUpdateProject } from "./models/patchProject.model";
 
-const modifyProject = async (params: RequestModifyProject) => {
-  const res = await apiModule.patch(`/project/${params.projectId}`);
+const updateMxProject = async (params: RequestUpdateProject) => {
+  const res = await apiModule.patch(`/mx-project/update`, params);
 
   return res;
 };
 
-const modifyProjectServices = {
-  modifyProject: modifyProject,
+const updateProjectServices = {
+  updateMxProject: updateMxProject,
 };
 
-export default modifyProjectServices;
+export default updateProjectServices;

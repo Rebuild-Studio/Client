@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 const StyledPanel = styled.div`
   width: 285px;
-  height: calc(100vh - 220px);
+  height: 100%;
   background-color: ${bgColors[222222]};
   display: flex;
   flex-direction: column;
