@@ -149,14 +149,6 @@ const MenuBar = () => {
 
 export default MenuBar;
 
-const StyledLogo = styled.img`
-  margin-left: 10px;
-`;
-const ButtonWrapper = styled.div`
-  margin-left: auto;
-  margin-right: 10px;
-`;
-
 const StyledBar = styled.div`
   display: flex;
   justify-content: space-between;
