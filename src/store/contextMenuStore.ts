@@ -194,5 +194,5 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   return res;
 };
 
-export type { ContextMenuItemType };
+export type { ContextMenuRenderProps, ContextMenuItemType };
 export default contextMenuStore;

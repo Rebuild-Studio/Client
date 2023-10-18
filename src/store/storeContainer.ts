@@ -1,20 +1,18 @@
-import primitiveStore from "./primitiveStore";
-import selectedobjectStore from "./selectedObjectStore";
-import userStore from "./userStore";
-import mouseEventStore from "./mouseEventStore";
-import transformControlStore from "./transformControlStore";
-import keyboardEventStore from "./keyboardEventStore";
-import contextMenuStore from "./contextMenuStore";
-import projectStateStore from "./projectStateStore";
-import canvasHistoryStore from "./canvasHistoryStore";
-import sceneControlStore from "./sceneControlStore";
-import renderStore from "./renderStore";
-import assetLibraryStore from "./assetLibraryStore";
-import assetCategoryStore from "./assetCategoryStore";
-import sceneSettingStore from "./sceneSettingStore";
-import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
-import projectStore from "./projectStore";
-import editorModeStore from "@store/editorModeStore";
+import primitiveStore, { PrimitiveStore } from "./primitiveStore";
+import selectedobjectStore, { SelectedObjectProps } from "./selectedObjectStore";
+import userStore, { UserStoreProps } from "./userStore";
+import mouseEventStore, { MouseEventProps } from "./mouseEventStore";
+import transformControlStore, { TransformControlProps } from "./transformControlStore";
+import keyboardEventStore, { KeyboardEventProps } from "./keyboardEventStore";
+import contextMenuStore, { ContextMenuRenderProps } from "./contextMenuStore";
+import projectStateStore, { ProjectStateProps } from "./projectStateStore";
+import canvasHistoryStore, { CanvasHistoryStoreProps } from "./canvasHistoryStore";
+import renderStore, { RenderStoreProps } from "./renderStore";
+import assetLibraryStore, { AssetLibraryStoreProps } from "./assetLibraryStore";
+import assetCategoryStore, { AssetCategoryStore } from "./assetCategoryStore";
+import sceneSettingStore, { SceneSettingStoreProps } from "./sceneSettingStore";
+import controllerBarStore, { ControllerBarStoreProps } from "@/features/controllerBar/store/controllerBarStore";
+import editorModeStore, { EditorModeStoreProps } from "@store/editorModeStore";
 
 const storeContainer = {
   primitiveStore: primitiveStore,
@@ -36,4 +34,23 @@ const storeContainer = {
   editorModeStore: editorModeStore,
 };
 
+interface StoreContainerProps  {
+  primitiveStore: PrimitiveStore;
+  selectedObjectStore: SelectedObjectProps;
+  userStore: UserStoreProps;
+  mouseEventStore: MouseEventProps;
+  transformControlStore: TransformControlProps;
+  keyboardEventStore: KeyboardEventProps;
+  contextMenuStore: ContextMenuRenderProps,
+  projectStateStore: ProjectStateProps,
+  canvasHistoryStore: CanvasHistoryStoreProps,
+  renderStore: RenderStoreProps,
+  assetLibraryStore: AssetLibraryStoreProps,
+  assetCategoryStore: AssetCategoryStore,
+  sceneSettingStore: SceneSettingStoreProps,
+  controllerBarStore: ControllerBarStoreProps,
+  editorModeStore: EditorModeStoreProps,
+}
+
+export type  { StoreContainerProps };
 export default storeContainer;
