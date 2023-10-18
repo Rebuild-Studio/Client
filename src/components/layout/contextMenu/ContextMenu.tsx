@@ -20,7 +20,7 @@ const ContextMenu = observer((props: ContextMenuProps) => {
       default:
         return (
           <>
-            <ContextMenuItemTitle isEnabled={isEnabled}>
+            <ContextMenuItemTitle $isEnabled={isEnabled}>
               {title}
             </ContextMenuItemTitle>
             <ContextMenuItemHotKey>{hotKey}</ContextMenuItemHotKey>
@@ -30,7 +30,7 @@ const ContextMenu = observer((props: ContextMenuProps) => {
   };
 
   return (
-    <ContextMenuWrapper xPos={props.xPos} yPos={props.yPos}>
+    <ContextMenuWrapper $xPos={props.$xPos} $yPos={props.$yPos}>
       {props.items.map(([title, hotKey, isEnabled]) => {
         return (
           <ContextMenuItemWrapper
@@ -39,7 +39,7 @@ const ContextMenu = observer((props: ContextMenuProps) => {
                 contextMenuStore.updateSelectedContextMenu(title);
               }
             }}
-            isEnabled={isEnabled}
+            $isEnabled={isEnabled}
           >
             {renderContextMenuItem(title, hotKey, isEnabled)}
           </ContextMenuItemWrapper>
@@ -52,31 +52,31 @@ const ContextMenu = observer((props: ContextMenuProps) => {
 export default ContextMenu;
 
 interface ContextMenuPositionProps {
-  xPos: number;
-  yPos: number;
+  $xPos: number;
+  $yPos: number;
 }
 
 const ContextMenuWrapper = styled.div<ContextMenuPositionProps>`
   position: fixed;
-  left: ${(props) => `${props.xPos}px`};
-  top: ${(props) => `${props.yPos}px`};
+  left: ${(props) => `${props.$xPos}px`};
+  top: ${(props) => `${props.$yPos}px`};
   background-color: ${bgColors["222222"]};
   border-radius: 10px;
   z-index: 9;
 `;
 
-const ContextMenuItemWrapper = styled.div<{ isEnabled: boolean }>`
+const ContextMenuItemWrapper = styled.div<{ $isEnabled: boolean }>`
   display: flex;
   min-width: 200px;
   box-sizing: border-box;
   font-size: 12px;
-  cursor: ${({ isEnabled }) => (isEnabled ? "pointer" : "default")};
+  cursor: ${({ $isEnabled }) => ($isEnabled ? "pointer" : "default")};
 `;
 
-const ContextMenuItemTitle = styled.div<{ isEnabled: boolean }>`
+const ContextMenuItemTitle = styled.div<{ $isEnabled: boolean }>`
   flex: 1;
-  color: ${({ isEnabled }) =>
-    isEnabled ? basicColors.white : grayColors["3a3a3a"]};
+  color: ${({ $isEnabled }) =>
+    $isEnabled ? basicColors.white : grayColors["3a3a3a"]};
   font-weight: 700;
   text-align: left;
   box-sizing: border-box;
