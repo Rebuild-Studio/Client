@@ -22,6 +22,7 @@ const Scene = observer(() => {
         />
       )}
       <CustomCanvas
+        id="canvas"
         camera={{ fov: 50, position: [0, 2, 3.0] }}
         onMouseDown={(e) => {
           mouseEventStore.updateMouseEvent("onMouseDown", e);
