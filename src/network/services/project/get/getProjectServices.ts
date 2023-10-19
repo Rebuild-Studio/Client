@@ -1,5 +1,6 @@
 import apiModule from "@/network/module/apiModule";
 import { Project } from "./models/project.model";
+import { ResponseGetMxProjectList } from "./models/getMxProjectList.model";
 
 const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {
   try {
@@ -41,13 +42,12 @@ const getPmxProject = async (param: { projectId: string }) => {
   }
 };
 
-const getMyMxProjectList = async () => {
-  try {
-    const res = await apiModule.get<Project[]>(`/mx-project/load/list/mine`);
-    return res;
-  } catch (e) {
-    console.error("MX 리스트 조회 실패 : ", e);
-  }
+const getMyMxProjectList = async (): Promise<ResponseGetMxProjectList> => {
+  const res = await apiModule.get<ResponseGetMxProjectList>(
+    `/mx-project/load/list/mine`
+  );
+
+  return res.data;
 };
 
 const getMxProject = async (param: { projectId: string }) => {

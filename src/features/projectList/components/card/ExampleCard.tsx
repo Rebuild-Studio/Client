@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { StyledCardTextArea, StyledCard } from "../componentList.Styles";
+import { StyledCardTextArea, StyledCard } from "../projectList.styles";
 
 export type ExampleCardProps = {
   name: string;

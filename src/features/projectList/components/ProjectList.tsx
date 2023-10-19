@@ -3,14 +3,16 @@ import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ProjectCards } from "./ProjectCards";
-import { ExampleCards } from "./ExampleCards";
-import Tab from "../Tab";
+import { TemplateCards } from "./TemplateCards";
+import Tab from "@/components/layout/Tab";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
+import { useFetchProjectList } from "../hooks/useFetchProjectList query";
 
-export const ComponentList = observer(() => {
+const ProjectList = observer(() => {
   const { projectStateStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+  const { data } = useFetchProjectList();
 
   const onClickClose = () => {
     projectStateStore.clearModal();
@@ -39,9 +41,9 @@ export const ComponentList = observer(() => {
       </StyledTab>
       <StyledContent>
         {selectedTabIndex == 0 ? (
-          <ProjectCards componentData={[]} />
+          <ProjectCards projects={data ? data : []} />
         ) : (
-          <ExampleCards componentData={[]} />
+          <TemplateCards projects={[]} />
         )}
       </StyledContent>
       <StyledFooter>
@@ -61,6 +63,8 @@ export const ComponentList = observer(() => {
     </StyledComponentList>
   );
 });
+
+export default ProjectList;
 
 const StyledComponentList = styled.div`
   width: 70vw;
