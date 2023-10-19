@@ -52,6 +52,8 @@ const Header = styled.header``;
 const Main = styled.main`
   position: relative;
   flex: 1;
+  min-height: 0;
+  min-width: 0;
 `;
 
 const EditorWrapper = styled.div<{ $visible: boolean }>`
