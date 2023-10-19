@@ -5,9 +5,16 @@ import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ProjectCards } from "./ProjectCards";
 import { ExampleCards } from "./ExampleCards";
 import { Tabs } from "../Tabs";
+import storeContainer from "@/store/storeContainer";
+import { observer } from "mobx-react";
 
-export const ComponentList = () => {
+export const ComponentList = observer(() => {
+  const { projectStateStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
+  const onClickClose = () => {
+    projectStateStore.clearModal();
+  }
 
   return (
     <StyledComponentList>
@@ -40,27 +47,30 @@ export const ComponentList = () => {
         <MenuButton
           {...confirmButtonStyle}
           label="불러오기"
-          onClick={() => {}}
+          onClick={() => { }}
           disabled={false}
         />
         <MenuButton
           {...closeButtonStyle}
           label="닫기"
-          onClick={() => {}}
+          onClick={onClickClose}
           disabled={false}
         />
       </StyledFooter>
     </StyledComponentList>
   );
-};
+});
 
 const StyledComponentList = styled.div`
-  width: 100%;
+  width: 70vw;
+  min-width: 500px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background-color: ${bgColors[404040]};
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const StyledHeader = styled.div`

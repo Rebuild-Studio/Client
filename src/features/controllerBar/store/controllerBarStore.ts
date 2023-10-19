@@ -37,4 +37,5 @@ const controllerBarStore = observable<ControllerBarStoreProps>({
   },
 });
 
+export type { ControllerBarStoreProps }
 export default controllerBarStore;

@@ -11,11 +11,12 @@ import styled from "styled-components";
 import { bgColors, grayColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
+import AssetLibrary from "@/features/assetLibrary";
 import PointLight from "@/three_components/lights/PointLight";
 import SpotLight from "@/three_components/lights/SpotLight";
 
 const CanvasBar = observer(() => {
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, projectStateStore } = storeContainer;
   const { addToast } = useToast();
 
   return (
@@ -27,6 +28,10 @@ const CanvasBar = observer(() => {
             shadow="none"
             backgroundImage="/icons/studio/btn_library.svg"
             hoverBackgroundImage="/icons/studio/btn_library_active.svg"
+            onClick={() => {
+              projectStateStore.updateModalComponent(<AssetLibrary />);
+              projectStateStore.updateModalState(true);
+            }}
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="326px">

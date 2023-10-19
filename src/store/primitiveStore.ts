@@ -5,7 +5,7 @@ type PrimitiveType = { [key: string]: JSX.Element };
 type MeshType = { [key: string]: THREE.Mesh };
 type GroupPrimitiveType = [string, JSX.Element | null];
 
-interface PrimitiveProps {
+interface PrimitiveStore {
   primitives: PrimitiveType; // 렌더된 threeComponent들 렌더된 컴포넌트 중 일부는 이곳에 없을 수 있음 scene에 직접 다루어지기 때문
   meshes: MeshType; // 렌더된 threeComponent들의 mesh 속성 바꿀 때 사용
   selectedPrimitives: MeshType; // 렌더된 threeComponent 중 선택한 컴포넌트
@@ -22,7 +22,7 @@ interface PrimitiveProps {
   clearSelectedGroupPrimitive: () => void;
 }
 
-const primitiveStore = observable<PrimitiveProps>({
+const primitiveStore = observable<PrimitiveStore>({
   primitives: {},
   meshes: {},
   selectedPrimitives: {},
@@ -84,5 +84,5 @@ const primitiveStore = observable<PrimitiveProps>({
   },
 });
 
-export type { PrimitiveType, MeshType };
+export type { PrimitiveType, MeshType, PrimitiveStore };
 export default primitiveStore;

@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Trigger = styled.button`
+const Trigger = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

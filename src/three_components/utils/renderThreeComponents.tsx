@@ -1,3 +1,4 @@
+import { PrimitiveStore } from "@/store/primitiveStore";
 import AssetPrimitive from "../assets/AssetPrimitive";
 import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
 import Group from "../group/Group";
@@ -10,6 +11,7 @@ import CubePrimitive from "../primitives/CubePrimitive";
 import CylinderPrimitive from "../primitives/CylinderPrimitive";
 import SpherePrimitive from "../primitives/SpherePrimitive";
 import TorusPrimitive from "../primitives/TorusPrimitive";
+import { nanoid } from "nanoid";
 
 const renderPrimitive = (storeId: string, mesh: THREE.Mesh) => {
   switch (mesh.geometry.type) {
@@ -58,12 +60,55 @@ const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
   return <PointLight storeId={storeId} propMesh={propMesh} />;
 };
 
+const renderObjects = (
+  primitiveStore: PrimitiveStore,
+  meshList: THREE.Mesh[],
+  isNew?: boolean
+) => {
+  for (const mesh of meshList) {
+    const storeId = isNew ? nanoid() : mesh.userData["storeId"];
+    switch (mesh.name) {
+      case "GROUP":
+        primitiveStore.addPrimitive(
+          storeId,
+          renderGroup(storeId, mesh.clone())
+        );
+        break;
+
+      case "SELECTED_GROUP":
+        break;
+
+      case "ASSET":
+        primitiveStore.addPrimitive(
+          storeId,
+          renderAsset(storeId, mesh.clone())
+        );
+        break;
+
+      case "CUBE":
+      case "CAPSULE":
+      case "CONE":
+      case "CYLINDER":
+      case "SPHERE":
+      case "TORUS":
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPrimitive(storeId, mesh.clone())
+        );
+        break;
+      default:
+        break;
+    }
+  }
+};
+
 export {
   renderPrimitive,
   renderGroup,
   renderSelectedGroup,
   renderAsset,
   renderLocalAsset,
+  renderObjects,
   renderSpotLight,
   renderPointLight,
 };
