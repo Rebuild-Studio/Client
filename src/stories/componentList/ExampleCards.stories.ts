@@ -1,4 +1,4 @@
-import { ExampleCards } from "@/components/layout/componentList/ExampleCards";
+import { ExampleCards } from "@/features/projectList/components/TemplateCards";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

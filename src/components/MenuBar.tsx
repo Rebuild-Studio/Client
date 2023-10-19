@@ -10,8 +10,9 @@ import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import { ComponentList } from "./layout/componentList/ComponentList";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
+import ProjectList from "@/features/projectList";
+
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton
@@ -51,7 +52,7 @@ const MenuBar = observer(() => {
       label: "목록",
       disabled: false,
       onClick: () => {
-        projectStateStore.updateModalComponent(<ComponentList />);
+        projectStateStore.updateModalComponent(<ProjectList />);
         projectStateStore.updateModalState(true);
       },
     },
