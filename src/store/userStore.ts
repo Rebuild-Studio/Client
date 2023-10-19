@@ -1,7 +1,11 @@
 import { observable } from "mobx";
 
-const userStore = observable({
+type UserStoreProps = {
+  accessToken: string;
+}
+const userStore = observable<UserStoreProps>({
   accessToken: "",
 });
 
+export type { UserStoreProps }
 export default userStore;

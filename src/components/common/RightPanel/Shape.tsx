@@ -35,41 +35,31 @@ const getGeometryParameters = (
   }
 };
 
-const createGeometry = (
-  geometryType: string,
-  parameter: number[],
-  selectedPrimitive: THREE.Mesh
-) => {
-  const { addToast } = useToast();
-  try {
-    switch (geometryType) {
-      case "BoxGeometry":
-        return new THREE.BoxGeometry(...parameter);
+const createGeometry = (geometryType: string, parameter: number[]) => {
+  switch (geometryType) {
+    case "BoxGeometry":
+      return new THREE.BoxGeometry(...parameter);
 
-      case "SphereGeometry":
-        return new THREE.SphereGeometry(...parameter);
+    case "SphereGeometry":
+      return new THREE.SphereGeometry(...parameter);
 
-      case "CylinderGeometry":
-        return new THREE.CylinderGeometry(...parameter);
+    case "CylinderGeometry":
+      return new THREE.CylinderGeometry(...parameter);
 
-      case "ConeGeometry":
-        return new THREE.ConeGeometry(...parameter);
+    case "ConeGeometry":
+      return new THREE.ConeGeometry(...parameter);
 
-      case "TorusGeometry":
-        return new THREE.TorusGeometry(...parameter);
+    case "TorusGeometry":
+      return new THREE.TorusGeometry(...parameter);
 
-      case "PlaneGeometry":
-        return new THREE.PlaneGeometry(...parameter);
+    case "PlaneGeometry":
+      return new THREE.PlaneGeometry(...parameter);
 
-      case "CapsuleGeometry":
-        return new THREE.CapsuleGeometry(...parameter);
+    case "CapsuleGeometry":
+      return new THREE.CapsuleGeometry(...parameter);
 
-      default:
-        throw new Error(`Unsupported geometry type: ${geometryType}`);
-    }
-  } catch {
-    addToast("Error in createGeometry");
-    return selectedPrimitive.geometry;
+    default:
+      throw new Error(`Unsupported geometry type: ${geometryType}`);
   }
 };
 
@@ -82,6 +72,7 @@ const Shape = observer(() => {
   const [parameter, setParameter] = useState<geometryParameter>(
     getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter
   );
+  const { addToast } = useToast();
 
   const handleShapeChange = (prop: string, value: number | boolean) => {
     const updatedParameter = { ...parameter };
@@ -94,45 +85,43 @@ const Shape = observer(() => {
       paramDatas.push(parameter[pr] as number);
     }
 
-    const newGeometry = createGeometry(
-      geometryType,
-      paramDatas,
-      selectedPrimitive
-    );
-    selectedPrimitive.geometry as
-      | THREE.BoxGeometry
-      | THREE.CylinderGeometry
-      | THREE.SphereGeometry
-      | THREE.TorusGeometry
-      | THREE.PlaneGeometry
-      | THREE.CapsuleGeometry;
+    try {
+      const newGeometry = createGeometry(geometryType, paramDatas);
+      selectedPrimitive.geometry as
+        | THREE.BoxGeometry
+        | THREE.CylinderGeometry
+        | THREE.SphereGeometry
+        | THREE.TorusGeometry
+        | THREE.PlaneGeometry
+        | THREE.CapsuleGeometry;
 
-    selectedPrimitive.geometry = newGeometry;
+      selectedPrimitive.geometry = newGeometry;
+    } catch {
+      console.error();
+      addToast(`Error in handleShapeChange`);
+    }
   };
 
   return (
     <>
       <Accordion title={"쉐이프"}>
-        {dataStore[shapeName]?.map((el, index) => {
+        {dataStore[shapeName]?.map((el) => {
           return (
-            <Wrapper>
+            <Wrapper key={String(el[0])}>
               <InputWrapper>
                 {el[2] === "slider" && (
-                  <div key={index}>
-                    <Slider
-                      min={Number(el[4])}
-                      step={Number(el[6])}
-                      max={Number(el[5])}
-                      title={String(el[1])}
-                      initValue={
-                        Math.round(Number(parameter[el[0] as string]) * 100) /
-                        100
-                      }
-                      onChange={(e) => {
-                        handleShapeChange(el[0] as string, e);
-                      }}
-                    />
-                  </div>
+                  <Slider
+                    min={Number(el[4])}
+                    step={Number(el[6])}
+                    max={Number(el[5])}
+                    title={String(el[1])}
+                    initValue={
+                      Math.round(Number(parameter[el[0] as string]) * 100) / 100
+                    }
+                    onChange={(e) => {
+                      handleShapeChange(el[0] as string, e);
+                    }}
+                  />
                 )}
                 {el[2] === "toggle" && (
                   <Switch

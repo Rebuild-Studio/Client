@@ -44,4 +44,5 @@ const transformControlStore = observable<TransformControlProps>({
   },
 });
 
+export type {GizmoType, TransformControlProps}
 export default transformControlStore;

@@ -54,14 +54,15 @@ self.addEventListener(
     data: {
       type: MxWorkerRequestType;
       sceneJson: SceneJson;
+      interactionJson: any;
       projectInfo?: ProjectInfo;
     };
   }) => {
-    const { type, sceneJson, projectInfo } = e.data;
+    const { type, sceneJson, interactionJson, projectInfo } = e.data;
     switch (type) {
       case MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE:
         {
-          const mxJson = createMxJson(sceneJson);
+          const mxJson = createMxJson(sceneJson, interactionJson);
           const stringifiedJson = JSON.stringify(mxJson);
           postMessage({
             type: MX_WORKER_RESPONSE_TYPE.DOWNLOAD,
@@ -71,7 +72,7 @@ self.addEventListener(
         break;
       case MX_WORKER_REQUEST_TYPE.EXPORT_JSON_POST:
         {
-          const mxJson = createMxJson(sceneJson);
+          const mxJson = createMxJson(sceneJson, interactionJson);
           try {
             if (!projectInfo) throw new Error("프로젝트 정보가 없습니다.");
             await requestCreateProject(projectInfo, mxJson);

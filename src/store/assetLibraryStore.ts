@@ -23,9 +23,9 @@ interface AssetLibraryItems {
   clearSelectedAssets: () => void;
 }
 
-type AssetLibraryStore = AssetLibraryControl & AssetLibraryItems;
+type AssetLibraryStoreProps = AssetLibraryControl & AssetLibraryItems;
 
-const assetLibraryStore = observable<AssetLibraryStore>({
+const assetLibraryStore = observable<AssetLibraryStoreProps>({
   //assetLibrary Controls
   isAssetLibraryVisible: false,
   currentPage: 1,
@@ -72,4 +72,5 @@ const assetLibraryStore = observable<AssetLibraryStore>({
   },
 });
 
+export type {AssetLibraryStoreProps}
 export default assetLibraryStore;
