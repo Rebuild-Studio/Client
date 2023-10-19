@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { observer } from "mobx-react";
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import { basicColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { CanvasHistoryType } from "@/store/canvasHistoryStore";
 import Tab from "../../Tab";
