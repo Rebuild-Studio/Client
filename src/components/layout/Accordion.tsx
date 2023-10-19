@@ -82,7 +82,7 @@ const AccordionContent = styled.div<{
   $maxHeight: number | null;
 }>`
   overflow: hidden;
-  max-height: ${(props) => props.maxHeight};
+  max-height: ${(props) => props.$maxHeight};
   transition: max-height 0.3s ease-in-out;
-  opacity: ${(props) => (props.isOpen ? "1" : "0")};
+  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
 `;
