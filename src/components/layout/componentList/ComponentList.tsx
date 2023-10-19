@@ -4,7 +4,7 @@ import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ProjectCards } from "./ProjectCards";
 import { ExampleCards } from "./ExampleCards";
-import { Tabs } from "../Tabs";
+import Tab from "../Tab";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 
@@ -14,7 +14,11 @@ export const ComponentList = observer(() => {
 
   const onClickClose = () => {
     projectStateStore.clearModal();
-  }
+  };
+
+  const handleTabChange = (index: number) => {
+    setSelectedTabIndex(index);
+  };
 
   return (
     <StyledComponentList>
@@ -23,17 +27,14 @@ export const ComponentList = observer(() => {
         {/* <input type="text" placeholder="에셋을 입력해주세요"></input> */}
       </StyledHeader>
       <StyledTab>
-        <Tabs
-          labelList={["내 컴포넌트", "컴포넌트 템플릿"]}
-          selectedColor={basicColors.white}
+        <Tab
+          tabs={["내 컴포넌트", "컴포넌트 템플릿"]}
+          activeTab={selectedTabIndex}
+          onTabChange={handleTabChange}
           backgroundColor={bgColors[343434]}
-          color={grayColors[535353]}
           underbarColor={basicColors.lightLimeGreen}
           width="400px"
           height="50px"
-          onChange={(idx) => {
-            setSelectedTabIndex(idx);
-          }}
         />
       </StyledTab>
       <StyledContent>
@@ -47,7 +48,7 @@ export const ComponentList = observer(() => {
         <MenuButton
           {...confirmButtonStyle}
           label="불러오기"
-          onClick={() => { }}
+          onClick={() => {}}
           disabled={false}
         />
         <MenuButton
