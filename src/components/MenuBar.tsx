@@ -8,6 +8,9 @@ import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
 import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
+import storeContainer from "@/store/storeContainer";
+import { observer } from "mobx-react";
+import { ComponentList } from "./layout/componentList/ComponentList";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 
 const Menu = ({ label }: { label: string }) => (
@@ -27,7 +30,8 @@ const PlugInBtn = () => <Menu label="플러그인" />;
 const ConfigureBtn = () => <Menu label="설정" />;
 const HelpBtn = () => <Menu label="도움말" />;
 
-const MenuBar = () => {
+const MenuBar = observer(() => {
+  const { projectStateStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
@@ -47,7 +51,8 @@ const MenuBar = () => {
       label: "목록",
       disabled: false,
       onClick: () => {
-        alert("목록");
+        projectStateStore.updateModalComponent(<ComponentList />);
+        projectStateStore.updateModalState(true);
       },
     },
     {
@@ -145,7 +150,7 @@ const MenuBar = () => {
       </Right>
     </StyledBar>
   );
-};
+});
 
 export default MenuBar;
 
