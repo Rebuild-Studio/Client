@@ -1,9 +1,5 @@
 import Modal from "@/components/layout/modal/Modal";
-import { basicColors } from "@/resources/colors/colors";
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import { styled } from "styled-components";
 
 const meta = {
   component: Modal,
@@ -16,16 +12,16 @@ type Story = StoryObj<typeof Modal>;
 
 const BaseModal = {
   render: () => {
-    const [isOpened, setIsOpened] = useState(false);
+    // const [isOpened, setIsOpened] = useState(false);
 
-    const openModal = () => {
-      setIsOpened(true);
-    };
-    const TestComponent = styled.div`
-      width: 900px;
-      height: 500px;
-      background-color: ${basicColors.white};
-    `;
+    // const openModal = () => {
+    //   setIsOpened(true);
+    // };
+    // const TestComponent = styled.div`
+    //   width: 900px;
+    //   height: 500px;
+    //   background-color: ${basicColors.white};
+    // `;
 
     return (
       <>
