@@ -26,8 +26,10 @@ const cloneGroupChildren = (objects: THREE.Mesh, parent?: THREE.Mesh) => {
 
 const copyObject = (mesh: THREE.Mesh) => {
   const storeId = nanoid();
-  const geometry = mesh.geometry.clone();
-  const material = (mesh.material as THREE.Material).clone();
+  const geometry = mesh.geometry ? mesh.geometry.clone() : undefined;
+  const material = mesh.material
+    ? (mesh.material as THREE.Material).clone()
+    : undefined;
   const newMesh = new THREE.Mesh(geometry, material);
   newMesh.scale.copy(mesh.scale);
   newMesh.rotation.copy(mesh.rotation);

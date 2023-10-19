@@ -8,7 +8,10 @@ const findRootGroup = (
     return;
   }
 
-  if (intersectObject.parent?.type === "Scene") {
+  if (
+    intersectObject.parent?.type === "Scene" &&
+    intersectObject.name === "GROUP"
+  ) {
     return intersectObject;
   }
 

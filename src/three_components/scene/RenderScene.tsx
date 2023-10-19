@@ -53,7 +53,9 @@ const RenderScene = observer(() => {
         return mouseEventStore.currentMouseEvent;
       },
       (mouseEvent) => {
-        const intersectObjects = raycaster.intersectObject(scene);
+        const intersectObjects = raycaster.intersectObjects(
+          Object.values(primitiveStore.meshes)
+        );
         switch (mouseEvent[0]) {
           case "onMouseDown": {
             onMouseDownSceneEvents();
@@ -122,13 +124,11 @@ const RenderScene = observer(() => {
       </EffectComposer>
 
       {/* 일반 Object 용 */}
-      <Gizmo
-        storeId={
-          primitiveStore.meshes[
-            Object.keys(primitiveStore.selectedPrimitives)[0]
-          ] && Object.keys(primitiveStore.selectedPrimitives)[0]
-        }
-      />
+      {primitiveStore.meshes[
+        Object.keys(primitiveStore.selectedPrimitives)[0]
+      ] && (
+        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      )}
 
       {/* Group 자식용 */}
       <ChildGizmo />

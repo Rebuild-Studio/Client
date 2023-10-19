@@ -1,6 +1,7 @@
 import storeContainer from "@/store/storeContainer";
 import { MouseEvent } from "react";
 import * as THREE from "three";
+import { hasAsset } from "./findAsset";
 
 const onContextMenuSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -27,10 +28,13 @@ const onContextMenuSceneEvents = (
     return primitiveStore.meshes[value.object.userData["storeId"]];
   });
 
-  // 그룹 찾기
+  // 그룹 애셋 찾기
   const selectGroupObject = findRootGroup(
     intersectObjects.find((value) => {
-      return value.object.parent?.name === "GROUP";
+      return (
+        value.object.parent?.name === "GROUP" ||
+        hasAsset(value.object, value.object)
+      );
     })?.object
   );
 

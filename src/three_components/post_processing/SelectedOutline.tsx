@@ -20,6 +20,14 @@ const SelectedOutline = () => {
         case "SELECTED_GROUP": {
           break;
         }
+        case "ASSET": {
+          value.traverse((child) => {
+            if (child.type === "Mesh") {
+              meshes.push(child);
+            }
+          });
+          break;
+        }
         default: {
           meshes.push(value);
         }
