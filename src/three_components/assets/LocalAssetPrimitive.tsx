@@ -25,19 +25,21 @@ const LocalAssetPrimitveProps = observer(
       object = loadedData;
     }
 
-    object.name = "ASSET";
-    object.userData["storeId"] = storeId;
-    object.userData["isLocked"] = false;
+    const mesh = new THREE.Mesh();
+
+    mesh.name = "ASSET";
+    mesh.userData["storeId"] = storeId;
+    mesh.userData["isLocked"] = false;
 
     useEffect(() => {
-      primitiveStore.updatePrimitive(
-        object.userData["storeId"],
-        object as THREE.Mesh
-      );
-      canvasHistoryStore.differAdd(object.userData["storeId"]);
+      mesh.attach(object);
+      primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
+      canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }, []);
 
-    return <primitive ref={ref} object={object} />;
+    return (
+      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? object} />
+    );
   }
 );
 

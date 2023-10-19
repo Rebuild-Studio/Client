@@ -37,7 +37,9 @@ const AssetPrimitive = observer(
       canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }, []);
 
-    return <primitive ref={ref} object={mesh} />;
+    return (
+      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? mesh} />
+    );
   }
 );
 
