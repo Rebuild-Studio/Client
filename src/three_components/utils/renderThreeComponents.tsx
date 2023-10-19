@@ -2,6 +2,8 @@ import AssetPrimitive from "../assets/AssetPrimitive";
 import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
 import Group from "../group/Group";
 import SelectedGroup from "../group/SelectedGroup";
+import PointLight from "../lights/PointLight";
+import SpotLight from "../lights/SpotLight";
 import CapsulePrimitive from "../primitives/CapsulePrimitive";
 import ConePrimitive from "../primitives/ConePrimitive";
 import CubePrimitive from "../primitives/CubePrimitive";
@@ -48,10 +50,20 @@ const renderLocalAsset = (storeId: string, file: File) => {
   return <LocalAssetPrimitive storeId={storeId} file={file} />;
 };
 
+const renderSpotLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <SpotLight storeId={storeId} propMesh={propMesh} />;
+};
+
+const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <PointLight storeId={storeId} propMesh={propMesh} />;
+};
+
 export {
   renderPrimitive,
   renderGroup,
   renderSelectedGroup,
   renderAsset,
   renderLocalAsset,
+  renderSpotLight,
+  renderPointLight,
 };

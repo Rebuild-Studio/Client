@@ -19,9 +19,9 @@ const SpotLight = observer((props: PrimitiveProps) => {
   material.transparent = true;
 
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "ASSET";
+  mesh.name = "SPOT_LIGHT";
   mesh.userData["storeId"] = props.storeId;
-  mesh.userData["light"] = "SPOT_LIGHT";
+  mesh.userData["isLocked"] = false;
 
   useEffect(() => {
     mesh.attach(spotLightGlb.children[0].children[0]);

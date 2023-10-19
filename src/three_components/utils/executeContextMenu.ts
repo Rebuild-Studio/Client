@@ -3,7 +3,9 @@ import { nanoid } from "nanoid";
 import {
   renderAsset,
   renderGroup,
+  renderPointLight,
   renderPrimitive,
+  renderSpotLight,
 } from "./renderThreeComponents";
 import { MeshType } from "@/store/primitiveStore";
 import * as THREE from "three";
@@ -28,6 +30,22 @@ const executeContextMenu = (scene: THREE.Scene) => {
     case "붙여넣기":
       Object.values(projectStateStore.currentCopyPrimitive).forEach((value) => {
         switch (value.name) {
+          case "POINT_LIGHT": {
+            const { storeId, newGroup } = copyGroup(value);
+            primitiveStore.addPrimitive(
+              storeId,
+              renderPointLight(storeId, newGroup)
+            );
+            break;
+          }
+          case "SPOT_LIGHT": {
+            const { storeId, newGroup } = copyGroup(value);
+            primitiveStore.addPrimitive(
+              storeId,
+              renderSpotLight(storeId, newGroup)
+            );
+            break;
+          }
           case "ASSET": {
             const { storeId, newGroup } = copyGroup(value);
             primitiveStore.addPrimitive(
@@ -59,6 +77,8 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
         switch (value.name) {
+          case "POINT_LIGHT":
+          case "SPOT_LIGHT":
           case "ASSET":
           case "GROUP": {
             const { storeId, newGroup } = copyGroup(value);

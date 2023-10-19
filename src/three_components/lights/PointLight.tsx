@@ -18,9 +18,9 @@ const PointLight = observer((props: PrimitiveProps) => {
   material.wireframe = true;
   material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "ASSET";
+  mesh.name = "POINT_LIGHT";
   mesh.userData["storeId"] = props.storeId;
-  mesh.userData["light"] = "POINT_LIGHT";
+  mesh.userData["isLocked"] = false;
 
   useEffect(() => {
     mesh.attach(pointLightGlb.children[0].children[0]);

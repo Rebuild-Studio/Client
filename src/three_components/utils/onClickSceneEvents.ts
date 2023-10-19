@@ -43,15 +43,14 @@ const onClickSceneEvents = (
   });
 
   // 그룹 애셋 찾기
-  const selectChildObject = intersectObjects.find((value) => {
-    return (
+  const selectChildObject = intersectObjects.find(
+    (value) =>
       value.object.parent?.name === "GROUP" ||
       hasAsset(value.object, value.object)
-    );
-  })?.object;
+  )?.object;
 
   const selectRootObject = findRootGroup(selectChildObject);
-  console.log(intersectObjects);
+
   if (selectRootObject) {
     const selectRootObjectStoreId: string =
       selectRootObject.userData["storeId"];
