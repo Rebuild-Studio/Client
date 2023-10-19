@@ -14,31 +14,35 @@ const AssetPrimitive = observer(
   ({ url, propMesh, storeId }: AssetPrimitveProps) => {
     const ref = useRef();
     const { primitiveStore } = storeContainer;
-    let mesh: THREE.Mesh;
 
+    let object: THREE.Object3D;
     if (url) {
-      const group = useServerGLTFLoader(url).scene;
-      mesh = (group.children[0].clone() as THREE.Mesh) ?? propMesh;
+      const loadedData = useServerGLTFLoader(url);
+      if (!(loadedData instanceof THREE.Group)) {
+        object = loadedData.scene;
+      } else {
+        object = loadedData;
+      }
     } else if (propMesh) {
-      mesh = propMesh;
+      object = propMesh;
     } else {
       return <></>;
     }
+
+    const mesh = new THREE.Mesh();
 
     mesh.name = "ASSET";
     mesh.userData["storeId"] = storeId;
     mesh.userData["isLocked"] = false;
 
     useEffect(() => {
-      primitiveStore.updatePrimitive(
-        mesh.userData["storeId"],
-        mesh as THREE.Mesh
-      );
+      mesh.attach(object);
+      primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
       canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }, []);
 
     return (
-      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? mesh} />
+      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? object} />
     );
   }
 );
