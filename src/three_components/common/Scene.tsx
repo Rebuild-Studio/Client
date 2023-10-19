@@ -17,8 +17,8 @@ const Scene = observer(() => {
       {contextMenuStore.isContextMenuOpened && (
         <ContextMenu
           items={contextMenuStore.currentContextMenuType!.items}
-          xPos={contextMenuStore.currentContextMenuType!.xPos}
-          yPos={contextMenuStore.currentContextMenuType!.yPos}
+          $xPos={contextMenuStore.currentContextMenuType!.xPos}
+          $yPos={contextMenuStore.currentContextMenuType!.yPos}
         />
       )}
       <CustomCanvas
