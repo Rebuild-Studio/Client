@@ -31,14 +31,16 @@ const copyObject = (mesh: THREE.Mesh) => {
     ? (mesh.material as THREE.Material).clone()
     : undefined;
   const newMesh = new THREE.Mesh(geometry, material);
-  newMesh.scale.copy(mesh.scale);
-  newMesh.rotation.copy(mesh.rotation);
   newMesh.name = mesh.name;
   newMesh.userData["storeId"] = storeId;
 
   if (mesh.parent && mesh.parent?.type !== "Scene") {
+    newMesh.scale.copy(mesh.getWorldScale(new THREE.Vector3()));
+    newMesh.quaternion.copy(mesh.getWorldQuaternion(new THREE.Quaternion()));
     newMesh.position.copy(mesh.getWorldPosition(new THREE.Vector3()));
   } else {
+    newMesh.scale.copy(mesh.scale);
+    newMesh.rotation.copy(mesh.rotation);
     newMesh.position.copy(mesh.position);
   }
 

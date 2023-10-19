@@ -22,7 +22,7 @@ const SelectedOutline = () => {
         }
         case "ASSET": {
           value.traverse((child) => {
-            if (child.type === "Mesh") {
+            if ((child as THREE.Mesh).isMesh) {
               meshes.push(child);
             }
           });

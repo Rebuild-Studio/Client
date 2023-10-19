@@ -98,7 +98,7 @@ const onClickSceneEvents = (
   if (selectChildObject && !selectRootObject) {
     const assetRoot = findRootAsset(selectChildObject);
     const assetRootStoreId = assetRoot?.userData["storeId"];
-
+    console.log(assetRoot);
     primitiveStore.addSelectedPrimitives(
       assetRootStoreId,
       primitiveStore.meshes[assetRootStoreId]
