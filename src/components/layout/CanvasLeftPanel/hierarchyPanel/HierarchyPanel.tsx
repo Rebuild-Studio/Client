@@ -1,36 +1,41 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
-import { Tabs } from "../../Tabs";
+import Tab from "../../Tab";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
 import { MeshType } from "@/store/primitiveStore";
 import { HierarchyElement } from "./HierarchyElement";
 import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {
   meshes: MeshType;
 };
 
 export const HierarchyPanel = observer(({ meshes }: Props) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const handleTabChange = (index: number) => {
+    //Todo: 인터렉션 에디터 붙으면 if문 지우기(이정우)
+    if (index === 0) setActiveTab(index);
+  };
+
   return (
     <StyledPanel>
       <StyledHeader>계층 구조</StyledHeader>
       <StyledTab>
-        <Tabs
-          labelList={["캔버스", "인터렉션 에디터"]}
-          width="100%"
-          height="30px"
-          backgroundColor={bgColors[222222]}
-          selectedColor={basicColors.white}
-          underbarColor={basicColors.white}
+        <Tab
+          tabs={["캔버스", "인터렉션 에디터"]}
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
         />
       </StyledTab>
-      <HierarchyList>
-        {Object.values(meshes)
-          .filter((mesh) => mesh.name !== "SELECTED_GROUP")
-          .map((mesh) => (
-            <HierarchyElement depth={0} key={mesh.uuid} mesh={mesh} />
-          ))}
-      </HierarchyList>
+      {activeTab === 0 && (
+        <HierarchyList>
+          {Object.values(meshes)
+            .filter((mesh) => mesh.name !== "SELECTED_GROUP")
+            .map((mesh) => (
+              <HierarchyElement depth={0} key={mesh.uuid} mesh={mesh} />
+            ))}
+        </HierarchyList>
+      )}
     </StyledPanel>
   );
 });
