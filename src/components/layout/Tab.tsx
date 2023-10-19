@@ -1,43 +1,59 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
+import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
+import { CSSHexColor } from "@/types/style/cssUnits";
 
 interface TabProps {
   tabs: string[];
-  tabContents: React.ReactNode[];
+  activeTab: number;
+  onTabChange: (index: number) => void;
+  width?: string;
+  height?: string;
+  backgroundColor?: CSSHexColor;
+  underbarColor?: CSSHexColor;
 }
 
-const Tab = ({ tabs, tabContents }: TabProps) => {
-  const [activeTab, setActiveTab] = useState(0);
-  const handleTabClick = (index: number) => {
-    setActiveTab(index);
-  };
-
+const Tab = ({
+  tabs,
+  activeTab,
+  onTabChange,
+  width = "100%",
+  backgroundColor = bgColors[222222],
+  underbarColor = basicColors.white,
+}: TabProps) => {
   return (
-    <Wrapper>
+    <Wrapper $backgroundColor={backgroundColor} $width={width}>
       <TabsContainer>
         {tabs.map((tab, index) => (
           <TabButton
             key={index}
             $isActive={index === activeTab}
-            onClick={() => handleTabClick(index)}
+            onClick={() => onTabChange(index)}
           >
             {tab}
           </TabButton>
         ))}
       </TabsContainer>
-      <TabIndicator $activeTab={activeTab} $numberOfTabs={tabs.length} />
-      <TabContent>{tabContents[activeTab]}</TabContent>
+      <TabIndicator
+        $activeTab={activeTab}
+        $numberOfTabs={tabs.length}
+        $underbarColor={underbarColor}
+      />
     </Wrapper>
   );
 };
 
 export default Tab;
 
-const Wrapper = styled.div`
+type CSSStyledTabProps = {
+  $backgroundColor: CSSHexColor;
+  $width: string;
+};
+
+const Wrapper = styled.div<CSSStyledTabProps>`
+  width: ${({ $width }) => $width};
   display: flex;
   flex-direction: column;
-  width: 100%;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
 const TabsContainer = styled.div`
@@ -49,7 +65,11 @@ const TabsContainer = styled.div`
 const TabButton = styled.button<{ $isActive: boolean }>`
   width: 100%;
   padding: 10px;
-  color: ${basicColors.white};
+  color: ${({ $isActive }) =>
+    $isActive ? basicColors.white : grayColors.panelGray};
+  font-family: SpoqaHanSansNeo;
+  font-size: 13px;
+  font-weight: 500;
   border: none;
   cursor: pointer;
   outline: none;
@@ -57,14 +77,14 @@ const TabButton = styled.button<{ $isActive: boolean }>`
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
-const TabIndicator = styled.div<{ $activeTab: number; $numberOfTabs: number }>`
+const TabIndicator = styled.div<{
+  $activeTab: number;
+  $numberOfTabs: number;
+  $underbarColor: CSSHexColor;
+}>`
   height: 2px;
-  background-color: ${basicColors.primary};
+  background-color: ${({ $underbarColor }) => $underbarColor};
   width: calc(100% / (${(props) => props.$numberOfTabs}));
   transform: translateX(${(props) => `calc(${props.$activeTab * 100}%)`});
   transition: transform 0.3s;
-`;
-
-const TabContent = styled.div`
-  padding: 10px;
 `;
