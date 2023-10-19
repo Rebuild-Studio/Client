@@ -41,6 +41,7 @@ const TabsContainer = styled.div`
 `;
 
 const TabButton = styled.button<{ $isActive: boolean }>`
+const TabButton = styled.button<{ $isActive: boolean }>`
   width: 100%;
   padding: 10px;
   color: ${({ $isActive }) =>
@@ -55,6 +56,7 @@ const TabButton = styled.button<{ $isActive: boolean }>`
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
+const TabIndicator = styled.div<{ $activeTab: number; $numberOfTabs: number }>`
 const TabIndicator = styled.div<{ $activeTab: number; $numberOfTabs: number }>`
   height: 2px;
   background-color: ${basicColors.white};

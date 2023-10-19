@@ -15,4 +15,5 @@ const selectedObjectStore = observable<SelectedObjectProps>({
     this.selectedMaterial = "MX_mat_defalt_white_01";
   },
 });
+export type { SelectedObjectProps }
 export default selectedObjectStore;

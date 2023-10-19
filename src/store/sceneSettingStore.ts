@@ -21,7 +21,7 @@ interface SceneSettingColor {
   a: number;
 }
 
-interface Scene {
+interface SceneSettingStoreProps {
   type: SceneType;
 
   setType(type: SceneType): void;
@@ -94,7 +94,7 @@ interface Scene {
   toggleVisibility: () => void;
 }
 
-const sceneSettingStore = observable<Scene>({
+const sceneSettingStore = observable<SceneSettingStoreProps>({
   type: "none",
 
   setType(type) {
@@ -225,4 +225,5 @@ const sceneSettingStore = observable<Scene>({
   },
 });
 
+export type { SceneSettingStoreProps }
 export default sceneSettingStore;

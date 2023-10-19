@@ -14,4 +14,5 @@ const editorModeStore = observable<EditorModeStoreProps>({
   },
 });
 
+export type { EditorModeStoreProps }
 export default editorModeStore;

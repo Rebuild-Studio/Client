@@ -8,6 +8,9 @@ import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
 import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
+import storeContainer from "@/store/storeContainer";
+import { observer } from "mobx-react";
+import { ComponentList } from "./layout/componentList/ComponentList";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 
 const Menu = ({ label }: { label: string }) => (
@@ -19,7 +22,7 @@ const Menu = ({ label }: { label: string }) => (
     color={basicColors.white}
     fontSize="small"
     label={label}
-    onClick={() => { }}
+    onClick={() => {}}
   />
 );
 const ComponentBtn = () => <Menu label="컴포넌트" />;
@@ -27,7 +30,8 @@ const PlugInBtn = () => <Menu label="플러그인" />;
 const ConfigureBtn = () => <Menu label="설정" />;
 const HelpBtn = () => <Menu label="도움말" />;
 
-const MenuBar = () => {
+const MenuBar = observer(() => {
+  const { projectStateStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
@@ -47,7 +51,8 @@ const MenuBar = () => {
       label: "목록",
       disabled: false,
       onClick: () => {
-        alert("목록");
+        projectStateStore.updateModalComponent(<ComponentList />);
+        projectStateStore.updateModalState(true);
       },
     },
     {
@@ -70,29 +75,29 @@ const MenuBar = () => {
     {
       label: "GLB로 내보내기(선택)",
       disabled: true,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "GLB로 내보내기(전체)",
       disabled: true,
-      onClick: () => { },
+      onClick: () => {},
     },
   ];
   const configureData: MenuItemType[] = [
     {
       label: "인터페이스",
       disabled: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "단축키",
       disabled: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "자동저장",
       disabled: true,
-      onClick: () => { },
+      onClick: () => {},
     },
   ];
 
@@ -100,29 +105,29 @@ const MenuBar = () => {
     {
       label: "사용 안내서",
       disabled: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "새로운 기능",
       disabled: true,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "오류 보고/개선 제안",
       disabled: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     {
       label: "Copyright 2023 TmaxMetaverse",
       disabled: true,
-      onClick: () => { },
+      onClick: () => {},
     },
   ];
 
   return (
     <StyledBar>
       <Left>
-        <img src="/icons/studio/MX로고.png" alt="logo" />
+        <img src="/icons/studio/MX로고.svg" alt="logo" />
         <BottomPopOver triggerComponent={<ComponentBtn />}>
           <SubMenu menuItems={componentData} />
         </BottomPopOver>
@@ -139,13 +144,13 @@ const MenuBar = () => {
       <Right>
         <IconButton
           Icon={() => (
-            <img src={"/icons/studio/icon_logout.png"} alt="로그아웃" />
+            <img src={"/icons/studio/icon_logout.svg"} alt="로그아웃" />
           )}
         />
       </Right>
     </StyledBar>
   );
-};
+});
 
 export default MenuBar;
 
