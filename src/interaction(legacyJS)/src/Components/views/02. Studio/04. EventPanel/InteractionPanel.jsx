@@ -187,8 +187,7 @@ const InteractionPanel = observer(() => {
       sx={{
         position: "fixed",
         width: "100%",
-        height: `calc(100vh - 78px)`,
-        zIndex: 20,
+        height: "100%",
         overflow: "clip",
         backgroundColor: "#000",
         userSelect: "none",
@@ -206,7 +205,6 @@ const InteractionPanel = observer(() => {
           position: "fixed",
           bottom: 0,
           display: "flex",
-          zIndex: "30",
         }}
       >
         <History />

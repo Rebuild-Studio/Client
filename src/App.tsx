@@ -7,31 +7,31 @@ import ToastContainer from "@components/common/ToastContainer";
 import Modal from "./components/layout/modal/Modal";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { useState } from "react";
 import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
-import InteractionEditor from "@/interaction(legacyJS)/src/App";
 import editorModeStore from "@store/editorModeStore.ts";
+import InteractionTopBar from "@/interaction(legacyJS)/src/Components/views/00. Common/TopBar_V";
+import InteractionPanel from "@/interaction(legacyJS)/src/Components/views/02. Studio/04. EventPanel/InteractionPanel.jsx";
 
 const App = observer(() => {
   const { projectStateStore } = storeContainer;
-  const [canvasBarOpen, setCanvasBarOpen] = useState(true);
-  const { editorMode } = editorModeStore;
+  const { editorMode, interactionBarOpen } = editorModeStore;
 
   return (
     <>
       <AppWrapper>
         <Header>
           <MenuBar />
-          <TopBar isOpen={canvasBarOpen} setOpen={setCanvasBarOpen} />
+          <TopBar />
         </Header>
         <Main>
           <EditorWrapper $visible={editorMode === "canvas"}>
             <Scene />
-            <Tools canvasBarIsOpen={canvasBarOpen} />
+            <Tools />
           </EditorWrapper>
           <EditorWrapper $visible={editorMode === "interaction"}>
-            <InteractionEditor />
+            {interactionBarOpen && <InteractionTopBar />}
+            <InteractionPanel />
           </EditorWrapper>
         </Main>
       </AppWrapper>
@@ -59,4 +59,5 @@ const Main = styled.main`
 const EditorWrapper = styled.div<{ $visible: boolean }>`
   display: ${({ $visible }) => ($visible ? "block" : "none")};
   height: 100%;
+  position: relative;
 `;

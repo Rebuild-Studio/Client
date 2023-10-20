@@ -1,37 +1,26 @@
-import { AppBar, Box } from "@mui/material";
+import { AppBar, Box } from "@mui/material"; // 지우면 에러..
 import React from "react";
 import { observer } from "mobx-react-lite";
 import TopBarEvent from "./Interaction/TopBarInteraction";
+import styled from "styled-components";
 
 const TopBar = observer(() => {
   return (
-    <Box sx={style.wrapper}>
-      <AppBar
-        sx={style.appBar}
-        onDragStart={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <TopBarEvent />
-      </AppBar>
-    </Box>
+    <Wrapper
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <TopBarEvent />
+    </Wrapper>
   );
 });
 export default TopBar;
 
-const style = {
-  wrapper: {
-    width: "100%",
-    height: "78px",
-  },
-
-  appBar: {
-    width: "100%",
-    boxShadow: 0,
-    overflow: "hidden",
-    display: "flex",
-    justifyContent: "flex-start",
-    backgroundColor: "transparent",
-    userSelect: "none",
-  },
-};
+const Wrapper = styled.div`
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+`;
