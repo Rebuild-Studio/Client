@@ -19,7 +19,6 @@ export const useFetchProject = (projectType: ProjectType): UseFetchProject => {
   const [error, setError] = useState<string>("");
 
   const fetchProject = useCallback(async () => {
-    console.log(projectStore.projectId);
     const reqParam: RequestGetMxProject = {
       projectId: projectStore.projectId,
     };
@@ -30,6 +29,7 @@ export const useFetchProject = (projectType: ProjectType): UseFetchProject => {
       }
       projectStore.setMxJson(res.data.result.mxJson);
     } catch (e: unknown) {
+      // api에러 핸들링은 훅에서 하고, 컴포넌트에서는 toast로 내보내기
       if (e instanceof Error) {
         e?.message && setError(e.message);
       } else {

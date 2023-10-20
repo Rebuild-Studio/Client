@@ -7,6 +7,7 @@ import {
   MX_WORKER_RESPONSE_TYPE,
 } from "./workerScript";
 import EventSystemStore from "@/interaction(legacyJS)/src/Components/stores/EventSystem_Store";
+import { toJS } from "mobx";
 
 const exportJsonFile = async (
   scene: THREE.Scene,
@@ -15,7 +16,7 @@ const exportJsonFile = async (
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
   const mxWorker = new MxWorker();
-  interactionJson = JSON.parse(JSON.stringify(interactionJson));
+  interactionJson = toJS(interactionJson);
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
   mxWorker.postMessage({
