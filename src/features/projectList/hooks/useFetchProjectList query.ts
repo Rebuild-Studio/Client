@@ -7,7 +7,7 @@ import { Project, ProjectList } from "../types/project";
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   const mappedData: ProjectList<Project> = data.result.map((project) => {
     return {
-      id: project.id,
+      id: project.mxId,
       name: project.mxName,
       thumbnail: project.thumbnail,
       savedAt: project.updatedAt,

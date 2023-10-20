@@ -13,7 +13,7 @@ interface Project {
  * @description 프로젝트 리스트 조회 시 사용되는 인터페이스
  */
 interface ProjectInfo {
-  id: string;
+  mxId: string; //TODO : mx pmx 모델 분리
   mxName: string;
   thumbnail: string;
   userId: string;

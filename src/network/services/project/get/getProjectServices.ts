@@ -46,7 +46,12 @@ const getMyPmxProjectList = async () => {
 const getPmxProject = async (param: RequestGetPmxProject) => {
   try {
     const res = await apiModule.get<ResponseGetPmxProject>(
-      `/pmx-project/load/${param.projectId}`
+      `/pmx-project/load`,
+      {
+        params: {
+          projectId: param.projectId,
+        },
+      }
     );
     return res;
   } catch (e) {
@@ -64,9 +69,11 @@ const getMyMxProjectList = async (): Promise<ResponseGetMxProjectList> => {
 
 const getMxProject = async (param: RequestGetMxProject) => {
   try {
-    const res = await apiModule.get<ResponseGetMxProject>(
-      `/mx-project/load/${param.projectId}`
-    );
+    const res = await apiModule.get<ResponseGetMxProject>(`/mx-project/load`, {
+      params: {
+        projectId: param.projectId,
+      },
+    });
     return res;
   } catch (e) {
     console.error("MX 조회 실패 : ", e);
