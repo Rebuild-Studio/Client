@@ -18,7 +18,7 @@ const ToastContainer = ({ position = "topCenter" }: ToastContainerProps) => {
   }
 
   return createPortal(
-    <StyledToastContainer position={position}>
+    <StyledToastContainer $position={position}>
       {toastMessages
         .map((message) => (
           <Toast
@@ -33,9 +33,9 @@ const ToastContainer = ({ position = "topCenter" }: ToastContainerProps) => {
   );
 };
 
-const StyledToastContainer = styled.div<{ position: ToastPosition }>`
+const StyledToastContainer = styled.div<{ $position: ToastPosition }>`
   position: fixed;
-  ${({ position }) => ({ ...POSITION_VARIANTS[position] })};
+  ${({ $position }) => ({ ...POSITION_VARIANTS[$position] })};
   z-index: 1000;
   display: flex;
   flex-direction: column;

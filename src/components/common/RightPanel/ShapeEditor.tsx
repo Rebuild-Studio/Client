@@ -63,7 +63,7 @@ const createGeometry = (geometryType: string, parameter: number[]) => {
   }
 };
 
-const Shape = observer(() => {
+const ShapeEditor = observer(() => {
   const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const shapeName =
@@ -140,7 +140,7 @@ const Shape = observer(() => {
     </>
   );
 });
-export default Shape;
+export default ShapeEditor;
 
 const Wrapper = styled.div`
   display: flex;

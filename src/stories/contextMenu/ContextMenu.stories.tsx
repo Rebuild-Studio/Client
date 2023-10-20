@@ -46,8 +46,8 @@ const BaseContextMenu = {
       <Wrapper>
         {isMouseRightClicked && (
           <ContextMenu
-            xPos={postion.xPos}
-            yPos={postion.yPos}
+            $xPos={postion.xPos}
+            $yPos={postion.yPos}
             items={[
               ["미리보기", "O", true],
               ["그리드 숨기기", "Z", true],

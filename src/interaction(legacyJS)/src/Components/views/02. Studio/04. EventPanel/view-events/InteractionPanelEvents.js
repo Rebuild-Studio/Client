@@ -1000,7 +1000,6 @@ class InteractionPanelEvents {
           this.EStore.getSelectedSheet().getPositionBetweenSockets(
             selectedSockets
           );
-        console.log(position);
         const fromTo =
           this.EStore.getSelectedSheet().detectConvertFromTo(checkConvertable);
         this.IStore.execute(
