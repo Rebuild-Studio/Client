@@ -7,10 +7,13 @@ interface TransformControlProps {
   isTranslated: boolean;
   isRotated: boolean;
   isScaled: boolean;
+  isActivated: boolean;
   setIsTranslated: () => void;
   setIsRotated: () => void;
   setIsScaled: () => void;
+  setIsActivated: (isActivated: boolean) => void;
   clearTransform: () => void;
+  clearActivated: () => void;
 }
 
 const transformControlStore = observable<TransformControlProps>({
@@ -18,23 +21,30 @@ const transformControlStore = observable<TransformControlProps>({
   isTranslated: true,
   isRotated: true,
   isScaled: true,
+  isActivated: false,
   setIsTranslated() {
     this.currentControl = "TRANSFORM";
     this.isTranslated = true;
     this.isRotated = false;
     this.isScaled = false;
+    this.isActivated = true;
   },
   setIsRotated() {
     this.currentControl = "ROTATE";
     this.isTranslated = false;
     this.isRotated = true;
     this.isScaled = false;
+    this.isActivated = true;
   },
   setIsScaled() {
     this.currentControl = "SCALE";
     this.isTranslated = false;
     this.isRotated = false;
     this.isScaled = true;
+    this.isActivated = true;
+  },
+  setIsActivated(isActivated: boolean) {
+    this.isActivated = isActivated;
   },
   clearTransform() {
     this.currentControl = "NONE";
@@ -42,7 +52,10 @@ const transformControlStore = observable<TransformControlProps>({
     this.isRotated = true;
     this.isScaled = true;
   },
+  clearActivated() {
+    this.isActivated = false;
+  },
 });
 
-export type {GizmoType, TransformControlProps}
+export type { GizmoType, TransformControlProps };
 export default transformControlStore;
