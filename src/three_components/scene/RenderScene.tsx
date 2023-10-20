@@ -70,7 +70,6 @@ const RenderScene = observer(() => {
             break;
           }
           case "onClick": {
-            console.log("onCLick");
             if (!transformControlStore.isActivated) {
               onClickSceneEvents(intersectObjects);
             }
