@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import Box from "@mui/material/Box";
 import storeContainer from "../../../stores/storeContainer";
 import NodeV from "./node/NodeV";

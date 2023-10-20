@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";

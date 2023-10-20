@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
 import SnapModeControl from "@/features/controllerBar/components/snap/SnapModeControl";
 import ControlDropdown from "@/features/controllerBar/components/dropdown/ControlDropdown";

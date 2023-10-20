@@ -5,7 +5,7 @@ import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
 const TopBar = observer(() => {
   const { sceneSettingStore, primitiveStore } = storeContainer;

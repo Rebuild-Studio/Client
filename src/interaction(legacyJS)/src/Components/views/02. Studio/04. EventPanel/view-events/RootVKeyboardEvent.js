@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import storeContainer from "../../../../stores/storeContainer";
 import DeleteNodeAndGroupCommand from "../../../../class/commands/Interaction/DeleteNodeAndGroupCommand";
 import CloneNodeAndGroupCommand from "../../../../class/commands/Interaction/CloneNodeAndGroupCommand";

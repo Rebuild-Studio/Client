@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { styled } from "styled-components";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
 import ActivateAxis from "@/features/controllerBar/components/snap/ActivateAxis";
 import Checkbox from "@/features/controllerBar/components/snap/Checkbox";

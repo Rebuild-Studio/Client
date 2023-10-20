@@ -1,7 +1,7 @@
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ContextMenuItemType } from "@/store/contextMenuStore";
 import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { styled } from "styled-components";
 
 interface ContextMenuProps extends ContextMenuPositionProps {

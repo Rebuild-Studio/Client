@@ -1,6 +1,6 @@
 import { AppBar, Box } from "@mui/material"; // 지우면 에러..
 import React from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import TopBarEvent from "./Interaction/TopBarInteraction";
 import styled from "styled-components";
 

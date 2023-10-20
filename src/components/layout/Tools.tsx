@@ -6,7 +6,7 @@ import RightPanel from "@components/common/RightPanel/RightPanel";
 import ControllerBar from "@/features/controllerBar";
 import styled from "styled-components";
 import storeContainer from "@store/storeContainer";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import editorModeStore from "@store/editorModeStore.ts";
 
 const Tools = observer(() => {
