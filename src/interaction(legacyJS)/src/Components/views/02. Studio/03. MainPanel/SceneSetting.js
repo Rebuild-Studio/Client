@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import storeContainer from "../../../stores/storeContainer";
 import { useFrame, useThree } from "@react-three/fiber";
 import EventFunctions_VM from "../../../view_models/EventFunctions_VM";

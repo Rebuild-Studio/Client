@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import TopBar from "./TopBar_V";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import React from "react";
 import InteractionPanel from "../02. Studio/04. EventPanel/InteractionPanel";
 

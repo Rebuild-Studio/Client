@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs, Box, Tab, Typography, createTheme } from "@mui/material";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { ThemeProvider } from "@mui/material/styles";
 import InteractionLeftTab from "./interactionLeftTab";
 
