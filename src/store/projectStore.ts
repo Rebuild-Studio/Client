@@ -17,6 +17,7 @@ export type ProjectStore = {
   thumbnail: string;
   scene: THREE.Scene | null;
   exportType: ExportType | "none";
+  selectedProject: ProjectInfo | null;
 
   setProjectId: (projectId: string) => void;
   setProjectType: (projectType: ProjectType) => void;
@@ -24,6 +25,8 @@ export type ProjectStore = {
   setThumbnail: (thumbnail: string) => void;
   setScene: (scene: THREE.Scene) => void;
   setExportType: (exportType: ExportType) => void;
+  setSelectedProject: (projectInfo: ProjectInfo) => void;
+  clearSelectedProject: () => void;
 
   setProjectInfo: (projectInfo: ProjectInfo) => void;
   initAfterExport: () => void;
@@ -39,6 +42,7 @@ const projectStore = observable<ProjectStore>({
   thumbnail: imageBase64,
   scene: null,
   exportType: "none",
+  selectedProject: null,
 
   setProjectId(projectId) {
     this.projectId = projectId;
@@ -57,6 +61,12 @@ const projectStore = observable<ProjectStore>({
   },
   setExportType(exportType) {
     this.exportType = exportType;
+  },
+  setSelectedProject(selectedProject) {
+    this.selectedProject = selectedProject;
+  },
+  clearSelectedProject() {
+    this.selectedProject = null;
   },
 
   setProjectInfo(projectInfo) {

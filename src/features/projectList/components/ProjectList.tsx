@@ -8,15 +8,27 @@ import { Tabs } from "../../../components/layout/Tabs";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { useFetchProjectList } from "../hooks/useFetchProjectList query";
+import { useToast } from "@/hooks/useToast";
 
 const ProjectList = observer(() => {
-  const { projectStateStore } = storeContainer;
+  const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const { data } = useFetchProjectList();
+  const { addToast } = useToast();
 
   const onClickClose = () => {
     projectStateStore.clearModal();
   }
+
+  const onClickLoad = () => {
+    if (!projectStore.selectedProject) {
+      addToast("프로젝트를 선택해주세요");
+      return;
+    }
+    projectStore.setProjectInfo(projectStore.selectedProject);
+    projectStateStore.clearModal();
+  }
+
 
   return (
     <StyledComponentList>
@@ -49,7 +61,7 @@ const ProjectList = observer(() => {
         <MenuButton
           {...confirmButtonStyle}
           label="불러오기"
-          onClick={() => { }}
+          onClick={onClickLoad}
           disabled={false}
         />
         <MenuButton
