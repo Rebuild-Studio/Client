@@ -35,9 +35,9 @@ const copyObject = (mesh: THREE.Mesh) => {
   newMesh.userData["storeId"] = storeId;
 
   if (mesh.parent && mesh.parent?.type !== "Scene") {
-    newMesh.scale.copy(mesh.getWorldScale(new THREE.Vector3()));
-    newMesh.quaternion.copy(mesh.getWorldQuaternion(new THREE.Quaternion()));
-    newMesh.position.copy(mesh.getWorldPosition(new THREE.Vector3()));
+    mesh.getWorldScale(newMesh.scale);
+    mesh.getWorldQuaternion(newMesh.quaternion);
+    mesh.getWorldPosition(newMesh.position);
   } else {
     newMesh.scale.copy(mesh.scale);
     newMesh.rotation.copy(mesh.rotation);

@@ -7,13 +7,13 @@ interface TransformControlProps {
   isTranslated: boolean;
   isRotated: boolean;
   isScaled: boolean;
-  isActivated: boolean;
+  isFocused: boolean;
   setIsTranslated: () => void;
   setIsRotated: () => void;
   setIsScaled: () => void;
-  setIsActivated: (isActivated: boolean) => void;
+  setIsFocused: (isFocused: boolean) => void;
   clearTransform: () => void;
-  clearActivated: () => void;
+  clearFocused: () => void;
 }
 
 const transformControlStore = observable<TransformControlProps>({
@@ -21,30 +21,30 @@ const transformControlStore = observable<TransformControlProps>({
   isTranslated: true,
   isRotated: true,
   isScaled: true,
-  isActivated: false,
+  isFocused: false,
   setIsTranslated() {
     this.currentControl = "TRANSFORM";
     this.isTranslated = true;
     this.isRotated = false;
     this.isScaled = false;
-    this.isActivated = true;
+    this.isFocused = true;
   },
   setIsRotated() {
     this.currentControl = "ROTATE";
     this.isTranslated = false;
     this.isRotated = true;
     this.isScaled = false;
-    this.isActivated = true;
+    this.isFocused = true;
   },
   setIsScaled() {
     this.currentControl = "SCALE";
     this.isTranslated = false;
     this.isRotated = false;
     this.isScaled = true;
-    this.isActivated = true;
+    this.isFocused = true;
   },
-  setIsActivated(isActivated: boolean) {
-    this.isActivated = isActivated;
+  setIsFocused(isFocused: boolean) {
+    this.isFocused = isFocused;
   },
   clearTransform() {
     this.currentControl = "NONE";
@@ -52,8 +52,8 @@ const transformControlStore = observable<TransformControlProps>({
     this.isRotated = true;
     this.isScaled = true;
   },
-  clearActivated() {
-    this.isActivated = false;
+  clearFocused() {
+    this.isFocused = false;
   },
 });
 

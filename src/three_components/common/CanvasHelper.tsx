@@ -18,7 +18,7 @@ export const CanvasHelper = () => {
         ref={cameraControlRef}
         onChange={(e) => {
           if (e && e.type !== "update") {
-            transformControlStore.setIsActivated(true);
+            transformControlStore.setIsFocused(true);
           }
         }}
       />

@@ -70,10 +70,10 @@ const RenderScene = observer(() => {
             break;
           }
           case "onClick": {
-            if (!transformControlStore.isActivated) {
+            if (!transformControlStore.isFocused) {
               onClickSceneEvents(intersectObjects);
             }
-            transformControlStore.clearActivated();
+            transformControlStore.clearFocused();
             break;
           }
           case "onContextMenu": {
