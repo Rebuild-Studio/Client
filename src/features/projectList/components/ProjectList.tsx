@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
@@ -9,26 +9,34 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { useFetchProjectList } from "../hooks/useFetchProjectList query";
 import { useToast } from "@/hooks/useToast";
+import { useFetchProject } from "../hooks/useFetchProject";
 
 const ProjectList = observer(() => {
   const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const { data } = useFetchProjectList();
+  const [error, fetchProject] = useFetchProject("MX");
   const { addToast } = useToast();
 
   const onClickClose = () => {
     projectStateStore.clearModal();
   }
 
-  const onClickLoad = () => {
+  const onClickLoad = async () => {
     if (!projectStore.selectedProject) {
       addToast("프로젝트를 선택해주세요");
       return;
     }
+    addToast("프로젝트를 불러오는 중입니다.");
     projectStore.setProjectInfo(projectStore.selectedProject);
+    await fetchProject();
+
     projectStateStore.clearModal();
   }
 
+  useEffect(() => {
+    error && addToast(`에러 : ${error}`);
+  }, [addToast, error])
 
   return (
     <StyledComponentList>

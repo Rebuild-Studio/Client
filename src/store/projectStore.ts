@@ -1,3 +1,4 @@
+import { MxJson } from "@/types/mxJson/mxJson";
 import { observable } from "mobx";
 
 type ProjectType = "MX" | "PMX";
@@ -16,6 +17,7 @@ export type ProjectStore = {
   projectName: string;
   thumbnail: string;
   scene: THREE.Scene | null;
+  mxJson: MxJson | null;
   exportType: ExportType | "none";
   selectedProject: ProjectInfo | null;
 
@@ -24,9 +26,11 @@ export type ProjectStore = {
   setProjectName: (projectName: string) => void;
   setThumbnail: (thumbnail: string) => void;
   setScene: (scene: THREE.Scene) => void;
+  setMxJson: (mxJson: MxJson) => void;
   setExportType: (exportType: ExportType) => void;
   setSelectedProject: (projectInfo: ProjectInfo) => void;
   clearSelectedProject: () => void;
+  clearMxJson: () => void;
 
   setProjectInfo: (projectInfo: ProjectInfo) => void;
   initAfterExport: () => void;
@@ -41,6 +45,7 @@ const projectStore = observable<ProjectStore>({
   projectName: "test",
   thumbnail: imageBase64,
   scene: null,
+  mxJson: null,
   exportType: "none",
   selectedProject: null,
 
@@ -67,6 +72,12 @@ const projectStore = observable<ProjectStore>({
   },
   clearSelectedProject() {
     this.selectedProject = null;
+  },
+  setMxJson(mxJson) {
+    this.mxJson = mxJson;
+  },
+  clearMxJson() {
+    this.mxJson = null;
   },
 
   setProjectInfo(projectInfo) {

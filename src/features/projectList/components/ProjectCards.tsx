@@ -5,12 +5,13 @@ import { StyledGrid } from "./projectList.styles";
 import { Project, ProjectList } from "../types/project";
 import storeContainer from "@/store/storeContainer";
 import { ProjectInfo } from "@/store/projectStore";
+import { observer } from "mobx-react";
 
 type Props = {
   projects: ProjectList<Project>;
 };
 
-export const ProjectCards = ({ projects }: Props) => {
+export const ProjectCards = observer(({ projects }: Props) => {
   const [selectedCompIdx, setSelectedCompIdx] = useState<number>(-2);
   const { projectStore } = storeContainer;
 
@@ -49,4 +50,4 @@ export const ProjectCards = ({ projects }: Props) => {
       ))}
     </StyledGrid>
   );
-};
+});
