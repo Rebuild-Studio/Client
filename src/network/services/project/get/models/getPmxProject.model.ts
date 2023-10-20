@@ -1,5 +1,10 @@
 import { Project } from "./project.model";
 
-interface ResponseGetPmxProject extends Project {}
+interface RequestGetPmxProject {
+  projectId: string;
+}
+interface ResponseGetPmxProject {
+  result: Project;
+}
 
-export type { ResponseGetPmxProject };
+export type { RequestGetPmxProject, ResponseGetPmxProject };

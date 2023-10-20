@@ -1,4 +1,18 @@
+import { MxJson } from "@/types/mxJson/mxJson";
+
+/**
+ * @description 실제 프로젝트 호출 시 사용되는 인터페이스
+ */
 interface Project {
+  id: string;
+  projectName: string;
+  mxJson: MxJson;
+}
+
+/**
+ * @description 프로젝트 리스트 조회 시 사용되는 인터페이스
+ */
+interface ProjectInfo {
   id: string;
   mxName: string;
   thumbnail: string;
@@ -7,6 +21,6 @@ interface Project {
   updatedAt: string;
 }
 
-type ProjectList<T extends Project> = { result: T[] };
+type ProjectList<T extends ProjectInfo> = { result: T[] };
 
-export type { Project, ProjectList };
+export type { Project, ProjectInfo, ProjectList };
