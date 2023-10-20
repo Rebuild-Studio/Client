@@ -6,12 +6,12 @@ import editorModeStore from "@store/editorModeStore.ts";
 import { observer } from "mobx-react";
 
 const InteractionEditor = observer(() => {
-  const { interactionBarOpen } = editorModeStore;
+  const { interactionBarOpen, editorMode } = editorModeStore;
 
   return (
     <I18nextProvider i18n={i18n}>
       {interactionBarOpen && <InteractionTopBar />}
-      <InteractionPanel />
+      {editorMode === "interaction" && <InteractionPanel />}
     </I18nextProvider>
   );
 });
