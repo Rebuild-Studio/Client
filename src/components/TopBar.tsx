@@ -6,7 +6,7 @@ import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
 import { observer } from "mobx-react-lite";
-
+import { createThumbnail } from "@utils/thumbnail";
 interface TopBarProps {
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +23,7 @@ const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
           label="캔버스"
           shadow="none"
           onClick={() => {
+            console.log(createThumbnail().screenshot());
             if (editorMode === "canvas") {
               setOpen(!isOpen);
             } else {
