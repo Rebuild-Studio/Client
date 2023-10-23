@@ -12,6 +12,8 @@ import { bgColors, grayColors } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import { useToast } from "@hooks/useToast";
 import AssetLibrary from "@/features/assetLibrary";
+import PointLight from "@/three_components/lights/PointLight";
+import SpotLight from "@/three_components/lights/SpotLight";
 
 const CanvasBar = observer(() => {
   const { primitiveStore, projectStateStore } = storeContainer;
@@ -120,12 +122,26 @@ const CanvasBar = observer(() => {
             shadow="none"
             backgroundImage="/icons/studio/btn_포인트_라이트.svg"
             hoverBackgroundImage="/icons/studio/btn_포인트_라이트_활성화.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <PointLight storeId={storeId} />
+              );
+            }}
           />
           <Button
             size="74px"
             shadow="none"
             backgroundImage="/icons/studio/btn_스포트_라이트.svg"
             hoverBackgroundImage="/icons/studio/btn_스포트_라이트_활성화.svg"
+            onClick={() => {
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <SpotLight storeId={storeId} />
+              );
+            }}
           />
         </CanvasBtnWrapper>
         <CanvasBtnWrapper width="76px">

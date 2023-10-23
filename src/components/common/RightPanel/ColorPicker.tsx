@@ -35,8 +35,8 @@ const ColorPicker = observer(
       <>
         <Wrapper>
           <ColorButton
-            color={color}
-            rgbColor={rgbColor}
+            $color={color}
+            $rgbColor={rgbColor}
             onClick={handleToggle}
           />
           {anchorMenu && (
@@ -112,8 +112,8 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
 `;
 const ColorButton = styled.button<{
-  color: HsvaColor;
-  rgbColor: RgbaColor;
+  $color: HsvaColor;
+  $rgbColor: RgbaColor;
 }>`
   width: 24px;
   min-width: 0;
@@ -121,5 +121,5 @@ const ColorButton = styled.button<{
   height: 24px;
   background-color: ${(props) =>
     typeof props.color !== "undefined" &&
-    `rgba(${props.rgbColor.r},${props.rgbColor.g},${props.rgbColor.b},${props.rgbColor.a})`};
+    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

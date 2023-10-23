@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { useThree, useFrame } from "@react-three/fiber";
 import storeContainer from "../../../stores/storeContainer";
 import NodeRuntimeArguments from "../../../class/event-system/runtime/NodeRuntimeArguments";

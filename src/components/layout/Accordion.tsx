@@ -28,7 +28,10 @@ const Accordion = ({ title, children }: AccordionProps) => {
         <Icon open={isOpen} />
         <Title>{title}</Title>
       </AccordionHeader>
-      <AccordionContent isOpen={isOpen} maxHeight={isOpen ? contentHeight : 0}>
+      <AccordionContent
+        $isOpen={isOpen}
+        $maxHeight={isOpen ? contentHeight : 0}
+      >
         <div ref={contentRef}>{children}</div>
       </AccordionContent>
     </AccordionContainer>
@@ -75,11 +78,11 @@ const Title = styled.span`
 `;
 
 const AccordionContent = styled.div<{
-  isOpen: boolean;
-  maxHeight: number | null;
+  $isOpen: boolean;
+  $maxHeight: number | null;
 }>`
   overflow: hidden;
-  max-height: ${(props) => props.maxHeight};
+  max-height: ${(props) => props.$maxHeight};
   transition: max-height 0.3s ease-in-out;
-  opacity: ${(props) => (props.isOpen ? "1" : "0")};
+  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
 `;

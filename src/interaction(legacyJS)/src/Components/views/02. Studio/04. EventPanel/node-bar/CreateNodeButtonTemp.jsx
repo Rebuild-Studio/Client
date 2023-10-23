@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import storeContainer from "../../../../stores/storeContainer";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";

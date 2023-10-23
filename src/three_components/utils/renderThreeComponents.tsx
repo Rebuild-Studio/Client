@@ -1,9 +1,10 @@
-
 import { PrimitiveStore } from "@/store/primitiveStore";
 import AssetPrimitive from "../assets/AssetPrimitive";
 import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
 import Group from "../group/Group";
 import SelectedGroup from "../group/SelectedGroup";
+import PointLight from "../lights/PointLight";
+import SpotLight from "../lights/SpotLight";
 import CapsulePrimitive from "../primitives/CapsulePrimitive";
 import ConePrimitive from "../primitives/ConePrimitive";
 import CubePrimitive from "../primitives/CubePrimitive";
@@ -51,8 +52,19 @@ const renderLocalAsset = (storeId: string, file: File) => {
   return <LocalAssetPrimitive storeId={storeId} file={file} />;
 };
 
-const renderObjects = (primitiveStore: PrimitiveStore, meshList : THREE.Mesh[], isNew?: boolean) => {
+const renderSpotLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <SpotLight storeId={storeId} propMesh={propMesh} />;
+};
 
+const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <PointLight storeId={storeId} propMesh={propMesh} />;
+};
+
+const renderObjects = (
+  primitiveStore: PrimitiveStore,
+  meshList: THREE.Mesh[],
+  isNew?: boolean
+) => {
   for (const mesh of meshList) {
     const storeId = isNew ? nanoid() : mesh.userData["storeId"];
     switch (mesh.name) {
@@ -88,7 +100,7 @@ const renderObjects = (primitiveStore: PrimitiveStore, meshList : THREE.Mesh[], 
         break;
     }
   }
-}
+};
 
 export {
   renderPrimitive,
@@ -97,4 +109,6 @@ export {
   renderAsset,
   renderLocalAsset,
   renderObjects,
+  renderSpotLight,
+  renderPointLight,
 };

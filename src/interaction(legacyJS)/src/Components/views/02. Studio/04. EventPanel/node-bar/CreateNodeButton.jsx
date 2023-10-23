@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import IconButton from "@mui/material/IconButton";
 import storeContainer from "../../../../stores/storeContainer";
 import CreateNodeCommand from "../../../../class/commands/Interaction/CreateNodeCommand";

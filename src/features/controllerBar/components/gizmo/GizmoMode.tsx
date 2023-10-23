@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
 import ControlDropdown from "@/features/controllerBar/components/dropdown/ControlDropdown";
 import GizmoModeControl from "./GizmoModeControl";

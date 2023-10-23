@@ -7,15 +7,13 @@ import ToastContainer from "@components/common/ToastContainer";
 import Modal from "./components/layout/modal/Modal";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { useState } from "react";
 import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
-import InteractionEditor from "@/interaction(legacyJS)/src/App";
 import editorModeStore from "@store/editorModeStore.ts";
+import InteractionEditor from "@components/InteractionEditor.tsx";
 
 const App = observer(() => {
   const { projectStateStore } = storeContainer;
-  const [canvasBarOpen, setCanvasBarOpen] = useState(true);
   const { editorMode } = editorModeStore;
 
   return (
@@ -23,12 +21,12 @@ const App = observer(() => {
       <AppWrapper>
         <Header>
           <MenuBar />
-          <TopBar isOpen={canvasBarOpen} setOpen={setCanvasBarOpen} />
+          <TopBar />
         </Header>
         <Main>
           <EditorWrapper $visible={editorMode === "canvas"}>
             <Scene />
-            <Tools canvasBarIsOpen={canvasBarOpen} />
+            <Tools />
           </EditorWrapper>
           <EditorWrapper $visible={editorMode === "interaction"}>
             <InteractionEditor />
@@ -52,9 +50,12 @@ const Header = styled.header``;
 const Main = styled.main`
   position: relative;
   flex: 1;
+  min-height: 0;
+  min-width: 0;
 `;
 
 const EditorWrapper = styled.div<{ $visible: boolean }>`
   display: ${({ $visible }) => ($visible ? "block" : "none")};
   height: 100%;
+  position: relative;
 `;

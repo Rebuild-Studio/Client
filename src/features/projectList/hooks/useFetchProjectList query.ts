@@ -7,7 +7,7 @@ import { Project, ProjectList } from "../types/project";
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   const mappedData: ProjectList<Project> = data.result.map((project) => {
     return {
-      id: project.id,
+      id: project.mxId,
       name: project.mxName,
       thumbnail: project.thumbnail,
       savedAt: project.updatedAt,
@@ -16,7 +16,10 @@ const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   return mappedData;
 };
 
-export const useFetchProjectList = () => {
+interface ProjectListInterface {
+  onError?: (error: unknown) => void;
+}
+export const useFetchProjectList = ({ onError }: ProjectListInterface) => {
   const query = useQuery({
     queryKey: ["projectList"],
     queryFn: () =>
@@ -26,7 +29,8 @@ export const useFetchProjectList = () => {
     keepPreviousData: true,
   });
   useEffect(() => {
-    query.isError && alert("프로젝트 로딩중 에러가 발생했습니다.");
-  }, [query.isError]);
+    if (query.isError && onError) onError(query.error);
+  }, [query.error, query.isError]);
+
   return query;
 };
