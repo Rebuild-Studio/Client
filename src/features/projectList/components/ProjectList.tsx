@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ProjectCards } from "./ProjectCards";
-import { TemplateCards } from "./templatecards";
+import { TemplateCards } from "./Templatecards";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { useFetchProjectList } from "../hooks/useFetchProjectList query";
