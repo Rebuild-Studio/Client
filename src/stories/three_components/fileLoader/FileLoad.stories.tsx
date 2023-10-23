@@ -6,7 +6,7 @@ import { useState, Suspense } from "react";
 import * as THREE from "three";
 
 const meta = {
-  title: "Component/Three/useLocalFileLoader",
+  title: "Three/useLocalFileLoader",
   tags: ["autodocs"],
 };
 
