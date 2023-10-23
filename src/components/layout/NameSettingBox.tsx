@@ -24,7 +24,6 @@ export const NameSettingBox = observer(() => {
       </StyledHeader>
       <StyledBody>
         <StyledInput
-          // label=""
           type="text"
           placeholder="컴포넌트 이름을 입력해주세요"
           onChange={(e) => {
