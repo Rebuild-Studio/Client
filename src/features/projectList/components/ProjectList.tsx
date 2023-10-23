@@ -11,12 +11,18 @@ import { useToast } from "@/hooks/useToast";
 import { useFetchProject } from "../hooks/useFetchProject";
 import Tab from "@/components/layout/Tab";
 
+
+
 const ProjectList = observer(() => {
   const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-  const { data } = useFetchProjectList();
-  const [error, fetchProject] = useFetchProject("MX");
   const { addToast } = useToast();
+  const { data } = useFetchProjectList({
+    onError: (error) => {
+      addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`)
+    }
+  });
+  const [error, fetchProject] = useFetchProject("MX");
 
   const onClickClose = () => {
     projectStateStore.clearModal();
@@ -35,7 +41,7 @@ const ProjectList = observer(() => {
   }
 
   useEffect(() => {
-    error && addToast(`에러 : ${error}`);
+    error && addToast(`프로젝트 불러오기에 실패했습니다. ${error}`)
   }, [addToast, error])
 
   return (

@@ -16,7 +16,10 @@ const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   return mappedData;
 };
 
-export const useFetchProjectList = () => {
+interface ProjectListInterface {
+  onError?: (error: unknown) => void;
+}
+export const useFetchProjectList = ({ onError }: ProjectListInterface) => {
   const query = useQuery({
     queryKey: ["projectList"],
     queryFn: () =>
@@ -26,7 +29,8 @@ export const useFetchProjectList = () => {
     keepPreviousData: true,
   });
   useEffect(() => {
-    query.error && console.error("프로젝트 리스트 조회 실패 : ", query.error);
-  }, [query.error]);
+    if (query.isError && onError) onError(query.error);
+  }, [query.error, query.isError]);
+
   return query;
 };
