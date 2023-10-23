@@ -70,7 +70,6 @@ const Slider = ({
 export default Slider;
 
 const SliderContainer = styled.div`
-  width: 200px;
   margin: 20px 0;
 `;
 const TitleWrapper = styled.div`
