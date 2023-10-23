@@ -6,6 +6,7 @@ import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
 import { observer } from "mobx-react-lite";
+import { NameSettingBox } from "./layout/NameSettingBox";
 
 interface TopBarProps {
   isOpen: boolean;
@@ -13,7 +14,8 @@ interface TopBarProps {
 }
 
 const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
-  const { sceneSettingStore, primitiveStore } = storeContainer;
+  const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
+    storeContainer;
   const { editorMode, setEditorMode } = editorModeStore;
 
   return (
@@ -43,7 +45,14 @@ const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
         />
       </Left>
       <Center>
-        <ComponentName>컴포넌트 네임</ComponentName>
+        <ComponentName
+          onClick={() => {
+            projectStateStore.updateModalComponent(<NameSettingBox />);
+            projectStateStore.updateModalState(true);
+          }}
+        >
+          {projectStore.projectName}
+        </ComponentName>
       </Center>
       <Right>
         <IconButton
@@ -84,8 +93,9 @@ const Wrapper = styled.div`
 const ComponentName = styled.span`
   font-family: SpoqaHanSansNeo;
   font-size: ${fonts.default};
-  font-weight: 400;
+  font-weight: 550;
   color: ${basicColors.white};
+  cursor: pointer;
 `;
 
 const Left = styled.div`
