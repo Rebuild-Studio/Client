@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
@@ -35,24 +35,36 @@ const DragAreaSelectionBox = observer(() => {
 
   const handleMouseUp = () => {
     setIsDrawing(false);
-    dragAreaSelectionBoxViewModel.selectMultipleNodesAndGroupsFromSelectionBox(box);
+    dragAreaSelectionBoxViewModel.selectMultipleNodesAndGroupsFromSelectionBox(
+      box
+    );
     setBox({ x: 0, y: 0, width: 0, height: 0 });
   };
 
-  return common_store.curCategory === "event" && isShiftPressed && createPortal(
-    <FullscreenOverlay
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-    >
-      {isDrawing && <SelectionBox x={box.x} y={box.y} width={box.width} height={box.height} />}
-    </FullscreenOverlay>,
-    portalElement
+  return (
+    common_store.curCategory === "event" &&
+    isShiftPressed &&
+    createPortal(
+      <FullscreenOverlay
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        {isDrawing && (
+          <SelectionBox
+            x={box.x}
+            y={box.y}
+            width={box.width}
+            height={box.height}
+          />
+        )}
+      </FullscreenOverlay>,
+      portalElement
+    )
   );
 });
 
 export default DragAreaSelectionBox;
-
 
 const FullscreenOverlay = styled.div`
   position: fixed;
@@ -71,5 +83,5 @@ const SelectionBox = styled.div`
   top: ${(props) => props.y}px;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
-  border: 2px dashed #D4ED3E;
+  border: 2px dashed #d4ed3e;
 `;

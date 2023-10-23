@@ -1,6 +1,6 @@
 import { Input } from "@mui/material";
 import { Box } from "@mui/system";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import React from "react";
 import { eventSystem_store } from "../../../../../stores/Interaction_Stores";
 

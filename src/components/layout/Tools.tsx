@@ -6,19 +6,17 @@ import RightPanel from "@components/common/RightPanel/RightPanel";
 import ControllerBar from "@/features/controllerBar";
 import styled from "styled-components";
 import storeContainer from "@store/storeContainer";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
+import editorModeStore from "@store/editorModeStore.ts";
 
-interface Props {
-  canvasBarIsOpen: boolean;
-}
-
-const Tools = observer(({ canvasBarIsOpen }: Props) => {
+const Tools = observer(() => {
   const { sceneSettingStore } = storeContainer;
+  const { canvasBarOpen } = editorModeStore;
 
   return (
     <>
       <Layout>
-        <Top>{canvasBarIsOpen && <CanvasBar />}</Top>
+        <Top>{canvasBarOpen && <CanvasBar />}</Top>
         <Bottom>
           <Left>
             <CanvasLeftPanel />

@@ -1,5 +1,5 @@
 import { Box, Button, Typography, Menu } from "@mui/material";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { Hue, Saturation } from "@uiw/react-color";
 import { hsvaToRgba, hsvaToHex } from "@uiw/color-convert";
 import Common_VM from "../../../../view_models/Common_VM";

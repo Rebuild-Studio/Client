@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { List, Box, Button, Typography, Divider } from "@mui/material";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import storeContainer from "../../../../stores/storeContainer";
 import { reaction } from "mobx";
 import InteractionHierachyVM from "../../../../view_models/05. Hierarchy/InteractionHierarchy_VM";

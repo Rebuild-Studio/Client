@@ -28,6 +28,7 @@ const RenderScene = observer(() => {
     keyboardEventStore,
     selectedObjectStore,
     projectStore,
+    transformControlStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
@@ -69,7 +70,10 @@ const RenderScene = observer(() => {
             break;
           }
           case "onClick": {
-            onClickSceneEvents(intersectObjects);
+            if (!transformControlStore.isFocused) {
+              onClickSceneEvents(intersectObjects);
+            }
+            transformControlStore.clearFocused();
             break;
           }
           case "onContextMenu": {
@@ -81,7 +85,7 @@ const RenderScene = observer(() => {
             break;
           }
 
-          default: 
+          default:
             break;
         }
       }

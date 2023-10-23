@@ -14,11 +14,15 @@ const AssetPrimitive = observer(
   ({ url, propMesh, storeId }: AssetPrimitveProps) => {
     const ref = useRef();
     const { primitiveStore } = storeContainer;
-    let mesh: THREE.Mesh;
 
+    let mesh: THREE.Object3D;
     if (url) {
-      const group = useServerGLTFLoader(url).scene;
-      mesh = (group.children[0].clone() as THREE.Mesh) ?? propMesh;
+      const loadedData = useServerGLTFLoader(url);
+      if (!(loadedData instanceof THREE.Group)) {
+        mesh = loadedData.scene;
+      } else {
+        mesh = loadedData;
+      }
     } else if (propMesh) {
       mesh = propMesh;
     } else {
@@ -38,7 +42,10 @@ const AssetPrimitive = observer(
     }, []);
 
     return (
-      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? mesh} />
+      <primitive
+        ref={ref}
+        object={primitiveStore.meshes[storeId] ?? (mesh as THREE.Mesh)}
+      />
     );
   }
 );
