@@ -151,7 +151,7 @@ const buttonStyle: Omit<MenuButtonProps, "label" | "onClick" | "disabled"> = {
 const confirmButtonStyle = {
   ...buttonStyle,
   backgroundColor: basicColors.lightLimeGreen,
-  fontFamily: "SourceHanSansKR",
+  fontFamily: "SpoqaHanSansNeo",
   color: bgColors[101728],
   hoverBackgroundColor: basicColors.limeGreen,
 };
