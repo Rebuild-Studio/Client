@@ -16,8 +16,6 @@ const createThumbnail = async (props: CreateThumbnailProps) => {
   const { renderStore, projectStore, projectStateStore, primitiveStore } =
     props;
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-  const canvasTagElement = canvas.children[0].children[0];
-  const scene = projectStore.scene;
   if (!canvas) {
     throw new Error("Canvas element not found");
   }
@@ -27,10 +25,9 @@ const createThumbnail = async (props: CreateThumbnailProps) => {
   if (Object.keys(primitiveStore.selectedPrimitives).length === 0) {
     meshId = Object.keys(primitiveStore.primitives)[0];
   }
-
   primitiveStore.clearSelectedPrimitives();
   const renderer = new THREE.WebGLRenderer({
-    canvas: canvasTagElement,
+    canvas: canvas2,
   });
   projectStateStore.updateGridVisible("INVISIBLE");
 
