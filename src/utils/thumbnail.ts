@@ -20,14 +20,14 @@ const createThumbnail = async (props: CreateThumbnailProps) => {
     throw new Error("Canvas element not found");
   }
   const camera = renderStore.controls?.camera;
-  const canvas2 = canvas.children[0].children[0];
+  const canvasTagElement = canvas.children[0].children[0];
   let meshId: string;
   if (Object.keys(primitiveStore.selectedPrimitives).length === 0) {
     meshId = Object.keys(primitiveStore.primitives)[0];
   }
   primitiveStore.clearSelectedPrimitives();
   const renderer = new THREE.WebGLRenderer({
-    canvas: canvas2,
+    canvas: canvasTagElement,
   });
   projectStateStore.updateGridVisible("INVISIBLE");
 
