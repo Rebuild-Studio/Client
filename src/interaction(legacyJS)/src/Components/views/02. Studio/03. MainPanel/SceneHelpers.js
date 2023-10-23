@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import storeContainer from "../../../stores/storeContainer";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
 const SceneHelpers = observer(() => {
   const { scene_store } = storeContainer;

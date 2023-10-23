@@ -1,5 +1,5 @@
 import storeContainer from "@/store/storeContainer";
-import { reaction } from "mobx";
+import { reaction, toJS } from "mobx";
 import { useThree } from "@react-three/fiber";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
@@ -19,6 +19,8 @@ import ChildGizmo from "../gizmo/ChildGizmo";
 import onDropSceneEvents from "../utils/onDropSceneEvents";
 import { ErrorBoundary } from "react-error-boundary";
 import { useToast } from "@/hooks/useToast";
+import { renderObjects } from "../utils/renderThreeComponents";
+import loadMxJson from "@/utils/json/loadMxJson";
 
 const RenderScene = observer(() => {
   const {
@@ -28,6 +30,7 @@ const RenderScene = observer(() => {
     keyboardEventStore,
     selectedObjectStore,
     projectStore,
+    transformControlStore,
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
@@ -69,7 +72,10 @@ const RenderScene = observer(() => {
             break;
           }
           case "onClick": {
-            onClickSceneEvents(intersectObjects);
+            if (!transformControlStore.isFocused) {
+              onClickSceneEvents(intersectObjects);
+            }
+            transformControlStore.clearFocused();
             break;
           }
           case "onContextMenu": {
@@ -81,7 +87,7 @@ const RenderScene = observer(() => {
             break;
           }
 
-          default: 
+          default:
             break;
         }
       }
@@ -91,6 +97,22 @@ const RenderScene = observer(() => {
       dispose();
     };
   }, []);
+
+  useEffect(() => {
+    const renderLoadedMxJson = async () => {
+      if (!projectStore.mxJson) return;
+      const loader = new THREE.ObjectLoader();
+      const decodedJson = await loadMxJson(toJS(projectStore.mxJson));
+      const newScene = loader.parse(decodedJson.scene);
+      primitiveStore.clearPrimitives();
+
+      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true)
+      projectStore.clearMxJson();
+      addToast("프로젝트를 불러왔습니다.");
+    }
+
+    renderLoadedMxJson();
+  }, [primitiveStore, projectStore.mxJson, scene, addToast, projectStore])
 
   // 선택 컴포넌트 그룹화 작업
   useEffect(() => {
@@ -127,8 +149,8 @@ const RenderScene = observer(() => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-      )}
+          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+        )}
 
       {/* Group 자식용 */}
       <ChildGizmo />

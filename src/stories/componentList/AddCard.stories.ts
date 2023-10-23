@@ -1,4 +1,4 @@
-import { AddCard } from "@/components/layout/componentList/card/AddCard";
+import { AddCard } from "@/features/projectList/components/card/AddCard";
 import { bgColors } from "@/resources/colors/colors";
 import type { Meta, StoryObj } from "@storybook/react";
 

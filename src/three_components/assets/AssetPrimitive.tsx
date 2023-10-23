@@ -15,34 +15,37 @@ const AssetPrimitive = observer(
     const ref = useRef();
     const { primitiveStore } = storeContainer;
 
-    let object: THREE.Object3D;
+    let mesh: THREE.Object3D;
     if (url) {
       const loadedData = useServerGLTFLoader(url);
       if (!(loadedData instanceof THREE.Group)) {
-        object = loadedData.scene;
+        mesh = loadedData.scene;
       } else {
-        object = loadedData;
+        mesh = loadedData;
       }
     } else if (propMesh) {
-      object = propMesh;
+      mesh = propMesh;
     } else {
       return <></>;
     }
-
-    const mesh = new THREE.Mesh();
 
     mesh.name = "ASSET";
     mesh.userData["storeId"] = storeId;
     mesh.userData["isLocked"] = false;
 
     useEffect(() => {
-      mesh.attach(object);
-      primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
+      primitiveStore.updatePrimitive(
+        mesh.userData["storeId"],
+        mesh as THREE.Mesh
+      );
       canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }, []);
 
     return (
-      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? object} />
+      <primitive
+        ref={ref}
+        object={primitiveStore.meshes[storeId] ?? (mesh as THREE.Mesh)}
+      />
     );
   }
 );

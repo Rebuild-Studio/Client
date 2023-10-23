@@ -8,15 +8,12 @@ import editorModeStore from "@store/editorModeStore";
 import { observer } from "mobx-react-lite";
 import { NameSettingBox } from "./layout/NameSettingBox";
 
-interface TopBarProps {
-  isOpen: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
+const TopBar = observer(() => {
   const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
     storeContainer;
-  const { editorMode, setEditorMode } = editorModeStore;
+
+  const { editorMode, setEditorMode, toggleCanvasBar, toggleInteractionBar } =
+    editorModeStore;
 
   return (
     <Wrapper>
@@ -26,7 +23,7 @@ const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
           shadow="none"
           onClick={() => {
             if (editorMode === "canvas") {
-              setOpen(!isOpen);
+              toggleCanvasBar();
             } else {
               setEditorMode("canvas");
             }
@@ -37,7 +34,11 @@ const TopBar = observer(({ isOpen, setOpen }: TopBarProps) => {
           label="인터렉션 에디터"
           shadow="none"
           onClick={() => {
-            setEditorMode("interaction");
+            if (editorMode === "interaction") {
+              toggleInteractionBar();
+            } else {
+              setEditorMode("interaction");
+            }
           }}
           color={
             editorMode === "interaction" ? basicColors.white : basicColors.grey

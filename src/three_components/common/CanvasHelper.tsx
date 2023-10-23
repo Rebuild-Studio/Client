@@ -1,9 +1,11 @@
 import renderStore from "@/store/renderStore";
+import storeContainer from "@/store/storeContainer";
 import { CameraControls } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 
 export const CanvasHelper = () => {
   const cameraControlRef = useRef<any>();
+  const { transformControlStore } = storeContainer;
 
   useEffect(() => {
     if (cameraControlRef.current) {
@@ -12,7 +14,14 @@ export const CanvasHelper = () => {
   }, [cameraControlRef.current]);
   return (
     <>
-      <CameraControls ref={cameraControlRef} />
+      <CameraControls
+        ref={cameraControlRef}
+        onChange={(e) => {
+          if (e && e.type !== "update") {
+            transformControlStore.setIsFocused(true);
+          }
+        }}
+      />
     </>
   );
 };

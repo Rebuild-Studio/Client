@@ -1,5 +1,5 @@
 import { Box, Button, Typography, Menu } from "@mui/material";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import { Hue, Saturation, Alpha } from "@uiw/react-color";
 import {
   hsvaToRgba,
@@ -428,7 +428,7 @@ const style = {
       typeof color !== "undefined" &&
       `rgba(${rgbColor.r},${rgbColor.g},${rgbColor.b},${rgbColor.a})`
     }`,
-    ...buttonStyle
+    ...buttonStyle,
   }),
   colorMenu: (menuStyle) => ({
     zIndex: 10000,

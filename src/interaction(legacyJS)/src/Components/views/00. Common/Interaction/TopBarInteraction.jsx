@@ -254,11 +254,9 @@ const style = {
 
   topBarEventContainer: {
     position: "fixed",
-    top: "90px",
-    height: "87px",
-    width: "100%",
     backgroundColor: "#282828",
     display: "flex",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
