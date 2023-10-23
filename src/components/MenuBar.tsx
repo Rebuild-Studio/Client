@@ -6,13 +6,12 @@ import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
-import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
-
+import { createThumbnail } from "@/utils/thumbnail";
 
 const Menu = ({ label }: { label: string }) => (
   <MenuButton
@@ -32,7 +31,8 @@ const ConfigureBtn = () => <Menu label="설정" />;
 const HelpBtn = () => <Menu label="도움말" />;
 
 const MenuBar = observer(() => {
-  const { projectStateStore } = storeContainer;
+  const { projectStateStore, renderStore, projectStore, primitiveStore } =
+    storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
@@ -46,6 +46,12 @@ const MenuBar = observer(() => {
       onClick: () => {
         sceneControlStore.setExportScene(true);
         createProject("MX");
+        createThumbnail({
+          renderStore,
+          projectStateStore,
+          projectStore,
+          primitiveStore,
+        });
       },
     },
     {

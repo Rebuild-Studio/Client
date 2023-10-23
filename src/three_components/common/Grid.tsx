@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { gridColor } from "@/resources/colors/colors";
 
-const Grid = () => {
+const Grid = ({ visible }: { visible: boolean }) => {
   const axisLength = 25;
   const xAxisGeometry = new Float32Array([axisLength, 0, 0, -axisLength, 0, 0]);
   const yAxisGeometry = new Float32Array([0, 0, axisLength, 0, 0, -axisLength]);
@@ -21,7 +21,7 @@ const Grid = () => {
   );
   return (
     <>
-      <group>
+      <group visible={visible}>
         <mesh position={[0, 0, 0]}>
           <gridHelper args={[50, 50, , gridColor.gray]} />
           <gridHelper args={[50, 10, , gridColor.black]} />
