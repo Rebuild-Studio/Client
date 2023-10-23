@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { ProjectCard, ProjectCardProps } from "./card/ProjectCard";
+import { ExampleCard } from "./card/ExampleCard";
 import { AddCard } from "./card/AddCard";
-import { StyledGrid } from "./componentList.Styles";
+import { StyledGrid } from "./projectList.styles";
+import { ProjectList, Template } from "../types/project";
 
 type Props = {
-  componentData: ProjectCardProps[];
+  projects: ProjectList<Template>;
 };
 
-export const ProjectCards = ({ componentData }: Props) => {
+export const TemplateCards = ({ projects }: Props) => {
   const [selectedCompIdx, setSelectedCompIdx] = useState<number>(-2);
   return (
     <StyledGrid>
@@ -17,10 +18,10 @@ export const ProjectCards = ({ componentData }: Props) => {
           setSelectedCompIdx(-1);
         }}
       />
-      {componentData.map((props, idx) => (
-        <ProjectCard
+      {projects.map((props, idx) => (
+        <ExampleCard
           {...props}
-          key={props.id}
+          key={props.name}
           onClick={() => {
             setSelectedCompIdx(idx);
           }}

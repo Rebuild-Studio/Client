@@ -1,5 +1,5 @@
-import { Project, ProjectList } from "./project.model";
+import { ProjectInfo, ProjectList } from "./project.model";
 
-interface ResponseGetmxProjectList extends ProjectList<Project> {}
+interface ResponseGetMxProjectList extends ProjectList<ProjectInfo> {}
 
-export type { ResponseGetmxProjectList };
+export type { ResponseGetMxProjectList };

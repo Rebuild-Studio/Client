@@ -1,24 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
 import { ProjectCards } from "./ProjectCards";
-import { ExampleCards } from "./ExampleCards";
-import Tab from "../Tab";
+import { TemplateCards } from "./TemplateCards";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
+import { useFetchProjectList } from "../hooks/useFetchProjectList query";
+import { useToast } from "@/hooks/useToast";
+import { useFetchProject } from "../hooks/useFetchProject";
+import Tab from "@/components/layout/Tab";
 
-export const ComponentList = observer(() => {
-  const { projectStateStore } = storeContainer;
+
+
+const ProjectList = observer(() => {
+  const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+  const { addToast } = useToast();
+  const { data } = useFetchProjectList({
+    onError: (error) => {
+      addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`)
+    }
+  });
+  const [error, fetchProject] = useFetchProject("MX");
 
   const onClickClose = () => {
     projectStateStore.clearModal();
-  };
+  }
 
-  const handleTabChange = (index: number) => {
-    setSelectedTabIndex(index);
-  };
+  const onClickLoad = async () => {
+    if (!projectStore.selectedProject) {
+      addToast("프로젝트를 선택해주세요");
+      return;
+    }
+    addToast("프로젝트를 불러오는 중입니다.");
+    projectStore.setProjectInfo(projectStore.selectedProject);
+    await fetchProject();
+
+    projectStateStore.clearModal();
+  }
+
+  useEffect(() => {
+    error && addToast(`프로젝트 불러오기에 실패했습니다. ${error}`)
+  }, [addToast, error])
 
   return (
     <StyledComponentList>
@@ -28,27 +52,29 @@ export const ComponentList = observer(() => {
       </StyledHeader>
       <StyledTab>
         <Tab
-          tabs={["내 컴포넌트", "컴포넌트 템플릿"]}
           activeTab={selectedTabIndex}
-          onTabChange={handleTabChange}
+          tabs={["내 컴포넌트", "컴포넌트 템플릿"]}
           backgroundColor={bgColors[343434]}
           underbarColor={basicColors.lightLimeGreen}
           width="400px"
           height="50px"
+          onTabChange={(idx) => {
+            setSelectedTabIndex(idx);
+          }}
         />
       </StyledTab>
       <StyledContent>
         {selectedTabIndex == 0 ? (
-          <ProjectCards componentData={[]} />
+          <ProjectCards projects={data ? data : []} />
         ) : (
-          <ExampleCards componentData={[]} />
+          <TemplateCards projects={[]} />
         )}
       </StyledContent>
       <StyledFooter>
         <MenuButton
           {...confirmButtonStyle}
           label="불러오기"
-          onClick={() => {}}
+          onClick={onClickLoad}
           disabled={false}
         />
         <MenuButton
@@ -61,6 +87,8 @@ export const ComponentList = observer(() => {
     </StyledComponentList>
   );
 });
+
+export default ProjectList;
 
 const StyledComponentList = styled.div`
   width: 70vw;

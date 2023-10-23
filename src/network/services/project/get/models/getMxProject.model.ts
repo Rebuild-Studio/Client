@@ -1,5 +1,10 @@
 import { Project } from "./project.model";
 
-interface ResponseGetMxProject extends Project {}
+interface RequestGetMxProject {
+  projectId: string;
+}
+interface ResponseGetMxProject {
+  result: Project;
+}
 
-export type { ResponseGetMxProject };
+export type { RequestGetMxProject, ResponseGetMxProject };

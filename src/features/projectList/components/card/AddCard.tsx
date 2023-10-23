@@ -3,7 +3,7 @@ import {
   StyledCardTextArea,
   StyledCard,
   StyledCardTextAreaBox,
-} from "../componentList.Styles";
+} from "../projectList.styles";
 
 type Props = {
   isClicked: boolean;
