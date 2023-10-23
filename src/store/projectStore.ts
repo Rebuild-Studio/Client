@@ -32,7 +32,7 @@ export type ProjectStore = {
 const projectStore = observable<ProjectStore>({
   projectId: "",
   projectType: "MX",
-  projectName: "",
+  projectName: "컴포넌트 이름(1)",
   thumbnail:
     "https://w7.pngwing.com/pngs/940/589/png-transparent-linkedin-free-text-telephone-call-trademark-thumbnail.png",
   scene: null,

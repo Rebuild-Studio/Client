@@ -51,5 +51,5 @@ const projectStateStore = observable<ProjectStateProps>({
   },
 });
 
-export type { ProjectStateProps }
+export type { ProjectStateProps };
 export default projectStateStore;
