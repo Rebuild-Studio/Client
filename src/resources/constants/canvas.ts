@@ -10,8 +10,8 @@ type CanvasInstance =
   | "SELECTED_GROUP"
   | "MATERIAL"
   | "CAMERA"
-  | "POINTLIGHT"
-  | "SPOTLIGHT"
+  | "POINT_LIGHT"
+  | "SPOT_LIGHT"
   | "INITIAL";
 type CanvasAttribute =
   | "add"
@@ -43,8 +43,8 @@ const instanceTranslate: InstanceTranslate = {
   GROUP: "그룹",
   SELECTED_GROUP: "선택 그룹",
   CAMERA: "카메라",
-  POINTLIGHT: "포인트 라이트",
-  SPOTLIGHT: "스포트 라이트",
+  POINT_LIGHT: "포인트 라이트",
+  SPOT_LIGHT: "스포트 라이트",
   INITIAL: "초기상태",
 };
 
@@ -73,8 +73,8 @@ const isCanvasInstance = (instance: any): instance is CanvasInstance => {
     "SELECTED_GROUP",
     "MATERIAL",
     "CAMERA",
-    "POINTLIGHT",
-    "SPOTLIGHT",
+    "POINT_LIGHT",
+    "SPOT_LIGHT",
     "INITIAL",
   ];
 

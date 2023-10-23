@@ -84,6 +84,18 @@ const renderObjects = (
           renderAsset(storeId, mesh.clone())
         );
         break;
+      case "SPOT_LIGHT":
+        primitiveStore.addPrimitive(
+          storeId,
+          renderSpotLight(storeId, mesh.clone())
+        );
+        break;
+      case "POINT_LIGHT":
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPointLight(storeId, mesh.clone())
+        );
+        break;
 
       case "CUBE":
       case "CAPSULE":
