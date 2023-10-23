@@ -13,7 +13,8 @@ interface Item extends BaseMenuItem {
 /**
  * 자식이 있는 아이템
  */
-interface ItemWithChildren extends BaseMenuItem {
+interface ItemWithChildren extends Item {
   children: MenuItemType[];
 }
+
 export type MenuItemType = Item | ItemWithChildren;

@@ -27,29 +27,32 @@ export const BasicSubMenu = {
           alert("저장");
         },
       },
-      {
-        label: "로컬 파일로 저장",
-        disabled: false,
-        children: [
-          { label: "Scene 저장", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
-        ],
-      },
+      // {
+      //   label: "로컬 파일로 저장",
+      //   disabled: false,
+      //   children: [
+      //     { label: "Scene 저장", disabled: false, onClick: () => {} },
+      //     { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
+      //     { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
+      //     { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
+      //   ],
+      // },
       {
         label: "배포하기",
         disabled: false,
-        children: [
-          { label: "ffff", disabled: false, onClick: () => {} },
-          {
-            label: "ddddd",
-            disabled: false,
-            children: [
-              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
-            ],
-          },
-        ],
+        onClick: () => {
+          alert("배포하기");
+        },
+        // children: [
+        //   { label: "ffff", disabled: false, onClick: () => {} },
+        //   {
+        //     label: "ddddd",
+        //     disabled: false,
+        //     children: [
+        //       { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
+        //     ],
+        //   },
+        // ],
       },
     ],
   },
