@@ -10,12 +10,11 @@ import EventSystemStore from "@/interaction(legacyJS)/src/Components/stores/Even
 
 const exportJsonFile = async (
   scene: THREE.Scene,
-  interactionJson: any,
+  interactionJson: unknown,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
   const mxWorker = new MxWorker();
-  interactionJson = JSON.parse(JSON.stringify(interactionJson));
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
   mxWorker.postMessage({
@@ -41,7 +40,7 @@ const exportJsonPost = async (
   scene: THREE.Scene,
   projectType: ProjectType,
   projectStore: ProjectStore,
-  interactionJson: any,
+  interactionJson: unknown,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
@@ -104,10 +103,11 @@ const useExportMxJson = ({
       if (!projectStore.scene) return;
       setIsProcessing(true);
       setIsSuccess(false);
+
       const interactionJson = JSON.parse(
         JSON.stringify(interactionStore.toJSON())
       );
-
+      console.log(interactionJson);
       exportJsonPost(
         projectStore.scene,
         projectType,
@@ -125,8 +125,9 @@ const useExportMxJson = ({
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
-    const interactionJson = interactionStore.toJSON();
-
+    const interactionJson = JSON.parse(
+      JSON.stringify(interactionStore.toJSON())
+    );
     exportJsonFile(
       projectStore.scene,
       interactionJson,

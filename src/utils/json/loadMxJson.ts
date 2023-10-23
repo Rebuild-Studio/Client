@@ -82,10 +82,10 @@ const loadMxJson = async (jsonData: MxJson): Promise<MxJson> => {
   const images = jsonData.scene.images;
 
   // geometry 변환
-  const convertedGeometries = convertGeometries(geometries);
+  const convertedGeometries = geometries ? convertGeometries(geometries) : [];
 
   // images 변환
-  const convertedImages = convertImages(images);
+  const convertedImages = images ? convertImages(images) : [];
 
   return {
     ...jsonData,
