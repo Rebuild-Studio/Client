@@ -12,14 +12,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof HierarchyPanel>;
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshPhysicalMaterial();
-const mesh = new THREE.Mesh(geometry, material);
-
+const mesh = new THREE.Mesh(
+  new THREE.SphereGeometry(0.5, 32, 16),
+  new THREE.MeshPhysicalMaterial({
+    color: 12303291,
+    roughness: 0.5,
+    metalness: 0,
+    transparent: true,
+    opacity: 0.5,
+  })
+);
+mesh.name = "Sphere";
 const meshes: MeshType = {
-  HI: mesh,
+  mesh,
 };
 
 export const Basic = {
-  args: meshes,
+  args: {
+    meshes: meshes,
+  },
 } satisfies Story;

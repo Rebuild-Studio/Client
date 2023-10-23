@@ -1,6 +1,5 @@
 import AssetGrid from "@/features/assetLibrary/components/body/assetList/grid/AssetGrid";
-import { useFetchLibraryAssets } from "@/features/assetLibrary/hooks/useFetchLibraryAssets query";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: AssetGrid,
@@ -19,21 +18,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof AssetGrid>;
 
-export const AssetLibraryGrid = {
-  decorators: [
-    (Story: StoryFn) => {
-      useFetchLibraryAssets({
-        domain: "all",
-        majorCategories: "all",
-        minorCategories: "all",
-        page: 1,
-      });
-
-      return (
-        <div>
-          <Story />
-        </div>
-      );
-    },
-  ],
-} satisfies Story;
+export const AssetLibraryGrid = {} satisfies Story;
