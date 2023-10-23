@@ -11,22 +11,20 @@ import { useToast } from "@/hooks/useToast";
 import { useFetchProject } from "../hooks/useFetchProject";
 import Tab from "@/components/layout/Tab";
 
-
-
 const ProjectList = observer(() => {
   const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const { addToast } = useToast();
   const { data } = useFetchProjectList({
     onError: (error) => {
-      addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`)
-    }
+      addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`);
+    },
   });
   const [error, fetchProject] = useFetchProject("MX");
 
   const onClickClose = () => {
     projectStateStore.clearModal();
-  }
+  };
 
   const onClickLoad = async () => {
     if (!projectStore.selectedProject) {
@@ -38,11 +36,11 @@ const ProjectList = observer(() => {
     await fetchProject();
 
     projectStateStore.clearModal();
-  }
+  };
 
   useEffect(() => {
-    error && addToast(`프로젝트 불러오기에 실패했습니다. ${error}`)
-  }, [addToast, error])
+    error && addToast(`프로젝트 불러오기에 실패했습니다. ${error}`);
+  }, [addToast, error]);
 
   return (
     <StyledComponentList>
@@ -140,37 +138,28 @@ const StyledFooter = styled.div`
   padding-right: 22px;
   gap: 20px;
 `;
-
-const confirmButtonStyle: Omit<
-  MenuButtonProps,
-  "label" | "onClick" | "disabled"
-> = {
+const buttonStyle: Omit<MenuButtonProps, "label" | "onClick" | "disabled"> = {
   width: "138px",
   height: "34px",
   minHeight: "32px",
   minWidth: "80px",
   borderRadius: "6px",
-  backgroundColor: basicColors.lightLimeGreen,
-  fontFamily: "SourceHanSansKR",
   fontSize: "small",
   fontWeight: 500,
+};
+
+const confirmButtonStyle = {
+  ...buttonStyle,
+  backgroundColor: basicColors.lightLimeGreen,
+  fontFamily: "SourceHanSansKR",
   color: bgColors[101728],
   hoverBackgroundColor: basicColors.limeGreen,
 };
 
-const closeButtonStyle: Omit<
-  MenuButtonProps,
-  "label" | "onClick" | "disabled"
-> = {
-  width: "138px",
-  height: "34px",
-  minHeight: "32px",
-  minWidth: "80px",
-  borderRadius: "6px",
+const closeButtonStyle = {
+  ...buttonStyle,
   backgroundColor: bgColors[282828],
   fontFamily: "SpoqaHanSansNeo",
-  fontSize: "small",
-  fontWeight: 500,
   color: basicColors.white,
   hoverBackgroundColor: grayColors[808080],
 };
