@@ -13,9 +13,25 @@ export const SubMenu = ({ menuItems }: Props) => {
         <MenuItem
           key={item.label}
           onClick={item.onClick}
-          $disabled={item.disabled}
+          $disabled={!!item.disabled}
         >
-          {item.label}
+          <span>{item.label}</span>
+          {item.children && (
+            <img src="/icons/common/menu-arrow.svg" alt="right-arrow" />
+          )}
+          {item.children && (
+            <ChildrenWrapper>
+              {item.children.map((child) => (
+                <MenuItem
+                  key={child.label}
+                  onClick={child.onClick}
+                  $disabled={!!child.disabled}
+                >
+                  <span>{child.label}</span>
+                </MenuItem>
+              ))}
+            </ChildrenWrapper>
+          )}
         </MenuItem>
       ))}
     </Wrapper>
@@ -31,15 +47,30 @@ const Wrapper = styled.ul`
   padding: 6px;
 `;
 
+const ChildrenWrapper = styled(Wrapper)`
+  position: absolute;
+  top: 0;
+  transform: translate(calc(100% + 2px), 0);
+  display: none;
+`;
+
 const MenuItem = styled.li<{ $disabled: boolean }>`
-  padding: 9px;
+  height: 32px;
+  padding: 0 9px;
   border-radius: 4px;
   cursor: pointer;
   white-space: nowrap;
   font-size: ${fonts.default};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 
   &:hover {
     background-color: #535353;
+    ${ChildrenWrapper} {
+      display: block;
+    }
   }
 
   ${({ $disabled }) =>
@@ -48,4 +79,9 @@ const MenuItem = styled.li<{ $disabled: boolean }>`
       pointer-events: none;
       color: grey;
     `}
+
+  & > img {
+    transform: translate(20%, -6%);
+    scale: 110%;
+  }
 `;
