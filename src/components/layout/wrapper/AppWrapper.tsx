@@ -9,8 +9,12 @@ interface AppProps {
 }
 
 const AppWrapper = observer((props: AppProps) => {
-  const { keyboardEventStore } = storeContainer;
+  const { keyboardEventStore, projectStateStore } = storeContainer;
   const setOnKeydownListener = (e: KeyboardEvent) => {
+    if (projectStateStore.isModalOpened) {
+      return;
+    }
+
     if (e.key === "F12") {
       return;
     }
