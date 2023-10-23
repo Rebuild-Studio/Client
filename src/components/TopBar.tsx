@@ -22,7 +22,6 @@ const TopBar = observer(() => {
           label="캔버스"
           shadow="none"
           onClick={() => {
-            console.log(createThumbnail().screenshot());
             if (editorMode === "canvas") {
               toggleCanvasBar();
             } else {
