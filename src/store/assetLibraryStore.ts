@@ -9,6 +9,7 @@ interface AssetLibraryControl {
   setCurrentPage: (page: number) => void;
   resetCurrentPage: () => void;
   initLibrary: () => void;
+  clearLibrary: () => void;
 }
 
 interface AssetLibraryItems {
@@ -37,6 +38,11 @@ const assetLibraryStore = observable<AssetLibraryStoreProps>({
   initLibrary() {
     this.resetCurrentPage();
     this.clearLibraryAssets();
+  },
+  clearLibrary() {
+    this.resetCurrentPage();
+    this.clearLibraryAssets();
+    this.clearSelectedAssets();
   },
 
   //assetLibrary Controls Actions
@@ -72,5 +78,5 @@ const assetLibraryStore = observable<AssetLibraryStoreProps>({
   },
 });
 
-export type {AssetLibraryStoreProps}
+export type { AssetLibraryStoreProps };
 export default assetLibraryStore;
