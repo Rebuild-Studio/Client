@@ -26,7 +26,7 @@ export const useFetchProjectList = () => {
     keepPreviousData: true,
   });
   useEffect(() => {
-    query.isError && alert("프로젝트 로딩중 에러가 발생했습니다.");
-  }, [query.isError]);
+    query.error && console.error("프로젝트 리스트 조회 실패 : ", query.error);
+  }, [query.error]);
   return query;
 };

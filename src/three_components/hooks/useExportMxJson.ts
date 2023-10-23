@@ -105,9 +105,7 @@ const useExportMxJson = ({
       if (!projectStore.scene) return;
       setIsProcessing(true);
       setIsSuccess(false);
-      const interactionJson = JSON.parse(
-        JSON.stringify(interactionStore.toJSON())
-      );
+      const interactionJson = toJS(interactionStore.toJSON());
 
       exportJsonPost(
         projectStore.scene,
