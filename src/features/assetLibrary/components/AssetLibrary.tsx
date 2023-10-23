@@ -34,7 +34,7 @@ const AssetLibrary = observer(() => {
 
   useEffect(() => {
     return () => {
-      assetLibraryStore.initLibrary();
+      assetLibraryStore.clearLibrary();
     };
   }, []);
 
