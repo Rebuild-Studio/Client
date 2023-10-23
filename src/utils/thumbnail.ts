@@ -7,8 +7,7 @@ const createThumbnail = () => {
   const camera = renderStore.controls?.camera;
 
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-  const canvas2 = canvas.children[0].children[0];
-
+  const canvasTagElement = canvas.children[0].children[0];
   const scene = projectStore.scene;
 
   if (!canvas) {
@@ -16,7 +15,7 @@ const createThumbnail = () => {
   }
 
   const renderer = new THREE.WebGLRenderer({
-    canvas: canvas2,
+    canvas: canvasTagElement,
   });
   const screenshot = async () => {
     const screenCamera = new THREE.PerspectiveCamera();
