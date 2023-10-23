@@ -5,7 +5,8 @@ import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
+import { createThumbnail } from "@utils/thumbnail";
 
 const TopBar = observer(() => {
   const { sceneSettingStore, primitiveStore } = storeContainer;
@@ -19,6 +20,7 @@ const TopBar = observer(() => {
           label="캔버스"
           shadow="none"
           onClick={() => {
+            console.log(createThumbnail().screenshot());
             if (editorMode === "canvas") {
               toggleCanvasBar();
             } else {
