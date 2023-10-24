@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Dropdown = ({
-  onClick = () => {},
+  onClick = () => { },
   options,
   placeholder = "선택된 옵션",
   backgroundColor = basicColors.white,
@@ -49,6 +49,7 @@ const Dropdown = ({
     <Container ref={ref} role="dropdown" size={size}>
       <Stack width="100%" border="none">
         <OpenButton
+          role="dropdown-button"
           onClick={() => {
             setOpenList(!openList);
           }}
@@ -109,7 +110,7 @@ interface CustomStackProps {
   $hoverBackgroundColor?: Props["hoverBackgroundColor"];
 }
 
-const CustomStack = styled(Stack)<CustomStackProps>`
+const CustomStack = styled(Stack) <CustomStackProps>`
   max-height: 240px;
   position: absolute;
   top: 100%;
