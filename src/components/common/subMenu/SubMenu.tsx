@@ -1,119 +1,80 @@
-import { useRef, useState } from "react";
-import { basicColors, bgColors } from "@/resources/colors/colors";
 import { fonts } from "@/resources/fonts/font";
-import { CSSHexColor } from "@/types/style/cssUnits";
-import { FontType } from "@/types/style/font";
-import { styled } from "styled-components";
-import { ItemChildren } from "./ItemChildren";
+import { styled, css } from "styled-components";
 import { MenuItemType } from "./MenuItem.types";
-import { Item } from "./Item";
 
 type Props = {
   menuItems: MenuItemType[];
-  color?: CSSHexColor;
-  backgroundColor?: CSSHexColor;
-  hoverBackgroundColor?: CSSHexColor;
-  disabledColor?: CSSHexColor;
-  fontSize?: FontType;
-  top?: string;
-  left?: string;
+  isChild?: boolean;
 };
 
-export const SubMenu = (props: Props) => {
-  const {
-    menuItems,
-    color = basicColors.white,
-    backgroundColor = bgColors[101728],
-    left = "0",
-    top = "0",
-    fontSize = "medium",
-  } = props;
-
-  const [newMenu, setNewMenu] = useState<JSX.Element | null>(null);
-  const ref = useRef<HTMLUListElement>(null);
-
+export const SubMenu = ({ menuItems, isChild }: Props) => {
   return (
-    <>
-      <MenuBox
-        ref={ref}
-        $color={color}
-        $backgroundColor={backgroundColor}
-        $top={top}
-        $left={left}
-        $fontSize={fontSize}
-      >
-        {menuItems.map((item: MenuItemType, index: number) => {
-          const itemProps = {
-            label: item.label,
-            disabled: item.disabled,
-            key: `${item.label}_${index}`,
-          };
-          if ("children" in item) {
-            // 자식이 있는 메뉴
-            return (
-              <ItemChildren
-                {...itemProps}
-                onMouseEnter={() => {
-                  setNewMenu(null);
-
-                  if (item.disabled) return;
-
-                  const height = ref
-                    .current!.getElementsByTagName("li")
-                    .item(0)!.clientHeight;
-
-                  setNewMenu(
-                    <SubMenu
-                      {...props}
-                      key={`` + index + item.label}
-                      menuItems={item.children}
-                      left={"calc(100% + 2px)"}
-                      top={`${index * height}px`}
-                    />
-                  );
-                }}
-              />
-            );
-          } else {
-            // 자식이 없는 일반 메뉴
-            return (
-              <Item
-                {...itemProps}
-                onClick={() => {
-                  if (!item.disabled) item.onClick();
-                }}
-                onMouseEnter={() => {
-                  setNewMenu(null);
-                }}
-              />
-            );
-          }
-        })}
-        {newMenu}
-      </MenuBox>
-    </>
+    <Wrapper $isChild={!!isChild}>
+      {menuItems.map((item) => (
+        <MenuItem
+          key={item.label}
+          onClick={item.onClick}
+          $disabled={!!item.disabled}
+        >
+          <span>{item.label}</span>
+          {item.children && (
+            <img src="/icons/common/menu-arrow.svg" alt="right-arrow" />
+          )}
+          {item.children && (
+            <SubMenu isChild={true} menuItems={item.children} />
+          )}
+        </MenuItem>
+      ))}
+    </Wrapper>
   );
 };
 
-type CSSMenuBox = {
-  $left: string;
-  $top: string;
-  $color: CSSHexColor;
-  $backgroundColor: CSSHexColor;
-  $fontSize: FontType;
-};
-
-const MenuBox = styled.ul<CSSMenuBox>`
-  position: absolute;
-  top: ${({ $top }) => $top};
-  left: ${({ $left }) => $left};
-  color: ${({ $color }) => $color};
-  padding: 2px 4px;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: 4px;
-  width: 200px;
-  font-size: ${({ $fontSize }) => fonts[$fontSize]};
-  z-index: 1;
+const Wrapper = styled.ul<{ $isChild: boolean }>`
+  border-radius: 8px;
   list-style-type: none;
-  margin: 0;
+  background-color: #393939;
+  color: white;
+  width: fit-content;
+  padding: 6px;
+
+  ${({ $isChild }) =>
+    $isChild &&
+    css`
+      position: absolute;
+      top: 0;
+      left: 100%;
+      display: none;
+    `}
+`;
+
+const MenuItem = styled.li<{ $disabled: boolean }>`
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: ${fonts.default};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  &:hover {
+    background-color: #535353;
+    & > ${Wrapper} {
+      display: block;
+    }
+  }
+
+  ${({ $disabled }) =>
+    $disabled &&
+    css`
+      pointer-events: none;
+      color: grey;
+    `}
+
+  & > img {
+    transform: translate(32%, -6%);
+    scale: 110%;
+  }
 `;

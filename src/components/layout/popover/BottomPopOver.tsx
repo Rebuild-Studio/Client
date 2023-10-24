@@ -29,9 +29,7 @@ const BottomPopOver = (props: PopOverProps) => {
 
   return (
     <PopOverWrapper ref={ref}>
-      <PopOverTrigger onClick={setOnTriggerListener}>
-        {props.triggerComponent}
-      </PopOverTrigger>
+      <div onClick={setOnTriggerListener}>{props.triggerComponent}</div>
       {isTriggered ? (
         <PopOverContent onClick={setOnTriggerListener}>
           {props.children}
@@ -50,12 +48,10 @@ const PopOverWrapper = styled.div`
   display: inline-block;
 `;
 
-const PopOverTrigger = styled.div`
-  padding: 8px 12px;
-`;
-
 const PopOverContent = styled.div`
-  width: 100%;
   position: absolute;
+  left: 10px;
+  bottom: -10px;
+  transform: translateY(100%);
   z-index: 2;
 `;
