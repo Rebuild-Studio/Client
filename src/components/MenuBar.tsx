@@ -10,7 +10,8 @@ import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import { NameSettingBox } from "./layout/NameSettingBox";
+import { NameSettingBox } from "./layout/modal/NameSettingBox";
+import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
 
@@ -39,6 +40,15 @@ const MenuBar = observer(() => {
     interactionStore: eventSystem_store,
   });
 
+  const downloadJSON = () => {
+    sceneControlStore.setExportScene(true);
+    downloadProject();
+  };
+  const createPMX = () => {
+    sceneControlStore.setExportScene(true);
+    createProject("PMX");
+  };
+
   const componentData: MenuItemType[] = [
     {
       label: "저장",
@@ -60,8 +70,13 @@ const MenuBar = observer(() => {
       label: "MX-JSON으로 내보내기",
       disabled: false,
       onClick: () => {
-        sceneControlStore.setExportScene(true);
-        downloadProject();
+        projectStateStore.updateModalComponent(
+          <ConfirmBox
+            label={"MX-JSON으로 내보내기"}
+            onClickRun={downloadJSON}
+          />
+        );
+        projectStateStore.updateModalState(true);
       },
     },
     {
@@ -69,20 +84,24 @@ const MenuBar = observer(() => {
       disabled: false,
 
       onClick: () => {
-        sceneControlStore.setExportScene(true);
-        createProject("PMX");
+        projectStateStore.updateModalComponent(
+          <ConfirmBox label={"PMX 저장"} onClickRun={createPMX} />
+        );
+        projectStateStore.updateModalState(true);
       },
     },
-    {
-      label: "GLB로 내보내기(선택)",
-      disabled: true,
-      onClick: () => {},
-    },
-    {
-      label: "GLB로 내보내기(전체)",
-      disabled: true,
-      onClick: () => {},
-    },
+
+    // Todo: 추후 구현 시에 주석 해제
+    // {
+    //   label: "GLB로 내보내기(선택)",
+    //   disabled: true,
+    //   onClick: () => {},
+    // },
+    // {
+    //   label: "GLB로 내보내기(전체)",
+    //   disabled: true,
+    //   onClick: () => {},
+    // },
   ];
   const configureData: MenuItemType[] = [
     {
