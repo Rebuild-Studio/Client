@@ -14,6 +14,13 @@ jobs:
           fetch-depth: 0
       - run: yarn
       - uses: chromaui/action@v1
+        id: chromatic
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.CHROMATIC_GITHUB_TOKEN }}
+
+      - uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
