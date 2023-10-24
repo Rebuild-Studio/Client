@@ -23,6 +23,11 @@ const DisplaySetting = observer(() => {
   return (
     <>
       <Accordion title={"배경 컬러"}>
+        <Switch
+          label={""}
+          checked={sceneSettingStore.canvasBackgroundColorToggle}
+          onChange={sceneSettingStore.setCanvasBackgroundColorToggle}
+        />
         <TitleWrapper>
           <span>{"배경 컬러"}</span>
           <ColorPicker
