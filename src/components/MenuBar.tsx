@@ -14,23 +14,6 @@ import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
 
-const Menu = ({ label }: { label: string }) => (
-  <MenuButton
-    backgroundColor={bgColors[101728]}
-    hoverBackgroundColor={bgColors[101728]}
-    width="50px"
-    disabled={false}
-    color={basicColors.white}
-    fontSize="small"
-    label={label}
-    onClick={() => {}}
-  />
-);
-const ComponentBtn = () => <Menu label="컴포넌트" />;
-const PlugInBtn = () => <Menu label="플러그인" />;
-const ConfigureBtn = () => <Menu label="설정" />;
-const HelpBtn = () => <Menu label="도움말" />;
-
 const MenuBar = observer(() => {
   const { projectStateStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
