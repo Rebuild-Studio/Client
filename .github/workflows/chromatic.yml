@@ -1,6 +1,10 @@
 name: 'Chromatic'
 on: push
 
+env:
+  VITE_MINIO_PATH: ${{ secrets.MINIO_PATH }}
+  VITE_API_SERVER_PATH: ${{ secrets.API_SERVER_PATH }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
