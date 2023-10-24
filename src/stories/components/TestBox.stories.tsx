@@ -2,7 +2,7 @@ import { Card } from "@/components/common/Card";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const TestBox = () => {
-  return <div>test box!</div>;
+  return <div>test box!!</div>;
 };
 
 const meta = {
