@@ -71,5 +71,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "mx-client@0.0.0"
 }
