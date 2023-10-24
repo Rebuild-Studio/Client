@@ -15,7 +15,6 @@ export const BasicSubMenu = {
     menuItems: [
       {
         label: "목록",
-        disabled: false,
         onClick: () => {
           alert("목록");
         },
@@ -29,27 +28,26 @@ export const BasicSubMenu = {
       },
       {
         label: "로컬 파일로 저장",
-        disabled: false,
         children: [
-          { label: "Scene 저장", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장2", disabled: false, onClick: () => {} },
-          { label: "선택된 에셋 저장3", disabled: false, onClick: () => {} },
+          { label: "Scene 저장", onClick: () => alert("Scene 저장") },
+          { label: "선택된 에셋 저장", onClick: () => alert("에셋 저장") },
+          { label: "선택된 에셋 저장2", onClick: () => alert("에셋 저장2") },
+          { label: "선택된 에셋 저장3", onClick: () => alert("에셋 저장3") },
+          {
+            label: "기타",
+            children: [
+              { label: "A", onClick: () => alert("A") },
+              { label: "B", onClick: () => alert("B") },
+              { label: "C", onClick: () => alert("C") },
+            ],
+          },
         ],
       },
       {
         label: "배포하기",
-        disabled: false,
-        children: [
-          { label: "ffff", disabled: false, onClick: () => {} },
-          {
-            label: "ddddd",
-            disabled: false,
-            children: [
-              { label: "ㅇㅇㅇㅇㅇ", disabled: false, onClick: () => {} },
-            ],
-          },
-        ],
+        onClick: () => {
+          alert("배포하기");
+        },
       },
     ],
   },
