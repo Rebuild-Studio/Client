@@ -4,11 +4,12 @@ import { MenuItemType } from "./MenuItem.types";
 
 type Props = {
   menuItems: MenuItemType[];
+  isChild: boolean;
 };
 
-export const SubMenu = ({ menuItems }: Props) => {
+export const SubMenu = ({ menuItems, isChild }: Props) => {
   return (
-    <Wrapper>
+    <Wrapper $isChild={isChild}>
       {menuItems.map((item) => (
         <MenuItem
           key={item.label}
@@ -20,17 +21,7 @@ export const SubMenu = ({ menuItems }: Props) => {
             <img src="/icons/common/menu-arrow.svg" alt="right-arrow" />
           )}
           {item.children && (
-            <ChildrenWrapper>
-              {item.children.map((child) => (
-                <MenuItem
-                  key={child.label}
-                  onClick={child.onClick}
-                  $disabled={!!child.disabled}
-                >
-                  <span>{child.label}</span>
-                </MenuItem>
-              ))}
-            </ChildrenWrapper>
+            <SubMenu isChild={true} menuItems={item.children} />
           )}
         </MenuItem>
       ))}
@@ -38,20 +29,22 @@ export const SubMenu = ({ menuItems }: Props) => {
   );
 };
 
-const Wrapper = styled.ul`
+const Wrapper = styled.ul<{ $isChild: boolean }>`
   border-radius: 8px;
   list-style-type: none;
   background-color: #393939;
   color: white;
   width: fit-content;
   padding: 6px;
-`;
 
-const ChildrenWrapper = styled(Wrapper)`
-  position: absolute;
-  top: 0;
-  transform: translate(calc(100% + 2px), 0);
-  display: none;
+  ${({ $isChild }) =>
+    $isChild &&
+    css`
+      position: absolute;
+      top: 0;
+      left: 100%;
+      display: none;
+    `}
 `;
 
 const MenuItem = styled.li<{ $disabled: boolean }>`
@@ -68,7 +61,7 @@ const MenuItem = styled.li<{ $disabled: boolean }>`
 
   &:hover {
     background-color: #535353;
-    ${ChildrenWrapper} {
+    & > ${Wrapper} {
       display: block;
     }
   }
@@ -81,7 +74,7 @@ const MenuItem = styled.li<{ $disabled: boolean }>`
     `}
 
   & > img {
-    transform: translate(20%, -6%);
+    transform: translate(32%, -6%);
     scale: 110%;
   }
 `;

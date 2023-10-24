@@ -33,6 +33,14 @@ export const BasicSubMenu = {
           { label: "선택된 에셋 저장", onClick: () => alert("에셋 저장") },
           { label: "선택된 에셋 저장2", onClick: () => alert("에셋 저장2") },
           { label: "선택된 에셋 저장3", onClick: () => alert("에셋 저장3") },
+          {
+            label: "기타",
+            children: [
+              { label: "A", onClick: () => alert("A") },
+              { label: "B", onClick: () => alert("B") },
+              { label: "C", onClick: () => alert("C") },
+            ],
+          },
         ],
       },
       {
