@@ -53,10 +53,7 @@ const MenuBar = observer(() => {
       disabled: false,
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox
-            label={"MX-JSON으로 내보내기"}
-            onClickRun={downloadJSON}
-          />
+          <ConfirmBox label={"MX-JSON으로 내보내기"} onClick={downloadJSON} />
         );
         projectStateStore.updateModalState(true);
       },
@@ -67,7 +64,7 @@ const MenuBar = observer(() => {
 
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={"PMX 저장"} onClickRun={createPMX} />
+          <ConfirmBox label={"PMX 저장"} onClick={createPMX} />
         );
         projectStateStore.updateModalState(true);
       },

@@ -6,10 +6,10 @@ import { observer } from "mobx-react";
 
 interface ConfirmBoxProps {
   label: string;
-  onClickRun: () => void;
+  onClick: () => void;
 }
 
-export const ConfirmBox = observer(({ label, onClickRun }: ConfirmBoxProps) => {
+export const ConfirmBox = observer(({ label, onClick }: ConfirmBoxProps) => {
   const { projectStateStore } = storeContainer;
 
   const onClickClose = () => {
@@ -27,7 +27,7 @@ export const ConfirmBox = observer(({ label, onClickRun }: ConfirmBoxProps) => {
           {...confirmButtonStyle}
           label="실행"
           onClick={() => {
-            onClickRun();
+            onClick();
             onClickClose();
           }}
           disabled={false}
