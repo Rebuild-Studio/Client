@@ -40,11 +40,12 @@ const HdriSetting = observer(() => {
   return (
     <>
       <Accordion title={"환경이미지"}>
-        <Switch
-          label={""}
-          checked={sceneSettingStore.hdriToggle}
-          onChange={sceneSettingStore.setHdriToggle}
-        />
+        <SwitchWrapper>
+          <Switch
+            checked={sceneSettingStore.hdriToggle}
+            onChange={sceneSettingStore.setHdriToggle}
+          />
+        </SwitchWrapper>
 
         <TitleWrapper>
           <span>{"환경이미지"}</span>
@@ -120,4 +121,10 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 10px;
+`;
+
+const SwitchWrapper = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 0;
 `;
