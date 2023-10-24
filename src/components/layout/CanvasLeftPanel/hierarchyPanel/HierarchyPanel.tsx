@@ -5,12 +5,14 @@ import { MeshType } from "@/store/primitiveStore";
 import { HierarchyElement } from "./HierarchyElement";
 import styled from "styled-components";
 import { useState } from "react";
+import { toJS } from "mobx";
 
 type Props = {
   meshes: MeshType;
 };
 
 export const HierarchyPanel = observer(({ meshes }: Props) => {
+  console.log(toJS(meshes))
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (index: number) => {
     //Todo: 인터렉션 에디터 붙으면 if문 지우기(이정우)
