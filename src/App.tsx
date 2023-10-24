@@ -11,9 +11,10 @@ import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
 import editorModeStore from "@store/editorModeStore.ts";
 import InteractionEditor from "@components/InteractionEditor.tsx";
+import ContextMenu from "./components/layout/contextMenu/ContextMenu";
 
 const App = observer(() => {
-  const { projectStateStore } = storeContainer;
+  const { projectStateStore, contextMenuStore } = storeContainer;
   const { editorMode } = editorModeStore;
 
   return (
@@ -38,6 +39,13 @@ const App = observer(() => {
           <Modal />,
           document.getElementById("modal-root")!
         )}
+      {contextMenuStore.isContextMenuOpened && (
+        <ContextMenu
+          items={contextMenuStore.currentContextMenuType!.items}
+          $xPos={contextMenuStore.currentContextMenuType!.xPos}
+          $yPos={contextMenuStore.currentContextMenuType!.yPos}
+        />
+      )}
       <ToastContainer />
     </>
   );

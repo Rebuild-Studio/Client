@@ -2,6 +2,7 @@ import storeContainer from "@/store/storeContainer";
 import { MouseEvent } from "react";
 import * as THREE from "three";
 import { hasAsset } from "./findAsset";
+import { findRootGroup } from "./findGroup";
 
 const onContextMenuSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -13,14 +14,13 @@ const onContextMenuSceneEvents = (
     keyboardEventStore,
   } = storeContainer;
 
-  const { clientX, clientY } = mouseEventStore.currentMouseEvent[1] as MouseEvent;
+  const { clientX, clientY } = mouseEventStore
+    .currentMouseEvent[1] as MouseEvent;
   mouseEventStore.clearMouseEvent();
 
-  if (
-    !keyboardEventStore.currentKeyEvent.isCtrlPressed &&
-    primitiveStore.selectedGroupPrimitive[0] === ""
-  ) {
+  if (!keyboardEventStore.currentKeyEvent.isCtrlPressed) {
     // 단일 선택
+    primitiveStore.clearSelectedGroupPrimitive();
     primitiveStore.clearSelectedPrimitives();
   }
 
@@ -67,20 +67,6 @@ const onContextMenuSceneEvents = (
 
   contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
   contextMenuStore.updateIsContextMenuOpened(true);
-};
-
-const findRootGroup = (
-  intersectObject: THREE.Object3D<THREE.Event> | undefined
-): THREE.Object3D<THREE.Event> | undefined => {
-  if (!intersectObject) {
-    return;
-  }
-
-  if (intersectObject.parent?.type === "Scene") {
-    return intersectObject;
-  }
-
-  return findRootGroup(intersectObject.parent ?? undefined);
 };
 
 export default onContextMenuSceneEvents;

@@ -166,16 +166,16 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
     res.push(activeContextMenuItems.lock);
   }
 
-  const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
+  const isInVisible = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
-      return value.visible === true;
+      return value.visible === false;
     }
   );
 
-  if (isVisible) {
-    res.push(activeContextMenuItems.hide);
-  } else {
+  if (isInVisible) {
     res.push(activeContextMenuItems.visible);
+  } else {
+    res.push(activeContextMenuItems.hide);
   }
 
   res.push(activeContextMenuItems.delete);
@@ -189,6 +189,17 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
       }
     }
     return lockMenu;
+  }
+
+  if (isInVisible) {
+    for (let i = 0; i < res.length; i++) {
+      switch (res[i][0]) {
+        case "그룹": {
+          res[i][2] = false;
+          break;
+        }
+      }
+    }
   }
 
   return res;

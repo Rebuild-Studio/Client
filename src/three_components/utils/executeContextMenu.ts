@@ -124,7 +124,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.userData["isLocked"] = true;
 
-          primitiveStore.updatePrimitive(key, value.clone());
+          primitiveStore.updatePrimitive(key, value);
         }
       );
       break;
@@ -133,7 +133,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.userData["isLocked"] = false;
 
-          primitiveStore.updatePrimitive(key, value.clone());
+          primitiveStore.updatePrimitive(key, value);
         }
       );
       break;
@@ -142,7 +142,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.visible = false;
 
-          primitiveStore.updatePrimitive(key, value.clone());
+          primitiveStore.updatePrimitive(key, value);
         }
       );
       break;
@@ -151,7 +151,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         ([key, value]) => {
           value.visible = true;
 
-          primitiveStore.updatePrimitive(key, value.clone());
+          primitiveStore.updatePrimitive(key, value);
         }
       );
       break;

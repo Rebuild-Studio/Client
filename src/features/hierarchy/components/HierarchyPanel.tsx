@@ -1,10 +1,15 @@
 import { observer } from "mobx-react";
-import Tab from "../../Tab";
-import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
 import { MeshType } from "@/store/primitiveStore";
 import { HierarchyElement } from "./HierarchyElement";
 import styled from "styled-components";
 import { useState } from "react";
+import Tab from "@/components/layout/Tab";
+import {
+  StyledPanel,
+  StyledHeader,
+  StyledTab,
+} from "@/components/layout/CanvasLeftPanel/CanvasLeftPanel.style";
+import { clearContextMenuHierarchy } from "../utils/clearMouseEventHierarchy";
 
 type Props = {
   meshes: MeshType;
@@ -18,7 +23,14 @@ export const HierarchyPanel = observer(({ meshes }: Props) => {
   };
 
   return (
-    <StyledPanel>
+    <StyledPanel
+      onMouseDown={() => {
+        clearContextMenuHierarchy();
+      }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+      }}
+    >
       <StyledHeader>계층 구조</StyledHeader>
       <StyledTab>
         <Tab
