@@ -25,6 +25,7 @@ export const SceneEnvironment = observer(() => {
     directionalLightColor,
     canvasBackgroundColor,
     canvasBackgroundColorToggle,
+    hdriBackgroundVisibleToggle,
   } = sceneSettingStore;
   const texture = useLoader(
     RGBELoader,
@@ -44,7 +45,7 @@ export const SceneEnvironment = observer(() => {
   return (
     <>
       {hdriToggle && (
-        <Environment background={hdriToggle} blur={hdriIntensity / 5}>
+        <Environment background={hdriBackgroundVisibleToggle}>
           <color attach="background" args={["black"]} />
           <mesh
             rotation={[
@@ -57,7 +58,7 @@ export const SceneEnvironment = observer(() => {
             <sphereGeometry />
             <meshBasicMaterial
               transparent
-              opacity={1}
+              opacity={hdriIntensity}
               map={texture}
               side={THREE.BackSide}
               toneMapped={false}
@@ -83,7 +84,7 @@ export const SceneEnvironment = observer(() => {
         shadow-camera-right={30}
         shadow-camera-top={30}
         shadow-camera-bottom={-30}
-      ></directionalLight>
+      />
     </>
   );
 });

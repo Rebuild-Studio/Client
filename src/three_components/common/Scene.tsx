@@ -7,6 +7,7 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasHelper } from "./CanvasHelper";
+import { SceneEnvironment } from "./SceneEnvironment";
 
 const Scene = observer(() => {
   const { mouseEventStore, contextMenuStore, projectStateStore } =
@@ -48,21 +49,7 @@ const Scene = observer(() => {
           mouseEventStore.updateMouseEvent("onDrop", e);
         }}
       >
-        <ambientLight intensity={1} visible={true} color={basicColors.white} />
-        <directionalLight
-          castShadow
-          shadow-bias={-0.0001}
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          intensity={2.5}
-          color={basicColors.white}
-          position={[-10, 18, 11.5]}
-          visible={true}
-          shadow-camera-left={-30}
-          shadow-camera-right={30}
-          shadow-camera-top={30}
-          shadow-camera-bottom={-30}
-        ></directionalLight>
+        <SceneEnvironment />
         {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
         <CanvasHelper />
         <RenderScene />

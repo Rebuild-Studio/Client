@@ -103,8 +103,8 @@ const sceneSettingStore = observable<SceneSettingStoreProps>({
 
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
-  hdriToggle: true,
-  hdriBackgroundVisibleToggle: false,
+  hdriToggle: false,
+  hdriBackgroundVisibleToggle: true,
   hdriIntensity: 1,
   hdriXRotation: 0,
   hdriYRotation: 0,
@@ -207,7 +207,7 @@ const sceneSettingStore = observable<SceneSettingStoreProps>({
     "MX_hdr_outdoor_sunsetLight_01",
     "MX_hdr_outdoor_sunsetLight_02",
   ],
-  selectedBackgroundImage: "none",
+  selectedBackgroundImage: "MX_hdr_indoor_3pointLightStudio_01",
 
   setBackgroundImage(state) {
     sceneSettingStore.selectedBackgroundImage = state;
@@ -225,5 +225,5 @@ const sceneSettingStore = observable<SceneSettingStoreProps>({
   },
 });
 
-export type { SceneSettingStoreProps }
+export type { SceneSettingStoreProps };
 export default sceneSettingStore;
