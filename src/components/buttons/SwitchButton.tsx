@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SwitchProps {
   label: string;
@@ -15,6 +15,10 @@ const Switch = ({ label, checked, onChange }: SwitchProps) => {
     onChange(!isChecked);
     setIsChecked(!isChecked);
   };
+
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
 
   return (
     <SwitchContainer>

@@ -50,7 +50,7 @@ const Scene = observer(() => {
         }}
       >
         <SceneEnvironment />
-        {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
+        <Grid />
         <CanvasHelper />
         <RenderScene />
       </CustomCanvas>
