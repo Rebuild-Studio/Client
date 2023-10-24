@@ -1,8 +1,7 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import { bgColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import BottomPopOver from "./layout/popover/BottomPopOver";
 import { SubMenu } from "./common/subMenu/SubMenu";
-import MenuButton from "./common/MenuButton";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
@@ -10,25 +9,8 @@ import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import { ComponentList } from "./layout/componentList/ComponentList";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
-
-const Menu = ({ label }: { label: string }) => (
-  <MenuButton
-    backgroundColor={bgColors[101728]}
-    hoverBackgroundColor={bgColors[101728]}
-    width="50px"
-    disabled={false}
-    color={basicColors.white}
-    fontSize="small"
-    label={label}
-    onClick={() => {}}
-  />
-);
-const ComponentBtn = () => <Menu label="컴포넌트" />;
-const PlugInBtn = () => <Menu label="플러그인" />;
-const ConfigureBtn = () => <Menu label="설정" />;
-const HelpBtn = () => <Menu label="도움말" />;
+import ProjectList from "@/features/projectList";
 
 const MenuBar = observer(() => {
   const { projectStateStore } = storeContainer;
@@ -51,7 +33,7 @@ const MenuBar = observer(() => {
       label: "목록",
       disabled: false,
       onClick: () => {
-        projectStateStore.updateModalComponent(<ComponentList />);
+        projectStateStore.updateModalComponent(<ProjectList />);
         projectStateStore.updateModalState(true);
       },
     },
@@ -128,16 +110,16 @@ const MenuBar = observer(() => {
     <StyledBar>
       <Left>
         <img src="/icons/studio/MX로고.svg" alt="logo" />
-        <BottomPopOver triggerComponent={<ComponentBtn />}>
+        <BottomPopOver triggerComponent={<MenuButton>컴포넌트</MenuButton>}>
           <SubMenu menuItems={componentData} />
         </BottomPopOver>
-        <BottomPopOver triggerComponent={<PlugInBtn />}>
+        <BottomPopOver triggerComponent={<MenuButton>플러그인</MenuButton>}>
           <></>
         </BottomPopOver>
-        <BottomPopOver triggerComponent={<ConfigureBtn />}>
+        <BottomPopOver triggerComponent={<MenuButton>설정</MenuButton>}>
           <SubMenu menuItems={configureData} />
         </BottomPopOver>
-        <BottomPopOver triggerComponent={<HelpBtn />}>
+        <BottomPopOver triggerComponent={<MenuButton>도움말</MenuButton>}>
           <SubMenu menuItems={helpData} />
         </BottomPopOver>
       </Left>
@@ -170,4 +152,10 @@ const Left = styled.div`
 const Right = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const MenuButton = styled.button`
+  color: white;
+  padding: 0 12px;
+  height: 100%;
 `;

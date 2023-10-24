@@ -10,12 +10,11 @@ import EventSystemStore from "@/interaction(legacyJS)/src/Components/stores/Even
 
 const exportJsonFile = async (
   scene: THREE.Scene,
-  interactionJson: any,
+  interactionJson: unknown,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
   const mxWorker = new MxWorker();
-  interactionJson = JSON.parse(JSON.stringify(interactionJson));
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
   mxWorker.postMessage({
@@ -41,6 +40,7 @@ const exportJsonPost = async (
   scene: THREE.Scene,
   projectType: ProjectType,
   projectStore: ProjectStore,
+  interactionJson: unknown,
   setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
   setIsSuccess: Dispatch<React.SetStateAction<boolean>>
 ) => {
@@ -54,10 +54,10 @@ const exportJsonPost = async (
     projectName,
     thumbnail,
   };
-
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_POST,
     sceneJson,
+    interactionJson,
     projectInfo,
   });
   mxWorker.onmessage = (e) => {
@@ -83,7 +83,7 @@ type hookReturnType = [
   isSuccess: boolean,
   isProcessing: boolean,
   createProject: (projectType: ProjectType) => void,
-  downloadProject: () => void
+  downloadProject: () => void,
 ];
 
 const useExportMxJson = ({
@@ -104,15 +104,20 @@ const useExportMxJson = ({
       setIsProcessing(true);
       setIsSuccess(false);
 
+      const interactionJson = JSON.parse(
+        JSON.stringify(interactionStore.toJSON())
+      );
+      console.log(interactionJson);
       exportJsonPost(
         projectStore.scene,
         projectType,
         projectStore,
+        interactionJson,
         setIsProcessing,
         setIsSuccess
       );
     },
-    [projectStore]
+    [interactionStore, projectStore]
   );
 
   //다운로드 함수
@@ -120,7 +125,9 @@ const useExportMxJson = ({
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
-    const interactionJson = interactionStore.toJSON();
+    const interactionJson = JSON.parse(
+      JSON.stringify(interactionStore.toJSON())
+    );
     exportJsonFile(
       projectStore.scene,
       interactionJson,

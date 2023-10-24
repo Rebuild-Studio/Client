@@ -1,3 +1,4 @@
+import { MxJson } from "@/types/mxJson/mxJson";
 import { observable } from "mobx";
 
 type ProjectType = "MX" | "PMX";
@@ -16,14 +17,20 @@ export type ProjectStore = {
   projectName: string;
   thumbnail: string;
   scene: THREE.Scene | null;
+  mxJson: MxJson | null;
   exportType: ExportType | "none";
+  selectedProject: ProjectInfo | null;
 
   setProjectId: (projectId: string) => void;
   setProjectType: (projectType: ProjectType) => void;
   setProjectName: (projectName: string) => void;
   setThumbnail: (thumbnail: string) => void;
   setScene: (scene: THREE.Scene) => void;
+  setMxJson: (mxJson: MxJson) => void;
   setExportType: (exportType: ExportType) => void;
+  setSelectedProject: (projectInfo: ProjectInfo) => void;
+  clearSelectedProject: () => void;
+  clearMxJson: () => void;
 
   setProjectInfo: (projectInfo: ProjectInfo) => void;
   initAfterExport: () => void;
@@ -32,11 +39,12 @@ export type ProjectStore = {
 const projectStore = observable<ProjectStore>({
   projectId: "",
   projectType: "MX",
-  projectName: "",
-  thumbnail:
-    "https://w7.pngwing.com/pngs/940/589/png-transparent-linkedin-free-text-telephone-call-trademark-thumbnail.png",
+  projectName: "test",
+  thumbnail: "none",
   scene: null,
+  mxJson: null,
   exportType: "none",
+  selectedProject: null,
 
   setProjectId(projectId) {
     this.projectId = projectId;
@@ -55,6 +63,18 @@ const projectStore = observable<ProjectStore>({
   },
   setExportType(exportType) {
     this.exportType = exportType;
+  },
+  setSelectedProject(selectedProject) {
+    this.selectedProject = selectedProject;
+  },
+  clearSelectedProject() {
+    this.selectedProject = null;
+  },
+  setMxJson(mxJson) {
+    this.mxJson = mxJson;
+  },
+  clearMxJson() {
+    this.mxJson = null;
   },
 
   setProjectInfo(projectInfo) {
