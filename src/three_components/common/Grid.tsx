@@ -29,8 +29,12 @@ const Grid = observer(() => {
       <group>
         {sceneSettingStore.isGridVisible && (
           <mesh position={[0, 0, 0]}>
-            <gridHelper args={[50, 50, , gridColor.gray]} />
-            <gridHelper args={[50, 10, , gridColor.black]} />
+            <gridHelper
+              args={[50, 50, gridColor.defaultCenter, gridColor.gray]}
+            />
+            <gridHelper
+              args={[50, 10, gridColor.defaultCenter, gridColor.black]}
+            />
           </mesh>
         )}
         {sceneSettingStore.isAxisVisible && (
