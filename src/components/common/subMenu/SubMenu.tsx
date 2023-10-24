@@ -4,12 +4,12 @@ import { MenuItemType } from "./MenuItem.types";
 
 type Props = {
   menuItems: MenuItemType[];
-  isChild: boolean;
+  isChild?: boolean;
 };
 
 export const SubMenu = ({ menuItems, isChild }: Props) => {
   return (
-    <Wrapper $isChild={isChild}>
+    <Wrapper $isChild={!!isChild}>
       {menuItems.map((item) => (
         <MenuItem
           key={item.label}
