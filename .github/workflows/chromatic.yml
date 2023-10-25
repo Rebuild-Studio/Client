@@ -1,0 +1,25 @@
+name: 'Chromatic'
+on: pull_request
+
+env:
+  VITE_MINIO_PATH: ${{ secrets.MINIO_PATH }}
+  VITE_API_SERVER_PATH: ${{ secrets.API_SERVER_PATH }}
+
+jobs:
+  Build-Storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: yarn
+      - uses: chromaui/action@v1
+        id: chromatic
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.CHROMATIC_GITHUB_TOKEN }}
+
+      - uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
