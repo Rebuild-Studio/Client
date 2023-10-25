@@ -5,17 +5,20 @@ import { SubMenu } from "./common/subMenu/SubMenu";
 import { MenuItemType } from "./common/subMenu/MenuItem.types";
 import IconButton from "./buttons/IconButton";
 import sceneControlStore from "@/store/sceneControlStore";
-import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
+import { createThumbnail } from "@/utils/thumbnail";
+import { useToast } from "@/hooks/useToast";
 
 const MenuBar = observer(() => {
-  const { projectStateStore } = storeContainer;
+  const { projectStateStore, renderStore, projectStore, primitiveStore } =
+    storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
+  const { addToast } = useToast();
   const [, , createProject, downloadProject] = useExportMxJson({
     projectStore,
     interactionStore: eventSystem_store,
@@ -38,11 +41,22 @@ const MenuBar = observer(() => {
     {
       label: "저장",
       disabled: false,
-      onClick: () => {
+      onClick: async () => {
         projectStateStore.updateModalComponent(
           <ConfirmBox label={"컴포넌트 저장"} onClick={saveProject} />
         );
         projectStateStore.updateModalState(true);
+        try {
+          const blob = await createThumbnail({
+            renderStore,
+            projectStateStore,
+            projectStore,
+            primitiveStore,
+          });
+          projectStore.setThumbnail(blob);
+        } catch (error) {
+          addToast("Error: " + error);
+        }
       },
     },
     {

@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import Accordion from "@/components/layout/Accordion";
 import Switch from "@/components/buttons/SwitchButton";
 import storeContainer from "@/store/storeContainer";
+import styled from "styled-components";
 
 const PostEffectSetting = observer(() => {
   const { sceneSettingStore } = storeContainer;
@@ -9,21 +10,29 @@ const PostEffectSetting = observer(() => {
   return (
     <>
       <Accordion title={"명암 고급 효과"}>
-        <Switch
-          label={""}
-          checked={sceneSettingStore.SSAOToggle}
-          onChange={sceneSettingStore.setSSAOToggle}
-        />
+        <SwitchWrapper>
+          <Switch
+            checked={sceneSettingStore.SSAOToggle}
+            onChange={sceneSettingStore.setSSAOToggle}
+          />
+        </SwitchWrapper>
       </Accordion>
       <Accordion title={"반짝임 효과"}>
-        <Switch
-          label={""}
-          checked={sceneSettingStore.bloomToggle}
-          onChange={sceneSettingStore.setBloomToggle}
-        />
+        <SwitchWrapper>
+          <Switch
+            checked={sceneSettingStore.bloomToggle}
+            onChange={sceneSettingStore.setBloomToggle}
+          />
+        </SwitchWrapper>
       </Accordion>
     </>
   );
 });
 
 export default PostEffectSetting;
+
+const SwitchWrapper = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 0;
+`;
