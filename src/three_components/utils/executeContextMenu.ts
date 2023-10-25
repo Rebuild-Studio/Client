@@ -13,17 +13,23 @@ import canvasHistoryStore from "@/store/canvasHistoryStore";
 import { copyGroup, copyObject } from "./copyObject";
 
 const executeContextMenu = (scene: THREE.Scene) => {
-  const { projectStateStore, primitiveStore, contextMenuStore } =
-    storeContainer;
+  const {
+    projectStateStore,
+    primitiveStore,
+    contextMenuStore,
+    sceneSettingStore,
+  } = storeContainer;
 
   switch (contextMenuStore.currentSelectedContextMenu) {
     case "미리보기":
       break;
     case "그리드 숨기기":
-      projectStateStore.updateGridVisible("INVISIBLE");
+      sceneSettingStore.setIsGridVisible(false);
+      sceneSettingStore.setIsAxisVisible(false);
       break;
     case "그리드 표시":
-      projectStateStore.updateGridVisible("VISIBLE");
+      sceneSettingStore.setIsGridVisible(true);
+      sceneSettingStore.setIsAxisVisible(true);
       break;
     case "저장":
       break;

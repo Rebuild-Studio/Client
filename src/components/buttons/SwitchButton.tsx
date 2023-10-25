@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SwitchProps {
-  label: string;
+  label?: string;
   checked: boolean;
   onChange: (e: boolean) => void;
   onClick?: (e: boolean) => void;
@@ -16,16 +16,20 @@ const Switch = ({ label, checked, onChange }: SwitchProps) => {
     setIsChecked(!isChecked);
   };
 
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
+
   return (
-    <SwitchContainer>
-      <SwitchLabel>{label}</SwitchLabel>
+    <SwitchContainer $hasLabel={!!label}>
+      {label && <SwitchLabel>{label}</SwitchLabel>}
       <SwitchWrapper>
         <SwitchInput
           type="checkbox"
           checked={isChecked}
           onChange={handleSwitchChange}
         />
-        <SwitchLever checked={isChecked} onClick={handleSwitchChange} />
+        <SwitchLever $checked={isChecked} onClick={handleSwitchChange} />
       </SwitchWrapper>
     </SwitchContainer>
   );
@@ -33,14 +37,13 @@ const Switch = ({ label, checked, onChange }: SwitchProps) => {
 
 export default Switch;
 
-const SwitchContainer = styled.div`
-  width: 200px;
-  margin: 20px 0;
+const SwitchContainer = styled.div<{ $hasLabel: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  width: ${({ $hasLabel }) => ($hasLabel ? "100%" : "fit-content")};
 `;
+
 const SwitchLabel = styled.label`
   font-size: 10px;
   margin-right: 8px;
@@ -53,19 +56,20 @@ const SwitchWrapper = styled.div`
 
 const SwitchInput = styled.input.attrs({ type: "checkbox" })`
   appearance: none;
+  cursor: pointer;
   width: 22px;
   height: 12px;
   background-color: ${grayColors.lightGray};
   border-radius: 15px;
   position: relative;
-  cursor: pointer;
   transition: background-color 0.3s;
   &:checked {
     background-color: ${basicColors.primary};
   }
 `;
 
-const SwitchLever = styled.div<{ checked: boolean }>`
+const SwitchLever = styled.div<{ $checked: boolean }>`
+  cursor: pointer;
   width: 10px;
   height: 10px;
   background-color: ${grayColors.buttonColor};
@@ -76,5 +80,5 @@ const SwitchLever = styled.div<{ checked: boolean }>`
   left: 1px;
   transition: transform 0.3s;
   transform: ${(props) =>
-    props.checked ? "translateX(14px)" : "translateX(3px)"};
+    props.$checked ? "translateX(14px)" : "translateX(3px)"};
 `;

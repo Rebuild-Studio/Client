@@ -45,5 +45,6 @@ const gridColor = {
   black: 0x222222,
   Xaxis: 0xd14e66,
   Yaxis: 0x5a93ba,
+  defaultCenter: 0x444444,
 } as const;
 export { basicColors, bgColors, grayColors, gridColor };

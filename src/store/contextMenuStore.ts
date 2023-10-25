@@ -106,12 +106,12 @@ const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
 };
 
 const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
-  const { projectStateStore } = storeContainer;
+  const { projectStateStore, sceneSettingStore } = storeContainer;
   const resContextMenuItems: ContextMenuItemType[] = [];
 
   resContextMenuItems.push(activeContextMenuItems.preview);
 
-  if (projectStateStore.gridVisible === "VISIBLE") {
+  if (sceneSettingStore.isGridVisible || sceneSettingStore.isAxisVisible) {
     resContextMenuItems.push(inactiveContextMenuItems.grid);
   } else {
     resContextMenuItems.push(activeContextMenuItems.grid);
