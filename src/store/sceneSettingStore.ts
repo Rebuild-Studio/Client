@@ -1,3 +1,4 @@
+import { HsvaColor } from "@uiw/color-convert";
 import { observable } from "mobx";
 
 type SceneType = "scene" | "none";
@@ -13,13 +14,6 @@ type BackgroundImageType =
   | "MX_hdr_outdoor_sunsetLight_01"
   | "MX_hdr_outdoor_sunsetLight_02"
   | "none";
-
-interface SceneSettingColor {
-  h: number;
-  s: number;
-  v: number;
-  a: number;
-}
 
 interface SceneSettingStoreProps {
   type: SceneType;
@@ -42,25 +36,25 @@ interface SceneSettingStoreProps {
 
   ambientLightToggle: boolean;
   ambientLightIntensity: number;
-  ambientLightColor: SceneSettingColor;
+  ambientLightColor: HsvaColor;
 
   setAmbientLightToggle: (state: boolean) => void;
   setAmbientLightIntensity: (state: number) => void;
-  setAmbientLightColor: (state: SceneSettingColor) => void;
+  setAmbientLightColor: (state: HsvaColor) => void;
 
   directionalLightToggle: boolean;
   directionalLightIntensity: number;
-  directionalLightColor: SceneSettingColor;
+  directionalLightColor: HsvaColor;
 
   setDirectionalLightToggle: (state: boolean) => void;
   setDirectionalLightIntensity: (state: number) => void;
-  setDirectionalLightColor: (state: SceneSettingColor) => void;
+  setDirectionalLightColor: (state: HsvaColor) => void;
 
   canvasBackgroundColorToggle: boolean;
-  canvasBackgroundColor: SceneSettingColor;
+  canvasBackgroundColor: HsvaColor;
 
   setCanvasBackgroundColorToggle: (state: boolean) => void;
-  setCanvasBackgroundColor: (state: SceneSettingColor) => void;
+  setCanvasBackgroundColor: (state: HsvaColor) => void;
 
   isGridVisible: boolean;
   isAxisVisible: boolean;

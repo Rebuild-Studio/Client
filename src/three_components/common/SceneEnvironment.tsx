@@ -23,6 +23,7 @@ export const SceneEnvironment = observer(() => {
     directionalLightIntensity,
     directionalLightColor,
     hdriBackgroundVisibleToggle,
+    canvasBackgroundColor,
   } = sceneSettingStore;
   const texture = useLoader(
     RGBELoader,
@@ -33,7 +34,10 @@ export const SceneEnvironment = observer(() => {
     <>
       {hdriToggle && (
         <Environment background={hdriBackgroundVisibleToggle}>
-          <color attach="background" args={["black"]} />
+          <color
+            attach="background"
+            args={[hsvaToHex(canvasBackgroundColor)]}
+          />
           <mesh
             rotation={[
               hdriXRotation,
