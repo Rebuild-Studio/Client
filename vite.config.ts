@@ -10,7 +10,7 @@ export default defineConfig({
           [
             "babel-plugin-styled-components",
             {
-              displayName: true,
+              displayName: process.env.NODE_ENV !== "production",
               fileName: false,
             },
           ],
