@@ -5,7 +5,7 @@ interface MXLottieSizeProps {
 }
 
 interface MXLottieProps {
-  lottieJson: any;
+  lottieJson: unknown;
   loop: boolean;
   style?: MXLottieSizeProps;
 }
