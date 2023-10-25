@@ -37,6 +37,7 @@ const RenderScene = observer(() => {
 
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+  const renderer = useThree((state) => state.gl);
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
@@ -47,7 +48,8 @@ const RenderScene = observer(() => {
 
   useEffect(() => {
     projectStore.setScene(scene);
-  }, [scene, projectStore]);
+    projectStore.setRenderer(renderer);
+  }, [scene, projectStore, renderer]);
 
   useEffect(() => {
     // mouse event
@@ -106,13 +108,13 @@ const RenderScene = observer(() => {
       const newScene = loader.parse(decodedJson.scene);
       primitiveStore.clearPrimitives();
 
-      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true)
+      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true);
       projectStore.clearMxJson();
       addToast("프로젝트를 불러왔습니다.");
-    }
+    };
 
     renderLoadedMxJson();
-  }, [primitiveStore, projectStore.mxJson, scene, addToast, projectStore])
+  }, [primitiveStore, projectStore.mxJson, scene, addToast, projectStore]);
 
   // 선택 컴포넌트 그룹화 작업
   useEffect(() => {
@@ -149,8 +151,8 @@ const RenderScene = observer(() => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-        )}
+        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      )}
 
       {/* Group 자식용 */}
       <ChildGizmo />
