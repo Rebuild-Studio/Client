@@ -10,7 +10,7 @@ interface SliderProps {
   initValue: number;
   onMouseDown?: (e: React.MouseEvent<HTMLInputElement>) => void;
   onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
-  onMaterialChange?: (newVlaue: number) => void;
+  onMaterialChange?: (newValue: number) => void;
   onChange?: (e: number) => void;
   disabled?: boolean;
 }
