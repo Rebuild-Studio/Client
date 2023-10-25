@@ -23,6 +23,7 @@ const createThumbnail = async (
   }
   const camera = renderStore.controls?.camera;
   primitiveStore.clearSelectedPrimitives();
+  primitiveStore.clearSelectedGroupPrimitive();
   const renderer = projectStore.renderer;
   projectStateStore.updateGridVisible("INVISIBLE");
 
@@ -40,6 +41,10 @@ const createThumbnail = async (
           reader.onload = () => {
             resolve((reader.result as string)?.split(",")[1]);
           };
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "capture.png";
+          link.click();
           reader.readAsDataURL(blob);
         } else {
           throw new Error("Blob is null");
