@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { basicColors, grayColors } from "@/resources/colors/colors";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface SliderProps {
   title: string;
@@ -12,6 +12,7 @@ interface SliderProps {
   onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
   onMaterialChange?: (newVlaue: number) => void;
   onChange?: (e: number) => void;
+  disabled?: boolean;
 }
 
 const Slider = ({
@@ -22,6 +23,7 @@ const Slider = ({
   initValue = 0,
   onMaterialChange = () => {},
   onChange = () => {},
+  disabled,
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
@@ -50,7 +52,7 @@ const Slider = ({
   }, [value]);
 
   return (
-    <SliderContainer>
+    <SliderContainer $disabled={!!disabled}>
       <TitleWrapper>
         <span>{title}</span>
         <SliderValue>{value}</SliderValue>
@@ -69,8 +71,14 @@ const Slider = ({
 
 export default Slider;
 
-const SliderContainer = styled.div`
+const SliderContainer = styled.div<{ $disabled: boolean }>`
   margin: 20px 0;
+  ${({ $disabled }) =>
+    $disabled &&
+    css`
+      pointer-events: none;
+      filter: brightness(30%);
+    `}
 `;
 const TitleWrapper = styled.div`
   display: flex;
