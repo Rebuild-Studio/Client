@@ -5,24 +5,15 @@ import styled from "styled-components";
 import { bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasHelper } from "./CanvasHelper";
 import { SceneEnvironment } from "./SceneEnvironment";
 import { hsvaToHex } from "@uiw/color-convert";
 
 const Scene = observer(() => {
-  const { mouseEventStore, contextMenuStore, sceneSettingStore } =
-    storeContainer;
+  const { mouseEventStore, sceneSettingStore } = storeContainer;
 
   return (
     <Wrapper>
-      {contextMenuStore.isContextMenuOpened && (
-        <ContextMenu
-          items={contextMenuStore.currentContextMenuType!.items}
-          $xPos={contextMenuStore.currentContextMenuType!.xPos}
-          $yPos={contextMenuStore.currentContextMenuType!.yPos}
-        />
-      )}
       <CustomCanvas
         id="canvas"
         camera={{ fov: 50, position: [0, 2, 3.0] }}

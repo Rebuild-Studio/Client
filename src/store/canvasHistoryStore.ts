@@ -1,7 +1,5 @@
 import { observable } from "mobx";
-import {
-  renderObjects,
-} from "@/three_components/utils/renderThreeComponents";
+import { renderObjects } from "@/three_components/utils/renderThreeComponents";
 import {
   CanvasAttribute,
   CanvasInstance,
@@ -172,15 +170,17 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
   },
 
   update() {
-
     primitiveStore.clearPrimitives();
-    primitiveStore.clearSelectedGroupPrimitive();
     const meshList = Object.values(this.redoList[0].snapshot);
 
     renderObjects(primitiveStore, meshList);
-
   },
 });
 
-export type { CanvasHistoryStoreProps, CanvasInstance, CanvasAttribute, CanvasHistoryType };
+export type {
+  CanvasHistoryStoreProps,
+  CanvasInstance,
+  CanvasAttribute,
+  CanvasHistoryType,
+};
 export default canvasHistoryStore;

@@ -8,6 +8,10 @@ import {
   CanvasInstance,
   instanceTranslate,
 } from "@/resources/constants/canvas";
+import onContextMenuHierarchyEvents from "../utils/onContextMenuHierarchyEvent";
+import onClickHierarchyEvent from "../utils/onClickHierarchyEvent";
+import { findRootGroup } from "@/three_components/utils/findGroup";
+import { findRootAsset } from "@/three_components/utils/findAsset";
 
 type MouseEvents = {
   objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;
@@ -42,6 +46,21 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
     }
   };
 
+  const isInteractionVisible = () => {
+    // 그룹이나 애셋 오브젝트인 경우
+    if (mesh.name === "GROUP" || mesh.name === "ASSET") {
+      return true;
+    }
+
+    // 그룹이나 애셋 오브젝트의 자식인 경우
+    if (findRootGroup(mesh) || findRootAsset(mesh)) {
+      return false;
+    }
+
+    // 그 외의 경우
+    return true;
+  };
+
   // mesh가 selected 되면 hover event 활성화
   useEffect(() => {
     const dispose = reaction(
@@ -70,8 +89,7 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
       setIsOpen((prev) => !prev);
     },
     objectClick: () => {
-      primitiveStore.clearSelectedPrimitives();
-      primitiveStore.addSelectedPrimitives(storeId, mesh);
+      onClickHierarchyEvent(mesh);
     },
     objectMouseEnter: () => {
       setIsMouseUp(true);
@@ -81,8 +99,8 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
         setIsMouseUp(false);
       }
     },
-    objectContextMenu: () => {
-      // TODO : 계층구조 컨텍스트 메뉴
+    objectContextMenu: (e) => {
+      onContextMenuHierarchyEvents(e.clientX, e.clientY, mesh);
     },
     lockImgClick: (e) => {
       e.stopPropagation();
@@ -120,24 +138,26 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
         <span>
           {instanceTranslate[mesh.name as CanvasInstance] ?? mesh.name}
         </span>
-        <InteractionButtonBox>
-          <img
-            src={
-              isLocked
-                ? "/icons/studio/icon_잠그기.svg"
-                : "/icons/studio/icon_잠금해제.svg"
-            }
-            onClick={mouseEvents.lockImgClick}
-          />
-          <img
-            src={
-              visible
-                ? "/icons/studio/icon_보이기.svg"
-                : "/icons/studio/icon_가리기.svg"
-            }
-            onClick={mouseEvents.visibleImgClick}
-          />
-        </InteractionButtonBox>
+        {isInteractionVisible() && (
+          <InteractionButtonBox>
+            <img
+              src={
+                isLocked
+                  ? "/icons/studio/icon_잠그기.svg"
+                  : "/icons/studio/icon_잠금해제.svg"
+              }
+              onClick={mouseEvents.lockImgClick}
+            />
+            <img
+              src={
+                visible
+                  ? "/icons/studio/icon_보이기.svg"
+                  : "/icons/studio/icon_가리기.svg"
+              }
+              onClick={mouseEvents.visibleImgClick}
+            />
+          </InteractionButtonBox>
+        )}
       </ObjectElement>
       {isOpen &&
         mesh.children.map((childMesh) => (

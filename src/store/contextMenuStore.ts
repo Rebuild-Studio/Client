@@ -107,52 +107,52 @@ const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
 
 const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
   const { projectStateStore, sceneSettingStore } = storeContainer;
-  const res: ContextMenuItemType[] = [];
+  const resContextMenuItems: ContextMenuItemType[] = [];
 
-  res.push(activeContextMenuItems.preview);
+  resContextMenuItems.push(activeContextMenuItems.preview);
 
   if (sceneSettingStore.isGridVisible || sceneSettingStore.isAxisVisible) {
-    res.push(inactiveContextMenuItems.grid);
+    resContextMenuItems.push(inactiveContextMenuItems.grid);
   } else {
-    res.push(activeContextMenuItems.grid);
+    resContextMenuItems.push(activeContextMenuItems.grid);
   }
 
-  res.push(activeContextMenuItems.save);
+  resContextMenuItems.push(activeContextMenuItems.save);
 
   if (Object.keys(projectStateStore.currentCopyPrimitive).length !== 0) {
-    res.push(activeContextMenuItems.paste);
+    resContextMenuItems.push(activeContextMenuItems.paste);
   } else {
-    res.push(inactiveContextMenuItems.paste);
+    resContextMenuItems.push(inactiveContextMenuItems.paste);
   }
 
-  return res;
+  return resContextMenuItems;
 };
 
 const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const { projectStateStore, primitiveStore } = storeContainer;
-  const res: ContextMenuItemType[] = [];
-  res.push(activeContextMenuItems.copy);
+  const resContextMenuItems: ContextMenuItemType[] = [];
+  resContextMenuItems.push(activeContextMenuItems.copy);
 
   if (Object.keys(projectStateStore.currentCopyPrimitive).length !== 0) {
-    res.push(activeContextMenuItems.paste);
+    resContextMenuItems.push(activeContextMenuItems.paste);
   } else {
-    res.push(inactiveContextMenuItems.paste);
+    resContextMenuItems.push(inactiveContextMenuItems.paste);
   }
 
-  res.push(inactiveContextMenuItems.divider);
+  resContextMenuItems.push(inactiveContextMenuItems.divider);
 
   if (Object.keys(primitiveStore.selectedPrimitives).length > 1) {
-    res.push(activeContextMenuItems.group);
+    resContextMenuItems.push(activeContextMenuItems.group);
   }
 
   if (
     Object.keys(primitiveStore.selectedPrimitives).length === 1 &&
     Object.values(primitiveStore.selectedPrimitives)[0].name === "GROUP"
   ) {
-    res.push(inactiveContextMenuItems.group);
+    resContextMenuItems.push(inactiveContextMenuItems.group);
   }
 
-  res.push(inactiveContextMenuItems.divider);
+  resContextMenuItems.push(inactiveContextMenuItems.divider);
 
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
@@ -161,37 +161,49 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   );
 
   if (isLocked) {
-    res.push(inactiveContextMenuItems.lock);
+    resContextMenuItems.push(inactiveContextMenuItems.lock);
   } else {
-    res.push(activeContextMenuItems.lock);
+    resContextMenuItems.push(activeContextMenuItems.lock);
   }
 
-  const isVisible = Object.values(primitiveStore.selectedPrimitives).find(
-    (value) => {
-      return value.visible === true;
-    }
-  );
+  const isObjectInvisible = Object.values(
+    primitiveStore.selectedPrimitives
+  ).find((value) => {
+    return value.visible === false;
+  });
 
-  if (isVisible) {
-    res.push(activeContextMenuItems.hide);
+  if (isObjectInvisible) {
+    resContextMenuItems.push(activeContextMenuItems.visible);
   } else {
-    res.push(activeContextMenuItems.visible);
+    resContextMenuItems.push(activeContextMenuItems.hide);
   }
 
-  res.push(activeContextMenuItems.delete);
+  resContextMenuItems.push(activeContextMenuItems.delete);
 
   if (isLocked) {
     const lockMenu: ContextMenuItemType[] = [];
-    for (let i = 0; i < res.length; i++) {
-      lockMenu.push([res[i][0], res[i][1], false]);
-      if (lockMenu[i][0] === "잠금 해제") {
-        lockMenu[i][2] = true;
+    resContextMenuItems.forEach(([contextmenuType, hotKey], index) => {
+      lockMenu.push([contextmenuType, hotKey, false]);
+      if (contextmenuType === "잠금 해제") {
+        lockMenu[index][2] = true;
       }
-    }
+    });
+
     return lockMenu;
   }
 
-  return res;
+  if (isObjectInvisible) {
+    resContextMenuItems.forEach(([contextMenuType, ,], index) => {
+      switch (contextMenuType) {
+        case "그룹": {
+          resContextMenuItems[index][2] = false;
+          break;
+        }
+      }
+    });
+  }
+
+  return resContextMenuItems;
 };
 
 export type { ContextMenuRenderProps, ContextMenuItemType };
