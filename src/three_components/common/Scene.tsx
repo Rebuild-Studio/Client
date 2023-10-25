@@ -10,8 +10,7 @@ import { SceneEnvironment } from "./SceneEnvironment";
 import { hsvaToHex } from "@uiw/color-convert";
 
 const Scene = observer(() => {
-  const { mouseEventStore, contextMenuStore, sceneSettingStore } =
-    storeContainer;
+  const { mouseEventStore, sceneSettingStore } = storeContainer;
 
   return (
     <Wrapper>
