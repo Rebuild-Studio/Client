@@ -11,6 +11,7 @@ interface AppProps {
 const AppWrapper = observer((props: AppProps) => {
   const { keyboardEventStore, projectStateStore } = storeContainer;
   const setOnKeydownListener = (e: KeyboardEvent) => {
+    // F12, 모달이 열려있을 때는 키보드 이벤트를 무시한다.
     if (projectStateStore.isModalOpened) {
       return;
     }

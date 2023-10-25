@@ -7,12 +7,16 @@ import { observer } from "mobx-react";
 
 interface ConfirmBoxProps {
   label: string;
-  onClick?: () => void;
+  onClickConfirm?: () => void;
   hasContent?: boolean;
 }
 
 export const ConfirmBox = observer(
-  ({ label, onClick = () => {}, hasContent = false }: ConfirmBoxProps) => {
+  ({
+    label,
+    onClickConfirm = () => {},
+    hasContent = false,
+  }: ConfirmBoxProps) => {
     const { projectStateStore, projectStore } = storeContainer;
     const [value, setValue] = useState(projectStore.projectName);
 
@@ -60,9 +64,9 @@ export const ConfirmBox = observer(
           ) : (
             <MenuButton
               {...confirmButtonStyle}
-              label={"실행"}
+              label={"확인"}
               onClick={() => {
-                onClick();
+                onClickConfirm();
                 onClickClose();
               }}
               disabled={false}

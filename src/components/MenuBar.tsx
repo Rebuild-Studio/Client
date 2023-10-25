@@ -40,7 +40,7 @@ const MenuBar = observer(() => {
       disabled: false,
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={"컴포넌트 저장"} onClick={createMX} />
+          <ConfirmBox label={"컴포넌트 저장"} onClickConfirm={createMX} />
         );
         projectStateStore.updateModalState(true);
       },
@@ -58,7 +58,10 @@ const MenuBar = observer(() => {
       disabled: false,
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={"MX-JSON으로 내보내기"} onClick={downloadJSON} />
+          <ConfirmBox
+            label={"MX-JSON으로 내보내기"}
+            onClickConfirm={downloadJSON}
+          />
         );
         projectStateStore.updateModalState(true);
       },
@@ -69,7 +72,7 @@ const MenuBar = observer(() => {
 
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={"PMX 저장"} onClick={createPMX} />
+          <ConfirmBox label={"PMX 저장"} onClickConfirm={createPMX} />
         );
         projectStateStore.updateModalState(true);
       },
