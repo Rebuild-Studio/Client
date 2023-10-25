@@ -23,15 +23,14 @@ const Scene = observer(() => {
           $yPos={contextMenuStore.currentContextMenuType!.yPos}
         />
       )}
-      <Canvas
+      <CustomCanvas
         id="canvas"
         camera={{ fov: 50, position: [0, 2, 3.0] }}
-        style={{
-          overflow: "hidden",
-          background: sceneSettingStore.canvasBackgroundColorToggle
+        $backgroundColor={
+          sceneSettingStore.canvasBackgroundColorToggle
             ? hsvaToHex(sceneSettingStore.canvasBackgroundColor)
-            : bgColors.sceneBackground,
-        }}
+            : bgColors.sceneBackground
+        }
         onMouseDown={(e) => {
           mouseEventStore.updateMouseEvent("onMouseDown", e);
         }}
@@ -60,7 +59,7 @@ const Scene = observer(() => {
         <Grid />
         <CanvasHelper />
         <RenderScene />
-      </Canvas>
+      </CustomCanvas>
     </Wrapper>
   );
 });
@@ -69,4 +68,8 @@ export default Scene;
 
 const Wrapper = styled.div`
   height: 100%;
+`;
+
+const CustomCanvas = styled(Canvas)<{ $backgroundColor: string }>`
+  background: ${({ $backgroundColor }) => $backgroundColor};
 `;
