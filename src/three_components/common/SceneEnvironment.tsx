@@ -1,15 +1,14 @@
-import { useLoader, useThree } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
 import * as THREE from "three";
 import { Environment } from "@react-three/drei";
 import getMinioPath from "@/utils/path/minio";
 import { observer } from "mobx-react";
-import sceneSettingStore from "@/store/sceneSettingStore";
 import { hsvaToHex } from "@uiw/color-convert";
-import { useEffect } from "react";
-import { bgColors } from "@/resources/colors/colors";
+import storeContainer from "@/store/storeContainer";
 
 export const SceneEnvironment = observer(() => {
+  const { sceneSettingStore } = storeContainer;
   const {
     selectedBackgroundImage,
     hdriToggle,
@@ -23,24 +22,12 @@ export const SceneEnvironment = observer(() => {
     directionalLightToggle,
     directionalLightIntensity,
     directionalLightColor,
-    canvasBackgroundColor,
-    canvasBackgroundColorToggle,
     hdriBackgroundVisibleToggle,
   } = sceneSettingStore;
   const texture = useLoader(
     RGBELoader,
     getMinioPath(selectedBackgroundImage, "libraryHDR")
   );
-
-  // 캔버스 배경색
-  const scene = useThree((state) => state.scene);
-  useEffect(() => {
-    if (canvasBackgroundColorToggle) {
-      scene.background = new THREE.Color(hsvaToHex(canvasBackgroundColor));
-    } else {
-      scene.background = new THREE.Color(bgColors.sceneBackground);
-    }
-  }, [canvasBackgroundColorToggle, canvasBackgroundColor]);
 
   return (
     <>

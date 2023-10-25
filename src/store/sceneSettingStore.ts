@@ -103,8 +103,8 @@ const sceneSettingStore = observable<SceneSettingStoreProps>({
 
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
-  hdriToggle: false,
-  hdriBackgroundVisibleToggle: true,
+  hdriToggle: true,
+  hdriBackgroundVisibleToggle: false,
   hdriIntensity: 1,
   hdriXRotation: 0,
   hdriYRotation: 0,

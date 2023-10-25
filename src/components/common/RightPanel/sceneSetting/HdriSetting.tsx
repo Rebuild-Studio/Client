@@ -59,6 +59,7 @@ const HdriSetting = observer(() => {
                 !sceneSettingStore.hdriBackgroundVisibleToggle
               );
             }}
+            alt="visible"
           />
           <CustomMenu
             title={"환경이미지 템플릿"}

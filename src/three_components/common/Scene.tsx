@@ -2,15 +2,16 @@ import { Canvas } from "@react-three/fiber";
 import RenderScene from "../scene/RenderScene";
 import Grid from "./Grid";
 import styled from "styled-components";
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import { bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
 import { CanvasHelper } from "./CanvasHelper";
 import { SceneEnvironment } from "./SceneEnvironment";
+import { hsvaToHex } from "@uiw/color-convert";
 
 const Scene = observer(() => {
-  const { mouseEventStore, contextMenuStore, projectStateStore } =
+  const { mouseEventStore, contextMenuStore, sceneSettingStore } =
     storeContainer;
 
   return (
@@ -22,9 +23,15 @@ const Scene = observer(() => {
           $yPos={contextMenuStore.currentContextMenuType!.yPos}
         />
       )}
-      <CustomCanvas
+      <Canvas
         id="canvas"
         camera={{ fov: 50, position: [0, 2, 3.0] }}
+        style={{
+          overflow: "hidden",
+          background: sceneSettingStore.canvasBackgroundColorToggle
+            ? hsvaToHex(sceneSettingStore.canvasBackgroundColor)
+            : bgColors.sceneBackground,
+        }}
         onMouseDown={(e) => {
           mouseEventStore.updateMouseEvent("onMouseDown", e);
         }}
@@ -53,7 +60,7 @@ const Scene = observer(() => {
         <Grid />
         <CanvasHelper />
         <RenderScene />
-      </CustomCanvas>
+      </Canvas>
     </Wrapper>
   );
 });
@@ -62,8 +69,4 @@ export default Scene;
 
 const Wrapper = styled.div`
   height: 100%;
-`;
-
-const CustomCanvas = styled(Canvas)`
-  background-color: ${bgColors.sceneBackground};
 `;

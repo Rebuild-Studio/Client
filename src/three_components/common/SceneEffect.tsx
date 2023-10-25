@@ -1,4 +1,4 @@
-import { Bloom, EffectComposer, SSAO } from "@react-three/postprocessing";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import SelectedOutline from "../post_processing/SelectedOutline";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
