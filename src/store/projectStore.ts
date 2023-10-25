@@ -16,6 +16,7 @@ export type ProjectStore = {
   projectType: ProjectType;
   projectName: string;
   thumbnail: string;
+  renderer: THREE.WebGLRenderer | null;
   scene: THREE.Scene | null;
   mxJson: MxJson | null;
   exportType: ExportType | "none";
@@ -25,6 +26,7 @@ export type ProjectStore = {
   setProjectType: (projectType: ProjectType) => void;
   setProjectName: (projectName: string) => void;
   setThumbnail: (thumbnail: string) => void;
+  setRenderer: (renderer: THREE.WebGLRenderer) => void;
   setScene: (scene: THREE.Scene) => void;
   setMxJson: (mxJson: MxJson) => void;
   setExportType: (exportType: ExportType) => void;
@@ -41,6 +43,7 @@ const projectStore = observable<ProjectStore>({
   projectType: "MX",
   projectName: "test",
   thumbnail: "none",
+  renderer: null,
   scene: null,
   mxJson: null,
   exportType: "none",
@@ -57,6 +60,9 @@ const projectStore = observable<ProjectStore>({
   },
   setThumbnail(thumbnail) {
     this.thumbnail = thumbnail;
+  },
+  setRenderer(renderer) {
+    this.renderer = renderer;
   },
   setScene(scene) {
     this.scene = scene;

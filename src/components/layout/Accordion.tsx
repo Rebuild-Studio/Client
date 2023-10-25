@@ -44,6 +44,7 @@ const AccordionContainer = styled.div`
   width: 100%;
   margin-top: 10px;
   overflow: hidden;
+  position: relative;
 `;
 
 const AccordionHeader = styled.div`

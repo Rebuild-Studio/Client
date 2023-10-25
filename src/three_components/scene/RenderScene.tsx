@@ -36,6 +36,7 @@ const RenderScene = observer(() => {
 
   const raycaster = useThree((state) => state.raycaster);
   const scene = useThree((state) => state.scene);
+  const renderer = useThree((state) => state.gl);
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const materialName = selectedObjectStore.selectedMaterial;
@@ -46,7 +47,8 @@ const RenderScene = observer(() => {
 
   useEffect(() => {
     projectStore.setScene(scene);
-  }, [scene, projectStore]);
+    projectStore.setRenderer(renderer);
+  }, [scene, projectStore, renderer]);
 
   useEffect(() => {
     // mouse event
