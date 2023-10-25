@@ -63,7 +63,7 @@ const Scene = observer(() => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         ></directionalLight>
-        {projectStateStore.gridVisible === "VISIBLE" && <Grid />}
+        <Grid visible={projectStateStore.gridVisible === "VISIBLE"} />
         <CanvasHelper />
         <RenderScene />
       </CustomCanvas>
