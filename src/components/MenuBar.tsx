@@ -14,8 +14,13 @@ import { createThumbnail } from "@/utils/thumbnail";
 import { useToast } from "@/hooks/useToast";
 
 const MenuBar = observer(() => {
-  const { projectStateStore, renderStore, projectStore, primitiveStore } =
-    storeContainer;
+  const {
+    projectStateStore,
+    renderStore,
+    projectStore,
+    primitiveStore,
+    sceneSettingStore,
+  } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
   const [, , createProject, downloadProject] = useExportMxJson({
@@ -33,7 +38,7 @@ const MenuBar = observer(() => {
         try {
           const blob = await createThumbnail({
             renderStore,
-            projectStateStore,
+            sceneSettingStore,
             projectStore,
             primitiveStore,
           });

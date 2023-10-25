@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import { RenderStoreProps } from "@/store/renderStore";
-import { ProjectStateProps } from "@/store/projectStateStore";
 import { ProjectStore } from "@/store/projectStore";
 import { PrimitiveStore } from "@/store/primitiveStore";
+import { SceneSettingStoreProps } from "@/store/sceneSettingStore";
 
 interface CreateThumbnailProps {
   renderStore: RenderStoreProps;
   projectStore: ProjectStore;
-  projectStateStore: ProjectStateProps;
+  sceneSettingStore: SceneSettingStoreProps;
   primitiveStore: PrimitiveStore;
 }
 
@@ -15,7 +15,7 @@ interface CreateThumbnailProps {
 const createThumbnail = async (
   props: CreateThumbnailProps
 ): Promise<string> => {
-  const { renderStore, projectStore, projectStateStore, primitiveStore } =
+  const { renderStore, projectStore, sceneSettingStore, primitiveStore } =
     props;
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   if (!canvas) {
@@ -25,7 +25,9 @@ const createThumbnail = async (
   primitiveStore.clearSelectedPrimitives();
   primitiveStore.clearSelectedGroupPrimitive();
   const renderer = projectStore.renderer;
-  projectStateStore.updateGridVisible("INVISIBLE");
+  // grid 안보이게
+  sceneSettingStore.setIsGridVisible(false);
+  sceneSettingStore.setIsAxisVisible(false);
 
   const scene = projectStore.scene;
   const screenCamera = new THREE.PerspectiveCamera();
@@ -47,7 +49,9 @@ const createThumbnail = async (
         }
       }, "image/png");
 
-      projectStateStore.updateGridVisible("VISIBLE");
+      // grid 보이게
+      sceneSettingStore.setIsGridVisible(true);
+      sceneSettingStore.setIsAxisVisible(true);
     }, 0);
   });
 };
