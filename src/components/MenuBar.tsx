@@ -21,7 +21,7 @@ const MenuBar = observer(() => {
     interactionStore: eventSystem_store,
   });
 
-  const saveProject = () => {
+  const createMX = () => {
     sceneControlStore.setExportScene(true);
     createProject("MX");
   };
@@ -40,7 +40,7 @@ const MenuBar = observer(() => {
       disabled: false,
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={"컴포넌트 저장"} onClick={saveProject} />
+          <ConfirmBox label={"컴포넌트 저장"} onClick={createMX} />
         );
         projectStateStore.updateModalState(true);
       },
