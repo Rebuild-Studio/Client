@@ -61,6 +61,7 @@ export default CustomMenu;
 
 const Wrapper = styled.div`
   display: flex;
+  position: relative;
 `;
 const TitleWrapper = styled.div`
   display: flex;

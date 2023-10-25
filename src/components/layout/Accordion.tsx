@@ -43,7 +43,6 @@ export default Accordion;
 const AccordionContainer = styled.div`
   width: 100%;
   margin-top: 10px;
-  overflow: hidden;
   position: relative;
 `;
 
@@ -82,7 +81,6 @@ const AccordionContent = styled.div<{
   $isOpen: boolean;
   $maxHeight: number | null;
 }>`
-  overflow: hidden;
   max-height: ${(props) => props.$maxHeight};
   transition: max-height 0.3s ease-in-out;
   opacity: ${(props) => (props.$isOpen ? "1" : "0")};

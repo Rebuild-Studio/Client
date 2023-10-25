@@ -65,7 +65,6 @@ const PanelOptionsWrapper = styled.div`
 
 const PanelContentWrapper = styled.div`
   flex: 1;
-  overflow-y: auto;
   padding: 0 10px;
   color: white;
   font-size: ${fonts.small};
