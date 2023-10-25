@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import storeContainer from "@/store/storeContainer";
 import InputField from "../InputField";
 import { observer } from "mobx-react";
+import { roundToNDecimalPlaces } from "@utils/number/roundToDecimalPlaces";
 import * as THREE from "three";
 
 interface Props {
@@ -34,7 +35,6 @@ const TransformInput = observer((props: Props) => {
     const axis: "x" | "y" | "z" = props.axis;
 
     const currentValue = {
-      // position: new THREE.Vector3().copy(position),
       position: new THREE.Vector3().copy(position),
       rotation: new THREE.Euler().copy(rotation),
       scale: new THREE.Vector3().copy(scale),
@@ -56,7 +56,7 @@ const TransformInput = observer((props: Props) => {
       type={"number"}
       title={props.type}
       label={props.axis}
-      value={Number(value)}
+      value={roundToNDecimalPlaces(Number(value), 2)}
       onClickChange={handleKeyChange}
       onChange={handleKeyChange}
     />
