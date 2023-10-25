@@ -12,7 +12,7 @@ interface ConfirmBoxProps {
 }
 
 export const ConfirmBox = observer(
-  ({ label, onClick, hasContent = false }: ConfirmBoxProps) => {
+  ({ label, onClick = () => {}, hasContent = false }: ConfirmBoxProps) => {
     const { projectStateStore, projectStore } = storeContainer;
     const [value, setValue] = useState(projectStore.projectName);
 
@@ -58,17 +58,15 @@ export const ConfirmBox = observer(
               disabled={false}
             />
           ) : (
-            !!onClick && (
-              <MenuButton
-                {...confirmButtonStyle}
-                label={"실행"}
-                onClick={() => {
-                  onClick();
-                  onClickClose();
-                }}
-                disabled={false}
-              />
-            )
+            <MenuButton
+              {...confirmButtonStyle}
+              label={"실행"}
+              onClick={() => {
+                onClick();
+                onClickClose();
+              }}
+              disabled={false}
+            />
           )}
           <MenuButton
             {...closeButtonStyle}
