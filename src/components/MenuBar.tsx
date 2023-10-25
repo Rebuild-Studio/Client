@@ -9,7 +9,6 @@ import projectStore from "@/store/projectStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
-import { NameSettingBox } from "./layout/modal/NameSettingBox";
 import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
@@ -22,6 +21,10 @@ const MenuBar = observer(() => {
     interactionStore: eventSystem_store,
   });
 
+  const saveProject = () => {
+    sceneControlStore.setExportScene(true);
+    createProject("MX");
+  };
   const downloadJSON = () => {
     sceneControlStore.setExportScene(true);
     downloadProject();
@@ -36,7 +39,9 @@ const MenuBar = observer(() => {
       label: "저장",
       disabled: false,
       onClick: () => {
-        projectStateStore.updateModalComponent(<NameSettingBox />);
+        projectStateStore.updateModalComponent(
+          <ConfirmBox label={"컴포넌트 저장"} onClick={saveProject} />
+        );
         projectStateStore.updateModalState(true);
       },
     },

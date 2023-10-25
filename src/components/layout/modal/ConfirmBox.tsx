@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
@@ -6,42 +7,80 @@ import { observer } from "mobx-react";
 
 interface ConfirmBoxProps {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
+  hasContent?: boolean;
 }
 
-export const ConfirmBox = observer(({ label, onClick }: ConfirmBoxProps) => {
-  const { projectStateStore } = storeContainer;
+export const ConfirmBox = observer(
+  ({ label, onClick, hasContent = false }: ConfirmBoxProps) => {
+    const { projectStateStore, projectStore } = storeContainer;
+    const [value, setValue] = useState(projectStore.projectName);
 
-  const onClickClose = () => {
-    projectStateStore.clearModal();
-  };
+    const onClickClose = () => {
+      projectStateStore.clearModal();
+    };
 
-  return (
-    <StyledComponentList>
-      <StyledHeader>
-        <StyledTitle>{label} 확인</StyledTitle>
-      </StyledHeader>
-      <StyledBody>정말 실행하시겠습니까?</StyledBody>
-      <StyledFooter>
-        <MenuButton
-          {...confirmButtonStyle}
-          label="실행"
-          onClick={() => {
-            onClick();
-            onClickClose();
-          }}
-          disabled={false}
-        />
-        <MenuButton
-          {...closeButtonStyle}
-          label="닫기"
-          onClick={onClickClose}
-          disabled={false}
-        />
-      </StyledFooter>
-    </StyledComponentList>
-  );
-});
+    return (
+      <StyledComponentList>
+        <StyledHeader>
+          {hasContent ? (
+            <StyledTitle>{label}</StyledTitle>
+          ) : (
+            <StyledTitle>{label} 확인</StyledTitle>
+          )}
+        </StyledHeader>
+
+        {hasContent ? (
+          // To do: 추후 ConfirmBox 확장 시, hasContent이 true이면 주입되도록 수정
+          <StyledBody>
+            <StyledInput
+              type="text"
+              placeholder="컴포넌트 이름을 입력해주세요"
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+              value={value}
+            />
+          </StyledBody>
+        ) : (
+          <StyledBody>정말 실행하시겠습니까?</StyledBody>
+        )}
+
+        <StyledFooter>
+          {hasContent ? (
+            <MenuButton
+              {...confirmButtonStyle}
+              label={"저장"}
+              onClick={() => {
+                projectStore.setProjectName(value);
+                onClickClose();
+              }}
+              disabled={false}
+            />
+          ) : (
+            !!onClick && (
+              <MenuButton
+                {...confirmButtonStyle}
+                label={"실행"}
+                onClick={() => {
+                  onClick();
+                  onClickClose();
+                }}
+                disabled={false}
+              />
+            )
+          )}
+          <MenuButton
+            {...closeButtonStyle}
+            label="닫기"
+            onClick={onClickClose}
+            disabled={false}
+          />
+        </StyledFooter>
+      </StyledComponentList>
+    );
+  }
+);
 
 const StyledComponentList = styled.div`
   width: 70px;
@@ -82,6 +121,19 @@ const StyledBody = styled.div`
   align-items: center;
   color: ${basicColors.white};
   font-weight: 1000;
+`;
+
+const StyledInput = styled.input`
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid ${bgColors[282828]};
+  background-color: ${bgColors[404040]};
+  color: ${basicColors.white};
+  font-family: SourceHanSansKR;
+  font-size: 14px;
+  font-weight: 1000;
+  padding-left: 10px;
 `;
 
 const StyledFooter = styled.div`

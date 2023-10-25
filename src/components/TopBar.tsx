@@ -5,13 +5,12 @@ import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
+import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import { observer } from "mobx-react-lite";
-import { NameSettingBox } from "./layout/modal/NameSettingBox";
 
 const TopBar = observer(() => {
   const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
     storeContainer;
-
   const { editorMode, setEditorMode, toggleCanvasBar, toggleInteractionBar } =
     editorModeStore;
 
@@ -48,7 +47,9 @@ const TopBar = observer(() => {
       <Center>
         <ComponentName
           onClick={() => {
-            projectStateStore.updateModalComponent(<NameSettingBox />);
+            projectStateStore.updateModalComponent(
+              <ConfirmBox label={"컴포넌트 이름 변경"} hasContent={true} />
+            );
             projectStateStore.updateModalState(true);
           }}
         >
