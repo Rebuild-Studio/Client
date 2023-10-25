@@ -23,6 +23,7 @@ const createThumbnail = async (
   }
   const camera = renderStore.controls?.camera;
   primitiveStore.clearSelectedPrimitives();
+  primitiveStore.clearSelectedGroupPrimitive();
   const renderer = projectStore.renderer;
   projectStateStore.updateGridVisible("INVISIBLE");
 
