@@ -5,13 +5,10 @@ import * as THREE from "three";
 const onClickHierarchyEvent = (mesh: THREE.Mesh) => {
   const { primitiveStore, keyboardEventStore } = storeContainer;
 
-  const storeId: string = mesh.userData["storeId"]
-    ? mesh.userData["storeId"]
-    : nanoid();
+  const storeId: string = mesh.userData["storeId"] || nanoid();
 
   // 단일 선택
   if (!keyboardEventStore.currentKeyEvent.isCtrlPressed) {
-    primitiveStore.clearSelectedGroupPrimitive();
     primitiveStore.clearSelectedPrimitives();
   }
 

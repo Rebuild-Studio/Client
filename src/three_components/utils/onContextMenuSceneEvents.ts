@@ -20,7 +20,6 @@ const onContextMenuSceneEvents = (
 
   if (!keyboardEventStore.currentKeyEvent.isCtrlPressed) {
     // 단일 선택
-    primitiveStore.clearSelectedGroupPrimitive();
     primitiveStore.clearSelectedPrimitives();
   }
 

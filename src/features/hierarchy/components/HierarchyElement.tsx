@@ -47,14 +47,17 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
   };
 
   const isInteractionVisible = () => {
+    // 그룹이나 애셋 오브젝트인 경우
     if (mesh.name === "GROUP" || mesh.name === "ASSET") {
       return true;
     }
 
+    // 그룹이나 애셋 오브젝트의 자식인 경우
     if (findRootGroup(mesh) || findRootAsset(mesh)) {
       return false;
     }
 
+    // 그 외의 경우
     return true;
   };
 

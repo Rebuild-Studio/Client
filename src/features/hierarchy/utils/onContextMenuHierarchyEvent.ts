@@ -13,7 +13,7 @@ const onContextMenuHierarchyEvents = (
 
   const rootObject = findRootGroup(mesh) || findRootAsset(mesh);
 
-  onClickHierarchyEvent(rootObject ? (rootObject as THREE.Mesh) : mesh);
+  onClickHierarchyEvent((rootObject as THREE.Mesh) ?? mesh);
 
   contextMenuStore.updateContextMenuType("OBJECT", clientX, clientY);
   contextMenuStore.updateIsContextMenuOpened(true);

@@ -163,7 +163,6 @@ const executeContextMenu = (scene: THREE.Scene) => {
         primitiveStore.removePrimitive(key);
       });
 
-      primitiveStore.clearSelectedGroupPrimitive();
       primitiveStore.clearSelectedPrimitives();
       canvasHistoryStore.differDelete(selectedPrimitives[0]);
       break;
