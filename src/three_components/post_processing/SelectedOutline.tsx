@@ -1,15 +1,16 @@
-import storeContainer from "@/store/storeContainer";
 import { Outline } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 
-const SelectedOutline = () => {
-  const { primitiveStore } = storeContainer;
+interface SelectedOutlineProps {
+  meshes: Array<THREE.Object3D<THREE.Event>>;
+}
 
+const SelectedOutline = (props: SelectedOutlineProps) => {
   const getAllMeshes = () => {
     const meshes: Array<THREE.Object3D<THREE.Event>> = [];
 
-    Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
+    props.meshes.forEach((value) => {
       switch (value.name) {
         case "GROUP": {
           value.traverse((child) => {

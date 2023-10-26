@@ -75,6 +75,7 @@ const primitiveStore = observable<PrimitiveStore>({
   },
   clearSelectedPrimitives() {
     this.selectedPrimitives = {};
+    this.selectedGroupPrimitive = ["", null];
   },
   addSelectedGroupPrimitive(storeId, primitive) {
     this.selectedGroupPrimitive = [storeId, primitive];

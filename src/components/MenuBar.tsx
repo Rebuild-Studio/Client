@@ -8,14 +8,20 @@ import sceneControlStore from "@/store/sceneControlStore";
 import useExportMxJson from "@/three_components/hooks/useExportMxJson";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
+import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
 import ProjectList from "@/features/projectList";
 import { createThumbnail } from "@/utils/thumbnail";
 import { useToast } from "@/hooks/useToast";
 
 const MenuBar = observer(() => {
-  const { projectStateStore, renderStore, projectStore, primitiveStore } =
-    storeContainer;
+  const {
+    projectStateStore,
+    renderStore,
+    projectStore,
+    primitiveStore,
+    sceneSettingStore,
+  } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
   const [, , createProject, downloadProject] = useExportMxJson({
@@ -23,17 +29,32 @@ const MenuBar = observer(() => {
     interactionStore: eventSystem_store,
   });
 
+  const createMX = () => {
+    sceneControlStore.setExportScene(true);
+    createProject("MX");
+  };
+  const downloadJSON = () => {
+    sceneControlStore.setExportScene(true);
+    downloadProject();
+  };
+  const createPMX = () => {
+    sceneControlStore.setExportScene(true);
+    createProject("PMX");
+  };
+
   const componentData: MenuItemType[] = [
     {
       label: "저장",
       disabled: false,
       onClick: async () => {
-        sceneControlStore.setExportScene(true);
-        createProject("MX");
+        projectStateStore.updateModalComponent(
+          <ConfirmBox label={"컴포넌트 저장"} onClickConfirm={createMX} />
+        );
+        projectStateStore.updateModalState(true);
         try {
           const blob = await createThumbnail({
             renderStore,
-            projectStateStore,
+            sceneSettingStore,
             projectStore,
             primitiveStore,
           });
@@ -55,8 +76,13 @@ const MenuBar = observer(() => {
       label: "MX-JSON으로 내보내기",
       disabled: false,
       onClick: () => {
-        sceneControlStore.setExportScene(true);
-        downloadProject();
+        projectStateStore.updateModalComponent(
+          <ConfirmBox
+            label={"MX-JSON으로 내보내기"}
+            onClickConfirm={downloadJSON}
+          />
+        );
+        projectStateStore.updateModalState(true);
       },
     },
     {
@@ -64,20 +90,24 @@ const MenuBar = observer(() => {
       disabled: false,
 
       onClick: () => {
-        sceneControlStore.setExportScene(true);
-        createProject("PMX");
+        projectStateStore.updateModalComponent(
+          <ConfirmBox label={"PMX 저장"} onClickConfirm={createPMX} />
+        );
+        projectStateStore.updateModalState(true);
       },
     },
-    {
-      label: "GLB로 내보내기(선택)",
-      disabled: true,
-      onClick: () => {},
-    },
-    {
-      label: "GLB로 내보내기(전체)",
-      disabled: true,
-      onClick: () => {},
-    },
+
+    // Todo: 추후 구현 시에 주석 해제
+    // {
+    //   label: "GLB로 내보내기(선택)",
+    //   disabled: true,
+    //   onClick: () => {},
+    // },
+    // {
+    //   label: "GLB로 내보내기(전체)",
+    //   disabled: true,
+    //   onClick: () => {},
+    // },
   ];
   const configureData: MenuItemType[] = [
     {

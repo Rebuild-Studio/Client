@@ -13,14 +13,13 @@ import executeContextMenu from "../utils/executeContextMenu";
 import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
 import * as THREE from "three";
 import { useServerMaterialLoader } from "@/hooks/loader";
-import SelectedOutline from "../post_processing/SelectedOutline";
-import { EffectComposer } from "@react-three/postprocessing";
 import ChildGizmo from "../gizmo/ChildGizmo";
 import onDropSceneEvents from "../utils/onDropSceneEvents";
 import { ErrorBoundary } from "react-error-boundary";
 import { useToast } from "@/hooks/useToast";
 import { renderObjects } from "../utils/renderThreeComponents";
 import loadMxJson from "@/utils/json/loadMxJson";
+import { SceneEffect } from "../common/SceneEffect";
 
 const RenderScene = observer(() => {
   const {
@@ -143,9 +142,7 @@ const RenderScene = observer(() => {
 
   return (
     <>
-      <EffectComposer autoClear={false}>
-        <SelectedOutline />
-      </EffectComposer>
+      <SceneEffect />
 
       {/* 일반 Object 용 */}
       {primitiveStore.meshes[

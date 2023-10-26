@@ -32,6 +32,7 @@ const copyObject = (mesh: THREE.Mesh) => {
     : undefined;
   const newMesh = new THREE.Mesh(geometry, material);
   newMesh.name = mesh.name;
+  newMesh.userData = { ...mesh.userData };
   newMesh.userData["storeId"] = storeId;
 
   if (mesh.parent && mesh.parent?.type !== "Scene") {

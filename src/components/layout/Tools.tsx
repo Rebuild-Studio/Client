@@ -55,17 +55,25 @@ const Top = styled.div`
 `;
 
 const Bottom = styled.div`
+  flex: 1;
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  position: relative;
 `;
 
-const Left = styled.div``;
+const Left = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+`;
 
 const Right = styled.div`
   display: flex;
   pointer-events: none;
-  position: relative;
+  position: absolute;
+  right: 0;
+  height: 100%;
 `;
 
 const OrientationHelperWrapper = styled.div`

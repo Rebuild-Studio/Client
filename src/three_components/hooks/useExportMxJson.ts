@@ -2,6 +2,7 @@ import downloadFile from "@/utils/file/downloadFile";
 import { Dispatch, useCallback, useEffect, useState } from "react";
 import MxWorker from "./workerScript?worker";
 import { ProjectStore, ProjectType } from "@/store/projectStore";
+import storeContainer from "@/store/storeContainer";
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE,
@@ -17,6 +18,8 @@ const exportJsonFile = async (
   const mxWorker = new MxWorker();
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
   const sceneJson = scene.toJSON();
+  const { projectStore } = storeContainer;
+
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE,
     sceneJson,
@@ -25,7 +28,7 @@ const exportJsonFile = async (
   mxWorker.onmessage = (e) => {
     if (e.data.type === MX_WORKER_RESPONSE_TYPE.DOWNLOAD) {
       const { stringifiedJson } = e.data;
-      downloadFile(stringifiedJson, "mxJson.json", "json");
+      downloadFile(stringifiedJson, projectStore.projectName + ".json", "json");
 
       setIsProcessing(false);
       setIsSuccess(true);
@@ -83,7 +86,7 @@ type hookReturnType = [
   isSuccess: boolean,
   isProcessing: boolean,
   createProject: (projectType: ProjectType) => void,
-  downloadProject: () => void,
+  downloadProject: () => void
 ];
 
 const useExportMxJson = ({

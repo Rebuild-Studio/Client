@@ -26,10 +26,7 @@ const onClickSceneEvents = (
   mouseEventStore.clearMouseEvent();
 
   // 단일 선택
-  if (
-    !keyboardEventStore.currentKeyEvent.isCtrlPressed &&
-    primitiveStore.selectedGroupPrimitive[0] === ""
-  ) {
+  if (!keyboardEventStore.currentKeyEvent.isCtrlPressed) {
     primitiveStore.clearSelectedPrimitives();
   }
 

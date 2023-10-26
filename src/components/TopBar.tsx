@@ -5,10 +5,12 @@ import { basicColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { fonts } from "@resources/fonts/font";
 import editorModeStore from "@store/editorModeStore";
+import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import { observer } from "mobx-react-lite";
 
 const TopBar = observer(() => {
-  const { sceneSettingStore, primitiveStore } = storeContainer;
+  const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
+    storeContainer;
   const { editorMode, setEditorMode, toggleCanvasBar, toggleInteractionBar } =
     editorModeStore;
 
@@ -43,7 +45,16 @@ const TopBar = observer(() => {
         />
       </Left>
       <Center>
-        <ComponentName>컴포넌트 네임</ComponentName>
+        <ComponentName
+          onClick={() => {
+            projectStateStore.updateModalComponent(
+              <ConfirmBox label={"컴포넌트 이름 변경"} hasContent={true} />
+            );
+            projectStateStore.updateModalState(true);
+          }}
+        >
+          {projectStore.projectName}
+        </ComponentName>
       </Center>
       <Right>
         <IconButton
@@ -96,8 +107,9 @@ const Wrapper = styled.div`
 const ComponentName = styled.span`
   font-family: SpoqaHanSansNeo;
   font-size: ${fonts.default};
-  font-weight: 400;
+  font-weight: 550;
   color: ${basicColors.white};
+  cursor: pointer;
 `;
 
 const Left = styled.div`
