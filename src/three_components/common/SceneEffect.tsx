@@ -4,13 +4,16 @@ import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 
 export const SceneEffect = observer(() => {
+  const { primitiveStore } = storeContainer;
   const { bloomToggle } = storeContainer.sceneSettingStore;
 
   //TODO : SSAO 효과 구현
 
   return (
     <EffectComposer autoClear={false}>
-      <SelectedOutline />
+      <SelectedOutline
+        meshes={Object.values(primitiveStore.selectedPrimitives)}
+      />
       {bloomToggle ? (
         <Bloom
           kernelSize={3}
