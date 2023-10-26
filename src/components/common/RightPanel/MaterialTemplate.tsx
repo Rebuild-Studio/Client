@@ -4,7 +4,7 @@ import Grid from "../Grid";
 import dataStore from "./MaterialGeometryData";
 import storeContainer from "@/store/storeContainer";
 
-const MaterialTemplate = observer(() => {
+const MaterialTemplate = () => {
   const { selectedObjectStore } = storeContainer;
 
   return (
@@ -23,9 +23,10 @@ const MaterialTemplate = observer(() => {
       columns={2}
     ></Grid>
   );
-});
+};
 
-export default MaterialTemplate;
+const Observer = observer(MaterialTemplate);
+export default Observer;
 
 const ImageStyled = styled.img<{ isSelected: boolean }>`
   width: 10.1vh;

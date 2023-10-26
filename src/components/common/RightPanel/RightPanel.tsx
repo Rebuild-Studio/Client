@@ -7,7 +7,7 @@ import TransformMaterialEditor from "./TransformMaterialEditor";
 import SceneSettingPanel from "./SceneSettingPanel";
 import storeContainer from "@/store/storeContainer";
 
-const RightPanel = observer(() => {
+const RightPanel = () => {
   const { primitiveStore } = storeContainer;
   const [activeTab, setActiveTab] = useState(0);
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
@@ -35,6 +35,7 @@ const RightPanel = observer(() => {
       {activeTab === 1 && <ShapeEditor />}
     </Panel>
   );
-});
+};
 
-export default RightPanel;
+const Observer = observer(RightPanel);
+export default Observer;

@@ -8,7 +8,7 @@ import storeContainer from "@/store/storeContainer";
 import ColorHandler from "./ColorHandler";
 import { HsvaColor } from "@uiw/color-convert";
 
-const TransformMaterialEditor = observer(() => {
+const TransformMaterialEditor = () => {
   const { primitiveStore } = storeContainer;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
@@ -69,6 +69,7 @@ const TransformMaterialEditor = observer(() => {
       </Accordion>
     </>
   );
-});
+};
 
-export default TransformMaterialEditor;
+const Observer = observer(TransformMaterialEditor);
+export default Observer;

@@ -5,7 +5,7 @@ import GizmoModeControl from "./GizmoModeControl";
 import GizmoIcon from "@/features/controllerBar/components/icons/GizmoIcon";
 import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
 
-const GizmoMode = observer(() => {
+const GizmoMode = () => {
   const { gizmoMode } = controllerBarStore;
 
   return (
@@ -15,6 +15,7 @@ const GizmoMode = observer(() => {
       activated={true}
     />
   );
-});
+};
 
-export default GizmoMode;
+const Observer = observer(GizmoMode);
+export default Observer;

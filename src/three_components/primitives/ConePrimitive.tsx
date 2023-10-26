@@ -32,7 +32,7 @@ const initCone: ConeParams = {
   thetaLengthUnit: 0.06,
 };
 
-const ConePrimitive = observer((props: PrimitiveProps) => {
+const ConePrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.ConeGeometry(0.5, 1, 32, 1, false, 0, Math.PI * 2);
@@ -56,8 +56,10 @@ const ConePrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(ConePrimitive);
+export default Observer;
 
 export type { ConeParams };
 export { initCone };
-export default ConePrimitive;

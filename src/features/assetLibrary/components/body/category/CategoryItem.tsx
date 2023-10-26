@@ -14,7 +14,7 @@ interface Props {
   type: "main" | "sub";
 }
 
-const CategoryItem = observer(({ name, category, type }: Props) => {
+const CategoryItem = ({ name, category, type }: Props) => {
   const iconUrl = `/icons/assetLibrary/category/${type}/${category}.svg`;
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;
   const myCategory: Category = {
@@ -46,9 +46,10 @@ const CategoryItem = observer(({ name, category, type }: Props) => {
       )}
     </ItemContainer>
   );
-});
+};
 
-export default CategoryItem;
+const Observer = observer(CategoryItem);
+export default Observer;
 
 const ItemContainer = styled.button`
   height: 38px;

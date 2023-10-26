@@ -4,7 +4,7 @@ import Switch from "@/components/buttons/SwitchButton";
 import storeContainer from "@/store/storeContainer";
 import styled from "styled-components";
 
-const PostEffectSetting = observer(() => {
+const PostEffectSetting = () => {
   const { sceneSettingStore } = storeContainer;
 
   return (
@@ -27,9 +27,10 @@ const PostEffectSetting = observer(() => {
       </Accordion>
     </>
   );
-});
+};
 
-export default PostEffectSetting;
+const Observer = observer(PostEffectSetting);
+export default Observer;
 
 const SwitchWrapper = styled.div`
   position: absolute;

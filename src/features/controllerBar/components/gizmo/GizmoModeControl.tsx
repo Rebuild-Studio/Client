@@ -18,7 +18,7 @@ const GIZMO_OPTIONS = [
   },
 ];
 
-const GizmoModeControl = observer(() => {
+const GizmoModeControl = () => {
   const { gizmoMode, setGizmoMode } = controllerBarStore;
 
   const handleChange = (e: FormEvent<HTMLFormElement>) => {
@@ -41,9 +41,10 @@ const GizmoModeControl = observer(() => {
       </Form>
     </Wrapper>
   );
-});
+};
 
-export default GizmoModeControl;
+const Observer = observer(GizmoModeControl);
+export default Observer;
 
 const Wrapper = styled.div`
   padding-right: 24px;

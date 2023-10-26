@@ -14,7 +14,7 @@ import ProjectList from "@/features/projectList";
 import { createThumbnail } from "@/utils/thumbnail";
 import { useToast } from "@/hooks/useToast";
 
-const MenuBar = observer(() => {
+const MenuBar = () => {
   const {
     projectStateStore,
     renderStore,
@@ -176,9 +176,10 @@ const MenuBar = observer(() => {
       </Right>
     </StyledBar>
   );
-});
+};
 
-export default MenuBar;
+const Observer = observer(MenuBar);
+export default Observer;
 
 const StyledBar = styled.div`
   display: flex;

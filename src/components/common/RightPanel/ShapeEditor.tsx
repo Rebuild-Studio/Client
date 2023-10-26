@@ -63,7 +63,7 @@ const createGeometry = (geometryType: string, parameter: number[]) => {
   }
 };
 
-const ShapeEditor = observer(() => {
+const ShapeEditor = () => {
   const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const shapeName =
@@ -139,8 +139,10 @@ const ShapeEditor = observer(() => {
       </Accordion>
     </>
   );
-});
-export default ShapeEditor;
+};
+
+const Observer = observer(ShapeEditor);
+export default Observer;
 
 const Wrapper = styled.div`
   display: flex;

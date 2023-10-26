@@ -5,7 +5,7 @@ import ControlDropdown from "@/features/controllerBar/components/dropdown/Contro
 import SnapIcon from "@/features/controllerBar/components/icons/SnapIcon";
 import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
 
-const SnapMode = observer(() => {
+const SnapMode = () => {
   const { isAnySnapModeActivated } = controllerBarStore;
 
   return (
@@ -15,6 +15,7 @@ const SnapMode = observer(() => {
       activated={isAnySnapModeActivated}
     />
   );
-});
+};
 
-export default SnapMode;
+const Observer = observer(SnapMode);
+export default Observer;

@@ -8,9 +8,10 @@ interface Props {
   asset: LibraryAsset;
 }
 
-const GridItem = observer(({ asset }: Props) => {
+const GridItem = ({ asset }: Props) => {
   const thumbnail = getMinioPath(asset.fileName, "libraryThumbnail");
   const [clicked, updateSelectedAsset] = useControlSelectedItem(asset);
+
   return (
     <div>
       <Card
@@ -23,6 +24,7 @@ const GridItem = observer(({ asset }: Props) => {
       ></Card>
     </div>
   );
-});
+};
 
-export default GridItem;
+const Observer = observer(GridItem);
+export default Observer;

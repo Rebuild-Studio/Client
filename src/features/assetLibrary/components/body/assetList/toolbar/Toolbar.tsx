@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { bgColors } from "@/resources/colors/colors";
 import SelectedAssetsControl from "./SelectedAssetsControl";
 
-const Toolbar = observer(() => {
+const Toolbar = () => {
   return (
     <Container>
       <CategoryLabel />
@@ -13,9 +13,10 @@ const Toolbar = observer(() => {
       <DomainDropdown />
     </Container>
   );
-});
+};
 
-export default Toolbar;
+const Observer = observer(Toolbar);
+export default Observer;
 
 const Container = styled.div`
   width: 100%;

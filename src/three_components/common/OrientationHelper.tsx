@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 
-export const OrientationHelper = observer(() => {
+const OrientationHelper = () => {
   return (
     <CanvasWrapper>
       <Canvas>
@@ -27,7 +27,10 @@ export const OrientationHelper = observer(() => {
       </Canvas>
     </CanvasWrapper>
   );
-});
+};
+
+const Observer = observer(OrientationHelper);
+export default Observer;
 
 const CanvasWrapper = styled.div`
   width: 100px;

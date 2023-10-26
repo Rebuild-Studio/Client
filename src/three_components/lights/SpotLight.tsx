@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import storeContainer from "@/store/storeContainer";
 import * as THREE from "three";
 
-const SpotLight = observer((props: PrimitiveProps) => {
+const SpotLight = (props: PrimitiveProps) => {
   const ref = useRef();
   const spotLightGlb: THREE.Mesh = useLoader(
     GLTFLoader,
@@ -37,6 +37,7 @@ const SpotLight = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
 
-export default SpotLight;
+const Observer = observer(SpotLight);
+export default Observer;

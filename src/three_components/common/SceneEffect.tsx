@@ -3,7 +3,7 @@ import SelectedOutline from "../post_processing/SelectedOutline";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 
-export const SceneEffect = observer(() => {
+const SceneEffect = () => {
   const { bloomToggle } = storeContainer.sceneSettingStore;
 
   //TODO : SSAO 효과 구현
@@ -23,4 +23,7 @@ export const SceneEffect = observer(() => {
       )}
     </EffectComposer>
   );
-});
+};
+
+const Observer = observer(SceneEffect);
+export default Observer;

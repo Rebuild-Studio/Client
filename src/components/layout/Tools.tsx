@@ -1,6 +1,6 @@
 import CanvasBar from "@components/CanvasBar";
-import { CanvasLeftPanel } from "@components/layout/CanvasLeftPanel/CanvasLeftPanel";
-import { OrientationHelper } from "@/three_components/common/OrientationHelper";
+import CanvasLeftPanel from "@components/layout/CanvasLeftPanel/CanvasLeftPanel";
+import OrientationHelper from "@/three_components/common/OrientationHelper";
 import SceneSettingPanel from "@components/common/RightPanel/SceneSettingPanel";
 import RightPanel from "@components/common/RightPanel/RightPanel";
 import ControllerBar from "@/features/controllerBar";
@@ -9,7 +9,7 @@ import storeContainer from "@store/storeContainer";
 import { observer } from "mobx-react";
 import editorModeStore from "@store/editorModeStore.ts";
 
-const Tools = observer(() => {
+const Tools = () => {
   const { sceneSettingStore } = storeContainer;
   const { canvasBarOpen } = editorModeStore;
 
@@ -35,9 +35,10 @@ const Tools = observer(() => {
       <ControllerBar />
     </>
   );
-});
+};
 
-export default Tools;
+const Observer = observer(Tools);
+export default Observer;
 
 const Layout = styled.div`
   display: flex;

@@ -8,7 +8,7 @@ interface AppProps {
   children: React.ReactNode;
 }
 
-const AppWrapper = observer((props: AppProps) => {
+const AppWrapper = (props: AppProps) => {
   const { keyboardEventStore, projectStateStore } = storeContainer;
   const setOnKeydownListener = (e: KeyboardEvent) => {
     // F12, 모달이 열려있을 때는 키보드 이벤트를 무시한다.
@@ -44,9 +44,10 @@ const AppWrapper = observer((props: AppProps) => {
   }, []);
 
   return <Wrapper>{props.children}</Wrapper>;
-});
+};
 
-export default AppWrapper;
+const Observer = observer(AppWrapper);
+export default Observer;
 
 const Wrapper = styled.div`
   box-sizing: border-box;

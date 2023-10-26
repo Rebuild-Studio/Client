@@ -7,7 +7,7 @@ import { observer } from "mobx-react";
 import { hsvaToHex } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
 
-export const SceneEnvironment = observer(() => {
+const SceneEnvironment = () => {
   const { sceneSettingStore } = storeContainer;
   const {
     selectedBackgroundImage,
@@ -78,4 +78,7 @@ export const SceneEnvironment = observer(() => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(SceneEnvironment);
+export default Observer;

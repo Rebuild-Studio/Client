@@ -11,7 +11,7 @@ import { HsvaColor } from "@uiw/color-convert";
 import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 import BackgroundImageTemplate from "./BackgroundImageTemplate";
 
-const HdriSetting = observer(() => {
+const HdriSetting = () => {
   const { sceneSettingStore } = storeContainer;
   const {
     updateAmbientLightColor,
@@ -125,9 +125,10 @@ const HdriSetting = observer(() => {
       </Accordion>
     </>
   );
-});
+};
 
-export default HdriSetting;
+const Observer = observer(HdriSetting);
+export default Observer;
 
 const TitleWrapper = styled.div`
   margin-top: 10px;

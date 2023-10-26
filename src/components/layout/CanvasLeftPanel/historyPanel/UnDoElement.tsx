@@ -10,7 +10,7 @@ type Props = {
   index: number;
 };
 
-export const UndoElement = observer(({ label, index }: Props) => {
+const UndoElement = ({ label, index }: Props) => {
   const textRef = useRef<HTMLSpanElement>(null);
   return (
     <HistoryElement
@@ -22,7 +22,10 @@ export const UndoElement = observer(({ label, index }: Props) => {
       <HistoryText ref={textRef}>{label}</HistoryText>
     </HistoryElement>
   );
-});
+};
+
+const Observer = observer(UndoElement);
+export default Observer;
 
 const HistoryElement = styled.div`
   display: flex;

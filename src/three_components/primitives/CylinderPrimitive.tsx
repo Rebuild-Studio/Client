@@ -38,7 +38,7 @@ const initCylinder: CylinderParams = {
   thetaLengthUnit: 0.06,
 };
 
-const CylinderPrimitive = observer((props: PrimitiveProps) => {
+const CylinderPrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.CylinderGeometry(
@@ -71,8 +71,10 @@ const CylinderPrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(CylinderPrimitive);
+export default Observer;
 
 export type { CylinderParams };
 export { initCylinder };
-export default CylinderPrimitive;

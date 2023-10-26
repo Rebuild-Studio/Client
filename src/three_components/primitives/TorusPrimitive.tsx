@@ -42,7 +42,7 @@ const initTorus: TorusParams = {
   arcUnit: 0.06,
 };
 
-const TorusPrimitive = observer((props: PrimitiveProps) => {
+const TorusPrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100, Math.PI * 2);
@@ -66,8 +66,10 @@ const TorusPrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(TorusPrimitive);
+export default Observer;
 
 export type { TorusParams };
 export { initTorus };
-export default TorusPrimitive;

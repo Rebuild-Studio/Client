@@ -12,7 +12,7 @@ interface SelectedGroupProps {
   propMesh?: THREE.Mesh;
 }
 
-const SelectedGroup = observer((props: SelectedGroupProps) => {
+const SelectedGroup = (props: SelectedGroupProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const scene = useThree((state) => state.scene);
@@ -84,6 +84,7 @@ const SelectedGroup = observer((props: SelectedGroupProps) => {
       />
     </>
   );
-});
+};
 
-export default SelectedGroup;
+const Observer = observer(SelectedGroup);
+export default Observer;

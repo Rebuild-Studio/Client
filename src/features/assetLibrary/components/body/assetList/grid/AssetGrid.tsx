@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 import { useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
-const AssetGrid = observer(() => {
+const AssetGrid = () => {
   const { libraryAssets, currentPage } = assetLibraryStore;
   const [page, setPage] = useState(currentPage);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,9 +37,10 @@ const AssetGrid = observer(() => {
       </Grid>
     </Container>
   );
-});
+};
 
-export default AssetGrid;
+const Observer = observer(AssetGrid);
+export default Observer;
 
 const Container = styled.div`
   box-sizing: border-box;

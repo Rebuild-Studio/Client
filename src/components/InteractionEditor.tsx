@@ -5,7 +5,7 @@ import i18n from "@/interaction(legacyJS)/src/locale/i18n.js";
 import editorModeStore from "@store/editorModeStore.ts";
 import { observer } from "mobx-react";
 
-const InteractionEditor = observer(() => {
+const InteractionEditor = () => {
   const { interactionBarOpen, editorMode } = editorModeStore;
 
   return (
@@ -14,6 +14,7 @@ const InteractionEditor = observer(() => {
       {editorMode === "interaction" && <InteractionPanel />}
     </I18nextProvider>
   );
-});
+};
 
-export default InteractionEditor;
+const Observer = observer(InteractionEditor);
+export default Observer;

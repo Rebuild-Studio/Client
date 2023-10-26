@@ -4,8 +4,8 @@ import { basicColors } from "@/resources/colors/colors";
 import { styled } from "styled-components";
 import { CanvasHistoryType } from "@/store/canvasHistoryStore";
 import Tab from "../../Tab";
-import { UndoElement } from "./UnDoElement";
-import { RedoElement } from "./RedoElement";
+import UndoElement from "./UnDoElement";
+import RedoElement from "./RedoElement";
 import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
 import { instanceTranslate, attrTranslate } from "@/resources/constants/canvas";
 
@@ -14,7 +14,7 @@ type Props = {
   redoList: CanvasHistoryType[];
 };
 
-export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
+export const HistoryPanel = ({ undoList, redoList }: Props) => {
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (index: number) => {
     //Todo: 인터렉션 에디터 붙으면 if문 지우기(이정우)
@@ -59,7 +59,10 @@ export const HistoryPanel = observer(({ undoList, redoList }: Props) => {
       )}
     </StyledPanel>
   );
-});
+};
+
+const Observer = observer(HistoryPanel);
+export default Observer;
 
 const HistoryList = styled.div`
   display: flex;

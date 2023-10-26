@@ -2,14 +2,15 @@ import assetCategoryStore from "@/store/assetCategoryStore";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 
-const CategoryLabel = observer(() => {
+const CategoryLabel = () => {
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;
   return (
     <EllipsisSpan>{`${currentMainCategory.categoryKR} / ${currentSubCategory.categoryKR}`}</EllipsisSpan>
   );
-});
+};
 
-export default CategoryLabel;
+const Observer = observer(CategoryLabel);
+export default Observer;
 
 const EllipsisSpan = styled.span`
   width: 10%;

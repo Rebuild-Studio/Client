@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import * as THREE from "three";
 import { setCameraControlEnabled } from "../utils/cameraControl";
 
-const ChildGizmo = observer(() => {
+const ChildGizmo = () => {
   const { primitiveStore, transformControlStore } = storeContainer;
   const selectedChild = Object.values(primitiveStore.selectedPrimitives)[0];
 
@@ -99,6 +99,7 @@ const ChildGizmo = observer(() => {
       )}
     </>
   );
-});
+};
 
-export default ChildGizmo;
+const Observer = observer(ChildGizmo);
+export default Observer;

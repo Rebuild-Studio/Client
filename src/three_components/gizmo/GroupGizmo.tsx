@@ -7,7 +7,7 @@ interface GroupGizmoProps {
   storeId: string;
 }
 
-const GroupGizmo = observer((props: GroupGizmoProps) => {
+const GroupGizmo = (props: GroupGizmoProps) => {
   const { primitiveStore, transformControlStore } = storeContainer;
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
@@ -64,6 +64,7 @@ const GroupGizmo = observer((props: GroupGizmoProps) => {
       )}
     </>
   );
-});
+};
 
-export default GroupGizmo;
+const Observer = observer(GroupGizmo);
+export default Observer;

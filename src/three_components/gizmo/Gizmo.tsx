@@ -7,7 +7,7 @@ interface GizmoProps {
   storeId: string;
 }
 
-const Gizmo = observer((props: GizmoProps) => {
+const Gizmo = (props: GizmoProps) => {
   const { primitiveStore, transformControlStore } = storeContainer;
   const hasSelectedPrimitive = primitiveStore.selectedPrimitives[props.storeId]
     ? true
@@ -100,6 +100,7 @@ const Gizmo = observer((props: GizmoProps) => {
         )}
     </>
   );
-});
+};
 
-export default Gizmo;
+const Observer = observer(Gizmo);
+export default Observer;

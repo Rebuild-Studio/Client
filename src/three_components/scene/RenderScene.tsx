@@ -19,9 +19,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useToast } from "@/hooks/useToast";
 import { renderObjects } from "../utils/renderThreeComponents";
 import loadMxJson from "@/utils/json/loadMxJson";
-import { SceneEffect } from "../common/SceneEffect";
+import SceneEffect from "../common/SceneEffect";
 
-const RenderScene = observer(() => {
+const RenderScene = () => {
   const {
     primitiveStore,
     mouseEventStore,
@@ -172,6 +172,7 @@ const RenderScene = observer(() => {
       {primitiveStore.selectedGroupPrimitive[1]}
     </>
   );
-});
+};
 
-export default RenderScene;
+const Observer = observer(RenderScene);
+export default Observer;

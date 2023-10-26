@@ -7,7 +7,7 @@ import HdriSetting from "./sceneSetting/HdriSetting";
 import DisplaySetting from "./sceneSetting/DisplaySetting";
 import PostEffectSetting from "./sceneSetting/PostEffectSetting";
 
-const SceneSettingPanel = observer(() => {
+const SceneSettingPanel = () => {
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (index: number) => {
     setActiveTab(index);
@@ -29,9 +29,10 @@ const SceneSettingPanel = observer(() => {
       </Panel>
     </RightPanelContainer>
   );
-});
+};
 
-export default SceneSettingPanel;
+const Observer = observer(SceneSettingPanel);
+export default Observer;
 
 const RightPanelContainer = styled.div`
   height: 100%;
