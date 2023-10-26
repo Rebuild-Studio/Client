@@ -1,18 +1,18 @@
-import { bgColors } from '@/resources/colors/colors';
-import { styled } from 'styled-components';
-import BottomPopOver from './layout/popover/BottomPopOver';
-import { SubMenu } from './common/subMenu/SubMenu';
-import { MenuItemType } from './common/subMenu/MenuItem.types';
-import IconButton from './buttons/IconButton';
-import sceneControlStore from '@/store/sceneControlStore';
-import useExportMxJson from '@/three_components/hooks/useExportMxJson';
-import storeContainer from '@/store/storeContainer';
 import { observer } from 'mobx-react';
-import { ConfirmBox } from './layout/modal/ConfirmBox';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
+import { styled } from 'styled-components';
 import ProjectList from '@/features/projectList';
-import { createThumbnail } from '@/utils/thumbnail';
 import { useToast } from '@/hooks/useToast';
+import { bgColors } from '@/resources/colors/colors';
+import sceneControlStore from '@/store/sceneControlStore';
+import storeContainer from '@/store/storeContainer';
+import useExportMxJson from '@/three_components/hooks/useExportMxJson';
+import { createThumbnail } from '@/utils/thumbnail';
+import IconButton from './buttons/IconButton';
+import { MenuItemType } from './common/subMenu/MenuItem.types';
+import { SubMenu } from './common/subMenu/SubMenu';
+import { ConfirmBox } from './layout/modal/ConfirmBox';
+import BottomPopOver from './layout/popover/BottomPopOver';
+import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 
 const MenuBar = () => {
   const {

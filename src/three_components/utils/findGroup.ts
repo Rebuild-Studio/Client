@@ -1,5 +1,5 @@
-import storeContainer from '@/store/storeContainer';
 import * as THREE from 'three';
+import storeContainer from '@/store/storeContainer';
 
 const findRootGroup = (
   intersectObject: THREE.Object3D<THREE.Event> | undefined

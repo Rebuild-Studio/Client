@@ -5,8 +5,8 @@ import {
   useLoader,
   useThree
 } from '@react-three/fiber';
-import { GLTFLoader, GLTF } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { GLTF, GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import getMinioPath from '@/utils/path/minio';

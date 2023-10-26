@@ -1,9 +1,8 @@
 import { makeObservable, observable, runInAction } from 'mobx';
-import { data_store } from '../../stores/Data_Store';
-
 import MetaObject from './MetaObject';
-import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
 import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
 import AddObjCommand from '../commands/CanvasObject/AddObjCommand';
 
 class MetaPrimitive extends MetaObject {

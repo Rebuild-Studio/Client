@@ -1,7 +1,7 @@
+import { styled } from 'styled-components';
 import { basicColors, grayColors } from '@/resources/colors/colors';
 import { fonts } from '@/resources/fonts/font';
 import { CSSColor } from '@/types/style/cssUnits';
-import { styled } from 'styled-components';
 
 interface Props {
   className?: string;

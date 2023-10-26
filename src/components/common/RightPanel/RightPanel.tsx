@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
-import Panel from '../../layout/Panel/Panel';
-import Tab from '../../layout/Tab';
+import storeContainer from '@/store/storeContainer';
+import SceneSettingPanel from './SceneSettingPanel';
 import ShapeEditor from './ShapeEditor';
 import TransformMaterialEditor from './TransformMaterialEditor';
-import SceneSettingPanel from './SceneSettingPanel';
-import storeContainer from '@/store/storeContainer';
+import Panel from '../../layout/Panel/Panel';
+import Tab from '../../layout/Tab';
 
 const RightPanel = () => {
   const { primitiveStore } = storeContainer;

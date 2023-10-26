@@ -1,12 +1,12 @@
-import IconButton from './buttons/IconButton';
-import Button from './common/Button';
+import { observer } from 'mobx-react-lite';
 import { styled } from 'styled-components';
 import { basicColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
-import { fonts } from '@resources/fonts/font';
 import editorModeStore from '@store/editorModeStore';
+import { fonts } from '@resources/fonts/font';
+import IconButton from './buttons/IconButton';
+import Button from './common/Button';
 import { ConfirmBox } from './layout/modal/ConfirmBox';
-import { observer } from 'mobx-react-lite';
 
 const TopBar = () => {
   const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =

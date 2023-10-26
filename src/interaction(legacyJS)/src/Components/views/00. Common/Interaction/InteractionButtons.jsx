@@ -1,5 +1,5 @@
-import { Button, Tooltip } from '@mui/material';
 import { observer } from 'mobx-react';
+import { Button, Tooltip } from '@mui/material';
 import storeContainer from '../../../stores/storeContainer';
 
 const InteractionUndoButton = observer(() => {

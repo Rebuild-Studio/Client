@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
 import { observer } from 'mobx-react';
-import MxSlider from '../../gui/Slider_V';
+import { Box } from '@mui/material';
 import CameraEditVM from '../../../../../view_models/06. ObjectEdit/CameraEdit_VM';
 import { objectViewModel } from '../../../../../view_models/Object_VM';
+import MxSlider from '../../gui/Slider_V';
 
 const TabCamera = observer((props) => {
   return (

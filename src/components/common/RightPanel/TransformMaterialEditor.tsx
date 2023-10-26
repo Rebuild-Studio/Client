@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { observer } from 'mobx-react';
-import PropertyValue from './TransFromationInfo';
-import Accordion from '@/components/layout/Accordion';
-import Material from './MaterialInfo';
 import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import { HsvaColor } from '@uiw/color-convert';
+import Accordion from '@/components/layout/Accordion';
 import storeContainer from '@/store/storeContainer';
 import ColorHandler from './ColorHandler';
-import { HsvaColor } from '@uiw/color-convert';
+import Material from './MaterialInfo';
+import PropertyValue from './TransFromationInfo';
 
 const TransformMaterialEditor = () => {
   const { primitiveStore } = storeContainer;

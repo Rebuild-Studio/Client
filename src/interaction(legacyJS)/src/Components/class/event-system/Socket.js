@@ -1,6 +1,6 @@
-import UUIDGenerator from '../../../utils/uuid.js';
 import { action, makeObservable, observable } from 'mobx';
 import Wire from './Wire';
+import UUIDGenerator from '../../../utils/uuid.js';
 
 export default class Socket {
   key;

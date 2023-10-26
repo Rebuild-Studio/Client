@@ -1,5 +1,5 @@
-import { makeObservable, observable, action, toJS } from 'mobx';
 import * as THREE from 'three';
+import { action, makeObservable, observable, toJS } from 'mobx';
 import { object_store } from '../../stores/Object_Store';
 import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
 import { objectViewModel } from '../../view_models/Object_VM';

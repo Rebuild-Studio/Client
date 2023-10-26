@@ -1,5 +1,5 @@
-import NodeProcess from '../../NodeProcess';
 import { Color, Vector3 } from 'three';
+import NodeProcess from '../../NodeProcess';
 
 export default class SensorProcess extends NodeProcess {
   constructor(nodeRuntime, key) {

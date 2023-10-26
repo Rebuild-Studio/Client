@@ -1,5 +1,5 @@
-import NodeProcess from '../NodeProcess';
 import { Euler } from 'three';
+import NodeProcess from '../NodeProcess';
 
 export default class ObjectProcess extends NodeProcess {
   constructor(nodeRuntime, key) {

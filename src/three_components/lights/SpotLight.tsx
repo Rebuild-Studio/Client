@@ -1,10 +1,10 @@
-import { observer } from 'mobx-react';
-import { PrimitiveProps } from '../common/PrimitiveProps';
 import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import storeContainer from '@/store/storeContainer';
-import * as THREE from 'three';
+import { PrimitiveProps } from '../common/PrimitiveProps';
 
 const SpotLight = (props: PrimitiveProps) => {
   const ref = useRef();

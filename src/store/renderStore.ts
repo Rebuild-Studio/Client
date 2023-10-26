@@ -1,5 +1,5 @@
-import { CameraControls } from '@react-three/drei';
 import { makeAutoObservable } from 'mobx';
+import { CameraControls } from '@react-three/drei';
 
 class RenderStore {
   controls: CameraControls | null = null;

@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import IconButton from '@mui/material/IconButton';
-import storeContainer from '../../../../stores/storeContainer';
 import CreateNodeCommand from '../../../../class/commands/Interaction/CreateNodeCommand';
 import useIcon from '../../../../hooks/useIcon';
+import storeContainer from '../../../../stores/storeContainer';
 
 /**
  * @param {NodeClass} node

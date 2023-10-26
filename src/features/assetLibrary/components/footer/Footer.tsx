@@ -1,3 +1,7 @@
+import { useCallback } from 'react';
+import { observer } from 'mobx-react';
+import { nanoid } from 'nanoid';
+import styled, { css } from 'styled-components';
 import MenuButton from '@/components/common/MenuButton';
 import { basicColors, grayColors } from '@/resources/colors/colors';
 import assetLibraryStore from '@/store/assetLibraryStore';
@@ -5,10 +9,6 @@ import storeContainer from '@/store/storeContainer';
 import AssetPrimitive from '@/three_components/assets/AssetPrimitive';
 import { getButtonClickAnimation } from '@/utils/animation/button';
 import getMinioPath from '@/utils/path/minio';
-import { observer } from 'mobx-react';
-import { nanoid } from 'nanoid';
-import { useCallback } from 'react';
-import styled, { css } from 'styled-components';
 
 const Footer = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;

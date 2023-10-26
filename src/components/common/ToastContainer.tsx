@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
-import { useToast } from '@hooks/useToast';
-import Toast from '@components/common/Toast';
 import styled from 'styled-components';
-import { ToastPosition, POSITION_VARIANTS } from '@/types/style/toastPosition';
+import { POSITION_VARIANTS, ToastPosition } from '@/types/style/toastPosition';
+import Toast from '@components/common/Toast';
+import { useToast } from '@hooks/useToast';
 
 interface ToastContainerProps {
   position?: ToastPosition;

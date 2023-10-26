@@ -1,6 +1,6 @@
 import {
-  NodeControl,
-  ControlType
+  ControlType,
+  NodeControl
 } from '../../../../class/event-system/NodeControl';
 import { generateKeyFormat } from '../../../../class/event-system/runtime/utils';
 import storeContainer from '../../../../stores/storeContainer';

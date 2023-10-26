@@ -1,12 +1,12 @@
+import * as THREE from 'three';
 import { makeAutoObservable } from 'mobx';
-import { renderObjects } from '@/three_components/utils/renderThreeComponents';
 import {
   CanvasAttribute,
   CanvasInstance,
   isCanvasAttribute,
   isCanvasInstance
 } from '@/resources/constants/canvas';
-import * as THREE from 'three';
+import { renderObjects } from '@/three_components/utils/renderThreeComponents';
 import primitiveStore, { MeshType } from './primitiveStore';
 
 interface CanvasHistoryType {

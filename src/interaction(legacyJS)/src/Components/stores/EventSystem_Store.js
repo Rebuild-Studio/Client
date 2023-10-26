@@ -1,8 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import Sheet from '../class/event-system/Sheet';
 import UUIDGenerator from '../../utils/uuid';
-import * as Utils from '../class/event-system/utils';
 import { ControlType } from '../class/event-system/NodeControl';
+import Sheet from '../class/event-system/Sheet';
+import * as Utils from '../class/event-system/utils';
+
 export default class EventSystemStore {
   sheets = {};
   selectedSheet = null;

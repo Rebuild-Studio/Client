@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react';
-
 import ControlDropdown from '@/features/controllerBar/components/dropdown/ControlDropdown';
-import GizmoModeControl from './GizmoModeControl';
 import GizmoIcon from '@/features/controllerBar/components/icons/GizmoIcon';
 import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import GizmoModeControl from './GizmoModeControl';
 
 const GizmoMode = () => {
   const { gizmoMode } = controllerBarStore;

@@ -1,12 +1,12 @@
-import { Box, Select, MenuItem } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { makeStyles } from '@mui/styles';
+import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import MxSlider from '../../gui/Slider_V';
-import MxSwitch from '../../gui/Switch_V';
+import { Box, MenuItem, Select } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { data_store } from '../../../../../stores/Data_Store';
 import SoundEditVM from '../../../../../view_models/06. ObjectEdit/SoundEdit_VM';
 import { objectViewModel } from '../../../../../view_models/Object_VM';
-import { data_store } from '../../../../../stores/Data_Store';
+import MxSlider from '../../gui/Slider_V';
+import MxSwitch from '../../gui/Switch_V';
 
 const useStyles = makeStyles((theme) => ({
   icon: {

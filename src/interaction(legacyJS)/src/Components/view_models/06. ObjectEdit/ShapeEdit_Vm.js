@@ -1,10 +1,10 @@
 import { action } from 'mobx';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import ShapeOpenEndedToggleOffCommand from '../../class/commands/CanvasObject/ShapeOpenEndedToggleOffCommand';
+import ShapeOpenEndedToggleOnCommand from '../../class/commands/CanvasObject/ShapeOpenEndedToggleOnCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
 import { data_store } from '../../stores/Data_Store';
 import { object_store } from '../../stores/Object_Store';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
-import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
-import ShapeOpenEndedToggleOnCommand from '../../class/commands/CanvasObject/ShapeOpenEndedToggleOnCommand';
-import ShapeOpenEndedToggleOffCommand from '../../class/commands/CanvasObject/ShapeOpenEndedToggleOffCommand';
 
 const ShapeEditVM = {
   get geoParamsList() {

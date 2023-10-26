@@ -1,6 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { basicColors } from '@/resources/colors/colors';
 import Body from '@/features/assetLibrary/components/body';
+import { basicColors } from '@/resources/colors/colors';
 
 const meta = {
   component: Body,

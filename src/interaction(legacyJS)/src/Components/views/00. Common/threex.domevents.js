@@ -61,9 +61,9 @@
 //
 //
 // # Code
-
 //
 import * as THREE from 'three';
+
 /** @namespace */
 var THREEx = THREEx || {};
 

@@ -1,6 +1,6 @@
-import storeContainer from '@/store/storeContainer';
-import { TransformControls } from '@react-three/drei';
 import { observer } from 'mobx-react';
+import { TransformControls } from '@react-three/drei';
+import storeContainer from '@/store/storeContainer';
 import { setCameraControlEnabled } from '../utils/cameraControl';
 
 interface GroupGizmoProps {

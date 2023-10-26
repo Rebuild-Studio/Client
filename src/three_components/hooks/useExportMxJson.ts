@@ -1,13 +1,13 @@
-import downloadFile from '@/utils/file/downloadFile';
 import { Dispatch, useCallback, useEffect, useState } from 'react';
-import MxWorker from './workerScript?worker';
+import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
 import { ProjectStore, ProjectType } from '@/store/projectStore';
 import storeContainer from '@/store/storeContainer';
+import downloadFile from '@/utils/file/downloadFile';
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE
 } from './workerScript';
-import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
+import MxWorker from './workerScript?worker';
 
 const exportJsonFile = async (
   scene: THREE.Scene,

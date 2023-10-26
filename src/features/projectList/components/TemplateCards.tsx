@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ExampleCard } from './card/ExampleCard';
 import { AddCard } from './card/AddCard';
+import { ExampleCard } from './card/ExampleCard';
 import { StyledGrid } from './projectList.styles';
 import { ProjectList, Template } from '../types/project';
 

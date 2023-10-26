@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
-import { observer } from 'mobx-react';
-import { useState, useEffect, useCallback } from 'react';
 
 const ControlDetectKeyV = observer((props) => {
   const { name, control, update } = props;

@@ -1,13 +1,13 @@
-import Slider from '../Slider';
-import Switch from '@/components/buttons/SwitchButton';
-import styled from 'styled-components';
-import dataStore from './MaterialGeometryData';
-import storeContainer from '@/store/storeContainer';
-import Accordion from '@/components/layout/Accordion';
+import { useState } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
-import { useState } from 'react';
+import styled from 'styled-components';
+import Switch from '@/components/buttons/SwitchButton';
+import Accordion from '@/components/layout/Accordion';
+import storeContainer from '@/store/storeContainer';
 import { useToast } from '@hooks/useToast';
+import dataStore from './MaterialGeometryData';
+import Slider from '../Slider';
 
 interface geometryParameter {
   [key: string]: string | number | boolean;

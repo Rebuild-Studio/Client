@@ -1,6 +1,6 @@
+import { MxJson } from '@/types/mxJson/mxJson';
 import { SceneJson } from '@/types/scene/scene';
 import optimizeSceneJson from './optimizeSceneJson';
-import { MxJson } from '@/types/mxJson/mxJson';
 
 const createMxJson = (sceneJson: SceneJson, interactionJson: any): MxJson => {
   optimizeSceneJson(sceneJson);

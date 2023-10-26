@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { eventSystem_store } from '../../../../stores/Interaction_Stores';
+import { observer } from 'mobx-react';
 import { Button, Tooltip } from '@mui/material';
 import MaterialTemplate from './MaterialTemplate_V';
+import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 import MaterialTemplateVM from '../../../../view_models/06. ObjectEdit/MaterialTemplate_VM';
-import { observer } from 'mobx-react';
 
 const NodeReferenceMaterialSelector = ({ value, setValue, tooltipMessage }) => {
   const [anchorMenu, setAnchorMenu] = useState(null);

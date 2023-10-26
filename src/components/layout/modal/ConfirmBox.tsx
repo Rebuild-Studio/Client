@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import MenuButton, { MenuButtonProps } from '@/components/common/MenuButton';
 import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
-import { observer } from 'mobx-react';
 
 interface ConfirmBoxProps {
   label: string;

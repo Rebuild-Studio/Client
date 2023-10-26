@@ -1,8 +1,9 @@
-import { Box, IconButton } from '@mui/material';
+import { useState } from 'react';
+import { observer } from 'mobx-react';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import { observer } from 'mobx-react';
-import { useState } from 'react';
+import { Box, IconButton } from '@mui/material';
+
 const MxInput = observer((props) => {
   const {
     boxStyle,

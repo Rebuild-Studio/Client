@@ -1,5 +1,5 @@
-import MiddleProcess from '../MiddleProcess';
 import * as THREE from 'three';
+import MiddleProcess from '../MiddleProcess';
 
 export default class SubtractProcess extends MiddleProcess {
   calculate(inputs) {

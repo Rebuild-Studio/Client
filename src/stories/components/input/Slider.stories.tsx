@@ -1,5 +1,5 @@
-import Slider from '@/components/common/Slider';
 import { Meta, StoryObj } from '@storybook/react';
+import Slider from '@/components/common/Slider';
 
 const meta = {
   component: Slider,

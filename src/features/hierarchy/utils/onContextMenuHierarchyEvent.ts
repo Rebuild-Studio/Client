@@ -1,8 +1,8 @@
-import storeContainer from '@/store/storeContainer';
 import * as THREE from 'three';
-import onClickHierarchyEvent from './onClickHierarchyEvent';
+import storeContainer from '@/store/storeContainer';
 import { findRootAsset } from '@/three_components/utils/findAsset';
 import { findRootGroup } from '@/three_components/utils/findGroup';
+import onClickHierarchyEvent from './onClickHierarchyEvent';
 
 const onContextMenuHierarchyEvents = (
   clientX: number,

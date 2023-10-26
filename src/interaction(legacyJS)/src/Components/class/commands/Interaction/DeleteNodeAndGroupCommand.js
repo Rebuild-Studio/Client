@@ -1,5 +1,5 @@
-import Command from '../Command';
 import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class DeleteNodeAndGroupCommand extends Command {
   constructor(store, sheetId, groupUuids, nodeUuids) {

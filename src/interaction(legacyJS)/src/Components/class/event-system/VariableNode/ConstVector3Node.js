@@ -1,6 +1,6 @@
+import { Vector3 } from 'three';
 import Node from '../Node';
 import { ControlType } from '../NodeControl';
-import { Vector3 } from 'three';
 
 const nodeType = 'ConstVector3';
 

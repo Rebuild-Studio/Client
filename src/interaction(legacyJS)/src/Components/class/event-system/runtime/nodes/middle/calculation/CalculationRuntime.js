@@ -1,8 +1,8 @@
-import NodeRuntime from '../../NodeRuntime';
 import AddProcess from './AddProcess';
 import DivideProcess from './DivideProcess';
 import MultiplyProcess from './MultiplyProcess';
 import SubtractProcess from './SubtractProcess';
+import NodeRuntime from '../../NodeRuntime';
 
 export default class CalculationRuntime extends NodeRuntime {
   constructor(args) {

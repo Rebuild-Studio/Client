@@ -1,5 +1,6 @@
 import { MenuItem, Select } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     fill: 'red' // Set the desired color for the icon

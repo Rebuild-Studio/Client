@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react';
 import { css, styled } from 'styled-components';
-
+import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
 import { basicColors, bgColors, grayColors } from '@resources/colors/colors';
 import { fonts } from '@resources/fonts/font';
-import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
 
 interface Props {
   enabled: boolean;

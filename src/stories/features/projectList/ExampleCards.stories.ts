@@ -1,5 +1,5 @@
-import { TemplateCards } from '@/features/projectList/components/TemplateCards';
 import type { Meta, StoryObj } from '@storybook/react';
+import { TemplateCards } from '@/features/projectList/components/TemplateCards';
 
 const meta = {
   component: TemplateCards,

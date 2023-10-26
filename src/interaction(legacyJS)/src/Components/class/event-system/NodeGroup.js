@@ -1,4 +1,4 @@
-import { makeObservable, action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import UUIDGenerator from '../../../utils/uuid';
 
 export default class NodeGroup {

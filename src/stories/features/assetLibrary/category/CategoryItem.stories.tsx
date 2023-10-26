@@ -1,5 +1,5 @@
-import CategoryList from '@/features/assetLibrary/components/body/category/Category';
 import type { Meta, StoryObj } from '@storybook/react';
+import CategoryList from '@/features/assetLibrary/components/body/category/Category';
 
 const meta = {
   component: CategoryList,

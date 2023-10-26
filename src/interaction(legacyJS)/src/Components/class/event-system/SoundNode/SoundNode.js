@@ -1,5 +1,5 @@
-import { ControlType } from '../NodeControl';
 import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
 const nodeType = 'Sound';
 

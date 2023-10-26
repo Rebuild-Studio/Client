@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { grayColors, basicColors } from '@/resources/colors/colors';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 
 interface MenuProps {
   title: string;

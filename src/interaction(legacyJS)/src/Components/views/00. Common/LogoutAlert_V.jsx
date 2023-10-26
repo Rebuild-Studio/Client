@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import MxDialog from '../00. Common/gui/MxDialog_V';
 import LoginVM from '../../view_models/Login_VM';
+
 const LogoutAlert = observer(() => {
   const { LogoutBtnHandler, onClosePopup, popUpOpen } = LoginVM();
   return (

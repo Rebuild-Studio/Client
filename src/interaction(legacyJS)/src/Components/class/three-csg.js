@@ -1,5 +1,5 @@
-import { CSG, Vertex, Polygon } from './csg-lib.js';
 import * as THREE from 'three';
+import { CSG, Polygon, Vertex } from './csg-lib.js';
 import './csg-worker.js';
 
 CSG.fromGeometry = function (geom, objectIndex) {

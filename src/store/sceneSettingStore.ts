@@ -1,5 +1,5 @@
-import { HsvaColor } from '@uiw/color-convert';
 import { makeAutoObservable } from 'mobx';
+import { HsvaColor } from '@uiw/color-convert';
 
 type SceneType = 'scene' | 'none';
 type BackgroundImageType =

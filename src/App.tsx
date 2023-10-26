@@ -1,18 +1,18 @@
 import { observer } from 'mobx-react';
+import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+import Preivew from '@/components/Preview';
+import InteractionEditor from '@components/InteractionEditor.tsx';
+import TopBar from '@components/TopBar';
+import ToastContainer from '@components/common/ToastContainer';
+import Tools from '@components/layout/Tools';
+import editorModeStore from '@store/editorModeStore.ts';
 import MenuBar from './components/MenuBar';
+import ContextMenu from './components/layout/contextMenu/ContextMenu';
+import Modal from './components/layout/modal/Modal';
 import AppWrapper from './components/layout/wrapper/AppWrapper';
 import storeContainer from './store/storeContainer';
 import Scene from './three_components/common/Scene';
-import ToastContainer from '@components/common/ToastContainer';
-import Modal from './components/layout/modal/Modal';
-import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import TopBar from '@components/TopBar';
-import Tools from '@components/layout/Tools';
-import editorModeStore from '@store/editorModeStore.ts';
-import InteractionEditor from '@components/InteractionEditor.tsx';
-import ContextMenu from './components/layout/contextMenu/ContextMenu';
-import Preivew from '@/components/Preview';
 
 const App = () => {
   const { projectStateStore, contextMenuStore } = storeContainer;

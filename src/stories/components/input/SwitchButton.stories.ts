@@ -1,5 +1,5 @@
-import Switch from '@/components/buttons/SwitchButton';
 import { Meta, StoryObj } from '@storybook/react';
+import Switch from '@/components/buttons/SwitchButton';
 
 const meta = {
   component: Switch,

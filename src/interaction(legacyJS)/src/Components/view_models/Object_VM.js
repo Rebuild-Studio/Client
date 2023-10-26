@@ -1,6 +1,6 @@
+import { action } from 'mobx';
 import { common_store } from '../stores/Common_Store';
 import { object_store } from '../stores/Object_Store';
-import { action } from 'mobx';
 
 const objectViewModel = {
   SetObjectClipBoard: action((object) => {

@@ -1,5 +1,5 @@
-import { basicColors } from '@/resources/colors/colors';
 import styled from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
 
 interface Props {
   title: string;

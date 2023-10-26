@@ -1,7 +1,6 @@
-import Icon from '@components/common/Icon.tsx';
-
 import { GIZMO_MODE } from '@/features/controllerBar/constants/gizmo';
 import { GizmoModeType } from '@/features/controllerBar/types/gizmo';
+import Icon from '@components/common/Icon.tsx';
 
 interface Props {
   mode: GizmoModeType;

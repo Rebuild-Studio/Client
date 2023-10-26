@@ -1,13 +1,12 @@
 import React from 'react';
 import * as THREE from 'three';
-import storeContainer from '../stores/storeContainer';
+import { ObjectControllerVM } from './ObjectController_VM';
+import { objectViewModel } from './Object_VM';
 import { Loader } from '../class/Loader';
 import MetaObject from '../class/Studio/MetaObject';
-
 import CSG from '../class/three-csg';
 import { controllerBar_store } from '../stores/ControllerBar_Store';
-import { objectViewModel } from './Object_VM';
-import { ObjectControllerVM } from './ObjectController_VM';
+import storeContainer from '../stores/storeContainer';
 
 export default function EventFunctions_VM() {
   const {

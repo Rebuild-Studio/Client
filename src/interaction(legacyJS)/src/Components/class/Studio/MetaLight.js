@@ -1,10 +1,11 @@
-import { rgbaToHexa } from '@uiw/color-convert';
 import * as THREE from 'three';
-import MetaClass from './MetaClass';
 import { makeObservable, observable } from 'mobx';
+import { rgbaToHexa } from '@uiw/color-convert';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
-import { objectViewModel } from '../../view_models/Object_VM';
+import MetaClass from './MetaClass';
 import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
+import { objectViewModel } from '../../view_models/Object_VM';
+
 class MetaLight extends MetaClass {
   hasLight = false;
   light = null;

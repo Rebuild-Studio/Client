@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import ControllerBarComponent from '@/features/controllerBar';
 
 const meta = {

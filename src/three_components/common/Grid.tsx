@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { gridColor } from '@/resources/colors/colors';
 import { observer } from 'mobx-react';
+import { gridColor } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 
 const Grid = () => {

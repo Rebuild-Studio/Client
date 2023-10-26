@@ -1,9 +1,9 @@
-import storeContainer from '@/store/storeContainer';
-import { observer } from 'mobx-react';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import getCenterPoint from '../utils/getCenterPoint';
+import { observer } from 'mobx-react';
 import canvasHistoryStore from '@/store/canvasHistoryStore';
+import storeContainer from '@/store/storeContainer';
+import getCenterPoint from '../utils/getCenterPoint';
 
 interface GroupProps {
   storeId: string;

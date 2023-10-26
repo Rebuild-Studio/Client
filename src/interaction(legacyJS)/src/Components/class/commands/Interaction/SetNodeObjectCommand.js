@@ -1,5 +1,5 @@
-import Command from '../Command';
 import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class SetNodeObjectCommand extends Command {
   constructor(store, uuid, key, value, sheetId) {

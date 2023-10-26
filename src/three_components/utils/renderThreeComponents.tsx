@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { PrimitiveStore } from '@/store/primitiveStore';
 import AssetPrimitive from '../assets/AssetPrimitive';
 import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
@@ -11,7 +12,6 @@ import CubePrimitive from '../primitives/CubePrimitive';
 import CylinderPrimitive from '../primitives/CylinderPrimitive';
 import SpherePrimitive from '../primitives/SpherePrimitive';
 import TorusPrimitive from '../primitives/TorusPrimitive';
-import { nanoid } from 'nanoid';
 
 const renderPrimitive = (storeId: string, mesh: THREE.Mesh) => {
   switch (mesh.geometry.type) {

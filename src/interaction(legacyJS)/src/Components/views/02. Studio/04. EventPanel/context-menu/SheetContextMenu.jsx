@@ -1,8 +1,8 @@
-import Menu from '@mui/material/Menu';
 import { observer } from 'mobx-react';
+import Menu from '@mui/material/Menu';
+import DeleteSheetCommand from '../../../../class/commands/Interaction/DeleteSheetCommand';
 import storeContainer from '../../../../stores/storeContainer';
 import ContextMenuItem from '../views/ContextMenuItem';
-import DeleteSheetCommand from '../../../../class/commands/Interaction/DeleteSheetCommand';
 
 const SheetContextMenu = observer(() => {
   const { eventSystem_store, interactionhistory_store } = storeContainer;

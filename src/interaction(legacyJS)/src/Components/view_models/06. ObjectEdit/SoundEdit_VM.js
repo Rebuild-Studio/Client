@@ -1,8 +1,9 @@
 import { action } from 'mobx';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
 import { data_store } from '../../stores/Data_Store';
 import { object_store } from '../../stores/Object_Store';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
-import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+
 const SoundEditVM = {
   get soundPropsList() {
     return data_store.soundProps;

@@ -1,13 +1,13 @@
-import { common_store } from '../stores/Common_Store';
-import { objectViewModel } from '../view_models/Object_VM';
-import canvasHistory_store from '../stores/CanvasHistory_Store';
-import DeleteObjCommand from '../class/commands/CanvasObject/DeleteObjCommand';
-import CSG from '../class/three-csg';
 import * as THREE from 'three';
 import MetaObject from '../class/Studio/MetaObject';
+import AddObjCommand from '../class/commands/CanvasObject/AddObjCommand';
+import DeleteObjCommand from '../class/commands/CanvasObject/DeleteObjCommand';
+import CSG from '../class/three-csg';
+import canvasHistory_store from '../stores/CanvasHistory_Store';
+import { common_store } from '../stores/Common_Store';
 import { object_store } from '../stores/Object_Store';
 import { ObjectControllerVM } from '../view_models/ObjectController_VM';
-import AddObjCommand from '../class/commands/CanvasObject/AddObjCommand';
+import { objectViewModel } from '../view_models/Object_VM';
 
 const objectCopyCutPasteViewModel = {
   copy: () => {

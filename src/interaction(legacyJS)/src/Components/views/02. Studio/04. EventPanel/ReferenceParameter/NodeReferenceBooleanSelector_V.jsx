@@ -1,7 +1,7 @@
+import { observer } from 'mobx-react';
 import { Box, MenuItem, Select, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { eventSystem_store } from '../../../../stores/Interaction_Stores';
-import { observer } from 'mobx-react';
 
 const NodeReferenceBooleanSelector = ({ value, setValue, tooltipMessage }) => {
   const classes = useStyles();

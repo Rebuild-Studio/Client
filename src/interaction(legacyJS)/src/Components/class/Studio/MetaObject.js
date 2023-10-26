@@ -1,14 +1,13 @@
 /* eslint-disable array-callback-return */
-import { action, makeObservable, observable } from 'mobx';
 import * as THREE from 'three';
-
+import { action, makeObservable, observable } from 'mobx';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
-import { data_store } from '../../stores/Data_Store';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
 import MetaClass from './MetaClass';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { Material_store } from '../../stores/Material_Store';
 import { objectViewModel } from '../../view_models/Object_VM';
 import AddObjCommand from '../commands/CanvasObject/AddObjCommand';
-import { Material_store } from '../../stores/Material_Store';
 
 class MetaObject extends MetaClass {
   materialList = {}; //object를 구성하고 있는 material들 저장

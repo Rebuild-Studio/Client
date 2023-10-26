@@ -1,6 +1,6 @@
-import { Box, Typography, Slider } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React from 'react';
+import { Box, Slider, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {

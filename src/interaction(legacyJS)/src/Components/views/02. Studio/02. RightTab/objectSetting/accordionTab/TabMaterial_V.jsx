@@ -1,15 +1,15 @@
-import { Box, Typography, Button } from '@mui/material';
-import MxSlider from '../../gui/Slider_V';
-import MxColor from '../../gui/MxColor_V';
-import Common_VM from '../../../../../view_models/Common_VM';
-import MaterialTemplate from '../../gui/MaterialTemplate_V';
-import MxSwitch from '../../gui/Switch_V';
 import { useEffect } from 'react';
-import { objectViewModel } from '../../../../../view_models/Object_VM';
-import MaterialTemplateVM from '../../../../../view_models/06. ObjectEdit/MaterialTemplate_VM';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
+import { Box, Button, Typography } from '@mui/material';
 import MaterialEditVM from '../../../../../view_models/06. ObjectEdit/MaterialEdit_VM';
+import MaterialTemplateVM from '../../../../../view_models/06. ObjectEdit/MaterialTemplate_VM';
+import Common_VM from '../../../../../view_models/Common_VM';
+import { objectViewModel } from '../../../../../view_models/Object_VM';
+import MaterialTemplate from '../../gui/MaterialTemplate_V';
+import MxColor from '../../gui/MxColor_V';
+import MxSlider from '../../gui/Slider_V';
+import MxSwitch from '../../gui/Switch_V';
 
 const TabMaterial = observer((props) => {
   const commonVmProps = Common_VM();

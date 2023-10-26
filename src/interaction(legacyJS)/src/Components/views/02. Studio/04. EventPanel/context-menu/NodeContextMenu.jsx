@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react';
 import ContextMenu from './ContextMenu';
-import storeContainer from '../../../../stores/storeContainer';
-import DeleteNodeAndGroupCommand from '../../../../class/commands/Interaction/DeleteNodeAndGroupCommand';
 import CloneNodeAndGroupCommand from '../../../../class/commands/Interaction/CloneNodeAndGroupCommand';
-import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
 import CreateGroupCommand from '../../../../class/commands/Interaction/CreateGroupCommand';
-import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
+import DeleteNodeAndGroupCommand from '../../../../class/commands/Interaction/DeleteNodeAndGroupCommand';
 import ExcludeFromGroupCommand from '../../../../class/commands/Interaction/ExcludeFromGroupCommand';
+import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
+import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
+import storeContainer from '../../../../stores/storeContainer';
 
 const NodeContextMenu = observer(() => {
   const { eventSystem_store, interactionhistory_store } = storeContainer;

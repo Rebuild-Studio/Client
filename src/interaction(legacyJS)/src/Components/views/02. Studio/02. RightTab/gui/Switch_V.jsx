@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import { Box, Switch, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 24,
   height: 14,

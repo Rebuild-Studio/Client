@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
-import storeContainer from '../../../../stores/storeContainer';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import CreateNodeCommand from '../../../../class/commands/Interaction/CreateNodeCommand';
+import storeContainer from '../../../../stores/storeContainer';
 
 const CreateNodeButtonTemp = observer((props) => {
   const { eventSystem_store, interactionhistory_store, string_store } =

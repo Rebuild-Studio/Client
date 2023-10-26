@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
-import HistoryPanel from './historyPanel/HistoryPanel';
 import styled from 'styled-components';
+import HierarchyPanel from '@/features/hierarchy/components/HierarchyPanel';
 import { bgColors } from '@/resources/colors/colors';
 import canvasHistoryStore from '@/store/canvasHistoryStore';
 import primitiveStore from '@/store/primitiveStore';
 import Icon from '@components/common/Icon.tsx';
-import HierarchyPanel from '@/features/hierarchy/components/HierarchyPanel';
+import HistoryPanel from './historyPanel/HistoryPanel';
 
 const CanvasLeftPanel = () => {
   const [visibleHistoryPanel, setVisibleHistoryPanel] = useState(false);

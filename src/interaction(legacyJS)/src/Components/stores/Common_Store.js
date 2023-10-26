@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
-import { observable } from 'mobx';
 import * as THREE from 'three';
+import { observable } from 'mobx';
 
 const common_store = observable({
   openPmxSaveMenu: false,

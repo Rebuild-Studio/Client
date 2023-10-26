@@ -1,6 +1,6 @@
-import Command from '../Command';
-import * as Utils from '../../event-system/utils';
 import InteractionHierachyVM from '../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class ExcludeFromGroupCommand extends Command {
   constructor(store, sheetId, uuids) {

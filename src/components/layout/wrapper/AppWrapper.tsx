@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
 import { bgColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import { isCtrlEventTrigger } from '@/utils/platform/getPlatformKeyboardEvent';
-import { observer } from 'mobx-react';
-import { useEffect } from 'react';
-import { styled } from 'styled-components';
 
 interface AppProps {
   children: React.ReactNode;

@@ -1,10 +1,10 @@
-import { Box, Button, Typography, Menu } from '@mui/material';
-import { Hue, Saturation } from '@uiw/react-color';
-import { hsvaToRgba, hsvaToHex } from '@uiw/color-convert';
-import MxSlider from '../gui/Slider_V';
 import React, { useRef } from 'react';
-import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
+import { Box, Button, Menu, Typography } from '@mui/material';
+import { hsvaToHex, hsvaToRgba } from '@uiw/color-convert';
+import { Hue, Saturation } from '@uiw/react-color';
 import ChangeColorCommand from '../../../../class/commands/SceneSetting/ChangeColorCommand';
+import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
+import MxSlider from '../gui/Slider_V';
 
 function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
   const [anchorMenu, setAnchorMenu] = React.useState(null);

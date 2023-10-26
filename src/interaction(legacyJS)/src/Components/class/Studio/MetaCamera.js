@@ -1,6 +1,7 @@
-import { objectViewModel } from '../../view_models/Object_VM';
-import MetaClass from './MetaClass';
 import * as THREE from 'three';
+import MetaClass from './MetaClass';
+import { objectViewModel } from '../../view_models/Object_VM';
+
 class MetaCamera extends MetaClass {
   camera = null;
   classType = 'Camera';

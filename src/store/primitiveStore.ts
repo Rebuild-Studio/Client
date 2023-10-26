@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
 import * as THREE from 'three';
+import { makeAutoObservable } from 'mobx';
 
 type PrimitiveType = { [key: string]: JSX.Element };
 type MeshType = { [key: string]: THREE.Mesh };

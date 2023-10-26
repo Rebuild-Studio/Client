@@ -1,5 +1,5 @@
-import { HistoryPanel } from '@/components/layout/CanvasLeftPanel/historyPanel/HistoryPanel';
 import type { Meta, StoryObj } from '@storybook/react';
+import { HistoryPanel } from '@/components/layout/CanvasLeftPanel/historyPanel/HistoryPanel';
 
 const meta = {
   component: HistoryPanel,

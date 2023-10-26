@@ -1,5 +1,9 @@
-import storeContainer from '@/store/storeContainer';
+import * as THREE from 'three';
 import { nanoid } from 'nanoid';
+import canvasHistoryStore from '@/store/canvasHistoryStore';
+import { MeshType } from '@/store/primitiveStore';
+import storeContainer from '@/store/storeContainer';
+import { copyGroup, copyObject } from './copyObject';
 import {
   renderAsset,
   renderGroup,
@@ -7,10 +11,6 @@ import {
   renderPrimitive,
   renderSpotLight
 } from './renderThreeComponents';
-import { MeshType } from '@/store/primitiveStore';
-import * as THREE from 'three';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
-import { copyGroup, copyObject } from './copyObject';
 
 const executeContextMenu = (scene: THREE.Scene) => {
   const {

@@ -1,7 +1,7 @@
-import { objectViewModel } from '../../../view_models/Object_VM';
 import * as THREE from 'three';
-import MetaClass from '../../Studio/MetaClass';
 import { common_store } from '../../../stores/Common_Store';
+import { objectViewModel } from '../../../view_models/Object_VM';
+import MetaClass from '../../Studio/MetaClass';
 
 export default class GroupCommand {
   constructor(metaObjects) {

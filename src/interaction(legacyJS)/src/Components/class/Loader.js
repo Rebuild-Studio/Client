@@ -1,13 +1,10 @@
 import * as THREE from 'three';
-
+import { strFromU8, unzipSync } from 'three/examples/jsm/libs/fflate.module.js';
 import { TGALoader } from 'three/examples/jsm/loaders/TGALoader.js';
-
 import { LoaderUtils } from './LoaderUtils.js';
-
-import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
-import storeContainer from '../stores/storeContainer';
 import MetaObject from './Studio/MetaObject.js';
 import AddObjCommand from '../class/commands/CanvasObject/AddObjCommand';
+import storeContainer from '../stores/storeContainer';
 
 function Loader() {
   const { common_store, canvasHistory_store } = storeContainer;

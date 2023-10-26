@@ -1,5 +1,5 @@
-import { MxJson } from '@/types/mxJson/mxJson';
 import { makeAutoObservable } from 'mobx';
+import { MxJson } from '@/types/mxJson/mxJson';
 
 type ProjectType = 'MX' | 'PMX';
 type ExportType = 'file' | 'post';

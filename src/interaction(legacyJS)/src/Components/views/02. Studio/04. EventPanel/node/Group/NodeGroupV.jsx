@@ -1,10 +1,10 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
-import { Box } from '@mui/system';
 import { Input } from '@mui/material';
-import storeContainer from '../../../../../stores/storeContainer';
-import { useCallback, useRef, useState, useEffect } from 'react';
-import EditGroupNameCommand from '../../../../../class/commands/Interaction/EditGroupNameCommand';
+import { Box } from '@mui/system';
 import NodeGroupVM from './NodeGroupVM';
+import EditGroupNameCommand from '../../../../../class/commands/Interaction/EditGroupNameCommand';
+import storeContainer from '../../../../../stores/storeContainer';
 
 const GroupTitleV = observer((props) => {
   const { group } = props;

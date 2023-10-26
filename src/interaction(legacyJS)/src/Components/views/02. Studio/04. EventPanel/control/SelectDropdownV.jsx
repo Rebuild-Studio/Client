@@ -1,9 +1,9 @@
-import legacyStoreContainer from '../../../../stores/storeContainer';
-import storeContainer from '@/store/storeContainer';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { observer } from 'mobx-react';
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import storeContainer from '@/store/storeContainer';
 import SetNodeDataCommand from '../../../../class/commands/Interaction/SetNodeDataCommand';
 import SetNodeObjectCommand from '../../../../class/commands/Interaction/SetNodeObjectCommand';
+import legacyStoreContainer from '../../../../stores/storeContainer';
 
 const SelectDropdown = observer((props) => {
   const { eventSystem_store, string_store, interactionhistory_store } =

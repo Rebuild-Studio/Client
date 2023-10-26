@@ -1,11 +1,11 @@
 import { action } from 'mobx';
 import { contextMenuViewModel } from '../01. ContextMenu/ContextMenu_VM';
-import { ObjectControllerVM } from '../ObjectController_VM';
-import { common_store } from '../../stores/Common_Store';
-import { objectViewModel } from '../Object_VM';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
 import HideObjCommand from '../../class/commands/CanvasObject/HideObjCommand';
 import ShowObjCommand from '../../class/commands/CanvasObject/ShowObjCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { common_store } from '../../stores/Common_Store';
+import { ObjectControllerVM } from '../ObjectController_VM';
+import { objectViewModel } from '../Object_VM';
 
 const HierachyBtnVM = {
   onContextMenuOpen: action((event, object) => {

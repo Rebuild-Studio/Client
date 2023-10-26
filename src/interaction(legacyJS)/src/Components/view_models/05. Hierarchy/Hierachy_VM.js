@@ -1,9 +1,10 @@
 /* eslint-disable array-callback-return */
 import { action } from 'mobx';
+import UUIDGenerator from '../../../utils/uuid';
 import { hierarchy_store } from '../../stores/Hierarchy_Store';
 import { object_store } from '../../stores/Object_Store';
 import { objectViewModel } from '../Object_VM';
-import UUIDGenerator from '../../../utils/uuid';
+
 class UIData {
   type = null;
   object = null;

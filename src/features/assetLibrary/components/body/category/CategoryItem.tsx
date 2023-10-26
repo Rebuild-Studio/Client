@@ -1,3 +1,5 @@
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
 import {
   MainCategory,
   MainCategoryType
@@ -5,8 +7,6 @@ import {
 import { bgColors } from '@/resources/colors/colors';
 import assetCategoryStore, { Category } from '@/store/assetCategoryStore';
 import assetLibraryStore from '@/store/assetLibraryStore';
-import { observer } from 'mobx-react';
-import { styled } from 'styled-components';
 
 interface Props {
   name: string;

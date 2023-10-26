@@ -1,6 +1,6 @@
+import { ObjectControllerVM } from './ObjectController_VM';
 import storeContainer from '../stores/storeContainer';
 import { objectViewModel } from '../view_models/Object_VM';
-import { ObjectControllerVM } from './ObjectController_VM';
 
 export default function Undo3D_VM() {
   const { undo_store } = storeContainer;

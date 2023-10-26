@@ -1,6 +1,6 @@
-import Node from '../Node';
 import { reaction } from 'mobx';
 import { objectViewModel } from '../../../view_models/Object_VM';
+import Node from '../Node';
 import { ControlType } from '../NodeControl';
 
 const nodeType = 'Object';

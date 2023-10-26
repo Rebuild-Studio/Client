@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import MenuButton, { MenuButtonProps } from '@/components/common/MenuButton';
+import Tab from '@/components/layout/Tab';
+import { useToast } from '@/hooks/useToast';
 import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
 import ProjectCards from './ProjectCards';
 import { TemplateCards } from './TemplateCards';
-import storeContainer from '@/store/storeContainer';
-import { observer } from 'mobx-react';
-import { useFetchProjectList } from '../hooks/useFetchProjectList query';
-import { useToast } from '@/hooks/useToast';
 import { useFetchProject } from '../hooks/useFetchProject';
-import Tab from '@/components/layout/Tab';
+import { useFetchProjectList } from '../hooks/useFetchProjectList query';
 
 const ProjectList = () => {
   const { projectStateStore, projectStore } = storeContainer;

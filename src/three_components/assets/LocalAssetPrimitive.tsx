@@ -1,10 +1,10 @@
-import { useFileLoader } from '@/hooks/loader';
-import storeContainer from '@/store/storeContainer';
-import { observer } from 'mobx-react';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { PrimitiveProps } from '../common/PrimitiveProps';
+import { observer } from 'mobx-react';
+import { useFileLoader } from '@/hooks/loader';
 import canvasHistoryStore from '@/store/canvasHistoryStore';
+import storeContainer from '@/store/storeContainer';
+import { PrimitiveProps } from '../common/PrimitiveProps';
 
 interface LocalAssetPrimitveProps extends PrimitiveProps {
   file: File;

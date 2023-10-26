@@ -1,11 +1,11 @@
-import { useLoader } from '@react-three/fiber';
-import { RGBELoader } from 'three-stdlib';
 import * as THREE from 'three';
-import { Environment } from '@react-three/drei';
-import getMinioPath from '@/utils/path/minio';
 import { observer } from 'mobx-react';
+import { Environment } from '@react-three/drei';
+import { useLoader } from '@react-three/fiber';
 import { hsvaToHex } from '@uiw/color-convert';
+import { RGBELoader } from 'three-stdlib';
 import storeContainer from '@/store/storeContainer';
+import getMinioPath from '@/utils/path/minio';
 
 const SceneEnvironment = () => {
   const { sceneSettingStore } = storeContainer;

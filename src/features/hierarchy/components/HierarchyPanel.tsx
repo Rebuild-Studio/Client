@@ -1,14 +1,14 @@
-import { observer } from 'mobx-react';
-import { MeshType } from '@/store/primitiveStore';
-import { HierarchyElement } from './HierarchyElement';
-import styled from 'styled-components';
 import { useState } from 'react';
-import Tab from '@/components/layout/Tab';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
 import {
-  StyledPanel,
   StyledHeader,
+  StyledPanel,
   StyledTab
 } from '@/components/layout/CanvasLeftPanel/CanvasLeftPanel.style';
+import Tab from '@/components/layout/Tab';
+import { MeshType } from '@/store/primitiveStore';
+import { HierarchyElement } from './HierarchyElement';
 import { clearContextMenuHierarchy } from '../utils/clearMouseEventHierarchy';
 
 type Props = {

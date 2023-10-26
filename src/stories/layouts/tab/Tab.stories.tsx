@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import Tab from '@/components/layout/Tab';
 import { basicColors, bgColors } from '@/resources/colors/colors';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Tab,

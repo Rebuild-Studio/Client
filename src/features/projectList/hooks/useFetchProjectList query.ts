@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import getProjectServices from '@/network/services/project/get/getProjectServices';
 import { ResponseGetMxProjectList } from '@/network/services/project/get/models/getMxProjectList.model';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { Project, ProjectList } from '../types/project';
 
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {

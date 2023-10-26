@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import MenuItem from '@mui/material/MenuItem';
-import storeContainer from '../../../../stores/storeContainer';
 import CreateNodeCommand from '../../../../class/commands/Interaction/CreateNodeCommand';
+import storeContainer from '../../../../stores/storeContainer';
 
 const CreateNodeMenuItemButton = ({ node, labelKey, closer }) => {
   const { eventSystem_store, interactionhistory_store, string_store } =

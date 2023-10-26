@@ -1,6 +1,6 @@
 import { action } from 'mobx';
-import { props_store } from '../stores/Props_store';
 import lodash from 'lodash';
+import { props_store } from '../stores/Props_store';
 
 // 역할: Props_store에서 관리하고 있는 propsData를 변경하는 함수들을 정의
 // 목적: MX에서 UX/GX에 어떤 props를 전달할 지 결정하기 위함.

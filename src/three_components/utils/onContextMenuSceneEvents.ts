@@ -1,6 +1,6 @@
-import storeContainer from '@/store/storeContainer';
 import { MouseEvent } from 'react';
 import * as THREE from 'three';
+import storeContainer from '@/store/storeContainer';
 import { hasAsset } from './findAsset';
 import { findRootGroup } from './findGroup';
 

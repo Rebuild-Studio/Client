@@ -1,5 +1,5 @@
-import ReferenceTextField from './TextFieldV';
 import { observer } from 'mobx-react';
+import ReferenceTextField from './TextFieldV';
 
 const NodeReferenceVector3Selector_V = ({
   value,

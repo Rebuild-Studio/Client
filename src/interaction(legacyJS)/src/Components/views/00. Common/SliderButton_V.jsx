@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react';
-import { IconButton, Box } from '@mui/material';
 import React, { useState } from 'react';
+import { observer } from 'mobx-react';
+import { Box, IconButton } from '@mui/material';
 import TextTransition from './SliderButtonTextTransition';
 
 /**

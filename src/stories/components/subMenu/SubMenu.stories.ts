@@ -1,5 +1,5 @@
-import { SubMenu } from '@/components/common/subMenu/SubMenu';
 import type { Meta, StoryObj } from '@storybook/react';
+import { SubMenu } from '@/components/common/subMenu/SubMenu';
 
 const meta = {
   title: 'Component/SubMenu',

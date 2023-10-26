@@ -1,6 +1,6 @@
+import * as THREE from 'three';
 import { Outline } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
-import * as THREE from 'three';
 
 interface SelectedOutlineProps {
   meshes: Array<THREE.Object3D<THREE.Event>>;

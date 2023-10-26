@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
-import { useTranslation } from 'react-i18next';
-import storeContainer from '../../../../../stores/storeContainer';
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import NodeReferenceSelector from './NodeReferenceSelector_V';
+import storeContainer from '../../../../../stores/storeContainer';
 
 /**
  * A React component for displaying reference parameters.

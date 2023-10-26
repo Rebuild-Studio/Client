@@ -1,22 +1,21 @@
 import { observer } from 'mobx-react';
-import storeContainer from '../../../../stores/storeContainer';
-import {
-  NodeControl,
-  ControlType
-} from '../../../../class/event-system/NodeControl';
+import ControlBooleanV from './ControlBooleanV';
+import ControlColorV from './ControlColorV';
+import ControlConvertV from './ControlConvertV';
 import ControlDataVM from './ControlDataVM';
-
+import ControlDetectKeyV from './ControlDetectKeyV';
+import ControlMaterialTemplateV from './ControlMaterialTemplateV';
+import ControlObjectV from './ControlObjectV';
+import ControlRangeV from './ControlRangeV';
 import ControlSelectV from './ControlSelectV';
 import ControlTextFieldV from './ControlTextFieldV';
-import ControlVector3 from './ControlVector3V';
-import ControlDetectKeyV from './ControlDetectKeyV';
-import ControlBooleanV from './ControlBooleanV';
-import ControlObjectV from './ControlObjectV';
-import ControlConvertV from './ControlConvertV';
-import ControlColorV from './ControlColorV';
 import ControlTransferListV from './ControlTransferListV';
-import ControlMaterialTemplateV from './ControlMaterialTemplateV';
-import ControlRangeV from './ControlRangeV';
+import ControlVector3 from './ControlVector3V';
+import {
+  ControlType,
+  NodeControl
+} from '../../../../class/event-system/NodeControl';
+import storeContainer from '../../../../stores/storeContainer';
 
 const InputProps = { style: { color: 'white' } };
 const selectSX = { color: '#FFFFFF' };

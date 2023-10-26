@@ -1,5 +1,5 @@
-import Icon from '@components/common/Icon.tsx';
 import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import Icon from '@components/common/Icon.tsx';
 
 const SnapIcon = () => {
   const { isAnySnapModeActivated } = controllerBarStore;

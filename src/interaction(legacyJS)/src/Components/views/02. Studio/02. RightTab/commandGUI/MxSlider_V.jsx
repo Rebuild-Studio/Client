@@ -1,8 +1,8 @@
-import { Box, Typography, Slider } from '@mui/material';
 import { useRef } from 'react';
+import { Box, Slider, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
 import ChangeSliderValueCommand from '../../../../class/commands/SceneSetting/DraggingSliderCommand';
+import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
 
 function MxSlider({
   label,

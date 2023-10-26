@@ -1,6 +1,6 @@
-import ProjectList from '@/features/projectList/components/ProjectList';
 import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ProjectList from '@/features/projectList/components/ProjectList';
 
 const meta = {
   component: ProjectList,

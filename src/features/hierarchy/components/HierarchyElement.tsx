@@ -1,17 +1,17 @@
-import { basicColors, grayColors } from '@/resources/colors/colors';
-import { fonts } from '@/resources/fonts/font';
-import { reaction } from 'mobx';
 import { useEffect, useState } from 'react';
+import { reaction } from 'mobx';
 import { styled } from 'styled-components';
-import primitiveStore from '@/store/primitiveStore';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 import {
   CanvasInstance,
   instanceTranslate
 } from '@/resources/constants/canvas';
-import onContextMenuHierarchyEvents from '../utils/onContextMenuHierarchyEvent';
-import onClickHierarchyEvent from '../utils/onClickHierarchyEvent';
-import { findRootGroup } from '@/three_components/utils/findGroup';
+import { fonts } from '@/resources/fonts/font';
+import primitiveStore from '@/store/primitiveStore';
 import { findRootAsset } from '@/three_components/utils/findAsset';
+import { findRootGroup } from '@/three_components/utils/findGroup';
+import onClickHierarchyEvent from '../utils/onClickHierarchyEvent';
+import onContextMenuHierarchyEvents from '../utils/onContextMenuHierarchyEvent';
 
 type MouseEvents = {
   objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;

@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react';
-import { Box, Typography, Button } from '@mui/material';
-import { MyPageVM } from '../../view_models/MyPage_VM';
+import { Box, Button, Typography } from '@mui/material';
 import MxDialog from '../00. Common/gui/MxDialog_V';
+import { MyPageVM } from '../../view_models/MyPage_VM';
+
 const LoadAlert = observer(() => {
   return (
     <MxDialog

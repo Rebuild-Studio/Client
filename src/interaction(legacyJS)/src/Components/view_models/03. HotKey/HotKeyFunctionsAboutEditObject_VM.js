@@ -1,9 +1,9 @@
-import { objectCopyCutPasteViewModel } from '../ObjectCopyCutPaste_VM';
+import { HotKeyFunctionsAboutViewViewModel } from './HotKeyFunctionsAboutView_VM';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
 import { common_store } from '../../stores/Common_Store';
 import { object_store } from '../../stores/Object_Store';
-import { HotKeyFunctionsAboutViewViewModel } from './HotKeyFunctionsAboutView_VM';
+import { objectCopyCutPasteViewModel } from '../ObjectCopyCutPaste_VM';
 import { objectViewModel } from '../Object_VM';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
 
 const HotKeyFunctionsAboutEditObjectViewModel = {
   copy: () => {

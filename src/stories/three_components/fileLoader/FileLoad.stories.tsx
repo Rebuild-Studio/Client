@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useFileListLoader } from '@/hooks/loader';
+import { Suspense, useState } from 'react';
+import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useState, Suspense } from 'react';
-import * as THREE from 'three';
+import { useFileListLoader } from '@/hooks/loader';
 
 const meta = {
   title: 'Three/useLocalFileLoader',

@@ -1,6 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { PopOverProps } from './PopOverProps';
-import { useRef, useState, useEffect } from 'react';
 
 const BottomPopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);

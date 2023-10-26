@@ -1,5 +1,5 @@
-import storeContainer from '@/store/storeContainer';
 import { nanoid } from 'nanoid';
+import storeContainer from '@/store/storeContainer';
 import { renderSelectedGroup } from './renderThreeComponents';
 
 const makeSelectedGroup = () => {

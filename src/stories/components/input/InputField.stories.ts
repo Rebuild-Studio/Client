@@ -1,5 +1,5 @@
-import InputField from '@/components/common/InputField';
 import { Meta, StoryObj } from '@storybook/react';
+import InputField from '@/components/common/InputField';
 
 const meta = {
   component: InputField,

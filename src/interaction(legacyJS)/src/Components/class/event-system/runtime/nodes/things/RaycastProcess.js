@@ -1,5 +1,5 @@
-import EventProcess from '../super/EventProcess';
 import { raycastFormat as format } from '../../utils';
+import EventProcess from '../super/EventProcess';
 
 export default class RaycastProcess extends EventProcess {
   constructor(nodeRuntime) {

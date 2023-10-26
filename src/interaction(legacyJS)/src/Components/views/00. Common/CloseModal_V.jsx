@@ -1,5 +1,5 @@
-import { Dialog, Box, Typography, Button } from '@mui/material';
 import { observer } from 'mobx-react';
+import { Box, Button, Dialog, Typography } from '@mui/material';
 import storeContainer from '../../stores/storeContainer';
 
 const CloseModal = observer((props) => {

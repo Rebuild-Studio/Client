@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { observer } from 'mobx-react';
-import { fonts } from '@/resources/fonts/font';
 import { styled } from 'styled-components';
+import { fonts } from '@/resources/fonts/font';
 import canvasHistoryStore from '@/store/canvasHistoryStore';
 
 type Props = {

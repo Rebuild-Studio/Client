@@ -1,11 +1,11 @@
-import { useState, useMemo } from 'react';
-import { observer } from 'mobx-react';
+import { useMemo, useState } from 'react';
 import { Vector3 } from 'three';
-import Box from '@mui/material/Box';
-import storeContainer from '../../../../stores/storeContainer';
+import { observer } from 'mobx-react';
 import Checkbox from '@mui/material';
 import { FormGroup } from '@mui/material';
 import FormControlLabel from '@mui/material';
+import Box from '@mui/material/Box';
+import storeContainer from '../../../../stores/storeContainer';
 
 const getLabels = (name) => {
   let labels = [];

@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react';
 import { useEffect, useRef } from 'react';
-import storeContainer from '../../../../../stores/storeContainer';
+import { observer } from 'mobx-react';
 import { Box } from '@mui/material';
+import storeContainer from '../../../../../stores/storeContainer';
 import SocketColor from '../../views/SocketColor';
 
 /**

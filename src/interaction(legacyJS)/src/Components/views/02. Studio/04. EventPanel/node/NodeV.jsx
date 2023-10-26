@@ -1,13 +1,13 @@
-import { useRef, useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { observer } from 'mobx-react';
-import storeContainer from '../../../../stores/storeContainer';
-import DataV from './Header/DataV';
-import TitleV from './Header/TitleV';
+import ReferenceParameterV from './Body/ReferenceParameterV';
 import InputV from './Body/SocketTab/InputV';
 import OutputV from './Body/SocketTab/OutputV';
-import ReferenceParameterV from './Body/ReferenceParameterV';
-import { nodeOutline } from '../../../../../constants/styles/interaction/node';
+import DataV from './Header/DataV';
+import TitleV from './Header/TitleV';
 import { socketPosition } from '../../../../../constants/strings/interaction/socket';
+import { nodeOutline } from '../../../../../constants/styles/interaction/node';
+import storeContainer from '../../../../stores/storeContainer';
 
 const hasControls = (node) => {
   const keys = Object.keys(node.control);

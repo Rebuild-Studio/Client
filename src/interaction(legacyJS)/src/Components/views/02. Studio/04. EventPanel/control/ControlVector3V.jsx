@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
-import { observer } from 'mobx-react';
+import { useMemo, useState } from 'react';
 import { Vector3 } from 'three';
+import { observer } from 'mobx-react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import storeContainer from '../../../../stores/storeContainer';

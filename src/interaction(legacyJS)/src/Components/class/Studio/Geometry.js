@@ -1,5 +1,6 @@
-import { data_store } from '../../stores/Data_Store';
 import * as THREE from 'three';
+import { data_store } from '../../stores/Data_Store';
+
 class Geometry {
   shape;
   mesh;

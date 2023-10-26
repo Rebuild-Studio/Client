@@ -1,11 +1,11 @@
-import storeContainer from '@/store/storeContainer';
 import * as THREE from 'three';
+import storeContainer from '@/store/storeContainer';
+import { findRootAsset, hasAsset } from './findAsset';
 import { findRootGroup, hasChildGroup, isChildInGroup } from './findGroup';
 import {
   selectChildGroupInGroup,
   selectChildObjectInGroup
 } from './selectInGroup';
-import { findRootAsset, hasAsset } from './findAsset';
 
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]

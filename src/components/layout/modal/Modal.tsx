@@ -1,5 +1,5 @@
-import storeContainer from '@/store/storeContainer';
 import { styled } from 'styled-components';
+import storeContainer from '@/store/storeContainer';
 
 // 실제로 사용시에는 ReactDOM.createPortal에 감싸서 사용해야 함
 // id는 modal-root

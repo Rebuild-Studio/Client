@@ -1,42 +1,34 @@
 import NodeRuntime from './nodes/NodeRuntime';
-
-import Vector3CalculationRuntime from './nodes/middle/vector3calculation/Vector3CalculationRuntime';
-import CalculationRuntime from './nodes/middle/calculation/CalculationRuntime';
 import CameraRuntime from './nodes/camera/CameraRuntime';
 import CameraSensorRuntime from './nodes/camera/CameraSensorRuntime';
-import ConvertRuntime from './nodes/middle/convert/ConvertRuntime';
-import ObjectRuntime from './nodes/things/ObjectRuntime';
-import SensorRuntime from './nodes/things/sensor/SensorRuntime';
-import ThingRuntime from './nodes/things/ThingRuntime';
-import VariableRuntime from './nodes/variable/VariableRuntime';
-import MaterialRuntime from './nodes/middle/material/MaterialRuntime';
-
-import VectorCompareProcess from './nodes/middle/VectorCompareProcess';
-import CompareProcess from './nodes/middle/CompareProcess';
-
-import KeyboardCanvasEventProcess from './nodes/input/canvas-event/KeyboardCanvasEventProcess';
-import MouseSignalCanvasEventProcess from './nodes/input/canvas-event/MouseSignalCanvasEventProcess';
-import MousePositionCanvasEventProcess from './nodes/input/canvas-event/MousePositionCanvasEventProcess';
 import StartProcess from './nodes/input/StartProcess';
-
-import TimerProcess from './nodes/middle/TimerProcess';
-import ChangedProcess from './nodes/middle/ChangedProcess';
-
-import LogicProcess from './nodes/middle/LogicProcess';
-
+import KeyboardCanvasEventProcess from './nodes/input/canvas-event/KeyboardCanvasEventProcess';
+import MousePositionCanvasEventProcess from './nodes/input/canvas-event/MousePositionCanvasEventProcess';
+import MouseSignalCanvasEventProcess from './nodes/input/canvas-event/MouseSignalCanvasEventProcess';
 import AnalyzeProcess from './nodes/middle/AnalyzeProcess';
-import MapProcess from './nodes/middle/MapProcess';
-import DigitizeProcess from './nodes/middle/DigitizeProcess';
-import InverseProcess from './nodes/middle/InverseProcess';
-import RandomProcess from './nodes/random/RandomProcess';
-import FlagProcess from './nodes/middle/FlagProcess';
-import CounterProcess from './nodes/middle/CounterProcess';
-
-import PositionToAngleProcess from './nodes/middle/PositionToAngleProcess';
-import AngleToPositionProcess from './nodes/middle/AngleToPositionProcess';
 import AngleDifferenceProcess from './nodes/middle/AngleDifferenceProcess';
-
+import AngleToPositionProcess from './nodes/middle/AngleToPositionProcess';
+import ChangedProcess from './nodes/middle/ChangedProcess';
+import CompareProcess from './nodes/middle/CompareProcess';
+import CounterProcess from './nodes/middle/CounterProcess';
+import DigitizeProcess from './nodes/middle/DigitizeProcess';
+import FlagProcess from './nodes/middle/FlagProcess';
+import InverseProcess from './nodes/middle/InverseProcess';
+import LogicProcess from './nodes/middle/LogicProcess';
+import MapProcess from './nodes/middle/MapProcess';
+import PositionToAngleProcess from './nodes/middle/PositionToAngleProcess';
+import TimerProcess from './nodes/middle/TimerProcess';
+import VectorCompareProcess from './nodes/middle/VectorCompareProcess';
+import CalculationRuntime from './nodes/middle/calculation/CalculationRuntime';
+import ConvertRuntime from './nodes/middle/convert/ConvertRuntime';
+import MaterialRuntime from './nodes/middle/material/MaterialRuntime';
+import Vector3CalculationRuntime from './nodes/middle/vector3calculation/Vector3CalculationRuntime';
+import RandomProcess from './nodes/random/RandomProcess';
+import ObjectRuntime from './nodes/things/ObjectRuntime';
 import RaycastProcess from './nodes/things/RaycastProcess';
+import ThingRuntime from './nodes/things/ThingRuntime';
+import SensorRuntime from './nodes/things/sensor/SensorRuntime';
+import VariableRuntime from './nodes/variable/VariableRuntime';
 
 export default function registerCallbacks(node) {
   const type = node.type;

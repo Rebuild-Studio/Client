@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
-import UUIDGenerator from '../../../utils/uuid';
-import Socket from './Socket';
 import { ControlType } from './NodeControl';
+import Socket from './Socket';
+import UUIDGenerator from '../../../utils/uuid';
 
 /**
  * @description 인터랙션 노드 클래스

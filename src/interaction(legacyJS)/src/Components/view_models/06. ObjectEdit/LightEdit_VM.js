@@ -1,16 +1,17 @@
 import { action } from 'mobx';
-import { data_store } from '../../stores/Data_Store';
-import { object_store } from '../../stores/Object_Store';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
-import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
-import { objectViewModel } from '../Object_VM';
 import {
-  hsvaToHex,
   hexToHsva,
-  rgbaToHsva,
-  rgbaToHex
+  hsvaToHex,
+  rgbaToHex,
+  rgbaToHsva
 } from '@uiw/color-convert';
 import ChangeLightPropsCommands from '../../class/commands/CanvasObject/ChangeLightPropsCommands';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { object_store } from '../../stores/Object_Store';
+import { objectViewModel } from '../Object_VM';
+
 const LightEditVM = {
   get lightPropsList() {
     const processData = [...data_store.lightProps['common']];

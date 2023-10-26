@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Dropdown, { Option } from '@/components/common/dropdown/Dropdown';
 import DOMAIN_LIST, { Domain } from '@/features/assetLibrary/constants/domain';
 import { grayColors } from '@/resources/colors/colors';
 import assetCategoryStore from '@/store/assetCategoryStore';
 import assetLibraryStore from '@/store/assetLibraryStore';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({

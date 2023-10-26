@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
-import { observer } from 'mobx-react';
 import React from 'react';
-import MxSlider from '../../gui/Slider_V';
-import { objectViewModel } from '../../../../../view_models/Object_VM';
-import LightEditVM from '../../../../../view_models/06. ObjectEdit/LightEdit_VM';
+import { observer } from 'mobx-react';
+import { Box } from '@mui/material';
 import { hexToHsva } from '@uiw/color-convert';
+import LightEditVM from '../../../../../view_models/06. ObjectEdit/LightEdit_VM';
+import { objectViewModel } from '../../../../../view_models/Object_VM';
 import MxColor from '../../gui/MxColor_V';
+import MxSlider from '../../gui/Slider_V';
 
 const TabLight = observer((props) => {
   const roundSliderValue = (value, unit) => {

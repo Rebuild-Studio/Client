@@ -1,5 +1,5 @@
-import UUIDGenerator from '../../../utils/uuid';
 import { action, makeObservable, observable } from 'mobx';
+import UUIDGenerator from '../../../utils/uuid';
 
 export default class Wire {
   uuid;

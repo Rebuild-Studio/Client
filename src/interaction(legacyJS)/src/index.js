@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material';
-import { theme } from './theme/theme';
 import { ThemeProvider } from '@mui/material/styles';
+import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
+import App from './App';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { theme } from './theme/theme';
 import i18n from '../src/locale/i18n';
 
 ReactDOM.render(

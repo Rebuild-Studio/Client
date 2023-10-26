@@ -1,6 +1,6 @@
+import { makeAutoObservable } from 'mobx';
 import { Domain } from '@/features/assetLibrary/constants/domain';
 import { MainCategory } from '@/features/assetLibrary/constants/mainCategory';
-import { makeAutoObservable } from 'mobx';
 
 interface Category {
   category: string;

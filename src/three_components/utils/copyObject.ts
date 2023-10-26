@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
 import * as THREE from 'three';
+import { nanoid } from 'nanoid';
 
 const copyGroup = (group: THREE.Mesh) => {
   const storeId = nanoid();

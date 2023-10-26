@@ -1,5 +1,5 @@
-import ProjectCards from '@/features/projectList/components/ProjectCards';
 import type { Meta, StoryObj } from '@storybook/react';
+import ProjectCards from '@/features/projectList/components/ProjectCards';
 
 const meta = {
   component: ProjectCards,

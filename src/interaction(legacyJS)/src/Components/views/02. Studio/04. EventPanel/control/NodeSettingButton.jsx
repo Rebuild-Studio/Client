@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import {
   Box,
@@ -10,14 +10,14 @@ import {
   Icon,
   IconButton
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import storeContainer from '../../../../stores/storeContainer';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ControlRowV from './ControlRowV';
-import { ControlType } from '../../../../class/event-system/NodeControl';
 import ConvertNodeCommand from '../../../../class/commands/Interaction/ConvertNodeCommand';
+import CreateSocketsCommand from '../../../../class/commands/Interaction/CreateSocketsCommand';
 import SetNodeDataCommand from '../../../../class/commands/Interaction/SetNodeDataCommand';
 import SetNodeObjectCommand from '../../../../class/commands/Interaction/SetNodeObjectCommand';
-import CreateSocketsCommand from '../../../../class/commands/Interaction/CreateSocketsCommand';
+import { ControlType } from '../../../../class/event-system/NodeControl';
+import storeContainer from '../../../../stores/storeContainer';
 
 const theme = createTheme({
   typography: {

@@ -1,8 +1,8 @@
-import Dropdown, { Option } from '@/components/common/dropdown/Dropdown';
-import { grayColors } from '@/resources/colors/colors';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
+import Dropdown, { Option } from '@/components/common/dropdown/Dropdown';
+import { grayColors } from '@/resources/colors/colors';
 
 const meta = {
   component: Dropdown,

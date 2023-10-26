@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import { MxCanvasCore } from '@mv/core';
 import storeContainer from '@/store/storeContainer';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 import createMxJson from '@/utils/json/createMxJson';
+import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 
 const Preivew = observer(() => {
   const { projectStore } = storeContainer;

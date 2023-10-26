@@ -1,5 +1,5 @@
-import NodeProcess from '../NodeProcess';
 import { Euler } from 'three';
+import NodeProcess from '../NodeProcess';
 
 //FIXME: ObjectProcess와 코드 유사
 export default class CameraProcess extends NodeProcess {

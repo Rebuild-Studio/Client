@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 import { CSSSize } from '@/types/style/cssUnits';
 import { CSSBorder } from '@/types/style/inputField';
-import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 
 type Props = {
   thumbnail: string;

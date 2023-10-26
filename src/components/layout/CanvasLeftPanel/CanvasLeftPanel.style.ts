@@ -1,6 +1,6 @@
+import { styled } from 'styled-components';
 import { basicColors, bgColors } from '@/resources/colors/colors';
 import { fonts } from '@/resources/fonts/font';
-import { styled } from 'styled-components';
 
 const StyledPanel = styled.div`
   width: 285px;

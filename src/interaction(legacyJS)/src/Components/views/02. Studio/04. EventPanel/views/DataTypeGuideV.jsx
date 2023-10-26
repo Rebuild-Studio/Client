@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react';
-import Box from '@mui/material/Box';
 import { Icon } from '@mui/material';
-import storeContainer from '../../../../stores/storeContainer';
-import SocketColor from './SocketColor';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import SocketColor from './SocketColor';
+import storeContainer from '../../../../stores/storeContainer';
 
 const SingleDataType = (prop) => {
   const { string } = prop;

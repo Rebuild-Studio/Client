@@ -1,5 +1,5 @@
-import { objectViewModel } from '../../../view_models/Object_VM';
 import * as THREE from 'three';
+import { objectViewModel } from '../../../view_models/Object_VM';
 
 export default class UnGroupCommand {
   constructor(metaGroup) {

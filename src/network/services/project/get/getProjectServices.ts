@@ -1,13 +1,13 @@
 import apiModule from '@/network/module/apiModule';
+import {
+  RequestGetMxProject,
+  ResponseGetMxProject
+} from './models/getMxProject.model';
 import { ResponseGetMxProjectList } from './models/getMxProjectList.model';
 import {
   RequestGetPmxProject,
   ResponseGetPmxProject
 } from './models/getPmxProject.model';
-import {
-  RequestGetMxProject,
-  ResponseGetMxProject
-} from './models/getMxProject.model';
 import { ResponseGetPmxProjectList } from './models/getPmxProjectList.model';
 
 const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {

@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { basicColors, grayColors } from '@/resources/colors/colors';
+import { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 
 interface SliderProps {
   title: string;

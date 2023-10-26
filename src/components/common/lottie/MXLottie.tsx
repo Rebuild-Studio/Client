@@ -1,4 +1,5 @@
 import { useLottie } from 'lottie-react';
+
 interface MXLottieSizeProps {
   width: number;
   height: number;

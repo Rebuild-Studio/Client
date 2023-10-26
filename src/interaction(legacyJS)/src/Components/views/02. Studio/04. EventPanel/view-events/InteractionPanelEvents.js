@@ -1,14 +1,14 @@
-import CreateWireCommand from '../../../../class/commands/Interaction/CreateWireCommand';
-import DeleteWireCommand from '../../../../class/commands/Interaction/DeleteWireCommand';
-import SelectSheetCommand from '../../../../class/commands/Interaction/SelectSheetCommand';
 import AddSelectedPositionCommand from '../../../../class/commands/Interaction/AddSelectedPositionCommand';
-import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
-import UnselectNodeAndGroupCommand from '../../../../class/commands/Interaction/UnselectNodeAndGroupCommand';
 import CreateConvertNodeCommand from '../../../../class/commands/Interaction/CreateConvertNodeCommand';
 import CreateGroupCommand from '../../../../class/commands/Interaction/CreateGroupCommand';
-import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
-import InteractionHierachyVM from '../../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
+import CreateWireCommand from '../../../../class/commands/Interaction/CreateWireCommand';
+import DeleteWireCommand from '../../../../class/commands/Interaction/DeleteWireCommand';
 import ExcludeFromGroupCommand from '../../../../class/commands/Interaction/ExcludeFromGroupCommand';
+import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
+import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
+import SelectSheetCommand from '../../../../class/commands/Interaction/SelectSheetCommand';
+import UnselectNodeAndGroupCommand from '../../../../class/commands/Interaction/UnselectNodeAndGroupCommand';
+import InteractionHierachyVM from '../../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
 
 const TARGET = {
   NODE: 'node',

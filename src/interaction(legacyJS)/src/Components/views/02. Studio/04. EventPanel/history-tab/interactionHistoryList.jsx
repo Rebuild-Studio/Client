@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, Grid, Tooltip } from '@mui/material';
 import { observer } from 'mobx-react';
+import { Box, Button, Grid, Tooltip } from '@mui/material';
 import storeContainer from '../../../../stores/storeContainer';
 
 const InitialState = (props) => {

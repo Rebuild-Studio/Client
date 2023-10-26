@@ -1,9 +1,10 @@
 import { action } from 'mobx';
-import { object_store } from '../../stores/Object_Store';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
-import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
 import AnimationToggleOffCommand from '../../class/commands/CanvasObject/AnimationToggleOffCommand';
 import AnimationToggleOnCommand from '../../class/commands/CanvasObject/AnimationToggleOnCommand';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { object_store } from '../../stores/Object_Store';
+
 const AnimationEditVM = {
   get animationList() {
     return object_store.selectedObjects[0].animationList;

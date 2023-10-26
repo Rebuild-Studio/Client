@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
 import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
-import storeContainer from '../../../../stores/storeContainer';
+import Menu from '@mui/material/Menu';
 import CreateNodeMenuItemButton from './CreateNodeMenuItemButton';
+import storeContainer from '../../../../stores/storeContainer';
 
 const CreateNodeMenuButtonTemp = observer((props) => {
   const { string_store } = storeContainer;

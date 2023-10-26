@@ -1,13 +1,14 @@
-import { action } from 'mobx';
 import * as THREE from 'three';
-import { data_store } from '../../stores/Data_Store';
-import { object_store } from '../../stores/Object_Store';
+import { action } from 'mobx';
 import { hexToHsva, hsvaToHex, rgbaToHex } from '@uiw/color-convert';
-import canvasHistory_store from '../../stores/CanvasHistory_Store';
-import ChangeMaterialPropsCommands from '../../class/commands/CanvasObject/ChangeMaterialPropsCommands';
-import { Material_store } from '../../stores/Material_Store';
-import { objectViewModel } from '../Object_VM';
 import { rgbaToHsva } from '@uiw/react-color';
+import ChangeMaterialPropsCommands from '../../class/commands/CanvasObject/ChangeMaterialPropsCommands';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { Material_store } from '../../stores/Material_Store';
+import { object_store } from '../../stores/Object_Store';
+import { objectViewModel } from '../Object_VM';
+
 const MaterialEditVM = {
   selectedTemplates: 0,
   materialTemplateName: null,

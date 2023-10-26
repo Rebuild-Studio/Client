@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { NodeType } from './NodeType';
 import { ControlSocket, ControlType } from './NodeControl';
-import UUIDGenerator from '../../../utils/uuid';
+import NodeGroup from './NodeGroup';
+import { NodeType } from './NodeType';
 import Socket from './Socket';
 import Wire from './Wire';
-import NodeGroup from './NodeGroup';
 import * as Utils from './utils';
+import UUIDGenerator from '../../../utils/uuid';
 import InteractionHierachyVM from '../../view_models/05. Hierarchy/InteractionHierarchy_VM';
 
 const POSITION_INTERVAL = 50;

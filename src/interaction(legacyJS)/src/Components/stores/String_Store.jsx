@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
-import { debugJson } from '../views/02. Studio/04. EventPanel/data/Data';
 import * as Utils from '../class/event-system/utils';
+import { debugJson } from '../views/02. Studio/04. EventPanel/data/Data';
 
 export default class StringStore {
   strings = {};

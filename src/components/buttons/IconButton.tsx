@@ -1,8 +1,8 @@
 import { ComponentProps, ComponentType, useEffect, useState } from 'react';
-import { Props as ButtonProps, SCButton } from '../common/Button';
-import { basicColors } from '@/resources/colors/colors';
 import { styled } from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
 import { getShadow } from '@/utils/style/getShadow';
+import { Props as ButtonProps, SCButton } from '../common/Button';
 
 interface Props extends ButtonProps {
   Icon: ComponentType<ComponentProps<'svg'>>;

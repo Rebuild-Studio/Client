@@ -1,6 +1,6 @@
+import { styled } from 'styled-components';
 import { grayColors } from '@/resources/colors/colors';
 import { CSSHexColor } from '@/types/style/cssUnits';
-import { styled } from 'styled-components';
 
 type Props = {
   label: string;

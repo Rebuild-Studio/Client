@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react';
 import { Box } from '@mui/material';
-import storeContainer from '../../../../../stores/storeContainer';
-import NodeSettingButton from '../../control/NodeSettingButton';
 import DropdownV from './DropdownV';
 import UxSelector from './UxSelector';
+import storeContainer from '../../../../../stores/storeContainer';
+import NodeSettingButton from '../../control/NodeSettingButton';
 
 const BlueBox = observer((props) => {
   const { sxAdd, children, ...restProps } = props;

@@ -1,5 +1,5 @@
-import { observable } from 'mobx';
 import * as THREE from 'three';
+import { observable } from 'mobx';
 
 const object_store = observable({
   metaObjects: [],

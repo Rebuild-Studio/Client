@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { eventSystem_store } from '../../../../stores/Interaction_Stores';
-import { Box, IconButton, Tooltip } from '@mui/material';
+import { observer } from 'mobx-react';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import { observer } from 'mobx-react';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 
 const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
   const [focus, setFocus] = useState(false);

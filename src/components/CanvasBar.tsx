@@ -1,19 +1,19 @@
-import Button from './common/Button';
-import storeContainer from '@/store/storeContainer';
-import CubePrimitive from '@/three_components/primitives/CubePrimitive';
-import SpherePrimitive from '@/three_components/primitives/SpherePrimitive';
-import CylinderPrimitive from '@/three_components/primitives/CylinderPrimitive';
-import ConePrimitive from '@/three_components/primitives/ConePrimitive';
-import TorusPrimitive from '@/three_components/primitives/TorusPrimitive';
-import CapsulePrimitive from '@/three_components/primitives/CapsulePrimitive';
+import { observer } from 'mobx-react';
 import { nanoid } from 'nanoid';
 import styled from 'styled-components';
-import { bgColors, grayColors } from '@/resources/colors/colors';
-import { observer } from 'mobx-react';
-import { useToast } from '@hooks/useToast';
 import AssetLibrary from '@/features/assetLibrary';
+import { bgColors, grayColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
 import PointLight from '@/three_components/lights/PointLight';
 import SpotLight from '@/three_components/lights/SpotLight';
+import CapsulePrimitive from '@/three_components/primitives/CapsulePrimitive';
+import ConePrimitive from '@/three_components/primitives/ConePrimitive';
+import CubePrimitive from '@/three_components/primitives/CubePrimitive';
+import CylinderPrimitive from '@/three_components/primitives/CylinderPrimitive';
+import SpherePrimitive from '@/three_components/primitives/SpherePrimitive';
+import TorusPrimitive from '@/three_components/primitives/TorusPrimitive';
+import { useToast } from '@hooks/useToast';
+import Button from './common/Button';
 
 const CanvasBar = () => {
   const { primitiveStore, projectStateStore } = storeContainer;

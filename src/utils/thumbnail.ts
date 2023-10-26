@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { RenderStoreProps } from '@/store/renderStore';
-import { ProjectStore } from '@/store/projectStore';
 import { PrimitiveStore } from '@/store/primitiveStore';
+import { ProjectStore } from '@/store/projectStore';
+import { RenderStoreProps } from '@/store/renderStore';
 import { SceneSettingStoreProps } from '@/store/sceneSettingStore';
 
 interface CreateThumbnailProps {

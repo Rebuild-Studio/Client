@@ -1,4 +1,4 @@
-import { Vector3, Color } from 'three';
+import { Color, Vector3 } from 'three';
 
 function socketDefaultValue(type) {
   let defaultValue;

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { useThree, useFrame } from '@react-three/fiber';
-import storeContainer from '../../../stores/storeContainer';
+import { useFrame, useThree } from '@react-three/fiber';
 import NodeRuntimeArguments from '../../../class/event-system/runtime/NodeRuntimeArguments';
+import storeContainer from '../../../stores/storeContainer';
 
 const MAX_ITERATION = 64;
 const UPDATE_RATE = 0.01;

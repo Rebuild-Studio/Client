@@ -1,7 +1,7 @@
-import convertEndPoint from './utils/convertEndPoint';
 import ServiceError from './error/ServiceError';
-import convertArgs from './utils/convertArgs';
 import errorHandlerMapper from './error/handler/errorHandlerMapper';
+import convertArgs from './utils/convertArgs';
+import convertEndPoint from './utils/convertEndPoint';
 
 const MAX_RETRY_COUNT = 3;
 /**  

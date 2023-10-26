@@ -1,5 +1,5 @@
-import Command from '../Command';
 import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 /**
  * `CreateNodeCommand` is a class that represents a command to create a node on a sheet.

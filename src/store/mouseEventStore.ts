@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
 import { DragEvent, DragEventHandler, MouseEvent } from 'react';
+import { makeAutoObservable } from 'mobx';
 
 type MouseEventType =
   | 'onMouseDown'

@@ -1,9 +1,9 @@
+import { useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { Box } from '@mui/material';
-import { useMemo } from 'react';
+import { ControlType } from '../../../../../class/event-system/NodeControl';
 import storeContainer from '../../../../../stores/storeContainer';
 import ControlDataVM from '../../control/ControlDataVM';
-import { ControlType } from '../../../../../class/event-system/NodeControl';
 
 const BlueBox = observer((props) => {
   const { sxAdd, children, ...restProps } = props;

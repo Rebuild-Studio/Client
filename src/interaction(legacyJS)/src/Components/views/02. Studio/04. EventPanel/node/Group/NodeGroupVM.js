@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function NodeGroupVM(group, padding, titleHeight, scale) {
   const children = group.children;

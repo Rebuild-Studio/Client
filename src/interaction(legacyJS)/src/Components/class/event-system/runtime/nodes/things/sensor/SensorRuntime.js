@@ -1,8 +1,8 @@
-import ThingRuntime from '../ThingRuntime';
 import MaterialSensorProcess from './MaterialSensorProcess';
 import SensorProcess from './SensorProcess';
-import { generateKeyFormat, extractKeyFormat } from '../../../utils';
 import { ControlType } from '../../../../NodeControl';
+import { extractKeyFormat, generateKeyFormat } from '../../../utils';
+import ThingRuntime from '../ThingRuntime';
 
 export default class SensorRuntime extends ThingRuntime {
   constructor(args) {

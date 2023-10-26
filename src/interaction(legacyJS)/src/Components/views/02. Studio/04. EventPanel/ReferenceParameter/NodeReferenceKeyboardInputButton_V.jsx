@@ -1,9 +1,9 @@
-import { Button, Tooltip } from '@mui/material';
-import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 import * as React from 'react';
 import { useState } from 'react';
-import { makeStyles } from '@mui/styles';
 import { observer } from 'mobx-react';
+import { Button, Tooltip } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 
 const NodeReferenceKeyboardInputButton = ({
   value,

@@ -1,9 +1,9 @@
-import { MeshProps, useFrame } from '@react-three/fiber';
-import { useServerTextureLoader } from '../../hooks/loader';
 import { useRef } from 'react';
-import renderStore from '@/store/renderStore';
 import * as THREE from 'three';
+import { MeshProps, useFrame } from '@react-three/fiber';
+import renderStore from '@/store/renderStore';
 import getMinioPath from '@/utils/path/minio';
+import { useServerTextureLoader } from '../../hooks/loader';
 
 export const ViewCube = (props: MeshProps) => {
   const faceArray = [

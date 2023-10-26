@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import Grid from '../Grid';
-import dataStore from './MaterialGeometryData';
 import storeContainer from '@/store/storeContainer';
+import dataStore from './MaterialGeometryData';
+import Grid from '../Grid';
 
 const MaterialTemplate = () => {
   const { selectedObjectStore } = storeContainer;
