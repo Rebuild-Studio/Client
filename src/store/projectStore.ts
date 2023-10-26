@@ -41,7 +41,7 @@ export type ProjectStore = {
 const projectStore = observable<ProjectStore>({
   projectId: "",
   projectType: "MX",
-  projectName: "test",
+  projectName: "컴포넌트 이름",
   thumbnail: "none",
   renderer: null,
   scene: null,

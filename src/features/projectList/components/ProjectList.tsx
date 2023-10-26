@@ -138,37 +138,28 @@ const StyledFooter = styled.div`
   padding-right: 22px;
   gap: 20px;
 `;
-
-const confirmButtonStyle: Omit<
-  MenuButtonProps,
-  "label" | "onClick" | "disabled"
-> = {
+const buttonStyle: Omit<MenuButtonProps, "label" | "onClick" | "disabled"> = {
   width: "138px",
   height: "34px",
   minHeight: "32px",
   minWidth: "80px",
   borderRadius: "6px",
-  backgroundColor: basicColors.lightLimeGreen,
-  fontFamily: "SourceHanSansKR",
   fontSize: "small",
   fontWeight: 500,
+};
+
+const confirmButtonStyle = {
+  ...buttonStyle,
+  backgroundColor: basicColors.lightLimeGreen,
+  fontFamily: "SpoqaHanSansNeo",
   color: bgColors[101728],
   hoverBackgroundColor: basicColors.limeGreen,
 };
 
-const closeButtonStyle: Omit<
-  MenuButtonProps,
-  "label" | "onClick" | "disabled"
-> = {
-  width: "138px",
-  height: "34px",
-  minHeight: "32px",
-  minWidth: "80px",
-  borderRadius: "6px",
+const closeButtonStyle = {
+  ...buttonStyle,
   backgroundColor: bgColors[282828],
   fontFamily: "SpoqaHanSansNeo",
-  fontSize: "small",
-  fontWeight: 500,
   color: basicColors.white,
   hoverBackgroundColor: grayColors[808080],
 };

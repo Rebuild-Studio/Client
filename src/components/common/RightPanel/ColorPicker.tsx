@@ -120,6 +120,6 @@ const ColorButton = styled.button<{
   min-height: 0;
   height: 24px;
   background-color: ${(props) =>
-    typeof props.color !== "undefined" &&
+    typeof props.$color !== "undefined" &&
     `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

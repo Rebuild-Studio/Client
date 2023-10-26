@@ -51,14 +51,20 @@ export const ViewCube = (props: MeshProps) => {
 
     switch (face) {
       case "TOP":
-      case "BOTTOM":
         controls.setLookAt(target.x, dist, target.z, target.x, 0, target.z);
         break;
+      case "BOTTOM":
+        controls.setLookAt(target.x, -dist, target.z, target.x, 0, target.z);
+        break;
       case "FRONT":
-      case "BACK":
         controls.setLookAt(target.x, target.y, dist, target.x, target.y, 0);
         break;
+      case "BACK":
+        controls.setLookAt(target.x, target.y, -dist, target.x, target.y, 0);
+        break;
       case "LEFT":
+        controls.setLookAt(-dist, target.y, target.z, 0, target.y, target.z);
+        break;
       case "RIGHT":
         controls.setLookAt(dist, target.y, target.z, 0, target.y, target.z);
         break;

@@ -49,6 +49,19 @@ const HdriSetting = observer(() => {
 
         <TitleWrapper>
           <span>{"환경이미지"}</span>
+          <img
+            src={
+              sceneSettingStore.hdriBackgroundVisibleToggle
+                ? "/icons/studio/icon_보이기.svg"
+                : "/icons/studio/icon_가리기.svg"
+            }
+            onClick={() => {
+              sceneSettingStore.setHdriBackgroundVisibleToggle(
+                !sceneSettingStore.hdriBackgroundVisibleToggle
+              );
+            }}
+            alt="visible"
+          />
           <CustomMenu
             title={"환경이미지 템플릿"}
             MenuItem={<BackgroundImageTemplate />}
@@ -67,8 +80,8 @@ const HdriSetting = observer(() => {
           initValue={sceneSettingStore.hdriYRotation}
           onChange={sceneSettingStore.setHdriYRotation}
           title={"회전"}
-          min={-180}
-          max={180}
+          min={0}
+          max={360}
           step={0.1}
         />
       </Accordion>

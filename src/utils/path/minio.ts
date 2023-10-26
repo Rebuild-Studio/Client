@@ -10,6 +10,7 @@ const minioPath = (fileName: string) =>
     libraryThumbnail: `models/Objects/${fileName}.png`,
     libraryGlb: `models/Objects/${fileName}.glb`,
     libraryMaterial: `models/MaterialTemplates/${fileName}.glb`,
+    libraryHDR: `models/hdri/${fileName}.hdr`,
     cameraCubeMaterial: `models/CameraCube/${fileName}.png`,
   } as const);
 

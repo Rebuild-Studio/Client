@@ -6,6 +6,7 @@ const keyboardSceneEvents = () => {
     keyboardEventStore,
     projectStateStore,
     contextMenuStore,
+    sceneSettingStore,
   } = storeContainer;
 
   const { isCtrlPressed } = keyboardEventStore.currentKeyEvent;
@@ -13,7 +14,7 @@ const keyboardSceneEvents = () => {
   switch (keyboardEventStore.currentKeyEvent.key.toLowerCase()) {
     case "z": {
       // 그리드 숨기기 / 표시
-      if (projectStateStore.gridVisible === "VISIBLE") {
+      if (sceneSettingStore.isGridVisible || sceneSettingStore.isAxisVisible) {
         contextMenuStore.updateSelectedContextMenu("그리드 숨기기");
       } else {
         contextMenuStore.updateSelectedContextMenu("그리드 표시");

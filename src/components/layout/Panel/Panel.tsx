@@ -28,7 +28,9 @@ const PanelWrapper = styled.div`
   box-sizing: border-box;
   height: 100%;
   background-color: ${bgColors[222222]};
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   z-index: 1;
   width: 271px;
   padding: 10px 0;
@@ -36,7 +38,6 @@ const PanelWrapper = styled.div`
 `;
 
 const PanelTitleWrapper = styled.div`
-  padding: 0 10px;
   color: white;
   font-weight: 700;
   font-size: ${fonts.default};
@@ -63,8 +64,8 @@ const PanelOptionsWrapper = styled.div`
 `;
 
 const PanelContentWrapper = styled.div`
+  flex: 1;
   padding: 0 10px;
-  box-sizing: inherit;
   color: white;
   font-size: ${fonts.small};
 `;

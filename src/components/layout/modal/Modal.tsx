@@ -8,7 +8,9 @@ const Modal = () => {
   const { projectStateStore } = storeContainer;
 
   const setOnClickListener = () => {
-    projectStateStore.clearModal();
+    if (projectStateStore.isModalCancelable) {
+      projectStateStore.clearModal();
+    }
   };
 
   const stopPropagation = (event: React.MouseEvent) => {

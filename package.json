@@ -27,6 +27,7 @@
     "@uiw/react-color": "^1.4.2",
     "axios": "^1.4.0",
     "i18next": "^23.5.1",
+    "lottie-react": "^2.4.0",
     "mobx": "^6.10.0",
     "mobx-react": "^9.0.0",
     "nanoid": "^4.0.2",
@@ -61,6 +62,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
@@ -71,6 +73,7 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
+    "user-agent-data-types": "^0.4.2",
     "vite": "^4.4.5"
   },
   "readme": "ERROR: No README data found!",

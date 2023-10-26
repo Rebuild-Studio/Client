@@ -59,7 +59,6 @@ const Group = observer((props: GroupProps) => {
       primitiveStore.updatePrimitive(props.storeId, mesh);
 
       primitiveStore.clearSelectedPrimitives();
-      primitiveStore.clearSelectedGroupPrimitive();
       canvasHistoryStore.differAdd(mesh.userData["storeId"]);
     }
   }, []);
