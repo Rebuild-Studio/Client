@@ -1,22 +1,20 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-interface SceneControlStore {
-  exportScene: boolean;
+class SceneControlStore {
+  exportScene = false;
 
-  setExportScene: (exportScene: boolean) => void;
-  initExportScene: () => void;
-}
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
 
-const sceneControlStore = observable<SceneControlStore>({
-  exportScene: false,
-
-  setExportScene(exportScene) {
+  setExportScene(exportScene: boolean) {
     this.exportScene = exportScene;
-  },
+  }
   initExportScene() {
     this.exportScene = false;
-  },
-});
+  }
+}
 
-export type {SceneControlStore}
+const sceneControlStore = new SceneControlStore();
+
 export default sceneControlStore;

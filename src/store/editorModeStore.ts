@@ -1,30 +1,27 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 type EditorMode = "canvas" | "interaction";
 
-interface EditorModeStoreProps {
-  editorMode: EditorMode;
-  canvasBarOpen: boolean;
-  interactionBarOpen: boolean;
-  setEditorMode: (mode: EditorMode) => void;
-  toggleCanvasBar: () => void;
-  toggleInteractionBar: () => void;
+class EditorModeStore {
+  editorMode = "canvas";
+  canvasBarOpen = true;
+  interactionBarOpen = true;
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  setEditorMode(mode: EditorMode) {
+    this.editorMode = mode;
+  }
+  toggleCanvasBar() {
+    this.canvasBarOpen = !this.canvasBarOpen;
+  }
+  toggleInteractionBar() {
+    this.interactionBarOpen = !this.interactionBarOpen;
+  }
 }
 
-const editorModeStore = observable<EditorModeStoreProps>({
-  editorMode: "canvas",
-  canvasBarOpen: true,
-  interactionBarOpen: true,
-  setEditorMode: (mode: EditorMode) => {
-    editorModeStore.editorMode = mode;
-  },
-  toggleCanvasBar: () => {
-    editorModeStore.canvasBarOpen = !editorModeStore.canvasBarOpen;
-  },
-  toggleInteractionBar: () => {
-    editorModeStore.interactionBarOpen = !editorModeStore.interactionBarOpen;
-  },
-});
+const editorModeStore = new EditorModeStore();
 
-export type { EditorModeStoreProps };
 export default editorModeStore;

@@ -1,82 +1,61 @@
 import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-interface AssetLibraryControl {
-  isAssetLibraryVisible: boolean;
-  currentPage: number;
-
-  toggleAssetLibraryVisibility: () => void;
-  setCurrentPage: (page: number) => void;
-  resetCurrentPage: () => void;
-  initLibrary: () => void;
-  clearLibrary: () => void;
-}
-
-interface AssetLibraryItems {
-  libraryAssets: LibraryAsset[];
-  selectedAssets: LibraryAsset[];
-
-  setLibraryAssets: (assets: LibraryAsset[]) => void;
-  clearLibraryAssets: () => void;
-
-  addSelectedAsset: (asset: LibraryAsset) => void;
-  removeSelectedAsset: (asset: LibraryAsset) => void;
-  clearSelectedAssets: () => void;
-}
-
-type AssetLibraryStoreProps = AssetLibraryControl & AssetLibraryItems;
-
-const assetLibraryStore = observable<AssetLibraryStoreProps>({
-  //assetLibrary Controls
-  isAssetLibraryVisible: false,
-  currentPage: 1,
+class AssetLibraryStore {
+  isAssetLibraryVisible = false;
+  currentPage = 1;
 
   //assetLibrary Items
-  libraryAssets: [],
-  selectedAssets: [],
+  libraryAssets: LibraryAsset[] = [];
+  selectedAssets: LibraryAsset[] = [];
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
 
   initLibrary() {
     this.resetCurrentPage();
     this.clearLibraryAssets();
-  },
+  }
   clearLibrary() {
     this.resetCurrentPage();
     this.clearLibraryAssets();
     this.clearSelectedAssets();
-  },
+  }
 
   //assetLibrary Controls Actions
   toggleAssetLibraryVisibility() {
     this.isAssetLibraryVisible = !this.isAssetLibraryVisible;
-  },
-  setCurrentPage(page) {
+  }
+  setCurrentPage(page: number) {
     this.currentPage = page;
-  },
+  }
   resetCurrentPage() {
     this.currentPage = 1;
-  },
+  }
 
   //assetLibrary Items Actions
-  setLibraryAssets(assets) {
+  setLibraryAssets(assets: LibraryAsset[]) {
     this.libraryAssets = assets;
-  },
+  }
   clearLibraryAssets() {
     this.libraryAssets = [];
-  },
+  }
 
   //selectedAssetLibrary Items Actions
-  addSelectedAsset(asset) {
+  addSelectedAsset(asset: LibraryAsset) {
     this.selectedAssets.push(asset);
-  },
-  removeSelectedAsset(asset) {
+  }
+  removeSelectedAsset(asset: LibraryAsset) {
     this.selectedAssets = this.selectedAssets.filter(
       (selectedAsset) => selectedAsset.id !== asset.id
     );
-  },
+  }
   clearSelectedAssets() {
     this.selectedAssets = [];
-  },
-});
+  }
+}
 
-export type { AssetLibraryStoreProps };
+const assetLibraryStore = new AssetLibraryStore();
+
 export default assetLibraryStore;

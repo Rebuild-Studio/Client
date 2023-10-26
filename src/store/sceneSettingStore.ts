@@ -1,5 +1,5 @@
 import { HsvaColor } from "@uiw/color-convert";
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 type SceneType = "scene" | "none";
 type BackgroundImageType =
@@ -15,181 +15,41 @@ type BackgroundImageType =
   | "MX_hdr_outdoor_sunsetLight_02"
   | "none";
 
-interface SceneSettingStoreProps {
-  type: SceneType;
-
-  setType(type: SceneType): void;
-
-  hdriToggle: boolean;
-  hdriBackgroundVisibleToggle: boolean;
-  hdriIntensity: number;
-  hdriXRotation: number;
-  hdriYRotation: number;
-  hdriZRotation: number;
-
-  setHdriToggle: (state: boolean) => void;
-  setHdriBackgroundVisibleToggle: (state: boolean) => void;
-  setHdriIntensity: (state: number) => void;
-  setHdriXRotation: (state: number) => void;
-  setHdriYRotation: (state: number) => void;
-  setHdriZRotation: (state: number) => void;
-
-  ambientLightToggle: boolean;
-  ambientLightIntensity: number;
-  ambientLightColor: HsvaColor;
-
-  setAmbientLightToggle: (state: boolean) => void;
-  setAmbientLightIntensity: (state: number) => void;
-  setAmbientLightColor: (state: HsvaColor) => void;
-
-  directionalLightToggle: boolean;
-  directionalLightIntensity: number;
-  directionalLightColor: HsvaColor;
-
-  setDirectionalLightToggle: (state: boolean) => void;
-  setDirectionalLightIntensity: (state: number) => void;
-  setDirectionalLightColor: (state: HsvaColor) => void;
-
-  canvasBackgroundColorToggle: boolean;
-  canvasBackgroundColor: HsvaColor;
-
-  setCanvasBackgroundColorToggle: (state: boolean) => void;
-  setCanvasBackgroundColor: (state: HsvaColor) => void;
-
-  isGridVisible: boolean;
-  isAxisVisible: boolean;
-
-  setIsGridVisible: (state: boolean) => void;
-  setIsAxisVisible: (state: boolean) => void;
-
-  SSAOToggle: boolean;
-  bloomToggle: boolean;
-
-  setSSAOToggle: (state: boolean) => void;
-  setBloomToggle: (state: boolean) => void;
-
-  backgroundImages: [
-    "MX_hdr_indoor_3pointLightStudio_01",
-    "MX_hdr_indoor_artistWorkroom_01",
-    "MX_hdr_indoor_ballroom_01",
-    "MX_hdr_outdoor_cityStreet_01",
-    "MX_hdr_outdoor_clearedCloud_01",
-    "MX_hdr_outdoor_dayLight_01",
-    "MX_hdr_outdoor_forest_01",
-    "MX_hdr_outdoor_night_01",
-    "MX_hdr_outdoor_sunsetLight_01",
-    "MX_hdr_outdoor_sunsetLight_02"
-  ];
-  selectedBackgroundImage: BackgroundImageType;
-
-  setBackgroundImage: (state: BackgroundImageType) => void;
-
-  isOpen: boolean;
-  toggleVisibility: () => void;
-}
-
-const sceneSettingStore = observable<SceneSettingStoreProps>({
-  type: "none",
-
-  setType(type) {
-    sceneSettingStore.type = type;
-  },
-
+class SceneSettingStore {
+  type = "none";
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
-  hdriToggle: true,
-  hdriBackgroundVisibleToggle: false,
-  hdriIntensity: 1,
-  hdriXRotation: 0,
-  hdriYRotation: 0,
-  hdriZRotation: 0,
-
-  setHdriToggle(state) {
-    sceneSettingStore.hdriToggle = state;
-  },
-  setHdriBackgroundVisibleToggle(state) {
-    sceneSettingStore.hdriBackgroundVisibleToggle = state;
-  },
-  setHdriIntensity(state) {
-    sceneSettingStore.hdriIntensity = state;
-  },
-  setHdriXRotation(state) {
-    sceneSettingStore.hdriXRotation = state;
-  },
-  setHdriYRotation(state) {
-    sceneSettingStore.hdriYRotation = state;
-  },
-  setHdriZRotation(state) {
-    sceneSettingStore.hdriZRotation = state;
-  },
+  hdriToggle = true;
+  hdriBackgroundVisibleToggle = false;
+  hdriIntensity = 1;
+  hdriXRotation = 0;
+  hdriYRotation = 0;
+  hdriZRotation = 0;
 
   // 주변광
-  ambientLightToggle: true,
-  ambientLightIntensity: 0.3,
-  ambientLightColor: { h: 0, s: 0, v: 100, a: 1 },
-
-  setAmbientLightToggle(state) {
-    sceneSettingStore.ambientLightToggle = state;
-  },
-  setAmbientLightIntensity(state) {
-    sceneSettingStore.ambientLightIntensity = state;
-  },
-  setAmbientLightColor(state) {
-    sceneSettingStore.ambientLightColor = state;
-  },
+  ambientLightToggle = true;
+  ambientLightIntensity = 0.3;
+  ambientLightColor = { h: 0, s: 0, v: 100, a: 1 };
 
   // 직사광
-  directionalLightToggle: true,
-  directionalLightIntensity: 2.5,
-  directionalLightColor: { h: 0, s: 0, v: 100, a: 1 },
-
-  setDirectionalLightToggle(state) {
-    sceneSettingStore.directionalLightToggle = state;
-  },
-  setDirectionalLightIntensity(state) {
-    sceneSettingStore.directionalLightIntensity = state;
-  },
-  setDirectionalLightColor(state) {
-    sceneSettingStore.directionalLightColor = state;
-  },
+  directionalLightToggle = true;
+  directionalLightIntensity = 2.5;
+  directionalLightColor = { h: 0, s: 0, v: 100, a: 1 };
 
   // 씬(Scene) 설정 - 디스플레이
   // 배경컬러
-  canvasBackgroundColorToggle: false,
-  canvasBackgroundColor: { h: 0, s: 0, v: 20, a: 1 },
-
-  setCanvasBackgroundColorToggle(state) {
-    sceneSettingStore.canvasBackgroundColorToggle = state;
-  },
-  setCanvasBackgroundColor(state) {
-    sceneSettingStore.canvasBackgroundColor = state;
-  },
+  canvasBackgroundColorToggle = false;
+  canvasBackgroundColor = { h: 0, s: 0, v: 20, a: 1 };
 
   // 그리드
-  // 사각형그리드
-  isGridVisible: true,
-  // 중심선그리드
-  isAxisVisible: true,
-
-  setIsGridVisible(state) {
-    sceneSettingStore.isGridVisible = state;
-  },
-  setIsAxisVisible(state) {
-    sceneSettingStore.isAxisVisible = state;
-  },
+  isGridVisible = true; // 사각형그리드
+  isAxisVisible = true; // 중심선그리드
 
   // 씬(Scene) 설정 - 포스트 효과
-  SSAOToggle: false,
-  bloomToggle: false,
+  SSAOToggle = false;
+  bloomToggle = false;
 
-  setSSAOToggle(state) {
-    sceneSettingStore.SSAOToggle = state;
-  },
-  setBloomToggle(state) {
-    sceneSettingStore.bloomToggle = state;
-  },
-
-  backgroundImages: [
+  backgroundImages = [
     "MX_hdr_indoor_3pointLightStudio_01",
     "MX_hdr_indoor_artistWorkroom_01",
     "MX_hdr_indoor_ballroom_01",
@@ -200,24 +60,91 @@ const sceneSettingStore = observable<SceneSettingStoreProps>({
     "MX_hdr_outdoor_night_01",
     "MX_hdr_outdoor_sunsetLight_01",
     "MX_hdr_outdoor_sunsetLight_02",
-  ],
-  selectedBackgroundImage: "MX_hdr_indoor_3pointLightStudio_01",
+  ];
+  selectedBackgroundImage = "MX_hdr_indoor_3pointLightStudio_01";
 
-  setBackgroundImage(state) {
-    sceneSettingStore.selectedBackgroundImage = state;
-  },
+  //constructor
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  setType(type: SceneType) {
+    this.type = type;
+  }
+
+  setHdriToggle(state: boolean) {
+    this.hdriToggle = state;
+  }
+  setHdriBackgroundVisibleToggle(state: boolean) {
+    this.hdriBackgroundVisibleToggle = state;
+  }
+  setHdriIntensity(state: number) {
+    this.hdriIntensity = state;
+  }
+  setHdriXRotation(state: number) {
+    this.hdriXRotation = state;
+  }
+  setHdriYRotation(state: number) {
+    this.hdriYRotation = state;
+  }
+  setHdriZRotation(state: number) {
+    this.hdriZRotation = state;
+  }
+  setAmbientLightToggle(state: boolean) {
+    this.ambientLightToggle = state;
+  }
+  setAmbientLightIntensity(state: number) {
+    this.ambientLightIntensity = state;
+  }
+  setAmbientLightColor(state: HsvaColor) {
+    this.ambientLightColor = state;
+  }
+
+  setDirectionalLightToggle(state: boolean) {
+    this.directionalLightToggle = state;
+  }
+  setDirectionalLightIntensity(state: number) {
+    this.directionalLightIntensity = state;
+  }
+  setDirectionalLightColor(state: HsvaColor) {
+    this.directionalLightColor = state;
+  }
+  setCanvasBackgroundColorToggle(state: boolean) {
+    this.canvasBackgroundColorToggle = state;
+  }
+  setCanvasBackgroundColor(state: HsvaColor) {
+    this.canvasBackgroundColor = state;
+  }
+
+  setIsGridVisible(state: boolean) {
+    this.isGridVisible = state;
+  }
+  setIsAxisVisible(state: boolean) {
+    this.isAxisVisible = state;
+  }
+  setSSAOToggle(state: boolean) {
+    this.SSAOToggle = state;
+  }
+  setBloomToggle(state: boolean) {
+    this.bloomToggle = state;
+  }
+
+  setBackgroundImage(state: BackgroundImageType) {
+    this.selectedBackgroundImage = state;
+  }
 
   get isOpen(): boolean {
-    return sceneSettingStore.type === "scene";
-  },
-  toggleVisibility: () => {
-    if (sceneSettingStore.type !== "scene") {
-      sceneSettingStore.setType("scene");
-    } else {
-      sceneSettingStore.setType("none");
-    }
-  },
-});
+    return this.type === "scene";
+  }
 
-export type { SceneSettingStoreProps };
+  toggleVisibility() {
+    if (this.type !== "scene") {
+      this.setType("scene");
+    } else {
+      this.setType("none");
+    }
+  }
+}
+
+const sceneSettingStore = new SceneSettingStore();
 export default sceneSettingStore;

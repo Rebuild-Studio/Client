@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 interface KeyType {
   key: string;
@@ -13,16 +13,21 @@ interface KeyboardEventProps {
   clearKeyEvent: () => void;
 }
 
-const keyboardEventStore = observable<KeyboardEventProps>({
-  currentKeyEvent: {
+class KeyboardEventStore {
+  currentKeyEvent: KeyType = {
     key: "",
     isCtrlPressed: false,
     isShiftPressed: false,
     isAltPressed: false,
-  },
-  updateKeyEvent(keyEvent) {
+  };
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  updateKeyEvent(keyEvent: KeyType) {
     this.currentKeyEvent = keyEvent;
-  },
+  }
   clearKeyEvent() {
     this.currentKeyEvent = {
       key: "",
@@ -30,8 +35,10 @@ const keyboardEventStore = observable<KeyboardEventProps>({
       isShiftPressed: false,
       isAltPressed: false,
     };
-  },
-});
+  }
+}
+
+const keyboardEventStore = new KeyboardEventStore();
 
 export type { KeyType, KeyboardEventProps };
 export default keyboardEventStore;

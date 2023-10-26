@@ -1,19 +1,20 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-interface SelectedObjectProps {
-  selectedMaterial: string;
-  setSelectedMaterial: (material: string) => void;
-  clearSelectdMaterial: () => void;
+class SelectedObjectStore {
+  selectedMaterial = "MX_mat_defalt_white_01";
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  setSelectedMaterial(material: string) {
+    this.selectedMaterial = material;
+  }
+
+  clearSelectedMaterial() {
+    this.selectedMaterial = "MX_mat_defalt_white_01";
+  }
 }
 
-const selectedObjectStore = observable<SelectedObjectProps>({
-  selectedMaterial: "MX_mat_defalt_white_01",
-  setSelectedMaterial(material) {
-    this.selectedMaterial = material;
-  },
-  clearSelectdMaterial() {
-    this.selectedMaterial = "MX_mat_defalt_white_01";
-  },
-});
-export type { SelectedObjectProps }
+const selectedObjectStore = new SelectedObjectStore();
 export default selectedObjectStore;

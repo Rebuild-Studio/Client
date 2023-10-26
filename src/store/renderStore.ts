@@ -1,18 +1,18 @@
 import { CameraControls } from "@react-three/drei";
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-interface RenderStoreProps {
-  controls: CameraControls | null;
-  setControls: (prop: CameraControls) => void;
+class RenderStore {
+  controls: CameraControls | null = null;
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  setControls(state: CameraControls) {
+    this.controls = state;
+  }
 }
 
-const renderStore = observable<RenderStoreProps>({
-  controls: null,
+const renderStore = new RenderStore();
 
-  setControls(state) {
-    this.controls = state;
-  },
-});
-
-export type {RenderStoreProps}
 export default renderStore;

@@ -1,11 +1,11 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-type UserStoreProps = {
-  accessToken: string;
+class UserStore {
+  accessToken = "";
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
 }
-const userStore = observable<UserStoreProps>({
-  accessToken: "",
-});
-
-export type { UserStoreProps }
+const userStore = new UserStore();
 export default userStore;

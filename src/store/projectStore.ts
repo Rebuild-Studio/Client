@@ -1,5 +1,5 @@
 import { MxJson } from "@/types/mxJson/mxJson";
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 type ProjectType = "MX" | "PMX";
 type ExportType = "file" | "post";
@@ -11,88 +11,66 @@ type ProjectInfo = {
   thumbnail: string;
 };
 
-export type ProjectStore = {
-  projectId: string;
-  projectType: ProjectType;
-  projectName: string;
-  thumbnail: string;
-  renderer: THREE.WebGLRenderer | null;
-  scene: THREE.Scene | null;
-  mxJson: MxJson | null;
-  exportType: ExportType | "none";
-  selectedProject: ProjectInfo | null;
+export class ProjectStore {
+  projectId = "";
+  projectType: ProjectType = "MX";
+  projectName = "컴포넌트 이름";
+  thumbnail = "none";
+  renderer: THREE.WebGLRenderer | null = null;
+  scene: THREE.Scene | null = null;
+  mxJson: MxJson | null = null;
+  exportType: ExportType | "none" = "none";
+  selectedProject: ProjectInfo | null = null;
 
-  setProjectId: (projectId: string) => void;
-  setProjectType: (projectType: ProjectType) => void;
-  setProjectName: (projectName: string) => void;
-  setThumbnail: (thumbnail: string) => void;
-  setRenderer: (renderer: THREE.WebGLRenderer) => void;
-  setScene: (scene: THREE.Scene) => void;
-  setMxJson: (mxJson: MxJson) => void;
-  setExportType: (exportType: ExportType) => void;
-  setSelectedProject: (projectInfo: ProjectInfo) => void;
-  clearSelectedProject: () => void;
-  clearMxJson: () => void;
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
 
-  setProjectInfo: (projectInfo: ProjectInfo) => void;
-  initAfterExport: () => void;
-};
-
-const projectStore = observable<ProjectStore>({
-  projectId: "",
-  projectType: "MX",
-  projectName: "컴포넌트 이름",
-  thumbnail: "none",
-  renderer: null,
-  scene: null,
-  mxJson: null,
-  exportType: "none",
-  selectedProject: null,
-
-  setProjectId(projectId) {
+  setProjectId(projectId: string) {
     this.projectId = projectId;
-  },
-  setProjectType(projectType) {
+  }
+  setProjectType(projectType: ProjectType) {
     this.projectType = projectType;
-  },
-  setProjectName(projectName) {
+  }
+  setProjectName(projectName: string) {
     this.projectName = projectName;
-  },
-  setThumbnail(thumbnail) {
+  }
+  setThumbnail(thumbnail: string) {
     this.thumbnail = thumbnail;
-  },
-  setRenderer(renderer) {
+  }
+  setRenderer(renderer: THREE.WebGLRenderer) {
     this.renderer = renderer;
-  },
-  setScene(scene) {
+  }
+  setScene(scene: THREE.Scene) {
     this.scene = scene;
-  },
-  setExportType(exportType) {
+  }
+  setExportType(exportType: ExportType) {
     this.exportType = exportType;
-  },
-  setSelectedProject(selectedProject) {
+  }
+  setSelectedProject(selectedProject: ProjectInfo) {
     this.selectedProject = selectedProject;
-  },
+  }
   clearSelectedProject() {
     this.selectedProject = null;
-  },
-  setMxJson(mxJson) {
+  }
+  setMxJson(mxJson: MxJson) {
     this.mxJson = mxJson;
-  },
+  }
   clearMxJson() {
     this.mxJson = null;
-  },
-
-  setProjectInfo(projectInfo) {
+  }
+  setProjectInfo(projectInfo: ProjectInfo) {
     this.setProjectId(projectInfo.projectId);
     this.setProjectType(projectInfo.projectType);
     this.setProjectName(projectInfo.projectName);
     this.setThumbnail(projectInfo.thumbnail);
-  },
+  }
   initAfterExport() {
     this.exportType = "none";
-  },
-});
+  }
+}
+
+const projectStore = new ProjectStore();
 
 export type { ProjectType, ExportType, ProjectInfo };
 export default projectStore;

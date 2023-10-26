@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import storeContainer from "./storeContainer";
 
 type ContextMenuType =
@@ -33,31 +33,23 @@ interface ContextMenuRenderProps {
   items: ContextMenuItemType[];
 }
 
-interface ContextMenuProps {
-  isContextMenuOpened: boolean;
-  currentSelectedContextMenu: ContextMenuType;
-  currentContextMenuType: ContextMenuRenderProps | null;
-  updateIsContextMenuOpened: (state: boolean) => void;
-  updateSelectedContextMenu: (state: ContextMenuType) => void;
-  updateContextMenuType: (
-    type: OpenContextMenuType,
-    xPos: number,
-    yPos: number
-  ) => void;
-}
+class ContextMenuStore {
+  isContextMenuOpened = false;
+  currentSelectedContextMenu: ContextMenuType = "NONE";
+  currentContextMenuType: ContextMenuRenderProps | null = null;
 
-const contextMenuStore = observable<ContextMenuProps>({
-  isContextMenuOpened: false,
-  currentSelectedContextMenu: "NONE",
-  currentContextMenuType: null,
-  updateIsContextMenuOpened(state) {
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  updateIsContextMenuOpened(state: boolean) {
     this.isContextMenuOpened = state;
-  },
-  updateSelectedContextMenu(state) {
+  }
+  updateSelectedContextMenu(state: ContextMenuType) {
     this.currentSelectedContextMenu = state;
     this.isContextMenuOpened = false;
-  },
-  updateContextMenuType(type, xPos, yPos) {
+  }
+  updateContextMenuType(type: OpenContextMenuType, xPos: number, yPos: number) {
     switch (type) {
       case "CANVAS":
         this.currentContextMenuType = {
@@ -77,8 +69,8 @@ const contextMenuStore = observable<ContextMenuProps>({
         this.currentContextMenuType = null;
         break;
     }
-  },
-});
+  }
+}
 
 // 좋은 이름이 필요합니다.
 const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
@@ -169,7 +161,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   const isObjectInvisible = Object.values(
     primitiveStore.selectedPrimitives
   ).find((value) => {
-    return value.visible === false;
+    return !value.visible;
   });
 
   if (isObjectInvisible) {
@@ -205,6 +197,8 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
 
   return resContextMenuItems;
 };
+
+const contextMenuStore = new ContextMenuStore();
 
 export type { ContextMenuRenderProps, ContextMenuItemType };
 export default contextMenuStore;
