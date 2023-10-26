@@ -26,3 +26,4 @@ storybook-static
 
 #env
 .env*
+.npmrc
