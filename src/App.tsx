@@ -11,6 +11,7 @@ import TopBar from "@components/TopBar";
 import Tools from "@components/layout/Tools";
 import editorModeStore from "@store/editorModeStore.ts";
 import InteractionEditor from "@components/InteractionEditor.tsx";
+import Preivew from "@/components/Preview";
 
 const App = observer(() => {
   const { projectStateStore } = storeContainer;
@@ -30,6 +31,9 @@ const App = observer(() => {
           </EditorWrapper>
           <EditorWrapper $visible={editorMode === "interaction"}>
             <InteractionEditor />
+          </EditorWrapper>
+          <EditorWrapper $visible={editorMode === "preview"}>
+            {editorMode === "preview" && <Preivew />}
           </EditorWrapper>
         </Main>
       </AppWrapper>

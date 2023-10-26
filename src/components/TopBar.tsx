@@ -57,8 +57,20 @@ const TopBar = observer(() => {
         />
         <IconButton
           Icon={() => (
-            <img src={"/icons/studio/icon_미리보기.svg"} alt="미리보기" />
+            <img
+              src={
+                editorMode === "preview"
+                  ? "/icons/studio/icon_window-solid.svg"
+                  : "/icons/studio/icon_미리보기.svg"
+              }
+              alt={editorMode === "preview" ? "플레이" : "미리보기"}
+            />
           )}
+          onClick={() => {
+            editorMode === "preview"
+              ? setEditorMode("canvas")
+              : setEditorMode("preview");
+          }}
         />
       </Right>
     </Wrapper>
