@@ -16,7 +16,7 @@ const getAssets = async (
 };
 
 const searchAsset = async (params: RequestSearchAsset) => {
-  const res = await apiModule.get('/libray/search', {
+  const res = await apiModule.get('/library/search', {
     params: params
   });
 

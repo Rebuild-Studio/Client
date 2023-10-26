@@ -44,9 +44,9 @@ const InputField = ({
     const valueWithoutKorean = newInput.replace(koreanRegex, '');
     newInput = valueWithoutKorean;
     const SingleRegex = /^[0-9]+$/;
-    const isnumericValue = SingleRegex.test(newInput);
+    const isNumericValue = SingleRegex.test(newInput);
 
-    if (isnumericValue) {
+    if (isNumericValue) {
       const NumInput = Math.round(Number(newInput));
       setInput(String(NumInput));
       onChange(String(NumInput));

@@ -4,7 +4,7 @@ import storeContainer from '@/store/storeContainer';
 import createMxJson from '@/utils/json/createMxJson';
 import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 
-const Preivew = observer(() => {
+const Preview = observer(() => {
   const { projectStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const sceneJson = projectStore.scene?.toJSON();
@@ -16,4 +16,4 @@ const Preivew = observer(() => {
   return <MxCanvasCore data={data} mode={'play'} />;
 });
 
-export default Preivew;
+export default Preview;

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import Preivew from '@/components/Preview';
+import Preview from '@/components/Preview';
 import InteractionEditor from '@components/InteractionEditor.tsx';
 import TopBar from '@components/TopBar';
 import ToastContainer from '@components/common/ToastContainer';
@@ -34,7 +34,7 @@ const App = () => {
             <InteractionEditor />
           </EditorWrapper>
           <EditorWrapper $visible={editorMode === 'preview'}>
-            {editorMode === 'preview' && <Preivew />}
+            {editorMode === 'preview' && <Preview />}
           </EditorWrapper>
         </Main>
       </AppWrapper>

@@ -12,11 +12,11 @@ import assetLibraryStore from '@store/assetLibrary.store.ts';
 
 const Footer = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;
-  const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+  const selectedAssetFileNames = selectedAssets.map((asset) => asset.fileName);
   const { projectStateStore, primitiveStore } = storeContainer;
 
   const onClickLoad = useCallback(() => {
-    selectedAsssetFileNames.forEach((fileName) => {
+    selectedAssetFileNames.forEach((fileName) => {
       const storeId = nanoid();
       primitiveStore.addPrimitive(
         storeId,
@@ -28,7 +28,7 @@ const Footer = () => {
       );
       projectStateStore.clearModal();
     });
-  }, [selectedAsssetFileNames, primitiveStore, projectStateStore]);
+  }, [selectedAssetFileNames, primitiveStore, projectStateStore]);
 
   const onClickCancel = () => {
     projectStateStore.clearModal();

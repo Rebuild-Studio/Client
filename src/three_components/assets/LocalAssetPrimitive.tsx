@@ -6,12 +6,12 @@ import storeContainer from '@/store/storeContainer';
 import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import { PrimitiveProps } from '../common/PrimitiveProps';
 
-interface LocalAssetPrimitveProps extends PrimitiveProps {
+interface LocalAssetPrimitiveProps extends PrimitiveProps {
   file: File;
 }
 
-const LocalAssetPrimitveProps = observer(
-  ({ file, storeId }: LocalAssetPrimitveProps) => {
+const LocalAssetPrimitiveProps = observer(
+  ({ file, storeId }: LocalAssetPrimitiveProps) => {
     const ref = useRef();
     const { primitiveStore } = storeContainer;
 
@@ -43,4 +43,4 @@ const LocalAssetPrimitveProps = observer(
   }
 );
 
-export default LocalAssetPrimitveProps;
+export default LocalAssetPrimitiveProps;

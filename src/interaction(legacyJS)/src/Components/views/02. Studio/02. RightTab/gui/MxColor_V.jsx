@@ -72,19 +72,19 @@ const MxColor = observer((props) => {
       setHex(e.target.value);
   };
   const onChangeAlpha = action((e) => {
-    let alphavalue = e.target.value;
+    let alphaValue = e.target.value;
 
-    if (alphavalue === '') {
+    if (alphaValue === '') {
       color.a = 0;
     } else if (Number(e.target.value) <= 100) {
       color.a = Number(e.target.value) / 100;
     } else {
       color.a = 1;
-      alphavalue = 100;
+      alphaValue = 100;
     }
 
     onChangeInputAlpha(color);
-    setAlpha(alphavalue);
+    setAlpha(alphaValue);
   });
   const onClickSpoid = async () => {
     let eyeDropper = new EyeDropper();

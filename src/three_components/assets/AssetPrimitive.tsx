@@ -6,12 +6,12 @@ import storeContainer from '@/store/storeContainer';
 import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import { PrimitiveProps } from '../common/PrimitiveProps';
 
-interface AssetPrimitveProps extends PrimitiveProps {
+interface AssetPrimitiveProps extends PrimitiveProps {
   url?: string;
 }
 
 const AssetPrimitive = observer(
-  ({ url, propMesh, storeId }: AssetPrimitveProps) => {
+  ({ url, propMesh, storeId }: AssetPrimitiveProps) => {
     const ref = useRef();
     const { primitiveStore } = storeContainer;
 

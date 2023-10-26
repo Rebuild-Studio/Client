@@ -81,15 +81,15 @@ const ColorContent = observer(
     });
 
     const onInputAlphaChange = action((e: string) => {
-      let alphavalue = e;
+      let alphaValue = e;
 
-      if (alphavalue === '') {
+      if (alphaValue === '') {
         newColor.a = 0;
       } else if (Number(e) <= 100) {
         newColor.a = Number(e) / 100;
       } else {
         newColor.a = 1;
-        alphavalue = '100';
+        alphaValue = '100';
       }
 
       onChangeAlphaProp(Number(e) / 100);
