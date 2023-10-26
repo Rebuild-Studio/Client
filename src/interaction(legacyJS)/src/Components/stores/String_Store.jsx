@@ -1,6 +1,6 @@
-import { makeAutoObservable } from "mobx";
-import { debugJson } from "../views/02. Studio/04. EventPanel/data/Data";
-import * as Utils from "../class/event-system/utils";
+import { makeAutoObservable } from 'mobx';
+import { debugJson } from '../views/02. Studio/04. EventPanel/data/Data';
+import * as Utils from '../class/event-system/utils';
 
 export default class StringStore {
   strings = {};
@@ -16,7 +16,7 @@ export default class StringStore {
   //json에 해당하는 value가 없을 경우 key를 그대로 리턴
   //TODO : Default Json (영어?)를 두고 value를 못 찾을 때 사용할 수 있도록.
   string(key) {
-    if (typeof key !== "string") {
+    if (typeof key !== 'string') {
       return key;
     }
 
@@ -24,13 +24,13 @@ export default class StringStore {
     if (/^Default.*NodeName/.test(key) || /[가-힣]/.test(key)) {
       // 한글이 포함된 key(노드 이름 바꿀 때 사이드 이펙트 <- 수정 필요)는 console.warn 동작하지 않도록.
       const ret = this.strings[key];
-      if (typeof ret === "undefined") {
+      if (typeof ret === 'undefined') {
         return key;
       }
       return ret;
     } else {
       const ret = this.strings[key];
-      if (typeof ret === "undefined") {
+      if (typeof ret === 'undefined') {
         console.warn(
           `string store can not find string for ${key} in current language`
         );
@@ -62,7 +62,7 @@ export default class StringStore {
     const initial = this.string(key);
     const data = args;
     const spans = [];
-    const t = Utils.templateArg("");
+    const t = Utils.templateArg('');
 
     function getSpan(string, getSpanDefaultSpanStyle) {
       let p = 0;

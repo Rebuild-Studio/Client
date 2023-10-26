@@ -1,18 +1,18 @@
-import NodeProcess from "../NodeProcess";
-import { Euler } from "three";
+import NodeProcess from '../NodeProcess';
+import { Euler } from 'three';
 
 export default class ObjectProcess extends NodeProcess {
   constructor(nodeRuntime, key) {
     super(nodeRuntime, [], [key], []);
     this.key = key;
     this.nodeRuntime.setInputDefaultValue(key, undefined);
-    if (this.key === "rotation") {
+    if (this.key === 'rotation') {
       this.convert = this.convertVector3ToEuler;
     }
 
     switch (this.nodeRuntime.node.type) {
-      case "PointLight":
-      case "SpotLight":
+      case 'PointLight':
+      case 'SpotLight':
         this.setProp = this.setPropLight;
         break;
       default:
@@ -38,7 +38,7 @@ export default class ObjectProcess extends NodeProcess {
   coreWork(state, delta, xrFrame) {
     try {
       const value = this.convert(this.inputs[this.key]);
-      if (typeof value !== "undefined") {
+      if (typeof value !== 'undefined') {
         this.setProp(value);
       }
     } catch (e) {

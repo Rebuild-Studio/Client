@@ -1,22 +1,22 @@
-import CreateWireCommand from "../../../../class/commands/Interaction/CreateWireCommand";
-import DeleteWireCommand from "../../../../class/commands/Interaction/DeleteWireCommand";
-import SelectSheetCommand from "../../../../class/commands/Interaction/SelectSheetCommand";
-import AddSelectedPositionCommand from "../../../../class/commands/Interaction/AddSelectedPositionCommand";
-import SelectNodeAndGroupCommand from "../../../../class/commands/Interaction/SelectNodeAndGroupCommand";
-import UnselectNodeAndGroupCommand from "../../../../class/commands/Interaction/UnselectNodeAndGroupCommand";
-import CreateConvertNodeCommand from "../../../../class/commands/Interaction/CreateConvertNodeCommand";
-import CreateGroupCommand from "../../../../class/commands/Interaction/CreateGroupCommand";
-import MergeGroupCommand from "../../../../class/commands/Interaction/MergeGroupCommand";
-import InteractionHierachyVM from "../../../../view_models/05. Hierarchy/InteractionHierarchy_VM";
-import ExcludeFromGroupCommand from "../../../../class/commands/Interaction/ExcludeFromGroupCommand";
+import CreateWireCommand from '../../../../class/commands/Interaction/CreateWireCommand';
+import DeleteWireCommand from '../../../../class/commands/Interaction/DeleteWireCommand';
+import SelectSheetCommand from '../../../../class/commands/Interaction/SelectSheetCommand';
+import AddSelectedPositionCommand from '../../../../class/commands/Interaction/AddSelectedPositionCommand';
+import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
+import UnselectNodeAndGroupCommand from '../../../../class/commands/Interaction/UnselectNodeAndGroupCommand';
+import CreateConvertNodeCommand from '../../../../class/commands/Interaction/CreateConvertNodeCommand';
+import CreateGroupCommand from '../../../../class/commands/Interaction/CreateGroupCommand';
+import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
+import InteractionHierachyVM from '../../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
+import ExcludeFromGroupCommand from '../../../../class/commands/Interaction/ExcludeFromGroupCommand';
 
 const TARGET = {
-  NODE: "node",
-  SOCKET: "socket",
-  PANEL: "panel",
-  DROPDOWN: "dropdown",
-  GROUP: "group",
-  SHEET: "sheet",
+  NODE: 'node',
+  SOCKET: 'socket',
+  PANEL: 'panel',
+  DROPDOWN: 'dropdown',
+  GROUP: 'group',
+  SHEET: 'sheet'
 };
 
 class InteractionPanelEvents {
@@ -87,17 +87,17 @@ class InteractionPanelEvents {
         this.handleDefaultCase();
         break;
       case TARGET.DROPDOWN:
-        if (data.name === "wire") {
+        if (data.name === 'wire') {
           this.handleDefaultCase();
         }
         break;
     }
 
-    if (data.ui === "leftTab") {
-      this.EStore.setInteractionUIType("leftTab");
+    if (data.ui === 'leftTab') {
+      this.EStore.setInteractionUIType('leftTab');
     }
-    if (data.ui !== "leftTab") {
-      this.EStore.setInteractionUIType("interactionEditor");
+    if (data.ui !== 'leftTab') {
+      this.EStore.setInteractionUIType('interactionEditor');
     }
     this.isDragged = true;
   };
@@ -109,15 +109,15 @@ class InteractionPanelEvents {
     const data = { divider: parseInt(divider, 10), ui };
 
     if (!this.isDragged) {
-      if (data.ui === "leftTab") {
-        this.EStore.setInteractionUIType("leftTab");
+      if (data.ui === 'leftTab') {
+        this.EStore.setInteractionUIType('leftTab');
       }
-      if (data.ui !== "leftTab") {
-        this.EStore.setInteractionUIType("interactionEditor");
+      if (data.ui !== 'leftTab') {
+        this.EStore.setInteractionUIType('interactionEditor');
       }
     }
 
-    if (activeUiArea === "leftTab") {
+    if (activeUiArea === 'leftTab') {
       this.handleDragAndDropLeftTab(data, event);
     } else {
       // Drag 시 Outline(border 속성 활용) 기능
@@ -161,13 +161,13 @@ class InteractionPanelEvents {
     const data = { name, divider: parseInt(divider, 10) };
     // 좌측 탭의 Hierarchy를 구성하는 Node, Group 컴포넌트에 대한 Drag & Drop 관련 변수
     const draggableHierarchyListNodes =
-      document.querySelectorAll(".hierarchyListNode");
+      document.querySelectorAll('.hierarchyListNode');
     const draggableHierarchyListGroups = document.querySelectorAll(
-      ".hierarchyListGroup"
+      '.hierarchyListGroup'
     );
     // 인터렉션 패널을 구성하는 Node, Group 컴포넌트에 대한 Drag & Drop 관련 변수
-    const draggableNodes = document.querySelectorAll(".Node");
-    const draggableGroups = document.querySelectorAll(".Group");
+    const draggableNodes = document.querySelectorAll('.Node');
+    const draggableGroups = document.querySelectorAll('.Group');
 
     const groupList = [...draggableHierarchyListGroups, ...draggableGroups];
     const nodeList = [...draggableHierarchyListNodes, ...draggableNodes];
@@ -207,19 +207,19 @@ class InteractionPanelEvents {
               );
             }
 
-            if (isHovered && activeUiArea !== "leftTab") {
+            if (isHovered && activeUiArea !== 'leftTab') {
               // Hover 된 Group를 선택하는 로직
-              sheet.selectGroup(group.getAttribute("data-groupuuid"));
+              sheet.selectGroup(group.getAttribute('data-groupuuid'));
             }
 
             if (
               isHovered &&
-              activeUiArea === "leftTab" &&
+              activeUiArea === 'leftTab' &&
               !isDividedTop &&
               !isDividedBottom
             ) {
               // Hover 된 Group를 선택하는 로직
-              sheet.selectGroup(group.getAttribute("data-groupuuid"));
+              sheet.selectGroup(group.getAttribute('data-groupuuid'));
             }
           });
 
@@ -255,15 +255,15 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "group" &&
+              ]?.type === 'group' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "Object"
+              ]?.type === 'Object'
             ) {
               if (
                 InteractionHierachyVM.interactionHierarchyList[
                   InteractionHierachyVM.dividerIndex - 1
-                ]?.folder === "close"
+                ]?.folder === 'close'
               ) {
                 if (this.currentDividedTop) {
                   InteractionHierachyVM.setdividerIndex(
@@ -288,10 +288,10 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "Object" &&
+              ]?.type === 'Object' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "Object"
+              ]?.type === 'Object'
             ) {
               if (
                 !(
@@ -329,10 +329,10 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "Object" &&
+              ]?.type === 'Object' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "group"
+              ]?.type === 'group'
             ) {
               if (this.currentDividedTop) {
                 InteractionHierachyVM.setdividerIndex(this.currentDataDivider);
@@ -375,22 +375,22 @@ class InteractionPanelEvents {
 
             if (
               isHovered &&
-              activeUiArea !== "leftTab" &&
-              !sheet.getNodeByUuid(node.getAttribute("data-nodeuuid")).group
+              activeUiArea !== 'leftTab' &&
+              !sheet.getNodeByUuid(node.getAttribute('data-nodeuuid')).group
             ) {
               // Hover 된 Node를 선택하는 로직
-              sheet.selectNode(node.getAttribute("data-nodeuuid"));
+              sheet.selectNode(node.getAttribute('data-nodeuuid'));
             }
 
             if (
               isHovered &&
-              activeUiArea === "leftTab" &&
+              activeUiArea === 'leftTab' &&
               !isTopPart &&
               !isBottomPart &&
-              !sheet.getNodeByUuid(node.getAttribute("data-nodeuuid")).group
+              !sheet.getNodeByUuid(node.getAttribute('data-nodeuuid')).group
             ) {
               // Hover 된 Node를 선택하는 로직
-              sheet.selectNode(node.getAttribute("data-nodeuuid"));
+              sheet.selectNode(node.getAttribute('data-nodeuuid'));
             }
           });
 
@@ -431,15 +431,15 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "group" &&
+              ]?.type === 'group' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "Object"
+              ]?.type === 'Object'
             ) {
               if (
                 InteractionHierachyVM.interactionHierarchyList[
                   InteractionHierachyVM.dividerIndex - 1
-                ]?.folder === "close"
+                ]?.folder === 'close'
               ) {
                 count += 1;
 
@@ -466,10 +466,10 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "Object" &&
+              ]?.type === 'Object' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "Object" &&
+              ]?.type === 'Object' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
               ]?.group ===
@@ -553,10 +553,10 @@ class InteractionPanelEvents {
             if (
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex - 1
-              ]?.type === "Object" &&
+              ]?.type === 'Object' &&
               InteractionHierachyVM.interactionHierarchyList[
                 InteractionHierachyVM.dividerIndex
-              ]?.type === "group"
+              ]?.type === 'group'
             ) {
               count += 1;
 
@@ -605,10 +605,10 @@ class InteractionPanelEvents {
               !isHovered &&
               isTopPart &&
               isBottomPart &&
-              activeUiArea === "leftTab"
+              activeUiArea === 'leftTab'
             ) {
               // Hover 된 Node를 선택하는 로직
-              sheet.selectNode(node.getAttribute("data-nodeuuid"));
+              sheet.selectNode(node.getAttribute('data-nodeuuid'));
             }
           });
 
@@ -653,26 +653,26 @@ class InteractionPanelEvents {
                   this.currentDataDivider + 1
                 );
               }
-              if (isHovered && activeUiArea !== "leftTab") {
+              if (isHovered && activeUiArea !== 'leftTab') {
                 // Hover 된 Group를 선택하는 로직
-                sheet.selectGroup(group.getAttribute("data-groupuuid"));
+                sheet.selectGroup(group.getAttribute('data-groupuuid'));
               }
 
               if (
                 isHovered &&
-                activeUiArea === "leftTab" &&
+                activeUiArea === 'leftTab' &&
                 !isDividedTop &&
                 !isDividedBottom
               ) {
                 // Hover 된 Group를 선택하는 로직
-                sheet.selectGroup(group.getAttribute("data-groupuuid"));
+                sheet.selectGroup(group.getAttribute('data-groupuuid'));
               }
             }
           });
 
           if (sheet.selectedGroups.length === 2) {
             if (
-              activeUiArea === "leftTab" &&
+              activeUiArea === 'leftTab' &&
               this.EStore.getIsMultiSelectCtrlPressed() === false
             ) {
               this.IStore.execute(
@@ -686,7 +686,7 @@ class InteractionPanelEvents {
             }
 
             if (
-              activeUiArea !== "leftTab" &&
+              activeUiArea !== 'leftTab' &&
               this.EStore.getIsMultiSelectCtrlPressed() === false
             ) {
               this.IStore.execute(
@@ -705,11 +705,11 @@ class InteractionPanelEvents {
     }
 
     groupList.forEach((group) => {
-      group.style.border = "";
+      group.style.border = '';
     });
 
     nodeList.forEach((node) => {
-      node.style.border = "";
+      node.style.border = '';
     });
 
     // ----- Drag & Drop 기능 코드 블록 끝 -----
@@ -758,9 +758,9 @@ class InteractionPanelEvents {
    */
   handleDragAndDropLeftTab = (data, event) => {
     const draggableHierarchyListNodes =
-      document.querySelectorAll(".hierarchyListNode");
+      document.querySelectorAll('.hierarchyListNode');
     const draggableHierarchyListGroups = document.querySelectorAll(
-      ".hierarchyListGroup"
+      '.hierarchyListGroup'
     );
 
     if (!isNaN(data.divider)) {
@@ -806,10 +806,10 @@ class InteractionPanelEvents {
       }
 
       if (isHovered && !isDividedTop && !isDividedBottom) {
-        element.style.border = "1px groove #d4ed3e";
+        element.style.border = '1px groove #d4ed3e';
         InteractionHierachyVM.setdividerIndex(-1);
       } else {
-        element.style.border = "";
+        element.style.border = '';
       }
     });
   };
@@ -818,8 +818,8 @@ class InteractionPanelEvents {
    *  Interaction Panel에서 Drag 후 hover 시 Outline을 그리는 함수
    */
   handleDragAndDropOutline = (event) => {
-    const allGroupElements = document.querySelectorAll(".Group");
-    const allNodeElements = document.querySelectorAll(".Node");
+    const allGroupElements = document.querySelectorAll('.Group');
+    const allNodeElements = document.querySelectorAll('.Node');
 
     allGroupElements.forEach((group) => {
       if (group.uuid !== this.currentUuid) {
@@ -838,7 +838,7 @@ class InteractionPanelEvents {
   };
 
   isNodeInGroup = (node) => {
-    const nodeUuid = node.getAttribute("data-nodeuuid");
+    const nodeUuid = node.getAttribute('data-nodeuuid');
     return (
       nodeUuid && !this.EStore.getSelectedSheet().getNodeByUuid(nodeUuid).group
     );
@@ -852,7 +852,7 @@ class InteractionPanelEvents {
       event.clientY >= rect.top &&
       event.clientY <= rect.bottom;
 
-    element.style.border = isHovered ? "0.5px solid #d4ed3e" : "";
+    element.style.border = isHovered ? '0.5px solid #d4ed3e' : '';
   };
 
   onWheel = (event) => {
@@ -955,7 +955,7 @@ class InteractionPanelEvents {
       data.socketuuid
     );
     const socketCount = this.EStore.selectedSockets.length;
-    var checkConvertable = "";
+    var checkConvertable = '';
 
     if (socketCount === 1) {
       for (const wire of this.EStore.wires) {
@@ -995,7 +995,7 @@ class InteractionPanelEvents {
             )
           );
         }
-      } else if (typeof checkConvertable !== "undefined") {
+      } else if (typeof checkConvertable !== 'undefined') {
         const position =
           this.EStore.getSelectedSheet().getPositionBetweenSockets(
             selectedSockets
@@ -1009,7 +1009,7 @@ class InteractionPanelEvents {
             to: fromTo.to,
             position: position,
             convertType: checkConvertable,
-            sheetId: this.EStore.selectedSheet,
+            sheetId: this.EStore.selectedSheet
           })
         );
       }

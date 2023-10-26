@@ -1,28 +1,28 @@
-import { Vector3, Color } from "three";
+import { Vector3, Color } from 'three';
 
 function socketDefaultValue(type) {
   let defaultValue;
   switch (type) {
-    case "Boolean":
+    case 'Boolean':
       defaultValue = false;
       break;
-    case "Color":
+    case 'Color':
       defaultValue = new Color();
       break;
-    case "Material":
+    case 'Material':
       defaultValue = {
         Template: undefined,
         color: undefined,
         metalness: undefined,
         roughness: undefined,
         ior: undefined,
-        opacity: undefined,
+        opacity: undefined
       };
       break;
-    case "Number":
+    case 'Number':
       defaultValue = 0;
       break;
-    case "Vector3":
+    case 'Vector3':
       defaultValue = new Vector3();
       break;
     default:
@@ -43,7 +43,7 @@ export default class InputSocketRuntimes {
           ? value.reference.defaultValue
           : defaultValue,
         tails: [],
-        foundTails: [], // array of {outputSockets, name}
+        foundTails: [] // array of {outputSockets, name}
       };
       value.wires.forEach((wire) => {
         this.sockets[key].tails.push(wire.tailSocket);
@@ -58,7 +58,7 @@ export default class InputSocketRuntimes {
       try {
         this.sockets[name].value = tail.sockets.giveValue(tail.name);
       } catch (e) {
-        if (e.message === "disabled") {
+        if (e.message === 'disabled') {
           this.sockets[name].tails.splice(index, 1);
           this.sockets[name].foundTails.splice(index, 1);
         } else {
@@ -66,12 +66,12 @@ export default class InputSocketRuntimes {
         }
       }
     });
-    if (typeof this.sockets[name].value === "undefined") {
+    if (typeof this.sockets[name].value === 'undefined') {
       this.sockets[name].value = this.sockets[name].defaultValue;
     }
     return {
       changed: this.sockets[name].value !== this.sockets[name].previous,
-      value: this.sockets[name].value,
+      value: this.sockets[name].value
     };
   }
   setDefaultValue(name, value) {

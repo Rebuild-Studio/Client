@@ -1,10 +1,10 @@
-import storeContainer from "../../../../stores/storeContainer";
-import { observer } from "mobx-react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import storeContainer from '../../../../stores/storeContainer';
+import { observer } from 'mobx-react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const ControlSelectV = observer((props) => {
   const { string_store } = storeContainer;
@@ -28,10 +28,10 @@ const ControlSelectV = observer((props) => {
         onChange={(event) => {
           setDefaultValue(event.target.value);
         }}
-        sx={{ ...selectSX, marginLeft: "20px" }}
+        sx={{ ...selectSX, marginLeft: '20px' }}
         inputProps={{
-          name: "max-width",
-          id: "max-width",
+          name: 'max-width',
+          id: 'max-width'
         }}
       >
         {data?.map((type) => (

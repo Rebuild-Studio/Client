@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { Hue, Saturation, Alpha } from "@uiw/react-color";
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import { Hue, Saturation, Alpha } from '@uiw/react-color';
 import {
   hsvaToRgba,
   hsvaToHex,
   HsvaColor,
   RgbaColor,
-  rgbaToHsva,
-} from "@uiw/color-convert";
-import Slider from "../Slider";
-import InputField from "../InputField";
-import { action } from "mobx";
-import { grayColors } from "@/resources/colors/colors";
+  rgbaToHsva
+} from '@uiw/color-convert';
+import Slider from '../Slider';
+import InputField from '../InputField';
+import { action } from 'mobx';
+import { grayColors } from '@/resources/colors/colors';
 
 interface ColorContentProps {
   rgbColor: RgbaColor;
@@ -30,15 +30,15 @@ const ColorContent = observer(
     saturationSlider = true,
     brightnessSlider = true,
     onChangeHsvaProp,
-    onChangeAlphaProp,
+    onChangeAlphaProp
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
     const [rgbColor, setRgbColor] = useState(hsvaToRgba(color));
     const rgbChannels = [
-      { label: "R", value: rgbColor.r },
-      { label: "G", value: rgbColor.g },
-      { label: "B", value: rgbColor.b },
+      { label: 'R', value: rgbColor.r },
+      { label: 'G', value: rgbColor.g },
+      { label: 'B', value: rgbColor.b }
     ];
 
     const onChangeSaturation = action((newColor: HsvaColor) => {
@@ -54,21 +54,21 @@ const ColorContent = observer(
     const onChangeRGB = action((channel: string, input: string) => {
       const RGBType = channel.toLowerCase();
       let value = input;
-      if (input === "") {
-        value === "0";
-      } else if (value[value.length - 1] === ".") {
-        value = value.replace(/\./g, "");
+      if (input === '') {
+        value === '0';
+      } else if (value[value.length - 1] === '.') {
+        value = value.replace(/\./g, '');
       } else if (Number(value) > 255) {
         return;
       }
       switch (RGBType) {
-        case "r":
+        case 'r':
           rgbColor.r = Number(value);
           break;
-        case "g":
+        case 'g':
           rgbColor.g = Number(value);
           break;
-        case "b":
+        case 'b':
           rgbColor.b = Number(value);
           break;
         default:
@@ -83,13 +83,13 @@ const ColorContent = observer(
     const onInputAlphaChange = action((e: string) => {
       let alphavalue = e;
 
-      if (alphavalue === "") {
+      if (alphavalue === '') {
         newColor.a = 0;
       } else if (Number(e) <= 100) {
         newColor.a = Number(e) / 100;
       } else {
         newColor.a = 1;
-        alphavalue = "100";
+        alphavalue = '100';
       }
 
       onChangeAlphaProp(Number(e) / 100);
@@ -102,8 +102,8 @@ const ColorContent = observer(
     return (
       <Wrapper>
         <Saturation
-          radius={"5px"}
-          style={{ width: "100%", height: "153px" }}
+          radius={'5px'}
+          style={{ width: '100%', height: '153px' }}
           hsva={newColor}
           onChange={(color) => {
             onChangeSaturation(color);
@@ -111,8 +111,8 @@ const ColorContent = observer(
           }}
         />
         <Hue
-          style={{ marginTop: "10px" }}
-          radius={"10px"}
+          style={{ marginTop: '10px' }}
+          radius={'10px'}
           hue={newColor.h}
           onChange={(newHue) => {
             const _hsva = { ...newColor, ...newHue };
@@ -124,8 +124,8 @@ const ColorContent = observer(
 
         {alpha && (
           <Alpha
-            style={{ marginTop: "10px" }}
-            radius={"10px"}
+            style={{ marginTop: '10px' }}
+            radius={'10px'}
             hsva={newColor}
             onChange={(newAlpha) => {
               setColor({ ...newColor, ...newAlpha });
@@ -137,13 +137,13 @@ const ColorContent = observer(
           <InputFieldTitle color={grayColors.panelFontColor}>
             Hex
           </InputFieldTitle>
-          <InputField value={hsvaToHex(color)} type={"text"} title={"Hex"} />
+          <InputField value={hsvaToHex(color)} type={'text'} title={'Hex'} />
           <InputField
-            value={alpha + "%"}
+            value={alpha + '%'}
             onChange={onInputAlphaChange}
-            type={"text"}
-            title={""}
-            label={""}
+            type={'text'}
+            title={''}
+            label={''}
           />
         </InputFieldWrapper>
         <InputFieldWrapper>
@@ -154,7 +154,7 @@ const ColorContent = observer(
               </InputFieldTitle>
               <InputField
                 value={channel.value}
-                type={"number"}
+                type={'number'}
                 onChange={(value) => onChangeRGB(channel.label, value)}
                 onClickChange={(value) => onChangeRGB(channel.label, value)}
               />
@@ -163,7 +163,7 @@ const ColorContent = observer(
         </InputFieldWrapper>
         {saturationSlider && (
           <Slider
-            title={"채도"}
+            title={'채도'}
             initValue={Math.round(newColor.s)}
             min={0}
             max={100}
@@ -176,7 +176,7 @@ const ColorContent = observer(
         )}
         {brightnessSlider && (
           <Slider
-            title={"명도"}
+            title={'명도'}
             initValue={Math.round(newColor.v)}
             min={0}
             max={100}

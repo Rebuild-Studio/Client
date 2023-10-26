@@ -1,8 +1,8 @@
-import { MxJson } from "@/types/mxJson/mxJson";
-import { makeAutoObservable } from "mobx";
+import { MxJson } from '@/types/mxJson/mxJson';
+import { makeAutoObservable } from 'mobx';
 
-type ProjectType = "MX" | "PMX";
-type ExportType = "file" | "post";
+type ProjectType = 'MX' | 'PMX';
+type ExportType = 'file' | 'post';
 
 type ProjectInfo = {
   projectId: string;
@@ -12,14 +12,14 @@ type ProjectInfo = {
 };
 
 export class ProjectStore {
-  projectId = "";
-  projectType: ProjectType = "MX";
-  projectName = "컴포넌트 이름";
-  thumbnail = "none";
+  projectId = '';
+  projectType: ProjectType = 'MX';
+  projectName = '컴포넌트 이름';
+  thumbnail = 'none';
   renderer: THREE.WebGLRenderer | null = null;
   scene: THREE.Scene | null = null;
   mxJson: MxJson | null = null;
-  exportType: ExportType | "none" = "none";
+  exportType: ExportType | 'none' = 'none';
   selectedProject: ProjectInfo | null = null;
 
   constructor() {
@@ -66,7 +66,7 @@ export class ProjectStore {
     this.setThumbnail(projectInfo.thumbnail);
   }
   initAfterExport() {
-    this.exportType = "none";
+    this.exportType = 'none';
   }
 }
 

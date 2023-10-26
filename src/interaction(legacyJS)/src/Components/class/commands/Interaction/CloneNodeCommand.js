@@ -1,21 +1,21 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class CloneNodeCommand extends Command {
   constructor(store, srcUuids, sheetId) {
     super(store);
-    this.type = "CloneNodeCommand";
+    this.type = 'CloneNodeCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       srcUuids: srcUuids,
       uuids: undefined,
       json: undefined,
       sheetName: sheet.name,
-      nodeTypes: srcUuids.map((uuid) => sheet.getNodeByUuid(uuid).type),
+      nodeTypes: srcUuids.map((uuid) => sheet.getNodeByUuid(uuid).type)
     };
   }
   execute() {
@@ -36,9 +36,9 @@ export default class CloneNodeCommand extends Command {
     sheet.deleteNodesByUuidInSheet(this.data.uuids);
   }
   getDetailData() {
-    let intermediate = "";
+    let intermediate = '';
     const nodeTypes = this.data.nodeTypes.map((v, i) => {
-      intermediate += Utils.templateArg(i + 2) + ", ";
+      intermediate += Utils.templateArg(i + 2) + ', ';
       return Utils.encryptString(v);
     });
 

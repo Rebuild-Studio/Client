@@ -1,6 +1,6 @@
-import assetCategoryStore from "@/store/assetCategoryStore";
-import { observer } from "mobx-react";
-import styled from "styled-components";
+import assetCategoryStore from '@/store/assetCategoryStore';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 const CategoryLabel = () => {
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;

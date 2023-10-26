@@ -1,25 +1,25 @@
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
 import {
   NodeControl,
-  ControlType,
-} from "../../../../class/event-system/NodeControl";
-import ControlDataVM from "./ControlDataVM";
+  ControlType
+} from '../../../../class/event-system/NodeControl';
+import ControlDataVM from './ControlDataVM';
 
-import ControlSelectV from "./ControlSelectV";
-import ControlTextFieldV from "./ControlTextFieldV";
-import ControlVector3 from "./ControlVector3V";
-import ControlDetectKeyV from "./ControlDetectKeyV";
-import ControlBooleanV from "./ControlBooleanV";
-import ControlObjectV from "./ControlObjectV";
-import ControlConvertV from "./ControlConvertV";
-import ControlColorV from "./ControlColorV";
-import ControlTransferListV from "./ControlTransferListV";
-import ControlMaterialTemplateV from "./ControlMaterialTemplateV";
-import ControlRangeV from "./ControlRangeV";
+import ControlSelectV from './ControlSelectV';
+import ControlTextFieldV from './ControlTextFieldV';
+import ControlVector3 from './ControlVector3V';
+import ControlDetectKeyV from './ControlDetectKeyV';
+import ControlBooleanV from './ControlBooleanV';
+import ControlObjectV from './ControlObjectV';
+import ControlConvertV from './ControlConvertV';
+import ControlColorV from './ControlColorV';
+import ControlTransferListV from './ControlTransferListV';
+import ControlMaterialTemplateV from './ControlMaterialTemplateV';
+import ControlRangeV from './ControlRangeV';
 
-const InputProps = { style: { color: "white" } };
-const selectSX = { color: "#FFFFFF" };
+const InputProps = { style: { color: 'white' } };
+const selectSX = { color: '#FFFFFF' };
 
 const ControlRowV = observer((props) => {
   const { name, control, update, node } = props;
@@ -217,7 +217,7 @@ const ControlRowV = observer((props) => {
       );
       break;
     }
-    case ControlType.Counter:{
+    case ControlType.Counter: {
       label = string_store.string(name) || name;
       Row = (
         <ControlSelectV
@@ -231,7 +231,7 @@ const ControlRowV = observer((props) => {
       );
       break;
     }
-    case ControlType.Range:{
+    case ControlType.Range: {
       Row = (
         <ControlRangeV
           name={name}
@@ -243,7 +243,7 @@ const ControlRowV = observer((props) => {
       break;
     }
     default:
-      console.warn("control type is undefined");
+      console.warn('control type is undefined');
       break;
   }
   if (Row) {

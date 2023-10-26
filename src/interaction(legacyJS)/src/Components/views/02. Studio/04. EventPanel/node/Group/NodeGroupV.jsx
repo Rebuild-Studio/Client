@@ -1,10 +1,10 @@
-import { observer } from "mobx-react";
-import { Box } from "@mui/system";
-import { Input } from "@mui/material";
-import storeContainer from "../../../../../stores/storeContainer";
-import { useCallback, useRef, useState, useEffect } from "react";
-import EditGroupNameCommand from "../../../../../class/commands/Interaction/EditGroupNameCommand";
-import NodeGroupVM from "./NodeGroupVM";
+import { observer } from 'mobx-react';
+import { Box } from '@mui/system';
+import { Input } from '@mui/material';
+import storeContainer from '../../../../../stores/storeContainer';
+import { useCallback, useRef, useState, useEffect } from 'react';
+import EditGroupNameCommand from '../../../../../class/commands/Interaction/EditGroupNameCommand';
+import NodeGroupVM from './NodeGroupVM';
 
 const GroupTitleV = observer((props) => {
   const { group } = props;
@@ -47,7 +47,7 @@ const GroupTitleV = observer((props) => {
   const handleKeyDown = useCallback(
     (event) => {
       event.stopPropagation();
-      if (event.key === "Enter") {
+      if (event.key === 'Enter') {
         event.preventDefault();
         handleBlur();
       }
@@ -57,25 +57,25 @@ const GroupTitleV = observer((props) => {
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("keydown", handleKeyDown);
+    element.addEventListener('keydown', handleKeyDown);
     return () => {
-      element.removeEventListener("keydown", handleKeyDown);
+      element.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleKeyDown]);
 
   return (
     <Box
       sx={{
-        backgroundColor: "rgba(48, 48, 48, 1)",
-        transform: "translate(0px, 0px)",
-        width: "100%",
-        userSelect: "none",
-        display: "block",
+        backgroundColor: 'rgba(48, 48, 48, 1)',
+        transform: 'translate(0px, 0px)',
+        width: '100%',
+        userSelect: 'none',
+        display: 'block',
         borderTopLeftRadius: `${8 * scale}px`,
-        borderTopRightRadius: `${8 * scale}px`,
+        borderTopRightRadius: `${8 * scale}px`
       }}
       style={{
-        height: `${30 * scale}px`,
+        height: `${30 * scale}px`
       }}
       data-name="group"
       data-groupuuid={group.uuid}
@@ -92,24 +92,24 @@ const GroupTitleV = observer((props) => {
         multiline={false}
         spellCheck={false}
         sx={{
-          backgroundColor: "white",
-          cursor: "pointer",
-          height: "100%",
+          backgroundColor: 'white',
+          cursor: 'pointer',
+          height: '100%'
         }}
         inputProps={{
           style: {
-            pointerEvents: "none",
-            cursor: "pointer",
-            padding: "0px 0px 0px 12px",
-            textOverflow: "ellipsis",
+            pointerEvents: 'none',
+            cursor: 'pointer',
+            padding: '0px 0px 0px 12px',
+            textOverflow: 'ellipsis',
             //fontFamily: "SourceHanSansKR",
-            fontFamily: "sans-serif",
-            color: "white",
-            fontSize: "12px",
-            fontWeight: "500",
-            fontStretch: "normal",
-            fontStyle: "normal",
-          },
+            fontFamily: 'sans-serif',
+            color: 'white',
+            fontSize: '12px',
+            fontWeight: '500',
+            fontStretch: 'normal',
+            fontStyle: 'normal'
+          }
         }}
         data-name="group"
         data-groupuuid={group.uuid}
@@ -133,28 +133,28 @@ const NodeGroupV = observer((props) => {
   const outline = eventSystem_store
     .getSelectedSheet()
     .isSelectedGroup(group.uuid)
-    ? "1px solid rgba(147, 236, 79, 1)"
-    : "1px solid rgba(0, 0, 0, 1)";
+    ? '1px solid rgba(147, 236, 79, 1)'
+    : '1px solid rgba(0, 0, 0, 1)';
 
   return (
     <Box
       sx={{
-        position: "absolute",
-        backgroundColor: "rgba(28, 28, 28, 1)",
-        display: "flex",
-        cursor: "pointer",
-        opacity: "1",
-        boxSizing: "content-box",
+        position: 'absolute',
+        backgroundColor: 'rgba(28, 28, 28, 1)',
+        display: 'flex',
+        cursor: 'pointer',
+        opacity: '1',
+        boxSizing: 'content-box',
         borderRadius: `${8 * scale}px`,
-        userSelect: "none",
+        userSelect: 'none',
         outline: outline,
-        zIndex: "-2",
+        zIndex: '-2'
       }}
       style={{
         width: `${size[0]}px`,
         height: `${size[1]}px`,
         transform: `translate(${position[0]}px, 
-          ${position[1]}px)`,
+          ${position[1]}px)`
       }}
       ref={ref}
       data-name="group"

@@ -1,7 +1,7 @@
-import * as THREE from "three";
-import { gridColor } from "@/resources/colors/colors";
-import { observer } from "mobx-react";
-import storeContainer from "@/store/storeContainer";
+import * as THREE from 'three';
+import { gridColor } from '@/resources/colors/colors';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
 
 const Grid = () => {
   const { sceneSettingStore } = storeContainer;
@@ -16,11 +16,11 @@ const Grid = () => {
 
   // Set the position attribute using setAttribute
   xAxisBufferGeometry.setAttribute(
-    "position",
+    'position',
     new THREE.BufferAttribute(xAxisGeometry, 3)
   );
   yAxisBufferGeometry.setAttribute(
-    "position",
+    'position',
     new THREE.BufferAttribute(yAxisGeometry, 3)
   );
 

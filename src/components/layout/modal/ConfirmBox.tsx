@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { styled } from "styled-components";
-import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
+import { useState } from 'react';
+import { styled } from 'styled-components';
+import MenuButton, { MenuButtonProps } from '@/components/common/MenuButton';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import { observer } from 'mobx-react';
 
 interface ConfirmBoxProps {
   label: string;
@@ -15,7 +15,7 @@ export const ConfirmBox = observer(
   ({
     label,
     onClickConfirm = () => {},
-    hasContent = false,
+    hasContent = false
   }: ConfirmBoxProps) => {
     const { projectStateStore, projectStore } = storeContainer;
     const [value, setValue] = useState(projectStore.projectName);
@@ -54,7 +54,7 @@ export const ConfirmBox = observer(
           {hasContent ? (
             <MenuButton
               {...confirmButtonStyle}
-              label={"저장"}
+              label={'저장'}
               onClick={() => {
                 projectStore.setProjectName(value);
                 onClickClose();
@@ -64,7 +64,7 @@ export const ConfirmBox = observer(
           ) : (
             <MenuButton
               {...confirmButtonStyle}
-              label={"확인"}
+              label={'확인'}
               onClick={() => {
                 onClickConfirm();
                 onClickClose();
@@ -148,28 +148,28 @@ const StyledFooter = styled.div`
   gap: 20px;
 `;
 
-const buttonStyle: Omit<MenuButtonProps, "label" | "onClick" | "disabled"> = {
-  width: "138px",
-  height: "34px",
-  minHeight: "32px",
-  minWidth: "80px",
-  borderRadius: "6px",
-  fontSize: "small",
-  fontWeight: 700,
+const buttonStyle: Omit<MenuButtonProps, 'label' | 'onClick' | 'disabled'> = {
+  width: '138px',
+  height: '34px',
+  minHeight: '32px',
+  minWidth: '80px',
+  borderRadius: '6px',
+  fontSize: 'small',
+  fontWeight: 700
 };
 
 const confirmButtonStyle = {
   ...buttonStyle,
   backgroundColor: basicColors.lightLimeGreen,
-  fontFamily: "SpoqaHanSansNeo",
+  fontFamily: 'SpoqaHanSansNeo',
   color: bgColors[101728],
-  hoverBackgroundColor: basicColors.limeGreen,
+  hoverBackgroundColor: basicColors.limeGreen
 };
 
 const closeButtonStyle = {
   ...buttonStyle,
   backgroundColor: bgColors[282828],
-  fontFamily: "SpoqaHanSansNeo",
+  fontFamily: 'SpoqaHanSansNeo',
   color: basicColors.white,
-  hoverBackgroundColor: grayColors[808080],
+  hoverBackgroundColor: grayColors[808080]
 };

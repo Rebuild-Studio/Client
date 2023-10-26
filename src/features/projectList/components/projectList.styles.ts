@@ -1,5 +1,5 @@
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { styled } from "styled-components";
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import { styled } from 'styled-components';
 
 export type CSSStyledCardProps = {
   $isClicked: boolean;
@@ -29,7 +29,7 @@ export const StyledCard = styled.div<CSSStyledCardProps>`
   color: ${bgColors[343434]};
   position: relative;
   outline: ${({ $isClicked }) =>
-    $isClicked ? `solid 2px ${basicColors.lightLimeGreen}` : "none"};
+    $isClicked ? `solid 2px ${basicColors.lightLimeGreen}` : 'none'};
 
   &:hover {
     background-repeat: no-repeat;

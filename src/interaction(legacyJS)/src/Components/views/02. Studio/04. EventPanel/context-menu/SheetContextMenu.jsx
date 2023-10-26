@@ -1,8 +1,8 @@
-import Menu from "@mui/material/Menu";
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
-import ContextMenuItem from "../views/ContextMenuItem";
-import DeleteSheetCommand from "../../../../class/commands/Interaction/DeleteSheetCommand";
+import Menu from '@mui/material/Menu';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
+import ContextMenuItem from '../views/ContextMenuItem';
+import DeleteSheetCommand from '../../../../class/commands/Interaction/DeleteSheetCommand';
 
 const SheetContextMenu = observer(() => {
   const { eventSystem_store, interactionhistory_store } = storeContainer;
@@ -24,19 +24,19 @@ const SheetContextMenu = observer(() => {
   };
   const items = [
     {
-      stringKey: "Delete",
-      onClick: handleClickDelete,
-    },
+      stringKey: 'Delete',
+      onClick: handleClickDelete
+    }
   ];
   return (
     <Menu
-      open={eventSystem_store.contextMenuType === "Sheet"}
+      open={eventSystem_store.contextMenuType === 'Sheet'}
       onClose={handleClose}
       anchorReference="anchorPosition"
       anchorPosition={{ top: position[1], left: position[0] }}
       BackdropProps={{
         invisible: true,
-        onContextMenu: onBackdropContextMenu,
+        onContextMenu: onBackdropContextMenu
       }}
     >
       {items.map((item) => {

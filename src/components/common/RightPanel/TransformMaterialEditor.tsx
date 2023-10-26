@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { observer } from "mobx-react";
-import PropertyValue from "./TransFromationInfo";
-import Accordion from "@/components/layout/Accordion";
-import Material from "./MaterialInfo";
-import * as THREE from "three";
-import storeContainer from "@/store/storeContainer";
-import ColorHandler from "./ColorHandler";
-import { HsvaColor } from "@uiw/color-convert";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import PropertyValue from './TransFromationInfo';
+import Accordion from '@/components/layout/Accordion';
+import Material from './MaterialInfo';
+import * as THREE from 'three';
+import storeContainer from '@/store/storeContainer';
+import ColorHandler from './ColorHandler';
+import { HsvaColor } from '@uiw/color-convert';
 
 const TransformMaterialEditor = () => {
   const { primitiveStore } = storeContainer;
@@ -49,22 +49,22 @@ const TransformMaterialEditor = () => {
   }, [material]);
   return (
     <>
-      <Accordion title={"트랜스포메이션"}>
+      <Accordion title={'트랜스포메이션'}>
         <PropertyValue
           position={{ x: position.x, y: position.y, z: position.z }}
           rotation={{
             x: rotation.x,
             y: rotation.y,
-            z: rotation.z,
+            z: rotation.z
           }}
           scale={{
             x: scale.x,
             y: scale.y,
-            z: scale.z,
+            z: scale.z
           }}
         />
       </Accordion>
-      <Accordion title={"머터리얼"}>
+      <Accordion title={'머터리얼'}>
         <Material metalness={metalness} roughness={roughness} color={color} />
       </Accordion>
     </>

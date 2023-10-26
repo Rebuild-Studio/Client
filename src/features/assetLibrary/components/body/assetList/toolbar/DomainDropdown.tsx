@@ -1,15 +1,15 @@
-import Dropdown, { Option } from "@/components/common/dropdown/Dropdown";
-import DOMAIN_LIST, { Domain } from "@/features/assetLibrary/constants/domain";
-import { grayColors } from "@/resources/colors/colors";
-import assetCategoryStore from "@/store/assetCategoryStore";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import Dropdown, { Option } from '@/components/common/dropdown/Dropdown';
+import DOMAIN_LIST, { Domain } from '@/features/assetLibrary/constants/domain';
+import { grayColors } from '@/resources/colors/colors';
+import assetCategoryStore from '@/store/assetCategoryStore';
+import assetLibraryStore from '@/store/assetLibraryStore';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({
     label: domain.domainKR,
-    value: domain.domain,
+    value: domain.domain
   }));
   const [selectedOption, setSelectedOption] = useState<Option>(domains[0]);
 
@@ -21,7 +21,7 @@ const DomainDropdown = () => {
     assetLibraryStore.initLibrary();
     assetCategoryStore.setCurrentDomain({
       domain: selectedOption!.value,
-      domainKR: selectedOption!.label,
+      domainKR: selectedOption!.label
     } as Domain);
   }, [selectedOption]);
 
@@ -32,7 +32,7 @@ const DomainDropdown = () => {
         placeholder="도메인 선택"
         options={domains}
         size="150px"
-        backgroundColor={grayColors["3a3a3a"]}
+        backgroundColor={grayColors['3a3a3a']}
       />
     </>
   );

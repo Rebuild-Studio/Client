@@ -1,16 +1,16 @@
-import ChangeMaterialTextureCommand from "../../class/commands/CanvasObject/ChangeMaterialTextureCommand";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
-import { common_store } from "../../stores/Common_Store";
-import { data_store } from "../../stores/Data_Store";
-import { object_store } from "../../stores/Object_Store";
-import { action } from "mobx";
-import { objectViewModel } from "../Object_VM";
-import * as THREE from "three";
+import ChangeMaterialTextureCommand from '../../class/commands/CanvasObject/ChangeMaterialTextureCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { common_store } from '../../stores/Common_Store';
+import { data_store } from '../../stores/Data_Store';
+import { object_store } from '../../stores/Object_Store';
+import { action } from 'mobx';
+import { objectViewModel } from '../Object_VM';
+import * as THREE from 'three';
 import {
   cartoonShader,
   waveShader,
-  cartoonWaveShader,
-} from "../../class/Studio/Shader";
+  cartoonWaveShader
+} from '../../class/Studio/Shader';
 const MaterialTemplateVM = {
   selectedTemplates: 0,
   materialTemplateName: null,
@@ -53,7 +53,7 @@ const MaterialTemplateVM = {
     const curMaterial = objectViewModel.GetMaterialByUuid(materialUuid);
     const newMaterial =
       Number(index) === 0
-        ? objectViewModel.GetMaterialPropsByUuid(materialUuid)["originMaterial"]
+        ? objectViewModel.GetMaterialPropsByUuid(materialUuid)['originMaterial']
         : await loadersViewModel.GetMaterialTextureByIdx(index);
 
     canvasHistory_store.execute(
@@ -164,7 +164,7 @@ const MaterialTemplateVM = {
       ? newMaterial
       : curMaterial;
     common_store.setIsLoading(false);
-  }),
+  })
 };
 
 export default MaterialTemplateVM;

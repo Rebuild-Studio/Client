@@ -1,4 +1,4 @@
-import {observable} from "mobx";
+import { observable } from 'mobx';
 
 const transformation_store = observable({
   positionX: 0,
@@ -37,8 +37,7 @@ const transformation_store = observable({
   },
   setScaleZ(z) {
     this.scaleZ = z;
-  },
-
-})
+  }
+});
 
 export { transformation_store };

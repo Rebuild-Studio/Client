@@ -1,9 +1,9 @@
-import { Tooltip } from "@mui/material";
-import { observer } from "mobx-react";
-import MxColor from "../../02. RightTab/gui/MxColor_V";
-import { eventSystem_store } from "../../../../stores/Interaction_Stores"
-import { hexToHsva, rgbaToHsva } from "@uiw/color-convert";
-import { useState } from "react";
+import { Tooltip } from '@mui/material';
+import { observer } from 'mobx-react';
+import MxColor from '../../02. RightTab/gui/MxColor_V';
+import { eventSystem_store } from '../../../../stores/Interaction_Stores';
+import { hexToHsva, rgbaToHsva } from '@uiw/color-convert';
+import { useState } from 'react';
 
 const NodeReferenceColorSelector = ({ value, setValue, tooltipMessage }) => {
   const [tempColor, setTempColor] = useState(value);
@@ -34,16 +34,18 @@ const NodeReferenceColorSelector = ({ value, setValue, tooltipMessage }) => {
             onChangeInputRGB={handleInputChange(rgbaToHsva)}
             onMouseUp={handleMouseUp}
             menuStyle={{ left: -400 }}
-            buttonStyle={style.ColorSelectorButton(eventSystem_store.cameraZoom, value)}
+            buttonStyle={style.ColorSelectorButton(
+              eventSystem_store.cameraZoom,
+              value
+            )}
           />
         </div>
       </Tooltip>
     </>
-  )
+  );
 };
 
 export default observer(NodeReferenceColorSelector);
-
 
 const style = {
   ColorSelectorButton: (unit) => ({
@@ -51,32 +53,32 @@ const style = {
     height: `${24 * unit}px`,
     minWidth: 0,
     minHeight: 0,
-    alignSelf: "center",
-    backgroundSize: "100% 100%",
-    backgroundRepeat: "no-repeat",
+    alignSelf: 'center',
+    backgroundSize: '100% 100%',
+    backgroundRepeat: 'no-repeat'
   }),
 
   tooltip: {
-    color: "#e1f853",
-    bgcolor: "#282828CC",
-    border: "1px solid grey",
+    color: '#e1f853',
+    bgcolor: '#282828CC',
+    border: '1px solid grey',
     borderRadius: 3,
-    bottom: "5px !important",
+    bottom: '5px !important'
   },
   arrow: {
-    "&::before": {
-      backgroundColor: "#282828CC",
-      border: "1px solid grey",
-    },
+    '&::before': {
+      backgroundColor: '#282828CC',
+      border: '1px solid grey'
+    }
   },
   tooltipAndArrow: function () {
     return {
       tooltip: {
-        sx: style.tooltip,
+        sx: style.tooltip
       },
       arrow: {
-        sx: style.arrow,
-      },
+        sx: style.arrow
+      }
     };
-  },
-}
+  }
+};

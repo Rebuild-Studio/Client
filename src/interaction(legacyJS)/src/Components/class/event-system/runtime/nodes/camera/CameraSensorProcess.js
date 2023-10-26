@@ -1,11 +1,11 @@
-import NodeProcess from "../NodeProcess";
-import { Vector3 } from "three";
+import NodeProcess from '../NodeProcess';
+import { Vector3 } from 'three';
 
 export default class CameraSensorProcess extends NodeProcess {
   constructor(nodeRuntime, key) {
     super(nodeRuntime, [], [], [key]);
     this.key = key;
-    if (["position", "rotation"].includes(key)) {
+    if (['position', 'rotation'].includes(key)) {
       this.convert = this.convertValueToVector3;
     }
     this.changed = true;

@@ -1,8 +1,8 @@
-import assetLibraryStore from "@/store/assetLibraryStore";
-import SelectedAsset from "./SelectedAsset";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { useRef } from "react";
+import assetLibraryStore from '@/store/assetLibraryStore';
+import SelectedAsset from './SelectedAsset';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import { useRef } from 'react';
 
 const SelectedAssetsControl = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;

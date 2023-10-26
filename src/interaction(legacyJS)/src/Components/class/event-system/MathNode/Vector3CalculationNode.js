@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Vector3Calculation";
+const nodeType = 'Vector3Calculation';
 
 export class Vector3CalculationNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,26 +16,26 @@ export class Vector3CalculationNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "vector3First",
-      type: ControlType.Vector3,
+      name: 'vector3First',
+      type: ControlType.Vector3
     },
     {
-      name: "vector3Second",
-      type: ControlType.Vector3,
-    },
+      name: 'vector3Second',
+      type: ControlType.Vector3
+    }
   ],
   outputSocket: [
     {
-      name: "vector3",
-      type: ControlType.Vector3,
-    },
+      name: 'vector3',
+      type: ControlType.Vector3
+    }
   ],
   control: [
     {
-      name: "vectorCalculation",
-      value: "Plus",
+      name: 'vectorCalculation',
+      value: 'Plus',
       type: ControlType.Vector3Calculation,
-      IsDropdown: true,
-    },
-  ],
-}
+      IsDropdown: true
+    }
+  ]
+};

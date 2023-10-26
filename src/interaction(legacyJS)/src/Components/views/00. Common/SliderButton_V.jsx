@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import { IconButton, Box } from "@mui/material";
-import React, { useState } from "react";
-import TextTransition from "./SliderButtonTextTransition";
+import { observer } from 'mobx-react';
+import { IconButton, Box } from '@mui/material';
+import React, { useState } from 'react';
+import TextTransition from './SliderButtonTextTransition';
 
 /**
  * @param {function} handleClick - 클릭 시 실행할 함수
@@ -25,8 +25,8 @@ const SliderButton_V = observer(({ handleClick, buttonImgs, text, sx }) => {
           <img
             src={isHovered ? activeImg : inactiveImg}
             alt="glbLoad"
-            width={"30px"}
-            height={"30px"}
+            width={'30px'}
+            height={'30px'}
           />
           {isHovered && <TextTransition text={text} />}
         </Box>
@@ -39,30 +39,30 @@ export default SliderButton_V;
 
 const style = {
   sliderButton: {
-    objectFit: "contain",
-    backgroundColor: "#1C1C1C",
-    borderRadius: "22px",
-    border: "solid 1px #494949",
-    transition: "width 0.3s ease",
-    transformOrigin: "right",
-    "&:hover": {
-      width: "126px",
-      backgroundColor: "#1C1C1C",
-    },
+    objectFit: 'contain',
+    backgroundColor: '#1C1C1C',
+    borderRadius: '22px',
+    border: 'solid 1px #494949',
+    transition: 'width 0.3s ease',
+    transformOrigin: 'right',
+    '&:hover': {
+      width: '126px',
+      backgroundColor: '#1C1C1C'
+    }
   },
 
   activeImg: {
-    display: "flex",
-    alignItems: "center",
-    position: "absolute",
-    transition: "opacity 0.3s ease",
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    transition: 'opacity 0.3s ease'
   },
 
   inactiveImg: {
-    display: "flex",
-    alignItems: "center",
-    position: "absolute",
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
     opacity: 1,
-    transition: "opacity 0.3s ease",
-  },
+    transition: 'opacity 0.3s ease'
+  }
 };

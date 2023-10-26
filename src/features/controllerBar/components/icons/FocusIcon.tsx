@@ -1,4 +1,4 @@
-import Icon from "@components/common/Icon.tsx";
+import Icon from '@components/common/Icon.tsx';
 
 const FocusIcon = () => {
   return (

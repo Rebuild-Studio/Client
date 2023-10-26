@@ -1,5 +1,5 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
 /**
  * @description RandomNode class
@@ -9,7 +9,7 @@ import { ControlType } from "../NodeControl";
  *
  */
 
-const nodeType = "Random";
+const nodeType = 'Random';
 
 export class RandomNode extends Node {
   static NODE_TYPE = nodeType;
@@ -24,24 +24,24 @@ export class RandomNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "signal",
-      type: ControlType.Boolean,
+      name: 'signal',
+      type: ControlType.Boolean
     },
     {
-      name: "number",
+      name: 'number',
       type: ControlType.Number,
       reference: {
-        name: "NODE_DAT_RANDOM_RANGE_MAX",
+        name: 'NODE_DAT_RANDOM_RANGE_MAX',
         defaultValue: 10,
-        type: "Number",
-        tooltipMessage: "0부터 최댓값 까지의 실수가 랜덤하게 출력됩니다.",
-      },
-    },
+        type: 'Number',
+        tooltipMessage: '0부터 최댓값 까지의 실수가 랜덤하게 출력됩니다.'
+      }
+    }
   ],
   outputSocket: [
     {
-      name: "random",
-      type: ControlType.Number,
-    },
-  ],
+      name: 'random',
+      type: ControlType.Number
+    }
+  ]
 };

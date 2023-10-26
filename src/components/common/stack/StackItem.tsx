@@ -1,14 +1,14 @@
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { CSSColor } from "@/types/style/cssUnits";
-import { styled } from "styled-components";
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import { fonts } from '@/resources/fonts/font';
+import { CSSColor } from '@/types/style/cssUnits';
+import { styled } from 'styled-components';
 
 interface Props {
   className?: string;
   onClick?: () => void;
   label?: string;
   hoverBackgroundColor?: CSSColor;
-  cursor?: "pointer" | "default";
+  cursor?: 'pointer' | 'default';
   children?: React.ReactNode;
 }
 
@@ -18,7 +18,7 @@ const StackItem = ({
   label,
   hoverBackgroundColor = grayColors.lightGray,
   children,
-  cursor = "pointer",
+  cursor = 'pointer'
 }: Props) => {
   return (
     <Container
@@ -36,8 +36,8 @@ const StackItem = ({
 export default StackItem;
 
 interface ContainerProps {
-  $hoverBackgroundColor: Props["hoverBackgroundColor"];
-  $cursor: Props["cursor"];
+  $hoverBackgroundColor: Props['hoverBackgroundColor'];
+  $cursor: Props['cursor'];
 }
 
 const Container = styled.div<ContainerProps>`

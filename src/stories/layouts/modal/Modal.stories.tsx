@@ -1,10 +1,10 @@
-import Modal from "@/components/layout/modal/Modal";
-import { Meta, StoryObj } from "@storybook/react";
+import Modal from '@/components/layout/modal/Modal';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Modal,
-  title: "Layout/Modal",
-  tags: ["autodocs"],
+  title: 'Layout/Modal',
+  tags: ['autodocs']
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -35,7 +35,7 @@ const BaseModal = {
         <button onClick={openModal}>열려라 모달</button> */}
       </>
     );
-  },
+  }
 } satisfies Story;
 
 export { BaseModal };

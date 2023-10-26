@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { grayColors, basicColors } from "@/resources/colors/colors";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { grayColors, basicColors } from '@/resources/colors/colors';
 
 interface MenuProps {
   title: string;
@@ -16,7 +16,7 @@ const CustomMenu = ({
   MenuItem,
   openMenu = true,
   anchorButton = <></>,
-  anchorElement = null,
+  anchorElement = null
 }: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
   const [open, setOpen] = useState(openMenu);
@@ -92,13 +92,15 @@ const StyledMenu = styled.div<{
   width: 24.5vh;
   height: 66.9vh;
   border-radius: 3px;
-  background-color: ${grayColors["3a3a3a"]};
+  background-color: ${grayColors['3a3a3a']};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   z-index: 3;
-  transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
+  transition:
+    opacity 0.5ms ease-in-out,
+    transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
-  transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
+  transform: ${({ open }) => (open ? 'scale(1)' : 'scale(0.8)')};
 `;
 
 const ContentWrapper = styled.div`

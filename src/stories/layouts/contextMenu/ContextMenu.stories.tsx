@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import ContextMenu from "@/components/layout/contextMenu/ContextMenu";
-import Scene from "@/three_components/common/Scene";
-import { Meta, StoryObj } from "@storybook/react";
-import { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import ContextMenu from '@/components/layout/contextMenu/ContextMenu';
+import Scene from '@/three_components/common/Scene';
+import { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useState } from 'react';
+import { styled } from 'styled-components';
 
 const meta = {
   component: ContextMenu,
-  title: "Layout/ContextMenu",
-  tags: ["autodocs"],
+  title: 'Layout/ContextMenu',
+  tags: ['autodocs']
 } satisfies Meta<typeof ContextMenu>;
 
 export default meta;
@@ -35,12 +35,12 @@ const BaseContextMenu = {
     };
 
     useEffect(() => {
-      document.addEventListener("mousedown", setOnMouseDownListener);
-      document.addEventListener("contextmenu", setOnContextMenuListener);
+      document.addEventListener('mousedown', setOnMouseDownListener);
+      document.addEventListener('contextmenu', setOnContextMenuListener);
 
       return () => {
-        document.addEventListener("mousedown", setOnMouseDownListener);
-        document.removeEventListener("contextmenu", setOnContextMenuListener);
+        document.addEventListener('mousedown', setOnMouseDownListener);
+        document.removeEventListener('contextmenu', setOnContextMenuListener);
       };
     }, []);
     return (
@@ -50,18 +50,18 @@ const BaseContextMenu = {
             $xPos={postion.xPos}
             $yPos={postion.yPos}
             items={[
-              ["미리보기", "O", true],
-              ["그리드 숨기기", "Z", true],
-              ["저장", "Ctrl+S", false],
-              ["붙여넣기", "Ctrl+V", false],
-              ["DIVIDER", "", false],
+              ['미리보기', 'O', true],
+              ['그리드 숨기기', 'Z', true],
+              ['저장', 'Ctrl+S', false],
+              ['붙여넣기', 'Ctrl+V', false],
+              ['DIVIDER', '', false]
             ]}
           />
         )}
         <Scene />
       </Wrapper>
     );
-  },
+  }
 } satisfies Story;
 
 export { BaseContextMenu };

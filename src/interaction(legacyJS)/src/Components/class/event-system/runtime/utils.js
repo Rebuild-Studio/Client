@@ -1,10 +1,10 @@
-import { KeyFormat } from "../NodeControl";
+import { KeyFormat } from '../NodeControl';
 
 export function raycastFormat(type) {
   return `__Interaction__${type}__`;
 }
 
-export function generateKeyFormat(key = "", type) {
+export function generateKeyFormat(key = '', type) {
   try {
     const format = KeyFormat.options.get(type);
     return format + key;
@@ -14,7 +14,7 @@ export function generateKeyFormat(key = "", type) {
   return key;
 }
 
-export function extractKeyFormat(key = "", type) {
+export function extractKeyFormat(key = '', type) {
   try {
     const format = KeyFormat.options.get(type);
     if (key.startsWith(format)) {

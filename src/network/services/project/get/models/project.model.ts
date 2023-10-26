@@ -1,4 +1,4 @@
-import { MxJson } from "@/types/mxJson/mxJson";
+import { MxJson } from '@/types/mxJson/mxJson';
 
 /**
  * @description 실제 프로젝트 호출 시 사용되는 인터페이스

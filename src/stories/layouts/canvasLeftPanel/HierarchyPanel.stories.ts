@@ -1,12 +1,12 @@
-import HierarchyPanel from "@/features/hierarchy/components/HierarchyPanel";
-import { MeshType } from "@/store/primitiveStore";
-import type { Meta, StoryObj } from "@storybook/react";
-import * as THREE from "three";
+import HierarchyPanel from '@/features/hierarchy/components/HierarchyPanel';
+import { MeshType } from '@/store/primitiveStore';
+import type { Meta, StoryObj } from '@storybook/react';
+import * as THREE from 'three';
 
 const meta = {
   component: HierarchyPanel,
-  title: "Layout/CanvasLeftPanel/HierarchyPanel",
-  tags: ["autodocs"],
+  title: 'Layout/CanvasLeftPanel/HierarchyPanel',
+  tags: ['autodocs']
 } satisfies Meta<typeof HierarchyPanel>;
 
 export default meta;
@@ -19,16 +19,16 @@ const mesh = new THREE.Mesh(
     roughness: 0.5,
     metalness: 0,
     transparent: true,
-    opacity: 0.5,
+    opacity: 0.5
   })
 );
-mesh.name = "Sphere";
+mesh.name = 'Sphere';
 const meshes: MeshType = {
-  mesh,
+  mesh
 };
 
 export const Basic = {
   args: {
-    meshes: meshes,
-  },
+    meshes: meshes
+  }
 } satisfies Story;

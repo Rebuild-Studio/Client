@@ -1,9 +1,9 @@
-import { objectViewModel } from "../../view_models/Object_VM";
-import MetaClass from "./MetaClass";
-import * as THREE from "three";
+import { objectViewModel } from '../../view_models/Object_VM';
+import MetaClass from './MetaClass';
+import * as THREE from 'three';
 class MetaCamera extends MetaClass {
   camera = null;
-  classType = "Camera";
+  classType = 'Camera';
   constructor(object, arg) {
     super(object, arg);
     const camera = new THREE.PerspectiveCamera(
@@ -22,11 +22,11 @@ class MetaCamera extends MetaClass {
   InitProps() {
     super.InitProps();
     if (this.camera) {
-      const fov = this.camera["fov"];
-      const near = this.camera["near"];
-      const far = this.camera["far"];
-      const type = this.camera["type"];
-      const name = this.camera.name !== "" ? this.camera.name : "camera";
+      const fov = this.camera['fov'];
+      const near = this.camera['near'];
+      const far = this.camera['far'];
+      const type = this.camera['type'];
+      const name = this.camera.name !== '' ? this.camera.name : 'camera';
 
       this.props = {
         ...this.props,
@@ -34,7 +34,7 @@ class MetaCamera extends MetaClass {
         name: name,
         fov: fov,
         near: near,
-        far: far,
+        far: far
       };
     }
   }

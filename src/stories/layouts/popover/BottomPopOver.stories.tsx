@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { styled } from "styled-components";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import BottomPopOver from "@/components/layout/popover/BottomPopOver";
+import { Meta, StoryObj } from '@storybook/react';
+import { styled } from 'styled-components';
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import BottomPopOver from '@/components/layout/popover/BottomPopOver';
 
 const meta = {
   component: BottomPopOver,
-  title: "Layout/PopOver/BottomPopOver",
-  tags: ["autodocs"],
+  title: 'Layout/PopOver/BottomPopOver',
+  tags: ['autodocs']
 } satisfies Meta<typeof BottomPopOver>;
 
 export default meta;
@@ -35,7 +35,7 @@ const PopOver = {
         <div>
           <Content
             onClick={() => {
-              console.log("1번");
+              console.log('1번');
             }}
           >
             1번
@@ -54,7 +54,7 @@ const PopOver = {
         <div>테스트 div</div>
       </>
     );
-  },
+  }
 } satisfies Story;
 
 export { PopOver };

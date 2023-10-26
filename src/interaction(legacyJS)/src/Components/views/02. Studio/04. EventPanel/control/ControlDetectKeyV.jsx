@@ -1,9 +1,9 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
-import { observer } from "mobx-react";
-import { useState, useEffect, useCallback } from "react";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
+import { observer } from 'mobx-react';
+import { useState, useEffect, useCallback } from 'react';
 
 const ControlDetectKeyV = observer((props) => {
   const { name, control, update } = props;
@@ -32,16 +32,16 @@ const ControlDetectKeyV = observer((props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& .MuiTextField-root': { m: 1, width: '25ch' }
       }}
       noValidate
     >
       <Box
         sx={{
-          marginBottom: "3vh",
+          marginBottom: '3vh'
         }}
         noValidate
       >
@@ -54,20 +54,20 @@ const ControlDetectKeyV = observer((props) => {
         onClick={handleClick}
         onKeyUp={handleKeyUp}
         sx={{
-          backgroundColor: clicked ? "#ABC412" : "#d4ed3e",
-          color: clicked ? "#3a3a3a" : "#000000",
-          transition: "background-color 0.2s",
-          "&:hover": {
-            color: clicked ? "#3a3a3a" : "#000000",
-            backgroundColor: clicked ? "#ABC412" : "#ABC412",
+          backgroundColor: clicked ? '#ABC412' : '#d4ed3e',
+          color: clicked ? '#3a3a3a' : '#000000',
+          transition: 'background-color 0.2s',
+          '&:hover': {
+            color: clicked ? '#3a3a3a' : '#000000',
+            backgroundColor: clicked ? '#ABC412' : '#ABC412'
           },
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textTransform: "none",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textTransform: 'none'
         }}
       >
-        {defaultValue || "input"}
+        {defaultValue || 'input'}
       </Button>
     </Box>
   );

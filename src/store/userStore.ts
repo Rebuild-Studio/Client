@@ -1,7 +1,7 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 class UserStore {
-  accessToken = "";
+  accessToken = '';
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

@@ -1,12 +1,12 @@
-import { observer } from "mobx-react";
-import ContextMenu from "./ContextMenu";
-import storeContainer from "../../../../stores/storeContainer";
-import DeleteNodeAndGroupCommand from "../../../../class/commands/Interaction/DeleteNodeAndGroupCommand";
-import CloneNodeAndGroupCommand from "../../../../class/commands/Interaction/CloneNodeAndGroupCommand";
-import SelectNodeAndGroupCommand from "../../../../class/commands/Interaction/SelectNodeAndGroupCommand";
-import CreateGroupCommand from "../../../../class/commands/Interaction/CreateGroupCommand";
-import MergeGroupCommand from "../../../../class/commands/Interaction/MergeGroupCommand";
-import ExcludeFromGroupCommand from "../../../../class/commands/Interaction/ExcludeFromGroupCommand";
+import { observer } from 'mobx-react';
+import ContextMenu from './ContextMenu';
+import storeContainer from '../../../../stores/storeContainer';
+import DeleteNodeAndGroupCommand from '../../../../class/commands/Interaction/DeleteNodeAndGroupCommand';
+import CloneNodeAndGroupCommand from '../../../../class/commands/Interaction/CloneNodeAndGroupCommand';
+import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
+import CreateGroupCommand from '../../../../class/commands/Interaction/CreateGroupCommand';
+import MergeGroupCommand from '../../../../class/commands/Interaction/MergeGroupCommand';
+import ExcludeFromGroupCommand from '../../../../class/commands/Interaction/ExcludeFromGroupCommand';
 
 const NodeContextMenu = observer(() => {
   const { eventSystem_store, interactionhistory_store } = storeContainer;
@@ -73,28 +73,28 @@ const NodeContextMenu = observer(() => {
   };
   const generalItems = [
     {
-      stringKey: "Copy",
-      onClick: handleClickCopy,
+      stringKey: 'Copy',
+      onClick: handleClickCopy
     },
     {
-      stringKey: "Paste",
+      stringKey: 'Paste',
       onClick: handleClickPaste,
-      disabled: sheet.copiedNodes.length + sheet.copiedGroups.length === 0,
+      disabled: sheet.copiedNodes.length + sheet.copiedGroups.length === 0
     },
     {
-      stringKey: "Delete",
-      onClick: handleClickDelete,
-    },
+      stringKey: 'Delete',
+      onClick: handleClickDelete
+    }
   ];
   const selectItems = [
     {
-      stringKey: "Unselect",
-      onClick: handleClickUnselect,
-    },
+      stringKey: 'Unselect',
+      onClick: handleClickUnselect
+    }
   ];
   const groupItems = [
     {
-      stringKey: "Group",
+      stringKey: 'Group',
       onClick: handleClickGroup,
       disabled:
         eventSystem_store.selectedGroups.length > 0
@@ -104,10 +104,10 @@ const NodeContextMenu = observer(() => {
                 ? true
                 : false
             ),
-      isDivided: true,
+      isDivided: true
     },
     {
-      stringKey: "Merge",
+      stringKey: 'Merge',
       onClick: handleClickMerge,
       disabled:
         eventSystem_store.selectedGroups.length === 0
@@ -117,17 +117,17 @@ const NodeContextMenu = observer(() => {
               (node) =>
                 sheet.getGroupOfNodeOrGroup(node) !== sheet.selectedGroups[0]
             )
-          : false,
+          : false
     },
     {
-      stringKey: "Exclude",
+      stringKey: 'Exclude',
       onClick: handleClickExclude,
       disabled: eventSystem_store.selectedNodes.every((uuid) =>
         eventSystem_store.getSelectedSheet().getGroupOfNodeOrGroup(uuid)
           ? false
           : true
-      ),
-    },
+      )
+    }
   ];
   return (
     <ContextMenu type="Node" items={[generalItems, selectItems, groupItems]} />

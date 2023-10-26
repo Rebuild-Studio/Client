@@ -1,8 +1,8 @@
-import { observer } from "mobx-react";
-import { useEffect, useRef } from "react";
-import storeContainer from "../../../../../stores/storeContainer";
-import { Box } from "@mui/material";
-import SocketColor from "../../views/SocketColor";
+import { observer } from 'mobx-react';
+import { useEffect, useRef } from 'react';
+import storeContainer from '../../../../../stores/storeContainer';
+import { Box } from '@mui/material';
+import SocketColor from '../../views/SocketColor';
 
 /**
  *
@@ -24,7 +24,7 @@ import SocketColor from "../../views/SocketColor";
 const getStyleProps = (type, unit, backgroundColor, zIndex) => {
   let marginLeft = unit;
   let marginRight = unit;
-  if (type === "output") {
+  if (type === 'output') {
     marginRight = -unit;
   } else {
     marginLeft = -unit;
@@ -35,7 +35,7 @@ const getStyleProps = (type, unit, backgroundColor, zIndex) => {
     marginLeft,
     marginRight,
     backgroundColor,
-    zIndex,
+    zIndex
   };
 };
 
@@ -77,12 +77,12 @@ export default SocketV;
 
 const style = {
   Container: ({ unit, marginRight, marginLeft, backgroundColor, zIndex }) => ({
-    display: "inline-block",
-    cursor: "pointer",
-    verticalAlign: "middle",
-    boxSizing: "border-box",
-    border: "0px",
-    position: "relative",
+    display: 'inline-block',
+    cursor: 'pointer',
+    verticalAlign: 'middle',
+    boxSizing: 'border-box',
+    border: '0px',
+    position: 'relative',
     borderRadius: `${unit}px ${unit}px ${unit}px ${unit}px`,
     width: `${2 * unit}px`,
     height: `${2 * unit}px`,
@@ -92,8 +92,8 @@ const style = {
     marginRight: `${marginRight}px`,
     backgroundColor: `${backgroundColor}`,
     zIndex: `${zIndex}`,
-    "&:hover": {
-      zIndex: "0 !important",
-    },
-  }),
+    '&:hover': {
+      zIndex: '0 !important'
+    }
+  })
 };

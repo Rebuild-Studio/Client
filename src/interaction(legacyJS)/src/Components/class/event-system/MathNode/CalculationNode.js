@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Calculation";
+const nodeType = 'Calculation';
 
 export class CalculationNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,27 +16,26 @@ export class CalculationNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "numberFirst",
-      type: ControlType.Number,
+      name: 'numberFirst',
+      type: ControlType.Number
     },
     {
-      name: "numberSecond",
-      type: ControlType.Number,
-    },
+      name: 'numberSecond',
+      type: ControlType.Number
+    }
   ],
   outputSocket: [
     {
-      name: "number",
-      type: ControlType.Number,
-    },
+      name: 'number',
+      type: ControlType.Number
+    }
   ],
   control: [
     {
-      name: "calculation",
-      value: "Plus",
+      name: 'calculation',
+      value: 'Plus',
       type: ControlType.Calculation,
-      IsDropdown: true,
-    },
-  ],
-}
-
+      IsDropdown: true
+    }
+  ]
+};

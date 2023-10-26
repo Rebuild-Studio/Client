@@ -1,16 +1,16 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class SetSheetOrderCommand extends Command {
   constructor(store, uuid, order) {
     super(store);
-    this.type = "SetSheetOrderCommand";
+    this.type = 'SetSheetOrderCommand';
     this.name = this.type;
     this.sheet = this.store.getSheetByUuid(uuid);
     this.data = {
       uuid,
       order,
       previous: this.store.getSheetOrderByUuid(uuid),
-      name: this.sheet.name,
+      name: this.sheet.name
     };
   }
   execute() {
@@ -21,7 +21,7 @@ export default class SetSheetOrderCommand extends Command {
     this.store.deleteSheetOrder(this.data.uuid);
     this.store.setSheetOrder({
       uuid: this.data.uuid,
-      order: this.data.previous,
+      order: this.data.previous
     });
   }
   getDetailData() {

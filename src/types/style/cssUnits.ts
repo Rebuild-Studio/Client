@@ -4,7 +4,7 @@ type CSSRem = `${number}rem`;
 type CSSvw = `${number}vw`;
 type CSSvh = `${number}vh`;
 type CSSPoint = `${number}pt`;
-type CSSFitContent = "fit-content";
+type CSSFitContent = 'fit-content';
 
 type CSSHexColor = `#${string}`;
 type CSSRgb = `rgb(${number}, ${number}, ${number})`;
@@ -30,5 +30,5 @@ export type {
   CSSPoint,
   CSSFitContent,
   CSSRgb,
-  CSSRgba,
+  CSSRgba
 };

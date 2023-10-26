@@ -1,18 +1,18 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class SelectGroupCommand extends Command {
   constructor(store, uuid, clear, sheetId) {
     super(store);
-    this.type = "SelectGroupCommand";
+    this.type = 'SelectGroupCommand';
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       uuid: uuid,
       clear: clear,
       selectedGroups: undefined,
       selectedNodes: undefined,
-      selectedSheet: undefined,
+      selectedSheet: undefined
     };
   }
   execute() {

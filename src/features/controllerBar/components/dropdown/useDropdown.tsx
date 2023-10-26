@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const useDropdown = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -15,10 +15,10 @@ const useDropdown = () => {
       }
     };
 
-    document.body.addEventListener("click", closeDropdown);
+    document.body.addEventListener('click', closeDropdown);
 
     return () => {
-      document.body.removeEventListener("click", closeDropdown);
+      document.body.removeEventListener('click', closeDropdown);
     };
   }, []);
 

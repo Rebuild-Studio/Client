@@ -1,10 +1,10 @@
-import MXApiModule from "../MXApiModule";
-import ServiceError from "../error/ServiceError";
-import convertArgs from "../utils/convertArgs";
+import MXApiModule from '../MXApiModule';
+import ServiceError from '../error/ServiceError';
+import convertArgs from '../utils/convertArgs';
 
 const PostData = async (args) => {
   const params = convertArgs(args);
-  const res = await MXApiModule.post("/published", params).catch((error) => {
+  const res = await MXApiModule.post('/published', params).catch((error) => {
     throw new ServiceError(
       error.response.data.status,
       error.response.data.error
@@ -14,11 +14,11 @@ const PostData = async (args) => {
 };
 
 const pmxServiceMap = {
-  postPmx: PostData,
+  postPmx: PostData
 };
 
 const pmxEndPoints = {
-  postPmx: "postPmx",
+  postPmx: 'postPmx'
 };
 
 const executePmx =

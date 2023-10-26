@@ -1,5 +1,5 @@
-import { data_store } from "../../stores/Data_Store";
-import * as THREE from "three";
+import { data_store } from '../../stores/Data_Store';
+import * as THREE from 'three';
 class Geometry {
   shape;
   mesh;
@@ -24,25 +24,25 @@ class Geometry {
   }
   CreateGeometry(paramDatas) {
     switch (this.shape) {
-      case "cube":
+      case 'cube':
         return new THREE.BoxGeometry(...paramDatas);
 
-      case "sphere":
+      case 'sphere':
         return new THREE.SphereGeometry(...paramDatas);
 
-      case "cylinder":
+      case 'cylinder':
         return new THREE.CylinderGeometry(...paramDatas);
 
-      case "cone":
+      case 'cone':
         return new THREE.ConeGeometry(...paramDatas);
 
-      case "torus":
+      case 'torus':
         return new THREE.TorusGeometry(...paramDatas);
 
-      case "plane":
+      case 'plane':
         return new THREE.PlaneGeometry(...paramDatas);
 
-      case "capsule":
+      case 'capsule':
         return new THREE.CapsuleGeometry(...paramDatas);
       default:
         break;
@@ -66,25 +66,25 @@ class Geometry {
   }
   GetParameters() {
     switch (this.shape) {
-      case "cube":
+      case 'cube':
         return new THREE.BoxGeometry().parameters;
 
-      case "sphere":
+      case 'sphere':
         return new THREE.SphereGeometry(0.5).parameters;
 
-      case "cylinder":
+      case 'cylinder':
         return new THREE.CylinderGeometry().parameters;
 
-      case "cone":
+      case 'cone':
         return new THREE.ConeGeometry().parameters;
 
-      case "torus":
+      case 'torus':
         return new THREE.TorusGeometry().parameters;
 
-      case "plane":
+      case 'plane':
         return new THREE.PlaneGeometry().parameters;
 
-      case "capsule":
+      case 'capsule':
         return new THREE.CapsuleGeometry().parameters;
 
       default:

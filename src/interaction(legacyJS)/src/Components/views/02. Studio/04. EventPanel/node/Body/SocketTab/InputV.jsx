@@ -1,11 +1,11 @@
-import { observer } from "mobx-react";
-import { useTranslation } from "react-i18next";
-import { Box, Typography } from "@mui/material";
-import storeContainer from "../../../../../../stores/storeContainer";
-import NodeReferenceSelector from "../NodeReferenceSelector_V";
-import SocketV from "../../Wire/SocketV";
-import socketTabStyle from "./socketTabStyle";
-import { socketPosition } from "../../../../../../../constants/strings/interaction/socket";
+import { observer } from 'mobx-react';
+import { useTranslation } from 'react-i18next';
+import { Box, Typography } from '@mui/material';
+import storeContainer from '../../../../../../stores/storeContainer';
+import NodeReferenceSelector from '../NodeReferenceSelector_V';
+import SocketV from '../../Wire/SocketV';
+import socketTabStyle from './socketTabStyle';
+import { socketPosition } from '../../../../../../../constants/strings/interaction/socket';
 
 const InputV = observer(({ socket, nodeUuid, update, reference }) => {
   const { eventSystem_store } = storeContainer;

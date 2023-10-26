@@ -1,4 +1,4 @@
-import { useLottie } from "lottie-react";
+import { useLottie } from 'lottie-react';
 interface MXLottieSizeProps {
   width: number;
   height: number;
@@ -14,7 +14,7 @@ const MXLottie = (props: MXLottieProps) => {
   const options = {
     animationData: props.lottieJson,
     loop: props.loop,
-    style: props.style,
+    style: props.style
   };
 
   const { View } = useLottie(options);

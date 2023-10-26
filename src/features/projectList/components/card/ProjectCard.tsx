@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { StyledCardTextArea, StyledCard } from "../projectList.styles";
+import styled from 'styled-components';
+import { StyledCardTextArea, StyledCard } from '../projectList.styles';
 
 export type ProjectCardProps = {
   id: string;
@@ -15,7 +15,7 @@ export const ProjectCard = ({
   thumbnail,
   savedAt,
   isClicked,
-  onClick,
+  onClick
 }: ProjectCardProps) => {
   return (
     <StyledCard $isClicked={isClicked} onClick={onClick}>

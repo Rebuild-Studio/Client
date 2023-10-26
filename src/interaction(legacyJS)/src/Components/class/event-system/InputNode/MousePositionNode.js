@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "MousePosition";
+const nodeType = 'MousePosition';
 
 export class MousePositionNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,8 +17,8 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "position",
-      type: ControlType.Vector3,
-    },
-  ],
-}
+      name: 'position',
+      type: ControlType.Vector3
+    }
+  ]
+};

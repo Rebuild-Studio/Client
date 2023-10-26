@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import { observer } from "mobx-react";
-import { useThree, useFrame } from "@react-three/fiber";
-import storeContainer from "../../../stores/storeContainer";
-import NodeRuntimeArguments from "../../../class/event-system/runtime/NodeRuntimeArguments";
+import { useEffect, useRef } from 'react';
+import { observer } from 'mobx-react';
+import { useThree, useFrame } from '@react-three/fiber';
+import storeContainer from '../../../stores/storeContainer';
+import NodeRuntimeArguments from '../../../class/event-system/runtime/NodeRuntimeArguments';
 
 const MAX_ITERATION = 64;
 const UPDATE_RATE = 0.01;
@@ -22,7 +22,7 @@ function fixedUpdateNodes(nodes, state, delta, xrFrame) {
     iter++;
     if (iter > MAX_ITERATION) {
       console.warn(
-        "Interaction Runtime : Max Iteration occured! Maybe too many nodes or an circular reference."
+        'Interaction Runtime : Max Iteration occured! Maybe too many nodes or an circular reference.'
       );
       break;
     }
@@ -57,7 +57,7 @@ const SheetRuntime = observer((props) => {
       object_store: object_store,
       loader_store: loader_store,
       three: three,
-      wireWarps: wireWarps,
+      wireWarps: wireWarps
     };
 
     eventSystem_store.getSheetByUuid(uuid).nodes.forEach((node) => {
@@ -76,15 +76,15 @@ const SheetRuntime = observer((props) => {
           } else {
             value.foundTails.push({
               sockets: connections[tail],
-              name: connections[tail].getName(tail),
+              name: connections[tail].getName(tail)
             });
           }
         }
       }
     });
     //onStart
-    const tabIndex = three.gl.domElement.getAttribute("tabIndex");
-    three.gl.domElement.setAttribute("tabIndex", -1);
+    const tabIndex = three.gl.domElement.getAttribute('tabIndex');
+    three.gl.domElement.setAttribute('tabIndex', -1);
     currentNodes.forEach((node) => {
       node.runtime.onStart();
     });
@@ -94,9 +94,9 @@ const SheetRuntime = observer((props) => {
         node.runtime.onEnd();
       });
       if (tabIndex === null) {
-        three.gl.domElement.removeAttribute("tabIndex");
+        three.gl.domElement.removeAttribute('tabIndex');
       } else {
-        three.gl.domElement.setAttribute("tabIndex", tabIndex);
+        three.gl.domElement.setAttribute('tabIndex', tabIndex);
       }
       //dispose EventRuntime
       currentNodes.splice(0, currentNodes.length);
@@ -115,7 +115,7 @@ const InteractionRuntimeInternal = observer(() => {
   return eventSystem_store.sheetOrder
     .filter((uuid) => {
       const sheet = eventSystem_store.sheets[uuid];
-      return sheet.type !== "function";
+      return sheet.type !== 'function';
     })
     .map((uuid) => {
       return <SheetRuntime key={`sheet-runtime-${uuid}`} uuid={uuid} />;

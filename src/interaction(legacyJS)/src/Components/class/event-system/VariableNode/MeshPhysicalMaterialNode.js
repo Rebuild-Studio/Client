@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "MeshPhysicalMaterial";
+const nodeType = 'MeshPhysicalMaterial';
 
 export class MeshPhysicalMaterialNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,21 +17,21 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "material",
+      name: 'material',
       type: ControlType.Material,
       reference: {
-        name: "NODE_DAT_MATERIAL",
+        name: 'NODE_DAT_MATERIAL',
         defaultValue: 0,
-        type: "Material",
-        tooltipMessage: "출력하고자하는 머터리얼을 설정해주세요",
-      },
-    },
+        type: 'Material',
+        tooltipMessage: '출력하고자하는 머터리얼을 설정해주세요'
+      }
+    }
   ],
   control: [
     {
-      name: "NODE_DAT_COMPOSE",
+      name: 'NODE_DAT_COMPOSE',
       value: undefined,
-      type: ControlType.Compose,
-    },
-  ],
+      type: ControlType.Compose
+    }
+  ]
 };

@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 
 export default class MiddleProcess extends NodeProcess {
   coreWork(state, delta, xrFrame) {

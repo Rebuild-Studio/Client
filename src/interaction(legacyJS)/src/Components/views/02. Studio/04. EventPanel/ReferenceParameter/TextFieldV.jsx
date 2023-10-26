@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { eventSystem_store } from "../../../../stores/Interaction_Stores";
-import { Box, IconButton, Tooltip } from "@mui/material";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
-import { observer } from "mobx-react";
+import { useState } from 'react';
+import { eventSystem_store } from '../../../../stores/Interaction_Stores';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import { observer } from 'mobx-react';
 
 const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
   const [focus, setFocus] = useState(false);
@@ -12,18 +12,18 @@ const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
     const inputValue = event.target.value;
     const re = /^[0-9\b.]+$/;
 
-    if (inputValue === "") {
+    if (inputValue === '') {
       // 빈칸일 경우
-      setValue("");
+      setValue('');
       return;
     }
     if (
-      refType === "Number" &&
+      refType === 'Number' &&
       re.test(inputValue) &&
-      inputValue.split(".").length - 1 <= 1
+      inputValue.split('.').length - 1 <= 1
     ) {
       setValue(Number(inputValue));
-    } else if (refType === "String") {
+    } else if (refType === 'String') {
       setValue(inputValue);
     }
   };
@@ -40,24 +40,24 @@ const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
         <input
           type={refType}
           style={{
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-            fontSize: "inherit",
-            boxSizing: "border-box",
-            color: "#fff",
-            backgroundColor: "#282828",
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            fontSize: 'inherit',
+            boxSizing: 'border-box',
+            color: '#fff',
+            backgroundColor: '#282828',
             border: 'none',
             boxShadow: 'none',
-            outline: `${focus ? "solid 2.5px #e1f853" : "none"}`,
-            borderRadius: `${2 * eventSystem_store.cameraZoom}px`,
+            outline: `${focus ? 'solid 2.5px #e1f853' : 'none'}`,
+            borderRadius: `${2 * eventSystem_store.cameraZoom}px`
           }}
           value={value}
           onChange={onInputChange}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
         />
-        {refType === "Number" && (
+        {refType === 'Number' && (
           <Box sx={style.buttonField}>
             <IconButton
               sx={style.iconButtonStyle}
@@ -65,8 +65,8 @@ const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
             >
               <KeyboardArrowUpRoundedIcon
                 sx={{
-                  color: "#e1f853",
-                  fontSize: `${10 * eventSystem_store.cameraZoom}px`,
+                  color: '#e1f853',
+                  fontSize: `${10 * eventSystem_store.cameraZoom}px`
                 }}
               />
             </IconButton>
@@ -76,8 +76,8 @@ const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
             >
               <KeyboardArrowDownRoundedIcon
                 sx={{
-                  color: "#e1f853",
-                  fontSize: `${10 * eventSystem_store.cameraZoom}px`,
+                  color: '#e1f853',
+                  fontSize: `${10 * eventSystem_store.cameraZoom}px`
                 }}
               />
             </IconButton>
@@ -93,54 +93,54 @@ export default observer(ReferenceTextField);
 const style = {
   inputAndArrowWrapper: function (unit) {
     return {
-      display: "flex",
-      position: "relative",
+      display: 'flex',
+      position: 'relative',
       height: `${24 * unit}px`,
       width: `${100 * unit}px`,
-      alignSelf: "center",
+      alignSelf: 'center'
     };
   },
   buttonField: {
-    position: "absolute",
-    right: "0",
-    width: "20%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#222222",
+    position: 'absolute',
+    right: '0',
+    width: '20%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#222222'
   },
   iconButtonStyle: {
     padding: 0,
     minWidth: 0,
     minHeight: 0,
-    width: "100%",
-    height: "50%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   tooltip: {
-    color: "#e1f853",
-    bgcolor: "#282828CC",
-    border: "1px solid grey",
+    color: '#e1f853',
+    bgcolor: '#282828CC',
+    border: '1px solid grey',
     borderRadius: 3,
-    bottom: "5px !important",
+    bottom: '5px !important'
   },
   arrow: {
-    "&::before": {
-      backgroundColor: "#282828CC",
-      border: "1px solid grey",
-    },
+    '&::before': {
+      backgroundColor: '#282828CC',
+      border: '1px solid grey'
+    }
   },
   tooltipAndArrow: function () {
     return {
       tooltip: {
-        sx: style.tooltip,
+        sx: style.tooltip
       },
       arrow: {
-        sx: style.arrow,
-      },
+        sx: style.arrow
+      }
     };
-  },
+  }
 };

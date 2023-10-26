@@ -1,10 +1,10 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
-import { ButtonAnimationType } from "@/types/style/buttonAnimations";
-import { CSSHexColor, CSSSize } from "@/types/style/cssUnits";
-import { CSSShadow, ShadowType } from "@/types/style/shadow";
-import { getButtonClickAnimation } from "@/utils/animation/button";
-import { getShadow } from "@utils/style/getShadow";
-import styled, { css } from "styled-components";
+import { basicColors, bgColors } from '@/resources/colors/colors';
+import { ButtonAnimationType } from '@/types/style/buttonAnimations';
+import { CSSHexColor, CSSSize } from '@/types/style/cssUnits';
+import { CSSShadow, ShadowType } from '@/types/style/shadow';
+import { getButtonClickAnimation } from '@/utils/animation/button';
+import { getShadow } from '@utils/style/getShadow';
+import styled, { css } from 'styled-components';
 
 export interface Props {
   onClick?: () => void;
@@ -26,16 +26,16 @@ const Button = ({
   onClick = () => {},
   label,
   disabled = false,
-  size = "fit-content",
-  height = "60px",
-  animation = "none",
+  size = 'fit-content',
+  height = '60px',
+  animation = 'none',
   backgroundColor = bgColors[222222],
   hoverBackgroundColor = bgColors[222222],
-  shadow = "default",
-  backgroundImage = "",
-  hoverBackgroundImage = "",
+  shadow = 'default',
+  backgroundImage = '',
+  hoverBackgroundImage = '',
   color = basicColors.white,
-  outline = false,
+  outline = false
 }: Props) => {
   return (
     <SCButton
@@ -49,7 +49,7 @@ const Button = ({
       $backgroundImage={backgroundImage}
       $hoverBackgroundImage={hoverBackgroundImage}
       $color={color}
-      $shadow={disabled ? "none" : getShadow(backgroundColor, shadow)}
+      $shadow={disabled ? 'none' : getShadow(backgroundColor, shadow)}
       $outline={outline}
     >
       {label}

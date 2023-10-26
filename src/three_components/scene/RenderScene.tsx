@@ -1,25 +1,25 @@
-import storeContainer from "@/store/storeContainer";
-import { reaction, toJS } from "mobx";
-import { useThree } from "@react-three/fiber";
-import { observer } from "mobx-react";
-import { useEffect, useState } from "react";
-import onClickSceneEvents from "../utils/onClickSceneEvents";
-import onContextMenuSceneEvents from "../utils/onContextMenuSceneEvents";
-import onMouseDownSceneEvents from "../utils/onMouseDownSceneEvents";
-import Gizmo from "../gizmo/Gizmo";
-import keyboardSceneEvents from "../utils/keyboardSceneEvents";
-import makeSelectedGroup from "../utils/makeSelectedGroup";
-import executeContextMenu from "../utils/executeContextMenu";
-import onMouseUpSceneEvents from "../utils/onMouseUpSceneEvents";
-import * as THREE from "three";
-import { useServerMaterialLoader } from "@/hooks/loader";
-import ChildGizmo from "../gizmo/ChildGizmo";
-import onDropSceneEvents from "../utils/onDropSceneEvents";
-import { ErrorBoundary } from "react-error-boundary";
-import { useToast } from "@/hooks/useToast";
-import { renderObjects } from "../utils/renderThreeComponents";
-import loadMxJson from "@/utils/json/loadMxJson";
-import SceneEffect from "../common/SceneEffect";
+import storeContainer from '@/store/storeContainer';
+import { reaction, toJS } from 'mobx';
+import { useThree } from '@react-three/fiber';
+import { observer } from 'mobx-react';
+import { useEffect, useState } from 'react';
+import onClickSceneEvents from '../utils/onClickSceneEvents';
+import onContextMenuSceneEvents from '../utils/onContextMenuSceneEvents';
+import onMouseDownSceneEvents from '../utils/onMouseDownSceneEvents';
+import Gizmo from '../gizmo/Gizmo';
+import keyboardSceneEvents from '../utils/keyboardSceneEvents';
+import makeSelectedGroup from '../utils/makeSelectedGroup';
+import executeContextMenu from '../utils/executeContextMenu';
+import onMouseUpSceneEvents from '../utils/onMouseUpSceneEvents';
+import * as THREE from 'three';
+import { useServerMaterialLoader } from '@/hooks/loader';
+import ChildGizmo from '../gizmo/ChildGizmo';
+import onDropSceneEvents from '../utils/onDropSceneEvents';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useToast } from '@/hooks/useToast';
+import { renderObjects } from '../utils/renderThreeComponents';
+import loadMxJson from '@/utils/json/loadMxJson';
+import SceneEffect from '../common/SceneEffect';
 
 const RenderScene = () => {
   const {
@@ -29,7 +29,7 @@ const RenderScene = () => {
     keyboardEventStore,
     selectedObjectStore,
     projectStore,
-    transformControlStore,
+    transformControlStore
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
@@ -61,29 +61,29 @@ const RenderScene = () => {
           Object.values(primitiveStore.meshes)
         );
         switch (mouseEvent[0]) {
-          case "onMouseDown": {
+          case 'onMouseDown': {
             onMouseDownSceneEvents();
             break;
           }
-          case "onMouseMove": {
+          case 'onMouseMove': {
             break;
           }
-          case "onMouseUp": {
+          case 'onMouseUp': {
             onMouseUpSceneEvents();
             break;
           }
-          case "onClick": {
+          case 'onClick': {
             if (!transformControlStore.isFocused) {
               onClickSceneEvents(intersectObjects);
             }
             transformControlStore.clearFocused();
             break;
           }
-          case "onContextMenu": {
+          case 'onContextMenu': {
             onContextMenuSceneEvents(intersectObjects);
             break;
           }
-          case "onDrop": {
+          case 'onDrop': {
             onDropSceneEvents(mouseEvent[1] as React.DragEvent<HTMLDivElement>);
             break;
           }
@@ -109,7 +109,7 @@ const RenderScene = () => {
 
       renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true);
       projectStore.clearMxJson();
-      addToast("프로젝트를 불러왔습니다.");
+      addToast('프로젝트를 불러왔습니다.');
     };
 
     renderLoadedMxJson();
@@ -162,7 +162,7 @@ const RenderScene = () => {
             key={id}
             fallback={<></>}
             onError={() => {
-              addToast("오브젝트 에러!");
+              addToast('오브젝트 에러!');
             }}
           >
             {primitive}

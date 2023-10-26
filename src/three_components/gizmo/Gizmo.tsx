@@ -1,7 +1,7 @@
-import storeContainer from "@/store/storeContainer";
-import { TransformControls } from "@react-three/drei";
-import { observer } from "mobx-react";
-import { setCameraControlEnabled } from "../utils/cameraControl";
+import storeContainer from '@/store/storeContainer';
+import { TransformControls } from '@react-three/drei';
+import { observer } from 'mobx-react';
+import { setCameraControlEnabled } from '../utils/cameraControl';
 
 interface GizmoProps {
   storeId: string;
@@ -14,7 +14,7 @@ const Gizmo = (props: GizmoProps) => {
     : false;
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
-      return value.userData["isLocked"] === true;
+      return value.userData['isLocked'] === true;
     }
   );
 
@@ -55,7 +55,7 @@ const Gizmo = (props: GizmoProps) => {
                 object={primitiveStore.meshes[props.storeId]}
                 size={1.2}
                 onMouseDown={() => {
-                  if (transformControlStore.currentControl !== "TRANSFORM") {
+                  if (transformControlStore.currentControl !== 'TRANSFORM') {
                     transformControlStore.setIsRotated();
                   }
                   setCameraControlEnabled(false);

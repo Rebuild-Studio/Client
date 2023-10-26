@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class DeleteWireCommand extends Command {
   constructor(store, uuid, sheetId) {
     super(store);
-    this.type = "DeleteWireCommand";
+    this.type = 'DeleteWireCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     const wire = sheet.getWireByUuid(uuid);
@@ -14,12 +14,12 @@ export default class DeleteWireCommand extends Command {
     this.data = {
       args: {
         uuid,
-        sheetId,
+        sheetId
       },
       json: undefined,
       sheetName: sheet.name,
       nodeTypes: sockets.map((socket) => sheet.getNodeByUuid(socket.node).type),
-      socketTypes: sockets.map((socket) => socket.name),
+      socketTypes: sockets.map((socket) => socket.name)
     };
   }
   execute() {
@@ -28,7 +28,7 @@ export default class DeleteWireCommand extends Command {
     this.data.json = Utils.stringify({
       nodes: [],
       wires: [wire],
-      sheetId: this.data.args.sheetId,
+      sheetId: this.data.args.sheetId
     });
     sheet.deleteWireByUuidInSheet(this.data.args.uuid, this.data.args.sheetId);
   }
@@ -40,7 +40,7 @@ export default class DeleteWireCommand extends Command {
     return [
       this.data.sheetName,
       this.data.nodeTypes.map((v) => Utils.encryptString(v)),
-      this.data.socketTypes.map((v) => Utils.encryptString(v)),
+      this.data.socketTypes.map((v) => Utils.encryptString(v))
     ].flat();
   }
 }

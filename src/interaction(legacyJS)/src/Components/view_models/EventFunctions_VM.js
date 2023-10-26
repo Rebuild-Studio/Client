@@ -1,13 +1,13 @@
-import React from "react";
-import * as THREE from "three";
-import storeContainer from "../stores/storeContainer";
-import { Loader } from "../class/Loader";
-import MetaObject from "../class/Studio/MetaObject";
+import React from 'react';
+import * as THREE from 'three';
+import storeContainer from '../stores/storeContainer';
+import { Loader } from '../class/Loader';
+import MetaObject from '../class/Studio/MetaObject';
 
-import CSG from "../class/three-csg";
-import { controllerBar_store } from "../stores/ControllerBar_Store";
-import { objectViewModel } from "./Object_VM";
-import { ObjectControllerVM } from "./ObjectController_VM";
+import CSG from '../class/three-csg';
+import { controllerBar_store } from '../stores/ControllerBar_Store';
+import { objectViewModel } from './Object_VM';
+import { ObjectControllerVM } from './ObjectController_VM';
 
 export default function EventFunctions_VM() {
   const {
@@ -15,21 +15,21 @@ export default function EventFunctions_VM() {
     object_store,
     undo_store,
     loader_store,
-    renderingContext_store,
+    renderingContext_store
   } = storeContainer;
 
   const DoubleClickThreshold = 200; // 200ms
 
   const ImportImg = async () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.addEventListener("change", async function () {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.addEventListener('change', async function () {
       common_store.setUploadedImg(input.files);
       const imageForm = new FormData();
       //const blob = new Blob([new Uint8Array(input.files[0].result)], {type: input.files[0].type });
 
-      imageForm.append("image", await fileToBlob(input.files[0]), "test.png");
+      imageForm.append('image', await fileToBlob(input.files[0]), 'test.png');
       const res = await TransferData.PostIMG(imageForm);
       createByImage(res.data.data);
     });
@@ -37,15 +37,15 @@ export default function EventFunctions_VM() {
     input.click(); // open
   };
   const ImportApart = async () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.addEventListener("change", async function () {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.addEventListener('change', async function () {
       common_store.setUploadedImg(input.files);
       const imageForm = new FormData();
       //const blob = new Blob([new Uint8Array(input.files[0].result)], {type: input.files[0].type });
 
-      imageForm.append("image", await fileToBlob(input.files[0]), "test.png");
+      imageForm.append('image', await fileToBlob(input.files[0]), 'test.png');
       const res = await TransferData.PostApart(imageForm);
       createByApart(res.data.data);
     });
@@ -56,10 +56,10 @@ export default function EventFunctions_VM() {
     new Blob([new Uint8Array(await file.arrayBuffer())], { type: file.type });
   const ImportGLB = async () => {
     var loader = new Loader(false);
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = ".glb";
-    input.addEventListener("change", function () {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.glb';
+    input.addEventListener('change', function () {
       loader.loadFiles(input.files);
     });
     input.click(); // open
@@ -69,7 +69,7 @@ export default function EventFunctions_VM() {
     e.preventDefault();
     var loader = new Loader();
 
-    if (e.dataTransfer.types[0] === "text/plain") return; // Outliner drop
+    if (e.dataTransfer.types[0] === 'text/plain') return; // Outliner drop
 
     if (e.dataTransfer.items) {
       // DataTransferItemList supports folders
@@ -101,7 +101,7 @@ export default function EventFunctions_VM() {
     );
     if (intersects.length > 0) {
       var intersect = null;
-      if (intersects[0].object.name === "plane") {
+      if (intersects[0].object.name === 'plane') {
         if (intersects.length === 1) {
           ObjectControllerVM.DeSelectAll();
           return;
@@ -118,7 +118,7 @@ export default function EventFunctions_VM() {
       const metaObject = objectViewModel.GetMetaObjectByMeshUuid(
         parentObject.uuid
       );
-      if (!metaObject.props["lock"]) ObjectControllerVM.Select(metaObject);
+      if (!metaObject.props['lock']) ObjectControllerVM.Select(metaObject);
     }
   }, []);
 
@@ -158,18 +158,18 @@ export default function EventFunctions_VM() {
     );
     common_store.setOnMouseUpPosition(mouse);
     handleOnClick(e);
-    document.removeEventListener("mouseup", onMouseUp);
+    document.removeEventListener('mouseup', onMouseUp);
   });
   const onMouseDown = React.useCallback((e) => {
     e.preventDefault();
-    if (common_store.curCategory === "canvas") {
+    if (common_store.curCategory === 'canvas') {
       const mouse = new THREE.Vector2();
       mouse.set(
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / (window.innerHeight + 78)) * 2 + 1
       );
       common_store.setOnMouseDownPosition(mouse);
-      document.addEventListener("mouseup", onMouseUp);
+      document.addEventListener('mouseup', onMouseUp);
     }
   });
 
@@ -223,7 +223,7 @@ export default function EventFunctions_VM() {
             target.mesh.position.copy(intersect.point);
           }
         }
-        objectViewModel.SetProps("position", target.mesh.position);
+        objectViewModel.SetProps('position', target.mesh.position);
       }
     }
   }
@@ -241,7 +241,7 @@ export default function EventFunctions_VM() {
     // Initialize the closest vertex and distance
     let closestVertex = null;
     let closestDistance = Infinity;
-    const positionAttribute = object.geometry.getAttribute("position");
+    const positionAttribute = object.geometry.getAttribute('position');
 
     const vertex = new THREE.Vector3();
 
@@ -279,7 +279,7 @@ export default function EventFunctions_VM() {
     const DoorCollidergeo = new THREE.BoxGeometry(1.5, 5, 1);
     const DoorCollider = new THREE.Mesh(
       DoorCollidergeo,
-      new THREE.MeshStandardMaterial({ color: "blue" })
+      new THREE.MeshStandardMaterial({ color: 'blue' })
     );
     const DoorColliderObject = new THREE.Mesh(blankgeometry, blankmaterial);
     DoorColliderObject.material.visible = false;
@@ -287,7 +287,7 @@ export default function EventFunctions_VM() {
     const WindowCollidergeo = new THREE.BoxGeometry(3, 3, 2);
     const WindowCollider = new THREE.Mesh(
       WindowCollidergeo,
-      new THREE.MeshStandardMaterial({ color: "red" })
+      new THREE.MeshStandardMaterial({ color: 'red' })
     );
 
     const WindowColliderObject = new THREE.Mesh(blankgeometry, blankmaterial);
@@ -301,7 +301,7 @@ export default function EventFunctions_VM() {
       //console.log(i)
       const data_array = points[i.toString()];
 
-      if (i.toString() === "floor") {
+      if (i.toString() === 'floor') {
         const loader = new THREE.TextureLoader();
         const floormap = loader_store.apartTexture[0].clone();
         const roughnessmap = loader_store.apartTexture[2].clone();
@@ -319,7 +319,7 @@ export default function EventFunctions_VM() {
         floormaterial = new THREE.MeshStandardMaterial({
           map: floormap,
           normalMap: normalmap,
-          roughnessMap: roughnessmap,
+          roughnessMap: roughnessmap
         });
 
         shape = new THREE.Shape();
@@ -336,7 +336,7 @@ export default function EventFunctions_VM() {
           bevelThickness: 1,
           bevelSize: 1,
           bevelOffset: 0,
-          bevelSegments: 1,
+          bevelSegments: 1
         };
 
         geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -350,9 +350,9 @@ export default function EventFunctions_VM() {
       }
 
       if (
-        data_array[0][8] === "Wall" ||
-        data_array[0][8] === "Window" ||
-        data_array[0][8] === "Door"
+        data_array[0][8] === 'Wall' ||
+        data_array[0][8] === 'Window' ||
+        data_array[0][8] === 'Door'
       ) {
         shape = new THREE.Shape();
         shape.moveTo(data_array[0][0], data_array[0][1]);
@@ -368,7 +368,7 @@ export default function EventFunctions_VM() {
           bevelThickness: 1,
           bevelSize: 1,
           bevelOffset: 0,
-          bevelSegments: 1,
+          bevelSegments: 1
         };
 
         geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -393,13 +393,13 @@ export default function EventFunctions_VM() {
         wallmaterial = new THREE.MeshStandardMaterial({
           map: wallmap,
           normalMap: normalmap,
-          roughnessMap: roughnessmap,
+          roughnessMap: roughnessmap
         });
         mesh.material = wallmaterial;
         WallObject.attach(mesh);
       }
 
-      if (data_array[0][8] === "Door") {
+      if (data_array[0][8] === 'Door') {
         doornumber++;
         const doormesh = loader_store.apartObj[0].clone();
         const loader = new THREE.TextureLoader();
@@ -452,7 +452,7 @@ export default function EventFunctions_VM() {
           );
         }
       }
-      if (data_array[0][8] === "Window") {
+      if (data_array[0][8] === 'Window') {
         const windowmesh = loader_store.apartObj[1].clone();
         const windowcollidermesh = WindowCollider.clone();
         // console.log(windowmesh)
@@ -477,7 +477,7 @@ export default function EventFunctions_VM() {
           //console.log("Window")
           windowmesh.children[0].rotateX(3.14 / 2);
           windowcollidermesh.rotateX(3.14 / 2);
-          windowmesh.name = "Window" + i.toString();
+          windowmesh.name = 'Window' + i.toString();
           //doormesh.children[0].position.set((data_array[0][0]+data_array[0][2])/40,(data_array[0][1]+data_array[0][3])/40,3)
           windowmesh.children[0].position.set(
             (data_array[0][0] + data_array[0][6]) / 40 - 0.5,
@@ -526,13 +526,13 @@ export default function EventFunctions_VM() {
       for (let dind = 0; dind < DoorColliderObject.children.length; dind++) {
         DoorColliderObject.children[dind].updateMatrix();
         const bspB = CSG.fromMesh(DoorColliderObject.children[dind]);
-        bspResult = bspTemp["subtract"](bspB);
+        bspResult = bspTemp['subtract'](bspB);
         bspTemp = bspResult;
       }
       for (let dind = 0; dind < WindowColliderObject.children.length; dind++) {
         WindowColliderObject.children[dind].updateMatrix();
         const bspB = CSG.fromMesh(WindowColliderObject.children[dind]);
-        bspResult = bspTemp["subtract"](bspB);
+        bspResult = bspTemp['subtract'](bspB);
         bspTemp = bspResult;
       }
       const meshResult = CSG.toMesh(
@@ -565,18 +565,18 @@ export default function EventFunctions_VM() {
       null,
       null,
       false,
-      "Object"
+      'Object'
     );
     tempObject.Init(apartObject);
     // objectViewModel.AddMetaObject(tempObject);
     var data = {
-      type: "add",
+      type: 'add',
       objectId: tempObject.objectId,
       name: DoorObject,
       transform: tempObject.transform,
       group: tempObject.mesh,
       blobGlb: null,
-      url: null,
+      url: null
     };
 
     //undo_store.AddUnDoCommand(tempObject, data, addUndo, addRedo);
@@ -592,9 +592,9 @@ export default function EventFunctions_VM() {
 
         const p = points[i.toString()][0];
 
-        if (p["point"].length > 0) {
+        if (p['point'].length > 0) {
           /////
-          for (const point of p["point"]) {
+          for (const point of p['point']) {
             __midx += point[0];
             __midy += point[1];
             _midlen += 1;
@@ -615,28 +615,28 @@ export default function EventFunctions_VM() {
         let geometry;
         const p = points[i.toString()][0];
         const colorstring =
-          "rgb(" +
-          p["rgb"][2].toString() +
-          "," +
-          p["rgb"][1].toString() +
-          "," +
-          p["rgb"][0].toString() +
-          ")";
+          'rgb(' +
+          p['rgb'][2].toString() +
+          ',' +
+          p['rgb'][1].toString() +
+          ',' +
+          p['rgb'][0].toString() +
+          ')';
         const color = new THREE.Color(colorstring);
 
-        if (p["point"].length > 0) {
+        if (p['point'].length > 0) {
           /////
-          for (const point of p["point"]) {
+          for (const point of p['point']) {
             midx += point[0];
             midy += point[1];
           }
-          midx = midx / p["point"].length;
-          midy = midy / p["point"].length;
-          shape.moveTo(p["point"][0][0] - midx, p["point"][0][1] - midy);
-          for (const point of p["point"]) {
+          midx = midx / p['point'].length;
+          midy = midy / p['point'].length;
+          shape.moveTo(p['point'][0][0] - midx, p['point'][0][1] - midy);
+          for (const point of p['point']) {
             shape.lineTo(point[0] - midx, point[1] - midy);
           }
-          shape.lineTo(p["point"][0][0] - midx, p["point"][0][1] - midy);
+          shape.lineTo(p['point'][0][0] - midx, p['point'][0][1] - midy);
 
           const extrudeSettings = {
             steps: 1,
@@ -645,7 +645,7 @@ export default function EventFunctions_VM() {
             bevelThickness: 1,
             bevelSize: 1,
             bevelOffset: 0,
-            bevelSegments: 1,
+            bevelSegments: 1
           };
 
           geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -653,7 +653,7 @@ export default function EventFunctions_VM() {
 
         const material = new THREE.MeshStandardMaterial({ color: color });
         const mesh = new THREE.Mesh(geometry, material);
-        mesh.name = "new";
+        mesh.name = 'new';
         mesh.scale.set(0.01, 0.01, 0.5);
         mesh.position.z -= 1;
         var tempObject = new MetaObject(
@@ -663,7 +663,7 @@ export default function EventFunctions_VM() {
           null,
           null,
           false,
-          "Object"
+          'Object'
         );
         tempObject.Init(mesh);
         // object_store.AddMetaObject(tempObject);
@@ -672,12 +672,12 @@ export default function EventFunctions_VM() {
         tempObject.mesh.rotation.z = Math.PI;
         tempObject.mesh.rotation.y = Math.PI;
         var data = {
-          mode: "add",
+          mode: 'add',
           objectId: tempObject.objectId,
           name: mesh.name,
           transform: tempObject.transform,
           group: tempObject.mesh,
-          type: "Object",
+          type: 'Object'
         };
         // undo_store.AddUnDoCommand(tempObject, data, addUndo, addRedo);
       } else break;
@@ -804,6 +804,6 @@ export default function EventFunctions_VM() {
     ImportImg,
     ImportApart,
     onMouseDown,
-    onMouseUp,
+    onMouseUp
   };
 }

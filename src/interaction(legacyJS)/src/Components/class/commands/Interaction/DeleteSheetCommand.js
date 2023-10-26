@@ -1,17 +1,17 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class DeleteSheetCommand extends Command {
   constructor(store, uuid) {
     super(store);
-    this.type = "DeleteSheetCommand";
+    this.type = 'DeleteSheetCommand';
     this.name = this.type;
     this.data = {
       uuid: uuid,
       selected: uuid === this.store.selectedSheet,
       order: this.store.sheetOrder.indexOf(uuid),
       sheetName: undefined,
-      json: undefined,
+      json: undefined
     };
   }
   execute() {
@@ -28,7 +28,7 @@ export default class DeleteSheetCommand extends Command {
       this.data.json = Utils.stringify({
         nodes,
         wires,
-        groups,
+        groups
       });
 
     this.data.sheetName = sheet.name;
@@ -42,7 +42,7 @@ export default class DeleteSheetCommand extends Command {
      */
     const sheet = this.store.createSheet({
       name: this.data.sheetName,
-      uuid: this.data.uuid,
+      uuid: this.data.uuid
     });
 
     /**
@@ -53,7 +53,7 @@ export default class DeleteSheetCommand extends Command {
     sheet.parseInteractionJson(this.data.json);
     this.store.setSheetOrder({
       uuid: sheet.uuid,
-      order: this.data.order,
+      order: this.data.order
     });
     if (this.data.selected) {
       this.store.setSelectedSheet(sheet.uuid);

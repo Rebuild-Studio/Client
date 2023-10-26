@@ -1,8 +1,8 @@
-import getProjectServices from "@/network/services/project/get/getProjectServices";
-import { ResponseGetMxProjectList } from "@/network/services/project/get/models/getMxProjectList.model";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { Project, ProjectList } from "../types/project";
+import getProjectServices from '@/network/services/project/get/getProjectServices';
+import { ResponseGetMxProjectList } from '@/network/services/project/get/models/getMxProjectList.model';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { Project, ProjectList } from '../types/project';
 
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   const mappedData: ProjectList<Project> = data.result.map((project) => {
@@ -10,7 +10,7 @@ const projectListDataMapper = (data: ResponseGetMxProjectList) => {
       id: project.mxId,
       name: project.mxName,
       thumbnail: project.thumbnail,
-      savedAt: project.updatedAt,
+      savedAt: project.updatedAt
     };
   });
   return mappedData;
@@ -21,12 +21,12 @@ interface ProjectListInterface {
 }
 export const useFetchProjectList = ({ onError }: ProjectListInterface) => {
   const query = useQuery({
-    queryKey: ["projectList"],
+    queryKey: ['projectList'],
     queryFn: () =>
       getProjectServices
         .getMyMxProjectList()
         .then((res) => projectListDataMapper(res)),
-    keepPreviousData: true,
+    keepPreviousData: true
   });
   useEffect(() => {
     if (query.isError && onError) onError(query.error);

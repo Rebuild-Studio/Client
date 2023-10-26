@@ -1,5 +1,5 @@
-import { makeObservable, action, observable } from "mobx";
-import UUIDGenerator from "../../../utils/uuid";
+import { makeObservable, action, observable } from 'mobx';
+import UUIDGenerator from '../../../utils/uuid';
 
 export default class NodeGroup {
   name;
@@ -7,8 +7,8 @@ export default class NodeGroup {
   children = [];
   position = [0, 0];
   size = [100, 100];
-  folder = "open";
-  type = "group";
+  folder = 'open';
+  type = 'group';
 
   constructor(name, uuid) {
     this.uuid = uuid ? uuid : UUIDGenerator.run();
@@ -23,7 +23,7 @@ export default class NodeGroup {
       addChildren: action,
       deleteChild: action,
       setPosition: action,
-      setSize: action,
+      setSize: action
     });
   }
 
@@ -49,7 +49,7 @@ export default class NodeGroup {
       name: this.name,
       children: this.children,
       position: this.position,
-      size: this.size,
+      size: this.size
     };
   }
 

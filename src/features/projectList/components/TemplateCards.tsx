@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { ExampleCard } from "./card/ExampleCard";
-import { AddCard } from "./card/AddCard";
-import { StyledGrid } from "./projectList.styles";
-import { ProjectList, Template } from "../types/project";
+import { useState } from 'react';
+import { ExampleCard } from './card/ExampleCard';
+import { AddCard } from './card/AddCard';
+import { StyledGrid } from './projectList.styles';
+import { ProjectList, Template } from '../types/project';
 
 type Props = {
   projects: ProjectList<Template>;

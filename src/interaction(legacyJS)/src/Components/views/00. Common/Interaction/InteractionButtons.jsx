@@ -1,6 +1,6 @@
-import { Button, Tooltip } from "@mui/material";
-import { observer } from "mobx-react";
-import storeContainer from "../../../stores/storeContainer";
+import { Button, Tooltip } from '@mui/material';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../stores/storeContainer';
 
 const InteractionUndoButton = observer(() => {
   const { interactionhistory_store } = storeContainer;
@@ -36,7 +36,7 @@ const InteractionHistoryButton = observer((props) => {
       arrow
       componentsProps={style}
       sx={{
-        ml: ml,
+        ml: ml
       }}
     >
       <Button disableRipple onClick={handleClick}>
@@ -44,7 +44,7 @@ const InteractionHistoryButton = observer((props) => {
           src={`/Icons/Studio/${type}.png`}
           alt={type}
           style={{
-            opacity: array.length > 0 ? 1.0 : 0.4,
+            opacity: array.length > 0 ? 1.0 : 0.4
           }}
         />
       </Button>
@@ -66,19 +66,19 @@ export default InteractionTopBarDepth2Buttons;
 const style = {
   tooltip: {
     sx: {
-      color: "#fff",
-      bgcolor: "#8B87FF",
-      border: "1px solid #8B87FF",
+      color: '#fff',
+      bgcolor: '#8B87FF',
+      border: '1px solid #8B87FF',
       borderRadius: 3,
-      bottom: "5px !important",
-    },
+      bottom: '5px !important'
+    }
   },
   arrow: {
     sx: {
-      "&::before": {
-        backgroundColor: "#8B87FF",
-        border: "1px solid #8B87FF",
-      },
-    },
-  },
+      '&::before': {
+        backgroundColor: '#8B87FF',
+        border: '1px solid #8B87FF'
+      }
+    }
+  }
 };

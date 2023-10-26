@@ -1,8 +1,8 @@
-import * as THREE from "three";
-import { RenderStoreProps } from "@/store/renderStore";
-import { ProjectStore } from "@/store/projectStore";
-import { PrimitiveStore } from "@/store/primitiveStore";
-import { SceneSettingStoreProps } from "@/store/sceneSettingStore";
+import * as THREE from 'three';
+import { RenderStoreProps } from '@/store/renderStore';
+import { ProjectStore } from '@/store/projectStore';
+import { PrimitiveStore } from '@/store/primitiveStore';
+import { SceneSettingStoreProps } from '@/store/sceneSettingStore';
 
 interface CreateThumbnailProps {
   renderStore: RenderStoreProps;
@@ -17,9 +17,9 @@ const createThumbnail = async (
 ): Promise<string> => {
   const { renderStore, projectStore, sceneSettingStore, primitiveStore } =
     props;
-  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   if (!canvas) {
-    throw new Error("Canvas element not found");
+    throw new Error('Canvas element not found');
   }
   const camera = renderStore.controls?.camera;
   primitiveStore.clearSelectedPrimitives();
@@ -41,13 +41,13 @@ const createThumbnail = async (
         if (blob) {
           const reader = new FileReader();
           reader.onload = () => {
-            resolve((reader.result as string)?.split(",")[1]);
+            resolve((reader.result as string)?.split(',')[1]);
           };
           reader.readAsDataURL(blob);
         } else {
-          throw new Error("Blob is null");
+          throw new Error('Blob is null');
         }
-      }, "image/png");
+      }, 'image/png');
 
       // grid 보이게
       sceneSettingStore.setIsGridVisible(true);

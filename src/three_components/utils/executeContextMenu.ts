@@ -1,42 +1,42 @@
-import storeContainer from "@/store/storeContainer";
-import { nanoid } from "nanoid";
+import storeContainer from '@/store/storeContainer';
+import { nanoid } from 'nanoid';
 import {
   renderAsset,
   renderGroup,
   renderPointLight,
   renderPrimitive,
-  renderSpotLight,
-} from "./renderThreeComponents";
-import { MeshType } from "@/store/primitiveStore";
-import * as THREE from "three";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
-import { copyGroup, copyObject } from "./copyObject";
+  renderSpotLight
+} from './renderThreeComponents';
+import { MeshType } from '@/store/primitiveStore';
+import * as THREE from 'three';
+import canvasHistoryStore from '@/store/canvasHistoryStore';
+import { copyGroup, copyObject } from './copyObject';
 
 const executeContextMenu = (scene: THREE.Scene) => {
   const {
     projectStateStore,
     primitiveStore,
     contextMenuStore,
-    sceneSettingStore,
+    sceneSettingStore
   } = storeContainer;
 
   switch (contextMenuStore.currentSelectedContextMenu) {
-    case "미리보기":
+    case '미리보기':
       break;
-    case "그리드 숨기기":
+    case '그리드 숨기기':
       sceneSettingStore.setIsGridVisible(false);
       sceneSettingStore.setIsAxisVisible(false);
       break;
-    case "그리드 표시":
+    case '그리드 표시':
       sceneSettingStore.setIsGridVisible(true);
       sceneSettingStore.setIsAxisVisible(true);
       break;
-    case "저장":
+    case '저장':
       break;
-    case "붙여넣기":
+    case '붙여넣기':
       Object.values(projectStateStore.currentCopyPrimitive).forEach((value) => {
         switch (value.name) {
-          case "POINT_LIGHT": {
+          case 'POINT_LIGHT': {
             const { storeId, newGroup } = copyGroup(value);
             primitiveStore.addPrimitive(
               storeId,
@@ -44,7 +44,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
             );
             break;
           }
-          case "SPOT_LIGHT": {
+          case 'SPOT_LIGHT': {
             const { storeId, newGroup } = copyGroup(value);
             primitiveStore.addPrimitive(
               storeId,
@@ -52,7 +52,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
             );
             break;
           }
-          case "ASSET": {
+          case 'ASSET': {
             const { storeId, newGroup } = copyGroup(value);
             primitiveStore.addPrimitive(
               storeId,
@@ -60,7 +60,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
             );
             break;
           }
-          case "GROUP": {
+          case 'GROUP': {
             const { storeId, newGroup } = copyGroup(value);
             primitiveStore.addPrimitive(
               storeId,
@@ -78,15 +78,15 @@ const executeContextMenu = (scene: THREE.Scene) => {
         }
       });
       break;
-    case "복사":
+    case '복사':
       const copyMeshes: MeshType = {};
 
       Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
         switch (value.name) {
-          case "POINT_LIGHT":
-          case "SPOT_LIGHT":
-          case "ASSET":
-          case "GROUP": {
+          case 'POINT_LIGHT':
+          case 'SPOT_LIGHT':
+          case 'ASSET':
+          case 'GROUP': {
             const { storeId, newGroup } = copyGroup(value);
             copyMeshes[storeId] = newGroup;
             break;
@@ -100,11 +100,11 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       projectStateStore.updateCurrentCopyPrimitive(copyMeshes);
       break;
-    case "그룹":
+    case '그룹':
       const storeId = nanoid();
       primitiveStore.addPrimitive(storeId, renderGroup(storeId));
       break;
-    case "그룹 해제":
+    case '그룹 해제':
       const selectedGroupStoreId = Object.keys(
         primitiveStore.selectedPrimitives
       )[0];
@@ -112,38 +112,38 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       children.forEach((value) => {
         primitiveStore.updatePrimitive(
-          value.userData["storeId"],
+          value.userData['storeId'],
           value as THREE.Mesh
         );
       });
 
       while (children.length) {
-        scene.attach(primitiveStore.meshes[children[0].userData["storeId"]]);
+        scene.attach(primitiveStore.meshes[children[0].userData['storeId']]);
       }
 
       primitiveStore.removeSelectedPrimitives(selectedGroupStoreId);
       primitiveStore.removePrimitive(selectedGroupStoreId);
       canvasHistoryStore.differUngroup(selectedGroupStoreId);
       break;
-    case "잠그기":
+    case '잠그기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
         ([key, value]) => {
-          value.userData["isLocked"] = true;
+          value.userData['isLocked'] = true;
 
           primitiveStore.updatePrimitive(key, value);
         }
       );
       break;
-    case "잠금 해제":
+    case '잠금 해제':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
         ([key, value]) => {
-          value.userData["isLocked"] = false;
+          value.userData['isLocked'] = false;
 
           primitiveStore.updatePrimitive(key, value);
         }
       );
       break;
-    case "숨기기":
+    case '숨기기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
         ([key, value]) => {
           value.visible = false;
@@ -152,7 +152,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         }
       );
       break;
-    case "보이기":
+    case '보이기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
         ([key, value]) => {
           value.visible = true;
@@ -161,7 +161,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
         }
       );
       break;
-    case "삭제":
+    case '삭제':
       const selectedPrimitives = Object.keys(primitiveStore.selectedPrimitives);
 
       selectedPrimitives.forEach((key) => {
@@ -173,7 +173,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
       canvasHistoryStore.differDelete(selectedPrimitives[0]);
       break;
   }
-  contextMenuStore.updateSelectedContextMenu("NONE");
+  contextMenuStore.updateSelectedContextMenu('NONE');
 };
 
 export default executeContextMenu;

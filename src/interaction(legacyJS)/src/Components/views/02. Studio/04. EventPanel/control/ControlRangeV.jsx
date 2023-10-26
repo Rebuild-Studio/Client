@@ -1,8 +1,8 @@
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { useState, useEffect } from "react";
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useState, useEffect } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
 
 const ControlRangeV = observer((props) => {
   const { name, control, update, InputProps } = props;
@@ -20,8 +20,8 @@ const ControlRangeV = observer((props) => {
   return (
     <Box noValidate>
       <TextField
-        label={string_store.string("min")}
-        type={"number"}
+        label={string_store.string('min')}
+        type={'number'}
         value={defaultValue[0]}
         InputProps={InputProps}
         onChange={(e) => {
@@ -30,8 +30,8 @@ const ControlRangeV = observer((props) => {
         }}
       />
       <TextField
-        label={string_store.string("max")}
-        type={"number"}
+        label={string_store.string('max')}
+        type={'number'}
         value={defaultValue[1]}
         InputProps={InputProps}
         onChange={(e) => {

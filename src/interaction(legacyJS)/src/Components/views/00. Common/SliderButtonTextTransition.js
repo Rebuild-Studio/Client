@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
+import { useState, useEffect } from 'react';
+import { Typography } from '@mui/material';
 
 const TextTransition = ({ text }) => {
-  const [visibleText, setVisibleText] = useState("");
+  const [visibleText, setVisibleText] = useState('');
 
   useEffect(() => {
     let timer = null;
@@ -30,17 +30,17 @@ export default TextTransition;
 
 const style = {
   textArea: {
-    display: "flex",
-    alignItems: "center",
-    flexGrow: "0",
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "12px",
-    fontWeight: "normal",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "normal",
-    letterSpacing: "normal",
-    textAlign: "left",
-    color: "#fff",
-  },
+    display: 'flex',
+    alignItems: 'center',
+    flexGrow: '0',
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '12px',
+    fontWeight: 'normal',
+    fontStretch: 'normal',
+    fontStyle: 'normal',
+    lineHeight: 'normal',
+    letterSpacing: 'normal',
+    textAlign: 'left',
+    color: '#fff'
+  }
 };

@@ -1,13 +1,13 @@
-import { Canvas } from "@react-three/fiber";
-import RenderScene from "../scene/RenderScene";
-import Grid from "./Grid";
-import styled from "styled-components";
-import { bgColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { CanvasHelper } from "./CanvasHelper";
-import SceneEnvironment from "./SceneEnvironment";
-import { hsvaToHex } from "@uiw/color-convert";
+import { Canvas } from '@react-three/fiber';
+import RenderScene from '../scene/RenderScene';
+import Grid from './Grid';
+import styled from 'styled-components';
+import { bgColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import { observer } from 'mobx-react';
+import { CanvasHelper } from './CanvasHelper';
+import SceneEnvironment from './SceneEnvironment';
+import { hsvaToHex } from '@uiw/color-convert';
 
 const Scene = () => {
   const { mouseEventStore, sceneSettingStore } = storeContainer;
@@ -23,27 +23,27 @@ const Scene = () => {
             : bgColors.sceneBackground
         }
         onMouseDown={(e) => {
-          mouseEventStore.updateMouseEvent("onMouseDown", e);
+          mouseEventStore.updateMouseEvent('onMouseDown', e);
         }}
         onMouseMove={(e) => {
-          mouseEventStore.updateMouseEvent("onMouseMove", e);
+          mouseEventStore.updateMouseEvent('onMouseMove', e);
         }}
         onMouseUp={(e) => {
-          mouseEventStore.updateMouseEvent("onMouseUp", e);
+          mouseEventStore.updateMouseEvent('onMouseUp', e);
         }}
         onClick={(e) => {
-          mouseEventStore.updateMouseEvent("onClick", e);
+          mouseEventStore.updateMouseEvent('onClick', e);
         }}
         onContextMenu={(e) => {
           e.preventDefault();
-          mouseEventStore.updateMouseEvent("onContextMenu", e);
+          mouseEventStore.updateMouseEvent('onContextMenu', e);
         }}
         onDragOver={(e) => {
           e.preventDefault();
         }}
         onDrop={(e) => {
           e.preventDefault();
-          mouseEventStore.updateMouseEvent("onDrop", e);
+          mouseEventStore.updateMouseEvent('onDrop', e);
         }}
       >
         <SceneEnvironment />

@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import storeContainer from "../../../../../stores/storeContainer";
-import Curve from "../../views/Curve";
-import SocketColor from "../../views/SocketColor";
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../../stores/storeContainer';
+import Curve from '../../views/Curve';
+import SocketColor from '../../views/SocketColor';
 
 //PreviewWire : 연결 중인 소켓의 와이어를 미리 그려주는 기능
 const PreviewWire = observer(() => {

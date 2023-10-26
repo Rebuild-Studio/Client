@@ -1,14 +1,14 @@
-import { makeObservable, observable, action, toJS } from "mobx";
-import * as THREE from "three";
-import { object_store } from "../../stores/Object_Store";
-import { ObjectControllerVM } from "../../view_models/ObjectController_VM";
-import { objectViewModel } from "../../view_models/Object_VM";
+import { makeObservable, observable, action, toJS } from 'mobx';
+import * as THREE from 'three';
+import { object_store } from '../../stores/Object_Store';
+import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
+import { objectViewModel } from '../../view_models/Object_VM';
 
 class MetaClass {
   objectId = 0;
 
-  type = "Object";
-  name = "";
+  type = 'Object';
+  name = '';
   blobGlb = null;
   transform = null;
   bbox = new THREE.Box3();
@@ -35,7 +35,7 @@ class MetaClass {
       type,
       children,
       materialIndicesMapping,
-      props,
+      props
     }
   ) {
     makeObservable(this, {
@@ -50,7 +50,7 @@ class MetaClass {
       DeleteMeta: action,
       ReConstructor: action,
       SetProps: action,
-      InitProps: action,
+      InitProps: action
     });
     this.mesh = object;
     this.objectId = objectId ? objectId : object.uuid;
@@ -99,10 +99,10 @@ class MetaClass {
     objectViewModel.AddMetaObject(this);
   }
   async ReConstructor({ parentId, childrenIds }) {
-    if (typeof parentId !== "undefined") {
+    if (typeof parentId !== 'undefined') {
       this.parentId = parentId;
     }
-    if (typeof childrenIds !== "undefined") {
+    if (typeof childrenIds !== 'undefined') {
       this.childrenIds = childrenIds;
     }
   }
@@ -125,14 +125,14 @@ class MetaClass {
     this.transform = {
       position: this.mesh.position.clone(),
       rotation: this.mesh.rotation.clone(),
-      scale: this.mesh.scale.clone(),
+      scale: this.mesh.scale.clone()
     };
   }
 
   async ExportGLB() {
     const gltfForm = new FormData();
-    const glbName = this.name.replace(/\s/g, "-");
-    gltfForm.append("asset", this.blobGlb, glbName + "_test.glb");
+    const glbName = this.name.replace(/\s/g, '-');
+    gltfForm.append('asset', this.blobGlb, glbName + '_test.glb');
 
     // 서버로 전송
     const res = await TransferData.PostGLB(gltfForm);
@@ -143,7 +143,7 @@ class MetaClass {
   async toJson(mode) {
     //Json 변환 전 처리
 
-    if (this.blobGlb && mode === "save") {
+    if (this.blobGlb && mode === 'save') {
       await this.ExportGLB();
     }
 
@@ -157,27 +157,27 @@ class MetaClass {
       editMesh: this.editMesh,
       groupId: this.groupId,
       parentId: this.parentId,
-      childrenIds: this.childrenIds,
+      childrenIds: this.childrenIds
     };
   }
 
   InitProps() {
     this.props = {
       ...this.props,
-      position: this.mesh["position"],
-      rotation: this.mesh["rotation"],
-      scale: this.mesh["scale"],
-      visible: this.mesh["visible"],
+      position: this.mesh['position'],
+      rotation: this.mesh['rotation'],
+      scale: this.mesh['scale'],
+      visible: this.mesh['visible']
     };
   }
   SetProps(prop, value) {
     switch (prop) {
-      case "lock":
+      case 'lock':
         this.props = { ...this.props, [prop]: value };
         break;
       default:
-        if (typeof this.mesh[prop] !== "undefined") {
-          if (typeof this.mesh[prop].copy === "function") {
+        if (typeof this.mesh[prop] !== 'undefined') {
+          if (typeof this.mesh[prop].copy === 'function') {
             this.mesh[prop].copy(value);
           } else {
             this.mesh[prop] = value;
@@ -245,8 +245,8 @@ class MetaClass {
 
   name_check(metaObject, name) {
     //this will search for the ( ) that comes at the end of name(not metaObject.name)
-    var left = metaObject.name.lastIndexOf("(");
-    var right = metaObject.name.lastIndexOf(")");
+    var left = metaObject.name.lastIndexOf('(');
+    var right = metaObject.name.lastIndexOf(')');
 
     if (metaObject.name.substring(0, left) === name) {
       if (!isNaN(metaObject.name.substring(left + 1, right))) {

@@ -1,5 +1,5 @@
-import { Vector3 } from "three";
-import MiddleProcess from "./MiddleProcess";
+import { Vector3 } from 'three';
+import MiddleProcess from './MiddleProcess';
 
 export default class AngleToPositionProcess extends MiddleProcess {
   calculate(inputs) {

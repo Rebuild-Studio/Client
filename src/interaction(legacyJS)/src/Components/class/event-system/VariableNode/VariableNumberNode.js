@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "VariableNumber";
+const nodeType = 'VariableNumber';
 
 export class VariableNumberNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,22 +17,22 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "number",
+      name: 'number',
       type: ControlType.Number,
       reference: {
-        name: "NODE_DAT_NUMBER",
+        name: 'NODE_DAT_NUMBER',
         defaultValue: 0,
-        type: "Number",
-        tooltipMessage: "출력하고자하는 숫자를 설정해주세요",
-      },
-    },
+        type: 'Number',
+        tooltipMessage: '출력하고자하는 숫자를 설정해주세요'
+      }
+    }
   ],
   control: [
     {
-      name: "uxSelector",
-      value: "",
+      name: 'uxSelector',
+      value: '',
       type: ControlType.String,
-      IsUxSelector: true,
-    },
-  ],
+      IsUxSelector: true
+    }
+  ]
 };

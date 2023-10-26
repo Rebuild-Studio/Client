@@ -1,18 +1,18 @@
-import { FormEvent } from "react";
-import { styled } from "styled-components";
-import { observer } from "mobx-react";
+import { FormEvent } from 'react';
+import { styled } from 'styled-components';
+import { observer } from 'mobx-react';
 
-import ActivateAxis from "@/features/controllerBar/components/snap/ActivateAxis";
-import Checkbox from "@/features/controllerBar/components/snap/Checkbox";
-import { grayColors } from "@resources/colors/colors";
-import { SNAP_MODE } from "@/features/controllerBar/constants/snap";
-import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
-import { SnapModeType } from "@/features/controllerBar/types/snap";
+import ActivateAxis from '@/features/controllerBar/components/snap/ActivateAxis';
+import Checkbox from '@/features/controllerBar/components/snap/Checkbox';
+import { grayColors } from '@resources/colors/colors';
+import { SNAP_MODE } from '@/features/controllerBar/constants/snap';
+import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import { SnapModeType } from '@/features/controllerBar/types/snap';
 
 const SNAP_OPTIONS = [
-  { value: SNAP_MODE.GRID, name: "그리드 스냅" },
-  { value: SNAP_MODE.ROTATE, name: "45° 회전 스냅" },
-  { value: SNAP_MODE.SURFACE, name: "표면 스냅" },
+  { value: SNAP_MODE.GRID, name: '그리드 스냅' },
+  { value: SNAP_MODE.ROTATE, name: '45° 회전 스냅' },
+  { value: SNAP_MODE.SURFACE, name: '표면 스냅' }
 ];
 
 const SnapModeControl = () => {
@@ -62,5 +62,5 @@ const CheckboxWrapper = styled.div`
 `;
 
 const Shortcut = styled.span`
-  color: ${grayColors["535353"]};
+  color: ${grayColors['535353']};
 `;

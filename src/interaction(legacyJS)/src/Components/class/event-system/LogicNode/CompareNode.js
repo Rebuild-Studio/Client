@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Compare";
+const nodeType = 'Compare';
 
 export class CompareNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,26 +16,26 @@ export class CompareNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "numberFirst",
-      type: ControlType.Number,
+      name: 'numberFirst',
+      type: ControlType.Number
     },
     {
-      name: "numberSecond",
-      type: ControlType.Number,
-    },
+      name: 'numberSecond',
+      type: ControlType.Number
+    }
   ],
   outputSocket: [
     {
-      name: "boolean",
-      type: ControlType.Boolean,
-    },
+      name: 'boolean',
+      type: ControlType.Boolean
+    }
   ],
   control: [
     {
-      name: "NODE_DAT_COMPARE_OPERATOR",
-      value: "==",
+      name: 'NODE_DAT_COMPARE_OPERATOR',
+      value: '==',
       type: ControlType.Compare,
-      IsDropdown: true,
-    },
-  ],
-}
+      IsDropdown: true
+    }
+  ]
+};

@@ -1,8 +1,8 @@
-import { Box, IconButton } from "@mui/material";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
-import { observer } from "mobx-react";
-import { useState } from "react";
+import { Box, IconButton } from '@mui/material';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
 const MxInput = observer((props) => {
   const {
     boxStyle,
@@ -17,7 +17,7 @@ const MxInput = observer((props) => {
     onKeyDown,
     onBlur,
     onFocus,
-    upDownButton = true,
+    upDownButton = true
   } = props;
   const [btnOpen, setBtnOpen] = useState(false);
   const [focus, setFocus] = useState(false);
@@ -39,21 +39,21 @@ const MxInput = observer((props) => {
     clearInterval(e.target.dataset.intervalId);
   };
   const onKeyDownHandler = (e) => {
-    if (!e.ctrlKey && type === "number") {
+    if (!e.ctrlKey && type === 'number') {
       const regex = /^[-+]?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][-+]?[0-9]+)?$/;
 
       const isValidKey =
         regex.test(e.key) ||
         [
-          "Backspace",
-          "Delete",
-          "Escape",
-          ".",
-          "Enter",
-          "-",
-          "Tab",
-          "ArrowRight",
-          "ArrowLeft",
+          'Backspace',
+          'Delete',
+          'Escape',
+          '.',
+          'Enter',
+          '-',
+          'Tab',
+          'ArrowRight',
+          'ArrowLeft'
         ].includes(e.key);
       if (!isValidKey) {
         e.preventDefault();
@@ -71,9 +71,9 @@ const MxInput = observer((props) => {
     onBlur && onBlur(e);
   };
   const onInput = (e) => {
-    if (type === "number") {
+    if (type === 'number') {
       const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
-      const valueWithoutKorean = e.target.value.replace(koreanRegex, "");
+      const valueWithoutKorean = e.target.value.replace(koreanRegex, '');
       e.target.value = valueWithoutKorean;
 
       const SingleRegex = /^\.[0-9]$/;
@@ -94,8 +94,8 @@ const MxInput = observer((props) => {
 
   return (
     <Box
-      onMouseOver={type === "number" ? () => setBtnOpen(true) : undefined}
-      onMouseLeave={type === "number" ? () => setBtnOpen(false) : undefined}
+      onMouseOver={type === 'number' ? () => setBtnOpen(true) : undefined}
+      onMouseLeave={type === 'number' ? () => setBtnOpen(false) : undefined}
       sx={style.InputWrapper(boxStyle, focus)}
     >
       <input
@@ -114,7 +114,7 @@ const MxInput = observer((props) => {
         onChange={onChange}
         onBlur={onBlurHandler}
       />
-      {type === "number" && upDownButton && btnOpen && (
+      {type === 'number' && upDownButton && btnOpen && (
         <Box sx={style.ButtonField}>
           <IconButton
             sx={style.IconButtonStyle}
@@ -123,7 +123,7 @@ const MxInput = observer((props) => {
             onMouseLeave={onMouseLeave}
           >
             <KeyboardArrowUpRoundedIcon
-              sx={{ color: "#e1f853", fontSize: "1rem" }}
+              sx={{ color: '#e1f853', fontSize: '1rem' }}
             />
           </IconButton>
           <IconButton
@@ -133,7 +133,7 @@ const MxInput = observer((props) => {
             onMouseLeave={onMouseLeave}
           >
             <KeyboardArrowDownRoundedIcon
-              sx={{ color: "#e1f853", fontSize: "1rem" }}
+              sx={{ color: '#e1f853', fontSize: '1rem' }}
             />
           </IconButton>
         </Box>
@@ -147,49 +147,49 @@ export default MxInput;
 const style = {
   InputWrapper: function (boxStyle, focus) {
     return {
-      width: "58px",
-      height: "18px",
-      borderRadius: "3px",
-      backgroundColor: "#303030",
-      display: "flex",
-      position: "relative",
-      outline: `${focus ? "solid 1.5px #e1f853" : "none"}`,
-      ...boxStyle,
+      width: '58px',
+      height: '18px',
+      borderRadius: '3px',
+      backgroundColor: '#303030',
+      display: 'flex',
+      position: 'relative',
+      outline: `${focus ? 'solid 1.5px #e1f853' : 'none'}`,
+      ...boxStyle
     };
   },
   InputField: function (inputStyle, disabled) {
     return {
-      fontFamily: "Pretandard",
-      fontSize: "12px",
-      color: "#e2e2e2",
-      width: "100%",
-      height: "100%",
-      backgroundColor: "transparent",
-      border: "none",
-      outline: "none",
-      pointerEvents: `${disabled && "none"}`,
-      ...inputStyle,
+      fontFamily: 'Pretandard',
+      fontSize: '12px',
+      color: '#e2e2e2',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'transparent',
+      border: 'none',
+      outline: 'none',
+      pointerEvents: `${disabled && 'none'}`,
+      ...inputStyle
     };
   },
   ButtonField: {
-    position: "absolute",
-    width: "20%",
-    height: "100%",
-    right: "0",
+    position: 'absolute',
+    width: '20%',
+    height: '100%',
+    right: '0',
 
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#222222",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#222222'
   },
   IconButtonStyle: {
     padding: 0,
     minWidth: 0,
-    width: "100%",
+    width: '100%',
     minHeight: 0,
-    height: "50%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    height: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 };

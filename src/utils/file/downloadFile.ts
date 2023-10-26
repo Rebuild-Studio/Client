@@ -6,7 +6,7 @@
  * @example
  * downloadFile(JSON.stringify(sceneJson), "scene.json", "json");
  */
-async function downloadFile<T extends BlobPart, R extends "json" | "txt">(
+async function downloadFile<T extends BlobPart, R extends 'json' | 'txt'>(
   content: T,
   fileName: string,
   contentType: R
@@ -19,14 +19,14 @@ async function downloadFile<T extends BlobPart, R extends "json" | "txt">(
     const blob = await response.blob();
     const downloadUrl = URL.createObjectURL(blob);
 
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = downloadUrl;
     a.download = fileName;
     a.click();
 
     URL.revokeObjectURL(downloadUrl);
   } catch (error) {
-    console.error("Download failed:", error);
+    console.error('Download failed:', error);
   } finally {
     URL.revokeObjectURL(url);
   }

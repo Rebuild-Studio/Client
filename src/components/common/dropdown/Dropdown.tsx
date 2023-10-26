@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import Stack from "../stack/Stack";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import { CSSColor, CSSSize } from "@/types/style/cssUnits";
-import StackItem from "../stack/StackItem";
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import Stack from '../stack/Stack';
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import { CSSColor, CSSSize } from '@/types/style/cssUnits';
+import StackItem from '../stack/StackItem';
 
 export interface Option {
   label: string;
@@ -20,12 +20,12 @@ interface Props {
 }
 
 const Dropdown = ({
-  onClick = () => { },
+  onClick = () => {},
   options,
-  placeholder = "선택된 옵션",
+  placeholder = '선택된 옵션',
   backgroundColor = basicColors.white,
   hoverBackgroundColor = grayColors.panelGray,
-  size = "fit-content",
+  size = 'fit-content'
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
@@ -38,10 +38,10 @@ const Dropdown = ({
         setOpenList(false);
     };
 
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
@@ -95,7 +95,7 @@ const Dropdown = ({
 export default Dropdown;
 
 interface ContainerProps {
-  size: Props["size"];
+  size: Props['size'];
 }
 const Container = styled.div<ContainerProps>`
   position: relative;
@@ -106,16 +106,16 @@ const Container = styled.div<ContainerProps>`
 
 interface CustomStackProps {
   $open: boolean;
-  $backgroundColor?: Props["backgroundColor"];
-  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+  $backgroundColor?: Props['backgroundColor'];
+  $hoverBackgroundColor?: Props['hoverBackgroundColor'];
 }
 
-const CustomStack = styled(Stack) <CustomStackProps>`
+const CustomStack = styled(Stack)<CustomStackProps>`
   max-height: 240px;
   position: absolute;
   top: 100%;
   border: ${({ $open }) =>
-    $open ? `1.5px solid ${grayColors.E2E2E2}` : "none"};
+    $open ? `1.5px solid ${grayColors.E2E2E2}` : 'none'};
   border-radius: 5px;
   overflow-y: auto;
   box-sizing: border-box;
@@ -128,8 +128,8 @@ const CustomStack = styled(Stack) <CustomStackProps>`
 `;
 
 interface OpenButtonProps {
-  $backgroundColor?: Props["backgroundColor"];
-  $hoverBackgroundColor?: Props["hoverBackgroundColor"];
+  $backgroundColor?: Props['backgroundColor'];
+  $hoverBackgroundColor?: Props['hoverBackgroundColor'];
 }
 
 const OpenButton = styled.button<OpenButtonProps>`

@@ -1,10 +1,10 @@
-import Panel from "@/components/layout/Panel/Panel";
-import { Meta, StoryObj } from "@storybook/react";
+import Panel from '@/components/layout/Panel/Panel';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Panel,
-  title: "Layout/Panel",
-  tags: ["autodocs"],
+  title: 'Layout/Panel',
+  tags: ['autodocs']
 } satisfies Meta<typeof Panel>;
 
 export default meta;
@@ -39,7 +39,7 @@ const BasicPanel = {
         <Contents />
       </Panel>
     );
-  },
+  }
 } satisfies Story;
 
 export { BasicPanel };

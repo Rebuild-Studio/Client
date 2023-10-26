@@ -1,6 +1,6 @@
-import { bgColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { styled } from "styled-components";
+import { bgColors } from '@/resources/colors/colors';
+import { fonts } from '@/resources/fonts/font';
+import { styled } from 'styled-components';
 
 interface PanelProps {
   label: string;
@@ -9,9 +9,9 @@ interface PanelProps {
 }
 
 const Panel = ({
-  label = "",
+  label = '',
   options = <></>,
-  children = <></>,
+  children = <></>
 }: PanelProps) => {
   return (
     <PanelWrapper>

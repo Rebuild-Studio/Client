@@ -1,12 +1,12 @@
-import { ButtonAnimationType } from "@/types/style/buttonAnimations";
-import { keyframes } from "styled-components";
+import { ButtonAnimationType } from '@/types/style/buttonAnimations';
+import { keyframes } from 'styled-components';
 
 const ButtonAnimation = {
-  translate: "translate",
-  bounce: "bounce",
-  shrink: "shrink",
-  enlarge: "enlarge",
-  none: "none",
+  translate: 'translate',
+  bounce: 'bounce',
+  shrink: 'shrink',
+  enlarge: 'enlarge',
+  none: 'none'
 } as const satisfies { [key in ButtonAnimationType]: ButtonAnimationType };
 
 const BounceAnimation = keyframes`
@@ -49,7 +49,7 @@ const getButtonClickAnimation = (clickAnimation: ButtonAnimationType) => {
     case ButtonAnimation.enlarge:
       return EnlargeAnimation;
     case ButtonAnimation.none:
-      return "";
+      return '';
   }
 };
 

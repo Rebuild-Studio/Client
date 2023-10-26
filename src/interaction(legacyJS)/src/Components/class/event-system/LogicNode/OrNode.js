@@ -1,7 +1,7 @@
-import Node from "../Node";
+import Node from '../Node';
 
 export class OrNode extends Node {
-  constructor(name, uuid, type = "Or") {
+  constructor(name, uuid, type = 'Or') {
     super(name, uuid, type);
   }
 }

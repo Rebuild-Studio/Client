@@ -1,11 +1,11 @@
 // noinspection JSUnusedGlobalSymbols
-import { observable } from "mobx";
-import * as THREE from "three";
+import { observable } from 'mobx';
+import * as THREE from 'three';
 
 const common_store = observable({
   openPmxSaveMenu: false,
   openSaveMenu: false,
-  fabToggle: "report",
+  fabToggle: 'report',
   lastClick: 0,
   nClick: 0,
   isTransControl: false,
@@ -14,11 +14,11 @@ const common_store = observable({
   orbitcontrol: null,
   previewCameraObject: null,
   cameraPreviewOn: false,
-  curMode: "translate",
+  curMode: 'translate',
   topSlide: true,
-  curCategory: "canvas",
-  curAsset: "",
-  optionLeftTab: "",
+  curCategory: 'canvas',
+  curAsset: '',
+  optionLeftTab: '',
   isCtrl: false,
   onMouseUpPosition: null,
   onMouseDownPosition: null,
@@ -109,7 +109,7 @@ const common_store = observable({
     const floor = new THREE.Mesh(geometry, material);
     floor.receiveShadow = true;
     floor.rotation.set(-Math.PI / 2, 0, 0);
-    floor.name = "floor";
+    floor.name = 'floor';
     floor.visible = false;
     this.floor = floor;
   },
@@ -117,7 +117,7 @@ const common_store = observable({
     this.plane = plane;
   },
   setOnPlane(object, state) {
-    if (object.name === "plane") this.onPlane = state;
+    if (object.name === 'plane') this.onPlane = state;
   },
   addRaycastObject(object) {
     this.raycastObjects.push(object);
@@ -154,7 +154,7 @@ const common_store = observable({
   },
   setLattice(lattice) {
     this.lattice = lattice;
-  },
+  }
 });
 
 export { common_store };

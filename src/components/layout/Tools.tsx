@@ -1,13 +1,13 @@
-import CanvasBar from "@components/CanvasBar";
-import CanvasLeftPanel from "@components/layout/CanvasLeftPanel/CanvasLeftPanel";
-import OrientationHelper from "@/three_components/common/OrientationHelper";
-import SceneSettingPanel from "@components/common/RightPanel/SceneSettingPanel";
-import RightPanel from "@components/common/RightPanel/RightPanel";
-import ControllerBar from "@/features/controllerBar";
-import styled from "styled-components";
-import storeContainer from "@store/storeContainer";
-import { observer } from "mobx-react";
-import editorModeStore from "@store/editorModeStore.ts";
+import CanvasBar from '@components/CanvasBar';
+import CanvasLeftPanel from '@components/layout/CanvasLeftPanel/CanvasLeftPanel';
+import OrientationHelper from '@/three_components/common/OrientationHelper';
+import SceneSettingPanel from '@components/common/RightPanel/SceneSettingPanel';
+import RightPanel from '@components/common/RightPanel/RightPanel';
+import ControllerBar from '@/features/controllerBar';
+import styled from 'styled-components';
+import storeContainer from '@store/storeContainer';
+import { observer } from 'mobx-react';
+import editorModeStore from '@store/editorModeStore.ts';
 
 const Tools = () => {
   const { sceneSettingStore } = storeContainer;

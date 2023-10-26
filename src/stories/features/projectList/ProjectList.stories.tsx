@@ -1,11 +1,11 @@
-import ProjectList from "@/features/projectList/components/ProjectList";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProjectList from '@/features/projectList/components/ProjectList';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const meta = {
   component: ProjectList,
-  title: "Feature/ProjectList/ProjectList",
-  tags: ["autodocs"],
+  title: 'Feature/ProjectList/ProjectList',
+  tags: ['autodocs']
 } satisfies Meta<typeof ProjectList>;
 
 export default meta;
@@ -15,13 +15,13 @@ const client = new QueryClient();
 
 export const BasicProjectList = {
   args: {
-    label: "project",
+    label: 'project'
   },
   decorators: [
     (Story: StoryFn) => (
       <QueryClientProvider client={client}>
         <Story />
       </QueryClientProvider>
-    ),
-  ],
+    )
+  ]
 } satisfies Story;

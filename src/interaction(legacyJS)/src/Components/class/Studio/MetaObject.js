@@ -1,14 +1,14 @@
 /* eslint-disable array-callback-return */
-import { action, makeObservable, observable } from "mobx";
-import * as THREE from "three";
+import { action, makeObservable, observable } from 'mobx';
+import * as THREE from 'three';
 
-import * as SkeletonUtils from "three/examples/jsm/utils/SkeletonUtils";
-import { data_store } from "../../stores/Data_Store";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
-import MetaClass from "./MetaClass";
-import { objectViewModel } from "../../view_models/Object_VM";
-import AddObjCommand from "../commands/CanvasObject/AddObjCommand";
-import { Material_store } from "../../stores/Material_Store";
+import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
+import { data_store } from '../../stores/Data_Store';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import MetaClass from './MetaClass';
+import { objectViewModel } from '../../view_models/Object_VM';
+import AddObjCommand from '../commands/CanvasObject/AddObjCommand';
+import { Material_store } from '../../stores/Material_Store';
 
 class MetaObject extends MetaClass {
   materialList = {}; //object를 구성하고 있는 material들 저장
@@ -32,13 +32,13 @@ class MetaObject extends MetaClass {
       childrenIds: observable,
       SetGroupParent: action,
       SetAnimationSpeed: action,
-      SetAniGeneralSpeed: action,
+      SetAniGeneralSpeed: action
     });
     this.materialIndex = arg.materialIndex;
     this.InitProps();
     if (this.mesh !== null) {
       this.InitAnimationList(this.mesh);
-      this.mesh.userData["name"] = this.mesh.name;
+      this.mesh.userData['name'] = this.mesh.name;
       if (this.mesh.isMesh && this.mesh.material.opacity !== 0) {
         this.mesh.castShadow = true;
         this.mesh.receiveShadow = true;
@@ -55,7 +55,7 @@ class MetaObject extends MetaClass {
     for (const child of this.mesh.children) {
       materialLen = this.CreateChildObject(child, metaData, materialLen);
     }
-    if (typeof materialLength !== "undefined") return materialLen;
+    if (typeof materialLength !== 'undefined') return materialLen;
     else {
       this.materialLength = materialLen;
     }
@@ -72,7 +72,7 @@ class MetaObject extends MetaClass {
       name: child.name,
       type: type,
       metaData: metaData,
-      materialIndex: materialIndex,
+      materialIndex: materialIndex
     });
 
     this.childrenIds.push(childMetaObject.objectId);
@@ -90,7 +90,7 @@ class MetaObject extends MetaClass {
       generalSpeed,
       parentId,
       childrenIds,
-      materialIndicesMapping,
+      materialIndicesMapping
     }
   ) {
     //super.ReConstructor({ parentId: parentId, childrenIds: childrenIds });
@@ -102,7 +102,7 @@ class MetaObject extends MetaClass {
         materialProps: materialProps,
         childrenIds: childrenIds,
         parentId: parentId,
-        materialIndicesMapping: materialIndicesMapping,
+        materialIndicesMapping: materialIndicesMapping
       };
       childObject.ReConstructor(mode, childData, childObject.materialIndex);
     }
@@ -125,7 +125,7 @@ class MetaObject extends MetaClass {
         }
       });
     }
-    if (typeof generalSpeed !== "undefined") {
+    if (typeof generalSpeed !== 'undefined') {
       this.SetAniGeneralSpeed(generalSpeed);
     }
 
@@ -151,11 +151,11 @@ class MetaObject extends MetaClass {
 
     const copiedObject = new MetaObject(cloneObject, {
       objectId: null,
-      name: this.name + "_",
+      name: this.name + '_',
       blobGlb: this.blobGlb,
       url: this.url,
       loadJSON: false,
-      type: this.type,
+      type: this.type
     });
 
     canvasHistory_store.execute(
@@ -166,7 +166,7 @@ class MetaObject extends MetaClass {
   async toJson(mode, topJsonData) {
     //Json 변환 전 처리
 
-    if (this.blobGlb && mode === "save") {
+    if (this.blobGlb && mode === 'save') {
       await this.ExportGLB();
     }
 
@@ -178,7 +178,7 @@ class MetaObject extends MetaClass {
           name: ani.name,
           timeScale: ani.timeScale,
           weight: ani.weight,
-          isPlay: ani.isPlay,
+          isPlay: ani.isPlay
         });
       });
     }
@@ -191,20 +191,20 @@ class MetaObject extends MetaClass {
         generalSpeed: this.generalSpeed,
         parentId: this.parentId,
         childrenIds: this.childrenIds,
-        materialIndicesMapping: this.materialIndicesMapping,
-      },
+        materialIndicesMapping: this.materialIndicesMapping
+      }
     };
   }
 
   SetProps(prop, value) {
     switch (prop) {
-      case "Animation":
+      case 'Animation':
         this.SetAnimationProps(value);
         break;
-      case "AnimationSpeed":
+      case 'AnimationSpeed':
         this.SetAnimationSpeed(value);
         break;
-      case "AnimationGeneralSpeed":
+      case 'AnimationGeneralSpeed':
         this.SetAniGeneralSpeed(value);
         break;
       default:
@@ -214,16 +214,16 @@ class MetaObject extends MetaClass {
   }
 
   InitMaterialProps(child) {
-    if (Array.isArray(child["material"])) {
+    if (Array.isArray(child['material'])) {
       //여러개의 material
 
-      for (const material of child["material"]) {
-        const uuid = material["uuid"];
+      for (const material of child['material']) {
+        const uuid = material['uuid'];
 
         const name =
-          material.name !== ""
+          material.name !== ''
             ? material.name
-            : "material" + this.materialCount++;
+            : 'material' + this.materialCount++;
         this.materialProps = {
           ...this.materialProps,
           [uuid]: {
@@ -231,24 +231,24 @@ class MetaObject extends MetaClass {
             material: material,
             originMaterial: material,
             mesh: child,
-            meshName: child.name,
-          },
+            meshName: child.name
+          }
         };
         this.materialList = { ...this.materialList, [name]: material };
-        for (const prop in data_store["materialProps"]) {
+        for (const prop in data_store['materialProps']) {
           this.materialProps[uuid] = {
             ...this.materialProps[uuid],
-            [prop]: material[prop],
+            [prop]: material[prop]
           };
         }
       }
     } else {
-      const uuid = child["material"]["uuid"];
-      const material = child["material"];
+      const uuid = child['material']['uuid'];
+      const material = child['material'];
       const name =
-        material.name !== ""
+        material.name !== ''
           ? material.name
-          : "material" + this.materialCount++;
+          : 'material' + this.materialCount++;
       material.name = name;
       this.materialProps = {
         ...this.materialProps,
@@ -260,55 +260,55 @@ class MetaObject extends MetaClass {
           mesh: child,
           meshName: child.name,
           index: this.materialIndex ? this.materialIndex : 0,
-          change: false,
-        },
+          change: false
+        }
       };
 
       this.materialList = { ...this.materialList, [name]: material };
-      for (const prop in data_store["materialProps"]) {
+      for (const prop in data_store['materialProps']) {
         let value = material[prop];
-        if (prop === "color") {
-          value = "#" + value.getHexString();
+        if (prop === 'color') {
+          value = '#' + value.getHexString();
         }
         this.materialProps[uuid] = {
           ...this.materialProps[uuid],
-          [prop]: value,
+          [prop]: value
         };
       }
     }
   }
 
   SetMaterialProps(uuid, prop, value) {
-    const object = this.materialProps[uuid]["material"];
-    const mesh = this.materialProps[uuid]["mesh"];
+    const object = this.materialProps[uuid]['material'];
+    const mesh = this.materialProps[uuid]['mesh'];
 
     switch (prop) {
-      case "opacity":
+      case 'opacity':
         object[prop] = value;
-        object["transparent"] = true;
+        object['transparent'] = true;
 
         this.materialProps[uuid][prop] = value;
 
         this.materialProps = { ...this.materialProps };
         break;
-      case "Template":
+      case 'Template':
         this.ChangeMaterial(uuid, mesh, value);
 
         break;
       default:
-        if (typeof object[prop] !== "undefined") {
-          if (typeof object[prop].set === "function") {
+        if (typeof object[prop] !== 'undefined') {
+          if (typeof object[prop].set === 'function') {
             object[prop].set(value);
           } else object[prop] = value;
           this.materialProps = {
             ...this.materialProps,
-            [uuid]: { ...this.materialProps[uuid], [prop]: value },
+            [uuid]: { ...this.materialProps[uuid], [prop]: value }
           };
         }
 
         break;
     }
-    this.materialProps[uuid]["change"] = true;
+    this.materialProps[uuid]['change'] = true;
   }
   exportMaterialProps(objectId) {
     const metaObject = objectViewModel.GetMetaObjectByObjectId(objectId);
@@ -317,16 +317,16 @@ class MetaObject extends MetaClass {
     }
     if (metaObject.materialProps) {
       Object.keys(metaObject.materialProps).map((uuid) => {
-        if (metaObject.materialProps[uuid]["change"]) {
-          const _material = metaObject.materialProps[uuid]["material"].clone();
+        if (metaObject.materialProps[uuid]['change']) {
+          const _material = metaObject.materialProps[uuid]['material'].clone();
           this.convertColorHex(_material);
           Material_store.metaMaterials = {
             ...Material_store.metaMaterials,
             [Material_store.materialIndex]: {
-              ..._material,
-            },
+              ..._material
+            }
           };
-          const materialIndex = metaObject.materialProps[uuid]["index"];
+          const materialIndex = metaObject.materialProps[uuid]['index'];
 
           this.materialIndicesMapping[materialIndex] =
             Material_store.materialIndex;
@@ -341,7 +341,7 @@ class MetaObject extends MetaClass {
     // rgb -> hex
     Object.keys(material).map((prop) => {
       if (material[prop]?.isColor) {
-        material[prop] = "#" + material[prop].getHexString();
+        material[prop] = '#' + material[prop].getHexString();
       }
     });
   }
@@ -353,7 +353,7 @@ class MetaObject extends MetaClass {
           const _materialTemplate =
             await loadersViewModel.GetMaterialTextureByName(materialName);
           this.ChangeMaterial(
-            this.mesh["material"].uuid,
+            this.mesh['material'].uuid,
             this.mesh,
             _materialTemplate.clone()
           );
@@ -373,9 +373,9 @@ class MetaObject extends MetaClass {
         Material_store.metaMaterials[
           materialIndicesMapping[this.materialIndex]
         ];
-      for (const prop in data_store["materialProps"]) {
+      for (const prop in data_store['materialProps']) {
         this.SetMaterialProps(
-          this.mesh["material"].uuid,
+          this.mesh['material'].uuid,
           prop,
           materialProps[prop]
         );
@@ -402,8 +402,8 @@ class MetaObject extends MetaClass {
                 timeScale: this.animationAction.timeScale,
                 weight: 1,
                 isPlay: false,
-                uuid: animation.uuid,
-              },
+                uuid: animation.uuid
+              }
             ];
           }
         } else {
@@ -418,8 +418,8 @@ class MetaObject extends MetaClass {
               timeScale: this.animationAction.timeScale,
               weight: 1,
               isPlay: false,
-              uuid: child.animations[i].uuid,
-            },
+              uuid: child.animations[i].uuid
+            }
           ];
         }
       }
@@ -427,7 +427,7 @@ class MetaObject extends MetaClass {
   }
 
   SetAnimationProps(value) {
-    if (typeof this.animationAction !== "undefined") {
+    if (typeof this.animationAction !== 'undefined') {
       this.animationList.map((ani, index) => {
         if (
           value.name === this.animationList[index].name &&
@@ -448,7 +448,7 @@ class MetaObject extends MetaClass {
 
   SetAnimationInteraction(value) {
     this.animationList.map((ani, _index) => {
-      if (typeof ani.animationAction !== "undefined") {
+      if (typeof ani.animationAction !== 'undefined') {
         if (value.name === ani.name) {
           ani.animationAction.weight = value.weight;
           ani.weight = value.weight;
@@ -473,7 +473,7 @@ class MetaObject extends MetaClass {
     }
   }
   SetAnimationSpeed({ name, value }) {
-    if (typeof this.animationAction !== "undefined") {
+    if (typeof this.animationAction !== 'undefined') {
       for (let i = 0; i < this.animationList.length; i++) {
         if (name === this.animationList[i].name) {
           this.animationList[i].timeScale = value;
@@ -486,7 +486,7 @@ class MetaObject extends MetaClass {
   SetAniGeneralSpeed(value) {
     this.generalSpeed = value;
 
-    if (typeof this.animationAction !== "undefined") {
+    if (typeof this.animationAction !== 'undefined') {
       this.animationList.map((ani, index) => {
         ani.animationAction.timeScale =
           this.animationList[index].timeScale * this.generalSpeed;
@@ -496,7 +496,7 @@ class MetaObject extends MetaClass {
   }
 
   GetMaterialByUuid(uuid) {
-    return this.materialProps[uuid]["material"];
+    return this.materialProps[uuid]['material'];
   }
 
   GetMaterialPropsByUuid(uuid) {
@@ -507,9 +507,9 @@ class MetaObject extends MetaClass {
     const newMateiralName = material.name;
     this.mesh.traverse((child) => {
       if (child.isMesh) {
-        if (child.material["uuid"] === uuid) {
+        if (child.material['uuid'] === uuid) {
           child.material = material;
-          child.material["uuid"] = uuid;
+          child.material['uuid'] = uuid;
         }
       }
     });
@@ -519,18 +519,18 @@ class MetaObject extends MetaClass {
     this.materialProps[uuid] = {
       ...this.materialProps[uuid],
       type: material.type,
-      materTemp: newMateiralName,
+      materTemp: newMateiralName
     };
 
-    for (const prop in data_store["materialProps"]) {
-      if (prop !== "uuid" && prop !== "name") {
+    for (const prop in data_store['materialProps']) {
+      if (prop !== 'uuid' && prop !== 'name') {
         let propValue = material[prop];
-        if (prop === "color") {
-          propValue = "#" + propValue.getHexString();
+        if (prop === 'color') {
+          propValue = '#' + propValue.getHexString();
         }
         this.materialProps[uuid] = {
           ...this.materialProps[uuid],
-          [prop]: propValue,
+          [prop]: propValue
         };
       }
     }

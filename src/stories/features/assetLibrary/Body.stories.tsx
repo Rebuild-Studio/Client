@@ -1,19 +1,19 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { basicColors } from "@/resources/colors/colors";
-import Body from "@/features/assetLibrary/components/body";
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { basicColors } from '@/resources/colors/colors';
+import Body from '@/features/assetLibrary/components/body';
 
 const meta = {
   component: Body,
-  title: "Feature/AssetLibrary/AssetLibraryBody",
-  tags: ["autodocs"],
+  title: 'Feature/AssetLibrary/AssetLibraryBody',
+  tags: ['autodocs'],
   argTypes: {},
   parameters: {
     docs: {
       description: {
-        component: "에셋 라이브러리 바디입니다.",
-      },
-    },
-  },
+        component: '에셋 라이브러리 바디입니다.'
+      }
+    }
+  }
 } satisfies Meta<typeof Body>;
 
 export default meta;
@@ -25,6 +25,6 @@ export const AssetLibraryBody = {
       <div style={{ backgroundColor: basicColors.black }}>
         <Story />
       </div>
-    ),
-  ],
+    )
+  ]
 } satisfies Story;

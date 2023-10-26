@@ -1,8 +1,8 @@
-import { ViewCube } from "./ViewCube";
-import { basicColors } from "@/resources/colors/colors";
-import { observer } from "mobx-react";
-import { Canvas } from "@react-three/fiber";
-import styled from "styled-components";
+import { ViewCube } from './ViewCube';
+import { basicColors } from '@/resources/colors/colors';
+import { observer } from 'mobx-react';
+import { Canvas } from '@react-three/fiber';
+import styled from 'styled-components';
 
 const OrientationHelper = () => {
   return (

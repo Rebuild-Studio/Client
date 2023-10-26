@@ -1,9 +1,9 @@
-import { ObjectControllerVM } from "../../../view_models/ObjectController_VM";
+import { ObjectControllerVM } from '../../../view_models/ObjectController_VM';
 
 export default class AddSoundCommand {
   constructor(obj) {
-    this.type = "AddSoundCommand";
-    this.name = "사운드 추가";
+    this.type = 'AddSoundCommand';
+    this.name = '사운드 추가';
     this.obj = obj;
   }
 

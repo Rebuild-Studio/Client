@@ -1,6 +1,6 @@
-import { SceneJson } from "@/types/scene/scene";
-import getUniqueGeometriesFromJson from "./getUniqueGeometriesFromJson";
-import getUniqueTexturesFromJson from "./getUniqueTexturesFromJson";
+import { SceneJson } from '@/types/scene/scene';
+import getUniqueGeometriesFromJson from './getUniqueGeometriesFromJson';
+import getUniqueTexturesFromJson from './getUniqueTexturesFromJson';
 
 /**
  *

@@ -1,2 +1,2 @@
-import AssetLibrary from "./components/AssetLibrary";
+import AssetLibrary from './components/AssetLibrary';
 export default AssetLibrary;

@@ -42,15 +42,15 @@ export default function createUxMetaData(
       {
         isArray: false,
         isObject: false,
-        type: type,
-      },
+        type: type
+      }
     ],
     Control: {
       type: controlType,
-      value: value,
+      value: value
     },
     InitialValue: initialValue,
     DefaultValue: defaultValue,
-    Basic: basic,
+    Basic: basic
   };
 }

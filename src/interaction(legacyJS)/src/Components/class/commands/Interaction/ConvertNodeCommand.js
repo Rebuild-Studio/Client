@@ -1,16 +1,16 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class ConvertNodeCommand extends Command {
   constructor(store, args) {
     const { uuid, key, value, type, sheetId } = args;
     super(store);
-    this.type = "ConvertNodeCommand";
-    this.name = "SetNodeDataCommand";
+    this.type = 'ConvertNodeCommand';
+    this.name = 'SetNodeDataCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       uuid: uuid,
       key: key,
@@ -19,7 +19,7 @@ export default class ConvertNodeCommand extends Command {
       beforeJson: undefined,
       afterJson: undefined,
       sheetName: sheet.name,
-      nodeType: sheet.getNodeByUuid(uuid).type,
+      nodeType: sheet.getNodeByUuid(uuid).type
     };
   }
   execute() {
@@ -29,7 +29,7 @@ export default class ConvertNodeCommand extends Command {
       const node = sheet.getNodeByUuid(this.data.uuid);
       const before = {
         nodes: [node],
-        wires: sheet.getWiresInNode(node),
+        wires: sheet.getWiresInNode(node)
       };
       this.data.beforeJson = Utils.stringify(before);
       //변환 전의 노드와 와이어를 기억
@@ -52,7 +52,7 @@ export default class ConvertNodeCommand extends Command {
     const sheet = this.store.getSheetByUuid(this.data.args.sheetId);
     const node = sheet.getNodeByUuid(this.data.uuid);
     const after = {
-      nodes: [node],
+      nodes: [node]
     };
     this.data.afterJson = Utils.stringify(after);
     sheet.parseInteractionJson(this.data.beforeJson);

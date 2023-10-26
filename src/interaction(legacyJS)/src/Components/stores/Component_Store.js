@@ -1,7 +1,7 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 const component_store = observable({
-  name: "",
+  name: '',
   jsonData: null,
   url: null,
   metaFiles: [],
@@ -9,8 +9,8 @@ const component_store = observable({
   metaGroups: [],
   itemDesk: [],
   metaGroupsPos: [],
-  componentName: "",
-  saveMode: false,
+  componentName: '',
+  saveMode: false
 });
 
 export { component_store };

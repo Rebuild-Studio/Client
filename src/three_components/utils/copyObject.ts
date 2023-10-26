@@ -1,10 +1,10 @@
-import { nanoid } from "nanoid";
-import * as THREE from "three";
+import { nanoid } from 'nanoid';
+import * as THREE from 'three';
 
 const copyGroup = (group: THREE.Mesh) => {
   const storeId = nanoid();
   const newGroup = cloneGroupChildren(group);
-  newGroup.userData["storeId"] = storeId;
+  newGroup.userData['storeId'] = storeId;
   newGroup.position.copy(group.position);
 
   return { storeId, newGroup };
@@ -33,9 +33,9 @@ const copyObject = (mesh: THREE.Mesh) => {
   const newMesh = new THREE.Mesh(geometry, material);
   newMesh.name = mesh.name;
   newMesh.userData = { ...mesh.userData };
-  newMesh.userData["storeId"] = storeId;
+  newMesh.userData['storeId'] = storeId;
 
-  if (mesh.parent && mesh.parent?.type !== "Scene") {
+  if (mesh.parent && mesh.parent?.type !== 'Scene') {
     mesh.getWorldScale(newMesh.scale);
     mesh.getWorldQuaternion(newMesh.quaternion);
     mesh.getWorldPosition(newMesh.position);

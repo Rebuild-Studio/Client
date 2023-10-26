@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
-import Header from "./header";
-import Body from "./body";
-import Footer from "./footer";
-import { useEffect } from "react";
-import { observer } from "mobx-react";
-import assetCategoryStore from "@/store/assetCategoryStore";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import { useFetchLibraryAssets } from "../hooks/useFetchLibraryAssets query";
+import styled from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
+import Header from './header';
+import Body from './body';
+import Footer from './footer';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react';
+import assetCategoryStore from '@/store/assetCategoryStore';
+import assetLibraryStore from '@/store/assetLibraryStore';
+import { useFetchLibraryAssets } from '../hooks/useFetchLibraryAssets query';
 
 const AssetLibrary = () => {
   const { currentPage } = assetLibraryStore;
@@ -17,14 +17,14 @@ const AssetLibrary = () => {
     domain: currentDomain.domain,
     majorCategories: currentMainCategory.category,
     minorCategories: currentSubCategory.category,
-    page: currentPage,
+    page: currentPage
   });
 
   useEffect(() => {
     data &&
       assetLibraryStore.setLibraryAssets([
         ...assetLibraryStore.libraryAssets,
-        ...data,
+        ...data
       ]); //response 타입과 LibraryAsset타입간 매핑 어떻게?
   }, [data]);
 

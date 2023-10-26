@@ -1,9 +1,9 @@
 /* eslint-disable array-callback-return */
-import { action } from "mobx";
-import { hierarchy_store } from "../../stores/Hierarchy_Store";
-import { object_store } from "../../stores/Object_Store";
-import { objectViewModel } from "../Object_VM";
-import UUIDGenerator from "../../../utils/uuid";
+import { action } from 'mobx';
+import { hierarchy_store } from '../../stores/Hierarchy_Store';
+import { object_store } from '../../stores/Object_Store';
+import { objectViewModel } from '../Object_VM';
+import UUIDGenerator from '../../../utils/uuid';
 class UIData {
   type = null;
   object = null;
@@ -129,7 +129,7 @@ const HierachyVM = {
     if (index !== -1) {
       hierarchy_store.hierachyList.splice(index, 1);
     }
-  }),
+  })
 };
 
 export default HierachyVM;

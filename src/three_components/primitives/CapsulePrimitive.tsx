@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
-import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../utils/materialSetting";
-import { observer } from "mobx-react";
-import storeContainer from "@/store/storeContainer";
-import { PrimitiveProps } from "../common/PrimitiveProps";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useRef, useEffect } from 'react';
+import * as THREE from 'three';
+import { getDefaultMaterialSetting } from '../utils/materialSetting';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import { PrimitiveProps } from '../common/PrimitiveProps';
+import canvasHistoryStore from '@/store/canvasHistoryStore';
 
 interface CapsuleParams {
   minRadius: number;
@@ -33,7 +33,7 @@ const initCapsule: CapsuleParams = {
   capSegmentsUnit: 1,
   minRadialSegments: 1,
   maxRadialSegments: 64,
-  radialSegments: 1,
+  radialSegments: 1
 };
 
 const CapsulePrimitive = (props: PrimitiveProps) => {
@@ -43,13 +43,13 @@ const CapsulePrimitive = (props: PrimitiveProps) => {
   const material = getDefaultMaterialSetting();
   material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "CAPSULE";
-  mesh.userData["storeId"] = props.storeId;
-  mesh.userData["isLocked"] = false;
+  mesh.name = 'CAPSULE';
+  mesh.userData['storeId'] = props.storeId;
+  mesh.userData['isLocked'] = false;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
-    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
+    primitiveStore.updatePrimitive(mesh.userData['storeId'], mesh);
+    canvasHistoryStore.differAdd(mesh.userData['storeId']);
   }, []);
 
   return (

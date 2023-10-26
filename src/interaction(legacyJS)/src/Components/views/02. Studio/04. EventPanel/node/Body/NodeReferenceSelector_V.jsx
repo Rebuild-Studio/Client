@@ -1,13 +1,13 @@
-import ReferenceTextField from "../../ReferenceParameter/TextFieldV";
-import NodeReferenceMaterialSelector from "../../ReferenceParameter/NodeReferenceMaterialSelector_V";
-import NodeReferenceKeyboardActionSelector from "../../ReferenceParameter/NodeReferenceKeyboardActionSelector_V";
-import NodeReferenceKeyboardInputButton from "../../ReferenceParameter/NodeReferenceKeyboardInputButton_V";
-import SetNodeReferenceDataCommand from "../../../../../class/commands/Interaction/SetNodeReferenceDataCommand";
-import storeContainer from "../../../../../stores/storeContainer";
-import NodeReferenceBooleanSelector from "../../ReferenceParameter/NodeReferenceBooleanSelector_V";
-import NodeReferenceVector3Selector_V from "../../ReferenceParameter/NodeReferenceVector3Selector_V";
-import { observer } from "mobx-react";
-import NodeReferenceColorSelector from "../../ReferenceParameter/NodeReferenceColorSelector_V";
+import ReferenceTextField from '../../ReferenceParameter/TextFieldV';
+import NodeReferenceMaterialSelector from '../../ReferenceParameter/NodeReferenceMaterialSelector_V';
+import NodeReferenceKeyboardActionSelector from '../../ReferenceParameter/NodeReferenceKeyboardActionSelector_V';
+import NodeReferenceKeyboardInputButton from '../../ReferenceParameter/NodeReferenceKeyboardInputButton_V';
+import SetNodeReferenceDataCommand from '../../../../../class/commands/Interaction/SetNodeReferenceDataCommand';
+import storeContainer from '../../../../../stores/storeContainer';
+import NodeReferenceBooleanSelector from '../../ReferenceParameter/NodeReferenceBooleanSelector_V';
+import NodeReferenceVector3Selector_V from '../../ReferenceParameter/NodeReferenceVector3Selector_V';
+import { observer } from 'mobx-react';
+import NodeReferenceColorSelector from '../../ReferenceParameter/NodeReferenceColorSelector_V';
 
 /**
  * @description
@@ -25,21 +25,16 @@ import NodeReferenceColorSelector from "../../ReferenceParameter/NodeReferenceCo
  */
 
 const NodeReferenceSelector = ({ reference }) => {
-  const { eventSystem_store, interactionhistory_store } =
-    storeContainer;
+  const { eventSystem_store, interactionhistory_store } = storeContainer;
   const { type, tooltipMessage, defaultValue } = reference;
 
   const handleSetValue = (newValue) => {
     interactionhistory_store.execute(
-      new SetNodeReferenceDataCommand(
-        eventSystem_store,
-        reference,
-        newValue
-      )
+      new SetNodeReferenceDataCommand(eventSystem_store, reference, newValue)
     );
   };
   switch (type) {
-    case "Number":
+    case 'Number':
       return (
         <ReferenceTextField
           value={defaultValue}
@@ -48,7 +43,7 @@ const NodeReferenceSelector = ({ reference }) => {
           refType={type}
         />
       );
-    case "String":
+    case 'String':
       return (
         <ReferenceTextField
           value={defaultValue}
@@ -57,7 +52,7 @@ const NodeReferenceSelector = ({ reference }) => {
           refType={type}
         />
       );
-    case "Material":
+    case 'Material':
       return (
         <NodeReferenceMaterialSelector
           value={defaultValue}
@@ -65,7 +60,7 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "MouseAction":
+    case 'MouseAction':
       return (
         <NodeReferenceKeyboardActionSelector
           value={defaultValue}
@@ -73,7 +68,7 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "KeyboardAction":
+    case 'KeyboardAction':
       return (
         <NodeReferenceKeyboardActionSelector
           value={defaultValue}
@@ -81,7 +76,7 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "KeyboardInput":
+    case 'KeyboardInput':
       return (
         <NodeReferenceKeyboardInputButton
           value={defaultValue}
@@ -89,7 +84,7 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "Boolean":
+    case 'Boolean':
       return (
         <NodeReferenceBooleanSelector
           value={defaultValue}
@@ -97,7 +92,7 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "Vector3":
+    case 'Vector3':
       return (
         <NodeReferenceVector3Selector_V
           value={defaultValue}
@@ -105,14 +100,14 @@ const NodeReferenceSelector = ({ reference }) => {
           tooltipMessage={tooltipMessage}
         />
       );
-    case "Color":
+    case 'Color':
       return (
         <NodeReferenceColorSelector
           value={defaultValue}
           setValue={handleSetValue}
           tooltipMessage={tooltipMessage}
         />
-      )
+      );
     default:
       return <></>;
   }

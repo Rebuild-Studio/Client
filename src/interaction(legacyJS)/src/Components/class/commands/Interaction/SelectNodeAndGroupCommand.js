@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class SelectNodeAndGroupCommand extends Command {
   constructor(store, uuid, clearNode, clearGroup, sheetId) {
     super(store);
-    this.type = "SelectNodeAndGroupCommand";
+    this.type = 'SelectNodeAndGroupCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       sheetId,
@@ -14,23 +14,23 @@ export default class SelectNodeAndGroupCommand extends Command {
       clearGroup: clearGroup,
       selectedGroups: undefined,
       selectedNodes: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     const node = sheet.getNodeByUuid(this.data.uuid);
     if (node) {
-      this.name = "SelectNodeCommand";
+      this.name = 'SelectNodeCommand';
       this.data.nodeType = node.type;
     } else {
       const group = sheet.getGroupByUuid(this.data.uuid);
       if (group) {
         if (this.store.selectedGroups.includes(this.data.uuid)) {
-          this.name = "ClearSelectionInGroupCommand";
+          this.name = 'ClearSelectionInGroupCommand';
         } else {
-          this.name = "SelectGroupCommand";
+          this.name = 'SelectGroupCommand';
         }
         this.data.groupName = group.name;
       } else {
-        this.name = "ClearSelectionCommand";
+        this.name = 'ClearSelectionCommand';
       }
     }
   }

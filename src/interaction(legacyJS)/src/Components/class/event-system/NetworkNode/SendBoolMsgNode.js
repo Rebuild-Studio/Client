@@ -1,7 +1,7 @@
-import Node from "../Node";
+import Node from '../Node';
 
 export class SendBoolMsgNode extends Node {
-  constructor(name, uuid, type = "SendBoolMsg") {
+  constructor(name, uuid, type = 'SendBoolMsg') {
     super(name, uuid, type);
   }
 }

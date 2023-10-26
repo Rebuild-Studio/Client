@@ -1,34 +1,34 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   palette: {
-    type: "light",
+    type: 'light',
     primary: {
-      main: "#5f5aff",
+      main: '#5f5aff'
     },
     secondary: {
-      main: "#8b87ff",
+      main: '#8b87ff'
     },
     light_purple: {
-      main: "#f4f3fc",
+      main: '#f4f3fc'
     },
     white: {
-      main: "#ffffff",
-      dark: "#b2b2b2",
-      light: "#ffffff",
+      main: '#ffffff',
+      dark: '#b2b2b2',
+      light: '#ffffff'
     },
     black: {
-      main: "#000000",
-      dark: "#000000",
-      light: "#333333",
+      main: '#000000',
+      dark: '#000000',
+      light: '#333333'
     },
     purple: {
-      main: "#b667f1",
-      dark: "#7F48A8",
-      light: "#C485F3",
+      main: '#b667f1',
+      dark: '#7F48A8',
+      light: '#C485F3'
     },
     gray: {
-      main: "#a1a1a1",
+      main: '#a1a1a1'
     },
     /**
      * @title Zeplin Design System Color
@@ -38,65 +38,65 @@ export const theme = createTheme({
        * @title Gray Scale
        */
       gray_scale: {
-        100: "#1C1C1C",
-        90: "#222222",
-        80: "#282828",
-        70: "#393939",
-        60: "#494949",
-        50: "#626262",
-        40: "#959595",
-        30: "#BABABA",
-        20: "#E2E2E2",
-        10: "#F5F5F5",
-        zero: "#FFFFFF",
+        100: '#1C1C1C',
+        90: '#222222',
+        80: '#282828',
+        70: '#393939',
+        60: '#494949',
+        50: '#626262',
+        40: '#959595',
+        30: '#BABABA',
+        20: '#E2E2E2',
+        10: '#F5F5F5',
+        zero: '#FFFFFF'
       },
       /**
        * @title Primary
        */
       primary: {
-        main: "#101728",
-        list_hover: "#52526D",
-        bg_hover: "#52526D",
+        main: '#101728',
+        list_hover: '#52526D',
+        bg_hover: '#52526D'
       },
       /**
        * @title Secondary
        */
       secondary: {
-        main: "#222938",
+        main: '#222938'
       },
       /**
        * @title Point
        */
       point: {
-        main: "#D4ED3E",
-        hover: "#C0D927",
+        main: '#D4ED3E',
+        hover: '#C0D927'
       },
       /**
        * @title Node
        */
       node: {
-        vector_color: "#F57DC5",
-        vector_default: "#F57DC5",
-        number_color: "#CCD5FF",
-        number_default: "#CCD5FF",
-        boolean_color: "#6D71F9",
-        boolean_default: "#6D71F9",
+        vector_color: '#F57DC5',
+        vector_default: '#F57DC5',
+        number_color: '#CCD5FF',
+        number_default: '#CCD5FF',
+        boolean_color: '#6D71F9',
+        boolean_default: '#6D71F9'
       },
       /**
        * @title Add
        */
       add: {
-        gray_add1: "#303030",
-        gray_add2: "#535353",
+        gray_add1: '#303030',
+        gray_add2: '#535353'
       },
       /**
        * @title Warning
        */
       warning: {
-        main: "#F44444",
-      },
-    },
-  },
+        main: '#F44444'
+      }
+    }
+  }
   // breakpoints: {
   //   values: {
   //     xs: 0,

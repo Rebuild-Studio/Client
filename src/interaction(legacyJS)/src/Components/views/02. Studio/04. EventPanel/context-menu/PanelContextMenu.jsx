@@ -1,10 +1,10 @@
-import { observer } from "mobx-react";
-import ContextMenu from "./ContextMenu";
-import storeContainer from "../../../../stores/storeContainer";
-import DeleteNodeAndGroupCommand from "../../../../class/commands/Interaction/DeleteNodeAndGroupCommand";
-import CloneNodeAndGroupCommand from "../../../../class/commands/Interaction/CloneNodeAndGroupCommand";
-import SelectNodeAndGroupCommand from "../../../../class/commands/Interaction/SelectNodeAndGroupCommand";
-import CreateGroupCommand from "../../../../class/commands/Interaction/CreateGroupCommand";
+import { observer } from 'mobx-react';
+import ContextMenu from './ContextMenu';
+import storeContainer from '../../../../stores/storeContainer';
+import DeleteNodeAndGroupCommand from '../../../../class/commands/Interaction/DeleteNodeAndGroupCommand';
+import CloneNodeAndGroupCommand from '../../../../class/commands/Interaction/CloneNodeAndGroupCommand';
+import SelectNodeAndGroupCommand from '../../../../class/commands/Interaction/SelectNodeAndGroupCommand';
+import CreateGroupCommand from '../../../../class/commands/Interaction/CreateGroupCommand';
 
 const PanelContextMenu = observer(() => {
   const { eventSystem_store, interactionhistory_store } = storeContainer;
@@ -51,31 +51,31 @@ const PanelContextMenu = observer(() => {
   };
   const generalItems = [
     {
-      stringKey: "Copy",
+      stringKey: 'Copy',
       onClick: handleClickCopy,
-      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0,
+      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0
     },
     {
-      stringKey: "Paste",
+      stringKey: 'Paste',
       onClick: handleClickPaste,
-      disabled: sheet.copiedNodes.length + sheet.copiedGroups.length === 0,
+      disabled: sheet.copiedNodes.length + sheet.copiedGroups.length === 0
     },
     {
-      stringKey: "Delete",
+      stringKey: 'Delete',
       onClick: handleClickDelete,
-      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0,
-    },
+      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0
+    }
   ];
   const selectItems = [
     {
-      stringKey: "Unselect",
+      stringKey: 'Unselect',
       onClick: handleClickUnselect,
-      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0,
-    },
+      disabled: sheet.selectedNodes.length + sheet.selectedGroups.length === 0
+    }
   ];
   const groupItems = [
     {
-      stringKey: "Group",
+      stringKey: 'Group',
       onClick: handleClickGroup,
       disabled:
         eventSystem_store.selectedGroups.length > 0
@@ -85,8 +85,8 @@ const PanelContextMenu = observer(() => {
                 ? true
                 : false
             ),
-      isDivided: true,
-    },
+      isDivided: true
+    }
   ];
   return (
     <ContextMenu type="Panel" items={[generalItems, selectItems, groupItems]} />

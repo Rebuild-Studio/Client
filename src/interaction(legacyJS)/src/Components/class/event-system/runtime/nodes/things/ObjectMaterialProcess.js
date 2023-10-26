@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 
 export default class ObjectMaterialProcess extends NodeProcess {
   constructor(nodeRuntime, key, refKey) {
@@ -11,9 +11,9 @@ export default class ObjectMaterialProcess extends NodeProcess {
 
   setMaterialProps(value) {
     Object.keys(value).forEach((property) => {
-      if (typeof value[property] !== "undefined") {
+      if (typeof value[property] !== 'undefined') {
         switch (property) {
-          case "Template":
+          case 'Template':
             this.setMaterialTemplateProps(value[property]);
             break;
           default:
@@ -33,7 +33,7 @@ export default class ObjectMaterialProcess extends NodeProcess {
       Number(value) === 0
         ? this.nodeRuntime.node.special.object_store.GetMaterialPropsByUuid(
             this.refKey
-          )["originMaterial"]
+          )['originMaterial']
         : await this.nodeRuntime.node.special.loader_store.GetMaterialTextureByIdx(
             value
           );
@@ -43,7 +43,7 @@ export default class ObjectMaterialProcess extends NodeProcess {
   coreWork(state, delta, xrFrame) {
     try {
       const value = this.inputs[this.key];
-      if (typeof value !== "undefined") {
+      if (typeof value !== 'undefined') {
         this.setProp(value);
       }
     } catch (e) {

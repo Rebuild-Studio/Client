@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 export default class RandomProcess extends NodeProcess {
   coreWork() {
     if (this.Input(0)) {

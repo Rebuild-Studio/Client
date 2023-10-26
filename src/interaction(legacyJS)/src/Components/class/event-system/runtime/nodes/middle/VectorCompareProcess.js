@@ -1,5 +1,5 @@
-import MiddleProcess from "./MiddleProcess";
-import * as THREE from "three";
+import MiddleProcess from './MiddleProcess';
+import * as THREE from 'three';
 
 function equals(inputs) {
   let ret = false;
@@ -25,10 +25,10 @@ export default class VectorCompareProcess extends MiddleProcess {
   constructor(nodeRuntime) {
     super(nodeRuntime);
     switch (this.data.NODE_DAT_COMPARE_OPERATOR) {
-      case "=":
+      case '=':
         this.calculate = Equality;
         break;
-      case "≠":
+      case '≠':
         this.calculate = InEquality;
         break;
       default:

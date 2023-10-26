@@ -5,10 +5,10 @@ import {
   Typography,
   Grid,
   Button,
-  Tooltip,
-} from "@mui/material";
-import { observer } from "mobx-react";
-import MaterialEditVM from "../../../../view_models/06. ObjectEdit/MaterialTemplate_VM";
+  Tooltip
+} from '@mui/material';
+import { observer } from 'mobx-react';
+import MaterialEditVM from '../../../../view_models/06. ObjectEdit/MaterialTemplate_VM';
 
 const MaterialTemplate = observer((props) => {
   const { anchorMenu, openMenu, handleCloseMenu } = props.commonVmProps;
@@ -44,7 +44,7 @@ const MaterialTemplate = observer((props) => {
                     template[1],
                     MaterialEditVM.selectedMaterialTemplateName
                   )}
-                  src={"/Icons/RightTab/" + template[1] + ".png"}
+                  src={'/Icons/RightTab/' + template[1] + '.png'}
                   alt={`item-${index}`}
                 />
               </MenuItem>
@@ -64,88 +64,88 @@ export default MaterialTemplate;
 
 const style = {
   menuWrapper: {
-    position: "absolute",
-    top: "-2.4vh",
+    position: 'absolute',
+    top: '-2.4vh',
     left: -258,
-    "& .MuiMenuItem-root": {
-      color: "#fff",
-      textAlign: "left",
-      fontFamily: "SourceHanSansKR",
-      fontSize: "13px",
-      borderRadius: "5px",
+    '& .MuiMenuItem-root': {
+      color: '#fff',
+      textAlign: 'left',
+      fontFamily: 'SourceHanSansKR',
+      fontSize: '13px',
+      borderRadius: '5px'
     },
-    "& .MuiPaper-root": {
-      width: "24.5vh",
-      height: "66.9vh",
-      backgroundColor: "#3a3a3a",
-    },
+    '& .MuiPaper-root': {
+      width: '24.5vh',
+      height: '66.9vh',
+      backgroundColor: '#3a3a3a'
+    }
   },
 
   boxStyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "4.3vh",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '4.3vh'
   },
 
   textArea: {
-    width: "calc(100% - 3.2vh)",
-    fontFamily: "SourceHanSansKR",
-    fontSize: "1.3vh",
+    width: 'calc(100% - 3.2vh)',
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '1.3vh',
     fontWeight: 500,
-    color: "#fff",
+    color: '#fff'
   },
 
   gridContainer: {
-    overflow: "auto",
-    height: "57vh",
-    "&::-webkit-scrollbar": { width: 0 },
+    overflow: 'auto',
+    height: '57vh',
+    '&::-webkit-scrollbar': { width: 0 }
   },
 
   menuItemSize: {
-    width: "10.1vh",
-    height: "10.1vh",
+    width: '10.1vh',
+    height: '10.1vh'
   },
 
   imageStyle: (index, selectedTemp) => ({
-    width: "10.1vh",
-    height: "10.1vh",
-    borderRadius: "5px",
-    outline: `${index === selectedTemp ? "solid 0.15vh #e3f853" : "none"}`,
+    width: '10.1vh',
+    height: '10.1vh',
+    borderRadius: '5px',
+    outline: `${index === selectedTemp ? 'solid 0.15vh #e3f853' : 'none'}`
   }),
 
   buttonStyle: {
-    width: "calc(100% - 3.2vh)",
-    height: "3.4vh",
-    borderRadius: "5px",
-    backgroundColor: "#e3f853",
-    fontFamily: "SourceHanSansKR",
-    fontSize: "1.4vh",
+    width: 'calc(100% - 3.2vh)',
+    height: '3.4vh',
+    borderRadius: '5px',
+    backgroundColor: '#e3f853',
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '1.4vh',
     fontWeight: 500,
-    color: "#272748",
+    color: '#272748'
   },
 
   tooltipStyle: {
     tooltip: {
       sx: {
-        fontFamily: "Inter",
-        fontSize: "1vh",
-        color: "#e1f853",
-        bgcolor: "#282828",
-        border: "solid 0.05vh #535353",
+        fontFamily: 'Inter',
+        fontSize: '1vh',
+        color: '#e1f853',
+        bgcolor: '#282828',
+        border: 'solid 0.05vh #535353',
         left: 1.5,
-        top: 2,
-      },
+        top: 2
+      }
     },
     arrow: {
       sx: {
-        "&::before": {
-          backgroundColor: "#282828",
-          border: "solid 0.05vh #535353",
-          top: 2,
-        },
-      },
-    },
-  },
+        '&::before': {
+          backgroundColor: '#282828',
+          border: 'solid 0.05vh #535353',
+          top: 2
+        }
+      }
+    }
+  }
 };

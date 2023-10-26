@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import styled, { css } from "styled-components";
+import { useState, useRef, useEffect } from 'react';
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import styled, { css } from 'styled-components';
 
 interface SliderProps {
   title: string;
@@ -16,14 +16,14 @@ interface SliderProps {
 }
 
 const Slider = ({
-  title = "",
+  title = '',
   min = 0,
   max = 100,
   step = 1,
   initValue = 0,
   onMaterialChange = () => {},
   onChange = () => {},
-  disabled,
+  disabled
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
   const sliderInputRef = useRef<HTMLInputElement | null>(null);
@@ -35,7 +35,7 @@ const Slider = ({
       const thumbPosition = ((newValue - min) / (max - min)) * 100;
       const sliderBackground = `linear-gradient(to right, ${basicColors.primary} ${thumbPosition}%, ${grayColors.lightGray} ${thumbPosition}%)`;
       sliderInputRef.current.style.setProperty(
-        "--slider-background",
+        '--slider-background',
         sliderBackground
       );
       onMaterialChange(newValue);
@@ -86,7 +86,7 @@ const TitleWrapper = styled.div`
   font-size: 10px;
 `;
 
-const SliderInput = styled.input.attrs({ type: "range" })`
+const SliderInput = styled.input.attrs({ type: 'range' })`
   width: 100%;
   height: 2px;
   appearance: none;

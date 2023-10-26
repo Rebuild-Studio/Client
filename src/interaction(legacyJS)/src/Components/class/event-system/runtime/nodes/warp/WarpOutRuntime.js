@@ -1,5 +1,5 @@
-import NodeRuntime from "../NodeRuntime";
-import WarpOutProcess from "./WarpOutProcess";
+import NodeRuntime from '../NodeRuntime';
+import WarpOutProcess from './WarpOutProcess';
 
 export default class WarpOutRuntime extends NodeRuntime {
   constructor(args) {

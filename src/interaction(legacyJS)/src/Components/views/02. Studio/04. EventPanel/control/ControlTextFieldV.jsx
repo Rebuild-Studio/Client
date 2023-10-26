@@ -1,8 +1,8 @@
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { useState, useEffect, useCallback } from "react";
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useState, useEffect, useCallback } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
 
 const ControlTextFieldV = observer((props) => {
   const { name, control, update, InputProps } = props;
@@ -20,7 +20,7 @@ const ControlTextFieldV = observer((props) => {
   const convert = useCallback(
     (value) => {
       switch (control.type) {
-        case "Number":
+        case 'Number':
           return setMinMax(min, max, Number(value));
         default:
           return value;
@@ -30,7 +30,7 @@ const ControlTextFieldV = observer((props) => {
   );
 
   const inputFilterCase = (value) => {
-    if (control.type === "Number") {
+    if (control.type === 'Number') {
       return !/^[+-]?\d*(\.?\d*)?$/.test(value);
     } else {
       return false;
@@ -44,7 +44,7 @@ const ControlTextFieldV = observer((props) => {
     <Box noValidate>
       <TextField
         label={string_store.string(name) || name}
-        type={control.type === "Number" ? "number" : "text"}
+        type={control.type === 'Number' ? 'number' : 'text'}
         value={defaultValue}
         InputProps={InputProps}
         onChange={(e) => {

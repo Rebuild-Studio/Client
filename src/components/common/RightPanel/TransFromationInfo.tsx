@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import TransformInput from "./TransformInput";
+import styled from 'styled-components';
+import TransformInput from './TransformInput';
 
 interface axis {
   x: number;
@@ -7,7 +7,7 @@ interface axis {
   z: number;
 }
 
-type TransformType = "position" | "rotation" | "scale";
+type TransformType = 'position' | 'rotation' | 'scale';
 
 interface Props {
   position: axis;
@@ -16,29 +16,29 @@ interface Props {
 }
 
 const PropertyValue = ({ position, rotation, scale }: Props) => {
-  const axes: ("x" | "y" | "z")[] = ["x", "y", "z"];
+  const axes: ('x' | 'y' | 'z')[] = ['x', 'y', 'z'];
   const _props = [
     {
-      title: "위치",
-      type: "position",
+      title: '위치',
+      type: 'position',
       x: position.x,
       y: position.y,
-      z: position.z,
+      z: position.z
     },
     {
-      title: "회전",
-      type: "rotation",
+      title: '회전',
+      type: 'rotation',
       x: rotation.x,
       y: rotation.y,
-      z: rotation.z,
+      z: rotation.z
     },
     {
-      title: "크기",
-      type: "scale",
+      title: '크기',
+      type: 'scale',
       x: scale.x,
       y: scale.y,
-      z: scale.z,
-    },
+      z: scale.z
+    }
   ];
 
   return (
@@ -47,13 +47,13 @@ const PropertyValue = ({ position, rotation, scale }: Props) => {
         {_props.map((prop, i) => {
           return (
             <div key={i}>
-              <span key={prop["title"]}>{prop["title"]}</span>
+              <span key={prop['title']}>{prop['title']}</span>
               <Wrapper>
                 {axes.map((axis) => {
                   return (
                     <TransformInput
                       key={axis}
-                      type={prop["type"] as TransformType}
+                      type={prop['type'] as TransformType}
                       initValue={String(prop[axis])}
                       axis={axis}
                     />

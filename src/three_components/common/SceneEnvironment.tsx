@@ -1,11 +1,11 @@
-import { useLoader } from "@react-three/fiber";
-import { RGBELoader } from "three-stdlib";
-import * as THREE from "three";
-import { Environment } from "@react-three/drei";
-import getMinioPath from "@/utils/path/minio";
-import { observer } from "mobx-react";
-import { hsvaToHex } from "@uiw/color-convert";
-import storeContainer from "@/store/storeContainer";
+import { useLoader } from '@react-three/fiber';
+import { RGBELoader } from 'three-stdlib';
+import * as THREE from 'three';
+import { Environment } from '@react-three/drei';
+import getMinioPath from '@/utils/path/minio';
+import { observer } from 'mobx-react';
+import { hsvaToHex } from '@uiw/color-convert';
+import storeContainer from '@/store/storeContainer';
 
 const SceneEnvironment = () => {
   const { sceneSettingStore } = storeContainer;
@@ -23,11 +23,11 @@ const SceneEnvironment = () => {
     directionalLightIntensity,
     directionalLightColor,
     hdriBackgroundVisibleToggle,
-    canvasBackgroundColor,
+    canvasBackgroundColor
   } = sceneSettingStore;
   const texture = useLoader(
     RGBELoader,
-    getMinioPath(selectedBackgroundImage, "libraryHDR")
+    getMinioPath(selectedBackgroundImage, 'libraryHDR')
   );
 
   return (
@@ -42,7 +42,7 @@ const SceneEnvironment = () => {
             rotation={[
               hdriXRotation,
               hdriYRotation * (Math.PI / 180),
-              hdriZRotation,
+              hdriZRotation
             ]}
             scale={100}
           >

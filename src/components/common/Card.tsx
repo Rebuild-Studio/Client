@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { styled } from "styled-components";
-import { CSSSize } from "@/types/style/cssUnits";
-import { CSSBorder } from "@/types/style/inputField";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
+import { useState } from 'react';
+import { styled } from 'styled-components';
+import { CSSSize } from '@/types/style/cssUnits';
+import { CSSBorder } from '@/types/style/inputField';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 
 type Props = {
   thumbnail: string;
@@ -21,15 +21,15 @@ type Props = {
 export const Card = ({
   thumbnail,
   isClicked,
-  name = "",
-  width = "245px",
-  height = "245px",
-  imageWidth = "90%",
-  imageHeight = "90%",
-  border = "1px dotted #fff",
-  alt = "error",
+  name = '',
+  width = '245px',
+  height = '245px',
+  imageWidth = '90%',
+  imageHeight = '90%',
+  border = '1px dotted #fff',
+  alt = 'error',
   hoverEffect = true,
-  onClick,
+  onClick
 }: Props) => {
   const [srcError, setSrcError] = useState(false);
   return (

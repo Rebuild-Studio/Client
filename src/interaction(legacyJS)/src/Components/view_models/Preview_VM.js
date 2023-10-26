@@ -1,11 +1,11 @@
-import { common_store } from "../stores/Common_Store";
-import { objectViewModel } from "../view_models/Object_VM";
-import { scene_store } from "../stores/Scene_Store";
-import { preview_store } from "../stores/Preview_Store";
-import lightViewModel from "./Light_VM";
-import { renderingContext_store } from "../stores/RenderingContext_Store";
-import { object_store } from "../stores/Object_Store";
-import { ObjectControllerVM } from "./ObjectController_VM";
+import { common_store } from '../stores/Common_Store';
+import { objectViewModel } from '../view_models/Object_VM';
+import { scene_store } from '../stores/Scene_Store';
+import { preview_store } from '../stores/Preview_Store';
+import lightViewModel from './Light_VM';
+import { renderingContext_store } from '../stores/RenderingContext_Store';
+import { object_store } from '../stores/Object_Store';
+import { ObjectControllerVM } from './ObjectController_VM';
 
 const previewViewModel = {
   previewModeHandler: async (e) => {
@@ -35,7 +35,7 @@ const previewViewModel = {
     const metaObjects = [];
 
     for (const metaObject of objectViewModel.renderObjects) {
-      const metaJson = await metaObject.toJson("preview");
+      const metaJson = await metaObject.toJson('preview');
       metaObjects.push(metaJson);
     }
 
@@ -54,11 +54,11 @@ const previewViewModel = {
 
       const parsingData = JSON.parse(preview_store.prevMetaObjects)[i];
 
-      await object_store.renderObjects[i].ReConstructor("preview", parsingData);
+      await object_store.renderObjects[i].ReConstructor('preview', parsingData);
       common_store.setIsLoading(false);
     }
     preview_store.prevMetaObjects = [];
-  },
+  }
 };
 
 export { previewViewModel };

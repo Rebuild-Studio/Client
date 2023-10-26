@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { styled } from "styled-components";
+import { useState } from 'react';
+import { styled } from 'styled-components';
 
 interface Props {
   defaultSrc: string;

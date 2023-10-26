@@ -1,5 +1,5 @@
-import { action } from "mobx";
-import { scene_store } from "../../stores/Scene_Store";
+import { action } from 'mobx';
+import { scene_store } from '../../stores/Scene_Store';
 
 const InterfaceSettingVM = {
   currentBackgroundColor: scene_store.canvasBackgroundColor,
@@ -22,6 +22,6 @@ const InterfaceSettingVM = {
   onClickHandler: action(() => {
     InterfaceSettingVM.currentBackgroundColor =
       scene_store.canvasBackgroundColor;
-  }),
+  })
 };
 export { InterfaceSettingVM };

@@ -1,9 +1,9 @@
-import { objectCopyCutPasteViewModel } from "../ObjectCopyCutPaste_VM";
-import { common_store } from "../../stores/Common_Store";
-import { object_store } from "../../stores/Object_Store";
-import { HotKeyFunctionsAboutViewViewModel } from "./HotKeyFunctionsAboutView_VM";
-import { objectViewModel } from "../Object_VM";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
+import { objectCopyCutPasteViewModel } from '../ObjectCopyCutPaste_VM';
+import { common_store } from '../../stores/Common_Store';
+import { object_store } from '../../stores/Object_Store';
+import { HotKeyFunctionsAboutViewViewModel } from './HotKeyFunctionsAboutView_VM';
+import { objectViewModel } from '../Object_VM';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
 
 const HotKeyFunctionsAboutEditObjectViewModel = {
   copy: () => {
@@ -20,13 +20,13 @@ const HotKeyFunctionsAboutEditObjectViewModel = {
   },
   setOriginMode: () => {
     common_store.setOriginMode();
-    common_store.transcontrol.setaxisType("local");
-    common_store.transcontrol.setSpace("local");
+    common_store.transcontrol.setaxisType('local');
+    common_store.transcontrol.setSpace('local');
   },
 
   selectAllObject: () => {
     for (var i = 0; i < object_store.metaObjects.length; i++) {
-      objectViewModel.SetSelectedObjects(object_store.metaObjects[i], "multi");
+      objectViewModel.SetSelectedObjects(object_store.metaObjects[i], 'multi');
     }
   },
   deselectObject: () => {
@@ -46,14 +46,18 @@ const HotKeyFunctionsAboutEditObjectViewModel = {
     if (common_store.isPreview) return;
     canvasHistory_store.redo();
   },
-  latticefunction: () =>{
+  latticefunction: () => {
     objectCopyCutPasteViewModel.latticefunction();
   },
-  deletelatticefunction: () =>{
+  deletelatticefunction: () => {
     objectCopyCutPasteViewModel.deletelatticefunction();
   },
-  booleanfunction: () =>{
-    objectCopyCutPasteViewModel.booleanfunction('subtract',object_store.selectedObjects[1],object_store.selectedObjects[0]);
+  booleanfunction: () => {
+    objectCopyCutPasteViewModel.booleanfunction(
+      'subtract',
+      object_store.selectedObjects[1],
+      object_store.selectedObjects[0]
+    );
   }
 };
 

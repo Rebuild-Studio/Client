@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import { ControlType } from "./NodeControl";
+import * as THREE from 'three';
+import { ControlType } from './NodeControl';
 
 //Json Utils
 export function stringify(data) {
@@ -15,22 +15,22 @@ export function copy(data) {
 }
 
 //String Utils
-const crypter = "__STRING__KEY__";
+const crypter = '__STRING__KEY__';
 
 export function encryptString(string) {
   return crypter + string;
 }
 
 export function isCryptString(string) {
-  return typeof string === "string" && string.includes(crypter);
+  return typeof string === 'string' && string.includes(crypter);
 }
 
 export function decryptString(string) {
-  return string.replace(crypter, "");
+  return string.replace(crypter, '');
 }
 
 export function templateArg(index) {
-  return "__ARG__" + index;
+  return '__ARG__' + index;
 }
 
 function reviver(_, value) {

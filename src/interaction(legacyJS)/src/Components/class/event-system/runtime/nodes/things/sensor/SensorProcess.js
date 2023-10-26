@@ -1,5 +1,5 @@
-import NodeProcess from "../../NodeProcess";
-import { Color, Vector3 } from "three";
+import NodeProcess from '../../NodeProcess';
+import { Color, Vector3 } from 'three';
 
 export default class SensorProcess extends NodeProcess {
   constructor(nodeRuntime, key) {
@@ -29,7 +29,7 @@ export default class SensorProcess extends NodeProcess {
       };
       return returnUndefined;
     }
-    const commonProps = ["position", "rotation", "scale", "visible"];
+    const commonProps = ['position', 'rotation', 'scale', 'visible'];
     if (commonProps.includes(this.key)) {
       return this.processCommonProps();
     } else {
@@ -37,7 +37,7 @@ export default class SensorProcess extends NodeProcess {
     }
   }
   processLightProps() {
-    if (this.key === "color") {
+    if (this.key === 'color') {
       return this.getColorProp;
     } else {
       return this.getLightProp;

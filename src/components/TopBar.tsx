@@ -1,12 +1,12 @@
-import IconButton from "./buttons/IconButton";
-import Button from "./common/Button";
-import { styled } from "styled-components";
-import { basicColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { fonts } from "@resources/fonts/font";
-import editorModeStore from "@store/editorModeStore";
-import { ConfirmBox } from "./layout/modal/ConfirmBox";
-import { observer } from "mobx-react-lite";
+import IconButton from './buttons/IconButton';
+import Button from './common/Button';
+import { styled } from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import { fonts } from '@resources/fonts/font';
+import editorModeStore from '@store/editorModeStore';
+import { ConfirmBox } from './layout/modal/ConfirmBox';
+import { observer } from 'mobx-react-lite';
 
 const TopBar = () => {
   const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
@@ -21,26 +21,26 @@ const TopBar = () => {
           label="캔버스"
           shadow="none"
           onClick={() => {
-            if (editorMode === "canvas") {
+            if (editorMode === 'canvas') {
               toggleCanvasBar();
             } else {
-              setEditorMode("canvas");
+              setEditorMode('canvas');
             }
           }}
-          color={editorMode === "canvas" ? basicColors.white : basicColors.grey}
+          color={editorMode === 'canvas' ? basicColors.white : basicColors.grey}
         />
         <Button
           label="인터렉션 에디터"
           shadow="none"
           onClick={() => {
-            if (editorMode === "interaction") {
+            if (editorMode === 'interaction') {
               toggleInteractionBar();
             } else {
-              setEditorMode("interaction");
+              setEditorMode('interaction');
             }
           }}
           color={
-            editorMode === "interaction" ? basicColors.white : basicColors.grey
+            editorMode === 'interaction' ? basicColors.white : basicColors.grey
           }
         />
       </Left>
@@ -48,7 +48,7 @@ const TopBar = () => {
         <ComponentName
           onClick={() => {
             projectStateStore.updateModalComponent(
-              <ConfirmBox label={"컴포넌트 이름 변경"} hasContent={true} />
+              <ConfirmBox label={'컴포넌트 이름 변경'} hasContent={true} />
             );
             projectStateStore.updateModalState(true);
           }}
@@ -59,7 +59,7 @@ const TopBar = () => {
       <Right>
         <IconButton
           Icon={() => (
-            <img src={"/icons/studio/icon_씬설정.svg"} alt="씬설정" />
+            <img src={'/icons/studio/icon_씬설정.svg'} alt="씬설정" />
           )}
           onClick={() => {
             sceneSettingStore.toggleVisibility();
@@ -70,17 +70,17 @@ const TopBar = () => {
           Icon={() => (
             <img
               src={
-                editorMode === "preview"
-                  ? "/icons/studio/icon_window-solid.svg"
-                  : "/icons/studio/icon_미리보기.svg"
+                editorMode === 'preview'
+                  ? '/icons/studio/icon_window-solid.svg'
+                  : '/icons/studio/icon_미리보기.svg'
               }
-              alt={editorMode === "preview" ? "플레이" : "미리보기"}
+              alt={editorMode === 'preview' ? '플레이' : '미리보기'}
             />
           )}
           onClick={() => {
-            editorMode === "preview"
-              ? setEditorMode("canvas")
-              : setEditorMode("preview");
+            editorMode === 'preview'
+              ? setEditorMode('canvas')
+              : setEditorMode('preview');
           }}
         />
       </Right>

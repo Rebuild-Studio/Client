@@ -1,22 +1,22 @@
-import { makeAutoObservable } from "mobx";
-import storeContainer from "./storeContainer";
+import { makeAutoObservable } from 'mobx';
+import storeContainer from './storeContainer';
 
 type ContextMenuType =
-  | "NONE"
-  | "미리보기"
-  | "그리드 숨기기"
-  | "그리드 표시"
-  | "저장"
-  | "붙여넣기"
-  | "복사"
-  | "그룹"
-  | "그룹 해제"
-  | "잠그기"
-  | "잠금 해제"
-  | "숨기기"
-  | "보이기"
-  | "삭제"
-  | "DIVIDER";
+  | 'NONE'
+  | '미리보기'
+  | '그리드 숨기기'
+  | '그리드 표시'
+  | '저장'
+  | '붙여넣기'
+  | '복사'
+  | '그룹'
+  | '그룹 해제'
+  | '잠그기'
+  | '잠금 해제'
+  | '숨기기'
+  | '보이기'
+  | '삭제'
+  | 'DIVIDER';
 
 /**
  * [string, string, boolean] :
@@ -25,7 +25,7 @@ type ContextMenuType =
  */
 type ContextMenuItemType = [ContextMenuType, string, boolean];
 
-type OpenContextMenuType = "CANVAS" | "OBJECT" | "NONE";
+type OpenContextMenuType = 'CANVAS' | 'OBJECT' | 'NONE';
 
 interface ContextMenuRenderProps {
   xPos: number;
@@ -35,7 +35,7 @@ interface ContextMenuRenderProps {
 
 class ContextMenuStore {
   isContextMenuOpened = false;
-  currentSelectedContextMenu: ContextMenuType = "NONE";
+  currentSelectedContextMenu: ContextMenuType = 'NONE';
   currentContextMenuType: ContextMenuRenderProps | null = null;
 
   constructor() {
@@ -51,21 +51,21 @@ class ContextMenuStore {
   }
   updateContextMenuType(type: OpenContextMenuType, xPos: number, yPos: number) {
     switch (type) {
-      case "CANVAS":
+      case 'CANVAS':
         this.currentContextMenuType = {
           xPos: xPos,
           yPos: yPos,
-          items: renderCanvasContextMenuItems(),
+          items: renderCanvasContextMenuItems()
         };
         break;
-      case "OBJECT":
+      case 'OBJECT':
         this.currentContextMenuType = {
           xPos: xPos,
           yPos: yPos,
-          items: renderObjectContextMenuItems(),
+          items: renderObjectContextMenuItems()
         };
         break;
-      case "NONE":
+      case 'NONE':
         this.currentContextMenuType = null;
         break;
     }
@@ -74,27 +74,27 @@ class ContextMenuStore {
 
 // 좋은 이름이 필요합니다.
 const activeContextMenuItems: { [key: string]: ContextMenuItemType } = {
-  preview: ["미리보기", "O", true],
-  grid: ["그리드 표시", "Z", true],
-  save: ["저장", "Ctrl+S", true],
-  paste: ["붙여넣기", "Ctrl+V", true],
-  copy: ["복사", "Ctrl+C", true],
-  group: ["그룹", "Ctrl+G", true],
-  lock: ["잠그기", "Ctrl+L", true],
-  hide: ["숨기기", "Ctrl+.", true],
-  visible: ["보이기", "Ctrl+,", true],
-  delete: ["삭제", "Del", true],
+  preview: ['미리보기', 'O', true],
+  grid: ['그리드 표시', 'Z', true],
+  save: ['저장', 'Ctrl+S', true],
+  paste: ['붙여넣기', 'Ctrl+V', true],
+  copy: ['복사', 'Ctrl+C', true],
+  group: ['그룹', 'Ctrl+G', true],
+  lock: ['잠그기', 'Ctrl+L', true],
+  hide: ['숨기기', 'Ctrl+.', true],
+  visible: ['보이기', 'Ctrl+,', true],
+  delete: ['삭제', 'Del', true]
 };
 
 const inactiveContextMenuItems: { [key: string]: ContextMenuItemType } = {
-  grid: ["그리드 숨기기", "Z", true],
-  copy: ["복사", "Ctrl+C", false],
-  paste: ["붙여넣기", "Ctrl+V", false],
-  group: ["그룹 해제", "Ctrl+G", true],
-  divider: ["DIVIDER", "", false],
-  hide: ["숨기기", "Ctrl+.", false],
-  visible: ["보이기", "Ctrl+,", false],
-  lock: ["잠금 해제", "Ctrl+L", true],
+  grid: ['그리드 숨기기', 'Z', true],
+  copy: ['복사', 'Ctrl+C', false],
+  paste: ['붙여넣기', 'Ctrl+V', false],
+  group: ['그룹 해제', 'Ctrl+G', true],
+  divider: ['DIVIDER', '', false],
+  hide: ['숨기기', 'Ctrl+.', false],
+  visible: ['보이기', 'Ctrl+,', false],
+  lock: ['잠금 해제', 'Ctrl+L', true]
 };
 
 const renderCanvasContextMenuItems = (): ContextMenuItemType[] => {
@@ -139,7 +139,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
 
   if (
     Object.keys(primitiveStore.selectedPrimitives).length === 1 &&
-    Object.values(primitiveStore.selectedPrimitives)[0].name === "GROUP"
+    Object.values(primitiveStore.selectedPrimitives)[0].name === 'GROUP'
   ) {
     resContextMenuItems.push(inactiveContextMenuItems.group);
   }
@@ -148,7 +148,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
 
   const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
     (value) => {
-      return value.userData["isLocked"] === true;
+      return value.userData['isLocked'] === true;
     }
   );
 
@@ -176,7 +176,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
     const lockMenu: ContextMenuItemType[] = [];
     resContextMenuItems.forEach(([contextmenuType, hotKey], index) => {
       lockMenu.push([contextmenuType, hotKey, false]);
-      if (contextmenuType === "잠금 해제") {
+      if (contextmenuType === '잠금 해제') {
         lockMenu[index][2] = true;
       }
     });
@@ -187,7 +187,7 @@ const renderObjectContextMenuItems = (): ContextMenuItemType[] => {
   if (isObjectInvisible) {
     resContextMenuItems.forEach(([contextMenuType, ,], index) => {
       switch (contextMenuType) {
-        case "그룹": {
+        case '그룹': {
           resContextMenuItems[index][2] = false;
           break;
         }

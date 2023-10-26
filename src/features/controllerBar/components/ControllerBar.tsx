@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
-import ObjectFocus from "@/features/controllerBar/components/focus/ObjectFocus";
-import GizmoMode from "@/features/controllerBar/components/gizmo/GizmoMode";
-import SnapMode from "@/features/controllerBar/components/snap/SnapMode";
-import { bgColors } from "@resources/colors/colors";
+import ObjectFocus from '@/features/controllerBar/components/focus/ObjectFocus';
+import GizmoMode from '@/features/controllerBar/components/gizmo/GizmoMode';
+import SnapMode from '@/features/controllerBar/components/snap/SnapMode';
+import { bgColors } from '@resources/colors/colors';
 
 const ControllerBar = () => {
   return (
@@ -38,5 +38,5 @@ const Group = styled.div`
   gap: 3px;
   border-radius: 4px;
   padding: 3px;
-  background-color: ${bgColors["1c1c1c"]};
+  background-color: ${bgColors['1c1c1c']};
 `;

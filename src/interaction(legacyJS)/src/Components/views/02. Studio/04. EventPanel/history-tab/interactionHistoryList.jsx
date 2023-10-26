@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Button, Grid, Tooltip } from "@mui/material";
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
+import React from 'react';
+import { Box, Button, Grid, Tooltip } from '@mui/material';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
 
 const InitialState = (props) => {
   const { arrayObject } = props;
-  const object = { name: "InitialState", getDetailData: () => [], id: -1 };
+  const object = { name: 'InitialState', getDetailData: () => [], id: -1 };
   return (
     <UndoButton
       object={object}
@@ -19,11 +19,11 @@ const UndoButton = (props) => {
   return (
     <HistoryButton
       {...props}
-      color={isTopUndoHistory ? "#d4ed3e" : "#fff"}
+      color={isTopUndoHistory ? '#d4ed3e' : '#fff'}
       url={
         isTopUndoHistory
-          ? "/legacyJS/Icons/Studio/icon_표시_활성화"
-          : "/legacyJS/Icons/Studio/icon_표시"
+          ? '/legacyJS/Icons/Studio/icon_표시_활성화'
+          : '/legacyJS/Icons/Studio/icon_표시'
       }
     />
   );
@@ -41,7 +41,7 @@ const HistoryButton = observer((props) => {
   return (
     <Tooltip
       title={string_store.convert(
-        object.name + "Detail",
+        object.name + 'Detail',
         object.getDetailData()
       )}
       placement="right"
@@ -90,7 +90,7 @@ const List = observer((props) => {
   const { arrayObject, elementKey, ButtonComponent } = props;
   return (
     <>
-      {elementKey === "interactionUndo" && (
+      {elementKey === 'interactionUndo' && (
         <InitialState arrayObject={arrayObject} />
       )}
       {Array.from(arrayObject).map((object, index, origin) => (
@@ -98,7 +98,7 @@ const List = observer((props) => {
           key={elementKey + index}
           object={object}
           isTopUndoHistory={
-            elementKey === "interactionUndo" && index === origin.length - 1
+            elementKey === 'interactionUndo' && index === origin.length - 1
           }
         />
       ))}
@@ -114,7 +114,7 @@ const InteractionHistoryList = () => {
       justifyContent="space-evenly"
       alignItems="flex-start"
       sx={style.grid}
-      style={{ display: "flex", justifyContent: "flex-start" }}
+      style={{ display: 'flex', justifyContent: 'flex-start' }}
     >
       {/* history list 출력 */}
       <UndoList />
@@ -126,49 +126,49 @@ export default InteractionHistoryList;
 
 const style = {
   grid: {
-    mt: "10px",
-    ml: "11px",
-    overflow: "auto",
-    whiteSpace: "nowrap",
-    "&::-webkit-scrollbar": { width: 0 },
+    mt: '10px',
+    ml: '11px',
+    overflow: 'auto',
+    whiteSpace: 'nowrap',
+    '&::-webkit-scrollbar': { width: 0 }
   },
   buttonWrapper: {
-    boxSizing: "border-box",
-    height: "30px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 2,
+    boxSizing: 'border-box',
+    height: '30px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2
   },
   button: {
-    fontFamily: "SourceHanSansKR",
-    fontSize: "12px",
-    fontWeight: "300",
-    textAlign: "left",
-    textTransform: "none",
-    padding: 0,
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '12px',
+    fontWeight: '300',
+    textAlign: 'left',
+    textTransform: 'none',
+    padding: 0
   },
   tooltip: {
-    color: "#fff",
-    bgcolor: "#8B87FF",
-    border: "1px solid #8B87FF",
+    color: '#fff',
+    bgcolor: '#8B87FF',
+    border: '1px solid #8B87FF',
     borderRadius: 3,
-    bottom: "5px !important",
+    bottom: '5px !important'
   },
   arrow: {
-    "&::before": {
-      backgroundColor: "#8B87FF",
-      border: "1px solid #8B87FF",
-    },
+    '&::before': {
+      backgroundColor: '#8B87FF',
+      border: '1px solid #8B87FF'
+    }
   },
   tooltipAndArrow: function () {
     return {
       tooltip: {
-        sx: style.tooltip,
+        sx: style.tooltip
       },
       arrow: {
-        sx: style.arrow,
-      },
+        sx: style.arrow
+      }
     };
-  },
+  }
 };

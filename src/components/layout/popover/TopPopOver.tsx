@@ -1,6 +1,6 @@
-import { styled } from "styled-components";
-import { PopOverProps } from "./PopOverProps";
-import { useEffect, useRef, useState } from "react";
+import { styled } from 'styled-components';
+import { PopOverProps } from './PopOverProps';
+import { useEffect, useRef, useState } from 'react';
 
 const TopPopOver = (props: PopOverProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,12 +17,12 @@ const TopPopOver = (props: PopOverProps) => {
 
   useEffect(() => {
     if (isTriggered) {
-      document.addEventListener("mousedown", setOnOutsideClickListener);
+      document.addEventListener('mousedown', setOnOutsideClickListener);
     } else {
-      document.removeEventListener("mousedown", setOnOutsideClickListener);
+      document.removeEventListener('mousedown', setOnOutsideClickListener);
     }
     return () => {
-      document.removeEventListener("mousedown", setOnOutsideClickListener);
+      document.removeEventListener('mousedown', setOnOutsideClickListener);
     };
   }, [isTriggered]);
 
@@ -33,7 +33,7 @@ const TopPopOver = (props: PopOverProps) => {
           {props.children}
         </PopOverContent>
       ) : (
-        ""
+        ''
       )}
       <PopOverTrigger onClick={setOnTriggerListener}>
         {props.triggerComponent}

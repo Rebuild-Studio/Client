@@ -1,15 +1,15 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 import {
   LoaderProto,
   ObjectMap,
   useLoader,
-  useThree,
-} from "@react-three/fiber";
-import { GLTFLoader, GLTF } from "three/addons/loaders/GLTFLoader.js";
-import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
-import { KTX2Loader } from "three/addons/loaders/KTX2Loader.js";
-import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
-import getMinioPath from "@/utils/path/minio";
+  useThree
+} from '@react-three/fiber';
+import { GLTFLoader, GLTF } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import getMinioPath from '@/utils/path/minio';
 
 // 서버에서 glb, gltf 로더
 const useServerGLTFLoader = (url: string): GLTF & ObjectMap => {
@@ -18,13 +18,13 @@ const useServerGLTFLoader = (url: string): GLTF & ObjectMap => {
   return useLoader(GLTFLoader, url, (loader: GLTFLoader) => {
     //set KTX transcoder for loading
     const ktx2Loader = new KTX2Loader();
-    ktx2Loader.setTranscoderPath("/gltf/basis/");
+    ktx2Loader.setTranscoderPath('/gltf/basis/');
     ktx2Loader.detectSupport(gl);
     loader.setKTX2Loader(ktx2Loader);
 
     //set Draco decoder for loading
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("/gltf/draco/");
+    dracoLoader.setDecoderPath('/gltf/draco/');
     loader.setDRACOLoader(dracoLoader);
   });
 };
@@ -36,7 +36,7 @@ const useServerTextureLoader = (input: string): THREE.Texture => {
 
 // 서버에서 머테리얼 오브젝트 로드하여 머테리얼 반환
 const useServerMaterialLoader = (name: string): THREE.Material => {
-  const object = useServerGLTFLoader(getMinioPath(name, "libraryMaterial"));
+  const object = useServerGLTFLoader(getMinioPath(name, 'libraryMaterial'));
 
   const materials = object.materials;
   return materials[Object.keys(materials)[0] ?? 0];
@@ -60,7 +60,7 @@ const useFileListLoader = (
   const manager = new THREE.LoadingManager();
   const objectURLList: string[] = [];
   manager.setURLModifier((url) => {
-    url = url.replace(/^(\.?\/)/, ""); // remove './'
+    url = url.replace(/^(\.?\/)/, ''); // remove './'
 
     const file = filesMap[url];
 
@@ -76,31 +76,31 @@ const useFileListLoader = (
   let result: ((GLTF & ObjectMap) | THREE.Group)[] = [];
 
   for (const fileName of fileNameList) {
-    const extension = fileName.split(".").pop()?.toLocaleLowerCase();
+    const extension = fileName.split('.').pop()?.toLocaleLowerCase();
     let LoaderClass: LoaderProto<any> = GLTFLoader;
     let loaderCallback: (loader?: any) => void = () => {};
 
     switch (extension) {
-      case "glb":
-      case "gltf":
+      case 'glb':
+      case 'gltf':
         LoaderClass = GLTFLoader;
         loaderCallback = (loader: GLTFLoader) => {
           //set Draco decoder for loading
           const dracoLoader = new DRACOLoader();
-          dracoLoader.setDecoderPath("/gltf/draco/");
+          dracoLoader.setDecoderPath('/gltf/draco/');
           loader.setDRACOLoader(dracoLoader);
 
           loader.manager = manager;
         };
         break;
-      case "obj":
+      case 'obj':
         LoaderClass = OBJLoader;
         loaderCallback = (loader: OBJLoader) => {
           loader.manager = manager;
         };
         break;
       default:
-        console.warn("불가능한 확장자 : ", fileName);
+        console.warn('불가능한 확장자 : ', fileName);
         continue;
     }
 
@@ -121,11 +121,11 @@ const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
   const objectURLList: string[] = [];
 
   const filesMap = {
-    [file.name]: file,
+    [file.name]: file
   };
 
   manager.setURLModifier((url) => {
-    url = url.replace(/^(\.?\/)/, ""); // remove './'
+    url = url.replace(/^(\.?\/)/, ''); // remove './'
 
     const file = filesMap[url];
 
@@ -138,24 +138,24 @@ const useFileLoader = (file: File): (GLTF & ObjectMap) | THREE.Group => {
     return url;
   });
 
-  const extension = file.name.split(".").pop()?.toLocaleLowerCase();
+  const extension = file.name.split('.').pop()?.toLocaleLowerCase();
   let LoaderClass: LoaderProto<any> = GLTFLoader;
   let loaderCallback: (loader?: any) => void = () => {};
 
   switch (extension) {
-    case "glb":
-    case "gltf":
+    case 'glb':
+    case 'gltf':
       LoaderClass = GLTFLoader;
       loaderCallback = (loader: GLTFLoader) => {
         //set Draco decoder for loading
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath("/gltf/draco/");
+        dracoLoader.setDecoderPath('/gltf/draco/');
         loader.setDRACOLoader(dracoLoader);
 
         loader.manager = manager;
       };
       break;
-    case "obj":
+    case 'obj':
       LoaderClass = OBJLoader;
       loaderCallback = (loader: OBJLoader) => {
         loader.manager = manager;
@@ -175,5 +175,5 @@ export {
   useServerTextureLoader,
   useServerMaterialLoader,
   useFileLoader,
-  useFileListLoader,
+  useFileListLoader
 };

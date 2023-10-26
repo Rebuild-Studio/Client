@@ -1,6 +1,6 @@
-import InputSocketRuntimes from "./InputSocketRuntimes";
-import OutputSocketRuntimes from "./OutputSocketRuntimes";
-import registerCallbacks from "./registerCallbacks";
+import InputSocketRuntimes from './InputSocketRuntimes';
+import OutputSocketRuntimes from './OutputSocketRuntimes';
+import registerCallbacks from './registerCallbacks';
 
 export default class NodeRuntimeArguments {
   constructor(node, special) {

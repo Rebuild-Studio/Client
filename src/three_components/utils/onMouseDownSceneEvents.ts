@@ -1,4 +1,4 @@
-import storeContainer from "@/store/storeContainer";
+import storeContainer from '@/store/storeContainer';
 
 const onMouseDownSceneEvents = () => {
   const { contextMenuStore } = storeContainer;

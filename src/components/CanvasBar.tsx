@@ -1,19 +1,19 @@
-import Button from "./common/Button";
-import storeContainer from "@/store/storeContainer";
-import CubePrimitive from "@/three_components/primitives/CubePrimitive";
-import SpherePrimitive from "@/three_components/primitives/SpherePrimitive";
-import CylinderPrimitive from "@/three_components/primitives/CylinderPrimitive";
-import ConePrimitive from "@/three_components/primitives/ConePrimitive";
-import TorusPrimitive from "@/three_components/primitives/TorusPrimitive";
-import CapsulePrimitive from "@/three_components/primitives/CapsulePrimitive";
-import { nanoid } from "nanoid";
-import styled from "styled-components";
-import { bgColors, grayColors } from "@/resources/colors/colors";
-import { observer } from "mobx-react";
-import { useToast } from "@hooks/useToast";
-import AssetLibrary from "@/features/assetLibrary";
-import PointLight from "@/three_components/lights/PointLight";
-import SpotLight from "@/three_components/lights/SpotLight";
+import Button from './common/Button';
+import storeContainer from '@/store/storeContainer';
+import CubePrimitive from '@/three_components/primitives/CubePrimitive';
+import SpherePrimitive from '@/three_components/primitives/SpherePrimitive';
+import CylinderPrimitive from '@/three_components/primitives/CylinderPrimitive';
+import ConePrimitive from '@/three_components/primitives/ConePrimitive';
+import TorusPrimitive from '@/three_components/primitives/TorusPrimitive';
+import CapsulePrimitive from '@/three_components/primitives/CapsulePrimitive';
+import { nanoid } from 'nanoid';
+import styled from 'styled-components';
+import { bgColors, grayColors } from '@/resources/colors/colors';
+import { observer } from 'mobx-react';
+import { useToast } from '@hooks/useToast';
+import AssetLibrary from '@/features/assetLibrary';
+import PointLight from '@/three_components/lights/PointLight';
+import SpotLight from '@/three_components/lights/SpotLight';
 
 const CanvasBar = () => {
   const { primitiveStore, projectStateStore } = storeContainer;
@@ -41,7 +41,7 @@ const CanvasBar = () => {
             backgroundImage="/icons/studio/btn_cube.svg"
             hoverBackgroundImage="/icons/studio/btn_cube_active.svg"
             onClick={() => {
-              addToast("큐브가 추가되었습니다"); //[TBD] should be deleted on production
+              addToast('큐브가 추가되었습니다'); //[TBD] should be deleted on production
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
@@ -55,7 +55,7 @@ const CanvasBar = () => {
             backgroundImage="/icons/studio/btn_sphere.svg"
             hoverBackgroundImage="/icons/studio/btn_sphere_active.svg"
             onClick={() => {
-              addToast("구가 추가되었습니다"); //[TBD] should be deleted on production
+              addToast('구가 추가되었습니다'); //[TBD] should be deleted on production
               const storeId = nanoid();
               primitiveStore.addPrimitive(
                 storeId,
@@ -186,7 +186,7 @@ const Container = styled.div<{ height: string }>`
   height: ${(props) => props.height};
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${bgColors["1c1c1c"]};
+  border-bottom: 1px solid ${bgColors['1c1c1c']};
 `;
 
 const CanvasBtnWrapper = styled.div<{ width: string }>`
@@ -196,17 +196,17 @@ const CanvasBtnWrapper = styled.div<{ width: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid ${bgColors["1c1c1c"]};
+  border-left: 1px solid ${bgColors['1c1c1c']};
 `;
 
 const PaddingBox = styled.div`
   height: 100%;
   flex-grow: 1;
-  border: 1px solid ${bgColors["1c1c1c"]};
+  border: 1px solid ${bgColors['1c1c1c']};
 `;
 
 const ButtonGroupName = styled.span`
   font-size: 10px;
-  color: ${grayColors["808080"]};
+  color: ${grayColors['808080']};
   align-self: center;
 `;

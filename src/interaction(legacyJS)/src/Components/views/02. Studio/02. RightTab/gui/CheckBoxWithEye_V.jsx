@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { observer } from 'mobx-react';
+import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
 
 const MxCheckBoxWithEye = observer((props) => {
   const { label, onChange, checked, style } = props;
@@ -7,13 +7,13 @@ const MxCheckBoxWithEye = observer((props) => {
   return (
     <Box
       sx={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        paddingLeft: "5px",
-        paddingRight: "5px",
-        ...style,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingLeft: '5px',
+        paddingRight: '5px',
+        ...style
       }}
     >
       <FormControlLabel
@@ -45,10 +45,10 @@ const MxCheckBoxWithEye = observer((props) => {
       />
       <Typography
         sx={{
-          fontFamily: "SourceHanSansKR",
-          fontSize: "12px",
+          fontFamily: 'SourceHanSansKR',
+          fontSize: '12px',
           fontWeight: 500,
-          color: "#e2e2e2",
+          color: '#e2e2e2'
         }}
       >
         {label}

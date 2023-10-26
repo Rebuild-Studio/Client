@@ -1,7 +1,7 @@
-import { eventSystem_store } from "../Components/stores/Interaction_Stores";
-import { interactionhistory_store } from "../Components/stores/Interaction_Stores";
-import { previewViewModel } from "../Components/view_models/Preview_VM";
-import SetNodeDataCommand from "../Components/class/commands/Interaction/SetNodeDataCommand";
+import { eventSystem_store } from '../Components/stores/Interaction_Stores';
+import { interactionhistory_store } from '../Components/stores/Interaction_Stores';
+import { previewViewModel } from '../Components/view_models/Preview_VM';
+import SetNodeDataCommand from '../Components/class/commands/Interaction/SetNodeDataCommand';
 
 /**
  * 상수 노드 제어
@@ -16,7 +16,7 @@ export const setConstNumberNode = (e, index) => {
     new SetNodeDataCommand(
       eventSystem_store,
       node.uuid,
-      "number",
+      'number',
       index,
       eventSystem_store.selectedSheet
     )

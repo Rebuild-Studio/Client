@@ -1,8 +1,8 @@
-import { makeAutoObservable } from "mobx";
-import Sheet from "../class/event-system/Sheet";
-import UUIDGenerator from "../../utils/uuid";
-import * as Utils from "../class/event-system/utils";
-import { ControlType } from "../class/event-system/NodeControl";
+import { makeAutoObservable } from 'mobx';
+import Sheet from '../class/event-system/Sheet';
+import UUIDGenerator from '../../utils/uuid';
+import * as Utils from '../class/event-system/utils';
+import { ControlType } from '../class/event-system/NodeControl';
 export default class EventSystemStore {
   sheets = {};
   selectedSheet = null;
@@ -18,7 +18,7 @@ export default class EventSystemStore {
   camera = {
     min: 0.75,
     max: Infinity,
-    speed: 1,
+    speed: 1
   };
 
   constructor(string_store) {
@@ -31,7 +31,7 @@ export default class EventSystemStore {
       const defaultSheet = this.createSheet();
       this.setSelectedSheet(defaultSheet.uuid);
       this.setSheetOrder({
-        uuid: defaultSheet.uuid,
+        uuid: defaultSheet.uuid
       });
     }
 
@@ -88,36 +88,36 @@ export default class EventSystemStore {
 
   nodeContextMenu(position) {
     this.contextMenuPosition = position;
-    this.contextMenuType = "Node";
+    this.contextMenuType = 'Node';
   }
 
   groupContextMenu(position) {
     this.contextMenuPosition = position;
-    this.contextMenuType = "Group";
+    this.contextMenuType = 'Group';
   }
 
   sheetContextMenu(position) {
     this.contextMenuPosition = position;
-    this.contextMenuType = "Sheet";
+    this.contextMenuType = 'Sheet';
   }
 
   panelContextMenu(position) {
     this.contextMenuPosition = position;
-    this.contextMenuType = "Panel";
+    this.contextMenuType = 'Panel';
   }
 
   createSheet(args = {}) {
     const { name = this.uniqueSheetName(), uuid = UUIDGenerator.run() } = args;
     const sheet = new Sheet({ name, uuid });
     Object.assign(this.sheets, {
-      [uuid]: sheet,
+      [uuid]: sheet
     });
     return sheet;
   }
 
   uniqueSheetName() {
     const names = Object.values(this.sheets).map((v) => v.name);
-    let newName = "";
+    let newName = '';
     function checkName(v) {
       return v !== newName;
     }
@@ -132,7 +132,7 @@ export default class EventSystemStore {
 
   uniqueNodeTypeName(sheet, type) {
     const names = sheet.nodes.map((v) => v.name);
-    let newName = "";
+    let newName = '';
     function checkName(v) {
       return v !== newName;
     }
@@ -147,7 +147,7 @@ export default class EventSystemStore {
 
   uniqueGroupName(sheet) {
     const names = sheet.groups.map((v) => v.name);
-    let newName = "";
+    let newName = '';
     function checkName(v) {
       return v !== newName;
     }
@@ -162,11 +162,11 @@ export default class EventSystemStore {
   }
 
   defaultSheetName(index) {
-    return `${this.stringStore.string("DefaultSheetName")} ${index}`;
+    return `${this.stringStore.string('DefaultSheetName')} ${index}`;
   }
 
   defaultGroupName(index) {
-    return `${this.stringStore.string("DefaultGroupName")} ${index}`;
+    return `${this.stringStore.string('DefaultGroupName')} ${index}`;
   }
 
   defaultNodeName(index, type) {
@@ -205,7 +205,7 @@ export default class EventSystemStore {
   setSheetOrder(args) {
     const { uuid, order } = args;
 
-    if (typeof order === "undefined") {
+    if (typeof order === 'undefined') {
       this.sheetOrder.push(uuid);
       return;
     }
@@ -249,7 +249,7 @@ export default class EventSystemStore {
     return {
       sheets: this.sheets,
       selectedSheet: this.selectedSheet,
-      sheetOrder: this.sheetOrder,
+      sheetOrder: this.sheetOrder
     };
   }
 
@@ -263,7 +263,7 @@ export default class EventSystemStore {
       const sheet = new Sheet(rest);
       sheet.parseInteractions({ nodes, wires, groups });
       Object.assign(this.sheets, {
-        [uuid]: sheet,
+        [uuid]: sheet
       });
     });
     this.sheetOrder = data?.sheetOrder;
@@ -300,7 +300,7 @@ export default class EventSystemStore {
       });
       sheet.parseInteractions({ nodes, wires, groups });
       Object.assign(this.sheets, {
-        [rest.uuid]: sheet,
+        [rest.uuid]: sheet
       });
       this.sheetOrder = [...this.sheetOrder, rest.uuid];
       this.setSelectedSheet(rest.uuid);

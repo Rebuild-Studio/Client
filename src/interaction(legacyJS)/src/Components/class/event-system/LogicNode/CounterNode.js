@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Counter";
+const nodeType = 'Counter';
 
 export class CounterNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,52 +16,52 @@ export class CounterNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "count_up",
-      type: ControlType.Number,
+      name: 'count_up',
+      type: ControlType.Number
     },
     {
-      name: "count_down",
-      type: ControlType.Number,
+      name: 'count_down',
+      type: ControlType.Number
     },
     {
-      name: "reset",
-      type: ControlType.Boolean,
-    },
+      name: 'reset',
+      type: ControlType.Boolean
+    }
   ],
   outputSocket: [
     {
-      name: "result",
-      type: ControlType.Number,
-    },
+      name: 'result',
+      type: ControlType.Number
+    }
   ],
   control: [
     {
-      name: "NODE_DAT_DEFAULT_VALUE",
+      name: 'NODE_DAT_DEFAULT_VALUE',
       value: 0,
       type: ControlType.Number,
       label: true,
       extras: {
         min: -1000,
-        max: 1000,
-      },
+        max: 1000
+      }
     },
     {
-      name: "NODE_DAT_COUNTER_MODE",
-      value: "No Limit",
+      name: 'NODE_DAT_COUNTER_MODE',
+      value: 'No Limit',
       type: ControlType.Counter,
-      label: true,
+      label: true
     },
     {
-      name: "NODE_DAT_COUNTER_RANGE",
+      name: 'NODE_DAT_COUNTER_RANGE',
       value: [0, 1000],
       type: ControlType.Range,
-      label: true,
+      label: true
     },
     {
-      name: "NODE_DAT_COUNTER_TIMING",
+      name: 'NODE_DAT_COUNTER_TIMING',
       value: 0,
       type: ControlType.Number,
-      label: true,
-    },
-  ],
-}
+      label: true
+    }
+  ]
+};

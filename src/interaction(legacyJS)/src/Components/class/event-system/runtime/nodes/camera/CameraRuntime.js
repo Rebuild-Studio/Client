@@ -1,6 +1,6 @@
-import NodeRuntime from "../NodeRuntime";
-import CameraProcess from "./CameraProcess";
-import CameraUpdateProcess from "./CameraUpdateProcess";
+import NodeRuntime from '../NodeRuntime';
+import CameraProcess from './CameraProcess';
+import CameraUpdateProcess from './CameraUpdateProcess';
 
 export default class CameraRuntime extends NodeRuntime {
   constructor(args) {

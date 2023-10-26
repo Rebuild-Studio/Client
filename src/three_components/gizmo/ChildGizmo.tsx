@@ -1,8 +1,8 @@
-import storeContainer from "@/store/storeContainer";
-import { TransformControls } from "@react-three/drei";
-import { observer } from "mobx-react";
-import * as THREE from "three";
-import { setCameraControlEnabled } from "../utils/cameraControl";
+import storeContainer from '@/store/storeContainer';
+import { TransformControls } from '@react-three/drei';
+import { observer } from 'mobx-react';
+import * as THREE from 'three';
+import { setCameraControlEnabled } from '../utils/cameraControl';
 
 const ChildGizmo = () => {
   const { primitiveStore, transformControlStore } = storeContainer;
@@ -18,8 +18,8 @@ const ChildGizmo = () => {
     center.divideScalar(parent.children.length);
 
     const newMesh = new THREE.Mesh();
-    newMesh.name = "GROUP";
-    newMesh.userData["storeId"] = parent.userData["storeId"];
+    newMesh.name = 'GROUP';
+    newMesh.userData['storeId'] = parent.userData['storeId'];
     newMesh.position.copy(center);
 
     while (parent.children.length) {
@@ -29,8 +29,8 @@ const ChildGizmo = () => {
     parent.parent?.attach(newMesh);
     parent.removeFromParent();
 
-    if (primitiveStore.meshes[newMesh.userData["storeId"]]) {
-      primitiveStore.updatePrimitive(newMesh.userData["storeId"], newMesh);
+    if (primitiveStore.meshes[newMesh.userData['storeId']]) {
+      primitiveStore.updatePrimitive(newMesh.userData['storeId'], newMesh);
     }
   };
 
@@ -38,8 +38,8 @@ const ChildGizmo = () => {
     return (
       selectedChild &&
       Object.keys(primitiveStore.selectedPrimitives).length < 2 &&
-      !primitiveStore.meshes[selectedChild.userData["storeId"]] &&
-      !selectedChild.userData["isLocked"]
+      !primitiveStore.meshes[selectedChild.userData['storeId']] &&
+      !selectedChild.userData['isLocked']
     );
   };
 
@@ -69,7 +69,7 @@ const ChildGizmo = () => {
               object={selectedChild}
               size={1.2}
               onMouseDown={() => {
-                if (transformControlStore.currentControl !== "TRANSFORM") {
+                if (transformControlStore.currentControl !== 'TRANSFORM') {
                   transformControlStore.setIsRotated();
                   setCameraControlEnabled(false);
                 }

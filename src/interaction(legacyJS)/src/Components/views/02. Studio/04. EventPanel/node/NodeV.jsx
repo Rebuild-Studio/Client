@@ -1,13 +1,13 @@
-import { useRef, useMemo } from "react";
-import { observer } from "mobx-react";
-import storeContainer from "../../../../stores/storeContainer";
-import DataV from "./Header/DataV";
-import TitleV from "./Header/TitleV";
-import InputV from "./Body/SocketTab/InputV";
-import OutputV from "./Body/SocketTab/OutputV";
-import ReferenceParameterV from "./Body/ReferenceParameterV";
-import { nodeOutline } from "../../../../../constants/styles/interaction/node";
-import { socketPosition } from "../../../../../constants/strings/interaction/socket";
+import { useRef, useMemo } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../stores/storeContainer';
+import DataV from './Header/DataV';
+import TitleV from './Header/TitleV';
+import InputV from './Body/SocketTab/InputV';
+import OutputV from './Body/SocketTab/OutputV';
+import ReferenceParameterV from './Body/ReferenceParameterV';
+import { nodeOutline } from '../../../../../constants/styles/interaction/node';
+import { socketPosition } from '../../../../../constants/strings/interaction/socket';
 
 const hasControls = (node) => {
   const keys = Object.keys(node.control);
@@ -20,7 +20,7 @@ const getSocketProps = (socketType, socket, node) => {
     nodeUuid: node.uuid,
     socket: socket,
     update: node.random,
-    reference: socket.reference,
+    reference: socket.reference
   };
 };
 
@@ -71,13 +71,13 @@ const style = {
     transform: `translate(${translate.x}px, ${translate.y}px)`,
     width: `${180 * scale}px`,
     fontSize: `${scale * 12}px`,
-    position: "absolute",
-    backgroundColor: "#393939",
-    borderRadius: "6px",
-    cursor: "pointer",
-    height: "auto",
-    paddingBottom: "6px",
-    boxSizing: "content-box",
-    outline: outline,
-  }),
+    position: 'absolute',
+    backgroundColor: '#393939',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    height: 'auto',
+    paddingBottom: '6px',
+    boxSizing: 'content-box',
+    outline: outline
+  })
 };

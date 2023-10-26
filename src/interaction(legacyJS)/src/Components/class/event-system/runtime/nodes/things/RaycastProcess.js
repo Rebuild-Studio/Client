@@ -1,21 +1,21 @@
-import EventProcess from "../super/EventProcess";
-import { raycastFormat as format } from "../../utils";
+import EventProcess from '../super/EventProcess';
+import { raycastFormat as format } from '../../utils';
 
 export default class RaycastProcess extends EventProcess {
   constructor(nodeRuntime) {
     super(nodeRuntime);
     this.canvasEventListeners = [];
     this.eventDomElement = this.nodeRuntime.node.special.three.gl.domElement;
-    if (this.data.NODE_DAT_HOLD === "Hold") {
-      this.registerEventListener(format("onPointerDown"), (e) =>
+    if (this.data.NODE_DAT_HOLD === 'Hold') {
+      this.registerEventListener(format('onPointerDown'), (e) =>
         this.handleEventTrue(e)
       );
-      this.registerCanvasEventListener("mouseup", (e) =>
+      this.registerCanvasEventListener('mouseup', (e) =>
         this.handleEventFalse(e)
       );
     } else {
       this.nodeRuntime.setOutputDefaultValueIndex(0, false);
-      this.registerEventListener(format("onClick"), (e) =>
+      this.registerEventListener(format('onClick'), (e) =>
         this.handleEventTrue(e)
       );
     }
@@ -24,7 +24,7 @@ export default class RaycastProcess extends EventProcess {
     this.canvasEventListeners.push({
       type: type,
       listener: listener,
-      options: options,
+      options: options
     });
   }
   compareCode(e) {

@@ -1,4 +1,4 @@
-import EventProcess from "../../super/EventProcess";
+import EventProcess from '../../super/EventProcess';
 
 export default class CanvasEventProcess extends EventProcess {
   constructor(nodeRuntime) {
@@ -13,6 +13,6 @@ export default class CanvasEventProcess extends EventProcess {
   end() {
     this.eventListeners.forEach(({ type, listener, options }) => {
       this.eventDomElement?.removeEventListener(type, listener, options);
-    })
+    });
   }
 }

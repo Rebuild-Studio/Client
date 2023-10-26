@@ -1,12 +1,12 @@
-import { useCallback, useState } from "react";
-import { observer } from "mobx-react";
-import storeContainer from "../../stores/storeContainer";
-import Box from "@mui/material/Box";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import styled from "@emotion/styled";
+import { useCallback, useState } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '../../stores/storeContainer';
+import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import styled from '@emotion/styled';
 import {
   Button,
   Dialog,
@@ -14,15 +14,15 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  IconButton,
-} from "@mui/material";
-import SelectSheetCommand from "../../class/commands/Interaction/SelectSheetCommand";
-import CreateSheetCommand from "../../class/commands/Interaction/CreateSheetCommand";
-import HideSheetCommand from "../../class/commands/Interaction/HideSheetCommand";
-import SetSheetOrderCommand from "../../class/commands/Interaction/SetSheetOrderCommand";
-import DeleteSheetCommand from "../../class/commands/Interaction/DeleteSheetCommand";
-import SetSheetNameCommand from "../../class/commands/Interaction/SetSheetNameCommand";
-import ConvertToFunctionCommand from "../../class/commands/Interaction/ConvertToFunctionCommand";
+  IconButton
+} from '@mui/material';
+import SelectSheetCommand from '../../class/commands/Interaction/SelectSheetCommand';
+import CreateSheetCommand from '../../class/commands/Interaction/CreateSheetCommand';
+import HideSheetCommand from '../../class/commands/Interaction/HideSheetCommand';
+import SetSheetOrderCommand from '../../class/commands/Interaction/SetSheetOrderCommand';
+import DeleteSheetCommand from '../../class/commands/Interaction/DeleteSheetCommand';
+import SetSheetNameCommand from '../../class/commands/Interaction/SetSheetNameCommand';
+import ConvertToFunctionCommand from '../../class/commands/Interaction/ConvertToFunctionCommand';
 
 const Sheet = (props) => {
   const [isDeleteDialog, setIsDeleteDialog] = useState(false);
@@ -126,23 +126,23 @@ const Sheet = (props) => {
         }}
         onContextMenu={handleMenuButtonClick}
         sx={{
-          minWidth: "max-content",
-          maxHeight: "40px",
-          height: "40px",
-          fontSize: "12px",
-          lineHeight: "1.33",
-          boxSizing: "border-box",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          opacity: 1,
+          minWidth: 'max-content',
+          maxHeight: '40px',
+          height: '40px',
+          fontSize: '12px',
+          lineHeight: '1.33',
+          boxSizing: 'border-box',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          opacity: 1
         }}
         style={{
-          color: isActive ? "#d4ed3e" : "#fff",
-          backgroundColor: isActive ? "rgba(214, 236, 79, 0.2)" : "#303030",
+          color: isActive ? '#d4ed3e' : '#fff',
+          backgroundColor: isActive ? 'rgba(214, 236, 79, 0.2)' : '#303030'
         }}
       />
       {/* 메뉴 */}
@@ -151,59 +151,59 @@ const Sheet = (props) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        anchorOrigin={{ vertical: -4, horizontal: "left" }}
-        transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+        anchorOrigin={{ vertical: -4, horizontal: 'left' }}
+        transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         MenuListProps={{
           style: {
-            padding: "5px 5px 0 5px",
-          },
+            padding: '5px 5px 0 5px'
+          }
         }}
         sx={{
-          "& .MuiMenuItem-root": {
-            color: "#fff",
-            textAlign: "left",
-            fontFamily: "SourceHanSansKR",
-            fontSize: "12px",
-            pl: "5px",
-            pt: "5px",
-            pb: "5px",
-            mb: "5px",
-            height: "25px",
-            "&:hover": {
-              backgroundColor: "#494949",
-            },
+          '& .MuiMenuItem-root': {
+            color: '#fff',
+            textAlign: 'left',
+            fontFamily: 'SourceHanSansKR',
+            fontSize: '12px',
+            pl: '5px',
+            pt: '5px',
+            pb: '5px',
+            mb: '5px',
+            height: '25px',
+            '&:hover': {
+              backgroundColor: '#494949'
+            }
           },
-          "& .MuiPaper-root": {
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#393939",
-          },
+          '& .MuiPaper-root': {
+            display: 'flex',
+            justifyContent: 'center',
+            backgroundColor: '#393939'
+          }
         }}
       >
         <MenuItem onClick={openRenameDialog}>
-          {string_store.string("RenameSheet")}
+          {string_store.string('RenameSheet')}
         </MenuItem>
         <MenuItem onClick={onConvertSheet}>
-          {string_store.string("ConvertToFunction")}
+          {string_store.string('ConvertToFunction')}
         </MenuItem>
         {visibleLength > 1 && (
           <MenuItem onClick={onHideSheet}>
-            {string_store.string("HideSheet")}
+            {string_store.string('HideSheet')}
           </MenuItem>
         )}
         {sheet.uuid !== visibleSheets.at(-1) && (
           <MenuItem onClick={onMoveRight}>
-            {string_store.string("MoveSheetRight")}
+            {string_store.string('MoveSheetRight')}
           </MenuItem>
         )}
         {sheet.uuid !== visibleSheets[0] && (
           <MenuItem onClick={onMoveLeft}>
-            {string_store.string("MoveSheetLeft")}
+            {string_store.string('MoveSheetLeft')}
           </MenuItem>
         )}
         {visibleLength > 1 && (
           <MenuItem onClick={openDeleteDialog}>
-            {string_store.string("DeleteSheet")}
+            {string_store.string('DeleteSheet')}
           </MenuItem>
         )}
       </Menu>
@@ -273,7 +273,7 @@ const SheetPanel = observer(() => {
           onClick={handleMenuButtonClick}
         />
         {/* 시트들 */}
-        <Box style={{ maxWidth: `calc(100vw - ${240}px)`, maxHeight: "40px" }}>
+        <Box style={{ maxWidth: `calc(100vw - ${240}px)`, maxHeight: '40px' }}>
           <Tabs
             value={eventSystem_store.visibleSheetOrder.indexOf(
               eventSystem_store.selectedSheet
@@ -282,13 +282,13 @@ const SheetPanel = observer(() => {
             scrollButtons={true}
             TabScrollButtonProps={{
               sx: {
-                borderRadius: "4px",
-                backgroundColor: "#3A3A3A",
-                color: "#fff",
-                "&.Mui-disabled": {
-                  display: "none",
-                },
-              },
+                borderRadius: '4px',
+                backgroundColor: '#3A3A3A',
+                color: '#fff',
+                '&.Mui-disabled': {
+                  display: 'none'
+                }
+              }
             }}
           >
             {filteredSheetOrder.map((uuid) => (
@@ -308,24 +308,24 @@ const SheetPanel = observer(() => {
       <IconButton
         onClick={onCreateSheet}
         sx={{
-          width: "40px",
-          height: "40px",
+          width: '40px',
+          height: '40px',
           padding: 0,
-          background: "#303030",
-          borderRadius: "0 4px 0 0",
-          "&:hover": {
-            backgroundColor: "#303030",
-          },
+          background: '#303030',
+          borderRadius: '0 4px 0 0',
+          '&:hover': {
+            backgroundColor: '#303030'
+          }
         }}
       >
         <Box
           sx={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "50%",
-            "&:hover": {
-              backgroundColor: "#494949",
-            },
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+            '&:hover': {
+              backgroundColor: '#494949'
+            }
           }}
         >
           <img
@@ -343,35 +343,35 @@ const SheetPanel = observer(() => {
         onWheel={(e) => {
           e.stopPropagation();
         }}
-        anchorOrigin={{ vertical: -4, horizontal: "left" }}
-        transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+        anchorOrigin={{ vertical: -4, horizontal: 'left' }}
+        transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         sx={{
-          "& .MuiMenuItem-root": {
-            color: "#fff",
-            textAlign: "left",
-            fontFamily: "SourceHanSansKR",
-            fontSize: "12px",
-            pl: "5px",
-            pt: "5px",
-            pb: "5px",
-            mb: "5px",
-            height: "25px",
-            "&:hover": {
-              backgroundColor: "#494949",
-            },
+          '& .MuiMenuItem-root': {
+            color: '#fff',
+            textAlign: 'left',
+            fontFamily: 'SourceHanSansKR',
+            fontSize: '12px',
+            pl: '5px',
+            pt: '5px',
+            pb: '5px',
+            mb: '5px',
+            height: '25px',
+            '&:hover': {
+              backgroundColor: '#494949'
+            }
           },
-          "& .MuiPaper-root": {
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#393939",
-          },
+          '& .MuiPaper-root': {
+            display: 'flex',
+            justifyContent: 'center',
+            backgroundColor: '#393939'
+          }
         }}
       >
         {eventSystem_store.sheetOrder.map((uuid) => (
           <MenuItem
             key={`sheet-menu-item-${uuid}`}
             style={{
-              color: eventSystem_store.sheets[uuid].hidden ? "#999" : "#fff",
+              color: eventSystem_store.sheets[uuid].hidden ? '#999' : '#fff'
             }}
             onClick={() => handleSheetMenuClick(uuid)}
             selected={eventSystem_store.isSelectedSheet(uuid)}
@@ -393,17 +393,17 @@ const DeleteDialog = observer(({ open, handleClose, onDelete, sheetName }) => {
       aria-labelledby="delete-dialog-title"
       PaperProps={{
         sx: {
-          border: "0.5px solid #393939",
-          backgroundColor: "#282828",
-          padding: 3,
-        },
+          border: '0.5px solid #393939',
+          backgroundColor: '#282828',
+          padding: 3
+        }
       }}
     >
       <DialogTitle
-        sx={{ color: "#fff", fontSize: "15px", padding: 1 }}
+        sx={{ color: '#fff', fontSize: '15px', padding: 1 }}
         id="delete-dialog-title"
       >
-        {string_store.string("DeleteSheetTitle")}
+        {string_store.string('DeleteSheetTitle')}
       </DialogTitle>
       <DialogActions>
         <SheetDialogButton
@@ -414,7 +414,7 @@ const DeleteDialog = observer(({ open, handleClose, onDelete, sheetName }) => {
           fontColor="#fff"
           onClick={handleClose}
         >
-          {string_store.string("Cancel")}
+          {string_store.string('Cancel')}
         </SheetDialogButton>
         <SheetDialogButton
           variant="contained"
@@ -423,7 +423,7 @@ const DeleteDialog = observer(({ open, handleClose, onDelete, sheetName }) => {
           }}
           autoFocus
         >
-          {string_store.string("Accept")}
+          {string_store.string('Accept')}
         </SheetDialogButton>
       </DialogActions>
     </Dialog>
@@ -442,17 +442,17 @@ const RenameDialog = ({ open, handleClose, onRename, sheetName }) => {
       aria-describedby="rename-dialog-description"
       PaperProps={{
         sx: {
-          border: "0.5px solid #393939",
-          backgroundColor: "#282828",
-          padding: 3,
-        },
+          border: '0.5px solid #393939',
+          backgroundColor: '#282828',
+          padding: 3
+        }
       }}
     >
       <DialogTitle
-        sx={{ color: "#fff", fontSize: "15px", padding: 1 }}
+        sx={{ color: '#fff', fontSize: '15px', padding: 1 }}
         id="rename-dialog-title"
       >
-        {string_store.string("RenameSheet")}
+        {string_store.string('RenameSheet')}
       </DialogTitle>
       <DialogContent sx={{ padding: 1 }} id="rename-dialog-description">
         <TextField
@@ -467,17 +467,17 @@ const RenameDialog = ({ open, handleClose, onRename, sheetName }) => {
           }}
           inputProps={{ maxLength: 12 }}
           sx={{
-            "& > .MuiInput-root": {
-              fontSize: "14px",
-              color: "#fff",
-              borderBottom: "1px solid #d4ed3e",
+            '& > .MuiInput-root': {
+              fontSize: '14px',
+              color: '#fff',
+              borderBottom: '1px solid #d4ed3e'
             },
-            "& > .MuiInput-root.Mui-focused:before": {
-              borderBottom: "2px solid #c0d927",
+            '& > .MuiInput-root.Mui-focused:before': {
+              borderBottom: '2px solid #c0d927'
             },
-            "& > .MuiInput-root.Mui-focused:after": {
-              borderBottom: "2px solid #c0d927",
-            },
+            '& > .MuiInput-root.Mui-focused:after': {
+              borderBottom: '2px solid #c0d927'
+            }
           }}
         />
       </DialogContent>
@@ -490,7 +490,7 @@ const RenameDialog = ({ open, handleClose, onRename, sheetName }) => {
           fontColor="#fff"
           onClick={handleClose}
         >
-          {string_store.string("Cancel")}
+          {string_store.string('Cancel')}
         </SheetDialogButton>
         <SheetDialogButton
           variant="contained"
@@ -498,7 +498,7 @@ const RenameDialog = ({ open, handleClose, onRename, sheetName }) => {
             onRename(text);
           }}
         >
-          {string_store.string("Accept")}
+          {string_store.string('Accept')}
         </SheetDialogButton>
       </DialogActions>
     </Dialog>
@@ -509,21 +509,21 @@ const SheetMenuButton = (props) => {
   const { url, ...rest } = props;
   const path = {
     root: `no-repeat center url(${url}.svg)`,
-    hover: `no-repeat center url(${url}_활성화.svg)`,
+    hover: `no-repeat center url(${url}_활성화.svg)`
   };
 
   return (
     <IconButton
       sx={{
         padding: 0,
-        width: "40px",
+        width: '40px',
         background: path.root,
-        backgroundColor: "#303030",
+        backgroundColor: '#303030',
         borderRadius: 0,
-        "&:hover": {
+        '&:hover': {
           background: path.hover,
-          backgroundColor: "#303030",
-        },
+          backgroundColor: '#303030'
+        }
       }}
       {...rest}
     />
@@ -539,30 +539,30 @@ const Container = styled.div`
 
 const SheetDialogButton = styled(Button, {
   shouldForwardProp: (prop) =>
-    prop !== "backgroundColor" &&
-    prop !== "borderColor" &&
-    prop !== "hoverColor" &&
-    prop !== "fontColor",
+    prop !== 'backgroundColor' &&
+    prop !== 'borderColor' &&
+    prop !== 'hoverColor' &&
+    prop !== 'fontColor'
 })(
   ({
-    backgroundColor = "#d4ed3e",
-    borderColor = "#d4ed3e",
-    hoverColor = "#c0d927",
-    fontColor = "#000",
+    backgroundColor = '#d4ed3e',
+    borderColor = '#d4ed3e',
+    hoverColor = '#c0d927',
+    fontColor = '#000'
   }) => ({
-    width: "124px",
-    height: "34px",
-    fontSize: "12px",
-    boxSizing: "border-box",
-    boxShadow: "none",
-    borderRadius: "6px",
+    width: '124px',
+    height: '34px',
+    fontSize: '12px',
+    boxSizing: 'border-box',
+    boxShadow: 'none',
+    borderRadius: '6px',
     border: `0.5px solid ${borderColor}`,
     color: fontColor,
     backgroundColor,
-    "&:hover": {
+    '&:hover': {
       backgroundColor: hoverColor,
-      boxShadow: "none",
-    },
+      boxShadow: 'none'
+    }
   })
 );
 

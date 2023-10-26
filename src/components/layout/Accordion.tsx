@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { basicColors, bgColors } from "@/resources/colors/colors";
+import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import { basicColors, bgColors } from '@/resources/colors/colors';
 
 interface AccordionProps {
   title: string;
@@ -83,5 +83,5 @@ const AccordionContent = styled.div<{
 }>`
   max-height: ${(props) => props.$maxHeight};
   transition: max-height 0.3s ease-in-out;
-  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
+  opacity: ${(props) => (props.$isOpen ? '1' : '0')};
 `;

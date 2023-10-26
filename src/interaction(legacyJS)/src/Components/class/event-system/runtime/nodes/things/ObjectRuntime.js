@@ -1,9 +1,9 @@
-import ThingRuntime from "./ThingRuntime";
-import ObjectProcess from "./ObjectProcess";
-import ObjectMaterialProcess from "./ObjectMaterialProcess";
-import ObjectAnimationProcess from "./ObjectAnimationProcess";
-import { generateKeyFormat, extractKeyFormat } from "../../utils";
-import { ControlType } from "../../../NodeControl";
+import ThingRuntime from './ThingRuntime';
+import ObjectProcess from './ObjectProcess';
+import ObjectMaterialProcess from './ObjectMaterialProcess';
+import ObjectAnimationProcess from './ObjectAnimationProcess';
+import { generateKeyFormat, extractKeyFormat } from '../../utils';
+import { ControlType } from '../../../NodeControl';
 
 export default class ObjectRuntime extends ThingRuntime {
   constructor(args) {

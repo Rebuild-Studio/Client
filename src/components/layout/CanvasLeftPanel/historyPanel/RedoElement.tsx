@@ -1,8 +1,8 @@
-import { useRef } from "react";
-import { observer } from "mobx-react";
-import { fonts } from "@/resources/fonts/font";
-import { styled } from "styled-components";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useRef } from 'react';
+import { observer } from 'mobx-react';
+import { fonts } from '@/resources/fonts/font';
+import { styled } from 'styled-components';
+import canvasHistoryStore from '@/store/canvasHistoryStore';
 
 type Props = {
   label: string;
@@ -48,5 +48,5 @@ const HistoryText = styled.span<CSSHistoryTextType>`
   font-size: ${fonts.default};
   margin-bottom: 3px;
   // TODO : 색 color.ts에서 가져오기
-  color: ${({ $index }) => ($index === 0 ? "#E3F853" : "")};
+  color: ${({ $index }) => ($index === 0 ? '#E3F853' : '')};
 `;

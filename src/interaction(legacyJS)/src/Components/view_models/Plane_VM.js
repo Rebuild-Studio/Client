@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 export default function Plane_VM() {
   const createPlane = () => {
@@ -9,11 +9,11 @@ export default function Plane_VM() {
     );
     plane.rotation.set(-Math.PI / 2, 0, 0);
     // plane.position.set(0, -3, 0);
-    plane.name = "plane";
+    plane.name = 'plane';
     return plane;
   };
 
   return {
-    createPlane,
+    createPlane
   };
 }

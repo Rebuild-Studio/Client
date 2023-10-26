@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Convert";
+const nodeType = 'Convert';
 
 export class ConvertNode extends Node {
   static NODE_TYPE = nodeType;
@@ -18,9 +18,9 @@ const nodeSchema = {
   outputSocket: [],
   control: [
     {
-      name: "convert",
+      name: 'convert',
       value: undefined,
-      type: ControlType.Convert,
-    },
-  ],
+      type: ControlType.Convert
+    }
+  ]
 };

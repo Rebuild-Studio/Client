@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import Grid from "@/components/common/Grid";
-import storeContainer from "@/store/storeContainer";
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import Grid from '@/components/common/Grid';
+import storeContainer from '@/store/storeContainer';
 
 const BackgroundImageTemplate = () => {
   const { sceneSettingStore } = storeContainer;
@@ -38,5 +38,5 @@ const ImageStyled = styled.img<{ isSelected: boolean }>`
   width: 20.2vh;
   height: 10.1vh;
   border-radius: 5px;
-  outline: ${(props) => (props.isSelected ? "solid 0.15vh #e3f853" : "none")};
+  outline: ${(props) => (props.isSelected ? 'solid 0.15vh #e3f853' : 'none')};
 `;

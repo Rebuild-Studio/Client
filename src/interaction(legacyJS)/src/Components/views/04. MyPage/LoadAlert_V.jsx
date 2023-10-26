@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import { Box, Typography, Button } from "@mui/material";
-import { MyPageVM } from "../../view_models/MyPage_VM";
-import MxDialog from "../00. Common/gui/MxDialog_V";
+import { observer } from 'mobx-react';
+import { Box, Typography, Button } from '@mui/material';
+import { MyPageVM } from '../../view_models/MyPage_VM';
+import MxDialog from '../00. Common/gui/MxDialog_V';
 const LoadAlert = observer(() => {
   return (
     <MxDialog
@@ -12,17 +12,17 @@ const LoadAlert = observer(() => {
       <Box sx={style.dialogContents}>
         <Box
           sx={{
-            width: "100%",
-            height: "76px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '100%',
+            height: '76px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
         >
           <Box
             sx={{
-              width: "284px",
+              width: '284px'
             }}
           >
             <Typography sx={style.textArea}>
@@ -35,11 +35,11 @@ const LoadAlert = observer(() => {
         </Box>
         <Box
           sx={{
-            width: "100%",
-            height: "52px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            width: '100%',
+            height: '52px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
           <Box>
@@ -72,79 +72,79 @@ const LoadAlert = observer(() => {
 export default LoadAlert;
 const style = {
   dialog: {
-    width: "332px",
-    height: "196px",
-    border: "solid 0.5px #393939",
-    backgroundColor: "#282828",
-    borderColor: "0 4px 10px 0 rgba(34, 34, 34, 0.2)",
-    borderRadius: "8px",
-    alignItems: "center",
-    justifyContent: "center",
+    width: '332px',
+    height: '196px',
+    border: 'solid 0.5px #393939',
+    backgroundColor: '#282828',
+    borderColor: '0 4px 10px 0 rgba(34, 34, 34, 0.2)',
+    borderRadius: '8px',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   textArea: {
-    fontFamily: "SourceHanSansKR",
-    fontSize: "16px",
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '16px',
     fontWeight: 500,
-    lineHeight: "1.5",
-    userSelect: "none",
-    color: "#fff",
+    lineHeight: '1.5',
+    userSelect: 'none',
+    color: '#fff'
   },
   textArea2: {
-    fontFamily: "SourceHanSansKR",
-    fontSize: "12px",
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '12px',
 
-    lineHeight: "1.5",
-    color: "#959595",
+    lineHeight: '1.5',
+    color: '#959595'
   },
   dialogContents: {
-    width: "332px",
-    height: "196px",
-    display: "flex",
-    flexDirection: "column",
+    width: '332px',
+    height: '196px',
+    display: 'flex',
+    flexDirection: 'column',
 
-    alignItems: "center",
+    alignItems: 'center'
   },
   imgWrapper: {
-    width: "100%",
-    height: "45px",
-    display: "flex",
-    justifyContent: "center",
+    width: '100%',
+    height: '45px',
+    display: 'flex',
+    justifyContent: 'center'
   },
   buttonWrapper: {
-    width: "100%",
-    height: "45px",
-    display: "flex",
-    gap: "8px",
-    padding: "12px 24px 24px",
+    width: '100%',
+    height: '45px',
+    display: 'flex',
+    gap: '8px',
+    padding: '12px 24px 24px'
   },
   CancelBtn: {
-    width: "138px",
-    height: "32px",
-    minHeight: "34px",
-    minWidth: "80px",
-    borderRadius: "6px",
-    backgroundColor: " #282828",
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "12px",
+    width: '138px',
+    height: '32px',
+    minHeight: '34px',
+    minWidth: '80px',
+    borderRadius: '6px',
+    backgroundColor: ' #282828',
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '12px',
     fontWeight: 500,
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#282828",
-    },
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#282828'
+    }
   },
   LoadBtn: {
-    width: "138px",
-    height: "32px",
-    minHeight: "34px",
-    minWidth: "80px",
-    borderRadius: "6px",
-    backgroundColor: " #d4ed3e",
-    fontFamily: "SourceHanSansKR",
-    fontSize: "12px",
+    width: '138px',
+    height: '32px',
+    minHeight: '34px',
+    minWidth: '80px',
+    borderRadius: '6px',
+    backgroundColor: ' #d4ed3e',
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '12px',
     fontWeight: 500,
-    color: "#101728",
-    "&:hover": {
-      backgroundColor: "#d4ed3e",
-    },
-  },
+    color: '#101728',
+    '&:hover': {
+      backgroundColor: '#d4ed3e'
+    }
+  }
 };

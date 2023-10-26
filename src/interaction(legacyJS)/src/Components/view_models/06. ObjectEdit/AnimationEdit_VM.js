@@ -1,9 +1,9 @@
-import { action } from "mobx";
-import { object_store } from "../../stores/Object_Store";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
-import ChangePropsSliderCommand from "../../class/commands/CanvasObject/ChangePropsSliderCommand";
-import AnimationToggleOffCommand from "../../class/commands/CanvasObject/AnimationToggleOffCommand";
-import AnimationToggleOnCommand from "../../class/commands/CanvasObject/AnimationToggleOnCommand";
+import { action } from 'mobx';
+import { object_store } from '../../stores/Object_Store';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import AnimationToggleOffCommand from '../../class/commands/CanvasObject/AnimationToggleOffCommand';
+import AnimationToggleOnCommand from '../../class/commands/CanvasObject/AnimationToggleOnCommand';
 const AnimationEditVM = {
   get animationList() {
     return object_store.selectedObjects[0].animationList;
@@ -27,7 +27,7 @@ const AnimationEditVM = {
   }),
   onChangeAniSpeed: action((e, name) => {
     const data = { name: name, value: e.target.value };
-    object_store.selectedObjects[0].SetProps("AnimationSpeed", data);
+    object_store.selectedObjects[0].SetProps('AnimationSpeed', data);
   }),
   onChangeAnimation: action((e, index) => {
     const curplayAniIndex =
@@ -36,27 +36,27 @@ const AnimationEditVM = {
     const curName =
       object_store.selectedObjects[0].GetCurrentAnimationPropsByIndex(
         curplayAniIndex,
-        "name"
+        'name'
       );
     const curWeight =
       object_store.selectedObjects[0].GetCurrentAnimationPropsByIndex(
         curplayAniIndex,
-        "weight"
+        'weight'
       );
 
     const curValue = {
       name: curName,
-      weight: curWeight,
+      weight: curWeight
     };
     const newName =
       object_store.selectedObjects[0].GetCurrentAnimationPropsByIndex(
         index,
-        "name"
+        'name'
       );
     const newWeight =
       object_store.selectedObjects[0].GetCurrentAnimationPropsByIndex(
         index,
-        "weight"
+        'weight'
       );
     const newValue = { name: newName, weight: newWeight };
     if (curName === newName) {
@@ -96,9 +96,9 @@ const AnimationEditVM = {
   }),
   onChangeAniGeneralSpeed: action((e) => {
     object_store.selectedObjects[0].SetProps(
-      "AnimationGeneralSpeed",
+      'AnimationGeneralSpeed',
       e.target.value
     );
-  }),
+  })
 };
 export default AnimationEditVM;

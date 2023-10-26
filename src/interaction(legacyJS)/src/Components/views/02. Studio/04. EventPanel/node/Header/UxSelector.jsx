@@ -1,8 +1,8 @@
-import { Input } from "@mui/material";
-import { Box } from "@mui/system";
-import { observer } from "mobx-react";
-import React from "react";
-import { eventSystem_store } from "../../../../../stores/Interaction_Stores";
+import { Input } from '@mui/material';
+import { Box } from '@mui/system';
+import { observer } from 'mobx-react';
+import React from 'react';
+import { eventSystem_store } from '../../../../../stores/Interaction_Stores';
 
 /**
  * @typedef {object} UxSelectorProps
@@ -38,26 +38,26 @@ const style = {
   Container: (scale) => ({
     height: `${scale * 20}px`,
     padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${scale * 12}px`,
-    color: "#ffffff",
-    backgroundColor: "#272748",
+    color: '#ffffff',
+    backgroundColor: '#272748'
   }),
   KeyInputContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   Checkbox: {
-    color: "#D4ED3E",
-    "&.Mui-checked": {
-      color: "#C0D927",
-    },
+    color: '#D4ED3E',
+    '&.Mui-checked': {
+      color: '#C0D927'
+    }
   },
   Input: {
-    width: "50%",
-    color: "#ffffff",
+    width: '50%',
+    color: '#ffffff'
   },
   Divider: {
-    width: "100%",
-    backgroundColor: "#ffffff",
-  },
+    width: '100%',
+    backgroundColor: '#ffffff'
+  }
 };

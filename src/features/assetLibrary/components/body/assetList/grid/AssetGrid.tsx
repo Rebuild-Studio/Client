@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
-import GridItem from "./GridItem";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import { observer } from "mobx-react";
-import { useEffect, useRef, useState } from "react";
-import useInfiniteScroll from "@/hooks/useInfiniteScroll";
+import { styled } from 'styled-components';
+import GridItem from './GridItem';
+import assetLibraryStore from '@/store/assetLibraryStore';
+import { observer } from 'mobx-react';
+import { useEffect, useRef, useState } from 'react';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 const AssetGrid = () => {
   const { libraryAssets, currentPage } = assetLibraryStore;

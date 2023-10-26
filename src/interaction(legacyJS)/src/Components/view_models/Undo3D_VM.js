@@ -1,6 +1,6 @@
-import storeContainer from "../stores/storeContainer";
-import { objectViewModel } from "../view_models/Object_VM";
-import { ObjectControllerVM } from "./ObjectController_VM";
+import storeContainer from '../stores/storeContainer';
+import { objectViewModel } from '../view_models/Object_VM';
+import { ObjectControllerVM } from './ObjectController_VM';
 
 export default function Undo3D_VM() {
   const { undo_store } = storeContainer;
@@ -20,7 +20,7 @@ export default function Undo3D_VM() {
   function addUndo(target, data) {
     ObjectControllerVM.DeSelectAll();
     if (objectViewModel.selectedObjects[0] === target) {
-      objectViewModel.SetSelectedObjects(null, "tab");
+      objectViewModel.SetSelectedObjects(null, 'tab');
     }
 
     target.DeleteMeta();
@@ -44,6 +44,6 @@ export default function Undo3D_VM() {
     addUndo,
     addRedo,
     deleteUndo,
-    deleteRedo,
+    deleteRedo
   };
 }

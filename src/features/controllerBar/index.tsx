@@ -1,1 +1,1 @@
-export { default } from "./components/ControllerBar";
+export { default } from './components/ControllerBar';

@@ -1,10 +1,10 @@
-import { objectViewModel } from "../../../view_models/Object_VM";
-import { ObjectControllerVM } from "../../../view_models/ObjectController_VM";
+import { objectViewModel } from '../../../view_models/Object_VM';
+import { ObjectControllerVM } from '../../../view_models/ObjectController_VM';
 
 export default class DeleteObjCommand {
   constructor(obj, objectId) {
-    this.type = "DeleteObjCommand";
-    this.name = "오브젝트 삭제";
+    this.type = 'DeleteObjCommand';
+    this.name = '오브젝트 삭제';
     this.obj = obj;
     this.objectId = objectId;
   }

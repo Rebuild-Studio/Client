@@ -1,8 +1,8 @@
-import { shadows } from "@/resources/shadows/shadow";
-import { CSSHexColor, CSSRgba } from "./cssUnits";
+import { shadows } from '@/resources/shadows/shadow';
+import { CSSHexColor, CSSRgba } from './cssUnits';
 
 type CSSShadow =
-  | "none"
+  | 'none'
   | `${string} ${CSSRgba}`
   | `${string} ${string} ${CSSRgba}`
   | `${string} ${string} ${string} ${CSSRgba}`

@@ -1,6 +1,6 @@
-import assetLibraryStore from "@/store/assetLibraryStore";
-import { useState, useEffect, useCallback } from "react";
-import { LibraryAsset } from "../types/fetchAssetType";
+import assetLibraryStore from '@/store/assetLibraryStore';
+import { useState, useEffect, useCallback } from 'react';
+import { LibraryAsset } from '../types/fetchAssetType';
 
 const hasItem = (item: LibraryAsset, list: LibraryAsset[]) => {
   return list.some((listItem) => listItem.name === item.name);

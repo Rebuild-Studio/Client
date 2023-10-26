@@ -1,13 +1,13 @@
-import downloadFile from "@/utils/file/downloadFile";
-import { Dispatch, useCallback, useEffect, useState } from "react";
-import MxWorker from "./workerScript?worker";
-import { ProjectStore, ProjectType } from "@/store/projectStore";
-import storeContainer from "@/store/storeContainer";
+import downloadFile from '@/utils/file/downloadFile';
+import { Dispatch, useCallback, useEffect, useState } from 'react';
+import MxWorker from './workerScript?worker';
+import { ProjectStore, ProjectType } from '@/store/projectStore';
+import storeContainer from '@/store/storeContainer';
 import {
   MX_WORKER_REQUEST_TYPE,
-  MX_WORKER_RESPONSE_TYPE,
-} from "./workerScript";
-import EventSystemStore from "@/interaction(legacyJS)/src/Components/stores/EventSystem_Store";
+  MX_WORKER_RESPONSE_TYPE
+} from './workerScript';
+import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
 
 const exportJsonFile = async (
   scene: THREE.Scene,
@@ -23,17 +23,17 @@ const exportJsonFile = async (
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE,
     sceneJson,
-    interactionJson,
+    interactionJson
   });
   mxWorker.onmessage = (e) => {
     if (e.data.type === MX_WORKER_RESPONSE_TYPE.DOWNLOAD) {
       const { stringifiedJson } = e.data;
-      downloadFile(stringifiedJson, projectStore.projectName + ".json", "json");
+      downloadFile(stringifiedJson, projectStore.projectName + '.json', 'json');
 
       setIsProcessing(false);
       setIsSuccess(true);
     } else {
-      console.error("잘못된 요청 타입입니다: ", e.data.type);
+      console.error('잘못된 요청 타입입니다: ', e.data.type);
     }
     mxWorker.terminate();
   };
@@ -55,19 +55,19 @@ const exportJsonPost = async (
   const projectInfo = {
     projectType,
     projectName,
-    thumbnail,
+    thumbnail
   };
   mxWorker.postMessage({
     type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_POST,
     sceneJson,
     interactionJson,
-    projectInfo,
+    projectInfo
   });
   mxWorker.onmessage = (e) => {
     setIsProcessing(false);
     if (e.data.type === MX_WORKER_RESPONSE_TYPE.POST_SUCCESS) {
       const { res } = e.data;
-      res && console.info("PMX 생성 성공 : ", res);
+      res && console.info('PMX 생성 성공 : ', res);
 
       setIsSuccess(true);
     } else {
@@ -91,7 +91,7 @@ type hookReturnType = [
 
 const useExportMxJson = ({
   projectStore,
-  interactionStore,
+  interactionStore
 }: Props): hookReturnType => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

@@ -1,5 +1,5 @@
-import NodeRuntime from "../NodeRuntime";
-import CameraSensorProcess from "./CameraSensorProcess";
+import NodeRuntime from '../NodeRuntime';
+import CameraSensorProcess from './CameraSensorProcess';
 
 export default class CameraSensorRuntime extends NodeRuntime {
   constructor(args) {

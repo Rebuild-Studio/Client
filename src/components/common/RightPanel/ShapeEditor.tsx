@@ -1,13 +1,13 @@
-import Slider from "../Slider";
-import Switch from "@/components/buttons/SwitchButton";
-import styled from "styled-components";
-import dataStore from "./MaterialGeometryData";
-import storeContainer from "@/store/storeContainer";
-import Accordion from "@/components/layout/Accordion";
-import * as THREE from "three";
-import { observer } from "mobx-react";
-import { useState } from "react";
-import { useToast } from "@hooks/useToast";
+import Slider from '../Slider';
+import Switch from '@/components/buttons/SwitchButton';
+import styled from 'styled-components';
+import dataStore from './MaterialGeometryData';
+import storeContainer from '@/store/storeContainer';
+import Accordion from '@/components/layout/Accordion';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
+import { useToast } from '@hooks/useToast';
 
 interface geometryParameter {
   [key: string]: string | number | boolean;
@@ -18,17 +18,17 @@ const getGeometryParameters = (
   selectedPrimitive: THREE.Mesh
 ) => {
   switch (geometryType) {
-    case "BoxGeometry":
+    case 'BoxGeometry':
       return (selectedPrimitive.geometry as THREE.BoxGeometry).parameters;
-    case "ConeGeometry":
+    case 'ConeGeometry':
       return (selectedPrimitive.geometry as THREE.ConeGeometry).parameters;
-    case "SphereGeometry":
+    case 'SphereGeometry':
       return (selectedPrimitive.geometry as THREE.SphereGeometry).parameters;
-    case "CapsuleGeometry":
+    case 'CapsuleGeometry':
       return (selectedPrimitive.geometry as THREE.CapsuleGeometry).parameters;
-    case "CylinderGeometry":
+    case 'CylinderGeometry':
       return (selectedPrimitive.geometry as THREE.CylinderGeometry).parameters;
-    case "TorusGeometry":
+    case 'TorusGeometry':
       return (selectedPrimitive.geometry as THREE.TorusGeometry).parameters;
     default:
       return {};
@@ -37,25 +37,25 @@ const getGeometryParameters = (
 
 const createGeometry = (geometryType: string, parameter: number[]) => {
   switch (geometryType) {
-    case "BoxGeometry":
+    case 'BoxGeometry':
       return new THREE.BoxGeometry(...parameter);
 
-    case "SphereGeometry":
+    case 'SphereGeometry':
       return new THREE.SphereGeometry(...parameter);
 
-    case "CylinderGeometry":
+    case 'CylinderGeometry':
       return new THREE.CylinderGeometry(...parameter);
 
-    case "ConeGeometry":
+    case 'ConeGeometry':
       return new THREE.ConeGeometry(...parameter);
 
-    case "TorusGeometry":
+    case 'TorusGeometry':
       return new THREE.TorusGeometry(...parameter);
 
-    case "PlaneGeometry":
+    case 'PlaneGeometry':
       return new THREE.PlaneGeometry(...parameter);
 
-    case "CapsuleGeometry":
+    case 'CapsuleGeometry':
       return new THREE.CapsuleGeometry(...parameter);
 
     default:
@@ -104,12 +104,12 @@ const ShapeEditor = () => {
 
   return (
     <>
-      <Accordion title={"쉐이프"}>
+      <Accordion title={'쉐이프'}>
         {dataStore[shapeName]?.map((el) => {
           return (
             <Wrapper key={String(el[0])}>
               <InputWrapper>
-                {el[2] === "slider" && (
+                {el[2] === 'slider' && (
                   <Slider
                     min={Number(el[4])}
                     step={Number(el[6])}
@@ -123,7 +123,7 @@ const ShapeEditor = () => {
                     }}
                   />
                 )}
-                {el[2] === "toggle" && (
+                {el[2] === 'toggle' && (
                   <Switch
                     label={String(el[1])}
                     checked={Boolean(parameter[el[0] as string])}

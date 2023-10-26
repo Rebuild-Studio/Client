@@ -1,7 +1,7 @@
-import Node from "../Node";
+import Node from '../Node';
 
 export class MaterialTemplateNode extends Node {
-  constructor(name, uuid, type = "MaterialTemplate") {
+  constructor(name, uuid, type = 'MaterialTemplate') {
     super(name, uuid, type);
   }
 }

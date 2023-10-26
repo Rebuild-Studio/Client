@@ -1,14 +1,14 @@
-import { makeAutoObservable } from "mobx";
-import { DragEvent, DragEventHandler, MouseEvent } from "react";
+import { makeAutoObservable } from 'mobx';
+import { DragEvent, DragEventHandler, MouseEvent } from 'react';
 
 type MouseEventType =
-  | "onMouseDown"
-  | "onMouseMove"
-  | "onMouseUp"
-  | "onClick"
-  | "onContextMenu"
-  | "onDrop"
-  | "NONE";
+  | 'onMouseDown'
+  | 'onMouseMove'
+  | 'onMouseUp'
+  | 'onClick'
+  | 'onContextMenu'
+  | 'onDrop'
+  | 'NONE';
 
 class MouseEventStore {
   currentMouseEvent: [
@@ -18,7 +18,7 @@ class MouseEventStore {
       | DragEventHandler<HTMLDivElement>
       | null
     )
-  ] = ["NONE", null];
+  ] = ['NONE', null];
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -33,7 +33,7 @@ class MouseEventStore {
     this.currentMouseEvent = [mouseEvent, eventValue];
   }
   clearMouseEvent() {
-    this.currentMouseEvent = ["NONE", null];
+    this.currentMouseEvent = ['NONE', null];
   }
 }
 

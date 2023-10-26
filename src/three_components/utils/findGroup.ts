@@ -1,5 +1,5 @@
-import storeContainer from "@/store/storeContainer";
-import * as THREE from "three";
+import storeContainer from '@/store/storeContainer';
+import * as THREE from 'three';
 
 const findRootGroup = (
   intersectObject: THREE.Object3D<THREE.Event> | undefined
@@ -9,8 +9,8 @@ const findRootGroup = (
   }
 
   if (
-    intersectObject.parent?.type === "Scene" &&
-    intersectObject.name === "GROUP"
+    intersectObject.parent?.type === 'Scene' &&
+    intersectObject.name === 'GROUP'
   ) {
     return intersectObject;
   }
@@ -34,7 +34,7 @@ const isChildInGroup = (
 ): boolean => {
   let res = false;
   parentObject.traverse((child) => {
-    if (child.userData["storeId"] === childId) {
+    if (child.userData['storeId'] === childId) {
       res = true;
     }
   });
@@ -48,8 +48,8 @@ const hasChildGroup = (
   let res = false;
   intersectObject.traverse((child) => {
     if (
-      intersectObject.userData["storeId"] !== child.userData["storeId"] &&
-      child.name === "GROUP"
+      intersectObject.userData['storeId'] !== child.userData['storeId'] &&
+      child.name === 'GROUP'
     ) {
       res = true;
     }
@@ -66,7 +66,7 @@ const getParent = (
   const rootObject = primitiveStore.meshes[rootId];
 
   rootObject?.traverse((child) => {
-    if (child.userData["storeId"] === parentId) {
+    if (child.userData['storeId'] === parentId) {
       res = child;
     }
   });
@@ -78,5 +78,5 @@ export {
   findParentGroup,
   isChildInGroup,
   hasChildGroup,
-  getParent,
+  getParent
 };

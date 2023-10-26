@@ -1,18 +1,18 @@
-import { useState, useMemo } from "react";
-import { observer } from "mobx-react";
-import { Vector3 } from "three";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import storeContainer from "../../../../stores/storeContainer";
+import { useState, useMemo } from 'react';
+import { observer } from 'mobx-react';
+import { Vector3 } from 'three';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import storeContainer from '../../../../stores/storeContainer';
 
 const getLabels = (name) => {
   let labels = [];
   switch (name) {
-    case "vector3":
-      labels = ["STR_VECTOR3_X", "STR_VECTOR3_Y", "STR_VECTOR3_Z"];
+    case 'vector3':
+      labels = ['STR_VECTOR3_X', 'STR_VECTOR3_Y', 'STR_VECTOR3_Z'];
       break;
     default:
-      console.warn("Vector3 label is undefined");
+      console.warn('Vector3 label is undefined');
       break;
   }
   return labels;
@@ -28,7 +28,7 @@ const ControlVector3V = observer((props) => {
   return (
     <Box
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        '& .MuiTextField-root': { m: 1, width: '25ch' }
       }}
       noValidate
     >

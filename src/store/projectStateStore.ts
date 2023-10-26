@@ -1,10 +1,10 @@
-import { makeAutoObservable } from "mobx";
-import { MeshType } from "./primitiveStore";
+import { makeAutoObservable } from 'mobx';
+import { MeshType } from './primitiveStore';
 
-type DisplayType = "CANVAS" | "INTERACTION" | "PREVIEW";
+type DisplayType = 'CANVAS' | 'INTERACTION' | 'PREVIEW';
 
 class ProjectStateStore {
-  currentDisplay: DisplayType = "CANVAS";
+  currentDisplay: DisplayType = 'CANVAS';
   currentCopyPrimitive: MeshType = {};
   canGrouping = false;
   isModalOpened = false;

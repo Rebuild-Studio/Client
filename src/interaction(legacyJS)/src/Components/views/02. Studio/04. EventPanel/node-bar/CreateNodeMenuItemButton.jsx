@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import MenuItem from "@mui/material/MenuItem";
-import storeContainer from "../../../../stores/storeContainer";
-import CreateNodeCommand from "../../../../class/commands/Interaction/CreateNodeCommand";
+import { observer } from 'mobx-react';
+import MenuItem from '@mui/material/MenuItem';
+import storeContainer from '../../../../stores/storeContainer';
+import CreateNodeCommand from '../../../../class/commands/Interaction/CreateNodeCommand';
 
 const CreateNodeMenuItemButton = ({ node, labelKey, closer }) => {
   const { eventSystem_store, interactionhistory_store, string_store } =
@@ -14,7 +14,7 @@ const CreateNodeMenuItemButton = ({ node, labelKey, closer }) => {
         interactionhistory_store.execute(
           new CreateNodeCommand(eventSystem_store, {
             node: node,
-            sheetId: eventSystem_store.selectedSheet,
+            sheetId: eventSystem_store.selectedSheet
           })
         );
       }}

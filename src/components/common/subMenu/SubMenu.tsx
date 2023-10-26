@@ -1,6 +1,6 @@
-import { fonts } from "@/resources/fonts/font";
-import { styled, css } from "styled-components";
-import { MenuItemType } from "./MenuItem.types";
+import { fonts } from '@/resources/fonts/font';
+import { styled, css } from 'styled-components';
+import { MenuItemType } from './MenuItem.types';
 
 type Props = {
   menuItems: MenuItemType[];

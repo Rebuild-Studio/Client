@@ -1,18 +1,18 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import Command from '../Command';
+import * as Utils from '../../event-system/utils';
 
 export default class CreateConvertNodeCommand extends Command {
   constructor(store, args) {
     const { uuids, from, to, position, convertType, sheetId } = args;
     super(store);
-    this.type = "CreateConvertNodeCommand";
+    this.type = 'CreateConvertNodeCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     const sockets = uuids.map((uuid) => sheet.getSocketByUuid(uuid));
     this.data = {
       args: {
-        type: "Convert",
+        type: 'Convert',
         uuid: undefined,
-        sheetId,
+        sheetId
       },
       uuids: uuids,
       from: from,
@@ -24,7 +24,7 @@ export default class CreateConvertNodeCommand extends Command {
       json: undefined,
       beforeJson: undefined,
       afterJson: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
   }
   execute() {
@@ -42,9 +42,9 @@ export default class CreateConvertNodeCommand extends Command {
       console.log(sheet.getNodePosition(node.uuid));
       sheet.convertSockets(
         node.uuid,
-        "convert",
+        'convert',
         this.data.convertType,
-        "Convert"
+        'Convert'
       );
       // 와이어 연결
       const wire1 = sheet.createWireByUuidInSheet(
@@ -60,7 +60,7 @@ export default class CreateConvertNodeCommand extends Command {
       this.data.json = Utils.stringify({
         nodes: [node],
         wires: [wire1, wire2],
-        sheetId: this.data.args.sheetId,
+        sheetId: this.data.args.sheetId
       });
     }
   }

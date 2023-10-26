@@ -1,10 +1,10 @@
-import { makeObservable, observable, action } from "mobx";
-import Command from "../Command";
+import { makeObservable, observable, action } from 'mobx';
+import Command from '../Command';
 
 export default class AddSelectedPositionCommand extends Command {
   constructor(store, movement, sheetId) {
     super(store);
-    this.type = "AddSelectedPositionCommand";
+    this.type = 'AddSelectedPositionCommand';
     this.updatable = true;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
@@ -12,7 +12,7 @@ export default class AddSelectedPositionCommand extends Command {
       movement: movement,
       moved: movement,
       targetNodes: sheet.selectedNodes.slice(),
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     this.data.targetGroups = sheet.selectedGroups
       .slice()
@@ -24,14 +24,14 @@ export default class AddSelectedPositionCommand extends Command {
     this.name =
       this.data.targetNodes.length > 0
         ? this.data.targetGroups.length > 0
-          ? "AddSelectedPositionCommand"
-          : "AddSelectedNodesPositionCommand"
-        : "AddSelectedGroupsPositionCommand";
+          ? 'AddSelectedPositionCommand'
+          : 'AddSelectedNodesPositionCommand'
+        : 'AddSelectedGroupsPositionCommand';
     makeObservable(this, {
       data: observable,
       execute: action,
       undo: action,
-      update: action,
+      update: action
     });
   }
   execute() {
@@ -53,7 +53,7 @@ export default class AddSelectedPositionCommand extends Command {
   getDetailData() {
     return [
       this.data.sheetName,
-      this.data.moved.map((v) => v.toString()),
+      this.data.moved.map((v) => v.toString())
     ].flat();
   }
 }
