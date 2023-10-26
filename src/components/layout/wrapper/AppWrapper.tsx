@@ -1,5 +1,6 @@
 import { bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
+import { isCtrlEventTrigger } from "@/utils/platform/getPlatformKeyboardEvent";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import { styled } from "styled-components";
@@ -19,10 +20,12 @@ const AppWrapper = observer((props: AppProps) => {
     if (e.key === "F12") {
       return;
     }
+
     e.preventDefault();
+
     keyboardEventStore.updateKeyEvent({
       key: e.key,
-      isCtrlPressed: e.ctrlKey,
+      isCtrlPressed: isCtrlEventTrigger(e),
       isShiftPressed: e.shiftKey,
       isAltPressed: e.altKey,
     });
