@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-type EditorMode = "canvas" | "interaction";
+type EditorMode = "canvas" | "interaction" | "preview";
 
 class EditorModeStore {
   editorMode = "canvas";

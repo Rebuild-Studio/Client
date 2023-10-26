@@ -10,7 +10,9 @@ const SceneEffect = () => {
 
   return (
     <EffectComposer autoClear={false}>
-      <SelectedOutline />
+      <SelectedOutline
+        meshes={Object.values(primitiveStore.selectedPrimitives)}
+      />
       {bloomToggle ? (
         <Bloom
           kernelSize={3}

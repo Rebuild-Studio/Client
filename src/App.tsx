@@ -12,6 +12,7 @@ import Tools from "@components/layout/Tools";
 import editorModeStore from "@store/editorModeStore.ts";
 import InteractionEditor from "@components/InteractionEditor.tsx";
 import ContextMenu from "./components/layout/contextMenu/ContextMenu";
+import Preivew from "@/components/Preview";
 
 const App = () => {
   const { projectStateStore, contextMenuStore } = storeContainer;
@@ -31,6 +32,9 @@ const App = () => {
           </EditorWrapper>
           <EditorWrapper $visible={editorMode === "interaction"}>
             <InteractionEditor />
+          </EditorWrapper>
+          <EditorWrapper $visible={editorMode === "preview"}>
+            {editorMode === "preview" && <Preivew />}
           </EditorWrapper>
         </Main>
       </AppWrapper>
