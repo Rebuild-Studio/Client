@@ -1,8 +1,8 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
 import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
-import { ProjectStore, ProjectType } from '@/store/projectStore';
 import storeContainer from '@/store/storeContainer';
 import downloadFile from '@/utils/file/downloadFile';
+import { ProjectStore, ProjectType } from '@store/project.store.ts';
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE

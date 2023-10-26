@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import assetLibraryStore from '@/store/assetLibraryStore';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 import { LibraryAsset } from '../types/fetchAssetType';
 
 const hasItem = (item: LibraryAsset, list: LibraryAsset[]) => {

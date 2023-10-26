@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
 import { useServerGLTFLoader } from '@/hooks/loader';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
 import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import { PrimitiveProps } from '../common/PrimitiveProps';
 
 interface AssetPrimitveProps extends PrimitiveProps {

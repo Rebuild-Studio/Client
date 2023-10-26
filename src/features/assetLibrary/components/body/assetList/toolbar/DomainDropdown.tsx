@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Dropdown, { Option } from '@/components/common/dropdown/Dropdown';
 import DOMAIN_LIST, { Domain } from '@/features/assetLibrary/constants/domain';
 import { grayColors } from '@/resources/colors/colors';
-import assetCategoryStore from '@/store/assetCategoryStore';
-import assetLibraryStore from '@/store/assetLibraryStore';
+import assetCategoryStore from '@store/assetCategory.store.ts';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 
 const DomainDropdown = () => {
   const domains: Option[] = DOMAIN_LIST.map((domain) => ({

@@ -5,8 +5,8 @@ import {
   MainCategoryType
 } from '@/features/assetLibrary/constants/mainCategory';
 import { bgColors } from '@/resources/colors/colors';
-import assetCategoryStore, { Category } from '@/store/assetCategoryStore';
-import assetLibraryStore from '@/store/assetLibraryStore';
+import assetCategoryStore, { Category } from '@store/assetCategory.store.ts';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 
 interface Props {
   name: string;

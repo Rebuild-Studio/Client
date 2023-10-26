@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
 import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import getCenterPoint from '../utils/getCenterPoint';
 
 interface GroupProps {

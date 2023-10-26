@@ -6,7 +6,7 @@ import InteractionEditor from '@components/InteractionEditor.tsx';
 import TopBar from '@components/TopBar';
 import ToastContainer from '@components/common/ToastContainer';
 import Tools from '@components/layout/Tools';
-import editorModeStore from '@store/editorModeStore.ts';
+import editorModeStore from '@store/editorMode.store.ts';
 import MenuBar from './components/MenuBar';
 import ContextMenu from './components/layout/contextMenu/ContextMenu';
 import Modal from './components/layout/modal/Modal';

@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
-import { ContextMenuItemType } from '@/store/contextMenuStore';
 import storeContainer from '@/store/storeContainer';
+import { ContextMenuItemType } from '@store/contextMenu.store.ts';
 
 interface ContextMenuProps extends ContextMenuPositionProps {
   items: ContextMenuItemType[];

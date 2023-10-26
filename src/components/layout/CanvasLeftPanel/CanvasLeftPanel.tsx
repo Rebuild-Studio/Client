@@ -3,9 +3,9 @@ import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import HierarchyPanel from '@/features/hierarchy/components/HierarchyPanel';
 import { bgColors } from '@/resources/colors/colors';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
-import primitiveStore from '@/store/primitiveStore';
 import Icon from '@components/common/Icon.tsx';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
+import primitiveStore from '@store/primitive.store.ts';
 import HistoryPanel from './historyPanel/HistoryPanel';
 
 const CanvasLeftPanel = () => {

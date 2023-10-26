@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import { grayColors } from '@/resources/colors/colors';
 import { fonts } from '@/resources/fonts/font';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
 
 type Props = {
   label: string;

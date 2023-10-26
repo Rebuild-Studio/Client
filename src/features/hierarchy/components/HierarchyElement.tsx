@@ -7,9 +7,9 @@ import {
   instanceTranslate
 } from '@/resources/constants/canvas';
 import { fonts } from '@/resources/fonts/font';
-import primitiveStore from '@/store/primitiveStore';
 import { findRootAsset } from '@/three_components/utils/findAsset';
 import { findRootGroup } from '@/three_components/utils/findGroup';
+import primitiveStore from '@store/primitive.store.ts';
 import onClickHierarchyEvent from '../utils/onClickHierarchyEvent';
 import onContextMenuHierarchyEvents from '../utils/onContextMenuHierarchyEvent';
 

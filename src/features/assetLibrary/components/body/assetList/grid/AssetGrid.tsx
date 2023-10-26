@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
-import assetLibraryStore from '@/store/assetLibraryStore';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 import GridItem from './GridItem';
 
 const AssetGrid = () => {

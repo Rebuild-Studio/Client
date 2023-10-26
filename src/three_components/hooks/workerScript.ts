@@ -1,9 +1,9 @@
 import { RequestCreateMxProject } from '@/network/services/project/post/models/postMxProject.model';
 import postProjectServices from '@/network/services/project/post/postProjectServices';
-import { ProjectType } from '@/store/projectStore';
 import { MxJson } from '@/types/mxJson/mxJson';
 import { SceneJson } from '@/types/scene/scene';
 import createMxJson from '@/utils/json/createMxJson';
+import { ProjectType } from '@store/project.store.ts';
 
 export const MX_WORKER_REQUEST_TYPE = {
   EXPORT_JSON_FILE: 'exportJsonFile',

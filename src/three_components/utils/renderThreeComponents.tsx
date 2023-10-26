@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { PrimitiveStore } from '@/store/primitiveStore';
+import { PrimitiveStore } from '@store/primitive.store.ts';
 import AssetPrimitive from '../assets/AssetPrimitive';
 import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
 import Group from '../group/Group';

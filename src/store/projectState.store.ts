@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { MeshType } from './primitiveStore';
+import { MeshType } from './primitive.store.ts';
 
 type DisplayType = 'CANVAS' | 'INTERACTION' | 'PREVIEW';
 

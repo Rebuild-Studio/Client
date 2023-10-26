@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import ControlDropdown from '@/features/controllerBar/components/dropdown/ControlDropdown';
 import SnapIcon from '@/features/controllerBar/components/icons/SnapIcon';
 import SnapModeControl from '@/features/controllerBar/components/snap/SnapModeControl';
-import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
 
 const SnapMode = () => {
   const { isAnySnapModeActivated } = controllerBarStore;

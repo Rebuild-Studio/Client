@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import { basicColors } from '@/resources/colors/colors';
 import { attrTranslate, instanceTranslate } from '@/resources/constants/canvas';
-import { CanvasHistoryType } from '@/store/canvasHistoryStore';
+import { CanvasHistoryType } from '@store/canvasHistory.store.ts';
 import RedoElement from './RedoElement';
 import UndoElement from './UnDoElement';
 import Tab from '../../Tab';

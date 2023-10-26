@@ -1,4 +1,4 @@
-import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
 import Icon from '@components/common/Icon.tsx';
 
 const SnapIcon = () => {

@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { nanoid } from 'nanoid';
-import canvasHistoryStore from '@/store/canvasHistoryStore';
-import { MeshType } from '@/store/primitiveStore';
 import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
+import { MeshType } from '@store/primitive.store.ts';
 import { copyGroup, copyObject } from './copyObject';
 import {
   renderAsset,

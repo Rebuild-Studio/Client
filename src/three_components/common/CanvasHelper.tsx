@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { CameraControls } from '@react-three/drei';
-import renderStore from '@/store/renderStore';
 import storeContainer from '@/store/storeContainer';
+import renderStore from '@store/render.store.ts';
 
 export const CanvasHelper = () => {
   const cameraControlRef = useRef<any>();

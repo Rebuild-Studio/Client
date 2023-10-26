@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { styled } from 'styled-components';
 import RadioInput from '@/features/controllerBar/components/gizmo/RadioInput';
 import { GIZMO_MODE } from '@/features/controllerBar/constants/gizmo';
-import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
 import { GizmoModeType } from '@/features/controllerBar/types/gizmo';
 
 const GIZMO_OPTIONS = [

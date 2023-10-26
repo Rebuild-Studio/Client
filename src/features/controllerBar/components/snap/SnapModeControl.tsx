@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import ActivateAxis from '@/features/controllerBar/components/snap/ActivateAxis';
 import Checkbox from '@/features/controllerBar/components/snap/Checkbox';
 import { SNAP_MODE } from '@/features/controllerBar/constants/snap';
-import controllerBarStore from '@/features/controllerBar/store/controllerBarStore';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
 import { SnapModeType } from '@/features/controllerBar/types/snap';
 import { grayColors } from '@resources/colors/colors';
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import { ProjectInfo } from '@/store/projectStore';
 import storeContainer from '@/store/storeContainer';
+import { ProjectInfo } from '@store/project.store.ts';
 import { AddCard } from './card/AddCard';
 import { ProjectCard } from './card/ProjectCard';
 import { StyledGrid } from './projectList.styles';

@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import { basicColors } from '@/resources/colors/colors';
-import assetCategoryStore from '@/store/assetCategoryStore';
-import assetLibraryStore from '@/store/assetLibraryStore';
+import assetCategoryStore from '@store/assetCategory.store.ts';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 import Body from './body';
 import Footer from './footer';
 import Header from './header';
-import { useFetchLibraryAssets } from '../hooks/useFetchLibraryAssets query';
+import { useFetchLibraryAssets } from '../hooks/useFetchLibraryAssets.query.ts';
 
 const AssetLibrary = () => {
   const { currentPage } = assetLibraryStore;

@@ -7,7 +7,7 @@ import {
   isCanvasInstance
 } from '@/resources/constants/canvas';
 import { renderObjects } from '@/three_components/utils/renderThreeComponents';
-import primitiveStore, { MeshType } from './primitiveStore';
+import primitiveStore, { MeshType } from './primitive.store.ts';
 
 interface CanvasHistoryType {
   id: string;

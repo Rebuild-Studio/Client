@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react';
 import getProjectServices from '@/network/services/project/get/getProjectServices';
 import { RequestGetMxProject } from '@/network/services/project/get/models/getMxProject.model';
 import { RequestGetPmxProject } from '@/network/services/project/get/models/getPmxProject.model';
-import { ProjectType } from '@/store/projectStore';
 import storeContainer from '@/store/storeContainer';
+import { ProjectType } from '@store/project.store.ts';
 
 const GET_PROJECT_SERVICE = {
   MX: (reqParam: RequestGetMxProject) =>

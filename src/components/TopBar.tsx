@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { styled } from 'styled-components';
 import { basicColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
-import editorModeStore from '@store/editorModeStore';
+import editorModeStore from '@store/editorMode.store.ts';
 import { fonts } from '@resources/fonts/font';
 import IconButton from './buttons/IconButton';
 import Button from './common/Button';

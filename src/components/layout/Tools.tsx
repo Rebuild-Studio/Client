@@ -6,7 +6,7 @@ import CanvasBar from '@components/CanvasBar';
 import RightPanel from '@components/common/RightPanel/RightPanel';
 import SceneSettingPanel from '@components/common/RightPanel/SceneSettingPanel';
 import CanvasLeftPanel from '@components/layout/CanvasLeftPanel/CanvasLeftPanel';
-import editorModeStore from '@store/editorModeStore.ts';
+import editorModeStore from '@store/editorMode.store.ts';
 import storeContainer from '@store/storeContainer';
 
 const Tools = () => {

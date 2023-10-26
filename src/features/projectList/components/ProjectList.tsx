@@ -9,7 +9,7 @@ import storeContainer from '@/store/storeContainer';
 import ProjectCards from './ProjectCards';
 import { TemplateCards } from './TemplateCards';
 import { useFetchProject } from '../hooks/useFetchProject';
-import { useFetchProjectList } from '../hooks/useFetchProjectList query';
+import { useFetchProjectList } from '../hooks/useFetchProjectList.query.ts';
 
 const ProjectList = () => {
   const { projectStateStore, projectStore } = storeContainer;

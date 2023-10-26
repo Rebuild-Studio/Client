@@ -7,7 +7,7 @@ import {
   StyledTab
 } from '@/components/layout/CanvasLeftPanel/CanvasLeftPanel.style';
 import Tab from '@/components/layout/Tab';
-import { MeshType } from '@/store/primitiveStore';
+import { MeshType } from '@store/primitive.store.ts';
 import { HierarchyElement } from './HierarchyElement';
 import { clearContextMenuHierarchy } from '../utils/clearMouseEventHierarchy';
 
