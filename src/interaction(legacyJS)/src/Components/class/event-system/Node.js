@@ -193,6 +193,7 @@ export default class Node {
       uuid: this.uuid,
       inputSockets: this.inputSockets,
       outputSockets: this.outputSockets,
+      referenceParameter: this.referenceParameter,
       control: this.control,
       type: this.type,
       category: this.category,
