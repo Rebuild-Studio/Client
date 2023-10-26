@@ -1,6 +1,6 @@
 import { observable } from "mobx";
 
-type EditorMode = "canvas" | "interaction";
+type EditorMode = "canvas" | "interaction" | "preview";
 
 interface EditorModeStoreProps {
   editorMode: EditorMode;
