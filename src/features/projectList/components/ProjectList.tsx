@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
 import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { ProjectCards } from "./ProjectCards";
+import ProjectCards from "./ProjectCards";
 import { TemplateCards } from "./TemplateCards";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/useToast";
 import { useFetchProject } from "../hooks/useFetchProject";
 import Tab from "@/components/layout/Tab";
 
-const ProjectList = observer(() => {
+const ProjectList = () => {
   const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const { addToast } = useToast();
@@ -84,9 +84,10 @@ const ProjectList = observer(() => {
       </StyledFooter>
     </StyledComponentList>
   );
-});
+};
 
-export default ProjectList;
+const Observer = observer(ProjectList);
+export default Observer;
 
 const StyledComponentList = styled.div`
   width: 70vw;

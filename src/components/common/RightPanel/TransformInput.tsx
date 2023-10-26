@@ -10,7 +10,7 @@ interface Props {
   axis: "x" | "y" | "z";
   initValue: string;
 }
-const TransformInput = observer((props: Props) => {
+const TransformInput = (props: Props) => {
   const [value, setValue] = useState(Number(props.initValue));
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
@@ -61,9 +61,10 @@ const TransformInput = observer((props: Props) => {
       onChange={handleKeyChange}
     />
   );
-});
+};
 
-export default TransformInput;
+const Observer = observer(TransformInput);
+export default Observer;
 
 interface initNewValueProps {
   prop: string;

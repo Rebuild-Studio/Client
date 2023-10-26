@@ -15,7 +15,7 @@ type Props = {
   meshes: MeshType;
 };
 
-export const HierarchyPanel = observer(({ meshes }: Props) => {
+const HierarchyPanel = ({ meshes }: Props) => {
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (index: number) => {
     //Todo: 인터렉션 에디터 붙으면 if문 지우기(이정우)
@@ -50,8 +50,11 @@ export const HierarchyPanel = observer(({ meshes }: Props) => {
       )}
     </StyledPanel>
   );
-});
+};
 
 const HierarchyList = styled.div`
   margin-left: 20px;
 `;
+
+const Observer = observer(HierarchyPanel);
+export default Observer;

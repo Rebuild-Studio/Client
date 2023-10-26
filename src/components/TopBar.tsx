@@ -8,7 +8,7 @@ import editorModeStore from "@store/editorModeStore";
 import { ConfirmBox } from "./layout/modal/ConfirmBox";
 import { observer } from "mobx-react-lite";
 
-const TopBar = observer(() => {
+const TopBar = () => {
   const { sceneSettingStore, primitiveStore, projectStore, projectStateStore } =
     storeContainer;
   const { editorMode, setEditorMode, toggleCanvasBar, toggleInteractionBar } =
@@ -86,9 +86,10 @@ const TopBar = observer(() => {
       </Right>
     </Wrapper>
   );
-});
+};
 
-export default TopBar;
+const Observer = observer(TopBar);
+export default Observer;
 
 const Wrapper = styled.div`
   position: relative;

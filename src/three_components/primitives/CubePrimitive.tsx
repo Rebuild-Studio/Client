@@ -6,7 +6,7 @@ import storeContainer from "@/store/storeContainer";
 import { PrimitiveProps } from "../common/PrimitiveProps";
 import canvasHistoryStore from "@/store/canvasHistoryStore";
 
-const CubePrimitive = observer((props: PrimitiveProps) => {
+const CubePrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.BoxGeometry();
@@ -30,6 +30,7 @@ const CubePrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
 
-export default CubePrimitive;
+const Observer = observer(CubePrimitive);
+export default Observer;

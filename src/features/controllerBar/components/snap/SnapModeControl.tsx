@@ -15,7 +15,7 @@ const SNAP_OPTIONS = [
   { value: SNAP_MODE.SURFACE, name: "표면 스냅" },
 ];
 
-const SnapModeControl = observer(() => {
+const SnapModeControl = () => {
   const { snapMode, toggleSnapMode } = controllerBarStore;
 
   const handleChange = (e: FormEvent<HTMLFormElement>) => {
@@ -37,9 +37,10 @@ const SnapModeControl = observer(() => {
       <ActivateAxis enabled={snapMode[SNAP_MODE.SURFACE]} />
     </Wrapper>
   );
-});
+};
 
-export default SnapModeControl;
+const Observer = observer(SnapModeControl);
+export default Observer;
 
 const Wrapper = styled.div`
   display: flex;

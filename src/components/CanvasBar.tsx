@@ -15,7 +15,7 @@ import AssetLibrary from "@/features/assetLibrary";
 import PointLight from "@/three_components/lights/PointLight";
 import SpotLight from "@/three_components/lights/SpotLight";
 
-const CanvasBar = observer(() => {
+const CanvasBar = () => {
   const { primitiveStore, projectStateStore } = storeContainer;
   const { addToast } = useToast();
 
@@ -165,9 +165,10 @@ const CanvasBar = observer(() => {
       </Container>
     </Wrapper>
   );
-});
+};
 
-export default CanvasBar;
+const Observer = observer(CanvasBar);
+export default Observer;
 
 const Wrapper = styled.div`
   width: 100%;

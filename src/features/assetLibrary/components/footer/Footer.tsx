@@ -10,7 +10,7 @@ import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import styled, { css } from "styled-components";
 
-const Footer = observer(() => {
+const Footer = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;
   const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
   const { projectStateStore, primitiveStore } = storeContainer;
@@ -38,17 +38,14 @@ const Footer = observer(() => {
     <div>
       <Container>
         <LoadButton label="불러오기" disabled={false} onClick={onClickLoad} />
-        <CancelButton
-          label="닫기"
-          disabled={false}
-          onClick={onClickCancel}
-        />
+        <CancelButton label="닫기" disabled={false} onClick={onClickCancel} />
       </Container>
     </div>
   );
-});
+};
 
-export default Footer;
+const Observer = observer(Footer);
+export default Observer;
 
 const Container = styled.div`
   display: flex;

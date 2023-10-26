@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useRef } from "react";
 
-const SelectedAssetsControl = observer(() => {
+const SelectedAssetsControl = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;
   const ref = useRef<HTMLDivElement>(null);
 
@@ -21,9 +21,10 @@ const SelectedAssetsControl = observer(() => {
       ))}
     </Container>
   );
-});
+};
 
-export default SelectedAssetsControl;
+const Observer = observer(SelectedAssetsControl);
+export default Observer;
 
 const Container = styled.div`
   width: 65%;

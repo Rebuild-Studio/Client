@@ -11,7 +11,7 @@ type Props = {
   projects: ProjectList<Project>;
 };
 
-export const ProjectCards = observer(({ projects }: Props) => {
+export const ProjectCards = ({ projects }: Props) => {
   const [selectedCompIdx, setSelectedCompIdx] = useState<number>(-2);
   const { projectStore } = storeContainer;
 
@@ -20,15 +20,15 @@ export const ProjectCards = observer(({ projects }: Props) => {
     const selectedProject: ProjectInfo = {
       projectId: projects[selectedCompIdx].id,
       projectName: projects[selectedCompIdx].name,
-      projectType: 'MX',
+      projectType: "MX",
       thumbnail: projects[selectedCompIdx].thumbnail,
     };
     projectStore.setSelectedProject(selectedProject);
 
     return () => {
       projectStore.clearSelectedProject();
-    }
-  }, [selectedCompIdx, projectStore, projects])
+    };
+  }, [selectedCompIdx, projectStore, projects]);
 
   return (
     <StyledGrid>
@@ -50,4 +50,7 @@ export const ProjectCards = observer(({ projects }: Props) => {
       ))}
     </StyledGrid>
   );
-});
+};
+
+const Observer = observer(ProjectCards);
+export default Observer;

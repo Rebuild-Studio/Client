@@ -10,7 +10,7 @@ interface GroupProps {
   propMesh?: THREE.Mesh;
 }
 
-const Group = observer((props: GroupProps) => {
+const Group = (props: GroupProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
 
@@ -71,6 +71,7 @@ const Group = observer((props: GroupProps) => {
       />
     </>
   );
-});
+};
 
-export default Group;
+const Observer = observer(Group);
+export default Observer;

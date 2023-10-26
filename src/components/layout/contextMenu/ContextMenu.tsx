@@ -7,7 +7,7 @@ import { styled } from "styled-components";
 interface ContextMenuProps extends ContextMenuPositionProps {
   items: ContextMenuItemType[];
 }
-const ContextMenu = observer((props: ContextMenuProps) => {
+const ContextMenu = (props: ContextMenuProps) => {
   const { contextMenuStore } = storeContainer;
   const renderContextMenuItem = (
     title: string,
@@ -48,9 +48,10 @@ const ContextMenu = observer((props: ContextMenuProps) => {
       })}
     </ContextMenuWrapper>
   );
-});
+};
 
-export default ContextMenu;
+const Observer = observer(ContextMenu);
+export default Observer;
 
 interface ContextMenuPositionProps {
   $xPos: number;

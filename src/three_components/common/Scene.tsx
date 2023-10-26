@@ -6,10 +6,10 @@ import { bgColors } from "@/resources/colors/colors";
 import storeContainer from "@/store/storeContainer";
 import { observer } from "mobx-react";
 import { CanvasHelper } from "./CanvasHelper";
-import { SceneEnvironment } from "./SceneEnvironment";
+import SceneEnvironment from "./SceneEnvironment";
 import { hsvaToHex } from "@uiw/color-convert";
 
-const Scene = observer(() => {
+const Scene = () => {
   const { mouseEventStore, sceneSettingStore } = storeContainer;
 
   return (
@@ -53,9 +53,10 @@ const Scene = observer(() => {
       </CustomCanvas>
     </Wrapper>
   );
-});
+};
 
-export default Scene;
+const Observer = observer(Scene);
+export default Observer;
 
 const Wrapper = styled.div`
   height: 100%;

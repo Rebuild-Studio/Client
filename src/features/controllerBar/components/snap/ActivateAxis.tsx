@@ -8,7 +8,7 @@ import controllerBarStore from "@/features/controllerBar/store/controllerBarStor
 interface Props {
   enabled: boolean;
 }
-const ActivateAxis = observer(({ enabled }: Props) => {
+const ActivateAxis = ({ enabled }: Props) => {
   const { surfaceSnapAxisEnabled, setSurfaceSnapAxis } = controllerBarStore;
 
   return (
@@ -29,9 +29,10 @@ const ActivateAxis = observer(({ enabled }: Props) => {
       </Button>
     </Wrapper>
   );
-});
+};
 
-export default ActivateAxis;
+const Observer = observer(ActivateAxis);
+export default Observer;
 
 const Wrapper = styled.div<{ $disabled: boolean }>`
   display: flex;

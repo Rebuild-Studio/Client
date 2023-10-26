@@ -3,7 +3,7 @@ import { gridColor } from "@/resources/colors/colors";
 import { observer } from "mobx-react";
 import storeContainer from "@/store/storeContainer";
 
-const Grid = observer(() => {
+const Grid = () => {
   const { sceneSettingStore } = storeContainer;
 
   const axisLength = 25;
@@ -86,6 +86,7 @@ const Grid = observer(() => {
       </group>
     </>
   );
-});
+};
 
-export default Grid;
+const Observer = observer(Grid);
+export default Observer;

@@ -14,7 +14,7 @@ import InteractionEditor from "@components/InteractionEditor.tsx";
 import ContextMenu from "./components/layout/contextMenu/ContextMenu";
 import Preivew from "@/components/Preview";
 
-const App = observer(() => {
+const App = () => {
   const { projectStateStore, contextMenuStore } = storeContainer;
   const { editorMode } = editorModeStore;
 
@@ -53,9 +53,10 @@ const App = observer(() => {
       <ToastContainer />
     </>
   );
-});
+};
 
-export default App;
+const Observer = observer(App);
+export default Observer;
 
 const Header = styled.header``;
 

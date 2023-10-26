@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Grid from "@/components/common/Grid";
 import storeContainer from "@/store/storeContainer";
 
-const BackgroundImageTemplate = observer(() => {
+const BackgroundImageTemplate = () => {
   const { sceneSettingStore } = storeContainer;
   const selectedBgImage = sceneSettingStore.selectedBackgroundImage;
   // const backgroundImageList = sceneSettingStore.backgroundImages;
@@ -29,9 +29,10 @@ const BackgroundImageTemplate = observer(() => {
       ></Grid>
     </>
   );
-});
+};
 
-export default BackgroundImageTemplate;
+const Observer = observer(BackgroundImageTemplate);
+export default Observer;
 
 const ImageStyled = styled.img<{ isSelected: boolean }>`
   width: 20.2vh;

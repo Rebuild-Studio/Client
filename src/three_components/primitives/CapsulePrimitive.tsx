@@ -36,7 +36,7 @@ const initCapsule: CapsuleParams = {
   radialSegments: 1,
 };
 
-const CapsulePrimitive = observer((props: PrimitiveProps) => {
+const CapsulePrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.CapsuleGeometry(0.25, 1, 10, 20);
@@ -60,8 +60,10 @@ const CapsulePrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(CapsulePrimitive);
+export default Observer;
 
 export type { CapsuleParams };
 export { initCapsule };
-export default CapsulePrimitive;

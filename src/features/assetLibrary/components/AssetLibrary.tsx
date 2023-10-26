@@ -9,7 +9,7 @@ import assetCategoryStore from "@/store/assetCategoryStore";
 import assetLibraryStore from "@/store/assetLibraryStore";
 import { useFetchLibraryAssets } from "../hooks/useFetchLibraryAssets query";
 
-const AssetLibrary = observer(() => {
+const AssetLibrary = () => {
   const { currentPage } = assetLibraryStore;
   const { currentDomain, currentMainCategory, currentSubCategory } =
     assetCategoryStore;
@@ -45,9 +45,10 @@ const AssetLibrary = observer(() => {
       <Footer />
     </Container>
   );
-});
+};
 
-export default AssetLibrary;
+const Observer = observer(AssetLibrary);
+export default Observer;
 
 const Container = styled.div`
   width: 100%;

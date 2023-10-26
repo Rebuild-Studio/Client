@@ -8,7 +8,7 @@ import storeContainer from "@/store/storeContainer";
 import ColorHandler from "@/components/common/RightPanel/ColorHandler";
 import Switch from "@/components/buttons/SwitchButton";
 
-const DisplaySetting = observer(() => {
+const DisplaySetting = () => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
     ColorHandler;
   const { sceneSettingStore } = storeContainer;
@@ -55,9 +55,10 @@ const DisplaySetting = observer(() => {
       </Accordion>
     </>
   );
-});
+};
 
-export default DisplaySetting;
+const Observer = observer(DisplaySetting);
+export default Observer;
 
 const TitleWrapper = styled.div`
   margin-top: 10px;

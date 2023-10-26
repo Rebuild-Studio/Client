@@ -1,55 +1,45 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { MeshType } from "./primitiveStore";
 
 type DisplayType = "CANVAS" | "INTERACTION" | "PREVIEW";
 
-interface ProjectStateProps {
-  currentDisplay: DisplayType;
-  currentCopyPrimitive: MeshType; // 복사한 prmitive storeId
-  canGrouping: boolean; // 다중 선택인 경우 true
-  isModalOpened: boolean;
-  isModalCancelable: boolean;
-  modalComponent: JSX.Element | null;
-  updateDisplay: (type: DisplayType) => void;
-  updateCurrentCopyPrimitive: (copyMeshes: MeshType) => void;
-  updateCanGrouping: (state: boolean) => void;
-  updateModalState: (isOpened: boolean) => void;
-  updateModalCancelable: (isCancelable: boolean) => void;
-  updateModalComponent: (component: JSX.Element) => void;
-  clearModal: () => void;
-}
+class ProjectStateStore {
+  currentDisplay: DisplayType = "CANVAS";
+  currentCopyPrimitive: MeshType = {};
+  canGrouping = false;
+  isModalOpened = false;
+  isModalCancelable = true;
+  modalComponent: JSX.Element | null = null;
 
-const projectStateStore = observable<ProjectStateProps>({
-  currentDisplay: "CANVAS",
-  currentCopyPrimitive: {},
-  canGrouping: false,
-  isModalOpened: false,
-  isModalCancelable: true,
-  modalComponent: null,
-  updateDisplay(type) {
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  updateDisplay(type: DisplayType) {
     this.currentDisplay = type;
-  },
-  updateCurrentCopyPrimitive(copyMeshes) {
+  }
+  updateCurrentCopyPrimitive(copyMeshes: MeshType) {
     this.currentCopyPrimitive = copyMeshes;
-  },
-  updateCanGrouping(state) {
+  }
+  updateCanGrouping(state: boolean) {
     this.canGrouping = state;
-  },
-  updateModalState(isOpened) {
+  }
+  updateModalState(isOpened: boolean) {
     this.isModalOpened = isOpened;
-  },
-  updateModalComponent(component) {
+  }
+  updateModalComponent(component: JSX.Element) {
     this.modalComponent = component;
-  },
+  }
   updateModalCancelable(isCancelable: boolean) {
     this.isModalCancelable = isCancelable;
-  },
+  }
   clearModal() {
     this.isModalOpened = false;
     this.isModalCancelable = true;
     this.modalComponent = null;
-  },
-});
+  }
+}
 
-export type { ProjectStateProps };
+const projectStateStore = new ProjectStateStore();
+
 export default projectStateStore;

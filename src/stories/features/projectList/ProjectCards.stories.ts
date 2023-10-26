@@ -1,4 +1,4 @@
-import { ProjectCards } from "@/features/projectList/components/ProjectCards";
+import ProjectCards from "@/features/projectList/components/ProjectCards";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

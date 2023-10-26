@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { renderObjects } from "@/three_components/utils/renderThreeComponents";
 import {
   CanvasAttribute,
@@ -19,36 +19,27 @@ interface CanvasHistoryType {
 type MeshProperty = keyof THREE.Mesh;
 const attributes: MeshProperty[] = ["position", "rotation", "scale"];
 
-interface CanvasHistoryStoreProps {
-  undoList: CanvasHistoryType[];
-  redoList: CanvasHistoryType[];
-  addHistory: (
-    id: string,
-    instance: CanvasInstance,
-    attr: CanvasAttribute,
-    snapshot: MeshType
-  ) => void;
-  differAdd: (storeId: string) => void;
-  differDelete: (storeId: string) => void;
-  differUngroup: (storeId: string) => void;
-  differMeshAttribute: () => void;
-  undoListElementClick: (index: number) => void;
-  redoListElementClick: (index: number) => void;
-  createSnapshot: (props: MeshType) => MeshType;
-  update: () => void;
-}
-
-const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
-  undoList: [],
-  redoList: [
+class CanvasHistoryStore {
+  undoList: CanvasHistoryType[] = [];
+  redoList: CanvasHistoryType[] = [
     {
       id: "0",
       instance: "INITIAL",
       attribute: "none",
       snapshot: {},
     },
-  ],
-  addHistory(id, instance, attribute, snapshot) {
+  ];
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  addHistory(
+    id: string,
+    instance: CanvasInstance,
+    attribute: CanvasAttribute,
+    snapshot: MeshType
+  ) {
     // console.log("meshes : ", Object.keys(primitiveStore.meshes));
     this.undoList = [];
     this.redoList = [
@@ -60,8 +51,8 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       },
       ...this.redoList,
     ];
-  },
-  createSnapshot(meshes) {
+  }
+  createSnapshot(meshes: MeshType): MeshType {
     // 깊은 객체 복사
     const snapshot: MeshType = {};
 
@@ -95,8 +86,8 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
     }
     // console.log("snapshot : ", snapshot);
     return snapshot;
-  },
-  differAdd(storeId) {
+  }
+  differAdd(storeId: string) {
     const beforeMesh = this.redoList[0].snapshot[storeId];
     const meshes = primitiveStore.meshes;
     const mesh = meshes[storeId];
@@ -110,17 +101,17 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       );
       return;
     }
-  },
-  differDelete(storeId) {
+  }
+  differDelete(storeId: string) {
     const meshes = primitiveStore.meshes;
 
     this.addHistory(storeId, "OBJECT", "delete", this.createSnapshot(meshes));
-  },
-  differUngroup(storeId) {
+  }
+  differUngroup(storeId: string) {
     const meshes = primitiveStore.meshes;
 
     this.addHistory(storeId, "GROUP", "ungroup", this.createSnapshot(meshes));
-  },
+  }
   differMeshAttribute() {
     const meshes = this.createSnapshot(primitiveStore.meshes);
     const keys = Object.keys(meshes);
@@ -155,32 +146,28 @@ const canvasHistoryStore = observable<CanvasHistoryStoreProps>({
       // 달라진 점이 여러개면 OBJECT로
       this.addHistory(difference[0][0], "OBJECT", "change", meshes);
     }
-  },
-  undoListElementClick(index) {
+  }
+  undoListElementClick(index: number) {
     const length = this.undoList.length;
     this.redoList = [
       ...this.undoList.splice(index, length - index),
       ...this.redoList,
     ];
     this.update();
-  },
-  redoListElementClick(index) {
+  }
+  redoListElementClick(index: number) {
     this.undoList = [...this.undoList, ...this.redoList.splice(0, index)];
     this.update();
-  },
-
+  }
   update() {
     primitiveStore.clearPrimitives();
     const meshList = Object.values(this.redoList[0].snapshot);
 
     renderObjects(primitiveStore, meshList);
-  },
-});
+  }
+}
 
-export type {
-  CanvasHistoryStoreProps,
-  CanvasInstance,
-  CanvasAttribute,
-  CanvasHistoryType,
-};
+const canvasHistoryStore = new CanvasHistoryStore();
+
+export type { CanvasInstance, CanvasAttribute, CanvasHistoryType };
 export default canvasHistoryStore;

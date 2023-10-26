@@ -42,7 +42,7 @@ const initSphere: SphereParams = {
   thetaLengthUnit: 0.06,
 };
 
-const SpherePrimitive = observer((props: PrimitiveProps) => {
+const SpherePrimitive = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.SphereGeometry(
@@ -74,8 +74,10 @@ const SpherePrimitive = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
+
+const Observer = observer(SpherePrimitive);
+export default Observer;
 
 export type { SphereParams };
 export { initSphere };
-export default SpherePrimitive;

@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-const PointLight = observer((props: PrimitiveProps) => {
+const PointLight = (props: PrimitiveProps) => {
   const ref = useRef();
   const pointLightGlb: THREE.Mesh = useLoader(
     GLTFLoader,
@@ -36,6 +36,7 @@ const PointLight = observer((props: PrimitiveProps) => {
       />
     </>
   );
-});
+};
 
-export default PointLight;
+const Observer = observer(PointLight);
+export default Observer;
