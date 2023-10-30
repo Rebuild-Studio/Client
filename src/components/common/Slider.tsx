@@ -72,6 +72,7 @@ const Slider = ({
 export default Slider;
 
 const SliderContainer = styled.div<{ $disabled: boolean }>`
+  width: 100%;
   margin: 20px 0;
   ${({ $disabled }) =>
     $disabled &&
