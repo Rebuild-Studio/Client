@@ -1,4 +1,4 @@
-import { Buffer } from "buffer";
+import { Buffer } from 'buffer';
 
 globalThis.Buffer = Buffer;
 
@@ -27,11 +27,11 @@ interface WsModuleConstructor {
  * @method sendInChunks 청크 단위로 메시지 전송
  */
 class WsModule {
-  static userId: string = "user";
+  static userId: string = 'user2';
   static socket = new WebSocket(
     isProduction
       ? import.meta.env.VITE_SOCKET_SERVER_URL
-      : "ws://localhost:8080"
+      : 'ws://localhost:8080'
   );
 
   private targetService: string;
@@ -54,7 +54,7 @@ class WsModule {
     headerBytes[5] = 113;
     headerBytes[19] = 1;
     //persona ID 설정
-    headerBytes.set(new TextEncoder().encode("q"), 43);
+    headerBytes.set(new TextEncoder().encode('q'), 43);
     //user ID 설정
     headerBytes.set(new TextEncoder().encode(WsModule.userId).reverse(), 36);
 
@@ -64,18 +64,13 @@ class WsModule {
   private encodeVarHeader() {
     return new TextEncoder().encode(
       JSON.stringify({
-        targetServiceName: this.targetService,
+        targetServiceName: this.targetService
       })
     );
   }
 
   public setUserId(userId: string) {
     WsModule.userId = userId;
-  }
-
-  // TODO
-  public createVariableParts() {
-    return {};
   }
 
   public async handleServerMessage(data: ArrayBuffer) {
@@ -90,20 +85,28 @@ class WsModule {
     return await JSON.parse(bodyString);
   }
 
-  public assembleMessage() {
+  public assembleMessage(
+    ...args: [edcodedBody: Uint8Array, byteArray: Uint8Array] | []
+  ) {
+    let totalByteLength = 0;
     const reqHeaderBytes = this.headerBytes;
     const encodedVarHeader = this.encodeVarHeader();
     const fixedHeader = new DataView(reqHeaderBytes.buffer);
     fixedHeader.setInt32(24, encodedVarHeader.byteLength);
+    args[0] && fixedHeader.setInt32(28, args[0].byteLength);
+    args[1] && fixedHeader.setInt32(32, args[1].length);
 
-    const message = new ArrayBuffer(
-      reqHeaderBytes.byteLength + encodedVarHeader.byteLength
-    );
+    const messageContents = [reqHeaderBytes, encodedVarHeader, ...args];
+    const messageLength = messageContents.reduce((acc, cur) => {
+      return acc + cur.byteLength;
+    }, 0);
+    const message = new ArrayBuffer(messageLength);
     const messageBytes = new Uint8Array(message);
 
-    messageBytes.set(reqHeaderBytes, 0);
-    messageBytes.set(encodedVarHeader, reqHeaderBytes.byteLength);
-
+    for (const messageContent of messageContents) {
+      messageBytes.set(messageContent, totalByteLength);
+      totalByteLength += messageContent.byteLength;
+    }
     return messageBytes;
   }
 
@@ -113,7 +116,7 @@ class WsModule {
       const start = i * this.chunkSize;
       const end = start + this.chunkSize;
       const chunk = messageBytes.slice(start, end);
-      WsModule.socket.binaryType = "arraybuffer";
+      WsModule.socket.binaryType = 'arraybuffer';
       WsModule.socket.send(chunk);
     }
   }
