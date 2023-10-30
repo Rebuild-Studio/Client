@@ -123,7 +123,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       primitiveStore.removeSelectedPrimitives(selectedGroupStoreId);
       primitiveStore.removePrimitive(selectedGroupStoreId);
-      canvasHistoryStore.differUngroup(selectedGroupStoreId);
+      canvasHistoryStore.addHistory('GROUP', 'ungroup');
       break;
     case '잠그기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -170,7 +170,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
       });
 
       primitiveStore.clearSelectedPrimitives();
-      canvasHistoryStore.differDelete(selectedPrimitives[0]);
+      canvasHistoryStore.addHistory('OBJECT', 'delete');
       break;
   }
   contextMenuStore.updateSelectedContextMenu('NONE');

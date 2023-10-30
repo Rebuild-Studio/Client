@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
+import { nanoid } from 'nanoid';
 import { styled } from 'styled-components';
 import { basicColors } from '@/resources/colors/colors';
 import { attrTranslate, instanceTranslate } from '@/resources/constants/canvas';
@@ -40,7 +41,7 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
                 ' ' +
                 (attrTranslate[value.attribute] ?? value.attribute)
               }
-              key={idx + value.id}
+              key={nanoid()}
               index={idx}
             />
           ))}
@@ -51,7 +52,7 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
                 ' ' +
                 (attrTranslate[value.attribute] ?? value.attribute)
               }
-              key={idx + value.id}
+              key={nanoid()}
               index={idx}
             />
           ))}

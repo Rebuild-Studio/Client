@@ -14,13 +14,11 @@ export const Basic = {
   args: {
     undoList: [
       {
-        id: '1',
         instance: 'CUBE',
         attribute: 'add',
         snapshot: {}
       },
       {
-        id: '1',
         instance: 'CONE',
         attribute: 'add',
         snapshot: {}
@@ -28,19 +26,16 @@ export const Basic = {
     ],
     redoList: [
       {
-        id: '1',
         instance: 'CUBE',
         attribute: 'add',
         snapshot: {}
       },
       {
-        id: '3',
         instance: 'CYLINDER',
         attribute: 'add',
         snapshot: {}
       },
       {
-        id: '2',
         instance: 'GROUP',
         attribute: 'add',
         snapshot: {}
