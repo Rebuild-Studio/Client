@@ -5,7 +5,7 @@ type PrimitiveType = { [key: string]: JSX.Element };
 type MeshType = { [key: string]: THREE.Mesh };
 type GroupPrimitiveType = [string, JSX.Element | null];
 
-class PrimitiveStore {
+export class PrimitiveStore {
   primitives: PrimitiveType = {};
   meshes: MeshType = {};
   selectedPrimitives: MeshType = {};
