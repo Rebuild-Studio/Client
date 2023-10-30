@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
@@ -66,13 +66,29 @@ const createGeometry = (geometryType: string, parameter: number[]) => {
 const ShapeEditor = () => {
   const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
-  const shapeName =
-    selectedPrimitive.name.toLowerCase() as keyof typeof dataStore;
-  const geometryType = selectedPrimitive.geometry.type;
+  const [shapeName, setShapeName] = useState(
+    selectedPrimitive.name.toLowerCase() as keyof typeof dataStore
+  );
+  const [geometryType, setGeometryType] = useState(
+    selectedPrimitive.geometry.type
+  );
   const [parameter, setParameter] = useState<geometryParameter>(
     getGeometryParameters(geometryType, selectedPrimitive) as geometryParameter
   );
   const { addToast } = useToast();
+
+  useEffect(() => {
+    setShapeName(
+      selectedPrimitive.name.toLowerCase() as keyof typeof dataStore
+    );
+    setGeometryType(selectedPrimitive.geometry.type);
+    setParameter(
+      getGeometryParameters(
+        geometryType,
+        selectedPrimitive
+      ) as geometryParameter
+    );
+  }, [selectedPrimitive]);
 
   const handleShapeChange = (prop: string, value: number | boolean) => {
     const updatedParameter = { ...parameter };
