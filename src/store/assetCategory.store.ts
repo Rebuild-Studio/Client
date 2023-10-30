@@ -1,6 +1,6 @@
-import { Domain } from "@/features/assetLibrary/constants/domain";
-import { MainCategory } from "@/features/assetLibrary/constants/mainCategory";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
+import { Domain } from '@/features/assetLibrary/constants/domain';
+import { MainCategory } from '@/features/assetLibrary/constants/mainCategory';
 
 interface Category {
   category: string;
@@ -8,14 +8,14 @@ interface Category {
 }
 
 class AssetCategoryStore {
-  currentDomain: Domain = { domain: "all", domainKR: "전체" };
+  currentDomain: Domain = { domain: 'all', domainKR: '전체' };
   currentMainCategory = {
-    category: "all",
-    categoryKR: "전체",
+    category: 'all',
+    categoryKR: '전체'
   };
   currentSubCategory = {
-    category: "all",
-    categoryKR: "전체",
+    category: 'all',
+    categoryKR: '전체'
   };
 
   constructor() {

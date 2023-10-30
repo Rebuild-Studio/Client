@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "VariableString";
+const nodeType = 'VariableString';
 
 export class VariableStringNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,16 +17,16 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "string",
-      type: ControlType.String,
-    },
+      name: 'string',
+      type: ControlType.String
+    }
   ],
   control: [
     {
-      name: "string",
-      value: "",
+      name: 'string',
+      value: '',
       type: ControlType.String,
-      tooltip: "출력하고자하는 값을 설정해주세요.",
-    },
-  ],
+      tooltip: '출력하고자하는 값을 설정해주세요.'
+    }
+  ]
 };

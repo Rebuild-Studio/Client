@@ -1,5 +1,5 @@
-import NodeRuntime from "../NodeRuntime";
-import VariableProcess from "./VariableProcess";
+import VariableProcess from './VariableProcess';
+import NodeRuntime from '../NodeRuntime';
 
 export default class VariableRuntime extends NodeRuntime {
   constructor(args) {

@@ -1,8 +1,8 @@
-import { MxJson } from "@/types/mxJson/mxJson";
-import { SceneJson } from "@/types/scene/scene";
+import { MxJson } from '@/types/mxJson/mxJson';
+import { SceneJson } from '@/types/scene/scene';
 
-type SceneGeometries = SceneJson["geometries"];
-type SceneImages = SceneJson["images"];
+type SceneGeometries = SceneJson['geometries'];
+type SceneImages = SceneJson['images'];
 
 const convertGeometries = async (
   geometries: SceneGeometries
@@ -11,17 +11,17 @@ const convertGeometries = async (
     if (geometry.data) {
       return geometry.data;
     } else {
-      return "";
+      return '';
     }
   });
   const convertedGeometries = Promise.allSettled(
     geometryUrls.map((url) => fetch(url).then((response) => response.json()))
   ).then((results) => {
     return results.map((result, index) => {
-      if (result.status === "fulfilled") {
+      if (result.status === 'fulfilled') {
         return { ...geometries[index], data: result.value };
       } else {
-        if ("data" in geometries[index]) {
+        if ('data' in geometries[index]) {
           return { ...geometries[index], data: {} };
         } else {
           return { ...geometries[index] };
@@ -35,14 +35,14 @@ const convertGeometries = async (
 
 const convertImages = (images: SceneImages): Promise<SceneImages> => {
   const imageUrls = images.map((image: { url: string }) => {
-    if (image.url && typeof image.url === "string") {
+    if (image.url && typeof image.url === 'string') {
       return image.url;
     } else {
-      return "";
+      return '';
     }
   });
 
-  const convertedImages: Promise<SceneJson["images"]> = Promise.allSettled(
+  const convertedImages: Promise<SceneJson['images']> = Promise.allSettled(
     imageUrls.map((url) =>
       fetch(url)
         .then((response) => {
@@ -50,15 +50,15 @@ const convertImages = (images: SceneImages): Promise<SceneImages> => {
         })
         .then((blob) => {
           return new Promise((resolve, reject) => {
-            if (blob.type !== "image/png") {
-              reject(new Error("wrong image type"));
+            if (blob.type !== 'image/png') {
+              reject(new Error('wrong image type'));
             }
             const reader = new FileReader();
             reader.onloadend = function () {
               resolve(reader.result);
             };
             reader.onerror = function () {
-              reject(new Error("error"));
+              reject(new Error('error'));
             };
             reader.readAsDataURL(blob);
           });
@@ -66,8 +66,8 @@ const convertImages = (images: SceneImages): Promise<SceneImages> => {
     )
   ).then((results) => {
     return results.map((result, index) => {
-      if (result.status === "fulfilled") {
-        return { ...images[index], url: (result.value as string) ?? "" };
+      if (result.status === 'fulfilled') {
+        return { ...images[index], url: (result.value as string) ?? '' };
       } else {
         return { ...images[index], url: images[index].url };
       }
@@ -92,8 +92,8 @@ const loadMxJson = async (jsonData: MxJson): Promise<MxJson> => {
     scene: {
       ...jsonData.scene,
       geometries: await convertedGeometries,
-      images: await convertedImages,
-    },
+      images: await convertedImages
+    }
   };
 };
 

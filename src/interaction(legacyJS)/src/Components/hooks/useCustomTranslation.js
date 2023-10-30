@@ -5,11 +5,11 @@ function useCustomTranslation() {
 
   return (key) => {
     let baseKey = key;
-    let parameter = "";
+    let parameter = '';
 
     // 괄호가 있는 경우 파싱
-    if (key.includes("(")) {
-      const splitKey = key.split("(");
+    if (key.includes('(')) {
+      const splitKey = key.split('(');
       baseKey = splitKey[0];
       parameter = `(${splitKey[1]}`;
     }

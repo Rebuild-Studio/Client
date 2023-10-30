@@ -1,20 +1,20 @@
-import axios from "axios";
+import axios from 'axios';
 
 const usersAPI = axios.create({
-  baseURL: process.env.REACT_APP_BACK_BASE_URL + "/users",
-  withCredentials: process.env.REACT_APP_DEV === "true" ? false : true,
+  baseURL: process.env.REACT_APP_BACK_BASE_URL + '/users',
+  withCredentials: process.env.REACT_APP_DEV === 'true' ? false : true
 });
 
 usersAPI.interceptors.request.use(
   async function async(config) {
     await axios
-      .get(process.env.REACT_APP_BACK_BASE_URL + "/users/checkToken")
+      .get(process.env.REACT_APP_BACK_BASE_URL + '/users/checkToken')
       .then(async (res) => {
         if (res.data.refreshToken && !res.data.accessToken) {
           await axios.get(
-            process.env.REACT_APP_BACK_BASE_URL + "/users/refresh",
+            process.env.REACT_APP_BACK_BASE_URL + '/users/refresh',
             {
-              withCredentials: true,
+              withCredentials: true
             }
           );
         }

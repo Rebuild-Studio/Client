@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
-  StyledCardTextArea,
   StyledCard,
-  StyledCardTextAreaBox,
-} from "../projectList.styles";
+  StyledCardTextArea,
+  StyledCardTextAreaBox
+} from '../projectList.styles';
 
 type Props = {
   isClicked: boolean;
@@ -15,12 +15,12 @@ export const AddCard = ({ isClicked, onClick }: Props) => {
     <StyledAddCard $isClicked={isClicked} onClick={onClick}>
       <StyledImgBox>
         <StyledCardImg
-          src={"/icons/studio/icon_plus-solid.svg"}
+          src={'/icons/studio/icon_plus-solid.svg'}
           alt="icon_plus-solid"
         />
       </StyledImgBox>
       <StyledCardTextAreaBox>
-        <StyledCardTextArea>{"새 컴포넌트 만들기"}</StyledCardTextArea>
+        <StyledCardTextArea>{'새 컴포넌트 만들기'}</StyledCardTextArea>
       </StyledCardTextAreaBox>
     </StyledAddCard>
   );

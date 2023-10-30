@@ -1,7 +1,8 @@
-import { observer } from "mobx-react";
-import { Box, Typography, Button } from "@mui/material";
-import MxDialog from "../00. Common/gui/MxDialog_V";
-import LoginVM from "../../view_models/Login_VM";
+import { observer } from 'mobx-react';
+import { Box, Button, Typography } from '@mui/material';
+import MxDialog from '../00. Common/gui/MxDialog_V';
+import LoginVM from '../../view_models/Login_VM';
+
 const LogoutAlert = observer(() => {
   const { LogoutBtnHandler, onClosePopup, popUpOpen } = LoginVM();
   return (
@@ -9,18 +10,18 @@ const LogoutAlert = observer(() => {
       <Box sx={style.dialogContents}>
         <Box
           sx={{
-            width: "100%",
-            height: "60px",
-            display: "flex",
-            padding: "20px 24px 0",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '100%',
+            height: '60px',
+            display: 'flex',
+            padding: '20px 24px 0',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
         >
           <Box
             sx={{
-              width: "268px",
+              width: '268px'
             }}
           >
             <Typography sx={style.textArea}>
@@ -30,16 +31,16 @@ const LogoutAlert = observer(() => {
         </Box>
         <Box
           sx={{
-            width: "100%",
-            height: "52px",
-            display: "flex",
-            flexDirection: "column",
-            padding: "8px 25px",
+            width: '100%',
+            height: '52px',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '8px 25px'
           }}
         >
           <Box
             sx={{
-              width: "256px",
+              width: '256px'
             }}
           >
             <Typography sx={style.textArea2}>
@@ -69,78 +70,78 @@ const LogoutAlert = observer(() => {
 export default LogoutAlert;
 const style = {
   dialog: {
-    width: "316px",
-    height: "180px",
-    border: "solid 0.5px #393939",
-    backgroundColor: "#282828",
-    borderColor: "0 4px 10px 0 rgba(34, 34, 34, 0.2)",
-    borderRadius: "8px",
-    alignItems: "center",
-    justifyContent: "center",
+    width: '316px',
+    height: '180px',
+    border: 'solid 0.5px #393939',
+    backgroundColor: '#282828',
+    borderColor: '0 4px 10px 0 rgba(34, 34, 34, 0.2)',
+    borderRadius: '8px',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   textArea: {
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "16px",
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '16px',
     fontWeight: 500,
-    userSelect: "none",
-    color: "#fff",
+    userSelect: 'none',
+    color: '#fff'
   },
   textArea2: {
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "12px",
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '12px',
 
-    lineHeight: "1.5",
-    color: "#959595",
+    lineHeight: '1.5',
+    color: '#959595'
   },
   dialogContents: {
-    width: "316px",
-    height: "180px",
-    display: "flex",
-    flexDirection: "column",
+    width: '316px',
+    height: '180px',
+    display: 'flex',
+    flexDirection: 'column',
 
-    alignItems: "center",
+    alignItems: 'center'
   },
   imgWrapper: {
-    width: "100%",
-    height: "45px",
-    display: "flex",
-    justifyContent: "center",
+    width: '100%',
+    height: '45px',
+    display: 'flex',
+    justifyContent: 'center'
   },
   buttonWrapper: {
-    width: "100%",
-    height: "68px",
-    display: "flex",
-    gap: "8px",
-    padding: "12px 24px 24px",
+    width: '100%',
+    height: '68px',
+    display: 'flex',
+    gap: '8px',
+    padding: '12px 24px 24px'
   },
   CancelBtn: {
-    width: "130px",
-    height: "32px",
-    minHeight: "34px",
-    minWidth: "80px",
-    borderRadius: "6px",
-    backgroundColor: " #282828",
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "12px",
+    width: '130px',
+    height: '32px',
+    minHeight: '34px',
+    minWidth: '80px',
+    borderRadius: '6px',
+    backgroundColor: ' #282828',
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '12px',
     fontWeight: 500,
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#282828",
-    },
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#282828'
+    }
   },
   LogOutBtn: {
-    width: "130px",
-    height: "32px",
-    minHeight: "34px",
-    minWidth: "80px",
-    borderRadius: "6px",
-    backgroundColor: " #d4ed3e",
-    fontFamily: "SourceHanSansKR",
-    fontSize: "12px",
+    width: '130px',
+    height: '32px',
+    minHeight: '34px',
+    minWidth: '80px',
+    borderRadius: '6px',
+    backgroundColor: ' #d4ed3e',
+    fontFamily: 'SourceHanSansKR',
+    fontSize: '12px',
     fontWeight: 500,
-    color: "#101728",
-    "&:hover": {
-      backgroundColor: "#d4ed3e",
-    },
-  },
+    color: '#101728',
+    '&:hover': {
+      backgroundColor: '#d4ed3e'
+    }
+  }
 };

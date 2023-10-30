@@ -1,13 +1,10 @@
-import * as THREE from "three";
-
-import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
-
-import { LoaderUtils } from "./LoaderUtils.js";
-
-import { unzipSync, strFromU8 } from "three/examples/jsm/libs/fflate.module.js";
-import storeContainer from "../stores/storeContainer";
-import MetaObject from "./Studio/MetaObject.js";
-import AddObjCommand from "../class/commands/CanvasObject/AddObjCommand";
+import * as THREE from 'three';
+import { strFromU8, unzipSync } from 'three/examples/jsm/libs/fflate.module.js';
+import { TGALoader } from 'three/examples/jsm/loaders/TGALoader.js';
+import { LoaderUtils } from './LoaderUtils.js';
+import MetaObject from './Studio/MetaObject.js';
+import AddObjCommand from '../class/commands/CanvasObject/AddObjCommand';
+import storeContainer from '../stores/storeContainer';
 
 function Loader() {
   const { common_store, canvasHistory_store } = storeContainer;
@@ -17,7 +14,7 @@ function Loader() {
   // ktx2Loader.setTranscoderPath("/basis/");
   // ktx2Loader.detectSupport(common_store.gl);
 
-  this.texturePath = "";
+  this.texturePath = '';
   this.loadItemList = function (items) {
     LoaderUtils.getFilesFromItemList(items, function (files, filesMap) {
       scope.loadFiles(files, filesMap);
@@ -30,7 +27,7 @@ function Loader() {
 
       var manager = new THREE.LoadingManager();
       manager.setURLModifier(function (url) {
-        url = url.replace(/^(\.?\/)/, ""); // remove './'
+        url = url.replace(/^(\.?\/)/, ''); // remove './'
 
         var file = _filesMap[url];
 
@@ -56,7 +53,7 @@ function Loader() {
       reader.onload = () => {
         const arrayBuffer = reader.result;
         const blob = new Blob([arrayBuffer], {
-          type: "application/octet-stream",
+          type: 'application/octet-stream'
         });
         resolve(blob);
       };
@@ -70,7 +67,7 @@ function Loader() {
   };
   this.loadFile = async function (file, manager) {
     var filename = file.name;
-    var extension = filename.split(".").pop().toLowerCase();
+    var extension = filename.split('.').pop().toLowerCase();
 
     var reader = new FileReader();
 
@@ -85,18 +82,18 @@ function Loader() {
     // });
 
     switch (extension) {
-      case "3dm":
+      case '3dm':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { Rhino3dmLoader } = await import(
-              "three/examples/jsm/loaders/3DMLoader.js"
+              'three/examples/jsm/loaders/3DMLoader.js'
             );
 
             var loader = new Rhino3dmLoader();
-            loader.setLibraryPath("../examples/jsm/libs/rhino3dm/");
+            loader.setLibraryPath('../examples/jsm/libs/rhino3dm/');
             loader.parse(contents, function (object) {
               // editor.execute(new AddObjectCommand(editor, object));
             });
@@ -107,12 +104,12 @@ function Loader() {
 
         break;
 
-      case "3ds":
+      case '3ds':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var { TDSLoader } = await import(
-              "three/examples/jsm/loaders/TDSLoader.js"
+              'three/examples/jsm/loaders/TDSLoader.js'
             );
 
             var loader = new TDSLoader();
@@ -126,12 +123,12 @@ function Loader() {
 
         break;
 
-      case "3mf":
+      case '3mf':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var { ThreeMFLoader } = await import(
-              "three/examples/jsm/loaders/3MFLoader.js"
+              'three/examples/jsm/loaders/3MFLoader.js'
             );
 
             var loader = new ThreeMFLoader();
@@ -145,12 +142,12 @@ function Loader() {
 
         break;
 
-      case "amf":
+      case 'amf':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var { AMFLoader } = await import(
-              "three/examples/jsm/loaders/AMFLoader.js"
+              'three/examples/jsm/loaders/AMFLoader.js'
             );
 
             var loader = new AMFLoader();
@@ -164,14 +161,14 @@ function Loader() {
 
         break;
 
-      case "dae":
+      case 'dae':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { ColladaLoader } = await import(
-              "three/examples/jsm/loaders/ColladaLoader.js"
+              'three/examples/jsm/loaders/ColladaLoader.js'
             );
 
             var loader = new ColladaLoader(manager);
@@ -187,18 +184,18 @@ function Loader() {
 
         break;
 
-      case "drc":
+      case 'drc':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { DRACOLoader } = await import(
-              "three/examples/jsm/loaders/DRACOLoader.js"
+              'three/examples/jsm/loaders/DRACOLoader.js'
             );
 
             var loader = new DRACOLoader();
-            loader.setDecoderPath("../examples/js/libs/draco/");
+            loader.setDecoderPath('../examples/js/libs/draco/');
             loader.decodeDracoFile(contents, function (geometry) {
               var object;
               var material;
@@ -210,7 +207,7 @@ function Loader() {
                 object.name = filename;
               } else {
                 material = new THREE.PointsMaterial({ size: 0.01 });
-                material.vertexColors = geometry.hasAttribute("color");
+                material.vertexColors = geometry.hasAttribute('color');
 
                 object = new THREE.Points(geometry, material);
                 object.name = filename;
@@ -226,14 +223,14 @@ function Loader() {
 
         break;
 
-      case "fbx":
+      case 'fbx':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { FBXLoader } = await import(
-              "three/examples/jsm/loaders/FBXLoader.js"
+              'three/examples/jsm/loaders/FBXLoader.js'
             );
 
             var loader = new FBXLoader(manager);
@@ -249,34 +246,34 @@ function Loader() {
 
         break;
 
-      case "glb": {
+      case 'glb': {
         const blobGlb = await this.toBlob(file);
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { DRACOLoader } = await import(
-              "three/examples/jsm/loaders/DRACOLoader.js"
+              'three/examples/jsm/loaders/DRACOLoader.js'
             );
             var { GLTFLoader } = await import(
-              "three/examples/jsm/loaders/GLTFLoader.js"
+              'three/examples/jsm/loaders/GLTFLoader.js'
             );
             var { KTX2Loader } = await import(
-              "three/examples/jsm/loaders/KTX2Loader"
+              'three/examples/jsm/loaders/KTX2Loader'
             );
 
             var dracoLoader = new DRACOLoader();
-            dracoLoader.setDecoderPath("/draco/gltf/");
+            dracoLoader.setDecoderPath('/draco/gltf/');
 
             var ktx2Loader = new KTX2Loader();
-            ktx2Loader.setTranscoderPath("/basis/");
+            ktx2Loader.setTranscoderPath('/basis/');
             ktx2Loader.detectSupport(renderingContext_store.gl);
 
             var loader = new GLTFLoader();
             loader.setDRACOLoader(dracoLoader);
             loader.setKTX2Loader(ktx2Loader);
-            loader.parse(contents, "", function (result) {
+            loader.parse(contents, '', function (result) {
               var scene = result.scene;
               scene.traverse((child) => {
                 if (child.isMesh) {
@@ -284,7 +281,7 @@ function Loader() {
                   child.castShadow = true;
                 }
               });
-              scene.name = filename.split(".")[0];
+              scene.name = filename.split('.')[0];
 
               scene.animations.push(...result.animations);
               // editor.execute(new AddObjectCommand(editor, scene));
@@ -294,7 +291,7 @@ function Loader() {
                 blobGlb: blobGlb,
 
                 loadJson: false,
-                type: "3DAsset",
+                type: '3DAsset'
               });
 
               canvasHistory_store.execute(
@@ -308,9 +305,9 @@ function Loader() {
 
         break;
       }
-      case "gltf":
+      case 'gltf':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
@@ -318,25 +315,25 @@ function Loader() {
 
             if (isGLTF1(contents)) {
               alert(
-                "Import of glTF asset not possible. Only versions >= 2.0 are supported. Please try to upgrade the file to glTF 2.0 using glTF-Pipeline."
+                'Import of glTF asset not possible. Only versions >= 2.0 are supported. Please try to upgrade the file to glTF 2.0 using glTF-Pipeline.'
               );
             } else {
               var { DRACOLoader } = await import(
-                "three/examples/jsm/loaders/DRACOLoader.js"
+                'three/examples/jsm/loaders/DRACOLoader.js'
               );
               var { GLTFLoader } = await import(
-                "three/examples/jsm/loaders/GLTFLoader.js"
+                'three/examples/jsm/loaders/GLTFLoader.js'
               );
 
               var dracoLoader = new DRACOLoader();
-              dracoLoader.setDecoderPath("../examples/js/libs/draco/gltf/");
+              dracoLoader.setDecoderPath('../examples/js/libs/draco/gltf/');
 
               loader = new GLTFLoader(manager);
               loader.setDRACOLoader(dracoLoader);
               // loader.setKTX2Loader(ktx2Loader);
             }
 
-            loader.parse(contents, "", function (result) {
+            loader.parse(contents, '', function (result) {
               var scene = result.scene;
               scene.name = filename;
 
@@ -350,17 +347,17 @@ function Loader() {
 
         break;
 
-      case "js":
-      case "json":
+      case 'js':
+      case 'json':
         reader.addEventListener(
-          "load",
+          'load',
           function (event) {
             var contents = event.target.result;
 
             // 2.0
 
-            if (contents.indexOf("postMessage") !== -1) {
-              var blob = new Blob([contents], { type: "text/javascript" });
+            if (contents.indexOf('postMessage') !== -1) {
+              var blob = new Blob([contents], { type: 'text/javascript' });
               var url = URL.createObjectURL(blob);
 
               var worker = new Worker(url);
@@ -394,11 +391,11 @@ function Loader() {
 
         break;
 
-      case "ifc":
+      case 'ifc':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
-            console.warn("ifc loader logic removed");
+            console.warn('ifc loader logic removed');
             /*
             var { IFCLoader } = await import(
               "three/examples/jsm/loaders/IFCLoader.js"
@@ -418,12 +415,12 @@ function Loader() {
 
         break;
 
-      case "kmz":
+      case 'kmz':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var { KMZLoader } = await import(
-              "three/examples/jsm/loaders/KMZLoader.js"
+              'three/examples/jsm/loaders/KMZLoader.js'
             );
 
             var loader = new KMZLoader();
@@ -439,17 +436,17 @@ function Loader() {
 
         break;
 
-      case "ldr":
-      case "mpd":
+      case 'ldr':
+      case 'mpd':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var { LDrawLoader } = await import(
-              "three/examples/jsm/loaders/LDrawLoader.js"
+              'three/examples/jsm/loaders/LDrawLoader.js'
             );
 
             var loader = new LDrawLoader();
-            loader.setPath("three/examples/models/ldraw/officialLibrary/");
+            loader.setPath('three/examples/models/ldraw/officialLibrary/');
             loader.parse(event.target.result, undefined, function (group) {
               group.name = filename;
               // Convert from LDraw coordinates: rotate 180 degrees around OX
@@ -464,14 +461,14 @@ function Loader() {
 
         break;
 
-      case "md2":
+      case 'md2':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { MD2Loader } = await import(
-              "three/examples/jsm/loaders/MD2Loader.js"
+              'three/examples/jsm/loaders/MD2Loader.js'
             );
 
             var geometry = new MD2Loader().parse(contents);
@@ -490,14 +487,14 @@ function Loader() {
 
         break;
 
-      case "obj":
+      case 'obj':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { OBJLoader } = await import(
-              "three/examples/jsm/loaders/OBJLoader.js"
+              'three/examples/jsm/loaders/OBJLoader.js'
             );
 
             var object = new OBJLoader().parse(contents);
@@ -511,14 +508,14 @@ function Loader() {
 
         break;
 
-      case "ply":
+      case 'ply':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { PLYLoader } = await import(
-              "three/examples/jsm/loaders/PLYLoader.js"
+              'three/examples/jsm/loaders/PLYLoader.js'
             );
 
             var geometry = new PLYLoader().parse(contents);
@@ -532,7 +529,7 @@ function Loader() {
               object.name = filename;
             } else {
               material = new THREE.PointsMaterial({ size: 0.01 });
-              material.vertexColors = geometry.hasAttribute("color");
+              material.vertexColors = geometry.hasAttribute('color');
 
               object = new THREE.Points(geometry, material);
               object.name = filename;
@@ -546,14 +543,14 @@ function Loader() {
 
         break;
 
-      case "stl":
+      case 'stl':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { STLLoader } = await import(
-              "three/examples/jsm/loaders/STLLoader.js"
+              'three/examples/jsm/loaders/STLLoader.js'
             );
 
             var geometry = new STLLoader().parse(contents);
@@ -575,14 +572,14 @@ function Loader() {
 
         break;
 
-      case "svg":
+      case 'svg':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { SVGLoader } = await import(
-              "three/examples/jsm/loaders/SVGLoader.js"
+              'three/examples/jsm/loaders/SVGLoader.js'
             );
 
             var loader = new SVGLoader();
@@ -599,7 +596,7 @@ function Loader() {
 
               var material = new THREE.MeshBasicMaterial({
                 color: path.color,
-                depthWrite: false,
+                depthWrite: false
               });
 
               var shapes = SVGLoader.createShapes(path);
@@ -622,14 +619,14 @@ function Loader() {
 
         break;
 
-      case "vox":
+      case 'vox':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { VOXLoader, VOXMesh } = await import(
-              "three/examples/jsm/loaders/VOXLoader.js"
+              'three/examples/jsm/loaders/VOXLoader.js'
             );
 
             var chunks = new VOXLoader().parse(contents);
@@ -652,14 +649,14 @@ function Loader() {
 
         break;
 
-      case "vtk":
+      case 'vtk':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { VTKLoader } = await import(
-              "three/examples/jsm/loaders/VTKLoader.js"
+              'three/examples/jsm/loaders/VTKLoader.js'
             );
 
             var geometry = new VTKLoader().parse(contents);
@@ -676,14 +673,14 @@ function Loader() {
 
         break;
 
-      case "wrl":
+      case 'wrl':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { VRMLLoader } = await import(
-              "three/examples/jsm/loaders/VRMLLoader.js"
+              'three/examples/jsm/loaders/VRMLLoader.js'
             );
 
             new VRMLLoader().parse(contents);
@@ -696,20 +693,20 @@ function Loader() {
 
         break;
 
-      case "xyz":
+      case 'xyz':
         reader.addEventListener(
-          "load",
+          'load',
           async function (event) {
             var contents = event.target.result;
 
             var { XYZLoader } = await import(
-              "three/examples/jsm/loaders/XYZLoader.js"
+              'three/examples/jsm/loaders/XYZLoader.js'
             );
 
             var geometry = new XYZLoader().parse(contents);
 
             var material = new THREE.PointsMaterial();
-            material.vertexColors = geometry.hasAttribute("color");
+            material.vertexColors = geometry.hasAttribute('color');
 
             var points = new THREE.Points(geometry, material);
             points.name = filename;
@@ -722,9 +719,9 @@ function Loader() {
 
         break;
 
-      case "zip":
+      case 'zip':
         reader.addEventListener(
-          "load",
+          'load',
           function (event) {
             handleZIP(event.target.result);
           },
@@ -735,7 +732,7 @@ function Loader() {
         break;
 
       default:
-        console.error("Unsupported file format (" + extension + ").");
+        console.error('Unsupported file format (' + extension + ').');
 
         break;
     }
@@ -745,13 +742,13 @@ function Loader() {
     if (data.metadata === undefined) {
       // 2.0
 
-      data.metadata = { type: "Geometry" };
+      data.metadata = { type: 'Geometry' };
     }
 
     if (data.metadata.type === undefined) {
       // 3.0
 
-      data.metadata.type = "Geometry";
+      data.metadata.type = 'Geometry';
     }
 
     if (data.metadata.formatVersion !== undefined) {
@@ -760,7 +757,7 @@ function Loader() {
 
     var loader;
     switch (data.metadata.type.toLowerCase()) {
-      case "buffergeometry":
+      case 'buffergeometry':
         loader = new THREE.BufferGeometryLoader();
         var result = loader.parse(data);
 
@@ -770,12 +767,12 @@ function Loader() {
 
         break;
 
-      case "geometry":
+      case 'geometry':
         console.error('Loader: "Geometry" is no longer supported.');
 
         break;
 
-      case "object":
+      case 'object':
         loader = new THREE.ObjectLoader();
         loader.setResourcePath(scope.texturePath);
 
@@ -789,7 +786,7 @@ function Loader() {
 
         break;
 
-      case "app":
+      case 'app':
         // editor.fromJSON(data);
 
         break;
@@ -803,18 +800,18 @@ function Loader() {
 
     // Poly
 
-    if (zip["model.obj"] && zip["materials.mtl"]) {
+    if (zip['model.obj'] && zip['materials.mtl']) {
       var { MTLLoader } = await import(
-        "three/examples/jsm/loaders/MTLLoader.js"
+        'three/examples/jsm/loaders/MTLLoader.js'
       );
       var { OBJLoader } = await import(
-        "three/examples/jsm/loaders/OBJLoader.js"
+        'three/examples/jsm/loaders/OBJLoader.js'
       );
 
-      var materials = new MTLLoader().parse(strFromU8(zip["materials.mtl"]));
+      var materials = new MTLLoader().parse(strFromU8(zip['materials.mtl']));
       new OBJLoader()
         .setMaterials(materials)
-        .parse(strFromU8(zip["model.obj"]));
+        .parse(strFromU8(zip['model.obj']));
       // editor.execute(new AddObjectCommand(editor, object));
     }
 
@@ -828,10 +825,10 @@ function Loader() {
         var file = zip[url];
 
         if (file) {
-          console.log("Loading", url);
+          console.log('Loading', url);
 
           var blob = new Blob([file.buffer], {
-            type: "application/octet-stream",
+            type: 'application/octet-stream'
           });
           return URL.createObjectURL(blob);
         }
@@ -839,28 +836,28 @@ function Loader() {
         return url;
       });
 
-      var extension = path.split(".").pop().toLowerCase();
+      var extension = path.split('.').pop().toLowerCase();
 
       var loader;
       switch (extension) {
-        case "fbx":
+        case 'fbx':
           var { FBXLoader } = await import(
-            "three/examples/jsm/loaders/FBXLoader.js"
+            'three/examples/jsm/loaders/FBXLoader.js'
           );
 
           loader = new FBXLoader(manager);
           break;
-        case "glb":
-        case "gltf":
+        case 'glb':
+        case 'gltf':
           var { DRACOLoader } = await import(
-            "three/examples/jsm/loaders/DRACOLoader.js"
+            'three/examples/jsm/loaders/DRACOLoader.js'
           );
           var { GLTFLoader } = await import(
-            "three/examples/jsm/loaders/GLTFLoader.js"
+            'three/examples/jsm/loaders/GLTFLoader.js'
           );
 
           var dracoLoader = new DRACOLoader();
-          dracoLoader.setDecoderPath("../examples/js/libs/draco/gltf/");
+          dracoLoader.setDecoderPath('../examples/js/libs/draco/gltf/');
 
           loader = new GLTFLoader();
           loader.setDRACOLoader(dracoLoader);
@@ -869,15 +866,15 @@ function Loader() {
           break;
       }
       switch (extension) {
-        case "fbx":
+        case 'fbx':
           loader.parse(file.buffer);
 
           // editor.execute(new AddObjectCommand(editor, object));
 
           break;
 
-        case "glb":
-          loader.parse(file.buffer, "", function (result) {
+        case 'glb':
+          loader.parse(file.buffer, '', function (result) {
             var scene = result.scene;
 
             scene.animations.push(...result.animations);
@@ -886,8 +883,8 @@ function Loader() {
 
           break;
 
-        case "gltf":
-          loader.parse(strFromU8(file), "", function (result) {
+        case 'gltf':
+          loader.parse(strFromU8(file), '', function (result) {
             var scene = result.scene;
 
             scene.animations.push(...result.animations);
@@ -903,13 +900,13 @@ function Loader() {
   function isGLTF1(contents) {
     var resultContent;
 
-    if (typeof contents === "string") {
+    if (typeof contents === 'string') {
       // contents is a JSON string
       resultContent = contents;
     } else {
       var magic = THREE.LoaderUtils.decodeText(new Uint8Array(contents, 0, 4));
 
-      if (magic === "glTF") {
+      if (magic === 'glTF') {
         // contents is a .glb file; extract the version
         var version = new DataView(contents).getUint32(4, true);
 

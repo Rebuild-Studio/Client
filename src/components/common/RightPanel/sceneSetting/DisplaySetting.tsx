@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import Accordion from "@/components/layout/Accordion";
-import ColorPicker from "@/components/common/RightPanel/ColorPicker";
-import { HsvaColor } from "@uiw/color-convert";
-import storeContainer from "@/store/storeContainer";
-import ColorHandler from "@/components/common/RightPanel/ColorHandler";
-import Switch from "@/components/buttons/SwitchButton";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { HsvaColor } from '@uiw/color-convert';
+import styled from 'styled-components';
+import Switch from '@/components/buttons/SwitchButton';
+import ColorHandler from '@/components/common/RightPanel/ColorHandler';
+import ColorPicker from '@/components/common/RightPanel/ColorPicker';
+import Accordion from '@/components/layout/Accordion';
+import storeContainer from '@/store/storeContainer';
 
 const DisplaySetting = () => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
@@ -22,16 +22,16 @@ const DisplaySetting = () => {
 
   return (
     <>
-      <Accordion title={"배경 컬러"}>
+      <Accordion title={'배경 컬러'}>
         <Switch
-          label={""}
+          label={''}
           checked={sceneSettingStore.canvasBackgroundColorToggle}
           onChange={sceneSettingStore.setCanvasBackgroundColorToggle}
         />
         <TitleWrapper>
-          <span>{"배경 컬러"}</span>
+          <span>{'배경 컬러'}</span>
           <ColorPicker
-            label={"컬러"}
+            label={'컬러'}
             color={color}
             onChangeHsvaProp={updateCanvasBackgroundColor}
             onChangeAlphaProp={updateCanvasBackgroundAlpha}
@@ -39,15 +39,15 @@ const DisplaySetting = () => {
         </TitleWrapper>
       </Accordion>
 
-      <Accordion title={"그리드"}>
+      <Accordion title={'그리드'}>
         <GridSwitchWrapper>
           <Switch
-            label={"사각형 그리드"}
+            label={'사각형 그리드'}
             checked={sceneSettingStore.isGridVisible}
             onChange={sceneSettingStore.setIsGridVisible}
           />
           <Switch
-            label={"중심선 그리드"}
+            label={'중심선 그리드'}
             checked={sceneSettingStore.isAxisVisible}
             onChange={sceneSettingStore.setIsAxisVisible}
           />

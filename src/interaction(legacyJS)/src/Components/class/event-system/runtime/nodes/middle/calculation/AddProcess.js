@@ -1,4 +1,4 @@
-import MiddleProcess from "../MiddleProcess";
+import MiddleProcess from '../MiddleProcess';
 
 export default class AddProcess extends MiddleProcess {
   calculate(inputs) {

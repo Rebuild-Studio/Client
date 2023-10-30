@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 export default class CounterProcess extends MiddleProcess {
   constructor(nodeRuntime) {
@@ -9,16 +9,16 @@ export default class CounterProcess extends MiddleProcess {
     this.timing = this.data.NODE_COUNTER_TIMING;
     this.length = this.range[1] - this.range[0];
     switch (this.mode) {
-      case "No Limit":
+      case 'No Limit':
         this.setResultByMode = this.NoLimit;
         break;
-      case "Range":
+      case 'Range':
         this.setResultByMode = this.Range;
         break;
-      case "Loop":
+      case 'Loop':
         this.setResultByMode = this.Loop;
         break;
-      case "Bounce":
+      case 'Bounce':
         this.setResultByMode = this.Bounce;
         break;
       default:

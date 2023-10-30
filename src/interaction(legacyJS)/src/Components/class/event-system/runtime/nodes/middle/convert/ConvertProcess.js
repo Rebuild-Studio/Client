@@ -1,26 +1,26 @@
-import { Color, Vector3 } from "three";
-import MiddleProcess from "../MiddleProcess";
+import { Color, Vector3 } from 'three';
+import MiddleProcess from '../MiddleProcess';
 
 export default class ConvertProcess extends MiddleProcess {
   constructor(nodeRuntime) {
     super(nodeRuntime);
     switch (this.nodeRuntime.data.convert) {
-      case "BooleanToNumber":
+      case 'BooleanToNumber':
         this.calculate = this.convertBooleanToNumber;
         break;
-      case "ColorToNumber":
+      case 'ColorToNumber':
         this.calculate = this.convertColorToNumber;
         break;
-      case "NumberToBoolean":
+      case 'NumberToBoolean':
         this.calculate = this.convertNumberToBoolean;
         break;
-      case "NumberToVector3":
+      case 'NumberToVector3':
         this.calculate = this.convertNumberToVector3;
         break;
-      case "NumberToColor":
+      case 'NumberToColor':
         this.calculate = this.convertNumberToColor;
         break;
-      case "Vector3ToNumber":
+      case 'Vector3ToNumber':
         this.calculate = this.convertVector3ToNumber;
         break;
       default:

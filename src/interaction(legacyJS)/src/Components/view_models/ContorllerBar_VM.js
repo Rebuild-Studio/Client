@@ -1,12 +1,10 @@
-import { common_store } from "../stores/Common_Store";
-import { runInAction } from "mobx";
-import {
-  HotKeyFunctionsAboutToolsViewModel
-} from "./03. HotKey/HotKeyFunctionsAboutTools_VM";
-import { HotKeyFunctionsAboutViewViewModel } from "./03. HotKey/HotKeyFunctionsAboutView_VM";
-import { undo_store } from "../stores/Undo_Store";
-import UndoSceneSetting_VM from "./02. SceneSetting/UndoSceneSetting_VM";
-import {controllerBar_store} from "../stores/ControllerBar_Store";
+import { runInAction } from 'mobx';
+import UndoSceneSetting_VM from './02. SceneSetting/UndoSceneSetting_VM';
+import { HotKeyFunctionsAboutToolsViewModel } from './03. HotKey/HotKeyFunctionsAboutTools_VM';
+import { HotKeyFunctionsAboutViewViewModel } from './03. HotKey/HotKeyFunctionsAboutView_VM';
+import { common_store } from '../stores/Common_Store';
+import { controllerBar_store } from '../stores/ControllerBar_Store';
+import { undo_store } from '../stores/Undo_Store';
 
 const controllerBarViewModel = {
   get gridSnap() {
@@ -32,11 +30,17 @@ const controllerBarViewModel = {
   /** change attachMode, and sync MoveMode to attachMode's status
    */
   onCheckPutOnSnap: () => {
-    HotKeyFunctionsAboutToolsViewModel.setAttachModeWithUndoRedo(!controllerBar_store.attachMode)
+    HotKeyFunctionsAboutToolsViewModel.setAttachModeWithUndoRedo(
+      !controllerBar_store.attachMode
+    );
   },
 
   get snapStatus() {
-    return controllerBar_store.magneticMode || controllerBar_store.attachMode || controllerBar_store.rotationSnapMode;
+    return (
+      controllerBar_store.magneticMode ||
+      controllerBar_store.attachMode ||
+      controllerBar_store.rotationSnapMode
+    );
   },
 
   get gizmoStatus() {
@@ -44,36 +48,36 @@ const controllerBarViewModel = {
   },
 
   onCheckGizmoStatus: (event) => {
-    if (event.target.value === "world") {
+    if (event.target.value === 'world') {
       const data = {
-        name: "changeGizmoStatus",
-        mode: "GizmoStatus",
-        prevValue: "local",
-        curValue: "world"
-      }
+        name: 'changeGizmoStatus',
+        mode: 'GizmoStatus',
+        prevValue: 'local',
+        curValue: 'world'
+      };
       undo_store.AddUnDoCommand(
         undefined,
         data,
         UndoSceneSetting_VM().sceneSettingUndo,
         UndoSceneSetting_VM().sceneSettingRedo
       );
-      common_store.transcontrol.setaxisType("world");
-      common_store.transcontrol.setSpace("world");
+      common_store.transcontrol.setaxisType('world');
+      common_store.transcontrol.setSpace('world');
     } else {
       const data = {
-        name: "changeGizmoStatus",
-        mode: "GizmoStatus",
-        prevValue: "world",
-        curValue: "local"
-      }
+        name: 'changeGizmoStatus',
+        mode: 'GizmoStatus',
+        prevValue: 'world',
+        curValue: 'local'
+      };
       undo_store.AddUnDoCommand(
         undefined,
         data,
         UndoSceneSetting_VM().sceneSettingUndo,
         UndoSceneSetting_VM().sceneSettingRedo
       );
-      common_store.transcontrol.setaxisType("local");
-      common_store.transcontrol.setSpace("local");
+      common_store.transcontrol.setaxisType('local');
+      common_store.transcontrol.setSpace('local');
     }
   },
 
@@ -96,12 +100,12 @@ const controllerBarViewModel = {
   },
 
   toggleNormalMode: (e, mode) => {
-    if (mode === "normalMode") {
-      HotKeyFunctionsAboutToolsViewModel.setNormalModeWithUndoRedo(true)
-    } else if (mode === "attachMode") {
-      HotKeyFunctionsAboutToolsViewModel.setNormalModeWithUndoRedo(false)
+    if (mode === 'normalMode') {
+      HotKeyFunctionsAboutToolsViewModel.setNormalModeWithUndoRedo(true);
+    } else if (mode === 'attachMode') {
+      HotKeyFunctionsAboutToolsViewModel.setNormalModeWithUndoRedo(false);
     } else {
-      console.error("toggleNormalMode error");
+      console.error('toggleNormalMode error');
     }
   }
 };

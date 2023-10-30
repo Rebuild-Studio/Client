@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class UngroupCommand extends Command {
   constructor(store, sheetId, uuids) {
     super(store);
-    this.type = "UngroupCommand";
+    this.type = 'UngroupCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
@@ -12,7 +12,7 @@ export default class UngroupCommand extends Command {
       uuids,
       json: undefined,
       sheetName: sheet.name,
-      groupNames: uuids.map((uuid) => sheet.getGroupByUuid(uuid).name),
+      groupNames: uuids.map((uuid) => sheet.getGroupByUuid(uuid).name)
     };
   }
   execute() {
@@ -28,9 +28,9 @@ export default class UngroupCommand extends Command {
     sheet.parseInteractionJson(this.data.json);
   }
   getDetailData() {
-    let intermediate = "";
+    let intermediate = '';
     const groupNames = this.data.groupNames.map((v, i) => {
-      intermediate += Utils.templateArg(i + 2) + ", ";
+      intermediate += Utils.templateArg(i + 2) + ', ';
       return v;
     });
 

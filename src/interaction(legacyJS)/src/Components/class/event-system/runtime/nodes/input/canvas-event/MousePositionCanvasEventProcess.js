@@ -1,5 +1,5 @@
-import { Vector3 } from "three";
-import CanvasEventProcess from "./CanvasEventProcess";
+import { Vector3 } from 'three';
+import CanvasEventProcess from './CanvasEventProcess';
 
 export default class MousePositionCanvasEventProcess extends CanvasEventProcess {
   constructor(nodeRuntime) {
@@ -12,8 +12,8 @@ export default class MousePositionCanvasEventProcess extends CanvasEventProcess 
     }
     if (this.compareCode(e)) {
       const vector = new Vector3(
-        2 * e.offsetX / this.width - 1,
-        2 * e.offsetY / this.height - 1,
+        (2 * e.offsetX) / this.width - 1,
+        (2 * e.offsetY) / this.height - 1,
         0
       );
       this.nodeRuntime.setOutputDefaultValueIndex(0, vector);

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export const usePreventDefaultEvent = () => {
   useEffect(() => {
@@ -8,8 +8,8 @@ export const usePreventDefaultEvent = () => {
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    ["contextmenu", "dragstart", "dragover", "dblclick"].forEach(
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    ['contextmenu', 'dragstart', 'dragover', 'dblclick'].forEach(
       (eventName) => {
         window.addEventListener(eventName, (event) => {
           event.preventDefault();
@@ -17,7 +17,7 @@ export const usePreventDefaultEvent = () => {
       }
     );
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 };

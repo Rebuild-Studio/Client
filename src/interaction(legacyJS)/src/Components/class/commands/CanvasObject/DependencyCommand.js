@@ -1,10 +1,10 @@
-import { objectViewModel } from "../../../view_models/Object_VM";
-import { ObjectControllerVM } from "../../../view_models/ObjectController_VM";
+import { ObjectControllerVM } from '../../../view_models/ObjectController_VM';
+import { objectViewModel } from '../../../view_models/Object_VM';
 
 export default class DependencyCommand {
   constructor(metaObjects) {
-    this.type = "DeleteObjCommand";
-    this.name = "오브젝트 종속";
+    this.type = 'DeleteObjCommand';
+    this.name = '오브젝트 종속';
     this.metaObjects = metaObjects;
     this.parentMetaObject = null;
     this.childMetaObjects = [];
@@ -14,8 +14,8 @@ export default class DependencyCommand {
     this.metaObjects.forEach((metaObject) => {
       //Parent 찾기 -> 일반 오브젝트
       if (
-        metaObject.type !== "PerspectiveCamera" &&
-        metaObject.type !== "Light"
+        metaObject.type !== 'PerspectiveCamera' &&
+        metaObject.type !== 'Light'
       ) {
         this.parentMetaObject = metaObject;
       }

@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from 'mobx';
 
 const LOG = false;
 
@@ -15,7 +15,7 @@ class CanvasHistoryStore {
       redoArray: observable,
       execute: action,
       undo: action,
-      redo: action,
+      redo: action
     });
   }
 
@@ -114,16 +114,16 @@ class CanvasHistoryStore {
       return;
     }
     console.clear();
-    console.log("== redoArray ==");
+    console.log('== redoArray ==');
     this.redoArray.forEach((v) => {
       console.log(v);
     });
-    console.log("== undoArray == ");
+    console.log('== undoArray == ');
     this.undoArray.forEach((v) => {
       console.log(v);
     });
   }
 }
 
-const canvasHistory_store = new CanvasHistoryStore()
-export default canvasHistory_store
+const canvasHistory_store = new CanvasHistoryStore();
+export default canvasHistory_store;

@@ -1,21 +1,21 @@
-import MXApiModule from "../MXApiModule";
-import ServiceError from "../error/ServiceError";
-import convertArgs from "../utils/convertArgs";
+import MXApiModule from '../MXApiModule';
+import ServiceError from '../error/ServiceError';
+import convertArgs from '../utils/convertArgs';
 
 const projectServiceKeyMap = {
-  getUserDataWithPage_offset: "offset",
-  postData_formDatas: "formDatas",
-  deleteDataById_id: "id",
-  updateDataById_id: "id",
-  updateDataById_data: "data",
-  postSearchComponent: "search",
+  getUserDataWithPage_offset: 'offset',
+  postData_formDatas: 'formDatas',
+  deleteDataById_id: 'id',
+  updateDataById_id: 'id',
+  updateDataById_data: 'data',
+  postSearchComponent: 'search'
 };
 
 // 파라미터 formDatas
 const PostData = async (args) => {
   const params = convertArgs(args);
   const res = await MXApiModule.post(
-    "/project",
+    '/project',
     params[projectServiceKeyMap.postData_formDatas]
   ).catch((error) => {
     throw new ServiceError(
@@ -28,7 +28,7 @@ const PostData = async (args) => {
 
 // 파라미터 none
 const GetData = async () => {
-  const res = await MXApiModule.get("/project/all", {}).catch((error) => {
+  const res = await MXApiModule.get('/project/all', {}).catch((error) => {
     throw new ServiceError(
       error.response.data.status,
       error.response.data.error
@@ -39,7 +39,7 @@ const GetData = async () => {
 
 // 파라미터 none
 const GetUserDatas = async () => {
-  const res = await MXApiModule.get("/project/mine").catch((error) => {
+  const res = await MXApiModule.get('/project/mine').catch((error) => {
     throw new ServiceError(
       error.response.data.status,
       error.response.data.error
@@ -50,11 +50,11 @@ const GetUserDatas = async () => {
 
 const GetUserDataWithPage = async (args) => {
   const params = convertArgs(args);
-  const res = await MXApiModule.get("/project/mine", {
+  const res = await MXApiModule.get('/project/mine', {
     params: {
       [projectServiceKeyMap.getUserDataWithPage_offset]:
-        params[projectServiceKeyMap.getUserDataWithPage_offset],
-    },
+        params[projectServiceKeyMap.getUserDataWithPage_offset]
+    }
   }).catch((error) => {
     throw new ServiceError(
       error.response.data.status,
@@ -69,7 +69,7 @@ const GetUserDataWithPage = async (args) => {
 const DeleteDataById = async (args) => {
   const params = convertArgs(args);
   const res = await MXApiModule.delete(
-    "/project/" + params[projectServiceKeyMap.deleteDataById_id]
+    '/project/' + params[projectServiceKeyMap.deleteDataById_id]
   ).catch((error) => {
     throw new ServiceError(
       error.response.data.status,
@@ -83,7 +83,7 @@ const DeleteDataById = async (args) => {
 const UpdateDataById = async (args) => {
   const params = convertArgs(args);
   const res = await MXApiModule.patch(
-    "/project/" + params[projectServiceKeyMap.updateDataById_id],
+    '/project/' + params[projectServiceKeyMap.updateDataById_id],
     params[projectServiceKeyMap.updateDataById_data]
   ).catch((error) => {
     throw new ServiceError(
@@ -97,7 +97,7 @@ const UpdateDataById = async (args) => {
 const PostSearchComponent = async (args) => {
   const params = convertArgs(args);
   const res = await MXApiModule.post(
-    "/project/search",
+    '/project/search',
     params[projectServiceKeyMap.postSearchComponent]
   ).catch((error) => {
     throw new ServiceError(
@@ -116,17 +116,17 @@ const projectServiceMap = {
   deleteProjectWithId: DeleteDataById,
   updateProjectWithId: UpdateDataById,
   postSearchComponent: PostSearchComponent,
-  getUserDataWithPage: GetUserDataWithPage,
+  getUserDataWithPage: GetUserDataWithPage
 };
 
 const projectEndPoints = {
-  postProject: "postProject",
-  getProject: "getProject",
-  getMyProject: "getMyProject",
-  deleteProjectWithId: "deleteProjectWithId",
-  updateProjectWithId: "updateProjectWithId",
-  postSearchComponent: "postSearchComponent",
-  getUserDataWithPage: "getUserDataWithPage",
+  postProject: 'postProject',
+  getProject: 'getProject',
+  getMyProject: 'getMyProject',
+  deleteProjectWithId: 'deleteProjectWithId',
+  updateProjectWithId: 'updateProjectWithId',
+  postSearchComponent: 'postSearchComponent',
+  getUserDataWithPage: 'getUserDataWithPage'
 };
 
 const executeProject =

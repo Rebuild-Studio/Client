@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 function calculateAbsolute(inputs) {
   return [Math.abs(inputs[0])];
@@ -12,10 +12,10 @@ export default class AnalyzeProcess extends MiddleProcess {
   constructor(nodeRuntime) {
     super(nodeRuntime);
     switch (this.data.symbol) {
-      case "SquareRoot":
+      case 'SquareRoot':
         this.calculate = calculateSquareRoot;
         break;
-      case "Absolute":
+      case 'Absolute':
         this.calculate = calculateAbsolute;
         break;
       default:

@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Flag";
+const nodeType = 'Flag';
 
 export class FlagNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,18 +16,18 @@ export class FlagNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "on",
-      type: ControlType.Boolean,
+      name: 'on',
+      type: ControlType.Boolean
     },
     {
-      name: "off",
-      type: ControlType.Boolean,
-    },
+      name: 'off',
+      type: ControlType.Boolean
+    }
   ],
   outputSocket: [
     {
-      name: "signal",
-      type: ControlType.Boolean,
-    },
-  ],
-}
+      name: 'signal',
+      type: ControlType.Boolean
+    }
+  ]
+};

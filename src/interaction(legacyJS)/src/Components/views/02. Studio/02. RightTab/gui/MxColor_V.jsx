@@ -1,19 +1,19 @@
-import { Box, Button, Typography, Menu } from "@mui/material";
-import { observer } from "mobx-react";
-import { Hue, Saturation, Alpha } from "@uiw/react-color";
+import { useEffect, useState } from 'react';
+import { action } from 'mobx';
+import { observer } from 'mobx-react';
+import { Box, Button, Menu, Typography } from '@mui/material';
 import {
-  hsvaToRgba,
-  hsvaToHex,
   hexToHsva,
   hexToRgba,
-  rgbaToHex,
-} from "@uiw/color-convert";
-import Common_VM from "../../../../view_models/Common_VM";
-import MxSlider from "./Slider_V";
-import MxInput from "./MxInput";
-import { useEffect, useState } from "react";
-import { action } from "mobx";
-import MxButton from "../../../00. Common/gui/MxButton_V";
+  hsvaToHex,
+  hsvaToRgba,
+  rgbaToHex
+} from '@uiw/color-convert';
+import { Alpha, Hue, Saturation } from '@uiw/react-color';
+import MxInput from './MxInput';
+import MxSlider from './Slider_V';
+import MxButton from '../../../00. Common/gui/MxButton_V';
+import Common_VM from '../../../../view_models/Common_VM';
 
 const MxColor = observer((props) => {
   const {
@@ -33,10 +33,10 @@ const MxColor = observer((props) => {
     buttonStyle,
     saturationSilder = true,
     brightnessSlider = true,
-    alphaSlider = true,
+    alphaSlider = true
   } = props;
   const [hex, setHex] = useState(hsvaToHex(color));
-  const [alpha, setAlpha] = useState(Math.round(color.a * 100) + "%");
+  const [alpha, setAlpha] = useState(Math.round(color.a * 100) + '%');
   const { handleClickMenuCustom, anchorMenu, openMenu, handleCloseMenu } =
     Common_VM();
   const [rgbColor, setRgbColor] = useState(hsvaToRgba(color));
@@ -51,8 +51,8 @@ const MxColor = observer((props) => {
     const length = e.target.value.length;
 
     if (
-      e.target.value.indexOf("#") !== -1 &&
-      e.target.value.indexOf("#") === 0
+      e.target.value.indexOf('#') !== -1 &&
+      e.target.value.indexOf('#') === 0
     ) {
       if (
         hexRegex.test(e.target.value[length - 1]) &&
@@ -62,29 +62,29 @@ const MxColor = observer((props) => {
         setRgbColor(hexToRgba(e.target.value));
       }
     } else {
-      if (e.target.value === "") {
-        e.target.value = "#";
-      } else if (e.target.value !== "#" && hexRegex.test(e.target.value)) {
-        e.target.value = "#" + e.target.value;
+      if (e.target.value === '') {
+        e.target.value = '#';
+      } else if (e.target.value !== '#' && hexRegex.test(e.target.value)) {
+        e.target.value = '#' + e.target.value;
       }
     }
-    if (e.target.value === "#" || hexRegex.test(e.target.value[length - 1]))
+    if (e.target.value === '#' || hexRegex.test(e.target.value[length - 1]))
       setHex(e.target.value);
   };
   const onChangeAlpha = action((e) => {
-    let alphavalue = e.target.value;
+    let alphaValue = e.target.value;
 
-    if (alphavalue === "") {
+    if (alphaValue === '') {
       color.a = 0;
     } else if (Number(e.target.value) <= 100) {
       color.a = Number(e.target.value) / 100;
     } else {
       color.a = 1;
-      alphavalue = 100;
+      alphaValue = 100;
     }
 
     onChangeInputAlpha(color);
-    setAlpha(alphavalue);
+    setAlpha(alphaValue);
   });
   const onClickSpoid = async () => {
     let eyeDropper = new EyeDropper();
@@ -93,23 +93,23 @@ const MxColor = observer((props) => {
     setHex(sRGBHex);
   };
   const onChangeRGB = action((e) => {
-    const RGBType = e.target.id.split("_")[1];
+    const RGBType = e.target.id.split('_')[1];
     let value = e.target.value;
-    if (e.target.value === "") {
-      value === "0";
-    } else if (value[value.length - 1] === ".") {
-      value = value.replace(/\./g, "");
+    if (e.target.value === '') {
+      value === '0';
+    } else if (value[value.length - 1] === '.') {
+      value = value.replace(/\./g, '');
     } else if (Number(value) > 255) {
       return;
     }
     switch (RGBType) {
-      case "r":
+      case 'r':
         rgbColor.r = Number(value);
         break;
-      case "g":
+      case 'g':
         rgbColor.g = Number(value);
         break;
-      case "b":
+      case 'b':
         rgbColor.b = Number(value);
         break;
       default:
@@ -120,20 +120,20 @@ const MxColor = observer((props) => {
     setRgbColor({ ...rgbColor });
   });
   useEffect(() => {
-    if (focusTaget?.id !== "Hex") setHex(hsvaToHex(color));
-    if (focusTaget?.id !== "Alpha") setAlpha(Math.round(color.a * 100) + "%");
+    if (focusTaget?.id !== 'Hex') setHex(hsvaToHex(color));
+    if (focusTaget?.id !== 'Alpha') setAlpha(Math.round(color.a * 100) + '%');
     setRgbColor(hsvaToRgba(color));
   }, [color]);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Box sx={style.colorTabBox}>
         <Typography
           sx={{
-            fontFamily: "Inter",
-            fontSize: "11px",
-            color: "#e2e2e2",
-            ...labelStyle,
+            fontFamily: 'Inter',
+            fontSize: '11px',
+            color: '#e2e2e2',
+            ...labelStyle
           }}
         >
           {label}
@@ -155,7 +155,7 @@ const MxColor = observer((props) => {
           sx={style.colorMenu(menuStyle)}
         >
           <Box
-            sx={{ width: "213px", height: "382.7px" }}
+            sx={{ width: '213px', height: '382.7px' }}
             onFocus={() => {
               setFocusTaget(null);
             }}
@@ -170,8 +170,8 @@ const MxColor = observer((props) => {
               }}
             >
               <Saturation
-                radius={"5px"}
-                style={{ width: "100%", height: "153px" }}
+                radius={'5px'}
+                style={{ width: '100%', height: '153px' }}
                 hsva={color}
                 onMouseUp={(e) => {
                   onMouseUp && onMouseUp(hsvaToHex(color), undoMode, uuid);
@@ -180,8 +180,8 @@ const MxColor = observer((props) => {
               />
             </Box>
             <Hue
-              style={{ marginTop: "10px" }}
-              radius={"10px"}
+              style={{ marginTop: '10px' }}
+              radius={'10px'}
               hue={color.h}
               onMouseDown={(e) => {
                 if (focusTaget && e.target !== focusTaget) {
@@ -201,8 +201,8 @@ const MxColor = observer((props) => {
 
             {alphaSlider && (
               <Alpha
-                style={{ marginTop: "10px" }}
-                radius={"10px"}
+                style={{ marginTop: '10px' }}
+                radius={'10px'}
                 hsva={color}
                 onMouseDown={(e) => {
                   if (focusTaget && e.target !== focusTaget) {
@@ -215,9 +215,9 @@ const MxColor = observer((props) => {
                   onMouseUp &&
                     onMouseUp(
                       color.a,
-                      undoMode !== "Material_color"
+                      undoMode !== 'Material_color'
                         ? undoMode
-                        : "Material_opacity",
+                        : 'Material_opacity',
                       uuid
                     );
                 }}
@@ -228,38 +228,38 @@ const MxColor = observer((props) => {
             )}
             <Box
               sx={{
-                marginTop: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
+                marginTop: '15px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-around'
               }}
             >
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#666",
+                  color: '#666'
                 }}
               >
                 Hex
               </Typography>
               <MxInput
                 id="Hex"
-                value={focusTaget?.id === "Hex" ? hex : hsvaToHex(color)}
+                value={focusTaget?.id === 'Hex' ? hex : hsvaToHex(color)}
                 onFocus={(e) => {
                   e.stopPropagation();
                   setFocusTaget(e.target);
                 }}
                 onChange={onChangeHex}
                 boxStyle={{
-                  width: "97px",
-                  height: "18px",
+                  width: '97px',
+                  height: '18px'
                 }}
               />
               <MxInput
                 id="Alpha"
-                type={"number"}
+                type={'number'}
                 upDownButton={false}
                 value={alpha}
                 onChange={onChangeAlpha}
@@ -268,33 +268,33 @@ const MxColor = observer((props) => {
                   setFocusTaget(e.target);
                 }}
                 onBlur={(e) => {
-                  if (e.target.value === "") {
-                    setAlpha("0%");
+                  if (e.target.value === '') {
+                    setAlpha('0%');
                   } else {
-                    if (alpha.indexOf("%") === -1) {
-                      setAlpha(alpha + "%");
+                    if (alpha.indexOf('%') === -1) {
+                      setAlpha(alpha + '%');
                     }
                   }
                 }}
               />
               <MxButton onClick={onClickSpoid}>
-                <img src={"/Icons/Studio/spoid.png"} alt="spoid" />
+                <img src={'/Icons/Studio/spoid.png'} alt="spoid" />
               </MxButton>
             </Box>
             <Box
               sx={{
-                marginTop: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
+                marginTop: '15px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-around'
               }}
             >
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 R
@@ -309,16 +309,16 @@ const MxColor = observer((props) => {
                 }}
                 onChange={onChangeRGB}
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
               />
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 G
@@ -332,17 +332,17 @@ const MxColor = observer((props) => {
                   setFocusTaget(e.target);
                 }}
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
                 onChange={onChangeRGB}
               />
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 B
@@ -353,8 +353,8 @@ const MxColor = observer((props) => {
                 value={rgbColor.b}
                 type="number"
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
                 onFocus={(e) => {
                   setFocusTaget(e.target);
@@ -364,9 +364,9 @@ const MxColor = observer((props) => {
             </Box>
             {saturationSilder === true && (
               <MxSlider
-                label={"채도"}
+                label={'채도'}
                 value={Math.round(color.s)}
-                name={"채도"}
+                name={'채도'}
                 min={0}
                 max={100}
                 step={1}
@@ -384,9 +384,9 @@ const MxColor = observer((props) => {
             )}
             {brightnessSlider === true && (
               <MxSlider
-                label={"명도"}
+                label={'명도'}
                 value={Math.round(color.v)}
-                name={"명도"}
+                name={'명도'}
                 min={0}
                 max={100}
                 step={1}
@@ -412,42 +412,42 @@ const MxColor = observer((props) => {
 export default MxColor;
 const style = {
   colorTabBox: {
-    width: "100%",
-    height: "50%",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    width: '100%',
+    height: '50%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   colorBtn: (color, rgbColor, buttonStyle) => ({
-    width: "24px",
+    width: '24px',
     minWidth: 0,
     minHeight: 0,
-    height: "24px",
+    height: '24px',
     backgroundColor: `${
-      typeof color !== "undefined" &&
+      typeof color !== 'undefined' &&
       `rgba(${rgbColor.r},${rgbColor.g},${rgbColor.b},${rgbColor.a})`
     }`,
-    ...buttonStyle,
+    ...buttonStyle
   }),
   colorMenu: (menuStyle) => ({
     zIndex: 10000,
-    position: "absolute",
+    position: 'absolute',
     top: -24,
     left: -268,
     ...menuStyle,
 
-    "& .MuiPaper-root": {
-      width: "245px",
-      height: "412.7px",
-      display: "flex",
-      justifyContent: "center",
-      backgroundColor: "#3a3a3a",
-      overflow: "auto",
-      "&::-webkit-scrollbar": { width: 0 },
+    '& .MuiPaper-root': {
+      width: '245px',
+      height: '412.7px',
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: '#3a3a3a',
+      overflow: 'auto',
+      '&::-webkit-scrollbar': { width: 0 },
       ...(menuStyle &&
-        menuStyle["& .MuiPaper-root"] &&
-        menuStyle["& .MuiPaper-root"]),
-    },
-  }),
+        menuStyle['& .MuiPaper-root'] &&
+        menuStyle['& .MuiPaper-root'])
+    }
+  })
 };

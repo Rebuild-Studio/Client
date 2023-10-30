@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "MathSymbol";
+const nodeType = 'MathSymbol';
 
 export class MathSymbolNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,22 +16,22 @@ export class MathSymbolNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "number",
-      type: ControlType.Number,
-    },
+      name: 'number',
+      type: ControlType.Number
+    }
   ],
   outputSocket: [
     {
-      name: "number",
-      type: ControlType.Number,
-    },
+      name: 'number',
+      type: ControlType.Number
+    }
   ],
   control: [
     {
-      name: "symbol",
-      value: "SquareRoot",
+      name: 'symbol',
+      value: 'SquareRoot',
       type: ControlType.MathSymbol,
-      IsDropdown: true,
-    },
-  ],
-}
+      IsDropdown: true
+    }
+  ]
+};

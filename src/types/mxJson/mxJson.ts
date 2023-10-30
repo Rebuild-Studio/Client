@@ -1,4 +1,4 @@
-import { SceneJson } from "../scene/scene";
+import { SceneJson } from '../scene/scene';
 
 type EditableProperty = {
   Name: string;

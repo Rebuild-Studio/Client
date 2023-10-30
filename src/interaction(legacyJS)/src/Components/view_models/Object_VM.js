@@ -1,6 +1,6 @@
-import { common_store } from "../stores/Common_Store";
-import { object_store } from "../stores/Object_Store";
-import { action } from "mobx";
+import { action } from 'mobx';
+import { common_store } from '../stores/Common_Store';
+import { object_store } from '../stores/Object_Store';
 
 const objectViewModel = {
   SetObjectClipBoard: action((object) => {
@@ -21,7 +21,7 @@ const objectViewModel = {
   SetSelectedObjects: action((object, type) => {
     var tmpArray = object_store.selectedObjects;
     var isSelect = true;
-    if (type === "tab") {
+    if (type === 'tab') {
       if (object === null) {
         common_store.transcontrol.detach();
         objectViewModel.SetIsObjectSelected(false);
@@ -188,7 +188,7 @@ const objectViewModel = {
   },
   get renderObjects() {
     return object_store.renderObjects;
-  },
+  }
 };
 
 export { objectViewModel };

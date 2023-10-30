@@ -1,5 +1,5 @@
-import NodeProcess from "../NodeProcess";
-import { Euler } from "three";
+import { Euler } from 'three';
+import NodeProcess from '../NodeProcess';
 
 //FIXME: ObjectProcess와 코드 유사
 export default class CameraProcess extends NodeProcess {
@@ -7,7 +7,7 @@ export default class CameraProcess extends NodeProcess {
     super(nodeRuntime, [], [key], []);
     this.key = key;
     this.nodeRuntime.setInputDefaultValue(key, undefined);
-    if (this.key === "rotation") {
+    if (this.key === 'rotation') {
       this.convert = this.convertVector3ToEuler;
     }
     const target = this.nodeRuntime.camera[this.key];
@@ -48,7 +48,7 @@ export default class CameraProcess extends NodeProcess {
   coreWork(state, delta, xrFrame) {
     try {
       const value = this.convert(this.inputs[this.key]);
-      if (typeof value !== "undefined") {
+      if (typeof value !== 'undefined') {
         this.setCameraProp(value);
       }
     } catch (e) {

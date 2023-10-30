@@ -1,19 +1,19 @@
-import { makeAutoObservable } from "mobx";
-import { NodeType } from "./NodeType";
-import { ControlSocket, ControlType } from "./NodeControl";
-import UUIDGenerator from "../../../utils/uuid";
-import Socket from "./Socket";
-import Wire from "./Wire";
-import NodeGroup from "./NodeGroup";
-import * as Utils from "./utils";
-import InteractionHierachyVM from "../../view_models/05. Hierarchy/InteractionHierarchy_VM";
+import { makeAutoObservable } from 'mobx';
+import { ControlSocket, ControlType } from './NodeControl';
+import NodeGroup from './NodeGroup';
+import { NodeType } from './NodeType';
+import Socket from './Socket';
+import Wire from './Wire';
+import * as Utils from './utils';
+import UUIDGenerator from '../../../utils/uuid';
+import InteractionHierachyVM from '../../view_models/05. Hierarchy/InteractionHierarchy_VM';
 
 const POSITION_INTERVAL = 50;
 
 export default class Sheet {
   uuid;
   name;
-  type = "sheet";
+  type = 'sheet';
   nodes = [];
   wires = [];
   groups = [];
@@ -40,7 +40,7 @@ export default class Sheet {
     hidden = false,
     cameraPosition = [0, 0],
     cameraZoom = 1,
-    socketPositions = {},
+    socketPositions = {}
   }) {
     this.name = name;
     this.uuid = uuid;
@@ -142,7 +142,7 @@ export default class Sheet {
   }
 
   getNodePosition(uuid) {
-    let position = this.getNodeProp(uuid, "position");
+    let position = this.getNodeProp(uuid, 'position');
     if (!position) {
       position = [0, 0];
       this.setNodePosition(uuid, position);
@@ -166,7 +166,7 @@ export default class Sheet {
   }
 
   setNodePosition(uuid, position) {
-    this.setNodeProp(uuid, "position", position);
+    this.setNodeProp(uuid, 'position', position);
   }
 
   addNodePosition(uuid, position) {
@@ -187,7 +187,7 @@ export default class Sheet {
   }
 
   setNodeCategory(uuid, category) {
-    this.setNodeProp(uuid, "category", category);
+    this.setNodeProp(uuid, 'category', category);
   }
 
   setValueProp(uuid, key, value) {
@@ -203,9 +203,9 @@ export default class Sheet {
       // node.name = value.name; // Node의 Dropbox 변경 시 이름 변경되는 코드.
       node.control[key].value = value.value;
       node.objectId = value.value;
-      const defaultKeys = ["position", "rotation", "scale", "visible"];
+      const defaultKeys = ['position', 'rotation', 'scale', 'visible'];
       switch (node.type) {
-        case "Object": {
+        case 'Object': {
           const inputKeys = Object.keys(node.inputSockets);
           inputKeys.forEach((key) => {
             if (!defaultKeys.includes(key)) {
@@ -214,7 +214,7 @@ export default class Sheet {
           });
           break;
         }
-        case "ObjectSensor": {
+        case 'ObjectSensor': {
           const outputKeys = Object.keys(node.outputSockets);
           outputKeys.forEach((key) => {
             if (!defaultKeys.includes(key)) {
@@ -227,7 +227,7 @@ export default class Sheet {
           break;
       }
       // this.setValueProp(uuid, "material", []);
-      this.setValueProp(uuid, "animation", []);
+      this.setValueProp(uuid, 'animation', []);
       node.update();
     }
   }
@@ -371,7 +371,7 @@ export default class Sheet {
   getWiresInNode(node) {
     return [
       ...Object.values(node.inputSockets),
-      ...Object.values(node.outputSockets),
+      ...Object.values(node.outputSockets)
     ].reduce((ret, socket) => [...ret, ...socket.wires], []);
   }
 
@@ -432,7 +432,7 @@ export default class Sheet {
     const node = new nodeClass();
 
     for (const prop in rawNode) {
-      if (prop === "outputSockets" || prop === "inputSockets") {
+      if (prop === 'outputSockets' || prop === 'inputSockets') {
         for (const raws in rawNode[prop]) {
           const socket = new Socket();
 
@@ -454,7 +454,7 @@ export default class Sheet {
     const sockets = [
       this.getSocketByUuid(raw.headSocket),
 
-      this.getSocketByUuid(raw.tailSocket),
+      this.getSocketByUuid(raw.tailSocket)
     ];
 
     sockets.forEach((s) => {
@@ -475,16 +475,16 @@ export default class Sheet {
   deserializeGroup(raw) {
     const group = new NodeGroup();
     for (const prop in raw) {
-      if (prop === "children" || prop === "group") {
+      if (prop === 'children' || prop === 'group') {
         continue;
       } else {
         group[prop] = raw[prop];
       }
     }
-    const rawChildren = raw["children"];
+    const rawChildren = raw['children'];
     const children = rawChildren.map((c) => this.getNodeByUuid(c));
     this.addChildrenToGroup(group, children);
-    const parent = this.getGroupByUuid(raw["group"]);
+    const parent = this.getGroupByUuid(raw['group']);
     parent?.addChildren([group.uuid]);
     return group;
   }
@@ -503,7 +503,7 @@ export default class Sheet {
       ) {
         this.initNodePosition(node, [
           position[0] + POSITION_INTERVAL,
-          position[1] + POSITION_INTERVAL,
+          position[1] + POSITION_INTERVAL
         ]);
         return;
       }
@@ -557,20 +557,20 @@ export default class Sheet {
   }
   detectConvertFromTo(value) {
     switch (value) {
-      case "BooleanToNumber":
-        return { from: "boolean", to: "number" };
-      case "ColorToNumber":
-        return { from: "color", to: "r" };
-      case "NumberToBoolean":
-        return { from: "number", to: "boolean" };
-      case "NumberToVector3":
-        return { from: "x", to: "vector3" };
-      case "NumberToColor":
-        return { from: "r", to: "color" };
-      case "Vector3ToNumber":
-        return { from: "vector3", to: "x" };
+      case 'BooleanToNumber':
+        return { from: 'boolean', to: 'number' };
+      case 'ColorToNumber':
+        return { from: 'color', to: 'r' };
+      case 'NumberToBoolean':
+        return { from: 'number', to: 'boolean' };
+      case 'NumberToVector3':
+        return { from: 'x', to: 'vector3' };
+      case 'NumberToColor':
+        return { from: 'r', to: 'color' };
+      case 'Vector3ToNumber':
+        return { from: 'vector3', to: 'x' };
       default:
-        return { from: "", to: "" };
+        return { from: '', to: '' };
     }
   }
   checkConvertableSockects(uuids) {
@@ -580,32 +580,32 @@ export default class Sheet {
     switch (from) {
       case ControlType.Boolean:
         if (to === ControlType.Number) {
-          return "BooleanToNumber";
+          return 'BooleanToNumber';
         }
         break;
       case ControlType.Color:
         if (to === ControlType.Number) {
-          return "ColorToNumber";
+          return 'ColorToNumber';
         }
         break;
       case ControlType.Number:
         if (to === ControlType.Boolean) {
-          return "NumberToBoolean";
+          return 'NumberToBoolean';
         }
         if (to === ControlType.Color) {
-          return "NumberToColor";
+          return 'NumberToColor';
         }
         if (to === ControlType.Vector3) {
-          return "NumberToVector3";
+          return 'NumberToVector3';
         }
         break;
       case ControlType.Vector3:
         if (to === ControlType.Number) {
-          return "Vector3ToNumber";
+          return 'Vector3ToNumber';
         }
         break;
       default:
-        return "None";
+        return 'None';
     }
   }
   getSocketPosition(uuid) {
@@ -632,7 +632,7 @@ export default class Sheet {
     }
     const screenSocketPosition = [
       position.left + position.width / 2,
-      position.top + position.height / 2 - 78,
+      position.top + position.height / 2 - 78
     ];
     const anchoredPosition = screenSocketPosition.map((p, i) => {
       return p - canvasSize[i] / 2;
@@ -656,7 +656,7 @@ export default class Sheet {
     const position2 = this.getSocketWorldPosition(uuids[1]);
     return [
       (position1[0] + position2[0]) / 2,
-      (position1[1] + position2[1]) / 2,
+      (position1[1] + position2[1]) / 2
     ];
   }
   setPointerPosition(position, canvasSize) {
@@ -731,11 +731,11 @@ export default class Sheet {
 
       const srcSockets = [
         ...Object.values(srcNode.inputSockets),
-        ...Object.values(srcNode.outputSockets),
+        ...Object.values(srcNode.outputSockets)
       ];
       const dstSockets = [
         ...Object.values(dstNode.inputSockets),
-        ...Object.values(dstNode.outputSockets),
+        ...Object.values(dstNode.outputSockets)
       ];
       srcSockets.forEach((socket, index) => {
         socketTable[socket.uuid] = dstSockets[index];
@@ -767,7 +767,7 @@ export default class Sheet {
   cloneNodeName(name, copySuffix) {
     let ret = name + copySuffix;
     const getName = (index) => {
-      ret = name + copySuffix + (index ? ` ${index}` : "");
+      ret = name + copySuffix + (index ? ` ${index}` : '');
       return this.nodes.some((node) => node.name === ret);
     };
     for (let i = 0; i < this.nodes.length; i++) {
@@ -834,19 +834,19 @@ export default class Sheet {
 
   openFolderByUuid(uuid) {
     const group = this.getGroupByUuid(uuid);
-    group.folder = "open";
+    group.folder = 'open';
   }
 
   closeFolderByUuid(uuid) {
     const group = this.getGroupByUuid(uuid);
-    group.folder = "close";
+    group.folder = 'close';
   }
 
   createGroupName() {
     const numArray = [];
     for (let i = 0; i < this.groups.length; i++) {
       const _name = this.groups[i].name;
-      if (_name.substring(0, 5) === "Group") {
+      if (_name.substring(0, 5) === 'Group') {
         const num = _name.substring(6, _name.length - 1);
         if (!isNaN(num)) numArray.push(Number(num));
       }
@@ -857,7 +857,7 @@ export default class Sheet {
       if (count === n) count++;
       else break;
     }
-    return "Group" + count;
+    return 'Group' + count;
   }
 
   deleteGroupByUuid(uuid) {
@@ -1035,7 +1035,7 @@ export default class Sheet {
       const srcGroup = this.getGroupByUuid(groupUuid);
 
       const dstGroup = this.createGroup({
-        name: this.cloneGroupName(srcGroup.name, copySuffix),
+        name: this.cloneGroupName(srcGroup.name, copySuffix)
       });
       const children = [];
       for (const node of dstNodes) {
@@ -1061,7 +1061,7 @@ export default class Sheet {
   cloneGroupName(name, copySuffix) {
     let ret = name + copySuffix;
     const getName = (index) => {
-      ret = name + copySuffix + (index ? ` ${index}` : "");
+      ret = name + copySuffix + (index ? ` ${index}` : '');
       return this.groups.some((group) => group.name === ret);
     };
     for (let i = 0; i < this.groups.length; i++) {
@@ -1113,7 +1113,7 @@ export default class Sheet {
 
   selectNodeOrGroup(uuid) {
     const obj = this.getNodeOrGroupByUuid(uuid);
-    if (obj?.type === "group") {
+    if (obj?.type === 'group') {
       this.selectGroup(uuid);
     } else {
       this.selectNode(uuid);
@@ -1122,7 +1122,7 @@ export default class Sheet {
 
   unselectNodeOrGroup(uuid) {
     const obj = this.getNodeOrGroupByUuid(uuid);
-    if (obj?.type === "group") {
+    if (obj?.type === 'group') {
       this.unselectGroup(uuid);
     } else {
       this.unselectNode(uuid);
@@ -1227,7 +1227,7 @@ export default class Sheet {
     const node = new NodeType[type](name, uuid);
     this.initNodePosition(node, [
       this.cameraPosition[0],
-      this.cameraPosition[1],
+      this.cameraPosition[1]
     ]);
     this.addNode(node);
     return node;
@@ -1244,7 +1244,7 @@ export default class Sheet {
     const nodeInstance = new node(name, uuid);
     this.initNodePosition(nodeInstance, [
       this.cameraPosition[0],
-      this.cameraPosition[1],
+      this.cameraPosition[1]
     ]);
     this.addNode(nodeInstance);
     return nodeInstance;
@@ -1290,7 +1290,7 @@ export default class Sheet {
       hidden: this.hidden,
       cameraPosition: this.cameraPosition,
       cameraZoom: this.cameraZoom,
-      socketPositions: this.socketPositions,
+      socketPositions: this.socketPositions
     };
   }
 }

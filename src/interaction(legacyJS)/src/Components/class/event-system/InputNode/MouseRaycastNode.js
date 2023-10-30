@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "MouseRaycast";
+const nodeType = 'MouseRaycast';
 
 export class MouseRaycastNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,21 +17,21 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "signal",
-      type: ControlType.Boolean,
-    },
+      name: 'signal',
+      type: ControlType.Boolean
+    }
   ],
   control: [
     {
-      name: "object",
+      name: 'object',
       value: undefined,
-      type: ControlType.Object,
+      type: ControlType.Object
     },
     {
-      name: "NODE_DAT_HOLD",
-      value: "Spot",
+      name: 'NODE_DAT_HOLD',
+      value: 'Spot',
       type: ControlType.Action,
-      label: true,
-    },
-  ],
-}
+      label: true
+    }
+  ]
+};

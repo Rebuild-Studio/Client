@@ -1,10 +1,10 @@
-import ReferenceTextField from "./TextFieldV";
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
+import ReferenceTextField from './TextFieldV';
 
 const NodeReferenceVector3Selector_V = ({
   value,
   setValue,
-  tooltipMessage,
+  tooltipMessage
 }) => {
   const handleSetValueX = (newValue) => {
     setValue({ ...value, x: newValue });
@@ -22,19 +22,19 @@ const NodeReferenceVector3Selector_V = ({
         value={value.x}
         setValue={handleSetValueX}
         tooltipMessage={tooltipMessage}
-        refType={"Number"}
+        refType={'Number'}
       />
       <ReferenceTextField
         value={value.y}
         setValue={handleSetValueY}
         tooltipMessage={tooltipMessage}
-        refType={"Number"}
+        refType={'Number'}
       />
       <ReferenceTextField
         value={value.z}
         setValue={handleSetValueZ}
         tooltipMessage={tooltipMessage}
-        refType={"Number"}
+        refType={'Number'}
       />
     </>
   );

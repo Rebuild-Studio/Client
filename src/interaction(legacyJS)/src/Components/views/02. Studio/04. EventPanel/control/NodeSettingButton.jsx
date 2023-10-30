@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import { observer } from "mobx-react";
+import { useCallback, useRef, useState } from 'react';
+import { observer } from 'mobx-react';
 import {
   Box,
   Button,
@@ -8,39 +8,39 @@ import {
   DialogContent,
   DialogTitle,
   Icon,
-  IconButton,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import storeContainer from "../../../../stores/storeContainer";
-import ControlRowV from "./ControlRowV";
-import { ControlType } from "../../../../class/event-system/NodeControl";
-import ConvertNodeCommand from "../../../../class/commands/Interaction/ConvertNodeCommand";
-import SetNodeDataCommand from "../../../../class/commands/Interaction/SetNodeDataCommand";
-import SetNodeObjectCommand from "../../../../class/commands/Interaction/SetNodeObjectCommand";
-import CreateSocketsCommand from "../../../../class/commands/Interaction/CreateSocketsCommand";
+  IconButton
+} from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ControlRowV from './ControlRowV';
+import ConvertNodeCommand from '../../../../class/commands/Interaction/ConvertNodeCommand';
+import CreateSocketsCommand from '../../../../class/commands/Interaction/CreateSocketsCommand';
+import SetNodeDataCommand from '../../../../class/commands/Interaction/SetNodeDataCommand';
+import SetNodeObjectCommand from '../../../../class/commands/Interaction/SetNodeObjectCommand';
+import { ControlType } from '../../../../class/event-system/NodeControl';
+import storeContainer from '../../../../stores/storeContainer';
 
 const theme = createTheme({
   typography: {
-    fontFamily: "SourceHanSansKR",
+    fontFamily: 'SourceHanSansKR'
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#FFFFFF",
-        },
-      },
+          color: '#FFFFFF'
+        }
+      }
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: "#282828",
-          color: "#FFFFFF",
-          borderRadius: "15px",
-        },
-      },
-    },
-  },
+          backgroundColor: '#282828',
+          color: '#FFFFFF',
+          borderRadius: '15px'
+        }
+      }
+    }
+  }
 });
 
 const NodeSettingButton = observer((props) => {
@@ -57,7 +57,7 @@ const NodeSettingButton = observer((props) => {
 
   const handleOk = useCallback(() => {
     Object.entries(tobeUpdate.current).forEach((entry) => {
-      if (typeof entry[1].value !== "undefined") {
+      if (typeof entry[1].value !== 'undefined') {
         switch (entry[1].type) {
           case ControlType.Sensor:
           case ControlType.Object:
@@ -79,7 +79,7 @@ const NodeSettingButton = observer((props) => {
                 key: entry[0],
                 value: entry[1].value,
                 type: entry[1].type,
-                sheetId: eventSystem_store.selectedSheet,
+                sheetId: eventSystem_store.selectedSheet
               })
             );
             break;
@@ -91,8 +91,8 @@ const NodeSettingButton = observer((props) => {
                 key: entry[0],
                 value: entry[1].value,
                 type: entry[1].type,
-                isInput: node.category === "Object" ? true : false,
-                sheetId: eventSystem_store.selectedSheet,
+                isInput: node.category === 'Object' ? true : false,
+                sheetId: eventSystem_store.selectedSheet
               })
             );
             break;
@@ -104,10 +104,10 @@ const NodeSettingButton = observer((props) => {
                 value: entry[1].value,
                 type: ControlType.Number,
                 isInput:
-                  node.category === "Object" || node.category === "Animation"
+                  node.category === 'Object' || node.category === 'Animation'
                     ? true
                     : false,
-                sheetId: eventSystem_store.selectedSheet,
+                sheetId: eventSystem_store.selectedSheet
               })
             );
             break;
@@ -131,7 +131,7 @@ const NodeSettingButton = observer((props) => {
     interactionhistory_store,
     uuid,
     handleClose,
-    node.category,
+    node.category
   ]);
 
   const handleClickOpen = useCallback(() => {
@@ -157,14 +157,14 @@ const NodeSettingButton = observer((props) => {
         style={{
           padding: 0,
           width: `${size}px`,
-          height: `${size}px`,
+          height: `${size}px`
         }}
       >
         <Icon
           style={{
-            height: "100%",
-            width: "100%",
-            color: "#fff",
+            height: '100%',
+            width: '100%',
+            color: '#fff'
           }}
         >
           <img
@@ -180,7 +180,7 @@ const NodeSettingButton = observer((props) => {
       <ThemeProvider theme={theme}>
         <Dialog maxWidth="md" open={open} onClose={handleClose}>
           <DialogTitle fontSize={25}>
-            {string_store.string(type) + " 설정" || type}
+            {string_store.string(type) + ' 설정' || type}
           </DialogTitle>
           <DialogContent>
             <Box
@@ -197,10 +197,10 @@ const NodeSettingButton = observer((props) => {
                   <Box
                     key={key}
                     sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      margin: 5,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      margin: 5
                     }}
                   >
                     <ControlRowV
@@ -208,7 +208,7 @@ const NodeSettingButton = observer((props) => {
                       control={value}
                       update={tobeUpdate}
                       node={node}
-                      sx={{ color: "inherit" }}
+                      sx={{ color: 'inherit' }}
                     />
                   </Box>
                 );
@@ -218,14 +218,14 @@ const NodeSettingButton = observer((props) => {
           <DialogActions>
             <Button
               sx={{
-                color: "#000000",
-                backgroundColor: "#d4ed3e",
-                "&:hover": {
-                  backgroundColor: "#ABC412",
+                color: '#000000',
+                backgroundColor: '#d4ed3e',
+                '&:hover': {
+                  backgroundColor: '#ABC412'
                 },
-                fontSize: "15px",
-                right: "8px",
-                bottom: "8px",
+                fontSize: '15px',
+                right: '8px',
+                bottom: '8px'
               }}
               onClick={handleOk}
             >
@@ -242,27 +242,27 @@ export default NodeSettingButton;
 
 const style = {
   dialogBox: {
-    display: "flex",
-    flexDirection: "column",
-    m: "auto",
-    width: "fit-content",
-    "& .MuiTextField-root": { m: 1, width: "25ch" },
-    "& label": {
-      color: "#FFFFFF",
+    display: 'flex',
+    flexDirection: 'column',
+    m: 'auto',
+    width: 'fit-content',
+    '& .MuiTextField-root': { m: 1, width: '25ch' },
+    '& label': {
+      color: '#FFFFFF'
     },
-    "& label.Mui-focused": {
-      color: "#FFFFFF",
+    '& label.Mui-focused': {
+      color: '#FFFFFF'
     },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#FFFFFF",
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#FFFFFF'
       },
-      "&:hover fieldset": {
-        borderColor: "#d4ed3e",
+      '&:hover fieldset': {
+        borderColor: '#d4ed3e'
       },
-      "&.Mui-focused fieldset": {
-        borderColor: "#d4ed3e",
-      },
-    },
-  },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d4ed3e'
+      }
+    }
+  }
 };

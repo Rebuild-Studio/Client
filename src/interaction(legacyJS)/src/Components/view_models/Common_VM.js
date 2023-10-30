@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Common_VM() {
   const [open, setOpen] = React.useState(false);
@@ -13,12 +13,12 @@ export default function Common_VM() {
   };
 
   const [anchorMenu, setAnchorMenu] = React.useState(null);
-  const [menuName, setMenuName] = React.useState("");
+  const [menuName, setMenuName] = React.useState('');
   const openMenu = Boolean(anchorMenu);
   const handleClickMenu = (event) => {
     if (
       event.currentTarget.value !== null &&
-      typeof event.currentTarget.value !== "undefined"
+      typeof event.currentTarget.value !== 'undefined'
     ) {
       setMenuName(event.currentTarget.value);
     }
@@ -48,6 +48,6 @@ export default function Common_VM() {
     handleCloseMenu,
     handleClickMenuCustom,
     menuName,
-    AccordionHandler,
+    AccordionHandler
   };
 }

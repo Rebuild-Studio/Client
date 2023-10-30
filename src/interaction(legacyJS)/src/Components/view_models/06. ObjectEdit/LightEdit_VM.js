@@ -1,20 +1,21 @@
-import { action } from "mobx";
-import { data_store } from "../../stores/Data_Store";
-import { object_store } from "../../stores/Object_Store";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
-import ChangePropsSliderCommand from "../../class/commands/CanvasObject/ChangePropsSliderCommand";
-import { objectViewModel } from "../Object_VM";
+import { action } from 'mobx';
 import {
-  hsvaToHex,
   hexToHsva,
-  rgbaToHsva,
+  hsvaToHex,
   rgbaToHex,
-} from "@uiw/color-convert";
-import ChangeLightPropsCommands from "../../class/commands/CanvasObject/ChangeLightPropsCommands";
+  rgbaToHsva
+} from '@uiw/color-convert';
+import ChangeLightPropsCommands from '../../class/commands/CanvasObject/ChangeLightPropsCommands';
+import ChangePropsSliderCommand from '../../class/commands/CanvasObject/ChangePropsSliderCommand';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { object_store } from '../../stores/Object_Store';
+import { objectViewModel } from '../Object_VM';
+
 const LightEditVM = {
   get lightPropsList() {
-    const processData = [...data_store.lightProps["common"]];
-    const lightType = objectViewModel.selectedObjects[0].props["lightType"];
+    const processData = [...data_store.lightProps['common']];
+    const lightType = objectViewModel.selectedObjects[0].props['lightType'];
     if (data_store.lightProps[lightType]) {
       processData.push(...data_store.lightProps[lightType]);
     }
@@ -26,7 +27,7 @@ const LightEditVM = {
     LightEditVM.currentValue = value;
   }),
   onSliderMouseUp: action((value, mode) => {
-    const prop = mode.split("_")[1];
+    const prop = mode.split('_')[1];
 
     canvasHistory_store.execute(
       new ChangePropsSliderCommand(
@@ -44,17 +45,17 @@ const LightEditVM = {
   onChangeHandlerLightColor: action((phsva) => {
     const hexColor = hsvaToHex(phsva);
 
-    object_store.selectedObjects[0].props["h"] = phsva.h;
+    object_store.selectedObjects[0].props['h'] = phsva.h;
 
-    object_store.selectedObjects[0].SetProps("color", hexColor);
+    object_store.selectedObjects[0].SetProps('color', hexColor);
   }),
 
   onChangeInputHex: action((hex) => {
     const newHex = hex;
     const hsva = hexToHsva(hex);
-    const currentHex = objectViewModel.selectedObjects[0].props["color"];
+    const currentHex = objectViewModel.selectedObjects[0].props['color'];
 
-    objectViewModel.selectedObjects[0].props["h"] = hsva.h;
+    objectViewModel.selectedObjects[0].props['h'] = hsva.h;
     //prettier-ignore
     canvasHistory_store.execute(
       new ChangeLightPropsCommands(
@@ -68,9 +69,9 @@ const LightEditVM = {
   onChangeInputRGB: action((rgb) => {
     const newHex = rgbaToHex(rgb);
     const hsva = rgbaToHsva(rgb);
-    const currentHex = objectViewModel.selectedObjects[0].props["color"];
+    const currentHex = objectViewModel.selectedObjects[0].props['color'];
 
-    objectViewModel.selectedObjects[0].props["h"] = hsva.h;
+    objectViewModel.selectedObjects[0].props['h'] = hsva.h;
     //prettier-ignore
     canvasHistory_store.execute(
       new ChangeLightPropsCommands(
@@ -80,7 +81,7 @@ const LightEditVM = {
         newHex
       )
     );
-  }),
+  })
 };
 
 export default LightEditVM;

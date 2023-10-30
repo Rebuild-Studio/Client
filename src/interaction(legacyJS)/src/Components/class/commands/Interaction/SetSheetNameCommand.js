@@ -1,16 +1,16 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class SetSheetNameCommand extends Command {
   constructor(store, uuid, newName) {
     super(store);
-    this.type = "SetSheetNameCommand";
+    this.type = 'SetSheetNameCommand';
     this.name = this.type;
     this.data = {
       args: {
-        uuid,
+        uuid
       },
       beforeName: undefined,
-      afterName: newName,
+      afterName: newName
     };
   }
   execute() {

@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
 
 function useShiftKeyListener() {
   const [isShiftPressed, setIsShiftPressed] = useState(false);
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.key === "Shift") setIsShiftPressed(true);
+      if (e.key === 'Shift') setIsShiftPressed(true);
     }
 
     function handleKeyUp(e) {
-      if (e.key === "Shift") setIsShiftPressed(false);
+      if (e.key === 'Shift') setIsShiftPressed(false);
     }
 
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
   }, []);
 

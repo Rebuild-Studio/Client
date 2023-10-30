@@ -1,42 +1,34 @@
-import NodeRuntime from "./nodes/NodeRuntime";
-
-import Vector3CalculationRuntime from "./nodes/middle/vector3calculation/Vector3CalculationRuntime";
-import CalculationRuntime from "./nodes/middle/calculation/CalculationRuntime";
-import CameraRuntime from "./nodes/camera/CameraRuntime";
-import CameraSensorRuntime from "./nodes/camera/CameraSensorRuntime";
-import ConvertRuntime from "./nodes/middle/convert/ConvertRuntime";
-import ObjectRuntime from "./nodes/things/ObjectRuntime";
-import SensorRuntime from "./nodes/things/sensor/SensorRuntime";
-import ThingRuntime from "./nodes/things/ThingRuntime";
-import VariableRuntime from "./nodes/variable/VariableRuntime";
-import MaterialRuntime from "./nodes/middle/material/MaterialRuntime";
-
-import VectorCompareProcess from "./nodes/middle/VectorCompareProcess";
-import CompareProcess from "./nodes/middle/CompareProcess";
-
-import KeyboardCanvasEventProcess from "./nodes/input/canvas-event/KeyboardCanvasEventProcess";
-import MouseSignalCanvasEventProcess from "./nodes/input/canvas-event/MouseSignalCanvasEventProcess";
-import MousePositionCanvasEventProcess from "./nodes/input/canvas-event/MousePositionCanvasEventProcess";
-import StartProcess from "./nodes/input/StartProcess";
-
-import TimerProcess from "./nodes/middle/TimerProcess";
-import ChangedProcess from "./nodes/middle/ChangedProcess";
-
-import LogicProcess from "./nodes/middle/LogicProcess";
-
-import AnalyzeProcess from "./nodes/middle/AnalyzeProcess";
-import MapProcess from "./nodes/middle/MapProcess";
-import DigitizeProcess from "./nodes/middle/DigitizeProcess";
-import InverseProcess from "./nodes/middle/InverseProcess";
-import RandomProcess from "./nodes/random/RandomProcess";
-import FlagProcess from "./nodes/middle/FlagProcess";
-import CounterProcess from "./nodes/middle/CounterProcess";
-
-import PositionToAngleProcess from "./nodes/middle/PositionToAngleProcess";
-import AngleToPositionProcess from "./nodes/middle/AngleToPositionProcess";
-import AngleDifferenceProcess from "./nodes/middle/AngleDifferenceProcess";
-
-import RaycastProcess from "./nodes/things/RaycastProcess";
+import NodeRuntime from './nodes/NodeRuntime';
+import CameraRuntime from './nodes/camera/CameraRuntime';
+import CameraSensorRuntime from './nodes/camera/CameraSensorRuntime';
+import StartProcess from './nodes/input/StartProcess';
+import KeyboardCanvasEventProcess from './nodes/input/canvas-event/KeyboardCanvasEventProcess';
+import MousePositionCanvasEventProcess from './nodes/input/canvas-event/MousePositionCanvasEventProcess';
+import MouseSignalCanvasEventProcess from './nodes/input/canvas-event/MouseSignalCanvasEventProcess';
+import AnalyzeProcess from './nodes/middle/AnalyzeProcess';
+import AngleDifferenceProcess from './nodes/middle/AngleDifferenceProcess';
+import AngleToPositionProcess from './nodes/middle/AngleToPositionProcess';
+import ChangedProcess from './nodes/middle/ChangedProcess';
+import CompareProcess from './nodes/middle/CompareProcess';
+import CounterProcess from './nodes/middle/CounterProcess';
+import DigitizeProcess from './nodes/middle/DigitizeProcess';
+import FlagProcess from './nodes/middle/FlagProcess';
+import InverseProcess from './nodes/middle/InverseProcess';
+import LogicProcess from './nodes/middle/LogicProcess';
+import MapProcess from './nodes/middle/MapProcess';
+import PositionToAngleProcess from './nodes/middle/PositionToAngleProcess';
+import TimerProcess from './nodes/middle/TimerProcess';
+import VectorCompareProcess from './nodes/middle/VectorCompareProcess';
+import CalculationRuntime from './nodes/middle/calculation/CalculationRuntime';
+import ConvertRuntime from './nodes/middle/convert/ConvertRuntime';
+import MaterialRuntime from './nodes/middle/material/MaterialRuntime';
+import Vector3CalculationRuntime from './nodes/middle/vector3calculation/Vector3CalculationRuntime';
+import RandomProcess from './nodes/random/RandomProcess';
+import ObjectRuntime from './nodes/things/ObjectRuntime';
+import RaycastProcess from './nodes/things/RaycastProcess';
+import ThingRuntime from './nodes/things/ThingRuntime';
+import SensorRuntime from './nodes/things/sensor/SensorRuntime';
+import VariableRuntime from './nodes/variable/VariableRuntime';
 
 export default function registerCallbacks(node) {
   const type = node.type;
@@ -44,112 +36,112 @@ export default function registerCallbacks(node) {
   const processes = [];
   switch (type) {
     //Camera
-    case "Camera":
+    case 'Camera':
       Runtime = CameraRuntime;
       break;
     //Compare
-    case "Vector3Compare":
+    case 'Vector3Compare':
       processes.push(VectorCompareProcess);
       break;
-    case "Compare":
+    case 'Compare':
       processes.push(CompareProcess);
       break;
     //Convert
-    case "Convert":
+    case 'Convert':
       Runtime = ConvertRuntime;
       break;
     //Input
-    case "Keyboard":
+    case 'Keyboard':
       processes.push(KeyboardCanvasEventProcess);
       break;
-    case "Mouse":
+    case 'Mouse':
       processes.push(MouseSignalCanvasEventProcess);
       break;
-    case "MousePosition":
+    case 'MousePosition':
       processes.push(MousePositionCanvasEventProcess);
       break;
-    case "Start":
+    case 'Start':
       processes.push(StartProcess);
       break;
     //Observe
-    case "Timer":
+    case 'Timer':
       processes.push(TimerProcess);
       break;
-    case "Changed":
+    case 'Changed':
       processes.push(ChangedProcess);
       break;
     //Boolean
-    case "LogicGate":
+    case 'LogicGate':
       processes.push(LogicProcess);
       break;
     //Calculation
-    case "Vector3Calculation":
+    case 'Vector3Calculation':
       Runtime = Vector3CalculationRuntime;
       break;
-    case "Calculation":
+    case 'Calculation':
       Runtime = CalculationRuntime;
       break;
     //Math
-    case "MathSymbol":
+    case 'MathSymbol':
       processes.push(AnalyzeProcess);
       break;
-    case "Map":
+    case 'Map':
       processes.push(MapProcess);
       break;
-    case "Digitize":
+    case 'Digitize':
       processes.push(DigitizeProcess);
       break;
-    case "Inverse":
+    case 'Inverse':
       processes.push(InverseProcess);
       break;
-    case "Random":
+    case 'Random':
       processes.push(RandomProcess);
       break;
-    case "Flag":
+    case 'Flag':
       processes.push(FlagProcess);
       break;
-    case "Counter":
+    case 'Counter':
       processes.push(CounterProcess);
       break;
     //Angle
-    case "PositionToAngle":
+    case 'PositionToAngle':
       processes.push(PositionToAngleProcess);
       break;
-    case "AngleToPosition":
+    case 'AngleToPosition':
       processes.push(AngleToPositionProcess);
       break;
-    case "AngleDifference":
+    case 'AngleDifference':
       processes.push(AngleDifferenceProcess);
       break;
     //Raycast
-    case "MouseRaycast":
+    case 'MouseRaycast':
       Runtime = ThingRuntime;
       processes.push(RaycastProcess);
       break;
     //Sensor
-    case "PointLightSensor":
-    case "SpotLightSensor":
-    case "ObjectSensor":
+    case 'PointLightSensor':
+    case 'SpotLightSensor':
+    case 'ObjectSensor':
       Runtime = SensorRuntime;
       break;
-    case "CameraSensor":
+    case 'CameraSensor':
       Runtime = CameraSensorRuntime;
       break;
     //Things
-    case "PointLight":
-    case "SpotLight":
-    case "Object":
+    case 'PointLight':
+    case 'SpotLight':
+    case 'Object':
       Runtime = ObjectRuntime;
       break;
     //Variable
-    case "ConstBoolean":
-    case "ConstColor":
-    case "ConstNumber":
-    case "ConstVector3":
-    case "MaterialTemplate":
+    case 'ConstBoolean':
+    case 'ConstColor':
+    case 'ConstNumber':
+    case 'ConstVector3':
+    case 'MaterialTemplate':
       Runtime = VariableRuntime;
       break;
-    case "MeshPhysicalMaterial":
+    case 'MeshPhysicalMaterial':
       Runtime = MaterialRuntime;
       break;
     default:

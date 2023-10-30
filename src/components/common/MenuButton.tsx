@@ -1,8 +1,8 @@
-import { basicColors, bgColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { CSSHexColor } from "@/types/style/cssUnits";
-import { FontType } from "@/types/style/font";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { basicColors, bgColors } from '@/resources/colors/colors';
+import { fonts } from '@/resources/fonts/font';
+import { CSSHexColor } from '@/types/style/cssUnits';
+import { FontType } from '@/types/style/font';
 
 export type MenuButtonProps = {
   className?: string;
@@ -30,14 +30,14 @@ const MenuButton = ({
   color = basicColors.black,
   backgroundColor = bgColors[101728],
   hoverBackgroundColor = basicColors.limeGreen,
-  fontSize = "small",
-  width = "138px",
-  height = "34px",
-  minWidth = "80px",
-  minHeight = "32px",
-  borderRadius = "6px",
-  fontFamily = "SourceHanSansKR",
-  fontWeight = 500,
+  fontSize = 'small',
+  width = '138px',
+  height = '34px',
+  minWidth = '80px',
+  minHeight = '32px',
+  borderRadius = '6px',
+  fontFamily = 'SourceHanSansKR',
+  fontWeight = 500
 }: MenuButtonProps) => {
   return (
     <StyledButton

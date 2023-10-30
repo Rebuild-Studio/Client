@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 function Equality(inputs) {
   return [Math.abs(inputs[0] - inputs[1]) < Number.EPSILON];
@@ -28,28 +28,28 @@ export default class CompareProcess extends MiddleProcess {
   constructor(nodeRuntime) {
     super(nodeRuntime);
     switch (this.data.NODE_DAT_COMPARE_OPERATOR) {
-      case "=":
-      case "==":
-      case "===":
+      case '=':
+      case '==':
+      case '===':
         this.calculate = Equality;
         break;
-      case ">":
+      case '>':
         this.calculate = GreaterThan;
         break;
-      case ">=":
-      case "=>":
+      case '>=':
+      case '=>':
         this.calculate = GreaterThanOrEqual;
         break;
-      case "<":
+      case '<':
         this.calculate = LessThan;
         break;
-      case "<=":
-      case "=<":
+      case '<=':
+      case '=<':
         this.calculate = LessThanOrEqual;
         break;
-      case "!=":
-      case "!==":
-      case "<>":
+      case '!=':
+      case '!==':
+      case '<>':
         this.calculate = InEquality;
         break;
       default:

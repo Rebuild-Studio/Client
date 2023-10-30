@@ -1,17 +1,17 @@
-import { common_store } from "../stores/Common_Store";
-import { objectViewModel } from "../view_models/Object_VM";
-import canvasHistory_store from "../stores/CanvasHistory_Store";
-import DeleteObjCommand from "../class/commands/CanvasObject/DeleteObjCommand";
-import CSG from "../class/three-csg";
-import * as THREE from "three";
-import MetaObject from "../class/Studio/MetaObject";
-import { object_store } from "../stores/Object_Store";
-import { ObjectControllerVM } from "../view_models/ObjectController_VM";
-import AddObjCommand from "../class/commands/CanvasObject/AddObjCommand";
+import * as THREE from 'three';
+import MetaObject from '../class/Studio/MetaObject';
+import AddObjCommand from '../class/commands/CanvasObject/AddObjCommand';
+import DeleteObjCommand from '../class/commands/CanvasObject/DeleteObjCommand';
+import CSG from '../class/three-csg';
+import canvasHistory_store from '../stores/CanvasHistory_Store';
+import { common_store } from '../stores/Common_Store';
+import { object_store } from '../stores/Object_Store';
+import { ObjectControllerVM } from '../view_models/ObjectController_VM';
+import { objectViewModel } from '../view_models/Object_VM';
 
 const objectCopyCutPasteViewModel = {
   copy: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       if (objectViewModel.isObjectSelected) {
         objectViewModel.selectedObjects[0].UpdateTransform();
         objectViewModel.SetObjectClipBoard(objectViewModel.selectedObjects[0]);
@@ -20,13 +20,13 @@ const objectCopyCutPasteViewModel = {
   },
 
   paste: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       objectViewModel.objectClipBoard.Copy();
     }
   },
 
   cutAndPaste: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       if (objectViewModel.isObjectSelected) {
         objectViewModel.selectedObjects[0].UpdateTransform();
         objectViewModel.selectedObjects[0].Copy();
@@ -35,7 +35,7 @@ const objectCopyCutPasteViewModel = {
   },
 
   deleteOBJ: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       if (objectViewModel.isObjectSelected) {
         objectViewModel.selectedObjects[0].UpdateTransform();
         canvasHistory_store.execute(
@@ -45,15 +45,15 @@ const objectCopyCutPasteViewModel = {
           )
         );
       }
-      common_store.changeMode_nonTrans("delete");
+      common_store.changeMode_nonTrans('delete');
     }
   },
 
   deselectObject: () => {
-    if (common_store.curCategory === "canvas") {
+    if (common_store.curCategory === 'canvas') {
       if (objectViewModel.isObjectSelected) {
         objectViewModel.SetIsObjectSelected(false);
-        objectViewModel.SetSelectedObjects(null, "tab");
+        objectViewModel.SetSelectedObjects(null, 'tab');
       }
     }
   },
@@ -169,7 +169,7 @@ const objectCopyCutPasteViewModel = {
     const transform = {
       position: new THREE.Vector3(0, 0, 0),
       rotation: new THREE.Vector3(0, 0, 0),
-      scale: new THREE.Vector3(1, 1, 1),
+      scale: new THREE.Vector3(1, 1, 1)
     };
 
     transform.position.set(
@@ -193,8 +193,8 @@ const objectCopyCutPasteViewModel = {
     meshResult.scale.set(1, 1, 1);
     // renderingContext_store.scene.add(meshResult)
     const tempObject = new MetaObject(meshResult, {
-      name: "new",
-      type: "Object",
+      name: 'new',
+      type: 'Object'
     });
     canvasHistory_store.execute(
       new AddObjCommand(tempObject, tempObject.objectId)
@@ -206,10 +206,10 @@ const objectCopyCutPasteViewModel = {
       transform.rotation.y,
       transform.rotation.z
     );
-    tempObject.SetProps("position", transform.position);
-    tempObject.SetProps("rotation", euler);
-    tempObject.SetProps("scale", transform.scale);
-    meshResult.name = "new";
+    tempObject.SetProps('position', transform.position);
+    tempObject.SetProps('rotation', euler);
+    tempObject.SetProps('scale', transform.scale);
+    meshResult.name = 'new';
 
     basemetaobj.Delete();
     targetmetaobj.Delete();
@@ -225,7 +225,7 @@ const objectCopyCutPasteViewModel = {
     ObjectControllerVM.Lock(common_store.lattice.target_obj);
     ObjectControllerVM.Select(common_store.lattice.target_obj);
     common_store.setLattice(null);
-  },
+  }
 };
 
 export { objectCopyCutPasteViewModel };

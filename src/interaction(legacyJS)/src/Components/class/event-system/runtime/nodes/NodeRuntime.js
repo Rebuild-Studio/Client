@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Vector3 } from 'three';
 
 export default class NodeRuntime {
   constructor(args) {
@@ -35,7 +35,7 @@ export default class NodeRuntime {
       this.inputs[key] = this.node.inputSockets.readValue(key);
       this.alreadyRead = index;
     } catch (e) {
-      if (e.message === "not ready") {
+      if (e.message === 'not ready') {
         throw e;
       } else {
         this.setError(`NodeRuntime : InputSocket ${key} is not defined.`);

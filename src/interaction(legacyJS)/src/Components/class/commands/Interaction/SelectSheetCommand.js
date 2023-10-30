@@ -1,16 +1,16 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class SelectSheetCommand extends Command {
   constructor(store, uuid) {
     super(store);
-    this.type = "SelectSheetCommand";
+    this.type = 'SelectSheetCommand';
     this.name = this.type;
     this.sheet = this.store.getSheetByUuid(uuid);
     this.data = {
       uuid,
       previous: this.store.selectedSheet,
       hidden: this.sheet.hidden,
-      name: this.sheet.name,
+      name: this.sheet.name
     };
   }
   execute() {

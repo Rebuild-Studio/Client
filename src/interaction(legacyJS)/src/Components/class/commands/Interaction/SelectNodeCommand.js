@@ -1,22 +1,22 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class SelectNodeCommand extends Command {
   constructor(store, uuid, clear, sheetId) {
     super(store);
-    this.type = "SelectNodeCommand";
-    this.name = uuid ? this.type : "ClearNodeSelectionCommand";
+    this.type = 'SelectNodeCommand';
+    this.name = uuid ? this.type : 'ClearNodeSelectionCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       uuid: uuid,
       clear: clear,
       selectedGroups: undefined,
       selectedNodes: undefined,
       selectedSheet: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     if (uuid) {
       this.data.nodeType = sheet.getNodeByUuid(uuid).type;

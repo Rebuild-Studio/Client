@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 
 export default class EventProcess extends NodeProcess {
   constructor(nodeRuntime) {
@@ -24,6 +24,6 @@ export default class EventProcess extends NodeProcess {
       type: type,
       listener: listener,
       options: options
-    })
+    });
   }
 }

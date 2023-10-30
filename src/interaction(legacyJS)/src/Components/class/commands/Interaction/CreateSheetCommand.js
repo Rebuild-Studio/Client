@@ -1,15 +1,15 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class CreateSheetCommand extends Command {
   constructor(store, args = {}) {
     super(store);
-    this.type = "CreateSheetCommand";
+    this.type = 'CreateSheetCommand';
     this.name = this.type;
     this.data = {
       args: args,
       previous: store.selectedSheet,
       order: undefined,
-      json: undefined,
+      json: undefined
     };
   }
   execute() {
@@ -22,7 +22,7 @@ export default class CreateSheetCommand extends Command {
     this.store.setSelectedSheet(this.data.args.uuid);
     this.store.setSheetOrder({
       uuid: this.data.args.uuid,
-      order: this.data.order,
+      order: this.data.order
     });
 
     if (!this.data.order) this.data.order = this.store.sheetOrder.length - 1;

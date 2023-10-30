@@ -1,27 +1,27 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class UnselectNodeAndGroupCommand extends Command {
   constructor(store, uuid, sheetId) {
     super(store);
-    this.type = "UnselectNodeAndGroupCommand";
+    this.type = 'UnselectNodeAndGroupCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       sheetId,
       uuid: uuid,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     const node = sheet.getNodeByUuid(this.data.uuid);
     if (node) {
-      this.name = "UnselectNodeCommand";
+      this.name = 'UnselectNodeCommand';
       this.data.nodeType = node.type;
     } else {
       const group = sheet.getGroupByUuid(this.data.uuid);
       if (group) {
-        this.name = "UnselectGroupCommand";
+        this.name = 'UnselectGroupCommand';
         this.data.groupName = group.name;
       } else {
-        this.name = "ClearSelectionCommand";
+        this.name = 'ClearSelectionCommand';
       }
     }
   }

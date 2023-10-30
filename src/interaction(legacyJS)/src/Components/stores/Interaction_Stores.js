@@ -1,6 +1,6 @@
-import EventSystemStore from "./EventSystem_Store";
-import InteractionHistoryStore from "./InteractionHistory_Store";
-import StringStore from "./String_Store";
+import EventSystemStore from './EventSystem_Store';
+import InteractionHistoryStore from './InteractionHistory_Store';
+import StringStore from './String_Store';
 
 const string_store = new StringStore();
 const eventSystem_store = new EventSystemStore(string_store);

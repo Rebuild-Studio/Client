@@ -1,17 +1,17 @@
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { reaction } from "mobx";
-import { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import primitiveStore from "@/store/primitiveStore";
+import { useEffect, useState } from 'react';
+import { reaction } from 'mobx';
+import { styled } from 'styled-components';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 import {
   CanvasInstance,
-  instanceTranslate,
-} from "@/resources/constants/canvas";
-import onContextMenuHierarchyEvents from "../utils/onContextMenuHierarchyEvent";
-import onClickHierarchyEvent from "../utils/onClickHierarchyEvent";
-import { findRootGroup } from "@/three_components/utils/findGroup";
-import { findRootAsset } from "@/three_components/utils/findAsset";
+  instanceTranslate
+} from '@/resources/constants/canvas';
+import { fonts } from '@/resources/fonts/font';
+import { findRootAsset } from '@/three_components/utils/findAsset';
+import { findRootGroup } from '@/three_components/utils/findGroup';
+import primitiveStore from '@store/primitive.store.ts';
+import onClickHierarchyEvent from '../utils/onClickHierarchyEvent';
+import onContextMenuHierarchyEvents from '../utils/onContextMenuHierarchyEvent';
 
 type MouseEvents = {
   objectDoubleClick: React.MouseEventHandler<HTMLDivElement>;
@@ -28,8 +28,8 @@ type Props = {
   depth: number;
 };
 export const HierarchyElement = ({ mesh, depth }: Props) => {
-  const storeId = mesh.userData["storeId"];
-  const isLocked = mesh.userData["isLocked"];
+  const storeId = mesh.userData['storeId'];
+  const isLocked = mesh.userData['isLocked'];
   const visible = mesh.visible;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,18 +37,18 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
 
   const iconImg = () => {
     switch (mesh.name) {
-      case "LIGHT":
-        return "/icons/studio/icon_light.png";
-      case "CAMERA":
-        return "/icons/studio/icon_camera.svg";
+      case 'LIGHT':
+        return '/icons/studio/icon_light.png';
+      case 'CAMERA':
+        return '/icons/studio/icon_camera.svg';
       default:
-        return "/icons/studio/icon_object.svg";
+        return '/icons/studio/icon_object.svg';
     }
   };
 
   const isInteractionVisible = () => {
     // 그룹이나 애셋 오브젝트인 경우
-    if (mesh.name === "GROUP" || mesh.name === "ASSET") {
+    if (mesh.name === 'GROUP' || mesh.name === 'ASSET') {
       return true;
     }
 
@@ -104,14 +104,14 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
     },
     lockImgClick: (e) => {
       e.stopPropagation();
-      mesh.userData["isLocked"] = !isLocked;
+      mesh.userData['isLocked'] = !isLocked;
       primitiveStore.updatePrimitive(storeId, mesh);
     },
     visibleImgClick: (e) => {
       e.stopPropagation();
       mesh.visible = !visible;
       primitiveStore.updatePrimitive(storeId, mesh);
-    },
+    }
   };
 
   return (
@@ -129,8 +129,8 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
           src={
             mesh.children.length !== 0
               ? isOpen
-                ? "/icons/studio/icon_그룹열기.svg"
-                : "/icons/studio/icon_그룹닫기.svg"
+                ? '/icons/studio/icon_그룹열기.svg'
+                : '/icons/studio/icon_그룹닫기.svg'
               : iconImg()
           }
           alt="icon"
@@ -143,16 +143,16 @@ export const HierarchyElement = ({ mesh, depth }: Props) => {
             <img
               src={
                 isLocked
-                  ? "/icons/studio/icon_잠그기.svg"
-                  : "/icons/studio/icon_잠금해제.svg"
+                  ? '/icons/studio/icon_잠그기.svg'
+                  : '/icons/studio/icon_잠금해제.svg'
               }
               onClick={mouseEvents.lockImgClick}
             />
             <img
               src={
                 visible
-                  ? "/icons/studio/icon_보이기.svg"
-                  : "/icons/studio/icon_가리기.svg"
+                  ? '/icons/studio/icon_보이기.svg'
+                  : '/icons/studio/icon_가리기.svg'
               }
               onClick={mouseEvents.visibleImgClick}
             />
@@ -206,8 +206,8 @@ const ObjectElement = styled.div<CSSObjectElementProps>`
   align-items: center;
   padding: 6px 0px;
   background-color: ${({ $isMouseUp }) =>
-    $isMouseUp ? grayColors["303030"] : "inherit"};
+    $isMouseUp ? grayColors['303030'] : 'inherit'};
   ${InteractionButtonBox} {
-    visibility: ${({ $isMouseUp }) => ($isMouseUp ? "visible" : "hidden")};
+    visibility: ${({ $isMouseUp }) => ($isMouseUp ? 'visible' : 'hidden')};
   }
 `;

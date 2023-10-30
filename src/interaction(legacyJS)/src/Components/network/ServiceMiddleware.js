@@ -1,7 +1,7 @@
-import convertEndPoint from "./utils/convertEndPoint";
-import ServiceError from "./error/ServiceError";
-import convertArgs from "./utils/convertArgs";
-import errorHandlerMapper from "./error/handler/errorHandlerMapper";
+import ServiceError from './error/ServiceError';
+import errorHandlerMapper from './error/handler/errorHandlerMapper';
+import convertArgs from './utils/convertArgs';
+import convertEndPoint from './utils/convertEndPoint';
 
 const MAX_RETRY_COUNT = 3;
 /**  
@@ -24,7 +24,7 @@ const ServiceMiddleware = async (endPointName, ...args) => {
   // API 호출 시 Loading store 사용하면 됨
   const params = convertArgs(args);
   if (params.count > MAX_RETRY_COUNT) {
-    return new ServiceError(1001, "Max retry count exceeded");
+    return new ServiceError(1001, 'Max retry count exceeded');
   }
 
   try {
@@ -42,8 +42,8 @@ const ServiceMiddleware = async (endPointName, ...args) => {
       }
 
       return await ServiceMiddleware(endPointName, ...args, [
-        "count",
-        params.count + 1,
+        'count',
+        params.count + 1
       ]);
     }
   }

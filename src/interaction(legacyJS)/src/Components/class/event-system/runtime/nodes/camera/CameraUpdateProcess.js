@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 
 export default class CameraUpdateProcess extends NodeProcess {
   updateCameraProjectionMatrix() {

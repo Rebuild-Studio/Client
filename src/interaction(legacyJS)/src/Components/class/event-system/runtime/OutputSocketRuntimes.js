@@ -11,7 +11,7 @@ export default class OutputSocketRuntimes {
         defaultValue: undefined,
         refs: value.wires.length,
         currentRefs: 0,
-        wires: value.wires,
+        wires: value.wires
       };
     }
   }
@@ -33,17 +33,17 @@ export default class OutputSocketRuntimes {
   giveValue(name) {
     //give value to input sockets
     if (this.error) {
-      throw Error("disabled");
+      throw Error('disabled');
     }
     if (!this.ready) {
-      throw Error("not ready");
+      throw Error('not ready');
     }
     const value = this.sockets[name].value;
     if (this.sockets[name].currentRefs > 0) {
       this.sockets[name].currentRefs--;
       if (
         this.sockets[name].currentRefs === 0 &&
-        typeof this.sockets[name].defaultValue !== "undefined"
+        typeof this.sockets[name].defaultValue !== 'undefined'
       ) {
         this.sockets[name].value = this.sockets[name].defaultValue;
       }

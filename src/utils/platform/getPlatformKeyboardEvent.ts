@@ -1,11 +1,11 @@
-import getPlatform from "./getPlatform";
+import getPlatform from './getPlatform';
 
 const isCtrlEventTrigger = (e: KeyboardEvent) => {
   switch (getPlatform()) {
-    case "macos": {
+    case 'macos': {
       return e.metaKey;
     }
-    case "unknown": {
+    case 'unknown': {
       return false;
     }
     default: {

@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
-import { action } from "mobx";
-import { hierarchy_store } from "../../stores/Hierarchy_Store";
-import { eventSystem_store } from "../../stores/Interaction_Stores";
+import { action } from 'mobx';
+import { hierarchy_store } from '../../stores/Hierarchy_Store';
+import { eventSystem_store } from '../../stores/Interaction_Stores';
 
 const InteractionHierachyVM = {
   get interactionHierarchyList() {
@@ -18,11 +18,11 @@ const InteractionHierachyVM = {
     const nodesAndGroups = sheet.getNodesAndGroups();
 
     for (const obj of nodesAndGroups) {
-      if (obj.type === "group") {
+      if (obj.type === 'group') {
         const group = obj;
 
         interactionHierarchyList.push(group);
-        if (group.folder === "open") {
+        if (group.folder === 'open') {
           for (const node of nodesAndGroups) {
             if (node.group === group.uuid) {
               interactionHierarchyList.push(node);
@@ -51,7 +51,7 @@ const InteractionHierachyVM = {
     hierarchy_store.interactionHierarchyList = [
       group,
       ...children,
-      ...rearrangeList,
+      ...rearrangeList
     ];
   }),
 
@@ -94,7 +94,7 @@ const InteractionHierachyVM = {
     const sheet = eventSystem_store.getSelectedSheet();
     let rearrangeList = [...hierarchy_store.interactionHierarchyList];
 
-    if (object.type === "group" && object.folder === "close") {
+    if (object.type === 'group' && object.folder === 'close') {
       const group = object;
 
       const childrenList = sheet.nodesAndGroups.filter(
@@ -108,7 +108,7 @@ const InteractionHierachyVM = {
         0,
         ...childrenList
       );
-    } else if (object.type === "group" && object.folder === "open") {
+    } else if (object.type === 'group' && object.folder === 'open') {
       const group = object;
 
       sheet.closeFolderByUuid(group.uuid);
@@ -116,7 +116,7 @@ const InteractionHierachyVM = {
       rearrangeList = rearrangeList.filter((obj) => obj.group !== object.uuid);
     }
     hierarchy_store.interactionHierarchyList = [...rearrangeList];
-  }),
+  })
 };
 
 export default InteractionHierachyVM;

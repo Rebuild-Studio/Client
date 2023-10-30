@@ -1,7 +1,7 @@
-import React from "react";
-import { Button, Typography, ListItemButton } from "@mui/material";
-import { MyPageVM } from "../../view_models/MyPage_VM";
-import storeContainer from "../../stores/storeContainer";
+import React from 'react';
+import { Button, ListItemButton, Typography } from '@mui/material';
+import storeContainer from '../../stores/storeContainer';
+import { MyPageVM } from '../../view_models/MyPage_VM';
 
 const ProjectListItem = ({ item, handleClickMenuCustom }) => {
   const { user_store } = storeContainer;
@@ -32,8 +32,8 @@ const ProjectListItem = ({ item, handleClickMenuCustom }) => {
 
       <img
         style={{
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%'
         }}
         src={item.thumbnail}
         alt="library"
@@ -49,38 +49,38 @@ export default ProjectListItem;
 
 const style = {
   textArea: {
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "13px",
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '13px',
     fontWeight: 500,
-    color: "#e2e2e2",
+    color: '#e2e2e2'
   },
   ListBtnStyle: function (index) {
     return {
-      width: "245px",
-      height: "244px",
-      mt: "20px",
-      ml: "10px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      border: `${index === 0 ? "1px dotted #fff" : 1}`,
-      borderRadius: "4px",
-      flexDirection: "column",
-      backgroundColor: "#303030",
+      width: '245px',
+      height: '244px',
+      mt: '20px',
+      ml: '10px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: `${index === 0 ? '1px dotted #fff' : 1}`,
+      borderRadius: '4px',
+      flexDirection: 'column',
+      backgroundColor: '#303030',
       backgroundImage: `${
         index !== 0 &&
-        "linear-gradient(to bottom, rgba(28, 28, 28, 0.9) 0%, rgba(28, 28, 28, 0.28) 23%, rgba(28, 28, 28, 0) 44%, rgba(28, 28, 28, 0) 56%, rgba(28, 28, 28, 0.28) 77%, rgba(28, 28, 28, 0.9) 100%)"
+        'linear-gradient(to bottom, rgba(28, 28, 28, 0.9) 0%, rgba(28, 28, 28, 0.28) 23%, rgba(28, 28, 28, 0) 44%, rgba(28, 28, 28, 0) 56%, rgba(28, 28, 28, 0.28) 77%, rgba(28, 28, 28, 0.9) 100%)'
       }`,
-      outline: `${index === MyPageVM.selProIdx ? "solid 2px #e3f853" : "none"}`,
-      color: `#303030`,
+      outline: `${index === MyPageVM.selProIdx ? 'solid 2px #e3f853' : 'none'}`,
+      color: `#303030`
     };
   },
   menuBtnStyle: {
-    position: "absolute",
-    left: "90%",
+    position: 'absolute',
+    left: '90%',
     top: 0,
-    minWidth: "0",
-    width: "2%",
-    height: "30px",
-  },
+    minWidth: '0',
+    width: '2%',
+    height: '30px'
+  }
 };

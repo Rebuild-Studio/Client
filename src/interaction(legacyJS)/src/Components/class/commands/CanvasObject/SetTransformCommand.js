@@ -1,12 +1,12 @@
 export default class SetTransformCommand {
   constructor(metaObject, args) {
-    this.type = "SetTransformCommand";
-    this.name = "오브젝트 변형 " + "(" + args.type + ")";
+    this.type = 'SetTransformCommand';
+    this.name = '오브젝트 변형 ' + '(' + args.type + ')';
     this.data = {
       metaObject: metaObject,
       type: args.type,
       newValue: args.newValue,
-      oldValue: args.oldValue,
+      oldValue: args.oldValue
     };
   }
   execute() {

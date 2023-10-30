@@ -1,34 +1,34 @@
-import MenuButton from "@/components/common/MenuButton";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import storeContainer from "@/store/storeContainer";
-import AssetPrimitive from "@/three_components/assets/AssetPrimitive";
-import { getButtonClickAnimation } from "@/utils/animation/button";
-import getMinioPath from "@/utils/path/minio";
-import { observer } from "mobx-react";
-import { nanoid } from "nanoid";
-import { useCallback } from "react";
-import styled, { css } from "styled-components";
+import { useCallback } from 'react';
+import { observer } from 'mobx-react';
+import { nanoid } from 'nanoid';
+import styled, { css } from 'styled-components';
+import MenuButton from '@/components/common/MenuButton';
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import AssetPrimitive from '@/three_components/assets/AssetPrimitive';
+import { getButtonClickAnimation } from '@/utils/animation/button';
+import getMinioPath from '@/utils/path/minio';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 
 const Footer = () => {
   const selectedAssets = assetLibraryStore.selectedAssets;
-  const selectedAsssetFileNames = selectedAssets.map((asset) => asset.fileName);
+  const selectedAssetFileNames = selectedAssets.map((asset) => asset.fileName);
   const { projectStateStore, primitiveStore } = storeContainer;
 
   const onClickLoad = useCallback(() => {
-    selectedAsssetFileNames.forEach((fileName) => {
+    selectedAssetFileNames.forEach((fileName) => {
       const storeId = nanoid();
       primitiveStore.addPrimitive(
         storeId,
         <AssetPrimitive
           key={storeId}
           storeId={storeId}
-          url={getMinioPath(fileName, "libraryGlb")}
+          url={getMinioPath(fileName, 'libraryGlb')}
         />
       );
       projectStateStore.clearModal();
     });
-  }, [selectedAsssetFileNames, primitiveStore, projectStateStore]);
+  }, [selectedAssetFileNames, primitiveStore, projectStateStore]);
 
   const onClickCancel = () => {
     projectStateStore.clearModal();
@@ -66,7 +66,7 @@ const LoadButton = styled(MenuButton)`
   border: 1px solid ${grayColors.lightGray};
   &:active {
     animation: ${css`
-      ${getButtonClickAnimation("translate")} 0.2s ease-in-out
+      ${getButtonClickAnimation('translate')} 0.2s ease-in-out
     `};
   }
 `;

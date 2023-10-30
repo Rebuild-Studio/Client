@@ -1,5 +1,5 @@
-import NodeRuntime from "../../NodeRuntime";
-import MaterialProcess from "./MaterialProcess";
+import MaterialProcess from './MaterialProcess';
+import NodeRuntime from '../../NodeRuntime';
 
 export default class MaterialRuntime extends NodeRuntime {
   constructor(args) {

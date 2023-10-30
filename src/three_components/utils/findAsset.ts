@@ -6,7 +6,7 @@ const hasAsset = (
     return;
   }
 
-  if (intersectObject.parent?.name === "ASSET") {
+  if (intersectObject.parent?.name === 'ASSET') {
     return original;
   }
 
@@ -21,8 +21,8 @@ const findRootAsset = (
   }
 
   if (
-    intersectObject.parent?.type === "Scene" &&
-    intersectObject.name === "ASSET"
+    intersectObject.parent?.type === 'Scene' &&
+    intersectObject.name === 'ASSET'
   ) {
     return intersectObject;
   }

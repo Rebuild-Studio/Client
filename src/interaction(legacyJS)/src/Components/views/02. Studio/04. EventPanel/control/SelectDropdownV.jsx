@@ -1,9 +1,9 @@
-import legacyStoreContainer from "../../../../stores/storeContainer";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { useState, useCallback, useEffect, useMemo } from "react";
-import SetNodeDataCommand from "../../../../class/commands/Interaction/SetNodeDataCommand";
-import SetNodeObjectCommand from "../../../../class/commands/Interaction/SetNodeObjectCommand";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import SetNodeDataCommand from '../../../../class/commands/Interaction/SetNodeDataCommand';
+import SetNodeObjectCommand from '../../../../class/commands/Interaction/SetNodeObjectCommand';
+import legacyStoreContainer from '../../../../stores/storeContainer';
 
 const SelectDropdown = observer((props) => {
   const { eventSystem_store, string_store, interactionhistory_store } =
@@ -13,7 +13,7 @@ const SelectDropdown = observer((props) => {
   const key = entry[0];
   const data = entry[1];
   const { uuid } = node;
-  const [defaultValue, setDefaultValue] = useState("오브젝트");
+  const [defaultValue, setDefaultValue] = useState('오브젝트');
   const dropdownData = primitiveStore.meshes;
   const disable = useMemo(() => {
     return Object.values(dropdownData).length > 0 ? false : true;
@@ -32,48 +32,48 @@ const SelectDropdown = observer((props) => {
     const args = {
       value: {
         name: node.type,
-        value: undefined,
-      },
+        value: undefined
+      }
     };
     switch (data.type) {
-      case "MouseRaycast":
-      case "ObjectSensor":
-      case "Object":
-        args.key = "object";
+      case 'MouseRaycast':
+      case 'ObjectSensor':
+      case 'Object':
+        args.key = 'object';
         if (dropdownData[data.value]) {
           setDefaultValue(dropdownData[data.value].name);
         } else {
-          setDefaultValue("");
+          setDefaultValue('');
           removeObjectValue(args);
         }
         break;
-      case "Light":
-      case "PointLightSensor":
-      case "SpotLightSensor":
-      case "PointLight":
-      case "SpotLight":
-        args.key = "light";
+      case 'Light':
+      case 'PointLightSensor':
+      case 'SpotLightSensor':
+      case 'PointLight':
+      case 'SpotLight':
+        args.key = 'light';
         if (dropdownData[data.value]) {
           setDefaultValue(dropdownData[data.value].name);
         } else {
-          setDefaultValue("");
+          setDefaultValue('');
           removeObjectValue(args);
         }
         break;
-      case "Function":
-        args.key = "function";
+      case 'Function':
+        args.key = 'function';
         if (dropdownData[data.value]) {
           setDefaultValue(dropdownData[data.value].name);
         } else {
-          setDefaultValue("");
+          setDefaultValue('');
           removeObjectValue(args);
         }
         break;
-      case "Asset":
+      case 'Asset':
         if (dropdownData[data.value]) {
           setDefaultValue(dropdownData[data.value].name);
         } else {
-          setDefaultValue("");
+          setDefaultValue('');
           removeObjectValue(args);
         }
         break;
@@ -85,22 +85,22 @@ const SelectDropdown = observer((props) => {
 
   const Options = useCallback(() => {
     switch (data.type) {
-      case "Object":
-      case "Sensor":
-      case "PointLight":
-      case "SpotLight":
+      case 'Object':
+      case 'Sensor':
+      case 'PointLight':
+      case 'SpotLight':
         return Object.entries(dropdownData).map(([key, mesh]) => (
           <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
             {mesh.name}
           </option>
         ));
-      case "Function":
+      case 'Function':
         return Object.entries(dropdownData).map(([key, mesh]) => (
           <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
             {mesh.name}
           </option>
         ));
-      case "Asset":
+      case 'Asset':
         return Object.entries(dropdownData).map(([key, mesh]) => (
           <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
             {mesh.name}
@@ -120,11 +120,11 @@ const SelectDropdown = observer((props) => {
       const targetValue = event.target.value;
       if (targetValue !== node.control[key].value) {
         switch (node.category) {
-          case "Sensor":
-          case "Animation": {
+          case 'Sensor':
+          case 'Animation': {
             const value = {
               value: targetValue,
-              name: dropdownData[targetValue],
+              name: dropdownData[targetValue]
             };
             interactionhistory_store.execute(
               new SetNodeObjectCommand(
@@ -137,10 +137,10 @@ const SelectDropdown = observer((props) => {
             );
             break;
           }
-          case "Object": {
+          case 'Object': {
             const value = {
               value: targetValue,
-              name: dropdownData[targetValue].name,
+              name: dropdownData[targetValue].name
             };
             interactionhistory_store.execute(
               new SetNodeObjectCommand(
@@ -174,7 +174,7 @@ const SelectDropdown = observer((props) => {
       key,
       node.category,
       node.control,
-      uuid,
+      uuid
     ]
   );
 
@@ -195,15 +195,15 @@ const SelectDropdown = observer((props) => {
       data-nodeuuid={uuid}
       data-name="node"
       style={{
-        border: "none",
-        width: "100%",
-        height: "100%",
-        outline: "none",
-        color: "inherit",
-        backgroundColor: "inherit",
-        fontFamily: "inherit",
-        fontSize: "inherit",
-        fontWeight: "inherit",
+        border: 'none',
+        width: '100%',
+        height: '100%',
+        outline: 'none',
+        color: 'inherit',
+        backgroundColor: 'inherit',
+        fontFamily: 'inherit',
+        fontSize: 'inherit',
+        fontWeight: 'inherit'
       }}
     >
       <option key={`${uuid}-option-blank`} hidden value="">

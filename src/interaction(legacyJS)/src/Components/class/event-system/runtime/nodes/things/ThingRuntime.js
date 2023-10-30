@@ -1,4 +1,4 @@
-import NodeRuntime from "../NodeRuntime";
+import NodeRuntime from '../NodeRuntime';
 
 function findMetaObject(object_store, uuid) {
   try {
@@ -15,18 +15,18 @@ export default class ThingRuntime extends NodeRuntime {
   constructor(args) {
     super(args);
     switch (this.node.type) {
-      case "MouseRaycast":
-      case "PositionSensor":
-      case "RotationSensor":
-      case "ScaleSensor":
-      case "ObjectSensor":
-      case "Object":
+      case 'MouseRaycast':
+      case 'PositionSensor':
+      case 'RotationSensor':
+      case 'ScaleSensor':
+      case 'ObjectSensor':
+      case 'Object':
         this.objectUuid = this.data.object;
         break;
-      case "PointLightSensor":
-      case "SpotLightSensor":
-      case "PointLight":
-      case "SpotLight":
+      case 'PointLightSensor':
+      case 'SpotLightSensor':
+      case 'PointLight':
+      case 'SpotLight':
         this.objectUuid = this.data.light;
         break;
       default:

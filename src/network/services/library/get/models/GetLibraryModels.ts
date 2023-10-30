@@ -1,4 +1,4 @@
-import { DomainType } from "@/features/assetLibrary/constants/domain";
+import { DomainType } from '@/features/assetLibrary/constants/domain';
 
 interface RequestGetAsset {
   domain: string;
@@ -41,5 +41,5 @@ export type {
   RequestGetAsset,
   ResponseGetAsset,
   RequestSearchAsset,
-  ResponseSearchAsset,
+  ResponseSearchAsset
 };

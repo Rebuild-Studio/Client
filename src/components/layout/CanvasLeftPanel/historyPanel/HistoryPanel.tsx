@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { observer } from "mobx-react";
-import { basicColors } from "@/resources/colors/colors";
-import { styled } from "styled-components";
-import { CanvasHistoryType } from "@/store/canvasHistoryStore";
-import Tab from "../../Tab";
-import UndoElement from "./UnDoElement";
-import RedoElement from "./RedoElement";
-import { StyledHeader, StyledPanel, StyledTab } from "../CanvasLeftPanel.style";
-import { instanceTranslate, attrTranslate } from "@/resources/constants/canvas";
+import { useState } from 'react';
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
+import { attrTranslate, instanceTranslate } from '@/resources/constants/canvas';
+import { CanvasHistoryType } from '@store/canvasHistory.store.ts';
+import RedoElement from './RedoElement';
+import UndoElement from './UnDoElement';
+import Tab from '../../Tab';
+import { StyledHeader, StyledPanel, StyledTab } from '../CanvasLeftPanel.style';
 
 type Props = {
   undoList: CanvasHistoryType[];
@@ -26,7 +26,7 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
       <StyledHeader>히스토리</StyledHeader>
       <StyledTab>
         <Tab
-          tabs={["캔버스", "인터렉션 에디터"]}
+          tabs={['캔버스', '인터렉션 에디터']}
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
@@ -37,7 +37,7 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
             <UndoElement
               label={
                 (instanceTranslate[value.instance] ?? value.instance) +
-                " " +
+                ' ' +
                 (attrTranslate[value.attribute] ?? value.attribute)
               }
               key={idx + value.id}
@@ -48,7 +48,7 @@ export const HistoryPanel = ({ undoList, redoList }: Props) => {
             <RedoElement
               label={
                 (instanceTranslate[value.instance] ?? value.instance) +
-                " " +
+                ' ' +
                 (attrTranslate[value.attribute] ?? value.attribute)
               }
               key={idx + value.id}

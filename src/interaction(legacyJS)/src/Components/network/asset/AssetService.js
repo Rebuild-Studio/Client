@@ -1,15 +1,15 @@
-import MXApiModule from "../MXApiModule";
-import ServiceError from "../error/ServiceError";
+import MXApiModule from '../MXApiModule';
+import ServiceError from '../error/ServiceError';
 
 const assetServiceKeyMap = {
-  postGLB_gltForm: "gltForm",
+  postGLB_gltForm: 'gltForm'
 };
 // 파라미터 gltfForm
 const PostGLB = async (args) => {
   const params = Object.fromEntries(args);
 
   const res = await MXApiModule.post(
-    "/asset",
+    '/asset',
     params[assetServiceKeyMap.postGLB_gltForm]
   ).catch((error) => {
     throw new ServiceError(
@@ -21,11 +21,11 @@ const PostGLB = async (args) => {
 };
 
 const assetServiceMap = {
-  postAsset: PostGLB,
+  postAsset: PostGLB
 };
 
 const assetEndPoints = {
-  postAsset: "postAsset",
+  postAsset: 'postAsset'
 };
 
 const executeAsset =

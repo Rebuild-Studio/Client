@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useEffect } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
-import storeContainer from "../../../stores/storeContainer";
-import { observer } from "mobx-react";
+import React, { useEffect, useMemo, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import { useFrame, useThree } from '@react-three/fiber';
+import storeContainer from '../../../stores/storeContainer';
 
 const SceneHelpers = observer(() => {
   const { scene_store } = storeContainer;
@@ -32,7 +32,7 @@ const SceneHelpers = observer(() => {
     //x axis
     const xAxisGeometry = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(axisLength, 0, 0),
-      new THREE.Vector3(-axisLength, 0, 0),
+      new THREE.Vector3(-axisLength, 0, 0)
     ]);
     const xAxisMaterial = new THREE.LineBasicMaterial({ color: 0xd14e66 });
     const xAxis = new THREE.Line(xAxisGeometry, xAxisMaterial);
@@ -41,7 +41,7 @@ const SceneHelpers = observer(() => {
     //y axis
     const yAxisGeometry = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(0, 0, axisLength),
-      new THREE.Vector3(0, 0, -axisLength),
+      new THREE.Vector3(0, 0, -axisLength)
     ]);
     const yAxisMaterial = new THREE.LineBasicMaterial({ color: 0x5a93ba });
     const yAxis = new THREE.Line(yAxisGeometry, yAxisMaterial);

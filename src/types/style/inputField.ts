@@ -1,19 +1,19 @@
-import { CSSHexColor, CSSRgba, CSSSize } from "./cssUnits";
+import { CSSHexColor, CSSRgba, CSSSize } from './cssUnits';
 
 type InputType =
-  | "text"
-  | "password"
-  | "email"
-  | "number"
-  | "url"
-  | "date"
-  | "time"
-  | "checkbox"
-  | "radio"
-  | "color"
-  | "file"
-  | "hidden"
-  | "search";
+  | 'text'
+  | 'password'
+  | 'email'
+  | 'number'
+  | 'url'
+  | 'date'
+  | 'time'
+  | 'checkbox'
+  | 'radio'
+  | 'color'
+  | 'file'
+  | 'hidden'
+  | 'search';
 
 type CSSBorder =
   | `${string}`

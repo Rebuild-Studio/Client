@@ -1,5 +1,5 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 /**
  * `CreateNodeCommand` is a class that represents a command to create a node on a sheet.
@@ -12,18 +12,18 @@ import * as Utils from "../../event-system/utils";
 export default class CreateNodeCommand extends Command {
   constructor(store, { node, sheetId }) {
     super(store);
-    this.type = "CreateNodeCommand";
+    this.type = 'CreateNodeCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       nodeCreationInfo: {
         node: node,
-        uuid: "",
+        uuid: '',
         sheetId,
-        name: this.store.uniqueNodeTypeName(sheet, node.NODE_TYPE),
+        name: this.store.uniqueNodeTypeName(sheet, node.NODE_TYPE)
       },
-      uuids: "",
-      json: "",
-      sheetName: this.store.getSheetByUuid(sheetId).name,
+      uuids: '',
+      json: '',
+      sheetName: this.store.getSheetByUuid(sheetId).name
     };
   }
 
@@ -39,14 +39,14 @@ export default class CreateNodeCommand extends Command {
       const node = sheet.createNodeWithNodeClass(this.data.nodeCreationInfo);
       this.data.uuids = [
         ...sheet.clearSelectedNodes(),
-        ...sheet.clearSelectedGroups(),
+        ...sheet.clearSelectedGroups()
       ];
       sheet.selectNode(node.uuid);
       this.data.nodeCreationInfo.uuid = node.uuid;
       this.data.json = Utils.stringify({
         nodes: [node],
         wires: [],
-        sheetId: this.data.nodeCreationInfo.sheetId,
+        sheetId: this.data.nodeCreationInfo.sheetId
       });
     }
   }
@@ -67,6 +67,9 @@ export default class CreateNodeCommand extends Command {
   }
 
   getDetailData() {
-    return [this.data.sheetName, Utils.encryptString(this.data.nodeCreationInfo.node.type)];
+    return [
+      this.data.sheetName,
+      Utils.encryptString(this.data.nodeCreationInfo.node.type)
+    ];
   }
 }

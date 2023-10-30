@@ -1,7 +1,7 @@
-import renderStore from "@/store/renderStore";
-import storeContainer from "@/store/storeContainer";
-import { CameraControls } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
+import { CameraControls } from '@react-three/drei';
+import storeContainer from '@/store/storeContainer';
+import renderStore from '@store/render.store.ts';
 
 export const CanvasHelper = () => {
   const cameraControlRef = useRef<any>();
@@ -17,7 +17,7 @@ export const CanvasHelper = () => {
       <CameraControls
         ref={cameraControlRef}
         onChange={(e) => {
-          if (e && e.type !== "update") {
+          if (e && e.type !== 'update') {
             transformControlStore.setIsFocused(true);
           }
         }}

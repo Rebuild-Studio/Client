@@ -1,8 +1,8 @@
-import apiModule from "@/network/module/apiModule";
-import { RequestDeleteAsset } from "./models/DeleteAssetModels";
+import apiModule from '@/network/module/apiModule';
+import { RequestDeleteAsset } from './models/DeleteAssetModels';
 
 const deleteAsset = async () => {
-  const res = await apiModule.delete("/asset");
+  const res = await apiModule.delete('/asset');
 
   return res;
 };
@@ -15,7 +15,7 @@ const deleteSpecificAsset = async (params: RequestDeleteAsset) => {
 
 const deleteAssetServices = {
   deleteAsset: deleteAsset,
-  deleteSpecificAsset: deleteSpecificAsset,
+  deleteSpecificAsset: deleteSpecificAsset
 };
 
 export default deleteAssetServices;

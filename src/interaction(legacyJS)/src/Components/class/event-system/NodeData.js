@@ -1,10 +1,10 @@
-import { Vector3, Color } from "three";
-import { ControlType } from "./NodeControl";
+import { Color, Vector3 } from 'three';
+import { ControlType } from './NodeControl';
 
 export const NodeData = {
   default: {
     inputSocket: [],
-    outputSocket: [],
+    outputSocket: []
   },
   // Animation: {
   //   inputSocket: [
@@ -51,17 +51,17 @@ export const NodeData = {
     inputSocket: [],
     outputSocket: [
       {
-        name: "에셋 명",
+        name: '에셋 명',
         type: ControlType.String,
         reference: {
-          name: "NODE_DAT_STRING",
-          defaultValue: "hohoho",
-          type: "String",
-          tooltipMessage: "에셋 파일 이름을 작성하세요(확장자 제외)",
-        },
-      },
+          name: 'NODE_DAT_STRING',
+          defaultValue: 'hohoho',
+          type: 'String',
+          tooltipMessage: '에셋 파일 이름을 작성하세요(확장자 제외)'
+        }
+      }
     ],
-    control: [],
+    control: []
   },
 
   // Function: {
@@ -258,16 +258,16 @@ export const NodeData = {
   Changed: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Boolean,
-      },
+        name: '',
+        type: ControlType.Boolean
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Boolean,
-      },
-    ],
+        name: '',
+        type: ControlType.Boolean
+      }
+    ]
   },
 
   // LogicGate: {
@@ -296,7 +296,6 @@ export const NodeData = {
   //     },
   //   ],
   // },
-
 
   // Compare: {
   //   inputSocket: [
@@ -343,7 +342,6 @@ export const NodeData = {
   //     },
   //   ],
   // },
-
 
   // MathSymbol: {
   //   inputSocket: [
@@ -452,105 +450,105 @@ export const NodeData = {
   AdvancedCalculation: {
     inputSocket: [
       {
-        name: "number",
-        type: ControlType.Number,
-      },
+        name: 'number',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "number",
-        type: ControlType.Number,
-      },
+        name: 'number',
+        type: ControlType.Number
+      }
     ],
     control: [
       {
-        name: "advancedCalculation",
-        value: "abs",
+        name: 'advancedCalculation',
+        value: 'abs',
         type: ControlType.AdvancedCalculation,
-        IsDropdown: true,
-      },
-    ],
+        IsDropdown: true
+      }
+    ]
   },
   Map: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     control: [
       {
-        name: "NODE_DAT_INPUT_MIN",
+        name: 'NODE_DAT_INPUT_MIN',
         value: 0,
-        type: ControlType.Number,
+        type: ControlType.Number
       },
       {
-        name: "NODE_DAT_INPUT_MAX",
+        name: 'NODE_DAT_INPUT_MAX',
         value: 1,
-        type: ControlType.Number,
+        type: ControlType.Number
       },
       {
-        name: "NODE_DAT_OUTPUT_MIN",
+        name: 'NODE_DAT_OUTPUT_MIN',
         value: -1,
-        type: ControlType.Number,
+        type: ControlType.Number
       },
       {
-        name: "NODE_DAT_OUTPUT_MAX",
+        name: 'NODE_DAT_OUTPUT_MAX',
         value: 1,
-        type: ControlType.Number,
+        type: ControlType.Number
       },
       {
-        name: "NODE_DAT_INVERSE",
+        name: 'NODE_DAT_INVERSE',
         value: false,
-        type: ControlType.Boolean,
+        type: ControlType.Boolean
       },
       {
-        name: "NODE_DAT_BOUND",
+        name: 'NODE_DAT_BOUND',
         value: false,
-        type: ControlType.Boolean,
-      },
-    ],
+        type: ControlType.Boolean
+      }
+    ]
   },
   Digitize: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     control: [
       {
-        name: "NODE_DAT_DIVISOR",
+        name: 'NODE_DAT_DIVISOR',
         value: 2,
-        type: ControlType.Number,
-      },
-    ],
+        type: ControlType.Number
+      }
+    ]
   },
   Inverse: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
-    ],
+        name: '',
+        type: ControlType.Number
+      }
+    ]
   },
   // Random: {
   //   inputSocket: [
@@ -649,44 +647,44 @@ export const NodeData = {
   PositionToAngle: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Vector3,
-      },
+        name: '',
+        type: ControlType.Vector3
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
-    ],
+        name: '',
+        type: ControlType.Number
+      }
+    ]
   },
   AngleToPosition: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Vector3,
-      },
-    ],
+        name: '',
+        type: ControlType.Vector3
+      }
+    ]
   },
   AngleDifference: {
     inputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
+        name: '',
+        type: ControlType.Number
+      }
     ],
     outputSocket: [
       {
-        name: "",
-        type: ControlType.Number,
-      },
-    ],
+        name: '',
+        type: ControlType.Number
+      }
+    ]
   },
 
   // Object: {
@@ -1171,16 +1169,16 @@ export const NodeData = {
     inputSocket: [],
     outputSocket: [
       {
-        name: "material template",
-        type: ControlType.Number,
-      },
+        name: 'material template',
+        type: ControlType.Number
+      }
     ],
     control: [
       {
-        name: "NODE_DAT_MATERIAL_TEMPLATE",
+        name: 'NODE_DAT_MATERIAL_TEMPLATE',
         value: 0,
-        type: ControlType.MaterialTemplate,
-      },
-    ],
-  },
+        type: ControlType.MaterialTemplate
+      }
+    ]
+  }
 };

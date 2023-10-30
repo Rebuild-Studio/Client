@@ -1,10 +1,10 @@
-import storeContainer from "../../../../stores/storeContainer";
-import { observer } from "mobx-react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import ControlDataVM from "./ControlDataVM";
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from 'react';
+import { observer } from 'mobx-react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import ControlDataVM from './ControlDataVM';
+import storeContainer from '../../../../stores/storeContainer';
 
 const TypeSelect = observer((props) => {
   const { string_store } = storeContainer;
@@ -13,11 +13,11 @@ const TypeSelect = observer((props) => {
     <Select
       value={current}
       displayEmpty
-      disabled={type === "out" && options[0] === ""}
+      disabled={type === 'out' && options[0] === ''}
       renderValue={(value) => {
         return string_store.string(value ? value : type);
       }}
-      sx={{ color: "#FFFFFF" }}
+      sx={{ color: '#FFFFFF' }}
       onChange={(event) => {
         setter(event.target.value);
       }}
@@ -61,7 +61,7 @@ const ControlConvertV = observer((props) => {
     const outputData = data.get(inputType);
     update.current[name] = {
       value: outputData.map.get(outputType),
-      type: control.type,
+      type: control.type
     };
   }, [name, update, outputType, data, inputType, control.type]);
 

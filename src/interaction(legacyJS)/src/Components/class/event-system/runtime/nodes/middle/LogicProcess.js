@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 //logic gates
 function logicAnd(a, b) {
@@ -36,26 +36,26 @@ export default class LogicProcess extends MiddleProcess {
     super(nodeRuntime);
     this.makeArray = makeArray2;
     switch (this.data.LogicGate) {
-      case "And":
+      case 'And':
         this.logic = logicAnd;
         break;
-      case "Nand":
+      case 'Nand':
         this.logic = logicNand;
         break;
-      case "Nor":
+      case 'Nor':
         this.logic = logicNor;
         break;
-      case "Not":
+      case 'Not':
         this.makeArray = makeArray1;
         this.logic = logicNot;
         break;
-      case "Or":
+      case 'Or':
         this.logic = logicOr;
         break;
-      case "Xor":
+      case 'Xor':
         this.logic = logicXor;
         break;
-      case "Xnor":
+      case 'Xnor':
         this.logic = logicXnor;
         break;
       default:

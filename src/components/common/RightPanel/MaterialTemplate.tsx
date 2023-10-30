@@ -1,8 +1,8 @@
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import Grid from "../Grid";
-import dataStore from "./MaterialGeometryData";
-import storeContainer from "@/store/storeContainer";
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import storeContainer from '@/store/storeContainer';
+import dataStore from './MaterialGeometryData';
+import Grid from '../Grid';
 
 const MaterialTemplate = () => {
   const { selectedObjectStore } = storeContainer;
@@ -32,5 +32,5 @@ const ImageStyled = styled.img<{ isSelected: boolean }>`
   width: 10.1vh;
   height: 10.1vh;
   border-radius: 5px;
-  outline: ${(props) => (props.isSelected ? "solid 0.25vh #e3f853" : "none")};
+  outline: ${(props) => (props.isSelected ? 'solid 0.25vh #e3f853' : 'none')};
 `;

@@ -1,10 +1,10 @@
-import UUIDGenerator from "../../../utils/uuid";
-import { action, makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from 'mobx';
+import UUIDGenerator from '../../../utils/uuid';
 
 export default class Wire {
   uuid;
-  headSocket = "";
-  tailSocket = "";
+  headSocket = '';
+  tailSocket = '';
   type;
   constructor(type, uuid = undefined) {
     this.type = type;
@@ -16,7 +16,7 @@ export default class Wire {
       type: observable,
       setHeadSocket: action,
       setTailSocket: action,
-      dispose: action,
+      dispose: action
     });
   }
 
@@ -33,7 +33,7 @@ export default class Wire {
       uuid: this.uuid,
       headSocket: this.headSocket,
       tailSocket: this.tailSocket,
-      type: this.type?.name,
+      type: this.type?.name
     };
   }
 

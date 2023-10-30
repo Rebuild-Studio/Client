@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 interface KeyType {
   key: string;
@@ -15,10 +15,10 @@ interface KeyboardEventProps {
 
 class KeyboardEventStore {
   currentKeyEvent: KeyType = {
-    key: "",
+    key: '',
     isCtrlPressed: false,
     isShiftPressed: false,
-    isAltPressed: false,
+    isAltPressed: false
   };
 
   constructor() {
@@ -30,10 +30,10 @@ class KeyboardEventStore {
   }
   clearKeyEvent() {
     this.currentKeyEvent = {
-      key: "",
+      key: '',
       isCtrlPressed: false,
       isShiftPressed: false,
-      isAltPressed: false,
+      isAltPressed: false
     };
   }
 }

@@ -1,28 +1,28 @@
-import { MeshProps, useFrame } from "@react-three/fiber";
-import { useServerTextureLoader } from "../../hooks/loader";
-import { useRef } from "react";
-import renderStore from "@/store/renderStore";
-import * as THREE from "three";
-import getMinioPath from "@/utils/path/minio";
+import { useRef } from 'react';
+import * as THREE from 'three';
+import { MeshProps, useFrame } from '@react-three/fiber';
+import getMinioPath from '@/utils/path/minio';
+import renderStore from '@store/render.store.ts';
+import { useServerTextureLoader } from '../../hooks/loader';
 
 export const ViewCube = (props: MeshProps) => {
   const faceArray = [
-    "RIGHT",
-    "RIGHT",
-    "LEFT",
-    "LEFT",
-    "TOP",
-    "TOP",
-    "BOTTOM",
-    "BOTTOM",
-    "FRONT",
-    "FRONT",
-    "BACK",
-    "BACK",
+    'RIGHT',
+    'RIGHT',
+    'LEFT',
+    'LEFT',
+    'TOP',
+    'TOP',
+    'BOTTOM',
+    'BOTTOM',
+    'FRONT',
+    'FRONT',
+    'BACK',
+    'BACK'
   ];
 
   const urls = Array.from({ length: 6 }, (_, idx) =>
-    getMinioPath(`${idx + 1}`, "cameraCubeMaterial")
+    getMinioPath(`${idx + 1}`, 'cameraCubeMaterial')
   );
   const textures = urls.map((url) => useServerTextureLoader(url));
 
@@ -50,22 +50,22 @@ export const ViewCube = (props: MeshProps) => {
     const dist = target.distanceTo(camera.position);
 
     switch (face) {
-      case "TOP":
+      case 'TOP':
         controls.setLookAt(target.x, dist, target.z, target.x, 0, target.z);
         break;
-      case "BOTTOM":
+      case 'BOTTOM':
         controls.setLookAt(target.x, -dist, target.z, target.x, 0, target.z);
         break;
-      case "FRONT":
+      case 'FRONT':
         controls.setLookAt(target.x, target.y, dist, target.x, target.y, 0);
         break;
-      case "BACK":
+      case 'BACK':
         controls.setLookAt(target.x, target.y, -dist, target.x, target.y, 0);
         break;
-      case "LEFT":
+      case 'LEFT':
         controls.setLookAt(-dist, target.y, target.z, 0, target.y, target.z);
         break;
-      case "RIGHT":
+      case 'RIGHT':
         controls.setLookAt(dist, target.y, target.z, 0, target.y, target.z);
         break;
       default:

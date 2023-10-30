@@ -1,4 +1,4 @@
-import MiddleProcess from "../MiddleProcess";
+import MiddleProcess from '../MiddleProcess';
 
 export default class MaterialProcess extends MiddleProcess {
   constructor(nodeRuntime) {
@@ -6,10 +6,10 @@ export default class MaterialProcess extends MiddleProcess {
     this.nodeRuntime.setInputDefaultValueAll(undefined);
 
     switch (this.nodeRuntime.data.NODE_DAT_COMPOSE) {
-      case "compose":
+      case 'compose':
         this.calculate = this.compose;
         break;
-      case "decompose":
+      case 'decompose':
         this.calculate = this.decompose;
         break;
       default:
@@ -32,7 +32,7 @@ export default class MaterialProcess extends MiddleProcess {
       metalness: this.setMinMax(0.0, 1.0, inputs[2]),
       roughness: this.setMinMax(0.0, 1.0, inputs[3]),
       ior: this.setMinMax(1.0, 2.333, inputs[4]),
-      opacity: this.setMinMax(0.0, 1.0, inputs[5]),
+      opacity: this.setMinMax(0.0, 1.0, inputs[5])
     };
     return [result];
   }
@@ -45,7 +45,7 @@ export default class MaterialProcess extends MiddleProcess {
         metalness: inputs[0].metalness,
         roughness: inputs[0].roughness,
         ior: inputs[0].ior || undefined,
-        opacity: inputs[0].opacity,
+        opacity: inputs[0].opacity
       };
       return [result];
     } else {
@@ -54,7 +54,7 @@ export default class MaterialProcess extends MiddleProcess {
   }
 
   setMinMax(min, max, value) {
-    if (typeof value !== "undefined") {
+    if (typeof value !== 'undefined') {
       return Math.min(Math.max(value, min), max);
     } else {
       return undefined;

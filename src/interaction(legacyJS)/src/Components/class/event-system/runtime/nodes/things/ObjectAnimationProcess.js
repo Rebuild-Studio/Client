@@ -1,4 +1,4 @@
-import NodeProcess from "../NodeProcess";
+import NodeProcess from '../NodeProcess';
 
 export default class ObjectAnimationProcess extends NodeProcess {
   constructor(nodeRuntime, key, refKey) {
@@ -12,14 +12,14 @@ export default class ObjectAnimationProcess extends NodeProcess {
   setAnimationProps(value) {
     this.nodeRuntime.metaObject.SetAnimationInteraction({
       name: this.refKey,
-      weight: value,
+      weight: value
     });
   }
 
   coreWork(state, delta, xrFrame) {
     try {
       const value = this.inputs[this.key];
-      if (typeof value !== "undefined") {
+      if (typeof value !== 'undefined') {
         this.setProp(value);
       }
     } catch (e) {

@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class CreateWireCommand extends Command {
   constructor(store, uuids, sheetId) {
     super(store);
-    this.type = "CreateWireCommand";
+    this.type = 'CreateWireCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     const sockets = uuids.map((uuid) => sheet.getSocketByUuid(uuid));
@@ -12,12 +12,12 @@ export default class CreateWireCommand extends Command {
       args: {
         uuid: undefined,
         uuids: uuids,
-        sheetId,
+        sheetId
       },
       json: undefined,
       sheetName: sheet.name,
       nodeTypes: sockets.map((socket) => sheet.getNodeByUuid(socket.node).type),
-      socketTypes: sockets.map((socket) => socket.name),
+      socketTypes: sockets.map((socket) => socket.name)
     };
   }
   execute() {
@@ -33,7 +33,7 @@ export default class CreateWireCommand extends Command {
       this.data.json = Utils.stringify({
         nodes: [],
         wires: [wire],
-        sheetId: this.data.args.sheetId,
+        sheetId: this.data.args.sheetId
       });
     }
   }
@@ -45,7 +45,7 @@ export default class CreateWireCommand extends Command {
     return [
       this.data.sheetName,
       this.data.nodeTypes.map((v) => Utils.encryptString(v)),
-      this.data.socketTypes.map((v) => Utils.encryptString(v)),
+      this.data.socketTypes.map((v) => Utils.encryptString(v))
     ].flat();
   }
 }

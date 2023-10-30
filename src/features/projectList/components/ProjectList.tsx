@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import MenuButton, { MenuButtonProps } from "@/components/common/MenuButton";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import ProjectCards from "./ProjectCards";
-import { TemplateCards } from "./TemplateCards";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { useFetchProjectList } from "../hooks/useFetchProjectList query";
-import { useToast } from "@/hooks/useToast";
-import { useFetchProject } from "../hooks/useFetchProject";
-import Tab from "@/components/layout/Tab";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
+import MenuButton, { MenuButtonProps } from '@/components/common/MenuButton';
+import Tab from '@/components/layout/Tab';
+import { useToast } from '@/hooks/useToast';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import ProjectCards from './ProjectCards';
+import { TemplateCards } from './TemplateCards';
+import { useFetchProject } from '../hooks/useFetchProject';
+import { useFetchProjectList } from '../hooks/useFetchProjectList.query.ts';
 
 const ProjectList = () => {
   const { projectStateStore, projectStore } = storeContainer;
@@ -18,9 +18,9 @@ const ProjectList = () => {
   const { data } = useFetchProjectList({
     onError: (error) => {
       addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`);
-    },
+    }
   });
-  const [error, fetchProject] = useFetchProject("MX");
+  const [error, fetchProject] = useFetchProject('MX');
 
   const onClickClose = () => {
     projectStateStore.clearModal();
@@ -28,10 +28,10 @@ const ProjectList = () => {
 
   const onClickLoad = async () => {
     if (!projectStore.selectedProject) {
-      addToast("프로젝트를 선택해주세요");
+      addToast('프로젝트를 선택해주세요');
       return;
     }
-    addToast("프로젝트를 불러오는 중입니다.");
+    addToast('프로젝트를 불러오는 중입니다.');
     projectStore.setProjectInfo(projectStore.selectedProject);
     await fetchProject();
 
@@ -51,7 +51,7 @@ const ProjectList = () => {
       <StyledTab>
         <Tab
           activeTab={selectedTabIndex}
-          tabs={["내 컴포넌트", "컴포넌트 템플릿"]}
+          tabs={['내 컴포넌트', '컴포넌트 템플릿']}
           backgroundColor={bgColors[343434]}
           underbarColor={basicColors.lightLimeGreen}
           width="400px"
@@ -139,28 +139,28 @@ const StyledFooter = styled.div`
   padding-right: 22px;
   gap: 20px;
 `;
-const buttonStyle: Omit<MenuButtonProps, "label" | "onClick" | "disabled"> = {
-  width: "138px",
-  height: "34px",
-  minHeight: "32px",
-  minWidth: "80px",
-  borderRadius: "6px",
-  fontSize: "small",
-  fontWeight: 500,
+const buttonStyle: Omit<MenuButtonProps, 'label' | 'onClick' | 'disabled'> = {
+  width: '138px',
+  height: '34px',
+  minHeight: '32px',
+  minWidth: '80px',
+  borderRadius: '6px',
+  fontSize: 'small',
+  fontWeight: 500
 };
 
 const confirmButtonStyle = {
   ...buttonStyle,
   backgroundColor: basicColors.lightLimeGreen,
-  fontFamily: "SpoqaHanSansNeo",
+  fontFamily: 'SpoqaHanSansNeo',
   color: bgColors[101728],
-  hoverBackgroundColor: basicColors.limeGreen,
+  hoverBackgroundColor: basicColors.limeGreen
 };
 
 const closeButtonStyle = {
   ...buttonStyle,
   backgroundColor: bgColors[282828],
-  fontFamily: "SpoqaHanSansNeo",
+  fontFamily: 'SpoqaHanSansNeo',
   color: basicColors.white,
-  hoverBackgroundColor: grayColors[808080],
+  hoverBackgroundColor: grayColors[808080]
 };

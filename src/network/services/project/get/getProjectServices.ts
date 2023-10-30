@@ -1,14 +1,14 @@
-import apiModule from "@/network/module/apiModule";
-import { ResponseGetMxProjectList } from "./models/getMxProjectList.model";
-import {
-  RequestGetPmxProject,
-  ResponseGetPmxProject,
-} from "./models/getPmxProject.model";
+import apiModule from '@/network/module/apiModule';
 import {
   RequestGetMxProject,
-  ResponseGetMxProject,
-} from "./models/getMxProject.model";
-import { ResponseGetPmxProjectList } from "./models/getPmxProjectList.model";
+  ResponseGetMxProject
+} from './models/getMxProject.model';
+import { ResponseGetMxProjectList } from './models/getMxProjectList.model';
+import {
+  RequestGetPmxProject,
+  ResponseGetPmxProject
+} from './models/getPmxProject.model';
+import { ResponseGetPmxProjectList } from './models/getPmxProjectList.model';
 
 const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {
   try {
@@ -17,7 +17,7 @@ const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {
     );
     return res;
   } catch (e) {
-    console.error("PMX 중복 이름 체크 실패 : ", e);
+    console.error('PMX 중복 이름 체크 실패 : ', e);
   }
 };
 
@@ -28,7 +28,7 @@ const getAllPmxProjectList = async () => {
     );
     return res;
   } catch (e) {
-    console.error("PMX 리스트 조회 실패 : ", e);
+    console.error('PMX 리스트 조회 실패 : ', e);
   }
 };
 
@@ -39,7 +39,7 @@ const getMyPmxProjectList = async () => {
     );
     return res;
   } catch (e) {
-    console.error("PMX 리스트 조회 실패 : ", e);
+    console.error('PMX 리스트 조회 실패 : ', e);
   }
 };
 
@@ -49,13 +49,13 @@ const getPmxProject = async (param: RequestGetPmxProject) => {
       `/pmx-project/load`,
       {
         params: {
-          projectId: param.projectId,
-        },
+          projectId: param.projectId
+        }
       }
     );
     return res;
   } catch (e) {
-    console.error("PMX 조회 실패 : ", e);
+    console.error('PMX 조회 실패 : ', e);
   }
 };
 
@@ -71,12 +71,12 @@ const getMxProject = async (param: RequestGetMxProject) => {
   try {
     const res = await apiModule.get<ResponseGetMxProject>(`/mx-project/load`, {
       params: {
-        projectId: param.projectId,
-      },
+        projectId: param.projectId
+      }
     });
     return res;
   } catch (e) {
-    console.error("MX 조회 실패 : ", e);
+    console.error('MX 조회 실패 : ', e);
   }
 };
 
@@ -86,7 +86,7 @@ const getProjectServices = {
   getMyPmxProjectList: getMyPmxProjectList,
   getPmxProject: getPmxProject,
   getMyMxProjectList: getMyMxProjectList,
-  getMxProject: getMxProject,
+  getMxProject: getMxProject
 };
 
 export default getProjectServices;

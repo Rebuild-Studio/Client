@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import Slider from "../Slider";
-import CustomMenu from "@/components/layout/Menu";
-import ColorHandler from "@/components/common/RightPanel/ColorHandler";
-import MaterialTemplate from "./MaterialTemplate";
-import ColorPicker from "./ColorPicker";
-import * as THREE from "three";
-import { HsvaColor } from "@uiw/color-convert";
-import { useEffect, useState } from "react";
-import storeContainer from "@/store/storeContainer";
+import { useEffect, useState } from 'react';
+import * as THREE from 'three';
+import { HsvaColor } from '@uiw/color-convert';
+import styled from 'styled-components';
+import ColorHandler from '@/components/common/RightPanel/ColorHandler';
+import CustomMenu from '@/components/layout/Menu';
+import storeContainer from '@/store/storeContainer';
+import ColorPicker from './ColorPicker';
+import MaterialTemplate from './MaterialTemplate';
+import Slider from '../Slider';
 
 interface MaterialInfoProps {
   metalness: number;
@@ -18,7 +18,7 @@ interface MaterialInfoProps {
 const Material = ({
   metalness = 1,
   roughness = 0.5,
-  color,
+  color
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
   const { primitiveStore } = storeContainer;
@@ -48,13 +48,13 @@ const Material = ({
       <Wrapper>
         <MaterialMenu>
           <TitleWrapper>
-            <span>{"머터리얼 요소 편집"}</span>
-            <CustomMenu title={"머테리얼"} MenuItem={<MaterialTemplate />} />
+            <span>{'머터리얼 요소 편집'}</span>
+            <CustomMenu title={'머테리얼'} MenuItem={<MaterialTemplate />} />
           </TitleWrapper>
           <TitleWrapper>
-            <span>{"기본 컬러"}</span>
+            <span>{'기본 컬러'}</span>
             <ColorPicker
-              label={"기본 컬러"}
+              label={'기본 컬러'}
               color={color}
               onChangeHsvaProp={updateMaterialColor}
               onChangeAlphaProp={updateMaterialAlpha}

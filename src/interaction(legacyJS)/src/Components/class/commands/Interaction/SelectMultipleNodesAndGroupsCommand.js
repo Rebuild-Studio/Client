@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class SelectMultipleNodesAndGroupsCommand extends Command {
   constructor(store, uuids, sheetId) {
     super(store);
-    this.type = "MultipleSelectWithDragBoxCommand";
+    this.type = 'MultipleSelectWithDragBoxCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       sheetId,
@@ -14,24 +14,24 @@ export default class SelectMultipleNodesAndGroupsCommand extends Command {
       clearGroup: undefined,
       selectedGroups: undefined,
       selectedNodes: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
 
-    this.name = "MultipleSelectWithDragBoxCommand"
+    this.name = 'MultipleSelectWithDragBoxCommand';
   }
 
   execute() {
     const sheet = this.store.getSheetByUuid(this.data.sheetId);
     if (this.data.uuids) {
-      this.data.uuids.map(uuid => sheet.selectNodeOrGroup(uuid));
+      this.data.uuids.map((uuid) => sheet.selectNodeOrGroup(uuid));
       // sheet.selectNodeOrGroup(this.data.uuids);
     }
   }
 
   undo() {
     const sheet = this.store.getSelectedSheet();
-    sheet.selectedNodes.clear()
-    sheet.selectedGroups.clear()
+    sheet.selectedNodes.clear();
+    sheet.selectedGroups.clear();
   }
 
   getDetailData() {

@@ -1,7 +1,7 @@
-import { action, makeObservable, observable } from "mobx";
-import UUIDGenerator from "../../../utils/uuid";
-import Socket from "./Socket";
-import { ControlType } from "./NodeControl";
+import { action, makeObservable, observable } from 'mobx';
+import { ControlType } from './NodeControl';
+import Socket from './Socket';
+import UUIDGenerator from '../../../utils/uuid';
 
 /**
  * @description 인터랙션 노드 클래스
@@ -18,16 +18,16 @@ export default class Node {
   control = {};
   referenceParameter = {};
   type;
-  category = "default";
+  category = 'default';
   position = [0, 0];
   group = null;
   random = 0;
-  uxSelector = "";
+  uxSelector = '';
   data = {};
 
   constructor(name, uuid, type) {
     this.uuid = uuid ? uuid : UUIDGenerator.run();
-    this.type = type ? type : "default";
+    this.type = type ? type : 'default';
     this.name = name ? name : this.type;
 
     makeObservable(this, {
@@ -53,7 +53,7 @@ export default class Node {
       deleteAllSockets: action,
       dispose: action,
       update: action,
-      setUxSelector: action,
+      setUxSelector: action
     });
   }
 
@@ -96,7 +96,7 @@ export default class Node {
           IsDropdown: c.IsDropdown || false,
           IsUxSelector: c.IsUxSelector || false,
           extras: c.extras || false,
-          tooltip: c.tooltip || false,
+          tooltip: c.tooltip || false
         };
       });
     }
@@ -106,8 +106,8 @@ export default class Node {
         this.referenceParameter[c.name] = {
           type: c.type,
           defaultValue: c.defaultValue || false,
-          tooltipMessage: c.tooltipMessage || "",
-          name: c.name || "",
+          tooltipMessage: c.tooltipMessage || '',
+          name: c.name || ''
         };
       });
     }
@@ -115,7 +115,7 @@ export default class Node {
 
   assignValueByType(value, type) {
     let ret;
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       switch (type) {
         case ControlType.Vector3:
         case ControlType.Color:
@@ -144,7 +144,7 @@ export default class Node {
         [
           ControlType.Object,
           ControlType.SpotLight,
-          ControlType.PointLight,
+          ControlType.PointLight
         ].includes(this.control[name].type)
       ) {
         this.control[name].value = objectId;
@@ -184,7 +184,7 @@ export default class Node {
   }
 
   clone() {
-    return new this.constructor(this.name, "", this.type);
+    return new this.constructor(this.name, '', this.type);
   }
 
   toJSON() {
@@ -199,7 +199,7 @@ export default class Node {
       category: this.category,
       position: this.position,
       parentPosition: this.parentPosition,
-      group: this.group,
+      group: this.group
     };
   }
 }

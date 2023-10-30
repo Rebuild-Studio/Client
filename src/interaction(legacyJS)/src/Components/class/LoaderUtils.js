@@ -52,11 +52,11 @@ var LoaderUtils = {
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
 
-      if (item.kind === "file") {
+      if (item.kind === 'file') {
         handleEntry(item.webkitGetAsEntry());
       }
     }
-  },
+  }
 };
 
 export { LoaderUtils };

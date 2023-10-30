@@ -1,13 +1,13 @@
-import { makeAutoObservable } from "mobx";
-import { renderObjects } from "@/three_components/utils/renderThreeComponents";
+import * as THREE from 'three';
+import { makeAutoObservable } from 'mobx';
 import {
   CanvasAttribute,
   CanvasInstance,
   isCanvasAttribute,
-  isCanvasInstance,
-} from "@/resources/constants/canvas";
-import * as THREE from "three";
-import primitiveStore, { MeshType } from "./primitiveStore";
+  isCanvasInstance
+} from '@/resources/constants/canvas';
+import { renderObjects } from '@/three_components/utils/renderThreeComponents';
+import primitiveStore, { MeshType } from './primitive.store.ts';
 
 interface CanvasHistoryType {
   id: string;
@@ -17,17 +17,17 @@ interface CanvasHistoryType {
 }
 
 type MeshProperty = keyof THREE.Mesh;
-const attributes: MeshProperty[] = ["position", "rotation", "scale"];
+const attributes: MeshProperty[] = ['position', 'rotation', 'scale'];
 
 class CanvasHistoryStore {
   undoList: CanvasHistoryType[] = [];
   redoList: CanvasHistoryType[] = [
     {
-      id: "0",
-      instance: "INITIAL",
-      attribute: "none",
-      snapshot: {},
-    },
+      id: '0',
+      instance: 'INITIAL',
+      attribute: 'none',
+      snapshot: {}
+    }
   ];
 
   constructor() {
@@ -47,9 +47,9 @@ class CanvasHistoryStore {
         id,
         instance,
         attribute,
-        snapshot,
+        snapshot
       },
-      ...this.redoList,
+      ...this.redoList
     ];
   }
   createSnapshot(meshes: MeshType): MeshType {
@@ -67,13 +67,13 @@ class CanvasHistoryStore {
     for (const storeId of storeIds) {
       if (storeIdSet.has(storeId)) continue;
 
-      if (meshes[storeId].name === "SELECTED_GROUP") {
+      if (meshes[storeId].name === 'SELECTED_GROUP') {
         meshes[storeId].updateMatrixWorld();
         meshes[storeId].traverse((child) => {
-          if (child.name === "SELECTED_GROUP") return;
+          if (child.name === 'SELECTED_GROUP') return;
 
           const newChild = child.clone() as THREE.Mesh;
-          const childStoreId = newChild.userData["storeId"];
+          const childStoreId = newChild.userData['storeId'];
 
           newChild.applyMatrix4(meshes[storeId].matrixWorld);
           snapshot[childStoreId] = newChild;
@@ -95,8 +95,8 @@ class CanvasHistoryStore {
     if (!beforeMesh) {
       this.addHistory(
         storeId,
-        isCanvasInstance(mesh.name) ? mesh.name : "OBJECT",
-        "add",
+        isCanvasInstance(mesh.name) ? mesh.name : 'OBJECT',
+        'add',
         this.createSnapshot(meshes)
       );
       return;
@@ -105,12 +105,12 @@ class CanvasHistoryStore {
   differDelete(storeId: string) {
     const meshes = primitiveStore.meshes;
 
-    this.addHistory(storeId, "OBJECT", "delete", this.createSnapshot(meshes));
+    this.addHistory(storeId, 'OBJECT', 'delete', this.createSnapshot(meshes));
   }
   differUngroup(storeId: string) {
     const meshes = primitiveStore.meshes;
 
-    this.addHistory(storeId, "GROUP", "ungroup", this.createSnapshot(meshes));
+    this.addHistory(storeId, 'GROUP', 'ungroup', this.createSnapshot(meshes));
   }
   differMeshAttribute() {
     const meshes = this.createSnapshot(primitiveStore.meshes);
@@ -128,8 +128,8 @@ class CanvasHistoryStore {
           const storeId = mesh.userData.storeId ?? mesh.uuid;
           difference.push([
             storeId,
-            isCanvasInstance(mesh.name) ? mesh.name : "OBJECT",
-            isCanvasAttribute(attr) ? attr : "change",
+            isCanvasInstance(mesh.name) ? mesh.name : 'OBJECT',
+            isCanvasAttribute(attr) ? attr : 'change'
           ]);
         }
       }
@@ -144,14 +144,14 @@ class CanvasHistoryStore {
       );
     } else if (difference.length > 1) {
       // 달라진 점이 여러개면 OBJECT로
-      this.addHistory(difference[0][0], "OBJECT", "change", meshes);
+      this.addHistory(difference[0][0], 'OBJECT', 'change', meshes);
     }
   }
   undoListElementClick(index: number) {
     const length = this.undoList.length;
     this.redoList = [
       ...this.undoList.splice(index, length - index),
-      ...this.redoList,
+      ...this.redoList
     ];
     this.update();
   }

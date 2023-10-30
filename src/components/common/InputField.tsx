@@ -1,7 +1,7 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
-import styled from "styled-components";
-import { InputType } from "@/types/style/inputField";
-import { basicColors, grayColors } from "@/resources/colors/colors";
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { basicColors, grayColors } from '@/resources/colors/colors';
+import { InputType } from '@/types/style/inputField';
 
 interface Props {
   type: InputType;
@@ -15,16 +15,16 @@ interface Props {
 }
 
 const InputField = ({
-  label = "",
+  label = '',
   value,
-  type = "number",
+  type = 'number',
   onChange = () => {},
-  onClickChange = () => {},
+  onClickChange = () => {}
 }: Props) => {
   const [input, setInput] = useState(value);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Backspace") {
+    if (e.key === 'Backspace') {
       const newValue = String(input).slice(0, -1);
       setInput(newValue);
     } else {
@@ -41,12 +41,12 @@ const InputField = ({
 
   const handleOnChange = (newInput: string) => {
     const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
-    const valueWithoutKorean = newInput.replace(koreanRegex, "");
+    const valueWithoutKorean = newInput.replace(koreanRegex, '');
     newInput = valueWithoutKorean;
     const SingleRegex = /^[0-9]+$/;
-    const isnumericValue = SingleRegex.test(newInput);
+    const isNumericValue = SingleRegex.test(newInput);
 
-    if (isnumericValue) {
+    if (isNumericValue) {
       const NumInput = Math.round(Number(newInput));
       setInput(String(NumInput));
       onChange(String(NumInput));

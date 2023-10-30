@@ -16,5 +16,5 @@ interface SceneJson {
 export type {
   SceneJson,
   Geometry as SceneJsonGeometry,
-  Image as SceneJsonImage,
+  Image as SceneJsonImage
 };
