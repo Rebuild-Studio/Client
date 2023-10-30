@@ -15,7 +15,7 @@ const TransformInput = (props: Props) => {
   const [position, setPosition] = useState(new THREE.Vector3());
   const [rotation, setRotation] = useState(new THREE.Euler());
   const [scale, setScale] = useState(new THREE.Vector3());
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, canvasHistoryStore } = storeContainer;
 
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const selectedMeshTransform = selectedPrimitive?.[props.type];
@@ -49,6 +49,7 @@ const TransformInput = (props: Props) => {
     });
 
     updateTransform(prop, newValue, selectedPrimitive);
+    canvasHistoryStore.addHistory('OBJECT', props.type);
   };
 
   return (
