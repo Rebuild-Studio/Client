@@ -12,7 +12,7 @@ const SpotLight = (props: PrimitiveProps) => {
     GLTFLoader,
     '/glb/light/spot_light.glb'
   ).scene.clone();
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, canvasHistoryStore } = storeContainer;
   const geometry = new THREE.ConeGeometry(0.57, 1.38, 8);
   const material = new THREE.MeshPhysicalMaterial();
   material.wireframe = true;
@@ -26,7 +26,7 @@ const SpotLight = (props: PrimitiveProps) => {
   useEffect(() => {
     mesh.attach(spotLightGlb.children[0].children[0]);
     primitiveStore.updatePrimitive(props.storeId, mesh);
-    // history 추가 필요
+    canvasHistoryStore.differAdd(mesh.userData['storeId']);
   }, []);
 
   return (

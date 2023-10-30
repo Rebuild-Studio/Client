@@ -1,5 +1,4 @@
 import { nanoid } from 'nanoid';
-import { PrimitiveStore } from '@store/primitive.store.ts';
 import AssetPrimitive from '../assets/AssetPrimitive';
 import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
 import Group from '../group/Group';
@@ -61,7 +60,8 @@ const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
 };
 
 const renderObjects = (
-  primitiveStore: PrimitiveStore,
+  // TODO : store 타입 필요
+  primitiveStore: any,
   meshList: THREE.Mesh[],
   isNew?: boolean
 ) => {
@@ -84,7 +84,18 @@ const renderObjects = (
           renderAsset(storeId, mesh.clone())
         );
         break;
-
+      case 'SPOT_LIGHT':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderSpotLight(storeId, mesh.clone())
+        );
+        break;
+      case 'POINT_LIGHT':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPointLight(storeId, mesh.clone())
+        );
+        break;
       case 'CUBE':
       case 'CAPSULE':
       case 'CONE':
