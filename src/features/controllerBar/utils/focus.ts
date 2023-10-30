@@ -116,7 +116,11 @@ class FocusController {
   focus() {
     const newCameraPosition = this.calculateCameraPosition();
     const newCameraTarget = this.calculateGroupCenter();
-    void this.controls?.setLookAt(...newCameraPosition, ...newCameraTarget);
+    void this.controls.setLookAt(...newCameraPosition, ...newCameraTarget);
+  }
+
+  focusScene() {
+    void this.controls.setLookAt(0, 25, 50, 0, 0, 0);
   }
 }
 
