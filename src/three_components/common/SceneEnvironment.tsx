@@ -6,6 +6,7 @@ import getMinioPath from "@/utils/path/minio";
 import { observer } from "mobx-react";
 import { hsvaToHex } from "@uiw/color-convert";
 import storeContainer from "@/store/storeContainer";
+import { bgColors } from "@/resources/colors/colors";
 
 const SceneEnvironment = () => {
   const { sceneSettingStore } = storeContainer;
@@ -23,6 +24,7 @@ const SceneEnvironment = () => {
     directionalLightIntensity,
     directionalLightColor,
     hdriBackgroundVisibleToggle,
+    canvasBackgroundColorToggle,
     canvasBackgroundColor,
   } = sceneSettingStore;
   const texture = useLoader(
@@ -36,7 +38,11 @@ const SceneEnvironment = () => {
         <Environment background={hdriBackgroundVisibleToggle}>
           <color
             attach="background"
-            args={[hsvaToHex(canvasBackgroundColor)]}
+            args={[
+              canvasBackgroundColorToggle
+                ? hsvaToHex(canvasBackgroundColor)
+                : bgColors.sceneBackground,
+            ]}
           />
           <mesh
             rotation={[
