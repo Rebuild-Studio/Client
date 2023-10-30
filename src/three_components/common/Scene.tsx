@@ -25,9 +25,6 @@ const Scene = () => {
         onMouseDown={(e) => {
           mouseEventStore.updateMouseEvent('onMouseDown', e);
         }}
-        onMouseMove={(e) => {
-          mouseEventStore.updateMouseEvent('onMouseMove', e);
-        }}
         onMouseUp={(e) => {
           mouseEventStore.updateMouseEvent('onMouseUp', e);
         }}
