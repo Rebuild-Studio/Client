@@ -10,10 +10,17 @@ interface ColorPickerProps {
   color: any;
   onChangeHsvaProp: (hsva: HsvaColor) => void;
   onChangeAlphaProp: (alpha: number) => void;
+  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 const ColorPicker = observer(
-  ({ label, color, onChangeHsvaProp, onChangeAlphaProp }: ColorPickerProps) => {
+  ({
+    label,
+    color,
+    onChangeHsvaProp,
+    onChangeAlphaProp,
+    onMouseUp = () => {},
+  }: ColorPickerProps) => {
     const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
     const [open, setOpen] = useState(true);
     const rgbColor = hsvaToRgba(color);
@@ -52,6 +59,7 @@ const ColorPicker = observer(
                   color={color}
                   onChangeHsvaProp={onChangeHsvaProp}
                   onChangeAlphaProp={onChangeAlphaProp}
+                  onMouseUp={onMouseUp}
                 />
                 <ButtonWrapper>
                   <button onClick={handleClose}>Close Menu</button>

@@ -21,7 +21,7 @@ const Material = ({
   color
 }: MaterialInfoProps) => {
   const [mesh, setMesh] = useState(new THREE.Mesh());
-  const { primitiveStore } = storeContainer;
+  const { primitiveStore, canvasHistoryStore } = storeContainer;
   const { updateMaterialColor, updateMaterialAlpha } = ColorHandler;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
 
@@ -58,6 +58,9 @@ const Material = ({
               color={color}
               onChangeHsvaProp={updateMaterialColor}
               onChangeAlphaProp={updateMaterialAlpha}
+              onMouseUp={() => {
+                canvasHistoryStore.addHistory("MATERIAL", "color");
+              }}
             />
           </TitleWrapper>
         </MaterialMenu>
@@ -68,6 +71,9 @@ const Material = ({
           initValue={metalness}
           title="금속성"
           onMaterialChange={onMetalnessChange}
+          onMouseUp={() => {
+            canvasHistoryStore.addHistory("MATERIAL", "metalness");
+          }}
         />
         <Slider
           min={0}
@@ -76,6 +82,9 @@ const Material = ({
           initValue={roughness}
           onMaterialChange={onRoughnessChange}
           title="거칠기"
+          onMouseUp={() => {
+            canvasHistoryStore.addHistory("MATERIAL", "roughness");
+          }}
         />
       </Wrapper>
     </>

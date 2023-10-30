@@ -21,7 +21,10 @@ type CanvasAttribute =
   | 'delete'
   | 'ungroup'
   | 'none'
-  | 'change';
+  | 'change'
+  | 'metalness'
+  | 'roughness'
+  | 'color';
 
 type InstanceTranslate = {
   [attr in CanvasInstance]: string;
@@ -56,6 +59,9 @@ const attrTranslate: AttributeTranslate = {
   delete: '삭제',
   ungroup: '해제',
   change: '변형',
+  metalness: '변형 (metalness)',
+  roughness: '변형 (roughness)',
+  color: '변형 (color)',
   none: ''
 };
 

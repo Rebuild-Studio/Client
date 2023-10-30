@@ -22,6 +22,7 @@ interface ColorContentProps {
   alpha?: boolean;
   onChangeHsvaProp: (hsva: HsvaColor) => void;
   onChangeAlphaProp: (alpha: number) => void;
+  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 const ColorContent = observer(
@@ -30,7 +31,8 @@ const ColorContent = observer(
     saturationSlider = true,
     brightnessSlider = true,
     onChangeHsvaProp,
-    onChangeAlphaProp
+    onChangeAlphaProp,
+    onMouseUp = () => {}
   }: ColorContentProps) => {
     const [newColor, setColor] = useState<HsvaColor>(color);
     const [alpha, setAlpha] = useState(String(Math.round(color.a * 100)));
@@ -109,6 +111,7 @@ const ColorContent = observer(
             onChangeSaturation(color);
             setColor({ ...newColor, ...color, a: newColor.a });
           }}
+          onMouseUp={onMouseUp}
         />
         <Hue
           style={{ marginTop: '10px' }}
@@ -120,6 +123,7 @@ const ColorContent = observer(
             onChangeAlpha(_hsva);
             onChangeSaturation(_hsva);
           }}
+          onMouseUp={onMouseUp}
         />
 
         {alpha && (
@@ -131,6 +135,7 @@ const ColorContent = observer(
               setColor({ ...newColor, ...newAlpha });
               onChangeAlpha({ ...newColor, ...newAlpha });
             }}
+            onMouseUp={onMouseUp}
           />
         )}
         <InputFieldWrapper>
@@ -172,6 +177,7 @@ const ColorContent = observer(
               const _hsva = { ...newColor, s: e };
               handleMouseMove(_hsva);
             }}
+            onMouseUp={onMouseUp}
           />
         )}
         {brightnessSlider && (
@@ -185,6 +191,7 @@ const ColorContent = observer(
               const _hsva = { ...newColor, v: e };
               handleMouseMove(_hsva);
             }}
+            onMouseUp={onMouseUp}
           />
         )}
       </Wrapper>

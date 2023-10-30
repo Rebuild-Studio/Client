@@ -23,6 +23,7 @@ const Slider = ({
   initValue = 0,
   onMaterialChange = () => {},
   onChange = () => {},
+  onMouseUp = () => {},
   disabled
 }: SliderProps) => {
   const [value, setValue] = useState(initValue);
@@ -64,6 +65,7 @@ const Slider = ({
         step={step}
         value={value}
         onChange={handleChange}
+        onMouseUp={onMouseUp}
       />
     </SliderContainer>
   );

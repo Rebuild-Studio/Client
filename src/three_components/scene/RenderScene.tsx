@@ -29,7 +29,8 @@ const RenderScene = () => {
     keyboardEventStore,
     selectedObjectStore,
     projectStore,
-    transformControlStore
+    transformControlStore,
+    canvasHistoryStore
   } = storeContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
@@ -137,6 +138,7 @@ const RenderScene = () => {
       setNewMesh(selectedPrimitive);
       newMesh.material = material;
       selectedObjectStore.setSelectedMaterial(materialName);
+      canvasHistoryStore.addHistory('MATERIAL', 'change');
     }
   }, [selectedObjectStore.selectedMaterial]);
 
