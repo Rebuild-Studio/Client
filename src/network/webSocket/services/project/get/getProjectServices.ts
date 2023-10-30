@@ -1,4 +1,6 @@
 import WsModule from "@/network/module/wsModule";
+import { ResponseGetMxProjectList } from "./model/getMxProjectList.model";
+import { ResponseDto } from "../../model/commonResponse.model";
 
 const socket = WsModule.socket;
 
@@ -10,13 +12,14 @@ const getMyMxProjectList = async () => {
   const message = wsModule.assembleMessage();
   wsModule.sendInChunks(message);
 
-  return new Promise<object>((resolve, reject) => {
+  return new Promise<ResponseGetMxProjectList>((resolve, reject) => {
     socket.onmessage = async (event) => {
-      const response: object = await wsModule.handleServerMessage(event.data);
+      const response: ResponseDto<ResponseGetMxProjectList> =
+        await wsModule.handleServerMessage(event.data);
 
       // TODO response DTO 만들기, CommonResponseDTO에 따른 에러처리
       if (response) {
-        resolve(response);
+        resolve(response.result);
       } else {
         reject(new Error("Request failed"));
       }
