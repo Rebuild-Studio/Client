@@ -74,6 +74,7 @@ class FocusController {
   }
 
   calculateCameraPosition(): [number, number, number] {
+    // https://github.com/Rebuild-Studio/Client/pull/172
     const canvas = document.getElementById('canvas')!;
 
     const objectHeight =
