@@ -1,12 +1,12 @@
-import { objectViewModel } from "../../../view_models/Object_VM";
-import * as THREE from "three";
-import MetaClass from "../../Studio/MetaClass";
-import { common_store } from "../../../stores/Common_Store";
+import * as THREE from 'three';
+import { common_store } from '../../../stores/Common_Store';
+import { objectViewModel } from '../../../view_models/Object_VM';
+import MetaClass from '../../Studio/MetaClass';
 
 export default class GroupCommand {
   constructor(metaObjects) {
-    this.type = "GroupCommand";
-    this.name = "오브젝트 그룹";
+    this.type = 'GroupCommand';
+    this.name = '오브젝트 그룹';
     this.metaObjects = metaObjects;
     this.parentMetaObject = null;
     this.originParentMetaObject = null;
@@ -15,7 +15,7 @@ export default class GroupCommand {
 
   execute() {
     for (const child of renderingContext_store.scene.children) {
-      if (child.name === "MultiSelect") {
+      if (child.name === 'MultiSelect') {
         while (child.children.length > 0) {
           const targetmesh = child.children[0];
           const worldPosition = new THREE.Vector3();
@@ -43,13 +43,13 @@ export default class GroupCommand {
     const group = new THREE.Group();
     this.parentMetaObject = new MetaClass(group, {
       objectId: null,
-      name: "Group",
-      type: "Group",
+      name: 'Group',
+      type: 'Group'
     });
     this.parentMetaObject.InitClass();
     const selectedObjectCount = this.metaObjects.length;
     for (const child of renderingContext_store.scene.children) {
-      if (child.name === "MultiSelect") {
+      if (child.name === 'MultiSelect') {
         while (child.children.length > 0) {
           const targetmesh = child.children[0];
           const worldPosition = new THREE.Vector3();
@@ -116,9 +116,9 @@ export default class GroupCommand {
 
     if (this.originParentMetaObject) {
       this.childMetaObjects.forEach((metaObject) => {
-        metaObject.ConvertToWorldCoordinates("position");
-        metaObject.ConvertToWorldCoordinates("scale");
-        metaObject.ConvertToWorldCoordinates("rotation");
+        metaObject.ConvertToWorldCoordinates('position');
+        metaObject.ConvertToWorldCoordinates('scale');
+        metaObject.ConvertToWorldCoordinates('rotation');
         //Remove object from parents
         metaObject.DeleteFromParentClass();
 
@@ -131,9 +131,9 @@ export default class GroupCommand {
       objectViewModel.DeleteMetaObject(this.parentMetaObject);
     } else {
       this.childMetaObjects.forEach((metaObject) => {
-        metaObject.ConvertToWorldCoordinates("position");
-        metaObject.ConvertToWorldCoordinates("scale");
-        metaObject.ConvertToWorldCoordinates("rotation");
+        metaObject.ConvertToWorldCoordinates('position');
+        metaObject.ConvertToWorldCoordinates('scale');
+        metaObject.ConvertToWorldCoordinates('rotation');
         //Remove object from parents
         metaObject.DeleteFromParentClass();
         //rendering add

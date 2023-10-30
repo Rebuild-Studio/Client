@@ -6,7 +6,7 @@ interface Project {
 }
 
 interface Template extends Project {
-  type: "template";
+  type: 'template';
 }
 
 type ProjectList<T extends Project> = T[];

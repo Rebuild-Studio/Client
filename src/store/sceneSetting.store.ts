@@ -1,22 +1,22 @@
-import { HsvaColor } from "@uiw/color-convert";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
+import { HsvaColor } from '@uiw/color-convert';
 
-type SceneType = "scene" | "none";
+type SceneType = 'scene' | 'none';
 type BackgroundImageType =
-  | "MX_hdr_indoor_3pointLightStudio_01"
-  | "MX_hdr_indoor_artistWorkroom_01"
-  | "MX_hdr_indoor_ballroom_01"
-  | "MX_hdr_outdoor_cityStreet_01"
-  | "MX_hdr_outdoor_clearedCloud_01"
-  | "MX_hdr_outdoor_dayLight_01"
-  | "MX_hdr_outdoor_forest_01"
-  | "MX_hdr_outdoor_night_01"
-  | "MX_hdr_outdoor_sunsetLight_01"
-  | "MX_hdr_outdoor_sunsetLight_02"
-  | "none";
+  | 'MX_hdr_indoor_3pointLightStudio_01'
+  | 'MX_hdr_indoor_artistWorkroom_01'
+  | 'MX_hdr_indoor_ballroom_01'
+  | 'MX_hdr_outdoor_cityStreet_01'
+  | 'MX_hdr_outdoor_clearedCloud_01'
+  | 'MX_hdr_outdoor_dayLight_01'
+  | 'MX_hdr_outdoor_forest_01'
+  | 'MX_hdr_outdoor_night_01'
+  | 'MX_hdr_outdoor_sunsetLight_01'
+  | 'MX_hdr_outdoor_sunsetLight_02'
+  | 'none';
 
 class SceneSettingStore {
-  type = "none";
+  type = 'none';
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
   hdriToggle = true;
@@ -50,18 +50,18 @@ class SceneSettingStore {
   bloomToggle = false;
 
   backgroundImages = [
-    "MX_hdr_indoor_3pointLightStudio_01",
-    "MX_hdr_indoor_artistWorkroom_01",
-    "MX_hdr_indoor_ballroom_01",
-    "MX_hdr_outdoor_cityStreet_01",
-    "MX_hdr_outdoor_clearedCloud_01",
-    "MX_hdr_outdoor_dayLight_01",
-    "MX_hdr_outdoor_forest_01",
-    "MX_hdr_outdoor_night_01",
-    "MX_hdr_outdoor_sunsetLight_01",
-    "MX_hdr_outdoor_sunsetLight_02",
+    'MX_hdr_indoor_3pointLightStudio_01',
+    'MX_hdr_indoor_artistWorkroom_01',
+    'MX_hdr_indoor_ballroom_01',
+    'MX_hdr_outdoor_cityStreet_01',
+    'MX_hdr_outdoor_clearedCloud_01',
+    'MX_hdr_outdoor_dayLight_01',
+    'MX_hdr_outdoor_forest_01',
+    'MX_hdr_outdoor_night_01',
+    'MX_hdr_outdoor_sunsetLight_01',
+    'MX_hdr_outdoor_sunsetLight_02'
   ];
-  selectedBackgroundImage = "MX_hdr_indoor_3pointLightStudio_01";
+  selectedBackgroundImage = 'MX_hdr_indoor_3pointLightStudio_01';
 
   //constructor
   constructor() {
@@ -134,14 +134,14 @@ class SceneSettingStore {
   }
 
   get isOpen(): boolean {
-    return this.type === "scene";
+    return this.type === 'scene';
   }
 
   toggleVisibility() {
-    if (this.type !== "scene") {
-      this.setType("scene");
+    if (this.type !== 'scene') {
+      this.setType('scene');
     } else {
-      this.setType("none");
+      this.setType('none');
     }
   }
 }

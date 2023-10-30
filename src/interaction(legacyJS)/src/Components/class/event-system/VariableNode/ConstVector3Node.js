@@ -1,12 +1,12 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
-import { Vector3 } from "three";
+import { Vector3 } from 'three';
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "ConstVector3";
+const nodeType = 'ConstVector3';
 
 export class ConstVector3Node extends Node {
   static NODE_TYPE = nodeType;
-  
+
   constructor(name, uuid, type = nodeType) {
     super(name, uuid, type);
     this.data = nodeSchema;
@@ -18,16 +18,16 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "vector3",
-      type: ControlType.Vector3,
-    },
+      name: 'vector3',
+      type: ControlType.Vector3
+    }
   ],
   referenceParameter: [
     {
-      name: "NODE_DAT_CONSTANT_VECTOR",
+      name: 'NODE_DAT_CONSTANT_VECTOR',
       defaultValue: new Vector3(0, 0, 0),
-      type: "Vector3",
-      tooltipMessage: "",
-    },
-  ],
+      type: 'Vector3',
+      tooltipMessage: ''
+    }
+  ]
 };

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { observer } from "mobx-react";
-import Panel from "../../layout/Panel/Panel";
-import Tab from "../../layout/Tab";
-import ShapeEditor from "./ShapeEditor";
-import TransformMaterialEditor from "./TransformMaterialEditor";
-import SceneSettingPanel from "./SceneSettingPanel";
-import storeContainer from "@/store/storeContainer";
+import { useState } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import SceneSettingPanel from './SceneSettingPanel';
+import ShapeEditor from './ShapeEditor';
+import TransformMaterialEditor from './TransformMaterialEditor';
+import Panel from '../../layout/Panel/Panel';
+import Tab from '../../layout/Tab';
 
 const RightPanel = () => {
   const { primitiveStore } = storeContainer;
@@ -20,14 +20,14 @@ const RightPanel = () => {
     return null;
   }
 
-  if (sceneSettingStore.type === "scene") {
+  if (sceneSettingStore.type === 'scene') {
     return <SceneSettingPanel />;
   }
 
   return (
-    <Panel label={"속성값"} options={undefined}>
+    <Panel label={'속성값'} options={undefined}>
       <Tab
-        tabs={["오브젝트", "쉐이프"]}
+        tabs={['오브젝트', '쉐이프']}
         activeTab={activeTab}
         onTabChange={handleTabChange}
       />

@@ -1,6 +1,6 @@
-import { Outline } from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
-import * as THREE from "three";
+import * as THREE from 'three';
+import { Outline } from '@react-three/postprocessing';
+import { BlendFunction } from 'postprocessing';
 
 interface SelectedOutlineProps {
   meshes: Array<THREE.Object3D<THREE.Event>>;
@@ -12,16 +12,16 @@ const SelectedOutline = (props: SelectedOutlineProps) => {
 
     props.meshes.forEach((value) => {
       switch (value.name) {
-        case "GROUP": {
+        case 'GROUP': {
           value.traverse((child) => {
             meshes.push(child);
           });
           break;
         }
-        case "SELECTED_GROUP": {
+        case 'SELECTED_GROUP': {
           break;
         }
-        case "ASSET": {
+        case 'ASSET': {
           value.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
               meshes.push(child);

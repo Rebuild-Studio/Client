@@ -1,5 +1,5 @@
-import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
+import { LibraryAsset } from '@/features/assetLibrary/types/fetchAssetType';
 
 class AssetLibraryStore {
   isAssetLibraryVisible = false;

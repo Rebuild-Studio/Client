@@ -1,17 +1,17 @@
-import { useFileLoader } from "@/hooks/loader";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
-import { PrimitiveProps } from "../common/PrimitiveProps";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import { useFileLoader } from '@/hooks/loader';
+import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
+import { PrimitiveProps } from '../common/PrimitiveProps';
 
-interface LocalAssetPrimitveProps extends PrimitiveProps {
+interface LocalAssetPrimitiveProps extends PrimitiveProps {
   file: File;
 }
 
-const LocalAssetPrimitveProps = observer(
-  ({ file, storeId }: LocalAssetPrimitveProps) => {
+const LocalAssetPrimitiveProps = observer(
+  ({ file, storeId }: LocalAssetPrimitiveProps) => {
     const ref = useRef();
     const { primitiveStore } = storeContainer;
 
@@ -25,16 +25,16 @@ const LocalAssetPrimitveProps = observer(
       mesh = loadedData;
     }
 
-    mesh.name = "ASSET";
-    mesh.userData["storeId"] = storeId;
-    mesh.userData["isLocked"] = false;
+    mesh.name = 'ASSET';
+    mesh.userData['storeId'] = storeId;
+    mesh.userData['isLocked'] = false;
 
     useEffect(() => {
       primitiveStore.updatePrimitive(
-        mesh.userData["storeId"],
+        mesh.userData['storeId'],
         mesh as THREE.Mesh
       );
-      canvasHistoryStore.differAdd(mesh.userData["storeId"]);
+      canvasHistoryStore.differAdd(mesh.userData['storeId']);
     }, []);
 
     return (
@@ -43,4 +43,4 @@ const LocalAssetPrimitveProps = observer(
   }
 );
 
-export default LocalAssetPrimitveProps;
+export default LocalAssetPrimitiveProps;

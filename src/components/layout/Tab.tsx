@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { CSSHexColor } from "@/types/style/cssUnits";
+import styled from 'styled-components';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import { CSSHexColor } from '@/types/style/cssUnits';
 
 interface TabProps {
   tabs: string[];
@@ -16,9 +16,9 @@ const Tab = ({
   tabs,
   activeTab,
   onTabChange,
-  width = "100%",
+  width = '100%',
   backgroundColor = bgColors[222222],
-  underbarColor = basicColors.white,
+  underbarColor = basicColors.white
 }: TabProps) => {
   return (
     <Wrapper $backgroundColor={backgroundColor} $width={width}>
@@ -74,7 +74,9 @@ const TabButton = styled.button<{ $isActive: boolean }>`
   cursor: pointer;
   outline: none;
   background-color: transparent;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 `;
 
 const TabIndicator = styled.div<{

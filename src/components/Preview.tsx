@@ -1,10 +1,10 @@
-import { observer } from "mobx-react";
-import { MxCanvasCore } from "@mv/core";
-import storeContainer from "@/store/storeContainer";
-import legacyStoreContainer from "../interaction(legacyJS)/src/Components/stores/storeContainer";
-import createMxJson from "@/utils/json/createMxJson";
+import { observer } from 'mobx-react';
+import { MxCanvasCore } from '@mv/core';
+import storeContainer from '@/store/storeContainer';
+import createMxJson from '@/utils/json/createMxJson';
+import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 
-const Preivew = observer(() => {
+const Preview = observer(() => {
   const { projectStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const sceneJson = projectStore.scene?.toJSON();
@@ -13,7 +13,7 @@ const Preivew = observer(() => {
   );
   const previewJson = createMxJson(sceneJson, interactionJson);
   const data = JSON.stringify(previewJson);
-  return <MxCanvasCore data={data} mode={"play"} />;
+  return <MxCanvasCore data={data} mode={'play'} />;
 });
 
-export default Preivew;
+export default Preview;

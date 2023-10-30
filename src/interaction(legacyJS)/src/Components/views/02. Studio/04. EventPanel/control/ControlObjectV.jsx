@@ -1,10 +1,10 @@
-import storeContainer from "../../../../stores/storeContainer";
-import { observer } from "mobx-react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { useState, useMemo } from "react";
-import { ControlType } from "../../../../class/event-system/NodeControl";
+import { useMemo, useState } from 'react';
+import { observer } from 'mobx-react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { ControlType } from '../../../../class/event-system/NodeControl';
+import storeContainer from '../../../../stores/storeContainer';
 
 const ControlObjectV = observer((props) => {
   const { object_store } = storeContainer;
@@ -14,20 +14,20 @@ const ControlObjectV = observer((props) => {
     switch (control.type) {
       case ControlType.Object:
         return object_store.metaObjects.filter(
-          (object) => !object.props["lightType"] && !object.camera
+          (object) => !object.props['lightType'] && !object.camera
         );
       case ControlType.PointLight:
         return object_store.metaObjects.filter(
-          (object) => object.props && object.props["lightType"] === "PointLight"
+          (object) => object.props && object.props['lightType'] === 'PointLight'
         );
       case ControlType.SpotLight:
         return object_store.metaObjects.filter(
-          (object) => object.props && object.props["lightType"] === "SpotLight"
+          (object) => object.props && object.props['lightType'] === 'SpotLight'
         );
       case ControlType.Sensor:
         return object_store.metaObjects;
       default:
-        console.warn("Control Type is undefined");
+        console.warn('Control Type is undefined');
         return;
     }
   }, [object_store, control.type]);
@@ -39,12 +39,12 @@ const ControlObjectV = observer((props) => {
   }, [objectList]);
   const [defaultValue] = objectMap.get(control.value)
     ? useState(control.value)
-    : useState("");
+    : useState('');
 
   update.current[name] = {
     value: defaultValue,
     name: objectMap.get(defaultValue),
-    type: control.type,
+    type: control.type
   };
 
   return (
@@ -59,13 +59,13 @@ const ControlObjectV = observer((props) => {
           update.current[name] = {
             value: uuid,
             name: objectMap.get(uuid),
-            type: control.type,
+            type: control.type
           };
         }}
         sx={selectSX}
         inputProps={{
-          name: "max-width",
-          id: "max-width",
+          name: 'max-width',
+          id: 'max-width'
         }}
       >
         {objectList.map(({ objectId, type, name = type + objectId }) => (

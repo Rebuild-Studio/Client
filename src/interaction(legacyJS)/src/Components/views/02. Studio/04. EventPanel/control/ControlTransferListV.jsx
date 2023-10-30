@@ -1,15 +1,14 @@
-import { observer } from "mobx-react";
-import { useState, useEffect } from "react";
-
-import InputLabel from "@mui/material/InputLabel";
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Checkbox from "@mui/material/Checkbox";
-import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
 
 function not(a, b) {
   return a.filter((value) => b.every((item) => item.key !== value.key));
@@ -80,21 +79,21 @@ const ControlTransferListV = observer((props) => {
       sx={{
         width: 200,
         height: 230,
-        overflow: "auto",
-        border: "0.5px solid",
-        borderColor: "#1F1F1F",
-        "&::-webkit-scrollbar": {
-          width: "8px",
+        overflow: 'auto',
+        border: '0.5px solid',
+        borderColor: '#1F1F1F',
+        '&::-webkit-scrollbar': {
+          width: '8px'
         },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "#d4ed3e",
-          borderRadius: "4px",
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: '#d4ed3e',
+          borderRadius: '4px'
         },
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: "#1F1F1F",
-          borderRadius: "4px",
-          margin: "12px",
-        },
+        '&::-webkit-scrollbar-track': {
+          backgroundColor: '#1F1F1F',
+          borderRadius: '4px',
+          margin: '12px'
+        }
       }}
     >
       <List dense component="div" role="list">
@@ -114,10 +113,10 @@ const ControlTransferListV = observer((props) => {
                   tabIndex={-1}
                   disableRipple
                   inputProps={{
-                    "aria-labelledby": labelId,
+                    'aria-labelledby': labelId
                   }}
                   style={{
-                    color: "#d4ed3e",
+                    color: '#d4ed3e'
                   }}
                 />
               </ListItemIcon>
@@ -187,10 +186,10 @@ export default ControlTransferListV;
 
 const buttonStyle = {
   my: 0.5,
-  color: "#d4ed3e",
-  border: "1px solid #83960E",
-  "&:hover": {
-    border: "1px solid #d4ed3e",
-    color: "#d4ed3e",
-  },
+  color: '#d4ed3e',
+  border: '1px solid #83960E',
+  '&:hover': {
+    border: '1px solid #d4ed3e',
+    color: '#d4ed3e'
+  }
 };

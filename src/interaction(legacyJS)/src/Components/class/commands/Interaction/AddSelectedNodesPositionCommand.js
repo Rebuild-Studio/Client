@@ -1,18 +1,18 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class AddSelectedNodesPositionCommand extends Command {
   constructor(store, movement, sheetId) {
     super(store);
-    this.type = "AddSelectedNodesPositionCommand";
+    this.type = 'AddSelectedNodesPositionCommand';
     this.name = this.type;
     this.updatable = true;
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       movement: movement,
       moved: movement,
-      sheetName: this.store.getSheetByUuid(sheetId).name,
+      sheetName: this.store.getSheetByUuid(sheetId).name
     };
   }
   execute() {
@@ -31,7 +31,7 @@ export default class AddSelectedNodesPositionCommand extends Command {
   getDetailData() {
     return [
       this.data.sheetName,
-      this.data.moved.map((v) => v.toString()),
+      this.data.moved.map((v) => v.toString())
     ].flat();
   }
 }

@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { nanoid } from "nanoid";
+import { useEffect, useRef, useState } from 'react';
+import { nanoid } from 'nanoid';
 
 /**
  * @description
@@ -24,7 +24,7 @@ export function useToast() {
   const addToast = (content: string) => {
     const newMessage = {
       id: nanoid(),
-      content,
+      content
     };
 
     // Keep only MAX_TOAST_QUEUE_COUNT messages, it will be sliced by <ToastContainer>

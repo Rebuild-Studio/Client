@@ -1,6 +1,5 @@
-import { styled } from "styled-components";
-
-import { basicColors } from "@resources/colors/colors";
+import { styled } from 'styled-components';
+import { basicColors } from '@resources/colors/colors';
 
 interface Props {
   icon: JSX.Element;
@@ -21,7 +20,7 @@ export default ControlButton;
 const Button = styled.button<{ $highlight?: boolean }>`
   display: flex;
   align-items: center;
-  color: ${({ $highlight }) => ($highlight ? basicColors.limeGreen : "white")};
+  color: ${({ $highlight }) => ($highlight ? basicColors.limeGreen : 'white')};
 
   &:hover {
     color: ${basicColors.limeGreen};

@@ -1,5 +1,5 @@
-import NodeRuntime from "../../NodeRuntime";
-import ConvertProcess from "./ConvertProcess";
+import ConvertProcess from './ConvertProcess';
+import NodeRuntime from '../../NodeRuntime';
 
 export default class ConvertRuntime extends NodeRuntime {
   constructor(args) {

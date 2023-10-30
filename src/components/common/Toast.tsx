@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { basicColors, bgColors, grayColors } from "@/resources/colors/colors";
-import { fonts } from "@/resources/fonts/font";
-import { CSSHexColor } from "@/types/style/cssUnits";
-import { FontType } from "@/types/style/font";
-import styled, { keyframes, css } from "styled-components";
+import { useEffect, useState } from 'react';
+import styled, { css, keyframes } from 'styled-components';
+import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
+import { fonts } from '@/resources/fonts/font';
+import { CSSHexColor } from '@/types/style/cssUnits';
+import { FontType } from '@/types/style/font';
 
 export type ToastProps = {
   label: string;
@@ -31,16 +31,16 @@ const Toast = ({
   onClose = () => {},
   color = basicColors.lightLimeGreen,
   backgroundColor = bgColors[222222],
-  fontSize = "small",
-  width = "fit-content",
-  height = "34px",
-  minWidth = "80px",
-  minHeight = "32px",
-  borderRadius = "6px",
+  fontSize = 'small',
+  width = 'fit-content',
+  height = '34px',
+  minWidth = '80px',
+  minHeight = '32px',
+  borderRadius = '6px',
   border = `2px solid ${grayColors[535353]}`,
-  fontFamily = "SourceHanSansKR",
+  fontFamily = 'SourceHanSansKR',
   fontWeight = 500,
-  duration = 3000,
+  duration = 3000
 }: ToastProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -139,6 +139,6 @@ const StyledToast = styled.button<CSSProps>`
         ${fadeOutAnimation} 0.5s ease-in-out forwards
       `;
     }
-    return "none";
+    return 'none';
   }};
 `;

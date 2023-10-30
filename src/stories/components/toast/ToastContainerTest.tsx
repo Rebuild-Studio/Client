@@ -1,20 +1,20 @@
-import { useToast } from "@hooks/useToast";
-import ToastContainer from "@components/common/ToastContainer";
-import { ToastPosition } from "@/types/style/toastPosition";
+import { ToastPosition } from '@/types/style/toastPosition';
+import ToastContainer from '@components/common/ToastContainer';
+import { useToast } from '@hooks/useToast';
 
 interface ToastContainerTestProps {
   position?: ToastPosition;
 }
 
 const ToastContainerTest = ({
-  position = "topCenter",
+  position = 'topCenter'
 }: ToastContainerTestProps) => {
   const { addToast } = useToast();
 
-  const addToastMessage = () => addToast("토스트 추가하기를 누르셨습니다");
+  const addToastMessage = () => addToast('토스트 추가하기를 누르셨습니다');
   const addLongToastMessage = () =>
-    addToast("길~~~~고 길~~~다란 토스트를 추가하셨습니다!");
-  const addHi = () => addToast("안녕");
+    addToast('길~~~~고 길~~~다란 토스트를 추가하셨습니다!');
+  const addHi = () => addToast('안녕');
 
   return (
     <div>

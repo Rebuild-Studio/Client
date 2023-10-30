@@ -1,17 +1,17 @@
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
 import {
   MainCategory,
-  MainCategoryType,
-} from "@/features/assetLibrary/constants/mainCategory";
-import { bgColors } from "@/resources/colors/colors";
-import assetCategoryStore, { Category } from "@/store/assetCategoryStore";
-import assetLibraryStore from "@/store/assetLibraryStore";
-import { observer } from "mobx-react";
-import { styled } from "styled-components";
+  MainCategoryType
+} from '@/features/assetLibrary/constants/mainCategory';
+import { bgColors } from '@/resources/colors/colors';
+import assetCategoryStore, { Category } from '@store/assetCategory.store.ts';
+import assetLibraryStore from '@store/assetLibrary.store.ts';
 
 interface Props {
   name: string;
   category: MainCategoryType;
-  type: "main" | "sub";
+  type: 'main' | 'sub';
 }
 
 const CategoryItem = ({ name, category, type }: Props) => {
@@ -19,12 +19,12 @@ const CategoryItem = ({ name, category, type }: Props) => {
   const { currentMainCategory, currentSubCategory } = assetCategoryStore;
   const myCategory: Category = {
     category: category,
-    categoryKR: name,
+    categoryKR: name
   };
 
   const onClickSetCategory = (): void => {
     assetLibraryStore.initLibrary();
-    if (type === "main") {
+    if (type === 'main') {
       assetCategoryStore.setCurrentMainCategory(myCategory as MainCategory);
     } else {
       assetCategoryStore.setCurrentSubCategory(myCategory);
@@ -34,12 +34,12 @@ const CategoryItem = ({ name, category, type }: Props) => {
   return (
     <ItemContainer onClick={onClickSetCategory}>
       <img src={iconUrl} alt={name} />
-      {type === "main" && (
+      {type === 'main' && (
         <ItemText selected={currentMainCategory.category === category}>
           {name}
         </ItemText>
       )}
-      {type === "sub" && (
+      {type === 'sub' && (
         <ItemText selected={currentSubCategory.category === category}>
           {name}
         </ItemText>
@@ -67,5 +67,5 @@ const ItemContainer = styled.button`
 const ItemText = styled.span<{ selected: boolean }>`
   margin-left: 10px;
   font-size: 14px;
-  color: ${({ selected }) => selected && "#2bff00"};
+  color: ${({ selected }) => selected && '#2bff00'};
 `;

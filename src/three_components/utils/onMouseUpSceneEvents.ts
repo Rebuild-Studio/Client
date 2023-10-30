@@ -1,4 +1,4 @@
-import storeContainer from "@/store/storeContainer";
+import storeContainer from '@/store/storeContainer';
 
 const onMouseUpSceneEvents = () => {
   const { canvasHistoryStore } = storeContainer;

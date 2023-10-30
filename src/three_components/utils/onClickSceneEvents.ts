@@ -1,11 +1,11 @@
-import storeContainer from "@/store/storeContainer";
-import * as THREE from "three";
-import { findRootGroup, hasChildGroup, isChildInGroup } from "./findGroup";
+import * as THREE from 'three';
+import storeContainer from '@/store/storeContainer';
+import { findRootAsset, hasAsset } from './findAsset';
+import { findRootGroup, hasChildGroup, isChildInGroup } from './findGroup';
 import {
   selectChildGroupInGroup,
-  selectChildObjectInGroup,
-} from "./selectInGroup";
-import { findRootAsset, hasAsset } from "./findAsset";
+  selectChildObjectInGroup
+} from './selectInGroup';
 
 const onClickSceneEvents = (
   intersectObjects: THREE.Intersection<THREE.Object3D<THREE.Event>>[]
@@ -14,7 +14,7 @@ const onClickSceneEvents = (
     primitiveStore,
     mouseEventStore,
     keyboardEventStore,
-    sceneSettingStore,
+    sceneSettingStore
   } = storeContainer;
 
   const currentSelectObjects = Object.values(
@@ -36,13 +36,13 @@ const onClickSceneEvents = (
   }
 
   const selectObject = intersectObjects.find((value) => {
-    return primitiveStore.meshes[value.object.userData["storeId"]];
+    return primitiveStore.meshes[value.object.userData['storeId']];
   });
 
   // 그룹 애셋 찾기
   const selectChildObject = intersectObjects.find(
     (value) =>
-      value.object.parent?.name === "GROUP" ||
+      value.object.parent?.name === 'GROUP' ||
       hasAsset(value.object, value.object)
   )?.object;
 
@@ -50,15 +50,15 @@ const onClickSceneEvents = (
 
   if (selectRootObject) {
     const selectRootObjectStoreId: string =
-      selectRootObject.userData["storeId"];
+      selectRootObject.userData['storeId'];
 
     if (currentSelectObjects && currentSelectObjects.length === 1) {
       const selectedObject = currentSelectObjects[0];
-      const selectedObjectStoreId: string = selectedObject.userData["storeId"];
+      const selectedObjectStoreId: string = selectedObject.userData['storeId'];
 
       if (
         selectedObjectStoreId !== selectRootObjectStoreId &&
-        isChildInGroup(selectedObject, selectChildObject?.userData["storeId"])
+        isChildInGroup(selectedObject, selectChildObject?.userData['storeId'])
       ) {
         selectChildObjectInGroup(selectRootObjectStoreId, selectChildObject!);
         return;
@@ -66,7 +66,7 @@ const onClickSceneEvents = (
 
       if (selectedObjectStoreId === selectRootObjectStoreId) {
         if (
-          selectChildObject?.parent?.userData["storeId"] ===
+          selectChildObject?.parent?.userData['storeId'] ===
           selectRootObjectStoreId
         ) {
           selectChildObjectInGroup(selectRootObjectStoreId, selectChildObject!);
@@ -94,7 +94,7 @@ const onClickSceneEvents = (
   // scene에 있는 Asset 선택
   if (selectChildObject && !selectRootObject) {
     const assetRoot = findRootAsset(selectChildObject);
-    const assetRootStoreId = assetRoot?.userData["storeId"];
+    const assetRootStoreId = assetRoot?.userData['storeId'];
 
     primitiveStore.addSelectedPrimitives(
       assetRootStoreId,
@@ -109,7 +109,7 @@ const onClickSceneEvents = (
     return;
   }
 
-  const selectObjectStoreId = selectObject.object.userData["storeId"];
+  const selectObjectStoreId = selectObject.object.userData['storeId'];
 
   primitiveStore.addSelectedPrimitives(
     selectObjectStoreId,

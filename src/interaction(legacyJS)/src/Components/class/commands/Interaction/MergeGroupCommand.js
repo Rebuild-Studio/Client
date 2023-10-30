@@ -1,11 +1,11 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
-import InteractionHierachyVM from "../../../view_models/05. Hierarchy/InteractionHierarchy_VM";
+import InteractionHierachyVM from '../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class MergeGroupCommand extends Command {
   constructor(store, sheetId, groups, nodes) {
     super(store);
-    this.type = "MergeGroupCommand";
+    this.type = 'MergeGroupCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       sheetId,
@@ -15,10 +15,10 @@ export default class MergeGroupCommand extends Command {
       subjectNodes: undefined,
       subjectGroups: undefined,
       json: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     this.name =
-      this.data.nodes.length > 0 ? "MergeNodeAndGroupCommand" : this.type;
+      this.data.nodes.length > 0 ? 'MergeNodeAndGroupCommand' : this.type;
     this.data.nodeTypes = this.data.nodes?.map(
       (uuid) => sheet.getNodeByUuid(uuid).type
     );
@@ -69,16 +69,16 @@ export default class MergeGroupCommand extends Command {
     let currentArgIndex =
       this.data.nodeTypes.length && this.data.groupNames.length ? 3 : 2;
 
-    let intermediateN = "";
+    let intermediateN = '';
     const nodeTypes = this.data.nodeTypes?.map((v) => {
-      intermediateN += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateN += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return Utils.encryptString(v);
     });
 
-    let intermediateG = "";
+    let intermediateG = '';
     const groupNames = this.data.groupNames?.map((v) => {
-      intermediateG += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateG += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return v;
     });

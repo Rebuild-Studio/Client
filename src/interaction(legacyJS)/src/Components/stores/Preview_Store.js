@@ -1,7 +1,7 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 const preview_store = observable({
-  prevMetaObjects: [],
+  prevMetaObjects: []
 });
 
 export { preview_store };

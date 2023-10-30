@@ -1,9 +1,9 @@
-import Command from "../Command";
+import Command from '../Command';
 
 export default class EditGroupNameCommand extends Command {
   constructor(store, sheetId, uuid, name) {
     super(store);
-    this.type = "EditGroupNameCommand";
+    this.type = 'EditGroupNameCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
@@ -11,7 +11,7 @@ export default class EditGroupNameCommand extends Command {
       uuid,
       name,
       old: sheet.getGroupByUuid(uuid).name,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
   }
   execute() {

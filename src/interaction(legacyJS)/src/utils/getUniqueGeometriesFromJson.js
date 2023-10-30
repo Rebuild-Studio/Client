@@ -1,4 +1,4 @@
-import hash from "object-hash";
+import hash from 'object-hash';
 
 /**
  * @description 지오메트리 값을 object hash를 통해 hash값으로 변환하고, 중복된 지오메트리를 제거합니다.

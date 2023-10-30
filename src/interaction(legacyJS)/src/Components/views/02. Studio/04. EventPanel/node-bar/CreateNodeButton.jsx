@@ -1,8 +1,8 @@
-import { observer } from "mobx-react";
-import IconButton from "@mui/material/IconButton";
-import storeContainer from "../../../../stores/storeContainer";
-import CreateNodeCommand from "../../../../class/commands/Interaction/CreateNodeCommand";
-import useIcon from "../../../../hooks/useIcon";
+import { observer } from 'mobx-react';
+import IconButton from '@mui/material/IconButton';
+import CreateNodeCommand from '../../../../class/commands/Interaction/CreateNodeCommand';
+import useIcon from '../../../../hooks/useIcon';
+import storeContainer from '../../../../stores/storeContainer';
 
 /**
  * @param {NodeClass} node
@@ -17,14 +17,14 @@ import useIcon from "../../../../hooks/useIcon";
  */
 
 const CreateNodeButton = observer(
-  ({ node, backgroundImageName, width = "50px", height = "60px" }) => {
+  ({ node, backgroundImageName, width = '50px', height = '60px' }) => {
     const { eventSystem_store, interactionhistory_store } = storeContainer;
     const path = useIcon(backgroundImageName);
     const handleClick = () => {
       interactionhistory_store.execute(
         new CreateNodeCommand(eventSystem_store, {
           node: node,
-          sheetId: eventSystem_store.selectedSheet,
+          sheetId: eventSystem_store.selectedSheet
         })
       );
     };
@@ -33,15 +33,15 @@ const CreateNodeButton = observer(
       <IconButton
         onClick={handleClick}
         sx={{
-          padding: "0px",
+          padding: '0px',
           width: width,
           height: height,
           background: path.root,
           borderRadius: 0,
-          "&:hover": {
+          '&:hover': {
             background: path.active,
-            borderRadius: 0,
-          },
+            borderRadius: 0
+          }
         }}
       />
     );

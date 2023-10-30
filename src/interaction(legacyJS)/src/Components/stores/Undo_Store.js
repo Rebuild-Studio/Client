@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 class UnDoData {
   target; // undo 될 목표
@@ -93,7 +93,7 @@ const undo_store = observable({
     this.unDoArray = [];
     this.reDoArray = [];
     this.history = [];
-  },
+  }
 });
 
 export { undo_store };

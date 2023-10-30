@@ -1,11 +1,11 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
-import InteractionHierachyVM from "../../../view_models/05. Hierarchy/InteractionHierarchy_VM";
+import InteractionHierachyVM from '../../../view_models/05. Hierarchy/InteractionHierarchy_VM';
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class ExcludeFromGroupCommand extends Command {
   constructor(store, sheetId, uuids) {
     super(store);
-    this.type = "ExcludeFromGroupCommand";
+    this.type = 'ExcludeFromGroupCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
@@ -13,12 +13,12 @@ export default class ExcludeFromGroupCommand extends Command {
       targets: [
         ...uuids.map((uuid) => {
           return { groupId: null, uuid };
-        }),
+        })
       ],
       sheetName: sheet.name,
       nodeTypes: uuids
         .map((uuid) => sheet.getNodeByUuid(uuid)?.type)
-        .filter((v) => v),
+        .filter((v) => v)
     };
 
     // Update the nodesAndGroups array in the store
@@ -42,9 +42,9 @@ export default class ExcludeFromGroupCommand extends Command {
     InteractionHierachyVM.InteractionHierachyListFilter();
   }
   getDetailData() {
-    let intermediate = "";
+    let intermediate = '';
     const nodeTypes = this.data.nodeTypes.map((v, i) => {
-      intermediate += Utils.templateArg(i + 2) + ", ";
+      intermediate += Utils.templateArg(i + 2) + ', ';
       return Utils.encryptString(v);
     });
     return [this.data.sheetName, intermediate.slice(0, -2), nodeTypes].flat();

@@ -1,9 +1,9 @@
-import createUxMetaData from "../../../uxApi/createUxMetaData";
-import { eventSystem_store } from "../../stores/Interaction_Stores";
+import createUxMetaData from '../../../uxApi/createUxMetaData';
+import { eventSystem_store } from '../../stores/Interaction_Stores';
 
 export default function EditableInteraction_VM() {
-  const AVATAR = "avatar";
-  const ANIMATION = "animation";
+  const AVATAR = 'avatar';
+  const ANIMATION = 'animation';
 
   /**
    *
@@ -44,26 +44,26 @@ export default function EditableInteraction_VM() {
   const toJson = () => {
     const metaDataArray = [
       createUxMetaData(
-        "avatarIndex",
-        "number",
-        "Spinner",
+        'avatarIndex',
+        'number',
+        'Spinner',
         [0, 20],
         getIndexWithInteractionKey_(AVATAR),
-        ""
+        ''
       ),
       createUxMetaData(
-        "animationIndex",
-        "number",
-        "Spinner",
+        'animationIndex',
+        'number',
+        'Spinner',
         [0, 20],
         getIndexWithInteractionKey_(ANIMATION),
-        ""
-      ),
+        ''
+      )
     ];
     return metaDataArray;
   };
 
   return {
-    toJson,
+    toJson
   };
 }

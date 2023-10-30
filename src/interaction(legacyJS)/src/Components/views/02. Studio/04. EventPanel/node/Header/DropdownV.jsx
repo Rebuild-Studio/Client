@@ -1,8 +1,8 @@
-import { observer } from "mobx-react";
-import { Box } from "@mui/system";
-import storeContainer from "../../../../../stores/storeContainer";
-import SelectDropdown from "../../control/SelectDropdownV";
-import ControlDataVM from "../../control/ControlDataVM";
+import { observer } from 'mobx-react';
+import { Box } from '@mui/system';
+import storeContainer from '../../../../../stores/storeContainer';
+import ControlDataVM from '../../control/ControlDataVM';
+import SelectDropdown from '../../control/SelectDropdownV';
 
 const BlueBox = observer((props) => {
   const { sxAdd, children, ...restProps } = props;
@@ -11,27 +11,25 @@ const BlueBox = observer((props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        fontFamily: "sans-serif",
-        fontSize: "inherit",
-        fontWeight: "500",
-        fontStretch: "normal",
-        fontStyle: "normal",
-        justifyContent: "space-between",
-        lineHeight: "normal",
-        letterSpacing: "normal",
-        textAlign: "left",
-        color: "#fff",
-        backgroundColor: "#272748",
-        margin: "0 auto",
-        ...sxAdd,
+        display: 'flex',
+        alignItems: 'center',
+        fontFamily: 'sans-serif',
+        fontSize: 'inherit',
+        fontWeight: '500',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        justifyContent: 'space-between',
+        lineHeight: 'normal',
+        letterSpacing: 'normal',
+        textAlign: 'left',
+        color: '#fff',
+        backgroundColor: '#272748',
+        margin: '0 auto',
+        ...sxAdd
       }}
       style={{
         height: `${scale * 17}px`,
-        padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${
-          scale * 12
-        }px`,
+        padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${scale * 12}px`
       }}
       {...restProps}
     >

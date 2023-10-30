@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 export default class FlagProcess extends MiddleProcess {
   calculate(inputs) {

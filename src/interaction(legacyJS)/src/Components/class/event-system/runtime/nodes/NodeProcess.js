@@ -12,7 +12,7 @@ export default class NodeProcess {
   setError(error) {
     this.nodeRuntime.setError(error);
   }
-  start() { }
+  start() {}
   work(state, delta, xrFrame) {
     this.readValues();
     if (!this.changed) {
@@ -21,8 +21,8 @@ export default class NodeProcess {
     this.coreWork(state, delta, xrFrame);
     this.writeValues();
   }
-  coreWork() { }
-  end() { }
+  coreWork() {}
+  end() {}
 
   Inputs() {
     return Object.values(this.inputs);
@@ -31,10 +31,10 @@ export default class NodeProcess {
     return Object.values(this.data);
   }
   Outputs(values, instantUpdate) {
-    values.forEach((value, index)=>{
+    values.forEach((value, index) => {
       this.Output(index, value);
     });
-    if(instantUpdate){
+    if (instantUpdate) {
       this.writeValues();
     }
   }

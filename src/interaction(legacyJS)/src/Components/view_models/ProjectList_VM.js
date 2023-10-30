@@ -1,10 +1,10 @@
-import { user_store } from "../stores/User_Store";
-import { action } from "mobx";
-import ServiceMiddleware from "../network/ServiceMiddleware";
+import { action } from 'mobx';
+import ServiceMiddleware from '../network/ServiceMiddleware';
 import {
   projectEndPoints,
-  projectServiceKeyMap,
-} from "../network/project/ProjectService";
+  projectServiceKeyMap
+} from '../network/project/ProjectService';
+import { user_store } from '../stores/User_Store';
 
 const projectLisViewModel = {
   requestProjectData: async () => {
@@ -14,7 +14,7 @@ const projectLisViewModel = {
         projectEndPoints.postSearchComponent,
         [
           projectServiceKeyMap.postSearchComponent,
-          { keyword: searchKeyword, offset: currentPage },
+          { keyword: searchKeyword, offset: currentPage }
         ]
       );
 
@@ -52,7 +52,7 @@ const projectLisViewModel = {
 
   setSearchKeyword: action((keyword) => {
     user_store.searchKeyword = keyword;
-  }),
+  })
 };
 
 export { projectLisViewModel };

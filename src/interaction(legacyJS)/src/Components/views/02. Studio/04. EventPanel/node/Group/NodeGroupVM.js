@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function NodeGroupVM(group, padding, titleHeight, scale) {
   const children = group.children;
@@ -6,7 +6,7 @@ export default function NodeGroupVM(group, padding, titleHeight, scale) {
     top: Number.MAX_SAFE_INTEGER,
     right: Number.MIN_SAFE_INTEGER,
     bottom: Number.MIN_SAFE_INTEGER,
-    left: Number.MAX_SAFE_INTEGER,
+    left: Number.MAX_SAFE_INTEGER
   });
   const elements = useRef([]);
   const observer = useRef();
@@ -26,7 +26,7 @@ export default function NodeGroupVM(group, padding, titleHeight, scale) {
 
     elements.current.forEach((element) => {
       const { m41, m42 } = new DOMMatrix(
-        window.getComputedStyle(element).getPropertyValue("transform")
+        window.getComputedStyle(element).getPropertyValue('transform')
       );
       const { width, height } = element.getBoundingClientRect();
       tops.push(m42);
@@ -39,7 +39,7 @@ export default function NodeGroupVM(group, padding, titleHeight, scale) {
       top: Math.min(...tops),
       bottom: Math.max(...bottoms),
       right: Math.max(...rights),
-      left: Math.min(...lefts),
+      left: Math.min(...lefts)
     });
   }, [elements]);
 
@@ -54,7 +54,7 @@ export default function NodeGroupVM(group, padding, titleHeight, scale) {
     eles.forEach((ele) => {
       observer.current.observe(ele, {
         attributes: true,
-        childList: true,
+        childList: true
       });
     });
     elements.current = eles;

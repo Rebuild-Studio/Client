@@ -1,56 +1,56 @@
-import createUxMetaData from "../../../uxApi/createUxMetaData";
-import { scene_store } from "../../stores/Scene_Store";
-import { hsvaToRgba } from "@uiw/color-convert";
+import { hsvaToRgba } from '@uiw/color-convert';
+import createUxMetaData from '../../../uxApi/createUxMetaData';
+import { scene_store } from '../../stores/Scene_Store';
 
 export default function EditableScene_VM() {
   const toJson = () => {
     const metaDataArray = [
       createUxMetaData(
-        "hdriIntensity",
-        "number",
-        "Spinner",
+        'hdriIntensity',
+        'number',
+        'Spinner',
         [0, 5],
         scene_store.hdriIntensity,
-        ""
+        ''
       ),
       createUxMetaData(
-        "canvasBackgroundColor",
-        "string",
-        "TextField",
-        "",
+        'canvasBackgroundColor',
+        'string',
+        'TextField',
+        '',
         hsvaToRgba(scene_store.canvasBackgroundColor),
-        ""
+        ''
       ),
       createUxMetaData(
-        "canvasBackgroundColorToggle",
-        "boolean",
-        "Dropdown",
+        'canvasBackgroundColorToggle',
+        'boolean',
+        'Dropdown',
         [true, false],
         scene_store.canvasBackgroundColorToggle,
         true
       ),
       createUxMetaData(
-        "ssaoToggle",
-        "boolean",
-        "Dropdown",
+        'ssaoToggle',
+        'boolean',
+        'Dropdown',
         [true, false],
         scene_store.SSAOToggle,
         false
       ),
       createUxMetaData(
-        "bloomToggle",
-        "boolean",
-        "Dropdown",
+        'bloomToggle',
+        'boolean',
+        'Dropdown',
         [true, false],
         scene_store.bloomToggle,
         false
-      ),
+      )
     ];
 
     return metaDataArray;
   };
 
   return {
-    toJson,
+    toJson
   };
 }

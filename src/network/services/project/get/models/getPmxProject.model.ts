@@ -1,4 +1,4 @@
-import { Project } from "./project.model";
+import { Project } from './project.model';
 
 interface RequestGetPmxProject {
   projectId: string;

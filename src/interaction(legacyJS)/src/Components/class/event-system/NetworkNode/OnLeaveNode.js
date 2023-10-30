@@ -1,7 +1,7 @@
-import Node from "../Node";
+import Node from '../Node';
 
 export class OnLeaveNode extends Node {
-  constructor(name, uuid, type = "OnLeave") {
+  constructor(name, uuid, type = 'OnLeave') {
     super(name, uuid, type);
   }
 }

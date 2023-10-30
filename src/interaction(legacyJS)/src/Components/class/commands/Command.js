@@ -3,8 +3,8 @@ export default class Command {
     this.store = store;
     this.id = -1;
     this.updatable = false;
-    this.type = "";
-    this.name = "";
+    this.type = '';
+    this.name = '';
   }
 
   getDetailData() {

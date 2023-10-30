@@ -1,7 +1,7 @@
-import Node from "../Node";
+import Node from '../Node';
 
 export class AndNode extends Node {
-  constructor(name, uuid, type = "And") {
+  constructor(name, uuid, type = 'And') {
     super(name, uuid, type);
   }
 }

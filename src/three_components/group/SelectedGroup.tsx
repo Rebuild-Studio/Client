@@ -1,11 +1,11 @@
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
-import GroupGizmo from "../gizmo/GroupGizmo";
-import getCenterPoint from "../utils/getCenterPoint";
-import { useThree } from "@react-three/fiber";
-import { getParent } from "../utils/findGroup";
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import { useThree } from '@react-three/fiber';
+import storeContainer from '@/store/storeContainer';
+import GroupGizmo from '../gizmo/GroupGizmo';
+import { getParent } from '../utils/findGroup';
+import getCenterPoint from '../utils/getCenterPoint';
 
 interface SelectedGroupProps {
   storeId: string;
@@ -20,11 +20,11 @@ const SelectedGroup = (props: SelectedGroupProps) => {
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
-    transparent: true,
+    transparent: true
   });
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "SELECTED_GROUP";
-  mesh.userData["storeId"] = props.storeId;
+  mesh.name = 'SELECTED_GROUP';
+  mesh.userData['storeId'] = props.storeId;
 
   useEffect(() => {
     // selected 추가
@@ -53,16 +53,16 @@ const SelectedGroup = (props: SelectedGroupProps) => {
       try {
         childrenMeshes.forEach((child) => {
           // meshes에 있는 지 확인
-          if (primitiveStore.meshes[child.userData["storeId"]]) {
+          if (primitiveStore.meshes[child.userData['storeId']]) {
             scene.attach(child);
           } else {
-            if (!child.userData["isLeave"]) {
+            if (!child.userData['isLeave']) {
               const parent = getParent(
-                child.userData["rootId"],
-                child.userData["parentId"]
+                child.userData['rootId'],
+                child.userData['parentId']
               );
-              delete child.userData["rootId"];
-              delete child.userData["parentId"];
+              delete child.userData['rootId'];
+              delete child.userData['parentId'];
               parent?.attach(child);
             }
           }

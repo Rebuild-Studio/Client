@@ -1,10 +1,10 @@
-import { Box, Button, Typography, Menu } from "@mui/material";
-import { Hue, Saturation } from "@uiw/react-color";
-import { hsvaToRgba, hsvaToHex } from "@uiw/color-convert";
-import MxSlider from "../gui/Slider_V";
-import React, { useRef } from "react";
-import canvasHistory_store from "../../../../stores/CanvasHistory_Store";
-import ChangeColorCommand from "../../../../class/commands/SceneSetting/ChangeColorCommand";
+import React, { useRef } from 'react';
+import { Box, Button, Menu, Typography } from '@mui/material';
+import { hsvaToHex, hsvaToRgba } from '@uiw/color-convert';
+import { Hue, Saturation } from '@uiw/react-color';
+import ChangeColorCommand from '../../../../class/commands/SceneSetting/ChangeColorCommand';
+import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
+import MxSlider from '../gui/Slider_V';
 
 function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
   const [anchorMenu, setAnchorMenu] = React.useState(null);
@@ -29,37 +29,37 @@ function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
   };
 
   return (
-    <Box sx={{ width: "100%", mt: 1 }}>
+    <Box sx={{ width: '100%', mt: 1 }}>
       <Box
         sx={{
-          width: "100%",
-          height: "50%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
+          width: '100%',
+          height: '50%',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}
       >
         <Typography
           sx={{
-            fontFamily: "SourceHanSansKR",
-            fontSize: "12px",
-            color: "#e2e2e2",
-            ...labelStyle,
+            fontFamily: 'SourceHanSansKR',
+            fontSize: '12px',
+            color: '#e2e2e2',
+            ...labelStyle
           }}
         >
           {label}
         </Typography>
         <Button
           sx={{
-            width: "24px",
+            width: '24px',
             minWidth: 0,
             minHeight: 0,
-            height: "24px",
+            height: '24px',
             backgroundColor: `${
-              typeof color !== "undefined" &&
+              typeof color !== 'undefined' &&
               `rgba(${rgbColor.r},${rgbColor.g},${rgbColor.b},${rgbColor.a})`
-            }`,
+            }`
           }}
           onClick={(event) => {
             setAnchorMenu(event.currentTarget);
@@ -72,31 +72,31 @@ function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
           onClose={() => setAnchorMenu(null)}
           sx={{
             zIndex: 10000,
-            position: "absolute",
+            position: 'absolute',
             top: -24,
             left: -268,
-            "& .MuiMenuItem-root": {
-              color: "#fff",
-              textAlign: "left",
-              fontFamily: "SourceHanSansKR",
-              fontSize: "13px",
-              borderRadius: "5px",
+            '& .MuiMenuItem-root': {
+              color: '#fff',
+              textAlign: 'left',
+              fontFamily: 'SourceHanSansKR',
+              fontSize: '13px',
+              borderRadius: '5px'
             },
-            "& .MuiPaper-root": {
-              width: "245px",
-              height: "412.7px",
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "#3a3a3a",
+            '& .MuiPaper-root': {
+              width: '245px',
+              height: '412.7px',
+              display: 'flex',
+              justifyContent: 'center',
+              backgroundColor: '#3a3a3a'
             },
-            ...menuStyle,
+            ...menuStyle
           }}
         >
-          <Box sx={{ width: "213px", height: "382.7px" }}>
+          <Box sx={{ width: '213px', height: '382.7px' }}>
             <Box onMouseDown={() => handleMouseDown(hsvaToHex(color))}>
               <Saturation
-                radius={"5px"}
-                style={{ width: "100%", height: "153px" }}
+                radius={'5px'}
+                style={{ width: '100%', height: '153px' }}
                 hsva={color}
                 onMouseUp={() => {
                   handleMouseUp(hsvaToHex(color));
@@ -107,8 +107,8 @@ function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
               />
             </Box>
             <Hue
-              style={{ marginTop: "15px" }}
-              radius={"10px"}
+              style={{ marginTop: '15px' }}
+              radius={'10px'}
               hue={color.h}
               onMouseDown={() => handleMouseDown(hsvaToHex(color))}
               onMouseUp={() => handleMouseUp(hsvaToHex(color))}
@@ -119,9 +119,9 @@ function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
             />
 
             <MxSlider
-              label={"채도"}
+              label={'채도'}
               value={Math.round(color.s)}
-              name={"채도"}
+              name={'채도'}
               min={0}
               max={100}
               step={1}
@@ -133,9 +133,9 @@ function MxLightColor({ label, color, setColor, name, labelStyle, menuStyle }) {
               }}
             />
             <MxSlider
-              label={"명도"}
+              label={'명도'}
               value={Math.round(color.v)}
-              name={"명도"}
+              name={'명도'}
               min={0}
               max={100}
               step={1}

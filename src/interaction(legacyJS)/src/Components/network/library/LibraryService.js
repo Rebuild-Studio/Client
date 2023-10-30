@@ -1,17 +1,17 @@
-import MXApiModule from "../MXApiModule";
-import ServiceError from "../error/ServiceError";
-import convertArgs from "../utils/convertArgs";
+import MXApiModule from '../MXApiModule';
+import ServiceError from '../error/ServiceError';
+import convertArgs from '../utils/convertArgs';
 
 const libraryServiceKeyMap = {
-  getLibrary_domain: "domain",
-  getLibrary_majorCategories: "majorCategories",
-  getLibrary_minorCategories: "minorCategories",
-  getLibrary_page: "page",
+  getLibrary_domain: 'domain',
+  getLibrary_majorCategories: 'majorCategories',
+  getLibrary_minorCategories: 'minorCategories',
+  getLibrary_page: 'page'
 };
 
 const getLibrary = async (args) => {
   const params = convertArgs(args);
-  const res = await MXApiModule.get("/library", {
+  const res = await MXApiModule.get('/library', {
     params: {
       [libraryServiceKeyMap.getLibrary_domain]:
         params[libraryServiceKeyMap.getLibrary_domain],
@@ -20,8 +20,8 @@ const getLibrary = async (args) => {
       [libraryServiceKeyMap.getLibrary_minorCategories]:
         params[libraryServiceKeyMap.getLibrary_minorCategories],
       [libraryServiceKeyMap.getLibrary_page]:
-        params[libraryServiceKeyMap.getLibrary_page],
-    },
+        params[libraryServiceKeyMap.getLibrary_page]
+    }
   }).catch((error) => {
     throw new ServiceError(
       error.response.data.status,
@@ -33,11 +33,11 @@ const getLibrary = async (args) => {
 };
 
 const libraryServiceMap = {
-  getLibrary: getLibrary,
+  getLibrary: getLibrary
 };
 
 const libraryEndpoints = {
-  getLibrary: "getLibrary",
+  getLibrary: 'getLibrary'
 };
 
 const executeLibrary =

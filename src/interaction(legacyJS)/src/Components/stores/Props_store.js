@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 const props_store = observable({
   shapeIndex: 0,
@@ -9,22 +9,22 @@ const props_store = observable({
     // console.log("shapeName: ", props_store.shapeName);
   },
 
-  shapeName: "cone",
+  shapeName: 'cone',
   // 현재 ShapeIndex 따라 다른 ShapeName을 반환하는 함수
   refreshShapeName(index) {
     return index === 0
-      ? (props_store.shapeName = "cone")
+      ? (props_store.shapeName = 'cone')
       : index === 1
-      ? (props_store.shapeName = "cylinder")
+      ? (props_store.shapeName = 'cylinder')
       : index === 2
-      ? (props_store.shapeName = "sphere")
+      ? (props_store.shapeName = 'sphere')
       : index === 3
-      ? (props_store.shapeName = "capsule")
+      ? (props_store.shapeName = 'capsule')
       : index === 4
-      ? (props_store.shapeName = "torus")
+      ? (props_store.shapeName = 'torus')
       : index === 5
-      ? (props_store.shapeName = "plane")
-      : (props_store.shapeName = "");
+      ? (props_store.shapeName = 'plane')
+      : (props_store.shapeName = '');
   },
 
   sceneTabPageIndex: 0,
@@ -38,18 +38,18 @@ const props_store = observable({
     props_store.refreshPropsTypePageName(index);
   },
 
-  propsTypePageName: "",
+  propsTypePageName: '',
   // 현재 propsTypePageIndex에 따라 다른 propsType을 반환하는 함수
   refreshPropsTypePageName(index) {
     return index === 0
-      ? (props_store.propsTypePageName = "sceneProps")
+      ? (props_store.propsTypePageName = 'sceneProps')
       : index === 1
-      ? (props_store.propsTypePageName = "objectProps")
+      ? (props_store.propsTypePageName = 'objectProps')
       : index === 2
-      ? (props_store.propsTypePageName = "lightProps")
+      ? (props_store.propsTypePageName = 'lightProps')
       : index === 3
-      ? (props_store.propsTypePageName = "cameraProps")
-      : (props_store.propsTypePageName = "");
+      ? (props_store.propsTypePageName = 'cameraProps')
+      : (props_store.propsTypePageName = '');
   },
 
   openDialog: false,
@@ -62,7 +62,7 @@ const props_store = observable({
     props_store.openDialog = !props_store.openDialog;
   },
 
-  itemsList: ["씬 Props", "오브젝트 Props", "라이트 Props", "카메라 Props"],
+  itemsList: ['씬 Props', '오브젝트 Props', '라이트 Props', '카메라 Props'],
 
   // 변수명은 모두 camelCase로 작성
   propsData: {
@@ -76,22 +76,22 @@ const props_store = observable({
           // 환경강도
           intensity: true,
           // 회전
-          rotation: true,
+          rotation: true
         },
         // 주변광
         ambientLight: {
           // 강도
           intensity: true,
           // 컬러
-          color: true,
+          color: true
         },
         // 직사광
         directionalLight: {
           // 강도
           intensity: true,
           // 컬러
-          color: true,
-        },
+          color: true
+        }
       },
 
       // 디스플레이
@@ -99,15 +99,15 @@ const props_store = observable({
         // 배경 컬러
         backgroundColor: {
           // 배경 컬러
-          color: true,
+          color: true
         },
         // 그리드
         grid: {
           // 사각형 그리드
           axis: true,
           // 중심선 그리드
-          wireframe: true,
-        },
+          wireframe: true
+        }
       },
 
       // 포스트 효과
@@ -117,9 +117,9 @@ const props_store = observable({
           // 명암 고급 효과
           ssao: true,
           // 반짝임 효과
-          bloom: true,
-        },
-      },
+          bloom: true
+        }
+      }
     },
 
     // 오브젝트 Props
@@ -131,7 +131,7 @@ const props_store = observable({
         // 회전
         rotation: true,
         // 크기
-        scale: true,
+        scale: true
       },
 
       // 머터리얼
@@ -147,7 +147,7 @@ const props_store = observable({
         // 거칠기
         roughness: true,
         // 더블 사이드
-        doubleSide: true,
+        doubleSide: true
       },
 
       shape: {
@@ -162,7 +162,7 @@ const props_store = observable({
           //밑면 보이기
           openEnded: true,
           //호 길이
-          thetaLength: true,
+          thetaLength: true
         },
 
         cylinder: {
@@ -175,7 +175,7 @@ const props_store = observable({
           //밑면 보이기
           openEnded: true,
           //호 길이
-          thetaLength: true,
+          thetaLength: true
         },
 
         sphere: {
@@ -188,7 +188,7 @@ const props_store = observable({
           //세타 시작점
           thetaStart: true,
           //세로 호 길이
-          thetaLength: true,
+          thetaLength: true
         },
 
         capsule: {
@@ -199,7 +199,7 @@ const props_store = observable({
           //캡슐 면 개수
           capSegments: true,
           //기둥 면 개수
-          radialSegments: true,
+          radialSegments: true
         },
 
         torus: {
@@ -212,16 +212,16 @@ const props_store = observable({
           //가로 면 개수
           tubularSegments: true,
           //호 길이
-          arc: true,
+          arc: true
         },
 
         plane: {
           //가로 길이
           width: true,
           //세로 길이
-          height: true,
-        },
-      },
+          height: true
+        }
+      }
     },
 
     // 라이트 Props
@@ -233,7 +233,7 @@ const props_store = observable({
         // 회전
         rotation: true,
         // 크기
-        scale: true,
+        scale: true
       },
       //  빛 속성
       light: {
@@ -244,8 +244,8 @@ const props_store = observable({
         // 빛 각도(스포트라이트)
         angle: true,
         // 빛 범위(스포트라이트)
-        penumbra: true,
-      },
+        penumbra: true
+      }
     },
 
     // 카메라 Props
@@ -257,7 +257,7 @@ const props_store = observable({
         // 회전
         rotation: true,
         // 크기
-        scale: true,
+        scale: true
       },
       // 카메라
       camera: {
@@ -266,16 +266,16 @@ const props_store = observable({
         // near
         near: true,
         // Far
-        far: true,
-      },
-    },
+        far: true
+      }
+    }
   },
 
   //props_store.propsData["환경광"] = true
 
   getPropsData() {
     return props_store.propsData;
-  },
+  }
 });
 
 export { props_store };

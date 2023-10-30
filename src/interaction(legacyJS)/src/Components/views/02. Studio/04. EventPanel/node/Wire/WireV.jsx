@@ -1,7 +1,7 @@
-import { observer } from "mobx-react";
-import storeContainer from "../../../../../stores/storeContainer";
-import Curve from "../../views/Curve";
-import SocketColor from "../../views/SocketColor";
+import { observer } from 'mobx-react';
+import storeContainer from '../../../../../stores/storeContainer';
+import Curve from '../../views/Curve';
+import SocketColor from '../../views/SocketColor';
 
 //WireV: 두 소켓의 연결 상태를 표현하는 선
 const WireV = observer((props) => {

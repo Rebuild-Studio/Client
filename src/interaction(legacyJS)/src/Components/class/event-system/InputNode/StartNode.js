@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Timer";
+const nodeType = 'Timer';
 
 export class StartNode extends Node {
   static NODE_TYPE = nodeType;
@@ -17,8 +17,8 @@ const nodeSchema = {
   inputSocket: [],
   outputSocket: [
     {
-      name: "signal",
-      type: ControlType.Boolean,
-    },
-  ],
-}
+      name: 'signal',
+      type: ControlType.Boolean
+    }
+  ]
+};

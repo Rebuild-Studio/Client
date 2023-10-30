@@ -1,9 +1,8 @@
-import { observer } from "mobx-react";
-import { css, styled } from "styled-components";
-
-import { basicColors, bgColors, grayColors } from "@resources/colors/colors";
-import { fonts } from "@resources/fonts/font";
-import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
+import { observer } from 'mobx-react';
+import { css, styled } from 'styled-components';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
+import { basicColors, bgColors, grayColors } from '@resources/colors/colors';
+import { fonts } from '@resources/fonts/font';
 
 interface Props {
   enabled: boolean;
@@ -51,7 +50,7 @@ const Button = styled.button<{ $highlight: boolean }>`
   justify-content: center;
   width: 50%;
   padding: 4px 6px;
-  border: 1px solid ${bgColors["404040"]};
+  border: 1px solid ${bgColors['404040']};
   font-size: ${fonts.xs};
   
   &:first-child {
@@ -76,5 +75,5 @@ const Button = styled.button<{ $highlight: boolean }>`
 `;
 
 const Shortcut = styled.span<{ $highlight: boolean }>`
-  color: ${({ $highlight }) => ($highlight ? "#8b9643" : grayColors["535353"])};
+  color: ${({ $highlight }) => ($highlight ? '#8b9643' : grayColors['535353'])};
 `;

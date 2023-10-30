@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
 
 const MxButton = (props) => {
   const { onClick, style, children, ...other } = props;
@@ -29,11 +29,11 @@ const sx = {
       margin: 0,
       minWidth: 0,
       minHeight: 0,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: `${
-          style?.backgroundColor ? style.backgroundColor : "transparent"
-        }`,
-      },
+          style?.backgroundColor ? style.backgroundColor : 'transparent'
+        }`
+      }
     };
-  },
+  }
 };

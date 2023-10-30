@@ -1,6 +1,6 @@
-import { grayColors } from "@/resources/colors/colors";
-import { CSSHexColor } from "@/types/style/cssUnits";
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
+import { grayColors } from '@/resources/colors/colors';
+import { CSSHexColor } from '@/types/style/cssUnits';
 
 type Props = {
   label: string;
@@ -15,17 +15,17 @@ export const ItemChildren = ({
   disabled,
   hoverBackgroundColor = grayColors[535353],
   disabledColor = grayColors[535353],
-  onMouseEnter,
+  onMouseEnter
 }: Props) => {
   return (
     <StyledItem
       $hoverBackgroundColor={hoverBackgroundColor}
       $disabledColor={disabledColor}
-      className={disabled ? "disabled" : ""}
+      className={disabled ? 'disabled' : ''}
       onMouseEnter={onMouseEnter}
     >
       <span>{label}</span>
-      <span style={{ float: "right" }}>{">"}</span>
+      <span style={{ float: 'right' }}>{'>'}</span>
     </StyledItem>
   );
 };

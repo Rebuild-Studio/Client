@@ -11,8 +11,8 @@ const minioPath = (fileName: string) =>
     libraryGlb: `models/Objects/${fileName}.glb`,
     libraryMaterial: `models/MaterialTemplates/${fileName}.glb`,
     libraryHDR: `models/hdri/${fileName}.hdr`,
-    cameraCubeMaterial: `models/CameraCube/${fileName}.png`,
-  } as const);
+    cameraCubeMaterial: `models/CameraCube/${fileName}.png`
+  }) as const;
 
 type MinioPathKeys = keyof ReturnType<typeof minioPath>;
 

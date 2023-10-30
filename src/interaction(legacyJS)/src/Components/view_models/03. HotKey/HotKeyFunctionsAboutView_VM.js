@@ -1,14 +1,14 @@
-import { common_store } from "../../stores/Common_Store";
-import { objectViewModel } from "../../view_models/Object_VM";
-import * as THREE from "three";
-import { runInAction } from "mobx";
-import { scene_store } from "../../stores/Scene_Store";
-import { controllerBar_store } from "../../stores/ControllerBar_Store";
-import { object_store } from "../../stores/Object_Store";
+import * as THREE from 'three';
+import { runInAction } from 'mobx';
+import { common_store } from '../../stores/Common_Store';
+import { controllerBar_store } from '../../stores/ControllerBar_Store';
+import { object_store } from '../../stores/Object_Store';
+import { scene_store } from '../../stores/Scene_Store';
+import { objectViewModel } from '../../view_models/Object_VM';
 
 const HotKeyFunctionsAboutViewViewModel = {
   preview: () => {
-    const button = document.getElementById("preview");
+    const button = document.getElementById('preview');
     button.click();
   },
   fullScreen: () => {
@@ -37,7 +37,7 @@ const HotKeyFunctionsAboutViewViewModel = {
       .divideScalar(2);
   },
   objEnlarge: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       if (objectViewModel.selectedObjects.length === 0) {
         HotKeyFunctionsAboutViewViewModel.fullScreen();
       } else if (objectViewModel.selectedObjects.length === 1) {
@@ -110,23 +110,23 @@ const HotKeyFunctionsAboutViewViewModel = {
 
   openHistoryTab: () => {
     console.log();
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
-      if (common_store.optionLeftTab !== "history") {
-        common_store.changeLeftOption("history");
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
+      if (common_store.optionLeftTab !== 'history') {
+        common_store.changeLeftOption('history');
       } else {
-        common_store.changePrevLeftOption("history");
-        common_store.changeLeftOption("");
+        common_store.changePrevLeftOption('history');
+        common_store.changeLeftOption('');
       }
     }
   },
 
   openHierarchyTab: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
-      if (common_store.optionLeftTab !== "hierarchy") {
-        common_store.changeLeftOption("hierarchy");
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
+      if (common_store.optionLeftTab !== 'hierarchy') {
+        common_store.changeLeftOption('hierarchy');
       } else {
-        common_store.changePrevLeftOption("hierarchy");
-        common_store.changeLeftOption("");
+        common_store.changePrevLeftOption('hierarchy');
+        common_store.changeLeftOption('');
       }
     }
   },
@@ -135,7 +135,7 @@ const HotKeyFunctionsAboutViewViewModel = {
     if (
       !common_store.isPreview &&
       !common_store.isMoveMode &&
-      common_store.curCategory === "canvas"
+      common_store.curCategory === 'canvas'
     ) {
       common_store.setIsMoveMode(true);
       if (objectViewModel.isObjectSelected) {
@@ -151,13 +151,13 @@ const HotKeyFunctionsAboutViewViewModel = {
   },
 
   normalSnapToggle: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       controllerBar_store.setNormalMode(!controllerBar_store.normalMode);
     }
   },
 
   moveModeOff: () => {
-    if (common_store.isMoveMode && common_store.curCategory === "canvas") {
+    if (common_store.isMoveMode && common_store.curCategory === 'canvas') {
       if (objectViewModel.isObjectSelected) {
         object_store.selectedObjects[0].mesh.position.copy(
           object_store.prevPosition
@@ -182,10 +182,10 @@ const HotKeyFunctionsAboutViewViewModel = {
   },
 
   gridToggle: () => {
-    if (!common_store.isPreview && common_store.curCategory === "canvas") {
+    if (!common_store.isPreview && common_store.curCategory === 'canvas') {
       scene_store.grid.visible = !scene_store.grid.visible;
     }
-  },
+  }
 };
 
 export { HotKeyFunctionsAboutViewViewModel };

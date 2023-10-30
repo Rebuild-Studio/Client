@@ -1,7 +1,6 @@
-import { ChangeEvent, useState } from "react";
-import { styled } from "styled-components";
-
-import CheckboxIcon from "@/features/controllerBar/components/icons/CheckboxIcon";
+import { ChangeEvent, useState } from 'react';
+import { styled } from 'styled-components';
+import CheckboxIcon from '@/features/controllerBar/components/icons/CheckboxIcon';
 
 interface Props {
   value: string;
@@ -27,8 +26,8 @@ const Checkbox = ({ value, name }: Props) => {
         />
         <CheckboxIcon checked={checked} />
         <span>{name}</span>
-        {value === "grid" && <Shortcut>G</Shortcut>}
-        {value === "rotate" && <Shortcut>A</Shortcut>}
+        {value === 'grid' && <Shortcut>G</Shortcut>}
+        {value === 'rotate' && <Shortcut>A</Shortcut>}
       </InputWrapper>
     </label>
   );

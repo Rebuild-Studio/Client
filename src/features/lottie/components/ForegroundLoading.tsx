@@ -1,13 +1,13 @@
-import { styled } from "styled-components";
-import LoadingLottie from "../assets/loading.json";
+import { styled } from 'styled-components';
 import MXLottie, {
-  MXLottieSizeProps,
-} from "@/components/common/lottie/MXLottie";
+  MXLottieSizeProps
+} from '@/components/common/lottie/MXLottie';
+import LoadingLottie from '../assets/loading.json';
 
 const ForegroundLoading = () => {
   const style: MXLottieSizeProps = {
     width: 100,
-    height: 100,
+    height: 100
   };
   return (
     <ForegroundLoadingWrapper>

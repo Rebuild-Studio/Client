@@ -1,11 +1,12 @@
 /* eslint-disable array-callback-return */
-import storeContainer from "../stores/storeContainer";
-import { useState } from "react";
-import { MathUtils } from "three";
-import * as THREE from "three";
-import { objectViewModel } from "./Object_VM";
-import canvasHistory_store from "../stores/CanvasHistory_Store";
-import SetTransformCommand from "../class/commands/CanvasObject/SetTransformCommand";
+import { useState } from 'react';
+import { MathUtils } from 'three';
+import * as THREE from 'three';
+import { objectViewModel } from './Object_VM';
+import SetTransformCommand from '../class/commands/CanvasObject/SetTransformCommand';
+import canvasHistory_store from '../stores/CanvasHistory_Store';
+import storeContainer from '../stores/storeContainer';
+
 export default function ConvertVM() {
   const { object_store } = storeContainer;
 
@@ -24,21 +25,21 @@ export default function ConvertVM() {
     return _euler;
   };
   const [position, setPosition] = useState(
-    object_store.selectedObjects[0].props["position"]
+    object_store.selectedObjects[0].props['position']
   );
 
   const [rotation, setRotation] = useState(
-    convertEuler(object_store.selectedObjects[0].props["rotation"], true)
+    convertEuler(object_store.selectedObjects[0].props['rotation'], true)
   );
   const [scale, setScale] = useState(
-    object_store.selectedObjects[0].props["scale"]
+    object_store.selectedObjects[0].props['scale']
   );
   const InitTransFormation = () => {
-    setPosition(object_store.selectedObjects[0].props["position"]);
+    setPosition(object_store.selectedObjects[0].props['position']);
     setRotation(
-      convertEuler(object_store.selectedObjects[0].props["rotation"], true)
+      convertEuler(object_store.selectedObjects[0].props['rotation'], true)
     );
-    setScale(object_store.selectedObjects[0].props["scale"]);
+    setScale(object_store.selectedObjects[0].props['scale']);
   };
   const handleOnClick = (e) => {
     var id = e.target.id;
@@ -49,18 +50,18 @@ export default function ConvertVM() {
     let newValue = {};
     let data = null;
 
-    if (prop === "position") {
+    if (prop === 'position') {
       curValue = { ...position };
       newValue = {
         ...position,
-        [axis]: e.target.value,
+        [axis]: e.target.value
       };
 
       setPosition(newValue);
       const oldPosition = new THREE.Vector3();
       const newPosition = new THREE.Vector3();
 
-      if (object_store.selectedObjects[0].type === "Audio") {
+      if (object_store.selectedObjects[0].type === 'Audio') {
         oldPosition.copy(object_store.selectedObjects[0].props.position);
       } else {
         oldPosition.copy(object_store.selectedObjects[0].mesh.position);
@@ -70,15 +71,15 @@ export default function ConvertVM() {
       data = {
         type: prop,
         oldValue: oldPosition.clone(),
-        newValue: newPosition.clone(),
+        newValue: newPosition.clone()
       };
-    } else if (prop === "rotation") {
+    } else if (prop === 'rotation') {
       curValue = { ...rotation };
       const _euler = new THREE.Euler().copy(rotation);
       _euler[axis] = e.target.value;
       newValue = { ..._euler };
       const _newValue = {
-        ...newValue,
+        ...newValue
       };
 
       newValue = convertEuler(_euler, false);
@@ -86,12 +87,12 @@ export default function ConvertVM() {
         ...newValue,
         _x: parseFloat(newValue._x),
         _y: parseFloat(newValue._y),
-        _z: parseFloat(newValue._z),
+        _z: parseFloat(newValue._z)
       };
       setRotation(_newValue);
       const oldRotation = new THREE.Euler();
       const newRotation = new THREE.Euler();
-      if (object_store.selectedObjects[0].type === "Audio") {
+      if (object_store.selectedObjects[0].type === 'Audio') {
         oldRotation.copy(object_store.selectedObjects[0].props.rotation);
       } else {
         oldRotation.copy(object_store.selectedObjects[0].mesh.rotation);
@@ -101,18 +102,18 @@ export default function ConvertVM() {
       data = {
         type: prop,
         oldValue: oldRotation.clone(),
-        newValue: newRotation.clone(),
+        newValue: newRotation.clone()
       };
-    } else if (prop === "scale") {
+    } else if (prop === 'scale') {
       curValue = { ...scale };
       newValue = {
         ...scale,
-        [axis]: e.target.value,
+        [axis]: e.target.value
       };
       setScale(newValue);
       const oldScale = new THREE.Vector3();
       const newScale = new THREE.Vector3();
-      if (object_store.selectedObjects[0].type === "Audio") {
+      if (object_store.selectedObjects[0].type === 'Audio') {
         oldScale.copy(object_store.selectedObjects[0].props.scale);
       } else {
         oldScale.copy(object_store.selectedObjects[0].mesh.scale);
@@ -122,7 +123,7 @@ export default function ConvertVM() {
       data = {
         type: prop,
         oldValue: oldScale.clone(),
-        newValue: newScale.clone(),
+        newValue: newScale.clone()
       };
     }
     canvasHistory_store.execute(
@@ -137,24 +138,24 @@ export default function ConvertVM() {
 
     let newValue = {};
 
-    if (prop === "position") {
+    if (prop === 'position') {
       newValue = {
         ...position,
-        [axis]: e.target.value,
+        [axis]: e.target.value
       };
 
       setPosition(newValue);
-    } else if (prop === "rotation") {
+    } else if (prop === 'rotation') {
       const _euler = new THREE.Euler().copy(rotation);
 
       _euler[axis] = e.target.value;
       newValue = _euler;
 
       setRotation(newValue);
-    } else if (prop === "scale") {
+    } else if (prop === 'scale') {
       newValue = {
         ...scale,
-        [axis]: e.target.value,
+        [axis]: e.target.value
       };
       setScale(newValue);
     }
@@ -162,9 +163,9 @@ export default function ConvertVM() {
   function ApplyConvertValue(prop, axis, value) {
     let data = null;
     if (objectViewModel.isObjectSelected) {
-      if (prop === "scale") {
+      if (prop === 'scale') {
         if (
-          object_store.selectedObjects[0]["mesh"][prop][axis] === Number(value)
+          object_store.selectedObjects[0]['mesh'][prop][axis] === Number(value)
         )
           return;
         const oldScale = new THREE.Vector3();
@@ -174,12 +175,12 @@ export default function ConvertVM() {
         data = {
           type: prop,
           oldValue: oldScale.clone(),
-          newValue: newScale.clone(),
+          newValue: newScale.clone()
         };
       }
-      if (prop === "position") {
+      if (prop === 'position') {
         if (
-          object_store.selectedObjects[0]["mesh"][prop][axis] === Number(value)
+          object_store.selectedObjects[0]['mesh'][prop][axis] === Number(value)
         )
           return;
         const oldPosition = new THREE.Vector3();
@@ -189,12 +190,12 @@ export default function ConvertVM() {
         data = {
           type: prop,
           oldValue: oldPosition.clone(),
-          newValue: newPosition.clone(),
+          newValue: newPosition.clone()
         };
       }
-      if (prop === "rotation") {
+      if (prop === 'rotation') {
         if (
-          object_store.selectedObjects[0]["mesh"][prop][axis] ===
+          object_store.selectedObjects[0]['mesh'][prop][axis] ===
           MathUtils.degToRad(value)
         )
           return;
@@ -206,7 +207,7 @@ export default function ConvertVM() {
         data = {
           type: prop,
           oldValue: oldRotation.clone(),
-          newValue: newRotation.clone(),
+          newValue: newRotation.clone()
         };
       }
       // objectViewModel.SetProps(prop, newValue);
@@ -223,7 +224,7 @@ export default function ConvertVM() {
     const axis = id.substr(-1).toLowerCase();
 
     if (e.keyCode === 13 || e.keyCode === 9) {
-      if (e.target.value !== "" && e.target.value !== "-") {
+      if (e.target.value !== '' && e.target.value !== '-') {
         const num = e.target.value;
 
         ApplyConvertValue(type, axis, num);
@@ -238,7 +239,7 @@ export default function ConvertVM() {
     const type = id.substr(0, id.length - 1);
     const axis = id.substr(-1).toLowerCase();
 
-    if (e.target.value !== "" && e.target.value !== "-") {
+    if (e.target.value !== '' && e.target.value !== '-') {
       const num = e.target.value;
 
       ApplyConvertValue(type, axis, num);
@@ -255,6 +256,6 @@ export default function ConvertVM() {
     rotation,
     scale,
     handleonChange,
-    InitTransFormation,
+    InitTransFormation
   };
 }

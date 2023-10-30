@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
-import { getDefaultMaterialSetting } from "../utils/materialSetting";
-import { observer } from "mobx-react";
-import storeContainer from "@/store/storeContainer";
-import { PrimitiveProps } from "../common/PrimitiveProps";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
+import { PrimitiveProps } from '../common/PrimitiveProps';
+import { getDefaultMaterialSetting } from '../utils/materialSetting';
 
 interface CylinderParams {
   minRadiusTop: number;
@@ -35,7 +35,7 @@ const initCylinder: CylinderParams = {
   toggleOpenEnded: false,
   minThetaLength: 0,
   maxThetaLength: Math.PI * 2,
-  thetaLengthUnit: 0.06,
+  thetaLengthUnit: 0.06
 };
 
 const CylinderPrimitive = (props: PrimitiveProps) => {
@@ -54,13 +54,13 @@ const CylinderPrimitive = (props: PrimitiveProps) => {
   const material = getDefaultMaterialSetting();
   material.transparent = true;
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "CYLINDER";
-  mesh.userData["storeId"] = props.storeId;
-  mesh.userData["isLocked"] = false;
+  mesh.name = 'CYLINDER';
+  mesh.userData['storeId'] = props.storeId;
+  mesh.userData['isLocked'] = false;
 
   useEffect(() => {
-    primitiveStore.updatePrimitive(mesh.userData["storeId"], mesh);
-    canvasHistoryStore.differAdd(mesh.userData["storeId"]);
+    primitiveStore.updatePrimitive(mesh.userData['storeId'], mesh);
+    canvasHistoryStore.differAdd(mesh.userData['storeId']);
   }, []);
 
   return (

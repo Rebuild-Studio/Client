@@ -1,12 +1,11 @@
-import { LinearSRGBColorSpace } from "three";
-import { Box, Typography } from "@mui/material";
-import { Hue, Saturation } from "@uiw/react-color";
-import { hsvaToRgba, hsvaToHex, hexToHsva } from "@uiw/color-convert";
-import MxSlider from "../../02. RightTab/gui/Slider_V";
-import MxInput from "../../02. RightTab/gui/MxInput";
-
-import { observer } from "mobx-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
+import { LinearSRGBColorSpace } from 'three';
+import { observer } from 'mobx-react';
+import { Box, Typography } from '@mui/material';
+import { hexToHsva, hsvaToHex, hsvaToRgba } from '@uiw/color-convert';
+import { Hue, Saturation } from '@uiw/react-color';
+import MxInput from '../../02. RightTab/gui/MxInput';
+import MxSlider from '../../02. RightTab/gui/Slider_V';
 
 function round(c) {
   const range = 100000000;
@@ -44,11 +43,11 @@ const ControlColorV = observer((props) => {
   );
 
   return (
-    <Box sx={{ width: "213px", height: "366.7px", backgroundColor: "#282828" }}>
+    <Box sx={{ width: '213px', height: '366.7px', backgroundColor: '#282828' }}>
       <Box>
         <Saturation
-          radius={"5px"}
-          style={{ width: "100%", height: "153px" }}
+          radius={'5px'}
+          style={{ width: '100%', height: '153px' }}
           hsva={color}
           onChange={(newColor) => {
             onChange(newColor);
@@ -56,8 +55,8 @@ const ControlColorV = observer((props) => {
         />
       </Box>
       <Hue
-        style={{ marginTop: "10px" }}
-        radius={"10px"}
+        style={{ marginTop: '10px' }}
+        radius={'10px'}
         hue={color.h}
         onChange={(newHue) => {
           const _hsva = { ...color, ...newHue };
@@ -66,18 +65,18 @@ const ControlColorV = observer((props) => {
       />
       <Box
         sx={{
-          marginTop: "15px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-around",
+          marginTop: '15px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-around'
         }}
       >
         <Typography
           sx={{
-            fontFamily: "Pretendard",
-            fontSize: "12px",
+            fontFamily: 'Pretendard',
+            fontSize: '12px',
             fontWeight: 500,
-            color: "#666",
+            color: '#666'
           }}
         >
           Hex
@@ -87,25 +86,25 @@ const ControlColorV = observer((props) => {
           value={hsvaToHex(color)}
           inputProps={{ readOnly: true }}
           boxStyle={{
-            width: "97px",
-            height: "18px",
+            width: '97px',
+            height: '18px'
           }}
         />
       </Box>
       <Box
         sx={{
-          marginTop: "15px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-around",
+          marginTop: '15px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-around'
         }}
       >
         <Typography
           sx={{
-            fontFamily: "Pretendard",
-            fontSize: "12px",
+            fontFamily: 'Pretendard',
+            fontSize: '12px',
             fontWeight: 500,
-            color: "#666",
+            color: '#666'
           }}
         >
           R
@@ -115,16 +114,16 @@ const ControlColorV = observer((props) => {
           value={rgbColor.r}
           inputProps={{ readOnly: true }}
           boxStyle={{
-            width: "50px",
-            height: "18px",
+            width: '50px',
+            height: '18px'
           }}
         />
         <Typography
           sx={{
-            fontFamily: "Pretendard",
-            fontSize: "12px",
+            fontFamily: 'Pretendard',
+            fontSize: '12px',
             fontWeight: 500,
-            color: "#666",
+            color: '#666'
           }}
         >
           G
@@ -133,17 +132,17 @@ const ControlColorV = observer((props) => {
           id="Rgb_g"
           value={rgbColor.g}
           boxStyle={{
-            width: "50px",
-            height: "18px",
+            width: '50px',
+            height: '18px'
           }}
           inputProps={{ readOnly: true }}
         />
         <Typography
           sx={{
-            fontFamily: "Pretendard",
-            fontSize: "12px",
+            fontFamily: 'Pretendard',
+            fontSize: '12px',
             fontWeight: 500,
-            color: "#666",
+            color: '#666'
           }}
         >
           B
@@ -152,16 +151,16 @@ const ControlColorV = observer((props) => {
           id="Rgb_b"
           value={rgbColor.b}
           boxStyle={{
-            width: "50px",
-            height: "18px",
+            width: '50px',
+            height: '18px'
           }}
           inputProps={{ readOnly: true }}
         />
       </Box>
       <MxSlider
-        label={"채도"}
+        label={'채도'}
         value={Math.round(color.s)}
-        name={"채도"}
+        name={'채도'}
         min={0}
         max={100}
         step={1}
@@ -171,9 +170,9 @@ const ControlColorV = observer((props) => {
         }}
       />
       <MxSlider
-        label={"명도"}
+        label={'명도'}
         value={Math.round(color.v)}
-        name={"명도"}
+        name={'명도'}
         min={0}
         max={100}
         step={1}

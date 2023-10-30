@@ -1,16 +1,16 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class CreateSocketsCommand extends Command {
   constructor(store, args) {
     const { uuid, key, value, type, isInput, sheetId } = args;
     super(store);
-    this.type = "CreateSocketsCommand";
-    this.name = "SetNodeDataCommand";
+    this.type = 'CreateSocketsCommand';
+    this.name = 'SetNodeDataCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       args: {
-        sheetId,
+        sheetId
       },
       uuid: uuid,
       key: key,
@@ -20,7 +20,7 @@ export default class CreateSocketsCommand extends Command {
       beforeJson: undefined,
       afterJson: undefined,
       sheetName: sheet.name,
-      nodeType: sheet.getNodeByUuid(uuid).type,
+      nodeType: sheet.getNodeByUuid(uuid).type
     };
   }
 
@@ -30,7 +30,7 @@ export default class CreateSocketsCommand extends Command {
       const node = sheet.getNodeByUuid(this.data.uuid);
       const before = {
         nodes: [node],
-        wires: sheet.getWiresInNode(node),
+        wires: sheet.getWiresInNode(node)
       };
       this.data.beforeJson = Utils.stringify(before);
       sheet.setSocketsByArray(
@@ -48,7 +48,7 @@ export default class CreateSocketsCommand extends Command {
     const sheet = this.store.getSheetByUuid(this.data.args.sheetId);
     const node = sheet.getNodeByUuid(this.data.uuid);
     const after = {
-      nodes: [node],
+      nodes: [node]
     };
     this.data.afterJson = Utils.stringify(after);
     sheet.parseInteractions(Utils.parse(this.data.beforeJson));

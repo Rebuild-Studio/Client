@@ -1,9 +1,9 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
-type EditorMode = "canvas" | "interaction" | "preview";
+type EditorMode = 'canvas' | 'interaction' | 'preview';
 
 class EditorModeStore {
-  editorMode = "canvas";
+  editorMode = 'canvas';
   canvasBarOpen = true;
   interactionBarOpen = true;
 

@@ -1,4 +1,4 @@
-import { MxJson } from "@/types/mxJson/mxJson";
+import { MxJson } from '@/types/mxJson/mxJson';
 
 interface RequestCreatePmxProject {
   projectName: string;

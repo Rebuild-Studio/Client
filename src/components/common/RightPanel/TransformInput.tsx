@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import storeContainer from "@/store/storeContainer";
-import InputField from "../InputField";
-import { observer } from "mobx-react";
-import { roundToNDecimalPlaces } from "@utils/number/roundToDecimalPlaces";
-import * as THREE from "three";
+import { useEffect, useState } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import { roundToNDecimalPlaces } from '@utils/number/roundToDecimalPlaces';
+import InputField from '../InputField';
 
 interface Props {
-  type: "position" | "rotation" | "scale";
-  axis: "x" | "y" | "z";
+  type: 'position' | 'rotation' | 'scale';
+  axis: 'x' | 'y' | 'z';
   initValue: string;
 }
 const TransformInput = (props: Props) => {
@@ -32,12 +32,12 @@ const TransformInput = (props: Props) => {
     setValue(Number(input));
 
     const prop = props.type;
-    const axis: "x" | "y" | "z" = props.axis;
+    const axis: 'x' | 'y' | 'z' = props.axis;
 
     const currentValue = {
       position: new THREE.Vector3().copy(position),
       rotation: new THREE.Euler().copy(rotation),
-      scale: new THREE.Vector3().copy(scale),
+      scale: new THREE.Vector3().copy(scale)
     }[prop];
 
     const inputValue = Number(input);
@@ -45,7 +45,7 @@ const TransformInput = (props: Props) => {
       prop,
       axis,
       currentValue,
-      inputValue,
+      inputValue
     });
 
     updateTransform(prop, newValue, selectedPrimitive);
@@ -53,7 +53,7 @@ const TransformInput = (props: Props) => {
 
   return (
     <InputField
-      type={"number"}
+      type={'number'}
       title={props.type}
       label={props.axis}
       value={roundToNDecimalPlaces(Number(value), 2)}
@@ -68,7 +68,7 @@ export default Observer;
 
 interface initNewValueProps {
   prop: string;
-  axis: "x" | "y" | "z";
+  axis: 'x' | 'y' | 'z';
   currentValue: THREE.Vector3 | THREE.Euler;
   inputValue: number;
 }
@@ -76,10 +76,10 @@ function initializeNewValue({
   prop,
   axis,
   currentValue,
-  inputValue,
+  inputValue
 }: initNewValueProps) {
   switch (prop) {
-    case "position": {
+    case 'position': {
       if (currentValue instanceof THREE.Vector3) {
         const newValue = new THREE.Vector3().copy(currentValue);
         newValue[axis] = inputValue;
@@ -87,7 +87,7 @@ function initializeNewValue({
       }
       break;
     }
-    case "rotation":
+    case 'rotation':
       {
         if (currentValue instanceof THREE.Euler) {
           const newValue = new THREE.Euler().copy(currentValue);
@@ -96,7 +96,7 @@ function initializeNewValue({
         }
       }
       break;
-    case "scale":
+    case 'scale':
       {
         if (currentValue instanceof THREE.Vector3) {
           const newValue = { ...currentValue };
@@ -113,13 +113,13 @@ function initializeNewValue({
 
 const updateTransform = (prop: string, newValue: any, newMesh: THREE.Mesh) => {
   switch (prop) {
-    case "position":
+    case 'position':
       newMesh.position.set(newValue.x, newValue.y, newValue.z);
       break;
-    case "rotation":
+    case 'rotation':
       newMesh.rotation.set(newValue.x, newValue.y, newValue.z);
       break;
-    case "scale":
+    case 'scale':
       newMesh.scale.set(newValue.x, newValue.y, newValue.z);
       break;
     default:

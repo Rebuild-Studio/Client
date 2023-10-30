@@ -1,6 +1,6 @@
-import storeContainer from "@/store/storeContainer";
-import { nanoid } from "nanoid";
-import { renderSelectedGroup } from "./renderThreeComponents";
+import { nanoid } from 'nanoid';
+import storeContainer from '@/store/storeContainer';
+import { renderSelectedGroup } from './renderThreeComponents';
 
 const makeSelectedGroup = () => {
   const { primitiveStore } = storeContainer;

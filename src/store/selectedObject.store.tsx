@@ -1,7 +1,7 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 class SelectedObjectStore {
-  selectedMaterial = "MX_mat_defalt_white_01";
+  selectedMaterial = 'MX_mat_defalt_white_01';
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -12,7 +12,7 @@ class SelectedObjectStore {
   }
 
   clearSelectedMaterial() {
-    this.selectedMaterial = "MX_mat_defalt_white_01";
+    this.selectedMaterial = 'MX_mat_defalt_white_01';
   }
 }
 

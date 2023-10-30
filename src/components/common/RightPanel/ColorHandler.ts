@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import { HsvaColor, RgbColor, hsvaToHex, rgbaToHsva } from "@uiw/color-convert";
-import storeContainer from "@/store/storeContainer";
+import * as THREE from 'three';
+import { HsvaColor, RgbColor, hsvaToHex, rgbaToHsva } from '@uiw/color-convert';
+import storeContainer from '@/store/storeContainer';
 
 class ColorHandler {
   static updateAmbientLightColor(phsva: HsvaColor) {
@@ -68,7 +68,7 @@ class ColorHandler {
       r: rgb.r * 255,
       g: rgb.g * 255,
       b: rgb.b * 255,
-      a: opacity,
+      a: opacity
     };
     const hsva = rgbaToHsva(rgba);
     return hsva;

@@ -1,19 +1,19 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { observer } from "mobx-react";
-import storeContainer from "../../../stores/storeContainer";
-import { useFrame, useThree } from "@react-three/fiber";
-import EventFunctions_VM from "../../../view_models/EventFunctions_VM";
-import SceneSetting_VM from "../../../view_models/02. SceneSetting/SceneSetting_VM";
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { useFrame, useThree } from '@react-three/fiber';
 import {
+  Bloom,
   EffectComposer,
   Outline,
-  SSAO,
-  Bloom,
-} from "@react-three/postprocessing";
-import SceneUpdate_VM from "../../../view_models/SceneUpdate_VM";
-import { BlendFunction, KernelSize, Resolution } from "postprocessing";
-import { objectViewModel } from "../../../view_models/Object_VM";
-import { ObjectStateVM } from "../../../view_models/ObjectState_VM";
+  SSAO
+} from '@react-three/postprocessing';
+import { BlendFunction, KernelSize, Resolution } from 'postprocessing';
+import storeContainer from '../../../stores/storeContainer';
+import SceneSetting_VM from '../../../view_models/02. SceneSetting/SceneSetting_VM';
+import EventFunctions_VM from '../../../view_models/EventFunctions_VM';
+import { ObjectStateVM } from '../../../view_models/ObjectState_VM';
+import { objectViewModel } from '../../../view_models/Object_VM';
+import SceneUpdate_VM from '../../../view_models/SceneUpdate_VM';
 
 const SceneSetting = observer(() => {
   const { object_store, scene_store, common_store } = storeContainer;
@@ -21,7 +21,7 @@ const SceneSetting = observer(() => {
   const { DropEventListener, onItemMove, onMouseDown } = EventFunctions_VM();
   const { InitiateScene, GetOutlineColor } = SceneSetting_VM();
   const { SceneUpdate } = SceneUpdate_VM();
-  const [outlineColor, setOutlineColor] = useState("#d4ed3e");
+  const [outlineColor, setOutlineColor] = useState('#d4ed3e');
   useEffect(() => {
     objectViewModel.SetOutlineObject(null); //reset
     if (object_store.selectedObjects.length !== 0) {
@@ -40,18 +40,18 @@ const SceneSetting = observer(() => {
   }, []);
 
   useEffect(() => {
-    document.addEventListener("drop", DropEventListener);
-    document.addEventListener("mousemove", onItemMove, false);
+    document.addEventListener('drop', DropEventListener);
+    document.addEventListener('mousemove', onItemMove, false);
     return () => {
-      document.removeEventListener("drop", DropEventListener);
-      document.removeEventListener("mousemove", onItemMove, false);
+      document.removeEventListener('drop', DropEventListener);
+      document.removeEventListener('mousemove', onItemMove, false);
     };
   }, []);
   useFrame((state, delta) => {
     SceneUpdate(camera, delta);
   });
 
-  return common_store.curCategory !== "event" ? (
+  return common_store.curCategory !== 'event' ? (
     <>
       <EffectComposer autoClear={false}>
         <Outline

@@ -1,17 +1,17 @@
-import { observer } from "mobx-react";
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import styled from "@emotion/styled";
-import { dragAreaSelectionBoxViewModel } from "../../../view_models/DragAreaSelectionBox_VM";
-import useShiftKeyListener from "../../../hooks/useShiftKeyListener";
-import storeContainer from "../../../stores/storeContainer";
+import { useState } from 'react';
+import { observer } from 'mobx-react';
+import styled from '@emotion/styled';
+import { createPortal } from 'react-dom';
+import useShiftKeyListener from '../../../hooks/useShiftKeyListener';
+import storeContainer from '../../../stores/storeContainer';
+import { dragAreaSelectionBoxViewModel } from '../../../view_models/DragAreaSelectionBox_VM';
 
 const DragAreaSelectionBox = observer(() => {
   const { common_store } = storeContainer;
   const [isDrawing, setIsDrawing] = useState(false);
   const [anchor, setAnchor] = useState({ x: 0, y: 0 });
   const [box, setBox] = useState({ x: 0, y: 0, width: 0, height: 0 });
-  const portalElement = document.getElementById("drag-portal");
+  const portalElement = document.getElementById('drag-portal');
   const isShiftPressed = useShiftKeyListener();
 
   const handleMouseDown = (e) => {
@@ -42,7 +42,7 @@ const DragAreaSelectionBox = observer(() => {
   };
 
   return (
-    common_store.curCategory === "event" &&
+    common_store.curCategory === 'event' &&
     isShiftPressed &&
     createPortal(
       <FullscreenOverlay

@@ -1,43 +1,43 @@
-import { Box, Select, MenuItem } from "@mui/material";
-import { useState, useEffect } from "react";
-import { makeStyles } from "@mui/styles";
-import { observer } from "mobx-react";
-import MxSlider from "../../gui/Slider_V";
-import MxSwitch from "../../gui/Switch_V";
-import SoundEditVM from "../../../../../view_models/06. ObjectEdit/SoundEdit_VM";
-import { objectViewModel } from "../../../../../view_models/Object_VM";
-import { data_store } from "../../../../../stores/Data_Store";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { Box, MenuItem, Select } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { data_store } from '../../../../../stores/Data_Store';
+import SoundEditVM from '../../../../../view_models/06. ObjectEdit/SoundEdit_VM';
+import { objectViewModel } from '../../../../../view_models/Object_VM';
+import MxSlider from '../../gui/Slider_V';
+import MxSwitch from '../../gui/Switch_V';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
-    fill: "red",
+    fill: 'red'
   },
   root: {
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        border: "none",
-      },
-    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: 'none'
+      }
+    }
   },
   menuPaper: {
-    maxHeight: "20vh",
-    backgroundColor: "#393939",
-    "&::-webkit-scrollbar": { width: 0 },
+    maxHeight: '20vh',
+    backgroundColor: '#393939',
+    '&::-webkit-scrollbar': { width: 0 }
   },
-  "@media (max-width: 600px)": {
+  '@media (max-width: 600px)': {
     body: {
-      fontSize: "0.8rem",
-    },
+      fontSize: '0.8rem'
+    }
   },
-  "@media (min-width: 601px)": {
+  '@media (min-width: 601px)': {
     body: {
-      fontSize: "1rem",
-    },
-  },
+      fontSize: '1rem'
+    }
+  }
 }));
 
 const TabSound = observer((props) => {
-  const [sound, setSound] = useState("사운드 선택");
+  const [sound, setSound] = useState('사운드 선택');
   const classes = useStyles();
   const selectedSound = objectViewModel.selectedObjects[0];
   const handleChange = (event) => {
@@ -47,18 +47,18 @@ const TabSound = observer((props) => {
   useEffect(() => {
     data_store.sound_list.forEach((element) => {
       element[0] === sound &&
-        objectViewModel.selectedObjects[0].setUrl("/sound/" + element[1]);
+        objectViewModel.selectedObjects[0].setUrl('/sound/' + element[1]);
     });
   }, [sound]);
 
   return (
     <Box
       sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        mb: 2,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mb: 2
       }}
     >
       <Box sx={style.SelectWrapper}>
@@ -69,7 +69,7 @@ const TabSound = observer((props) => {
           sx={style.SelectArea}
           MenuProps={{
             sx: style.MenuProps,
-            classes: { paper: classes.menuPaper, icon: classes.icon },
+            classes: { paper: classes.menuPaper, icon: classes.icon }
           }}
         >
           {data_store.sound_list.map((sound, index) => (
@@ -82,8 +82,8 @@ const TabSound = observer((props) => {
 
       <MxSwitch
         style={{ mb: 1 }}
-        key={"loop"}
-        label={"Loop"}
+        key={'loop'}
+        label={'Loop'}
         onChange={() => selectedSound.playAndStopSoundLoop()}
       />
 
@@ -99,7 +99,7 @@ const TabSound = observer((props) => {
             min={min}
             max={max}
             step={step}
-            undoMode={"Sound_" + propName}
+            undoMode={'Sound_' + propName}
             onMouseDown={SoundEditVM.onSliderMouseDown}
             onMouseUp={SoundEditVM.onSliderMouseUp}
           />
@@ -113,47 +113,47 @@ export default TabSound;
 
 const style = {
   SelectWrapper: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "4px",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '4px'
   },
 
   MenuProps: {
-    width: "100%",
+    width: '100%',
     zIndex: 10000,
-    display: "flex",
-    position: "absolute",
-    mt: "-10px",
+    display: 'flex',
+    position: 'absolute',
+    mt: '-10px'
   },
 
   SelectArea: {
     mt: 1,
-    width: "100%",
-    height: "30px",
-    fontFamily: "SpoqaHanSansNeo",
-    fontSize: "11px",
+    width: '100%',
+    height: '30px',
+    fontFamily: 'SpoqaHanSansNeo',
+    fontSize: '11px',
     fontWeight: 500,
-    textAlign: "left",
+    textAlign: 'left',
 
-    backgroundColor: "#393939",
-    color: "#e2e2e2",
+    backgroundColor: '#393939',
+    color: '#e2e2e2',
     mb: 1,
-    "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ": {
-      border: "none",
+    '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ': {
+      border: 'none'
     },
-    "& .MuiSvgIcon-root": {
-      color: "#e2e2e2",
-    },
+    '& .MuiSvgIcon-root': {
+      color: '#e2e2e2'
+    }
   },
 
   MenuItemArea: {
-    fontFamily: "Inter",
-    fontSize: "11px",
+    fontFamily: 'Inter',
+    fontSize: '11px',
     fontWeight: 500,
-    textAlign: "left",
-    backgroundColor: "#393939",
-    color: "#e2e2e2",
-  },
+    textAlign: 'left',
+    backgroundColor: '#393939',
+    color: '#e2e2e2'
+  }
 };

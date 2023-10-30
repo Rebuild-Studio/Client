@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Vector3Compare";
+const nodeType = 'Vector3Compare';
 
 export class Vector3CompareNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,26 +16,26 @@ export class Vector3CompareNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "vector3First",
-      type: ControlType.Vector3,
+      name: 'vector3First',
+      type: ControlType.Vector3
     },
     {
-      name: "vector3Second",
-      type: ControlType.Vector3,
-    },
+      name: 'vector3Second',
+      type: ControlType.Vector3
+    }
   ],
   outputSocket: [
     {
-      name: "Boolean",
-      type: ControlType.Boolean,
-    },
+      name: 'Boolean',
+      type: ControlType.Boolean
+    }
   ],
   control: [
     {
-      name: "NODE_DAT_COMPARE_OPERATOR",
-      value: "=",
+      name: 'NODE_DAT_COMPARE_OPERATOR',
+      value: '=',
       type: ControlType.Vector3Compare,
-      IsDropdown: true,
-    },
-  ],
+      IsDropdown: true
+    }
+  ]
 };

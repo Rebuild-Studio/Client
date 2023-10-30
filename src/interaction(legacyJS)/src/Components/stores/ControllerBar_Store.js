@@ -1,7 +1,7 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 const controllerBar_store = observable({
-  gizmoStatus: "world",
+  gizmoStatus: 'world',
   magneticMode: false,
   setMagneticMode(mode) {
     this.magneticMode = mode;
@@ -20,8 +20,7 @@ const controllerBar_store = observable({
   rotationSnapMode: false,
   setRotationSnapMode(mode) {
     this.rotationSnapMode = mode;
-  },
-
-})
+  }
+});
 
 export { controllerBar_store };

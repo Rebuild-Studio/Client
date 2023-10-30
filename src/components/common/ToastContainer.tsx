@@ -1,19 +1,19 @@
-import { createPortal } from "react-dom";
-import { useToast } from "@hooks/useToast";
-import Toast from "@components/common/Toast";
-import styled from "styled-components";
-import { ToastPosition, POSITION_VARIANTS } from "@/types/style/toastPosition";
+import { createPortal } from 'react-dom';
+import styled from 'styled-components';
+import { POSITION_VARIANTS, ToastPosition } from '@/types/style/toastPosition';
+import Toast from '@components/common/Toast';
+import { useToast } from '@hooks/useToast';
 
 interface ToastContainerProps {
   position?: ToastPosition;
 }
 
-const ToastContainer = ({ position = "topCenter" }: ToastContainerProps) => {
+const ToastContainer = ({ position = 'topCenter' }: ToastContainerProps) => {
   const { toastMessages, removeToast } = useToast();
 
-  const toastRoot = document.getElementById("toast-root");
+  const toastRoot = document.getElementById('toast-root');
   if (!toastRoot) {
-    console.warn("toast-root element is missing in DOM");
+    console.warn('toast-root element is missing in DOM');
     return null;
   }
 

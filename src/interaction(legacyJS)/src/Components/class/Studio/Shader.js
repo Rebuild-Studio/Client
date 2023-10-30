@@ -1,17 +1,17 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 const cartoonShader = new THREE.ShaderMaterial({
-    type: 'Cartoon Shader',
-      lights: true,
-      uniforms: {
-        ...THREE.UniformsLib.lights,
-        ...THREE.UniformsLib.common,
-        uColor: { value: new THREE.Color("#00CCBB") },
-        uGlossiness: { value: 3 },
-        uTexture: new THREE.Texture(),
-        uTime: 0
-      },
-      vertexShader: /* glsl */ `  
+  type: 'Cartoon Shader',
+  lights: true,
+  uniforms: {
+    ...THREE.UniformsLib.lights,
+    ...THREE.UniformsLib.common,
+    uColor: { value: new THREE.Color('#00CCBB') },
+    uGlossiness: { value: 3 },
+    uTexture: new THREE.Texture(),
+    uTime: 0
+  },
+  vertexShader: /* glsl */ `  
   
         #include <common>
         #include <shadowmap_pars_vertex>    
@@ -42,9 +42,8 @@ const cartoonShader = new THREE.ShaderMaterial({
         
           gl_Position = clipPosition;
         }
-      `
-      ,
-      fragmentShader: /* glsl */  ` 
+      `,
+  fragmentShader: /* glsl */ ` 
       #include <common>
       #include <packing>
       #include <lights_pars_begin>
@@ -126,12 +125,12 @@ const cartoonShader = new THREE.ShaderMaterial({
 });
 
 const waveShader = new THREE.ShaderMaterial({
-  uniforms:{
+  uniforms: {
     u_time: Date.now(),
     ...THREE.UniformsLib.lights,
     ...THREE.UniformsLib.common,
     uTime: 0,
-    uTexture: new THREE.Texture(),
+    uTexture: new THREE.Texture()
   },
 
   vertexShader: /* glsl */ `
@@ -181,22 +180,21 @@ const waveShader = new THREE.ShaderMaterial({
         gl_FragColor = vec4(diffuse, 1.0);
       #endif
     }
-  `,
+  `
 });
-
 
 const cartoonWaveShader = new THREE.ShaderMaterial({
   type: 'Cartoon Shader',
-    lights: true,
-    uniforms: {
-      ...THREE.UniformsLib.lights,
-      ...THREE.UniformsLib.common,
-      uColor: { value: new THREE.Color("#00CCBB") },
-      uGlossiness: { value: 3 },
-      uTexture: new THREE.Texture(),
-      uTime: 0
-    },
-    vertexShader: /* glsl */ `  
+  lights: true,
+  uniforms: {
+    ...THREE.UniformsLib.lights,
+    ...THREE.UniformsLib.common,
+    uColor: { value: new THREE.Color('#00CCBB') },
+    uGlossiness: { value: 3 },
+    uTexture: new THREE.Texture(),
+    uTime: 0
+  },
+  vertexShader: /* glsl */ `  
 
       #include <common>
       #include <shadowmap_pars_vertex>    
@@ -232,9 +230,8 @@ const cartoonWaveShader = new THREE.ShaderMaterial({
       
         gl_Position = clipPosition;
       }
-    `
-    ,
-    fragmentShader: /* glsl */  ` 
+    `,
+  fragmentShader: /* glsl */ ` 
     #include <common>
     #include <packing>
     #include <lights_pars_begin>
@@ -315,7 +312,4 @@ const cartoonWaveShader = new THREE.ShaderMaterial({
     `
 });
 
-
-
-export {cartoonShader, waveShader, cartoonWaveShader}
-
+export { cartoonShader, waveShader, cartoonWaveShader };

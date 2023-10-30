@@ -1,21 +1,21 @@
-import ToastContainerTest from "./ToastContainerTest";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
+import ToastContainerTest from './ToastContainerTest';
 
 const meta = {
   component: ToastContainerTest,
-  title: "Component/ToastContainer",
-  tags: ["autodocs"],
+  title: 'Component/ToastContainer',
+  tags: ['autodocs']
 } satisfies Meta<typeof ToastContainerTest>;
 
 export default meta;
 type Story = StoryObj<typeof ToastContainerTest>;
 
 export const Default = {
-  args: {},
+  args: {}
 } satisfies Story;
 
 export const PositionBottomLeft = {
   args: {
-    position: "bottomLeft",
-  },
+    position: 'bottomLeft'
+  }
 } satisfies Story;

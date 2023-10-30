@@ -7,10 +7,10 @@
  * - none: 애니메이션 없음
  */
 type ButtonAnimationType =
-  | "translate"
-  | "bounce"
-  | "shrink"
-  | "enlarge"
-  | "none";
+  | 'translate'
+  | 'bounce'
+  | 'shrink'
+  | 'enlarge'
+  | 'none';
 
 export type { ButtonAnimationType };

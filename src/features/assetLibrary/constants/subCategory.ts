@@ -1,5 +1,5 @@
-import { Category } from "@/store/assetCategoryStore";
-import { MainCategoryType } from "./mainCategory";
+import { Category } from '@store/assetCategory.store.ts';
+import { MainCategoryType } from './mainCategory';
 
 type SubCategoryList = {
   [key in MainCategoryType]?: {

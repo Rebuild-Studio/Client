@@ -1,8 +1,8 @@
-import { useState } from "react";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import CreateNodeMenuItemButton from "./CreateNodeMenuItemButton";
-import useIcon from "../../../../hooks/useIcon";
+import { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import CreateNodeMenuItemButton from './CreateNodeMenuItemButton';
+import useIcon from '../../../../hooks/useIcon';
 
 /**
  *
@@ -17,7 +17,12 @@ import useIcon from "../../../../hooks/useIcon";
  * This Component is a wrapper for those buttons that can create subNodes
  */
 
-const CreateNodeMenuButton = ({ backgroundImageName, items, width = "50px", height = "60px" }) => {
+const CreateNodeMenuButton = ({
+  backgroundImageName,
+  items,
+  width = '50px',
+  height = '60px'
+}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const path = useIcon(backgroundImageName);
   const open = Boolean(anchorEl);
@@ -32,9 +37,9 @@ const CreateNodeMenuButton = ({ backgroundImageName, items, width = "50px", heig
     <>
       <IconButton
         id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
+        aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={style.iconButton(width, height, path)}
       />
@@ -45,12 +50,12 @@ const CreateNodeMenuButton = ({ backgroundImageName, items, width = "50px", heig
         onClose={handleClose}
         transformOrigin={{
           vertical: -2,
-          horizontal: "left",
+          horizontal: 'left'
         }}
         MenuListProps={{
           style: {
-            padding: "5px 5px 0 5px",
-          },
+            padding: '5px 5px 0 5px'
+          }
         }}
         sx={style.menu}
       >
@@ -72,36 +77,36 @@ export default CreateNodeMenuButton;
 
 const style = {
   menu: {
-    "& .MuiMenuItem-root": {
-      color: "#fff",
-      textAlign: "left",
-      fontFamily: "SourceHanSansKR",
-      fontSize: "12px",
-      pl: "5px",
-      pt: "5px",
-      pb: "5px",
-      mb: "5px",
-      height: "25px",
-      "&:hover": {
-        backgroundColor: "#494949",
-      },
+    '& .MuiMenuItem-root': {
+      color: '#fff',
+      textAlign: 'left',
+      fontFamily: 'SourceHanSansKR',
+      fontSize: '12px',
+      pl: '5px',
+      pt: '5px',
+      pb: '5px',
+      mb: '5px',
+      height: '25px',
+      '&:hover': {
+        backgroundColor: '#494949'
+      }
     },
-    "& .MuiPaper-root": {
-      display: "flex",
-      justifyContent: "center",
-      backgroundColor: "#393939",
-    },
+    '& .MuiPaper-root': {
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: '#393939'
+    }
   },
 
   iconButton: (width, height, path) => ({
-    padding: "0px",
+    padding: '0px',
     width: { width },
     height: { height },
     background: path.root,
     borderRadius: 0,
-    "&:hover": {
+    '&:hover': {
       background: path.active,
-      borderRadius: 0,
-    },
-  }),
+      borderRadius: 0
+    }
+  })
 };

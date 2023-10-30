@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import useStore from "../../stores/useStore";
+import React from 'react';
+import { Grid } from '@mui/material';
+import useStore from '../../stores/useStore';
 
 const SearchedProjectList = ({ handleClickMenuCustom, ProjectListItem }) => {
   const { user_store } = useStore();
@@ -14,4 +14,4 @@ const SearchedProjectList = ({ handleClickMenuCustom, ProjectListItem }) => {
   ));
 };
 
-export default SearchedProjectList 
+export default SearchedProjectList;

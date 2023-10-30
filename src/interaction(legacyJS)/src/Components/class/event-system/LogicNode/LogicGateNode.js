@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "LogicGate";
+const nodeType = 'LogicGate';
 
 export class LogicGateNode extends Node {
   static NODE_TYPE = nodeType;
@@ -16,26 +16,26 @@ export class LogicGateNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: "booleanFirst",
-      type: ControlType.Boolean,
+      name: 'booleanFirst',
+      type: ControlType.Boolean
     },
     {
-      name: "booleanSecond",
-      type: ControlType.Boolean,
-    },
+      name: 'booleanSecond',
+      type: ControlType.Boolean
+    }
   ],
   outputSocket: [
     {
-      name: "boolean",
-      type: ControlType.Boolean,
-    },
+      name: 'boolean',
+      type: ControlType.Boolean
+    }
   ],
   control: [
     {
-      name: "LogicGate",
-      value: "And",
+      name: 'LogicGate',
+      value: 'And',
       type: ControlType.LogicGate,
-      IsDropdown: true,
-    },
-  ],
+      IsDropdown: true
+    }
+  ]
 };

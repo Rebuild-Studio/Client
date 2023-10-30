@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from 'mobx';
 
 const LOG = false;
 
@@ -16,7 +16,7 @@ export default class InteractionHistoryStore {
       // historyDisabled: computed,
       execute: action,
       undo: action,
-      redo: action,
+      redo: action
     });
   }
 
@@ -129,11 +129,11 @@ export default class InteractionHistoryStore {
       return;
     }
     console.clear();
-    console.log("== redoArray ==");
+    console.log('== redoArray ==');
     this.redoArray.forEach((v) => {
       console.log(v);
     });
-    console.log("== undoArray == ");
+    console.log('== undoArray == ');
     this.undoArray.forEach((v) => {
       console.log(v);
     });

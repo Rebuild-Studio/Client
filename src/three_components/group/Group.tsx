@@ -1,9 +1,9 @@
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
-import getCenterPoint from "../utils/getCenterPoint";
-import canvasHistoryStore from "@/store/canvasHistoryStore";
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import canvasHistoryStore from '@store/canvasHistory.store.ts';
+import getCenterPoint from '../utils/getCenterPoint';
 
 interface GroupProps {
   storeId: string;
@@ -16,11 +16,11 @@ const Group = (props: GroupProps) => {
 
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.MeshPhysicalMaterial({
-    transparent: true,
+    transparent: true
   });
   const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
-  mesh.name = "GROUP";
-  mesh.userData["storeId"] = props.storeId;
+  mesh.name = 'GROUP';
+  mesh.userData['storeId'] = props.storeId;
 
   useEffect(() => {
     //selected 추가
@@ -49,17 +49,17 @@ const Group = (props: GroupProps) => {
       mesh.position.set(...getCenterPoint(x, y, z, selectedPrimitives.length));
 
       selectedPrimitives.forEach((value) => {
-        if (!primitiveStore.meshes[value.userData["storeId"]]) {
-          value.userData["isLeave"] = true;
+        if (!primitiveStore.meshes[value.userData['storeId']]) {
+          value.userData['isLeave'] = true;
         }
         mesh.attach(value);
-        primitiveStore.removePrimitive(value.userData["storeId"]);
+        primitiveStore.removePrimitive(value.userData['storeId']);
       });
 
       primitiveStore.updatePrimitive(props.storeId, mesh);
 
       primitiveStore.clearSelectedPrimitives();
-      canvasHistoryStore.differAdd(mesh.userData["storeId"]);
+      canvasHistoryStore.differAdd(mesh.userData['storeId']);
     }
   }, []);
 

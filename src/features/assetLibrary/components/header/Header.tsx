@@ -1,5 +1,5 @@
-import { basicColors } from "@/resources/colors/colors";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { basicColors } from '@/resources/colors/colors';
 
 interface Props {
   title: string;
@@ -27,6 +27,6 @@ const Container = styled.div`
 const StyledSpan = styled.span`
   font-size: 18px;
   font-weight: 700;
-  font-family: "SourceHanSansKR";
+  font-family: 'SourceHanSansKR';
   color: ${basicColors.white};
 `;

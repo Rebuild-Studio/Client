@@ -1,5 +1,5 @@
-import storeContainer from "../stores/storeContainer";
-import { objectViewModel } from "./Object_VM";
+import { objectViewModel } from './Object_VM';
+import storeContainer from '../stores/storeContainer';
 
 export default function SceneUpdate_VM() {
   const { common_store } = storeContainer;
@@ -19,6 +19,6 @@ export default function SceneUpdate_VM() {
   }
 
   return {
-    SceneUpdate,
+    SceneUpdate
   };
 }

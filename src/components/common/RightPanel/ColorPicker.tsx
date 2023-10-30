@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { grayColors } from "@/resources/colors/colors";
-import { RgbaColor, hsvaToRgba, HsvaColor } from "@uiw/color-convert";
-import ColorContent from "./ColorContent";
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
+import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
+import styled from 'styled-components';
+import { grayColors } from '@/resources/colors/colors';
+import ColorContent from './ColorContent';
 
 interface ColorPickerProps {
   label: string;
@@ -99,13 +99,13 @@ const StyledMenu = styled.div<{
   width: 245px;
   height: 412.7px;
   border-radius: 3px;
-  background-color: ${grayColors["3a3a3a"]};
+  background-color: ${grayColors['3a3a3a']};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   z-index: 3;
   // transition: opacity 0.5ms ease-in-out, transform 2s ease-in-out;
   opacity: ${({ open }) => (open ? 1 : 0)};
-  transform: ${({ open }) => (open ? "scale(1)" : "scale(0.8)")};
+  transform: ${({ open }) => (open ? 'scale(1)' : 'scale(0.8)')};
 `;
 
 const ButtonWrapper = styled.div`
@@ -120,6 +120,6 @@ const ColorButton = styled.button<{
   min-height: 0;
   height: 24px;
   background-color: ${(props) =>
-    typeof props.$color !== "undefined" &&
+    typeof props.$color !== 'undefined' &&
     `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

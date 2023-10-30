@@ -1,6 +1,6 @@
-import { grayColors } from "@/resources/colors/colors";
-import { CSSColor, CSSSize } from "@/types/style/cssUnits";
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
+import { grayColors } from '@/resources/colors/colors';
+import { CSSColor, CSSSize } from '@/types/style/cssUnits';
 
 interface Props {
   className?: string;
@@ -14,11 +14,11 @@ interface Props {
 
 const Stack = ({
   className,
-  role = "stack",
+  role = 'stack',
   children,
-  width = "fit-content",
-  height = "fit-content",
-  border,
+  width = 'fit-content',
+  height = 'fit-content',
+  border
 }: Props) => {
   return (
     <Container
@@ -36,9 +36,9 @@ const Stack = ({
 export default Stack;
 
 interface ContainerProps {
-  $width: Props["width"];
-  $height: Props["height"];
-  $border: Props["border"];
+  $width: Props['width'];
+  $height: Props['height'];
+  $border: Props['border'];
 }
 
 const Container = styled.div<ContainerProps>`

@@ -1,5 +1,5 @@
-import getUniqueGeometriesFromJson from "./getUniqueGeometriesFromJson";
-import getUniqueTexturesFromJson from "./getUniqueTexturesFromJson";
+import getUniqueGeometriesFromJson from './getUniqueGeometriesFromJson';
+import getUniqueTexturesFromJson from './getUniqueTexturesFromJson';
 
 /**
  *

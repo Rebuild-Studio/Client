@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useFileListLoader } from "@/hooks/loader";
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useState, Suspense } from "react";
-import * as THREE from "three";
+import { Suspense, useState } from 'react';
+import * as THREE from 'three';
+import { OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { useFileListLoader } from '@/hooks/loader';
 
 const meta = {
-  title: "Three/useLocalFileLoader",
-  tags: ["autodocs"],
+  title: 'Three/useLocalFileLoader',
+  tags: ['autodocs']
 };
 
 export default meta;
@@ -56,6 +56,6 @@ const FileLoad = {
         </Canvas>
       </>
     );
-  },
+  }
 };
 export { FileLoad };

@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class CloneNodeAndGroupCommand extends Command {
   constructor(store, sheetId, targetNodes, targetGroups) {
     super(store);
-    this.type = "CloneNodeAndGroupCommand";
+    this.type = 'CloneNodeAndGroupCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       sheetId,
@@ -13,7 +13,7 @@ export default class CloneNodeAndGroupCommand extends Command {
       groupUuids: undefined,
       nodeUuids: undefined,
       json: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     const { srcGroups, srcNodes } = sheet.getToBeCloned(
       targetGroups,
@@ -25,8 +25,8 @@ export default class CloneNodeAndGroupCommand extends Command {
       this.data.srcNodes.length > 0
         ? this.data.srcGroups.length > 0
           ? this.type
-          : "CloneNodeCommand"
-        : "CloneGroupCommand";
+          : 'CloneNodeCommand'
+        : 'CloneGroupCommand';
     this.data.nodeTypes = this.data.srcNodes?.map(
       (uuid) => sheet.getNodeByUuid(uuid).type
     );
@@ -42,7 +42,7 @@ export default class CloneNodeAndGroupCommand extends Command {
       const cloned = sheet.cloneNodeAndGroup(
         this.data.srcGroups,
         this.data.srcNodes,
-        this.store.stringStore.string("CopiedGroupName")
+        this.store.stringStore.string('CopiedGroupName')
       );
       this.data.json = Utils.stringify(cloned);
       this.data.nodeUuids = cloned.nodes.map((node) => node.uuid);
@@ -58,16 +58,16 @@ export default class CloneNodeAndGroupCommand extends Command {
     let currentArgIndex =
       this.data.nodeTypes.length && this.data.groupNames.length ? 3 : 2;
 
-    let intermediateN = "";
+    let intermediateN = '';
     const nodeTypes = this.data.nodeTypes?.map((v) => {
-      intermediateN += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateN += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return Utils.encryptString(v);
     });
 
-    let intermediateG = "";
+    let intermediateG = '';
     const groupNames = this.data.groupNames?.map((v) => {
-      intermediateG += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateG += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return v;
     });

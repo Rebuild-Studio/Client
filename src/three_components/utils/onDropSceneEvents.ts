@@ -1,7 +1,7 @@
-import React from "react";
-import { nanoid } from "nanoid";
-import storeContainer from "@/store/storeContainer";
-import { renderLocalAsset } from "./renderThreeComponents";
+import React from 'react';
+import { nanoid } from 'nanoid';
+import storeContainer from '@/store/storeContainer';
+import { renderLocalAsset } from './renderThreeComponents';
 
 const onDropSceneEvents = (event: React.DragEvent<HTMLDivElement>) => {
   const { primitiveStore } = storeContainer;

@@ -1,21 +1,20 @@
-import { FormEvent } from "react";
-import { styled } from "styled-components";
-import { observer } from "mobx-react";
-
-import RadioInput from "@/features/controllerBar/components/gizmo/RadioInput";
-import { GIZMO_MODE } from "@/features/controllerBar/constants/gizmo";
-import controllerBarStore from "@/features/controllerBar/store/controllerBarStore";
-import { GizmoModeType } from "@/features/controllerBar/types/gizmo";
+import { FormEvent } from 'react';
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
+import RadioInput from '@/features/controllerBar/components/gizmo/RadioInput';
+import { GIZMO_MODE } from '@/features/controllerBar/constants/gizmo';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
+import { GizmoModeType } from '@/features/controllerBar/types/gizmo';
 
 const GIZMO_OPTIONS = [
   {
     value: GIZMO_MODE.GLOBAL,
-    name: "글로벌",
+    name: '글로벌'
   },
   {
     value: GIZMO_MODE.LOCAL,
-    name: "로컬",
-  },
+    name: '로컬'
+  }
 ];
 
 const GizmoModeControl = () => {

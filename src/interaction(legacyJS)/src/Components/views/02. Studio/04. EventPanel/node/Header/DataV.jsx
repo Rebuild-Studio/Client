@@ -1,9 +1,9 @@
-import { observer } from "mobx-react";
-import { Box } from "@mui/material";
-import { useMemo } from "react";
-import storeContainer from "../../../../../stores/storeContainer";
-import ControlDataVM from "../../control/ControlDataVM";
-import { ControlType } from "../../../../../class/event-system/NodeControl";
+import { useMemo } from 'react';
+import { observer } from 'mobx-react';
+import { Box } from '@mui/material';
+import { ControlType } from '../../../../../class/event-system/NodeControl';
+import storeContainer from '../../../../../stores/storeContainer';
+import ControlDataVM from '../../control/ControlDataVM';
 
 const BlueBox = observer((props) => {
   const { sxAdd, children, ...restProps } = props;
@@ -12,27 +12,25 @@ const BlueBox = observer((props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        fontFamily: "sans-serif",
-        fontSize: "inherit",
-        fontWeight: "500",
-        fontStretch: "normal",
-        fontStyle: "normal",
-        justifyContent: "space-between",
-        lineHeight: "normal",
-        letterSpacing: "normal",
-        textAlign: "left",
-        color: "#fff",
-        backgroundColor: "#272748",
-        margin: "0 auto",
-        ...sxAdd,
+        display: 'flex',
+        alignItems: 'center',
+        fontFamily: 'sans-serif',
+        fontSize: 'inherit',
+        fontWeight: '500',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        justifyContent: 'space-between',
+        lineHeight: 'normal',
+        letterSpacing: 'normal',
+        textAlign: 'left',
+        color: '#fff',
+        backgroundColor: '#272748',
+        margin: '0 auto',
+        ...sxAdd
       }}
       style={{
         height: `${scale * 17}px`,
-        padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${
-          scale * 12
-        }px`,
+        padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${scale * 12}px`
       }}
       {...restProps}
     >
@@ -58,8 +56,8 @@ const DataV = observer((props) => {
       case ControlType.Boolean:
         data =
           entry[1].value === true
-            ? string_store.string("true") || "true"
-            : string_store.string("false") || "false";
+            ? string_store.string('true') || 'true'
+            : string_store.string('false') || 'false';
         break;
       case ControlType.Color: {
         const color = entry[1].value.getStyle();
@@ -69,10 +67,10 @@ const DataV = observer((props) => {
               width: `${scale * 18}px`,
               minWidth: 0,
               minHeight: 0,
-              height: `${scale * 18}px`,
+              height: `${scale * 18}px`
             }}
             style={{
-              backgroundColor: color || "rgb(0, 0, 0)",
+              backgroundColor: color || 'rgb(0, 0, 0)'
             }}
           ></Box>
         );
@@ -107,9 +105,9 @@ const DataV = observer((props) => {
           <img
             style={{
               width: `${scale * 18}px`,
-              height: `${scale * 18}px`,
+              height: `${scale * 18}px`
             }}
-            src={"/Icons/RightTab/" + matList[entry[1].value][1] + ".png"}
+            src={'/Icons/RightTab/' + matList[entry[1].value][1] + '.png'}
             alt={`item-${entry[1].value}`}
             draggable="false"
           />
@@ -125,10 +123,10 @@ const DataV = observer((props) => {
     }
     if (entry[1].label) {
       data =
-        string_store.string(entry[0]) + " : " + data || entry[0] + " : " + data;
+        string_store.string(entry[0]) + ' : ' + data || entry[0] + ' : ' + data;
     }
     return (
-      typeof data !== "undefined" && (
+      typeof data !== 'undefined' && (
         <BlueBox
           data-nodeuuid={node.uuid}
           data-name="node"

@@ -1,33 +1,33 @@
-import { PrimitiveStore } from "@/store/primitiveStore";
-import AssetPrimitive from "../assets/AssetPrimitive";
-import LocalAssetPrimitive from "../assets/LocalAssetPrimitive";
-import Group from "../group/Group";
-import SelectedGroup from "../group/SelectedGroup";
-import PointLight from "../lights/PointLight";
-import SpotLight from "../lights/SpotLight";
-import CapsulePrimitive from "../primitives/CapsulePrimitive";
-import ConePrimitive from "../primitives/ConePrimitive";
-import CubePrimitive from "../primitives/CubePrimitive";
-import CylinderPrimitive from "../primitives/CylinderPrimitive";
-import SpherePrimitive from "../primitives/SpherePrimitive";
-import TorusPrimitive from "../primitives/TorusPrimitive";
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
+import { PrimitiveStore } from '@store/primitive.store.ts';
+import AssetPrimitive from '../assets/AssetPrimitive';
+import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
+import Group from '../group/Group';
+import SelectedGroup from '../group/SelectedGroup';
+import PointLight from '../lights/PointLight';
+import SpotLight from '../lights/SpotLight';
+import CapsulePrimitive from '../primitives/CapsulePrimitive';
+import ConePrimitive from '../primitives/ConePrimitive';
+import CubePrimitive from '../primitives/CubePrimitive';
+import CylinderPrimitive from '../primitives/CylinderPrimitive';
+import SpherePrimitive from '../primitives/SpherePrimitive';
+import TorusPrimitive from '../primitives/TorusPrimitive';
 
 const renderPrimitive = (storeId: string, mesh: THREE.Mesh) => {
   switch (mesh.geometry.type) {
-    case "CapsuleGeometry": {
+    case 'CapsuleGeometry': {
       return <CapsulePrimitive storeId={storeId} propMesh={mesh} />;
     }
-    case "ConeGeometry": {
+    case 'ConeGeometry': {
       return <ConePrimitive storeId={storeId} propMesh={mesh} />;
     }
-    case "CylinderGeometry": {
+    case 'CylinderGeometry': {
       return <CylinderPrimitive storeId={storeId} propMesh={mesh} />;
     }
-    case "SphereGeometry": {
+    case 'SphereGeometry': {
       return <SpherePrimitive storeId={storeId} propMesh={mesh} />;
     }
-    case "TorusGeometry": {
+    case 'TorusGeometry': {
       return <TorusPrimitive storeId={storeId} propMesh={mesh} />;
     }
     default: {
@@ -66,31 +66,31 @@ const renderObjects = (
   isNew?: boolean
 ) => {
   for (const mesh of meshList) {
-    const storeId = isNew ? nanoid() : mesh.userData["storeId"];
+    const storeId = isNew ? nanoid() : mesh.userData['storeId'];
     switch (mesh.name) {
-      case "GROUP":
+      case 'GROUP':
         primitiveStore.addPrimitive(
           storeId,
           renderGroup(storeId, mesh.clone())
         );
         break;
 
-      case "SELECTED_GROUP":
+      case 'SELECTED_GROUP':
         break;
 
-      case "ASSET":
+      case 'ASSET':
         primitiveStore.addPrimitive(
           storeId,
           renderAsset(storeId, mesh.clone())
         );
         break;
 
-      case "CUBE":
-      case "CAPSULE":
-      case "CONE":
-      case "CYLINDER":
-      case "SPHERE":
-      case "TORUS":
+      case 'CUBE':
+      case 'CAPSULE':
+      case 'CONE':
+      case 'CYLINDER':
+      case 'SPHERE':
+      case 'TORUS':
         primitiveStore.addPrimitive(
           storeId,
           renderPrimitive(storeId, mesh.clone())
@@ -110,5 +110,5 @@ export {
   renderLocalAsset,
   renderObjects,
   renderSpotLight,
-  renderPointLight,
+  renderPointLight
 };

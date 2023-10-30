@@ -1,2 +1,3 @@
-import Body from "./Body";
+import Body from './Body';
+
 export default Body;

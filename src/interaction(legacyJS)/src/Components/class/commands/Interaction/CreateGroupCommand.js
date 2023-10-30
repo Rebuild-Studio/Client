@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class CreateGroupCommand extends Command {
   constructor(store, sheetId, targetNodes) {
     super(store);
-    this.type = "CreateGroupCommand";
+    this.type = 'CreateGroupCommand';
     this.name = this.type;
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
@@ -13,7 +13,7 @@ export default class CreateGroupCommand extends Command {
       groupUuid: undefined,
       name: this.store.uniqueGroupName(sheet),
       json: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
   }
   execute() {

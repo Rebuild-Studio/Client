@@ -1,9 +1,9 @@
-import { bgColors } from "@/resources/colors/colors";
-import storeContainer from "@/store/storeContainer";
-import { isCtrlEventTrigger } from "@/utils/platform/getPlatformKeyboardEvent";
-import { observer } from "mobx-react";
-import { useEffect } from "react";
-import { styled } from "styled-components";
+import { useEffect } from 'react';
+import { observer } from 'mobx-react';
+import { styled } from 'styled-components';
+import { bgColors } from '@/resources/colors/colors';
+import storeContainer from '@/store/storeContainer';
+import { isCtrlEventTrigger } from '@/utils/platform/getPlatformKeyboardEvent';
 
 interface AppProps {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const AppWrapper = (props: AppProps) => {
       return;
     }
 
-    if (e.key === "F12") {
+    if (e.key === 'F12') {
       return;
     }
 
@@ -27,7 +27,7 @@ const AppWrapper = (props: AppProps) => {
       key: e.key,
       isCtrlPressed: isCtrlEventTrigger(e),
       isShiftPressed: e.shiftKey,
-      isAltPressed: e.altKey,
+      isAltPressed: e.altKey
     });
   };
 
@@ -37,12 +37,12 @@ const AppWrapper = (props: AppProps) => {
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", setOnKeydownListener);
-    window.addEventListener("keyup", setOnKeyUpListener);
+    window.addEventListener('keydown', setOnKeydownListener);
+    window.addEventListener('keyup', setOnKeyUpListener);
 
     return () => {
-      window.removeEventListener("keydown", setOnKeydownListener);
-      window.removeEventListener("keyup", setOnKeyUpListener);
+      window.removeEventListener('keydown', setOnKeydownListener);
+      window.removeEventListener('keyup', setOnKeyUpListener);
     };
   }, []);
 

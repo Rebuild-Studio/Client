@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class SetNodeReferenceDataCommand extends Command {
   constructor(store, reference, newValue) {
     super(store);
-    this.type = "SetNodeReferenceDataCommand";
+    this.type = 'SetNodeReferenceDataCommand';
     this.name = this.type;
     this.sheet = store.getSheetByUuid(store.selectedSheet);
     this.reference = reference;

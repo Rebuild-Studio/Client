@@ -1,13 +1,13 @@
-import { CSG, Vertex, Polygon } from "./csg-lib.js";
-import * as THREE from "three";
-import "./csg-worker.js";
+import * as THREE from 'three';
+import { CSG, Polygon, Vertex } from './csg-lib.js';
+import './csg-worker.js';
 
 CSG.fromGeometry = function (geom, objectIndex) {
   let polys = [];
   if (geom.isGeometry) {
     const fs = geom.faces;
     const vs = geom.vertices;
-    const fm = ["a", "b", "c"];
+    const fm = ['a', 'b', 'c'];
     for (let i = 0; i < fs.length; i++) {
       const f = fs[i];
       const vertices = [];
@@ -52,29 +52,29 @@ CSG.fromGeometry = function (geom, objectIndex) {
           {
             x,
             y,
-            z,
+            z
           },
           {
             x: nx,
             y: ny,
-            z: nz,
+            z: nz
           },
           uvattr && {
             x: uvattr.array[vt],
             y: uvattr.array[vt + 1],
-            z: 0,
+            z: 0
           },
           colorattr && {
             x: colorattr.array[vt],
             y: colorattr.array[vt + 1],
-            z: colorattr.array[vt + 2],
+            z: colorattr.array[vt + 2]
           }
         );
       }
       polys[pli] = new Polygon(vertices, objectIndex);
     }
-  } else console.error("Unsupported CSG input type:" + geom.type);
-  return CSG.fromPolygons(polys.filter(p=>!isNaN(p.plane.normal.x)));
+  } else console.error('Unsupported CSG input type:' + geom.type);
+  return CSG.fromPolygons(polys.filter((p) => !isNaN(p.plane.normal.x)));
 };
 
 const ttvv0 = new THREE.Vector3();
@@ -101,7 +101,7 @@ const nbuf3 = (ct) => {
       this.array[this.top++] = v.x;
       this.array[this.top++] = v.y;
       this.array[this.top++] = v.z;
-    },
+    }
   };
 };
 const nbuf2 = (ct) => {
@@ -111,7 +111,7 @@ const nbuf2 = (ct) => {
     write: function (v) {
       this.array[this.top++] = v.x;
       this.array[this.top++] = v.y;
-    },
+    }
   };
 };
 
@@ -206,11 +206,11 @@ CSG.toGeometry = function (csg, buffered = true) {
             colors.write(pvs[j - 1].color));
       }
     });
-    geom.setAttribute("position", new THREE.BufferAttribute(vertices.array, 3));
-    geom.setAttribute("normal", new THREE.BufferAttribute(normals.array, 3));
-    uvs && geom.setAttribute("uv", new THREE.BufferAttribute(uvs.array, 2));
+    geom.setAttribute('position', new THREE.BufferAttribute(vertices.array, 3));
+    geom.setAttribute('normal', new THREE.BufferAttribute(normals.array, 3));
+    uvs && geom.setAttribute('uv', new THREE.BufferAttribute(uvs.array, 2));
     colors &&
-      geom.setAttribute("color", new THREE.BufferAttribute(colors.array, 3));
+      geom.setAttribute('color', new THREE.BufferAttribute(colors.array, 3));
     if (grps.length) {
       let index = [];
       let gbase = 0;

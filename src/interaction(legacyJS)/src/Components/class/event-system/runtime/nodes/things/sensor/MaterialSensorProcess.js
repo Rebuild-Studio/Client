@@ -1,5 +1,5 @@
-import NodeProcess from "../../NodeProcess";
-import { Color } from "three";
+import { Color } from 'three';
+import NodeProcess from '../../NodeProcess';
 
 export default class MaterialSensorProcess extends NodeProcess {
   constructor(nodeRuntime, key, refKey) {

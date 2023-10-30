@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 
 interface SwitchProps {
   label?: string;
@@ -41,7 +41,7 @@ const SwitchContainer = styled.div<{ $hasLabel: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${({ $hasLabel }) => ($hasLabel ? "100%" : "fit-content")};
+  width: ${({ $hasLabel }) => ($hasLabel ? '100%' : 'fit-content')};
 `;
 
 const SwitchLabel = styled.label`
@@ -54,7 +54,7 @@ const SwitchWrapper = styled.div`
   position: relative;
 `;
 
-const SwitchInput = styled.input.attrs({ type: "checkbox" })`
+const SwitchInput = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
   cursor: pointer;
   width: 22px;
@@ -80,5 +80,5 @@ const SwitchLever = styled.div<{ $checked: boolean }>`
   left: 1px;
   transition: transform 0.3s;
   transform: ${(props) =>
-    props.$checked ? "translateX(14px)" : "translateX(3px)"};
+    props.$checked ? 'translateX(14px)' : 'translateX(3px)'};
 `;

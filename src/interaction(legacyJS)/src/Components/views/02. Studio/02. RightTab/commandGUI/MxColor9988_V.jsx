@@ -1,13 +1,13 @@
-import React from "react";
-import { Box, Button, Typography, Menu } from "@mui/material";
-import { observer } from "mobx-react";
-import { Hue, Saturation, Alpha } from "@uiw/react-color";
-import { hsvaToRgba, hsvaToHex } from "@uiw/color-convert";
-import Common_VM from "../../../../view_models/Common_VM";
-import MxSlider from "../gui/Slider_V";
-import MxInput from "../gui/MxInput";
-import ChangeColorCommand from "../../../../class/commands/SceneSetting/ChangeColorCommand";
-import canvasHistory_store from "../../../../stores/CanvasHistory_Store";
+import React from 'react';
+import { observer } from 'mobx-react';
+import { Box, Button, Menu, Typography } from '@mui/material';
+import { hsvaToHex, hsvaToRgba } from '@uiw/color-convert';
+import { Alpha, Hue, Saturation } from '@uiw/react-color';
+import ChangeColorCommand from '../../../../class/commands/SceneSetting/ChangeColorCommand';
+import canvasHistory_store from '../../../../stores/CanvasHistory_Store';
+import Common_VM from '../../../../view_models/Common_VM';
+import MxInput from '../gui/MxInput';
+import MxSlider from '../gui/Slider_V';
 
 const MxColor9988 = observer((props) => {
   const {
@@ -25,7 +25,7 @@ const MxColor9988 = observer((props) => {
     menuStyle,
     saturationSilder = true,
     brightnessSlider = true,
-    alpha = true,
+    alpha = true
   } = props;
   const [anchorMenu, setAnchorMenu] = React.useState(null);
   const openMenu = Boolean(anchorMenu);
@@ -53,26 +53,26 @@ const MxColor9988 = observer((props) => {
   return (
     <Box
       sx={{
-        width: "100%",
-        mt: 1,
+        width: '100%',
+        mt: 1
       }}
     >
       <Box
         sx={{
-          width: "100%",
-          height: "50%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
+          width: '100%',
+          height: '50%',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}
       >
         <Typography
           sx={{
-            fontFamily: "Inter",
-            fontSize: "11px",
-            color: "#e2e2e2",
-            ...labelStyle,
+            fontFamily: 'Inter',
+            fontSize: '11px',
+            color: '#e2e2e2',
+            ...labelStyle
           }}
         >
           {label}
@@ -80,14 +80,14 @@ const MxColor9988 = observer((props) => {
 
         <Button
           sx={{
-            width: "24px",
+            width: '24px',
             minWidth: 0,
             minHeight: 0,
-            height: "24px",
+            height: '24px',
             backgroundColor: `${
-              typeof color !== "undefined" &&
+              typeof color !== 'undefined' &&
               `rgba(${rgbColor.r},${rgbColor.g},${rgbColor.b},${rgbColor.a})`
-            }`,
+            }`
           }}
           onClick={(event) => {
             setAnchorMenu(event.currentTarget);
@@ -102,37 +102,37 @@ const MxColor9988 = observer((props) => {
           }}
           sx={{
             zIndex: 10000,
-            position: "absolute",
+            position: 'absolute',
             top: -24,
             left: -268,
             ...menuStyle,
-            "& .MuiMenuItem-root": {
-              color: "#fff",
-              textAlign: "left",
-              fontFamily: "SourceHanSansKR",
-              fontSize: "13px",
-              borderRadius: "5px",
+            '& .MuiMenuItem-root': {
+              color: '#fff',
+              textAlign: 'left',
+              fontFamily: 'SourceHanSansKR',
+              fontSize: '13px',
+              borderRadius: '5px'
             },
 
-            "& .MuiPaper-root": {
-              width: "245px",
-              height: "412.7px",
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "#3a3a3a",
-              overflow: "auto",
-              "&::-webkit-scrollbar": { width: 0 },
+            '& .MuiPaper-root': {
+              width: '245px',
+              height: '412.7px',
+              display: 'flex',
+              justifyContent: 'center',
+              backgroundColor: '#3a3a3a',
+              overflow: 'auto',
+              '&::-webkit-scrollbar': { width: 0 },
               ...(menuStyle &&
-                menuStyle["& .MuiPaper-root"] &&
-                menuStyle["& .MuiPaper-root"]),
-            },
+                menuStyle['& .MuiPaper-root'] &&
+                menuStyle['& .MuiPaper-root'])
+            }
           }}
         >
-          <Box sx={{ width: "213px", height: "382.7px" }}>
+          <Box sx={{ width: '213px', height: '382.7px' }}>
             <Box onMouseDown={() => handleMouseDown(hsvaToHex(color))}>
               <Saturation
-                radius={"5px"}
-                style={{ width: "100%", height: "153px" }}
+                radius={'5px'}
+                style={{ width: '100%', height: '153px' }}
                 hsva={color}
                 onMouseUp={() => {
                   handleMouseUp(hsvaToHex(color));
@@ -143,8 +143,8 @@ const MxColor9988 = observer((props) => {
               />
             </Box>
             <Hue
-              style={{ marginTop: "10px" }}
-              radius={"10px"}
+              style={{ marginTop: '10px' }}
+              radius={'10px'}
               hue={color.h}
               onMouseDown={() => handleMouseDown(hsvaToHex(color))}
               onMouseUp={() => handleMouseUp(hsvaToHex(color))}
@@ -156,8 +156,8 @@ const MxColor9988 = observer((props) => {
 
             {alpha && (
               <Alpha
-                style={{ marginTop: "10px" }}
-                radius={"10px"}
+                style={{ marginTop: '10px' }}
+                radius={'10px'}
                 hsva={color}
                 onMouseDown={(e) => {
                   handleMouseDown(color.a);
@@ -172,18 +172,18 @@ const MxColor9988 = observer((props) => {
             )}
             <Box
               sx={{
-                marginTop: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
+                marginTop: '15px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-around'
               }}
             >
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#666",
+                  color: '#666'
                 }}
               >
                 Hex
@@ -193,30 +193,30 @@ const MxColor9988 = observer((props) => {
                 value={hsvaToHex(color)}
                 inputProps={{ readOnly: true }}
                 boxStyle={{
-                  width: "97px",
-                  height: "18px",
+                  width: '97px',
+                  height: '18px'
                 }}
               />
               <MxInput
                 id="Alpha"
-                value={Math.round(color.a * 100) + "%"}
+                value={Math.round(color.a * 100) + '%'}
                 inputProps={{ readOnly: true }}
               />
             </Box>
             <Box
               sx={{
-                marginTop: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
+                marginTop: '15px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-around'
               }}
             >
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 R
@@ -226,16 +226,16 @@ const MxColor9988 = observer((props) => {
                 value={rgbColor.r}
                 inputProps={{ readOnly: true }}
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
               />
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 G
@@ -244,17 +244,17 @@ const MxColor9988 = observer((props) => {
                 id="Rgb_g"
                 value={rgbColor.g}
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
                 inputProps={{ readOnly: true }}
               />
               <Typography
                 sx={{
-                  fontFamily: "Pretendard",
-                  fontSize: "12px",
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
                   fontWeight: 500,
-                  color: "#BABABA",
+                  color: '#BABABA'
                 }}
               >
                 B
@@ -263,17 +263,17 @@ const MxColor9988 = observer((props) => {
                 id="Rgb_b"
                 value={rgbColor.b}
                 boxStyle={{
-                  width: "50px",
-                  height: "18px",
+                  width: '50px',
+                  height: '18px'
                 }}
                 inputProps={{ readOnly: true }}
               />
             </Box>
             {saturationSilder === true && (
               <MxSlider
-                label={"채도"}
+                label={'채도'}
                 value={Math.round(color.s)}
-                name={"채도"}
+                name={'채도'}
                 min={0}
                 max={100}
                 step={1}
@@ -287,9 +287,9 @@ const MxColor9988 = observer((props) => {
             )}
             {brightnessSlider === true && (
               <MxSlider
-                label={"명도"}
+                label={'명도'}
                 value={Math.round(color.v)}
-                name={"명도"}
+                name={'명도'}
                 min={0}
                 max={100}
                 step={1}

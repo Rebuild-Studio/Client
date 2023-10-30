@@ -1,4 +1,4 @@
-import Box from "@mui/material/Box";
+import Box from '@mui/material/Box';
 
 //cX, cY: path가 svg의 영역을 초과하면 선이 렌더링되지 않으므로 svg의 여유 공간을 확보
 const cX = 100;
@@ -9,7 +9,7 @@ const curvature = 0.4;
 //노드 그래프가 잘 보이도록, 곡선의 출발점과 도착점의 기울기를 우측으로 설정
 export default function Curve(props) {
   const { color, start, end } = props;
-  const stroke = color ? color : "white";
+  const stroke = color ? color : 'white';
   const startX = start[0];
   const startY = start[1];
   const endX = end[0];
@@ -29,11 +29,11 @@ export default function Curve(props) {
   return (
     <Box
       sx={{
-        position: "absolute",
-        zIndex: "-1",
+        position: 'absolute',
+        zIndex: '-1'
       }}
       style={{
-        transform: `translate(${translateX}px, ${translateY}px)`,
+        transform: `translate(${translateX}px, ${translateY}px)`
       }}
     >
       <svg data-name="wire" width={svgWidth} height={svgHeight}>

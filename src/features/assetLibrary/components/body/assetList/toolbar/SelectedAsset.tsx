@@ -1,7 +1,7 @@
-import useControlSelectedItem from "@/features/assetLibrary/hooks/useControlSelectedItem";
-import { LibraryAsset } from "@/features/assetLibrary/types/fetchAssetType";
-import { basicColors, grayColors } from "@/resources/colors/colors";
-import styled from "styled-components";
+import styled from 'styled-components';
+import useControlSelectedItem from '@/features/assetLibrary/hooks/useControlSelectedItem';
+import { LibraryAsset } from '@/features/assetLibrary/types/fetchAssetType';
+import { basicColors, grayColors } from '@/resources/colors/colors';
 
 interface Props {
   asset: LibraryAsset;

@@ -1,9 +1,9 @@
-import { observer } from "mobx-react";
-import { Box } from "@mui/material";
-import storeContainer from "../../../../../stores/storeContainer";
-import NodeSettingButton from "../../control/NodeSettingButton";
-import DropdownV from "./DropdownV";
-import UxSelector from "./UxSelector";
+import { observer } from 'mobx-react';
+import { Box } from '@mui/material';
+import DropdownV from './DropdownV';
+import UxSelector from './UxSelector';
+import storeContainer from '../../../../../stores/storeContainer';
+import NodeSettingButton from '../../control/NodeSettingButton';
 
 const BlueBox = observer((props) => {
   const { sxAdd, children, ...restProps } = props;
@@ -21,8 +21,8 @@ function HeaderBox(props) {
   return (
     <BlueBox
       sxAdd={{
-        borderRadius: "5px 5px 0px 0px",
-        ...sxAdd,
+        borderRadius: '5px 5px 0px 0px',
+        ...sxAdd
       }}
       {...restProps}
     >
@@ -47,7 +47,7 @@ const TitleV = observer(({ node }) => {
         data-nodeuuid={node.uuid}
         data-name="node"
         sxAdd={{
-          fontSize: "inherit",
+          fontSize: 'inherit'
         }}
       >
         {string_store.string(node.name) || node.name}
@@ -66,23 +66,23 @@ export default TitleV;
 
 const style = {
   BlueBox: (sxAdd, scale) => ({
-    display: "flex",
-    alignItems: "center",
-    fontFamily: "sans-serif",
-    fontSize: "inherit",
-    fontWeight: "500",
-    fontStretch: "normal",
-    justifyContent: "space-between",
-    color: "#fff",
-    backgroundColor: "#272748",
-    margin: "0 auto",
+    display: 'flex',
+    alignItems: 'center',
+    fontFamily: 'sans-serif',
+    fontSize: 'inherit',
+    fontWeight: '500',
+    fontStretch: 'normal',
+    justifyContent: 'space-between',
+    color: '#fff',
+    backgroundColor: '#272748',
+    margin: '0 auto',
     ...sxAdd,
-    height: "fit-content",
-    padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${scale * 12}px`,
+    height: 'fit-content',
+    padding: `${scale * 6}px ${scale * 12}px ${scale * 7}px ${scale * 12}px`
   }),
   MainHeader: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-  },
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 };

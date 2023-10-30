@@ -1,8 +1,8 @@
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import SelectedOutline from "../post_processing/SelectedOutline";
-import storeContainer from "@/store/storeContainer";
-import { observer } from "mobx-react";
-import primitiveStore from "@store/primitiveStore";
+import { observer } from 'mobx-react';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
+import storeContainer from '@/store/storeContainer';
+import primitiveStore from '@store/primitive.store.ts';
+import SelectedOutline from '../post_processing/SelectedOutline';
 
 const SceneEffect = () => {
   const { bloomToggle } = storeContainer.sceneSettingStore;

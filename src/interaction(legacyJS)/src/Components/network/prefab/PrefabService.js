@@ -1,9 +1,9 @@
-import MXApiModule from "../MXApiModule";
-import ServiceError from "../error/ServiceError";
+import MXApiModule from '../MXApiModule';
+import ServiceError from '../error/ServiceError';
 
 // 파라미터 none
 const GetPrefabData = async () => {
-  const res = await MXApiModule.get("/prefab/public").catch((error) => {
+  const res = await MXApiModule.get('/prefab/public').catch((error) => {
     throw new ServiceError(
       error.response.data.status,
       error.response.data.error
@@ -13,11 +13,11 @@ const GetPrefabData = async () => {
 };
 
 const prefabServiceMap = {
-  getPrefabPublic: GetPrefabData,
+  getPrefabPublic: GetPrefabData
 };
 
 const prefabEndPoints = {
-  getPrefabPublic: "getPrefabPublic",
+  getPrefabPublic: 'getPrefabPublic'
 };
 
 const executePrefab =

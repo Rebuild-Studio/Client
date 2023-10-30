@@ -1,8 +1,8 @@
-import apiModule from "@/network/module/apiModule";
-import { RequestSpecificProject } from "./models/DeleteProjectModels";
+import apiModule from '@/network/module/apiModule';
+import { RequestSpecificProject } from './models/DeleteProjectModels';
 
 const deleteProject = async () => {
-  const res = await apiModule.delete("/project");
+  const res = await apiModule.delete('/project');
 
   return res;
 };
@@ -15,7 +15,7 @@ const deleteSpecificProject = async (params: RequestSpecificProject) => {
 
 const deleteProjectServices = {
   deleteProject: deleteProject,
-  deleteSpecificProject: deleteSpecificProject,
+  deleteSpecificProject: deleteSpecificProject
 };
 
 export default deleteProjectServices;

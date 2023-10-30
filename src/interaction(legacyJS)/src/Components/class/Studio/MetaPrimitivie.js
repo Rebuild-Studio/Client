@@ -1,17 +1,16 @@
-import { makeObservable, observable, runInAction } from "mobx";
-import { data_store } from "../../stores/Data_Store";
-
-import MetaObject from "./MetaObject";
-import { ObjectControllerVM } from "../../view_models/ObjectController_VM";
-import canvasHistory_store from "../../stores/CanvasHistory_Store";
-import AddObjCommand from "../commands/CanvasObject/AddObjCommand";
+import { makeObservable, observable, runInAction } from 'mobx';
+import MetaObject from './MetaObject';
+import canvasHistory_store from '../../stores/CanvasHistory_Store';
+import { data_store } from '../../stores/Data_Store';
+import { ObjectControllerVM } from '../../view_models/ObjectController_VM';
+import AddObjCommand from '../commands/CanvasObject/AddObjCommand';
 
 class MetaPrimitive extends MetaObject {
   geometry = null;
   constructor(object, arg) {
     super(object.mesh, arg);
     makeObservable(this, {
-      geometry: observable,
+      geometry: observable
     });
     runInAction(() => {
       this.geometry = object;
@@ -22,7 +21,7 @@ class MetaPrimitive extends MetaObject {
 
   async ReConstructor(mode, metaData) {
     Object.keys(metaData.props).map((prop) => {
-      if (prop !== "geoParams" && prop !== "geometry") {
+      if (prop !== 'geoParams' && prop !== 'geometry') {
         this.SetProps(prop, metaData.props[prop]);
       }
     });
@@ -33,9 +32,9 @@ class MetaPrimitive extends MetaObject {
     super.InitProps();
     if (this.geometry) {
       if (
-        this.type !== "Group" &&
-        this.geometry !== "null" &&
-        typeof data_store[this.geometry.shape] !== "undefined"
+        this.type !== 'Group' &&
+        this.geometry !== 'null' &&
+        typeof data_store[this.geometry.shape] !== 'undefined'
       ) {
         for (const param of data_store[this.geometry.shape]) {
           this.props = { ...this.props, [param[0]]: param[3] };
@@ -67,8 +66,8 @@ class MetaPrimitive extends MetaObject {
       blobGlb: null,
       url: null,
       loadJSON: null,
-      type: "Object",
-      props: this.props,
+      type: 'Object',
+      props: this.props
     });
 
     canvasHistory_store.execute(
@@ -86,11 +85,11 @@ class MetaPrimitive extends MetaObject {
     }
     return {
       ...parentJsonDatas,
-      ["props"]: {
-        ...parentJsonDatas["props"],
+      ['props']: {
+        ...parentJsonDatas['props'],
         geometry: this.geometry.shape,
-        geoParams: geoParams,
-      },
+        geoParams: geoParams
+      }
     };
   }
   async DeleteMeta(objectId) {

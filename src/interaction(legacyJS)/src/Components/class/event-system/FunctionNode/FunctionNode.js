@@ -1,7 +1,7 @@
-import Node from "../Node";
-import { ControlType } from "../NodeControl";
+import Node from '../Node';
+import { ControlType } from '../NodeControl';
 
-const nodeType = "Function";
+const nodeType = 'Function';
 
 export class FunctionNode extends Node {
   static NODE_TYPE = nodeType;
@@ -18,11 +18,11 @@ const nodeSchema = {
   outputSocket: [],
   control: [
     {
-      name: "function",
+      name: 'function',
       value: undefined,
       type: ControlType.Function,
       IsDropdown: true,
-      extras: "함수",
-    },
-  ],
+      extras: '함수'
+    }
+  ]
 };

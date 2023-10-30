@@ -1,18 +1,18 @@
-import { Box } from "@mui/material";
-import { observer } from "mobx-react";
-import MxSlider from "../../gui/Slider_V";
-import CameraEditVM from "../../../../../view_models/06. ObjectEdit/CameraEdit_VM";
-import { objectViewModel } from "../../../../../view_models/Object_VM";
+import { observer } from 'mobx-react';
+import { Box } from '@mui/material';
+import CameraEditVM from '../../../../../view_models/06. ObjectEdit/CameraEdit_VM';
+import { objectViewModel } from '../../../../../view_models/Object_VM';
+import MxSlider from '../../gui/Slider_V';
 
 const TabCamera = observer((props) => {
   return (
     <Box
       sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        mb: 2,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mb: 2
       }}
     >
       {CameraEditVM.cameraPropsList.map((prop, index) => {
@@ -25,7 +25,7 @@ const TabCamera = observer((props) => {
             min={prop[3]}
             max={prop[4]}
             step={prop[5]}
-            undoMode={"Camera_" + prop[0]}
+            undoMode={'Camera_' + prop[0]}
             onMouseDown={CameraEditVM.onSliderMouseDown}
             onMouseUp={CameraEditVM.onSliderMouseUp}
           />

@@ -1,4 +1,4 @@
-import MiddleProcess from "./MiddleProcess";
+import MiddleProcess from './MiddleProcess';
 
 export default class MapProcess extends MiddleProcess {
   constructor(nodeRuntime) {
@@ -8,7 +8,7 @@ export default class MapProcess extends MiddleProcess {
     if (inputMax === inputMin) {
       this.calculate = () => {
         return [0];
-      }
+      };
     }
     const outputMin = this.data.NODE_DAT_OUTPUT_MIN;
     const outputMax = this.data.NODE_DAT_OUTPUT_MAX;
@@ -17,18 +17,21 @@ export default class MapProcess extends MiddleProcess {
     const outputStart = inverse ? outputMax : outputMin;
     const bound = this.data.NODE_DAT_BOUND;
     const map = (input) => {
-      return [(input - inputMin) * deltaOutput / (inputMax - inputMin) + outputStart];
-    }
+      return [
+        ((input - inputMin) * deltaOutput) / (inputMax - inputMin) + outputStart
+      ];
+    };
     if (bound) {
       this.calculate = (i) => {
-        const input = i[0] < inputMin ? inputMin : (i[0] > inputMax ? inputMax : i[0]);
+        const input =
+          i[0] < inputMin ? inputMin : i[0] > inputMax ? inputMax : i[0];
         return map(input);
-      }
+      };
     } else {
       this.calculate = (i) => {
         const input = i[0];
         return map(input);
-      }
+      };
     }
   }
 }

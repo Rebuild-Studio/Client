@@ -1,10 +1,10 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class DeleteNodeAndGroupCommand extends Command {
   constructor(store, sheetId, groupUuids, nodeUuids) {
     super(store);
-    this.type = "DeleteNodeAndGroupCommand";
+    this.type = 'DeleteNodeAndGroupCommand';
     const sheet = this.store.getSheetByUuid(sheetId);
     this.data = {
       groupUuids: groupUuids.slice(),
@@ -12,7 +12,7 @@ export default class DeleteNodeAndGroupCommand extends Command {
       sheetId,
       excluded: undefined,
       json: undefined,
-      sheetName: sheet.name,
+      sheetName: sheet.name
     };
     const nodes = this.data.nodeUuids.map((uuid) => sheet.getNodeByUuid(uuid));
     this.data.excluded = nodes
@@ -29,8 +29,8 @@ export default class DeleteNodeAndGroupCommand extends Command {
       this.data.nodeUuids.length > 0
         ? this.data.groupUuids.length > 0
           ? this.type
-          : "DeleteSelectedNodeCommand"
-        : "DeleteGroupCommand";
+          : 'DeleteSelectedNodeCommand'
+        : 'DeleteGroupCommand';
     this.data.nodeTypes = this.data.nodeUuids?.map(
       (uuid) => sheet.getNodeByUuid(uuid).type
     );
@@ -68,16 +68,16 @@ export default class DeleteNodeAndGroupCommand extends Command {
     let currentArgIndex =
       this.data.nodeTypes.length && this.data.groupNames.length ? 3 : 2;
 
-    let intermediateN = "";
+    let intermediateN = '';
     const nodeTypes = this.data.nodeTypes?.map((v) => {
-      intermediateN += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateN += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return Utils.encryptString(v);
     });
 
-    let intermediateG = "";
+    let intermediateG = '';
     const groupNames = this.data.groupNames?.map((v) => {
-      intermediateG += Utils.templateArg(currentArgIndex) + ", ";
+      intermediateG += Utils.templateArg(currentArgIndex) + ', ';
       currentArgIndex++;
       return v;
     });

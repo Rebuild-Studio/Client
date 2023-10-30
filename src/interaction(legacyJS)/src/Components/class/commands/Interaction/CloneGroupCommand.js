@@ -1,15 +1,15 @@
-import Command from "../Command";
-import * as Utils from "../../event-system/utils";
+import * as Utils from '../../event-system/utils';
+import Command from '../Command';
 
 export default class CloneGroupCommand extends Command {
   constructor(store, srcUuids, sheetId) {
     super(store);
-    this.type = "CloneGroupCommand";
+    this.type = 'CloneGroupCommand';
     this.data = {
       sheetId,
       srcUuids: srcUuids,
       uuids: undefined,
-      json: undefined,
+      json: undefined
     };
   }
   execute() {

@@ -1,5 +1,5 @@
-import { observable } from "mobx";
-import * as THREE from "three";
+import * as THREE from 'three';
+import { observable } from 'mobx';
 
 const object_store = observable({
   metaObjects: [],
@@ -10,7 +10,7 @@ const object_store = observable({
   raycastObjects: [],
   selectedObjects: [],
   isObjectSelected: false,
-  renderObjects: [],
+  renderObjects: []
 });
 
 export { object_store };

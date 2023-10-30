@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { ProjectCard } from "./card/ProjectCard";
-import { AddCard } from "./card/AddCard";
-import { StyledGrid } from "./projectList.styles";
-import { Project, ProjectList } from "../types/project";
-import storeContainer from "@/store/storeContainer";
-import { ProjectInfo } from "@/store/projectStore";
-import { observer } from "mobx-react";
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import storeContainer from '@/store/storeContainer';
+import { ProjectInfo } from '@store/project.store.ts';
+import { AddCard } from './card/AddCard';
+import { ProjectCard } from './card/ProjectCard';
+import { StyledGrid } from './projectList.styles';
+import { Project, ProjectList } from '../types/project';
 
 type Props = {
   projects: ProjectList<Project>;
@@ -20,8 +20,8 @@ export const ProjectCards = ({ projects }: Props) => {
     const selectedProject: ProjectInfo = {
       projectId: projects[selectedCompIdx].id,
       projectName: projects[selectedCompIdx].name,
-      projectType: "MX",
-      thumbnail: projects[selectedCompIdx].thumbnail,
+      projectType: 'MX',
+      thumbnail: projects[selectedCompIdx].thumbnail
     };
     projectStore.setSelectedProject(selectedProject);
 

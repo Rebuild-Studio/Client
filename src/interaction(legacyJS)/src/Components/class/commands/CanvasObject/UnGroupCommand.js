@@ -1,10 +1,10 @@
-import { objectViewModel } from "../../../view_models/Object_VM";
-import * as THREE from "three";
+import * as THREE from 'three';
+import { objectViewModel } from '../../../view_models/Object_VM';
 
 export default class UnGroupCommand {
   constructor(metaGroup) {
-    this.type = "UnGroupCommand";
-    this.name = "오브젝트 그룹 해제";
+    this.type = 'UnGroupCommand';
+    this.name = '오브젝트 그룹 해제';
     this.metaGroup = metaGroup;
     this.parentMetaObject = null;
     this.originParentMetaObject = null;
@@ -20,9 +20,9 @@ export default class UnGroupCommand {
     }
     if (parent === renderingContext_store.scene) {
       for (const childMetaObject of this.childMetaObjects) {
-        childMetaObject.ConvertToWorldCoordinates("position");
-        childMetaObject.ConvertToWorldCoordinates("scale");
-        childMetaObject.ConvertToWorldCoordinates("rotation");
+        childMetaObject.ConvertToWorldCoordinates('position');
+        childMetaObject.ConvertToWorldCoordinates('scale');
+        childMetaObject.ConvertToWorldCoordinates('rotation');
         childMetaObject.DeleteFromParentClass();
         if (childMetaObject.originParentId) {
           const originParent = objectViewModel.GetMetaObjectByObjectId(
@@ -41,9 +41,9 @@ export default class UnGroupCommand {
         this.metaGroup.parentId
       );
       for (const childMetaObject of this.childMetaObjects) {
-        childMetaObject.ConvertToWorldCoordinates("position");
-        childMetaObject.ConvertToWorldCoordinates("scale");
-        childMetaObject.ConvertToWorldCoordinates("rotation");
+        childMetaObject.ConvertToWorldCoordinates('position');
+        childMetaObject.ConvertToWorldCoordinates('scale');
+        childMetaObject.ConvertToWorldCoordinates('rotation');
         childMetaObject.DeleteFromParentClass();
 
         this.metaGroup.RemoveChildrenId(childMetaObject.objectId);
