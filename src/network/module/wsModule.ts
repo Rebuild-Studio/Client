@@ -69,6 +69,17 @@ class WsModule {
     );
   }
 
+  public async encodeBody(body: { [key: string]: unknown }) {
+    const varBody = JSON.stringify(body);
+    const encodedBody = new TextEncoder().encode(varBody);
+    return {
+      encodedBody
+    };
+  }
+
+  //TODO : 청크 단위로 메세지 전송을 위한 byteLength 추출가능한 함수 필요
+  public async encodeBodyWithMetaData() {}
+
   public setUserId(userId: string) {
     WsModule.userId = userId;
   }
@@ -86,7 +97,10 @@ class WsModule {
   }
 
   public assembleMessage(
-    ...args: [edcodedBody: Uint8Array, byteArray: Uint8Array] | []
+    ...args:
+      | [encodedBody: Uint8Array, byteArray: Uint8Array]
+      | [encodedBody: Uint8Array]
+      | []
   ) {
     let totalByteLength = 0;
     const reqHeaderBytes = this.headerBytes;
@@ -108,6 +122,11 @@ class WsModule {
       totalByteLength += messageContent.byteLength;
     }
     return messageBytes;
+  }
+
+  public send(messageBytes: Uint8Array) {
+    WsModule.socket.binaryType = 'arraybuffer';
+    WsModule.socket.send(messageBytes);
   }
 
   public sendInChunks(messageBytes: Uint8Array) {
