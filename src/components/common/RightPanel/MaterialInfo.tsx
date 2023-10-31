@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { HsvaColor } from '@uiw/color-convert';
+import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
 import CustomMenu from '@/components/layout/Menu';
 import storeContainer from '@/store/storeContainer';
-import ColorPicker from './ColorPicker';
+import ColorContent from './ColorContent';
 import MaterialTemplate from './MaterialTemplate';
 import Slider from '../Slider';
 
@@ -24,13 +25,45 @@ const Material = ({
   const { primitiveStore } = storeContainer;
   const { updateMaterialColor, updateMaterialAlpha } = ColorHandler;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+  const [openMenu, setOpenMenu] = useState(false);
+  const [menuType, setMenuType] = useState<'material' | 'color' | ''>('');
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const rgbColor = hsvaToRgba(color);
 
+  const handleToggle = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    type: 'material' | 'color'
+  ) => {
+    if (!openMenu) {
+      setMenuType(type);
+      setAnchorEl(event.currentTarget);
+      setOpenMenu(true);
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleClose = () => {
+    setMenuType('');
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
   useEffect(() => {
     if (selectedPrimitive) {
       setMesh(selectedPrimitive);
     }
   }, [primitiveStore.selectedPrimitives]);
 
+  const materialAnchorButton = (
+    <button onClick={(e) => handleToggle(e, 'material')}>Open Menu</button>
+  );
+  const colorAnchorButton = (
+    <ColorButton
+      $color={color}
+      $rgbColor={rgbColor}
+      onClick={(e) => handleToggle(e, 'color')}
+    />
+  );
   const onMetalnessChange = (newValue: number) => {
     if (mesh.material instanceof THREE.MeshStandardMaterial) {
       const material = mesh.material;
@@ -49,16 +82,39 @@ const Material = ({
         <MaterialMenu>
           <TitleWrapper>
             <span>{'머터리얼 요소 편집'}</span>
-            <CustomMenu title={'머테리얼'} MenuItem={<MaterialTemplate />} />
+            {materialAnchorButton}
+            {menuType === 'material' &&
+              ReactDOM.createPortal(
+                <CustomMenu
+                  title={'머테리얼'}
+                  anchorButton={materialAnchorButton}
+                  anchorElement={anchorEl}
+                  handleClose={handleClose}
+                  MenuItem={<MaterialTemplate />}
+                />,
+                document.getElementById('menu-root')!
+              )}
           </TitleWrapper>
           <TitleWrapper>
             <span>{'기본 컬러'}</span>
-            <ColorPicker
-              label={'기본 컬러'}
-              color={color}
-              onChangeHsvaProp={updateMaterialColor}
-              onChangeAlphaProp={updateMaterialAlpha}
-            />
+            {colorAnchorButton}
+            {menuType === 'color' &&
+              ReactDOM.createPortal(
+                <CustomMenu
+                  title={'기본컬러'}
+                  anchorButton={colorAnchorButton}
+                  anchorElement={anchorEl}
+                  handleClose={handleClose}
+                  MenuItem={
+                    <ColorContent
+                      color={color}
+                      onChangeHsvaProp={updateMaterialColor}
+                      onChangeAlphaProp={updateMaterialAlpha}
+                    />
+                  }
+                />,
+                document.getElementById('menu-root')!
+              )}
           </TitleWrapper>
         </MaterialMenu>
         <Slider
@@ -97,4 +153,17 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 10px;
+`;
+
+const ColorButton = styled.button<{
+  $color: HsvaColor;
+  $rgbColor: RgbaColor;
+}>`
+  width: 24px;
+  min-width: 0;
+  min-height: 0;
+  height: 24px;
+  background-color: ${(props) =>
+    typeof props.$color !== 'undefined' &&
+    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;
