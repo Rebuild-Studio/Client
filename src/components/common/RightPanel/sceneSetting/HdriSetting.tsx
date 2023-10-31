@@ -4,12 +4,12 @@ import { HsvaColor } from '@uiw/color-convert';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
-import ColorPicker from '@/components/common/RightPanel/ColorPicker';
 import Slider from '@/components/common/Slider';
 import Accordion from '@/components/layout/Accordion';
 import CustomMenu from '@/components/layout/Menu';
 import storeContainer from '@/store/storeContainer';
 import BackgroundImageTemplate from './BackgroundImageTemplate';
+import ColorContent from '../ColorContent';
 
 const HdriSetting = () => {
   const { sceneSettingStore } = storeContainer;
@@ -28,6 +28,8 @@ const HdriSetting = () => {
   const [directionalLightColor, setDirectionalLightColor] = useState<HsvaColor>(
     { h: 0, s: 0, v: 0, a: 0 }
   );
+  const [openMenu, setOpenMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setAmbientLightColor(sceneSettingStore.ambientLightColor);
@@ -36,6 +38,37 @@ const HdriSetting = () => {
   useEffect(() => {
     setDirectionalLightColor(sceneSettingStore.directionalLightColor);
   }, [sceneSettingStore.directionalLightColor]);
+
+  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!openMenu) {
+      setAnchorEl(event.currentTarget);
+      setOpenMenu(true);
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
+
+  const anchorButton = (
+    <img
+      src={
+        sceneSettingStore.hdriBackgroundVisibleToggle
+          ? '/icons/studio/icon_보이기.svg'
+          : '/icons/studio/icon_가리기.svg'
+      }
+      onClick={() => {
+        sceneSettingStore.setHdriBackgroundVisibleToggle(
+          !sceneSettingStore.hdriBackgroundVisibleToggle
+        );
+        handleToggle;
+      }}
+      alt="visible"
+    />
+  );
 
   return (
     <>
@@ -49,23 +82,16 @@ const HdriSetting = () => {
 
         <TitleWrapper>
           <span>{'환경이미지'}</span>
-          <img
-            src={
-              sceneSettingStore.hdriBackgroundVisibleToggle
-                ? '/icons/studio/icon_보이기.svg'
-                : '/icons/studio/icon_가리기.svg'
-            }
-            onClick={() => {
-              sceneSettingStore.setHdriBackgroundVisibleToggle(
-                !sceneSettingStore.hdriBackgroundVisibleToggle
-              );
-            }}
-            alt="visible"
-          />
-          <CustomMenu
-            title={'환경이미지 템플릿'}
-            MenuItem={<BackgroundImageTemplate />}
-          />
+          {anchorButton}
+          {sceneSettingStore.hdriBackgroundVisibleToggle && (
+            <CustomMenu
+              title={'환경이미지 템플릿'}
+              anchorButton={anchorButton}
+              anchorElement={anchorEl}
+              MenuItem={<BackgroundImageTemplate />}
+              handleClose={handleClose}
+            />
+          )}
         </TitleWrapper>
 
         <Slider
@@ -98,8 +124,7 @@ const HdriSetting = () => {
         />
         <TitleWrapper>
           <span>{'컬러'}</span>
-          <ColorPicker
-            label={'컬러'}
+          <ColorContent
             color={ambientLightColor}
             onChangeHsvaProp={updateAmbientLightColor}
             onChangeAlphaProp={updateAmbientLightAlpha}
@@ -117,8 +142,7 @@ const HdriSetting = () => {
         />
         <TitleWrapper>
           <span>{'컬러'}</span>
-          <ColorPicker
-            label={'컬러'}
+          <ColorContent
             color={directionalLightColor}
             onChangeHsvaProp={updateDirectionalLightColor}
             onChangeAlphaProp={updateDirectionalLightAlpha}

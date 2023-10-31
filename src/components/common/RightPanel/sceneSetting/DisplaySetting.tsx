@@ -4,9 +4,9 @@ import { HsvaColor } from '@uiw/color-convert';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
-import ColorPicker from '@/components/common/RightPanel/ColorPicker';
 import Accordion from '@/components/layout/Accordion';
 import storeContainer from '@/store/storeContainer';
+import ColorContent from '../ColorContent';
 
 const DisplaySetting = () => {
   const { updateCanvasBackgroundColor, updateCanvasBackgroundAlpha } =
@@ -30,8 +30,7 @@ const DisplaySetting = () => {
         />
         <TitleWrapper>
           <span>{'배경 컬러'}</span>
-          <ColorPicker
-            label={'컬러'}
+          <ColorContent
             color={color}
             onChangeHsvaProp={updateCanvasBackgroundColor}
             onChangeAlphaProp={updateCanvasBackgroundAlpha}
