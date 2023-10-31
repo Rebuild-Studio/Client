@@ -15,6 +15,10 @@ class PrimitiveStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
+  get numOfSelectedPrimitives() {
+    return Object.keys(this.selectedPrimitives).length;
+  }
+
   addPrimitive(storeId: string, primitive: JSX.Element) {
     this.primitives = {
       ...this.primitives,

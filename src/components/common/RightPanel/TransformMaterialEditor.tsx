@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
 import * as THREE from 'three';
+import { Light } from 'three';
 import { observer } from 'mobx-react';
 import { HsvaColor } from '@uiw/color-convert';
 import Accordion from '@/components/layout/Accordion';
 import storeContainer from '@/store/storeContainer';
+import LightProperty from '@components/common/RightPanel/LightProperty.tsx';
 import ColorHandler from './ColorHandler';
 import Material from './MaterialInfo';
 import PropertyValue from './TransFromationInfo';
 
-const TransformMaterialEditor = () => {
+interface Props {
+  isLight: boolean;
+}
+const TransformMaterialEditor = ({ isLight }: Props) => {
   const { primitiveStore } = storeContainer;
   const [metalness, setMetalness] = useState<number>(0);
   const [roughness, setRoughness] = useState<number>(0);
@@ -64,9 +69,16 @@ const TransformMaterialEditor = () => {
           }}
         />
       </Accordion>
-      <Accordion title={'머터리얼'}>
-        <Material metalness={metalness} roughness={roughness} color={color} />
-      </Accordion>
+      {!isLight && (
+        <Accordion title={'머터리얼'}>
+          <Material metalness={metalness} roughness={roughness} color={color} />
+        </Accordion>
+      )}
+      {isLight && (
+        <Accordion title={'빛속성'}>
+          <LightProperty light={selectedPrimitive.children[0] as Light} />
+        </Accordion>
+      )}
     </>
   );
 };
