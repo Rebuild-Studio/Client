@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer';
 import { ResponseDto } from '../webSocket/services/model/commonResponse.model';
+import { getChunks } from '../webSocket/utils/getChunks';
 
 globalThis.Buffer = Buffer;
 
@@ -29,11 +30,7 @@ interface WsModuleConstructor {
  */
 class WsModule {
   static userId: string = 'user2';
-  static socket = new WebSocket(
-    isProduction
-      ? import.meta.env.VITE_SOCKET_SERVER_URL
-      : 'ws://localhost:8080'
-  );
+  public socket: WebSocket;
 
   private targetService: string;
   private chunkSize: number;
@@ -43,6 +40,11 @@ class WsModule {
     this.targetService = `service-0.1/com.tmax.mx.controller.${targetService}`;
     this.chunkSize = chunkSize;
     this.headerBytes = this.createFixedHeader();
+    this.socket = new WebSocket(
+      isProduction
+        ? import.meta.env.VITE_SOCKET_SERVER_URL
+        : 'ws://localhost:8080'
+    );
   }
 
   private createFixedHeader() {
@@ -126,24 +128,23 @@ class WsModule {
   }
 
   public send(messageBytes: Uint8Array) {
-    WsModule.socket.binaryType = 'arraybuffer';
-    WsModule.socket.send(messageBytes);
+    this.socket.binaryType = 'arraybuffer';
+    this.socket.onopen = () => this.socket.send(messageBytes);
   }
 
   public sendInChunks(messageBytes: Uint8Array) {
-    const numberOfChunks = Math.ceil(messageBytes.byteLength / this.chunkSize);
-    for (let i = 0; i < numberOfChunks; i++) {
-      const start = i * this.chunkSize;
-      const end = start + this.chunkSize;
-      const chunk = messageBytes.slice(start, end);
-      WsModule.socket.binaryType = 'arraybuffer';
-      WsModule.socket.send(chunk);
-    }
+    this.socket.binaryType = 'arraybuffer';
+
+    this.socket.onopen = () => {
+      getChunks(messageBytes, this.chunkSize).forEach((chunk) => {
+        this.socket.send(chunk);
+      });
+    };
   }
 
   public onReceiveMessage<T>() {
     return new Promise<T>((resolve, reject) => {
-      WsModule.socket.onmessage = async (event) => {
+      this.socket.onmessage = async (event) => {
         const response: ResponseDto<T> = await this.handleServerMessage(
           event.data
         );
@@ -153,6 +154,7 @@ class WsModule {
         } else {
           reject(new Error('Request failed'));
         }
+        this.socket.close();
       };
     });
   }
