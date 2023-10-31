@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { HsvaColor } from '@uiw/color-convert';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
@@ -39,7 +40,7 @@ const HdriSetting = () => {
     setDirectionalLightColor(sceneSettingStore.directionalLightColor);
   }, [sceneSettingStore.directionalLightColor]);
 
-  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleToggle = (event: React.MouseEvent<HTMLImageElement>) => {
     if (!openMenu) {
       setAnchorEl(event.currentTarget);
       setOpenMenu(true);
@@ -60,11 +61,11 @@ const HdriSetting = () => {
           ? '/icons/studio/icon_보이기.svg'
           : '/icons/studio/icon_가리기.svg'
       }
-      onClick={() => {
+      onClick={(event) => {
         sceneSettingStore.setHdriBackgroundVisibleToggle(
           !sceneSettingStore.hdriBackgroundVisibleToggle
         );
-        handleToggle;
+        handleToggle(event);
       }}
       alt="visible"
     />
@@ -83,15 +84,17 @@ const HdriSetting = () => {
         <TitleWrapper>
           <span>{'환경이미지'}</span>
           {anchorButton}
-          {sceneSettingStore.hdriBackgroundVisibleToggle && (
-            <CustomMenu
-              title={'환경이미지 템플릿'}
-              anchorButton={anchorButton}
-              anchorElement={anchorEl}
-              MenuItem={<BackgroundImageTemplate />}
-              handleClose={handleClose}
-            />
-          )}
+          {sceneSettingStore.hdriBackgroundVisibleToggle &&
+            ReactDOM.createPortal(
+              <CustomMenu
+                title={'환경이미지 템플릿'}
+                anchorButton={anchorButton}
+                anchorElement={anchorEl}
+                MenuItem={<BackgroundImageTemplate />}
+                handleClose={handleClose}
+              />,
+              document.getElementById('menu-root')!
+            )}
         </TitleWrapper>
 
         <Slider
