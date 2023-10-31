@@ -1,5 +1,5 @@
-import hash from 'object-hash';
 import { SceneJson } from '@/types/scene/scene';
+import { xxHash32 } from 'js-xxhash';
 
 /**
  * @description 지오메트리 값을 object hash를 통해 hash값으로 변환하고, 중복된 지오메트리를 제거합니다.
@@ -12,8 +12,8 @@ function getUniqueGeometriesFromJson(sceneJson: SceneJson) {
   // 지오메트리 순회 및 중복 제거
   for (const geometry of geometries) {
     if (!geometry.data) continue;
-
-    const geometryHashValue = hash(geometry.data);
+    const seed = 0
+    const geometryHashValue = xxHash32(JSON.stringify(geometry.data), seed);
 
     if (geometryHashMap.get(geometryHashValue)) {
       geometry.data = `duplicated:${geometryHashMap.get(geometryHashValue)}`;
