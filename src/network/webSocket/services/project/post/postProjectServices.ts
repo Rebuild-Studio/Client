@@ -4,9 +4,6 @@ import {
   RequestCreateMxProject,
   ResponseCreateMxProject
 } from './model/postMxProject.model';
-import { ResponseDto } from '../../model/commonResponse.model';
-
-const socket = WsModule.socket;
 
 async function createVariableParts(mxJson: MxJson, thumbnail: ArrayBuffer) {
   const thumbnailBuffer = Buffer.from(thumbnail);
@@ -41,7 +38,7 @@ const createMxProject = async ({
   thumbnail
 }: RequestCreateMxProject) => {
   const wsModule = new WsModule({
-    targetService: 'service-0.1/com.tmax.mx.controller.CreateMxController'
+    targetService: 'CreateMxController'
   });
   const { encodedBody, byteArray } = await createVariableParts(
     mxJson,
@@ -50,18 +47,7 @@ const createMxProject = async ({
   const message = wsModule.assembleMessage(encodedBody, byteArray);
   wsModule.sendInChunks(message);
 
-  return new Promise<ResponseCreateMxProject>((resolve, reject) => {
-    socket.onmessage = async (event) => {
-      const response: ResponseDto<ResponseCreateMxProject> =
-        await wsModule.handleServerMessage(event.data);
-
-      if (response) {
-        resolve(response.result);
-      } else {
-        reject(new Error('Request failed'));
-      }
-    };
-  });
+  return wsModule.onReceiveMessage<ResponseCreateMxProject>();
 };
 
 export { createMxProject };

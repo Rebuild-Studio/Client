@@ -1,34 +1,34 @@
-import WsModule from "@/network/module/wsModule";
-import { ResponseGetMxProjectList } from "./model/getMxProjectList.model";
-import { ResponseDto } from "../../model/commonResponse.model";
+import WsModule from '@/network/module/wsModule';
+import {
+  RequestGetMxProject,
+  ResponseGetMxProject
+} from './model/getMxProject.model';
+import { ResponseGetMxProjectList } from './model/getMxProjectList.model';
 
-const socket = WsModule.socket;
-
-//TODO req,res DTO 만들기
 const getMyMxProjectList = async () => {
   const wsModule = new WsModule({
-    targetService: "service-0.1/com.tmax.mx.controller.FindMyMxController",
+    targetService: 'FindMyMxController'
   });
   const message = wsModule.assembleMessage();
   wsModule.sendInChunks(message);
 
-  return new Promise<ResponseGetMxProjectList>((resolve, reject) => {
-    socket.onmessage = async (event) => {
-      const response: ResponseDto<ResponseGetMxProjectList> =
-        await wsModule.handleServerMessage(event.data);
+  return wsModule.onReceiveMessage<ResponseGetMxProjectList>();
+};
 
-      // TODO response DTO 만들기, CommonResponseDTO에 따른 에러처리
-      if (response) {
-        resolve(response.result);
-      } else {
-        reject(new Error("Request failed"));
-      }
-    };
+const getMxProject = async (params: RequestGetMxProject) => {
+  const wsModule = new WsModule({
+    targetService: 'ReadMxController'
   });
+  const { encodedBody } = await wsModule.encodeBody({ ...params });
+  const message = wsModule.assembleMessage(encodedBody);
+  wsModule.send(message);
+
+  return wsModule.onReceiveMessage<ResponseGetMxProject>();
 };
 
 const getProjectServices = {
   getMyMxProjectList,
+  getMxProject
 };
 
 export default getProjectServices;

@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer';
+import { ResponseDto } from '../webSocket/services/model/commonResponse.model';
 
 globalThis.Buffer = Buffer;
 
@@ -39,7 +40,7 @@ class WsModule {
   public headerBytes: Uint8Array;
 
   constructor({ targetService, chunkSize = CHUNK_SIZE }: WsModuleConstructor) {
-    this.targetService = targetService;
+    this.targetService = `service-0.1/com.tmax.mx.controller.${targetService}`;
     this.chunkSize = chunkSize;
     this.headerBytes = this.createFixedHeader();
   }
@@ -69,7 +70,7 @@ class WsModule {
     );
   }
 
-  public async encodeBody(body: { [key: string]: unknown }) {
+  public async encodeBody<T extends { [key: string]: unknown }>(body: T) {
     const varBody = JSON.stringify(body);
     const encodedBody = new TextEncoder().encode(varBody);
     return {
@@ -84,7 +85,7 @@ class WsModule {
     WsModule.userId = userId;
   }
 
-  public async handleServerMessage(data: ArrayBuffer) {
+  private async handleServerMessage(data: ArrayBuffer) {
     const dataView = new DataView(data);
     const headerLength = dataView.getInt32(24);
     const bodyStart = 64 + headerLength;
@@ -138,6 +139,22 @@ class WsModule {
       WsModule.socket.binaryType = 'arraybuffer';
       WsModule.socket.send(chunk);
     }
+  }
+
+  public onReceiveMessage<T>() {
+    return new Promise<T>((resolve, reject) => {
+      WsModule.socket.onmessage = async (event) => {
+        const response: ResponseDto<T> = await this.handleServerMessage(
+          event.data
+        );
+        if (response) {
+          //TODO : 여기서 에러 throw 하도록 수정
+          resolve(response.result);
+        } else {
+          reject(new Error('Request failed'));
+        }
+      };
+    });
   }
 }
 

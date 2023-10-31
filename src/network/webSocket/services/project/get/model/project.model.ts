@@ -1,13 +1,9 @@
-import { MxJson } from "@/types/mxJson/mxJson";
+import { MxJson } from '@/types/mxJson/mxJson';
 
 /**
  * @description 실제 프로젝트 호출 시 사용되는 인터페이스
  */
-interface Project {
-  id: string;
-  projectName: string;
-  mxJson: MxJson;
-}
+type Project = MxJson;
 
 interface ProjectListData {
   thumbnail: string;
