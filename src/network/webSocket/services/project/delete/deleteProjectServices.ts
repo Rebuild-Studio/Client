@@ -2,13 +2,25 @@ import WsModule from '@/network/module/wsModule';
 import {
   RequestDeleteMxProject,
   ResponseDeleteMxProject
-} from './model/deleteProject.model';
+} from './model/deleteMxProject.model';
 
-const deleteMxProjectList = async ({ mxId }: RequestDeleteMxProject) => {
+const deleteMxProject = async (params: RequestDeleteMxProject) => {
   const wsModule = new WsModule({
     targetService: 'DeleteMxController'
   });
-  const { encodedBody } = await wsModule.encodeBody({ mxId });
+  const { encodedBody } = await wsModule.encodeBody({ ...params });
+  const message = wsModule.assembleMessage(encodedBody);
+
+  wsModule.send(message);
+
+  return await wsModule.onReceiveMessage<ResponseDeleteMxProject>();
+};
+
+const deletePmxProject = async (params: RequestDeleteMxProject) => {
+  const wsModule = new WsModule({
+    targetService: 'DeletePmxController'
+  });
+  const { encodedBody } = await wsModule.encodeBody({ ...params });
   const message = wsModule.assembleMessage(encodedBody);
 
   wsModule.send(message);
@@ -17,7 +29,8 @@ const deleteMxProjectList = async ({ mxId }: RequestDeleteMxProject) => {
 };
 
 const deleteProjectServices = {
-  deleteMxProjectList
+  deleteMxProject,
+  deletePmxProject
 };
 
 export default deleteProjectServices;
