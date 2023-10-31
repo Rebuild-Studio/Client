@@ -75,6 +75,7 @@ const HdriSetting = () => {
           max={5}
           title={'환경강도'}
           step={0.1}
+          disabled={!sceneSettingStore.hdriToggle}
         />
         <Slider
           initValue={sceneSettingStore.hdriYRotation}
@@ -83,6 +84,7 @@ const HdriSetting = () => {
           min={0}
           max={360}
           step={0.1}
+          disabled={!sceneSettingStore.hdriToggle}
         />
       </Accordion>
       <Accordion title={'주변광'}>
