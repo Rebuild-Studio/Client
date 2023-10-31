@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AssetLibrary from '@/features/assetLibrary';
 import { bgColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
+import PreviewCamera from '@/three_components/camera/PreivewCamera';
 import PointLight from '@/three_components/lights/PointLight';
 import SpotLight from '@/three_components/lights/SpotLight';
 import CapsulePrimitive from '@/three_components/primitives/CapsulePrimitive';
@@ -150,6 +151,21 @@ const CanvasBar = () => {
             shadow="none"
             backgroundImage="/icons/studio/btn_카메라.svg"
             hoverBackgroundImage="/icons/studio/btn_카메라_활성화.svg"
+            onClick={() => {
+              if (
+                Object.values(primitiveStore.meshes).find(
+                  (value) => value.name === 'PREVIEW_CAMERA'
+                )
+              ) {
+                addToast('카메라는 한 개만 추가할 수 있습니다.');
+                return;
+              }
+              const storeId = nanoid();
+              primitiveStore.addPrimitive(
+                storeId,
+                <PreviewCamera storeId={storeId} />
+              );
+            }}
           />
         </CanvasBtnWrapper>
         <PaddingBox />

@@ -21,6 +21,7 @@ const SelectedOutline = (props: SelectedOutlineProps) => {
         case 'SELECTED_GROUP': {
           break;
         }
+        case 'PREVIEW_CAMERA':
         case 'ASSET': {
           value.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
