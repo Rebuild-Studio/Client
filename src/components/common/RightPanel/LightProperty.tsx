@@ -15,9 +15,9 @@ const LightProperty = ({ light }: Props) => {
   return (
     <div>
       <ColorWrapper>
-        <span>Light color</span>
+        <span>컬러</span>
         <ColorPicker
-          label="Light color"
+          label="컬러"
           color={hsvaColor}
           onChangeHsvaProp={(hsva) => {
             light.color.set(hsvaToRgbString(hsva));
@@ -30,7 +30,7 @@ const LightProperty = ({ light }: Props) => {
         step={0.01}
         initValue={light.intensity}
         onMaterialChange={(value) => (light.intensity = value)}
-        title="Intensity"
+        title="강도"
       />
     </div>
   );
