@@ -5,7 +5,13 @@ import {
   ResponseCreateMxProject
 } from './model/postMxProject.model';
 
-async function createVariableParts(mxJson: MxJson, thumbnail: ArrayBuffer) {
+type Variables = {
+  taskName: string;
+  mxJson: MxJson;
+  thumbnail: ArrayBuffer;
+};
+
+async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {
   const thumbnailBuffer = Buffer.from(thumbnail);
   // thumbnail mock
   // const thumbnailBuffer = Buffer.from(
@@ -15,7 +21,7 @@ async function createVariableParts(mxJson: MxJson, thumbnail: ArrayBuffer) {
 
   //body
   const varBody = JSON.stringify({
-    taskName: 'value',
+    taskName: taskName,
     fileMetaData: {
       thumbnailFileLength: thumbnailBuffer.byteLength,
       sceneJsonLength: sceneBuffer.byteLength
@@ -33,21 +39,31 @@ async function createVariableParts(mxJson: MxJson, thumbnail: ArrayBuffer) {
     byteArray: varByteArray
   };
 }
-const createMxProject = async ({
-  mxJson,
-  thumbnail
-}: RequestCreateMxProject) => {
+const createMxProject = async (params: RequestCreateMxProject) => {
   const wsModule = new WsModule({
     targetService: 'CreateMxController'
   });
-  const { encodedBody, byteArray } = await createVariableParts(
-    mxJson,
-    thumbnail
-  );
+  const { encodedBody, byteArray } = await createVariableParts(params);
   const message = wsModule.assembleMessage(encodedBody, byteArray);
   wsModule.sendInChunks(message);
 
   return wsModule.onReceiveMessage<ResponseCreateMxProject>();
 };
 
-export { createMxProject };
+const createPmxProject = async (params: RequestCreateMxProject) => {
+  const wsModule = new WsModule({
+    targetService: 'CreatePmxController'
+  });
+  const { encodedBody, byteArray } = await createVariableParts(params);
+  const message = wsModule.assembleMessage(encodedBody, byteArray);
+  wsModule.sendInChunks(message);
+
+  return wsModule.onReceiveMessage<ResponseCreateMxProject>();
+};
+
+const postProjectServices = {
+  createMxProject,
+  createPmxProject
+};
+
+export default postProjectServices;
