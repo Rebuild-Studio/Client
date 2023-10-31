@@ -15,7 +15,6 @@ import InputField from '../InputField';
 import Slider from '../Slider';
 
 interface ColorContentProps {
-  rgbColor: RgbaColor;
   color: HsvaColor;
   saturationSlider?: boolean;
   brightnessSlider?: boolean;
