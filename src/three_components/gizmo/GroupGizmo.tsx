@@ -49,6 +49,7 @@ const GroupGizmo = (props: GroupGizmoProps) => {
             transformControlStore.clearTransform();
             setCameraControlEnabled(true);
           }}
+          rotationSnap={snapMode.ROTATE ? Math.PI / 4 : null}
         />
       )}
       {!isLocked && transformControlStore.isScaled && (

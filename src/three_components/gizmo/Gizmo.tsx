@@ -73,6 +73,7 @@ const Gizmo = (props: GizmoProps) => {
                   transformControlStore.clearTransform();
                   setCameraControlEnabled(true);
                 }}
+                rotationSnap={snapMode.ROTATE ? Math.PI / 4 : null}
               />
             )}
             {transformControlStore.isScaled && (
