@@ -67,7 +67,7 @@ const ShapeEditor = () => {
   const { primitiveStore } = storeContainer;
   const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
   const [shapeName, setShapeName] = useState(
-    selectedPrimitive.name.toLowerCase() as keyof typeof dataStore
+    selectedPrimitive.name as keyof typeof dataStore
   );
   const [geometryType, setGeometryType] = useState(
     selectedPrimitive.geometry.type
@@ -79,7 +79,7 @@ const ShapeEditor = () => {
 
   useEffect(() => {
     setShapeName(
-      selectedPrimitive.name.toLowerCase() as keyof typeof dataStore
+      selectedPrimitive.name as keyof typeof dataStore
     );
     setGeometryType(selectedPrimitive.geometry.type);
     setParameter(
