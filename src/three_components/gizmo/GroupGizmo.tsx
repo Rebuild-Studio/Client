@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { TransformControls } from '@react-three/drei';
+import controllerBarStore from '@/features/controllerBar/store/controllerBar.store.ts';
 import storeContainer from '@/store/storeContainer';
 import { setCameraControlEnabled } from '../utils/cameraControl';
 
@@ -14,6 +15,8 @@ const GroupGizmo = (props: GroupGizmoProps) => {
       return value.userData['isLocked'] === true;
     }
   );
+  const { snapMode } = controllerBarStore;
+
   return (
     <>
       {!isLocked && transformControlStore.isTranslated && (
@@ -28,6 +31,7 @@ const GroupGizmo = (props: GroupGizmoProps) => {
             transformControlStore.clearTransform();
             setCameraControlEnabled(true);
           }}
+          translationSnap={snapMode.GRID ? 0.5 : null}
         />
       )}
       {!isLocked && transformControlStore.isRotated && (
