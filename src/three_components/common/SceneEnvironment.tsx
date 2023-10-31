@@ -4,8 +4,10 @@ import { Environment } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
 import { hsvaToHex } from '@uiw/color-convert';
 import { RGBELoader } from 'three-stdlib';
+import { bgColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import getMinioPath from '@/utils/path/minio';
+
 
 const SceneEnvironment = () => {
   const { sceneSettingStore } = storeContainer;
@@ -23,7 +25,8 @@ const SceneEnvironment = () => {
     directionalLightIntensity,
     directionalLightColor,
     hdriBackgroundVisibleToggle,
-    canvasBackgroundColor
+    canvasBackgroundColorToggle,
+    canvasBackgroundColor,
   } = sceneSettingStore;
   const texture = useLoader(
     RGBELoader,
@@ -36,7 +39,11 @@ const SceneEnvironment = () => {
         <Environment background={hdriBackgroundVisibleToggle}>
           <color
             attach="background"
-            args={[hsvaToHex(canvasBackgroundColor)]}
+            args={[
+              canvasBackgroundColorToggle
+                ? hsvaToHex(canvasBackgroundColor)
+                : bgColors.sceneBackground,
+            ]}
           />
           <mesh
             rotation={[
