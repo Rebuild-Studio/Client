@@ -20,6 +20,12 @@ const CanvasBar = () => {
   const { primitiveStore, projectStateStore } = storeContainer;
   const { addToast } = useToast();
 
+  const hasPreviewCamera = () => {
+    return Object.values(primitiveStore.meshes).find(
+      (value) => value.name === 'PREVIEW_CAMERA'
+    );
+  };
+
   return (
     <Wrapper>
       <Container height="70px">
@@ -152,11 +158,7 @@ const CanvasBar = () => {
             backgroundImage="/icons/studio/btn_카메라.svg"
             hoverBackgroundImage="/icons/studio/btn_카메라_활성화.svg"
             onClick={() => {
-              if (
-                Object.values(primitiveStore.meshes).find(
-                  (value) => value.name === 'PREVIEW_CAMERA'
-                )
-              ) {
+              if (hasPreviewCamera()) {
                 addToast('카메라는 한 개만 추가할 수 있습니다.');
                 return;
               }
