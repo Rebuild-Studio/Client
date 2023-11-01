@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import { HsvaColor } from '@uiw/color-convert';
+import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
 import Slider from '@/components/common/Slider';
 import Accordion from '@/components/layout/Accordion';
-import CustomMenu from '@/components/layout/Menu';
+import CustomMenu, { useCustomMenu } from '@/components/layout/Menu';
 import storeContainer from '@/store/storeContainer';
 import BackgroundImageTemplate from './BackgroundImageTemplate';
 import ColorContent from '../ColorContent';
@@ -29,8 +29,9 @@ const HdriSetting = () => {
   const [directionalLightColor, setDirectionalLightColor] = useState<HsvaColor>(
     { h: 0, s: 0, v: 0, a: 0 }
   );
-  const [openMenu, setOpenMenu] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const hdriMenu = useCustomMenu();
+  const ambientLightMenu = useCustomMenu();
+  const directionalLightMenu = useCustomMenu();
 
   useEffect(() => {
     setAmbientLightColor(sceneSettingStore.ambientLightColor);
@@ -40,21 +41,21 @@ const HdriSetting = () => {
     setDirectionalLightColor(sceneSettingStore.directionalLightColor);
   }, [sceneSettingStore.directionalLightColor]);
 
-  const handleToggle = (event: React.MouseEvent<HTMLImageElement>) => {
-    if (!openMenu) {
-      setAnchorEl(event.currentTarget);
-      setOpenMenu(true);
-    } else {
-      handleClose();
-    }
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-  };
-
-  const anchorButton = (
+  const ambientLightColorAnchorButton = (
+    <ColorButton
+      $color={ambientLightColor}
+      $rgbColor={hsvaToRgba(ambientLightColor)}
+      onClick={(event) => ambientLightMenu.handleToggle(event)}
+    />
+  );
+  const directionalLightAnchorButton = (
+    <ColorButton
+      $color={directionalLightColor}
+      $rgbColor={hsvaToRgba(directionalLightColor)}
+      onClick={(event) => directionalLightMenu.handleToggle(event)}
+    />
+  );
+  const hdriBackgroundAnchorButton = (
     <img
       src={
         sceneSettingStore.hdriBackgroundVisibleToggle
@@ -65,7 +66,7 @@ const HdriSetting = () => {
         sceneSettingStore.setHdriBackgroundVisibleToggle(
           !sceneSettingStore.hdriBackgroundVisibleToggle
         );
-        handleToggle(event);
+        hdriMenu.handleToggle(event);
       }}
       alt="visible"
     />
@@ -83,15 +84,15 @@ const HdriSetting = () => {
 
         <TitleWrapper>
           <span>{'환경이미지'}</span>
-          {anchorButton}
+          {hdriBackgroundAnchorButton}
           {sceneSettingStore.hdriBackgroundVisibleToggle &&
             ReactDOM.createPortal(
               <CustomMenu
                 title={'환경이미지 템플릿'}
-                anchorButton={anchorButton}
-                anchorElement={anchorEl}
+                anchorButton={hdriBackgroundAnchorButton}
+                anchorElement={hdriMenu.anchorEl}
                 MenuItem={<BackgroundImageTemplate />}
-                handleClose={handleClose}
+                handleClose={hdriMenu.handleClose}
               />,
               document.getElementById('menu-root')!
             )}
@@ -127,11 +128,23 @@ const HdriSetting = () => {
         />
         <TitleWrapper>
           <span>{'컬러'}</span>
-          <ColorContent
-            color={ambientLightColor}
-            onChangeHsvaProp={updateAmbientLightColor}
-            onChangeAlphaProp={updateAmbientLightAlpha}
-          />
+          {ambientLightColorAnchorButton}
+          {ReactDOM.createPortal(
+            <CustomMenu
+              title={'주변광'}
+              anchorButton={ambientLightColorAnchorButton}
+              anchorElement={ambientLightMenu.anchorEl}
+              MenuItem={
+                <ColorContent
+                  color={ambientLightColor}
+                  onChangeHsvaProp={updateAmbientLightColor}
+                  onChangeAlphaProp={updateAmbientLightAlpha}
+                />
+              }
+              handleClose={ambientLightMenu.handleClose}
+            />,
+            document.getElementById('menu-root')!
+          )}
         </TitleWrapper>
       </Accordion>
       <Accordion title={'직사광'}>
@@ -145,11 +158,23 @@ const HdriSetting = () => {
         />
         <TitleWrapper>
           <span>{'컬러'}</span>
-          <ColorContent
-            color={directionalLightColor}
-            onChangeHsvaProp={updateDirectionalLightColor}
-            onChangeAlphaProp={updateDirectionalLightAlpha}
-          />
+          {directionalLightAnchorButton}
+          {ReactDOM.createPortal(
+            <CustomMenu
+              title={'직사광'}
+              anchorButton={directionalLightAnchorButton}
+              anchorElement={directionalLightMenu.anchorEl}
+              MenuItem={
+                <ColorContent
+                  color={directionalLightColor}
+                  onChangeHsvaProp={updateDirectionalLightColor}
+                  onChangeAlphaProp={updateDirectionalLightAlpha}
+                />
+              }
+              handleClose={directionalLightMenu.handleClose}
+            />,
+            document.getElementById('menu-root')!
+          )}
         </TitleWrapper>
       </Accordion>
     </>
@@ -170,4 +195,17 @@ const SwitchWrapper = styled.div`
   position: absolute;
   top: 5px;
   right: 0;
+`;
+
+const ColorButton = styled.button<{
+  $color: HsvaColor;
+  $rgbColor: RgbaColor;
+}>`
+  width: 24px;
+  min-width: 0;
+  min-height: 0;
+  height: 24px;
+  background-color: ${(props) =>
+    typeof props.$color !== 'undefined' &&
+    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

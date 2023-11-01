@@ -7,7 +7,6 @@ import Grid from '../Grid';
 const MaterialTemplate = () => {
   const { selectedObjectStore } = storeContainer;
 
-  console.log(selectedObjectStore.selectedMaterial);
   return (
     <Wrraper>
       <Grid

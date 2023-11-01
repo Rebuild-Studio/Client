@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { basicColors, grayColors } from '@/resources/colors/colors';
 
@@ -13,6 +13,33 @@ interface MenuProps {
   handleClose: () => void;
 }
 
+export const useCustomMenu = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleToggle = (
+    event: React.MouseEvent<HTMLImageElement | HTMLButtonElement>
+  ) => {
+    if (!openMenu) {
+      setAnchorEl(event.currentTarget);
+      setOpenMenu(true);
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
+
+  return {
+    openMenu,
+    anchorEl,
+    handleToggle,
+    handleClose
+  };
+};
 const CustomMenu = ({
   openMenu = true,
   title = '',
