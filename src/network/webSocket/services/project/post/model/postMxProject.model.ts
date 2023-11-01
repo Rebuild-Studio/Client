@@ -1,7 +1,7 @@
 import { MxJson } from '@/types/mxJson/mxJson';
 
 interface RequestCreateMxProject {
-  taskName: string;
+  mxName: string;
   thumbnail: string;
   mxJson: MxJson;
 }

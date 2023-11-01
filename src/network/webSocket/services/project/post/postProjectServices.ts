@@ -6,12 +6,12 @@ import {
 } from './model/postMxProject.model';
 
 type Variables = {
-  taskName: string;
+  mxName: string;
   mxJson: MxJson;
   thumbnail: string;
 };
 
-async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {
+async function createVariableParts({ mxName, mxJson, thumbnail }: Variables) {
   const thumbnailBuffer = Buffer.from(thumbnail);
   // thumbnail mock
   // const thumbnailBuffer = Buffer.from(
@@ -21,7 +21,7 @@ async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {
 
   //body
   const varBody = JSON.stringify({
-    taskName: taskName,
+    mxName: mxName,
     fileMetaData: {
       thumbnailFileLength: thumbnailBuffer.byteLength,
       sceneJsonLength: sceneBuffer.byteLength
