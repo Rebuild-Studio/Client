@@ -83,6 +83,9 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       Object.values(primitiveStore.selectedPrimitives).forEach((value) => {
         switch (value.name) {
+          case 'PREVIEW_CAMERA': {
+            break;
+          }
           case 'POINT_LIGHT':
           case 'SPOT_LIGHT':
           case 'ASSET':
