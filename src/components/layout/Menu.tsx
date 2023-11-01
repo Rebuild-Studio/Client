@@ -75,7 +75,7 @@ const StyledMenu = styled.div<{
   bottom: ${({ $anchorBottom }) => $anchorBottom}px;
   right: ${({ $anchorRight }) => $anchorRight}px;
   transform: translate(-50%, -50%);
-  width: 24.5vh;
+  width: fit-content;
   height: fit-content;
   max-height: 66.9vh;
   border-radius: 3px;
