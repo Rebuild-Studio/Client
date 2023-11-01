@@ -30,7 +30,7 @@ const nodeSchema = {
       name: 'weight',
       type: ControlType.Number,
       reference: {
-        name: 'NODE_DAT_ANIMATION_TIME_SCALE',
+        name: 'NODE_DAT_ANIMATION_WEIGHT',
         defaultValue: 0,
         type: 'Number',
         tooltipMessage:
@@ -49,18 +49,18 @@ const nodeSchema = {
     }
   ],
   outputSocket: [],
-  control: [
+  referenceParameter: [
     {
-      name: 'object',
-      value: undefined, // 3D Canvas에서 가져온 object의 uuid를 활용하여 Node의 title에 표시
-      type: ControlType.Object,
-      IsDropdown: true,
-      extras: '오브젝트'
+      name: 'NODE_DAT_ANIMATION_OBJECT',
+      defaultValue: '',
+      type: 'Object',
+      tooltipMessage: '오브젝트를 선택해 주세요'
     },
     {
-      name: 'animation',
-      value: [],
-      type: ControlType.Animation
+      name: 'NODE_DAT_ANIMATION_ANIMATIONCLIP',
+      defaultValue: '',
+      type: 'Animation',
+      tooltipMessage: '애니메이션을 선택해 주세요'
     }
   ]
 };
