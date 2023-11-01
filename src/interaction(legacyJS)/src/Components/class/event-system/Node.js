@@ -65,6 +65,11 @@ export default class Node {
     if (this.inputSockets[key]) return null;
     const socket = new Socket(key, type, name, true, reference);
     socket.node = this.uuid;
+
+    // reference도 본인이 속한 node의 uuid를 알아야 노드정보에따른 값 변경 가능
+    if (socket.reference) {
+      socket.reference.node = this.uuid;
+    }
     this.inputSockets[key] = socket;
     return socket;
   }
@@ -73,6 +78,12 @@ export default class Node {
     if (this.outputSockets[key]) return null;
     const socket = new Socket(key, type, name, false, reference);
     socket.node = this.uuid;
+
+    // reference도 본인이 속한 node의 uuid를 알아야 노드정보에따른 값 변경 가능
+    if (socket.reference) {
+      socket.reference.node = this.uuid;
+    }
+
     this.outputSockets[key] = socket;
     return socket;
   }
@@ -107,7 +118,8 @@ export default class Node {
           type: c.type,
           defaultValue: c.defaultValue || false,
           tooltipMessage: c.tooltipMessage || '',
-          name: c.name || ''
+          name: c.name || '',
+          node: this.uuid // reference도 본인이 속한 node의 uuid를 알아야 노드정보에따른 값 변경 가능
         };
       });
     }
