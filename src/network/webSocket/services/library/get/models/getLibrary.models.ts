@@ -2,8 +2,8 @@ import { DomainType } from '@/features/assetLibrary/constants/domain';
 
 interface RequestGetAsset {
   domain: string;
-  majorCategories: string;
-  minorCategories: string;
+  majorCategory: string;
+  minorCategory: string;
   page: number;
 }
 
@@ -11,11 +11,9 @@ interface RequestGetAsset {
 interface ResponseGetAsset {
   id: string;
   name: string;
-  fileName: string;
+  filename: string;
   type: string;
   domain: DomainType;
-  majorCategories: string[];
-  minorCategories: string[];
   createdAt: string;
   author: string;
 }

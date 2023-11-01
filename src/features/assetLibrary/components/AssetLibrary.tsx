@@ -15,8 +15,8 @@ const AssetLibrary = () => {
     assetCategoryStore;
   const { data, refetch } = useFetchLibraryAssets({
     domain: currentDomain.domain,
-    majorCategories: currentMainCategory.category,
-    minorCategories: currentSubCategory.category,
+    majorCategory: currentMainCategory.category,
+    minorCategory: currentSubCategory.category,
     page: currentPage
   });
 

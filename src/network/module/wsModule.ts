@@ -35,7 +35,7 @@ interface WsModuleConstructor {
  * @method onReceiveMessage 서버로부터 메시지 수신
  */
 class WsModule {
-  static userId: string = 'user2';
+  static userId: string = 'junman2';
   public socket: WebSocket;
 
   private targetService: string;
