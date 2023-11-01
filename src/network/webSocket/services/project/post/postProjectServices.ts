@@ -8,7 +8,7 @@ import {
 type Variables = {
   taskName: string;
   mxJson: MxJson;
-  thumbnail: ArrayBuffer;
+  thumbnail: string;
 };
 
 async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {

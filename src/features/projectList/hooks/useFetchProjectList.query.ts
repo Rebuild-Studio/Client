@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import getProjectServices from '@/network/services/project/get/getProjectServices';
-import { ResponseGetMxProjectList } from '@/network/services/project/get/models/getMxProjectList.model';
+import getProjectServices from '@/network/webSocket/services/project/get/getProjectServices';
+import { ResponseGetMxProjectList } from '@/network/webSocket/services/project/get/model/getMxProjectList.model';
 import { Project, ProjectList } from '../types/project';
 
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
-  const mappedData: ProjectList<Project> = data.result.map((project) => {
+  const mappedData: ProjectList<Project> = data.map((project) => {
     return {
       id: project.mxId,
       name: project.mxName,

@@ -1,5 +1,5 @@
-import { RequestCreateMxProject } from '@/network/services/project/post/models/postMxProject.model';
-import postProjectServices from '@/network/services/project/post/postProjectServices';
+import { RequestCreateMxProject } from '@/network/webSocket/services/project/post/model/postMxProject.model';
+import postProjectServices from '@/network/webSocket/services/project/post/postProjectServices';
 import { MxJson } from '@/types/mxJson/mxJson';
 import { SceneJson } from '@/types/scene/scene';
 import createMxJson from '@/utils/json/createMxJson';
@@ -37,7 +37,7 @@ const requestCreateProject = async (
 ) => {
   const { projectType, projectName, thumbnail } = projectInfo;
   const reqParam: RequestCreateMxProject = {
-    projectName, //TODO 유저가 입력하도록 변경 예정
+    taskName: projectName, //TODO 유저가 입력하도록 변경 예정
     thumbnail,
     mxJson
   };
@@ -54,7 +54,7 @@ self.addEventListener(
     data: {
       type: MxWorkerRequestType;
       sceneJson: SceneJson;
-      interactionJson: any;
+      interactionJson: unknown;
       projectInfo?: ProjectInfo;
     };
   }) => {

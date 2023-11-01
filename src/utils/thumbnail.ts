@@ -17,7 +17,7 @@ type createThumbnailType = 'STRING' | 'ARRAY_BUFFER';
 const createThumbnail = async (
   props: CreateThumbnailProps,
   type: createThumbnailType = 'STRING'
-): Promise<string | ArrayBuffer> => {
+): Promise<string> => {
   const { renderStore, projectStore, sceneSettingStore, primitiveStore } =
     props;
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -37,12 +37,12 @@ const createThumbnail = async (
   screenCamera.copy(camera as THREE.PerspectiveCamera);
   screenCamera.lookAt(0, 0, 0);
 
-  return new Promise<string | ArrayBuffer>((resolve) => {
+  return new Promise<string>((resolve) => {
     setTimeout(() => {
       renderer?.render(scene as THREE.Scene, screenCamera);
       renderer?.domElement.toBlob((blob) => {
         if (blob) {
-          if (type === 'ARRAY_BUFFER') resolve(blob.arrayBuffer());
+          // if (type === 'ARRAY_BUFFER') resolve(blob.arrayBuffer());
 
           const reader = new FileReader();
           reader.onload = () => {
