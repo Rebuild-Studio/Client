@@ -1,11 +1,13 @@
 import { observer } from 'mobx-react';
 import SetNodeReferenceDataCommand from '../../../../../class/commands/Interaction/SetNodeReferenceDataCommand';
 import storeContainer from '../../../../../stores/storeContainer';
+import NodeReferenceAnimationSelector from '../../ReferenceParameter/NodeReferenceAnimationSelector_V';
 import NodeReferenceBooleanSelector from '../../ReferenceParameter/NodeReferenceBooleanSelector_V';
 import NodeReferenceColorSelector from '../../ReferenceParameter/NodeReferenceColorSelector_V';
 import NodeReferenceKeyboardActionSelector from '../../ReferenceParameter/NodeReferenceKeyboardActionSelector_V';
 import NodeReferenceKeyboardInputButton from '../../ReferenceParameter/NodeReferenceKeyboardInputButton_V';
 import NodeReferenceMaterialSelector from '../../ReferenceParameter/NodeReferenceMaterialSelector_V';
+import NodeReferenceObjectSelector from '../../ReferenceParameter/NodeReferenceObjectSelector_V';
 import NodeReferenceVector3Selector_V from '../../ReferenceParameter/NodeReferenceVector3Selector_V';
 import ReferenceTextField from '../../ReferenceParameter/TextFieldV';
 
@@ -106,6 +108,23 @@ const NodeReferenceSelector = ({ reference }) => {
           value={defaultValue}
           setValue={handleSetValue}
           tooltipMessage={tooltipMessage}
+        />
+      );
+    case 'Object':
+      return (
+        <NodeReferenceObjectSelector
+          value={defaultValue}
+          setValue={handleSetValue}
+          tooltipMessage={tooltipMessage}
+        />
+      );
+    case 'Animation':
+      return (
+        <NodeReferenceAnimationSelector
+          value={defaultValue}
+          setValue={handleSetValue}
+          tooltipMessage={tooltipMessage}
+          nodeId={reference.node}
         />
       );
     default:
