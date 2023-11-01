@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
 import storeContainer from '@/store/storeContainer';
+import primitiveStore from '@store/primitive.store.ts';
 import SceneSettingPanel from './SceneSettingPanel';
 import ShapeEditor from './ShapeEditor';
 import TransformMaterialEditor from './TransformMaterialEditor';
@@ -8,9 +9,9 @@ import Panel from '../../layout/Panel/Panel';
 import Tab from '../../layout/Tab';
 
 const RightPanel = () => {
-  const { primitiveStore } = storeContainer;
+  const { selectedPrimitives, numOfSelectedPrimitives } = primitiveStore;
   const [activeTab, setActiveTab] = useState(0);
-  const selectedPrimitive = Object.values(primitiveStore.selectedPrimitives)[0];
+  const selectedPrimitive = Object.values(selectedPrimitives)[0];
   const { sceneSettingStore } = storeContainer;
 
   const handleTabChange = (index: number) => {
@@ -24,14 +25,16 @@ const RightPanel = () => {
     return <SceneSettingPanel />;
   }
 
+  const isLight =
+    numOfSelectedPrimitives === 1 &&
+    ['POINT_LIGHT', 'SPOT_LIGHT'].includes(selectedPrimitive.name);
+
+  const tabs = isLight ? ['오브젝트'] : ['오브젝트', '쉐이프'];
+
   return (
     <Panel label={'속성값'} options={undefined}>
-      <Tab
-        tabs={['오브젝트', '쉐이프']}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
-      {activeTab === 0 && <TransformMaterialEditor />}
+      <Tab tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
+      {activeTab === 0 && <TransformMaterialEditor isLight={isLight} />}
       {activeTab === 1 && <ShapeEditor />}
     </Panel>
   );
