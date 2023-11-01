@@ -1,9 +1,16 @@
+import postProjectServicesRestApi from '@/network/restApi/services/project/post/postProjectServices';
 import { RequestCreateMxProject } from '@/network/webSocket/services/project/post/model/postMxProject.model';
-import postProjectServices from '@/network/webSocket/services/project/post/postProjectServices';
+import postProjectServicesWebSocket from '@/network/webSocket/services/project/post/postProjectServices';
 import { MxJson } from '@/types/mxJson/mxJson';
 import { SceneJson } from '@/types/scene/scene';
 import createMxJson from '@/utils/json/createMxJson';
 import { ProjectType } from '@store/project.store.ts';
+
+const networkType: string = 'webSocket'; //TODO: networkType을 어떻게 가져올지 고민해보기(localstorage?)
+const postProjectServices =
+  networkType === 'restApi'
+    ? postProjectServicesRestApi
+    : postProjectServicesWebSocket;
 
 export const MX_WORKER_REQUEST_TYPE = {
   EXPORT_JSON_FILE: 'exportJsonFile',
@@ -29,7 +36,7 @@ const CREATE_PROJECT_SERVICE = {
   MX: (reqParam: RequestCreateMxProject) =>
     postProjectServices.createMxProject(reqParam),
   PMX: (reqParam: RequestCreateMxProject) =>
-    postProjectServices.createPmxProject(reqParam)
+    postProjectServices.createMxProject(reqParam) // 임시로 MX로 대체
 };
 const requestCreateProject = async (
   projectInfo: ProjectInfo,
@@ -37,7 +44,7 @@ const requestCreateProject = async (
 ) => {
   const { projectType, projectName, thumbnail } = projectInfo;
   const reqParam: RequestCreateMxProject = {
-    taskName: projectName, //TODO 유저가 입력하도록 변경 예정
+    mxName: projectName,
     thumbnail,
     mxJson
   };
