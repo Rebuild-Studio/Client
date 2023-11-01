@@ -7,9 +7,9 @@ import ColorContent from './ColorContent';
 
 interface ColorPickerProps {
   label: string;
-  color: any;
+  color: HsvaColor;
   onChangeHsvaProp: (hsva: HsvaColor) => void;
-  onChangeAlphaProp: (alpha: number) => void;
+  onChangeAlphaProp?: (alpha: number) => void;
 }
 
 const ColorPicker = observer(
@@ -52,6 +52,7 @@ const ColorPicker = observer(
                   color={color}
                   onChangeHsvaProp={onChangeHsvaProp}
                   onChangeAlphaProp={onChangeAlphaProp}
+                  alpha={!!onChangeAlphaProp}
                 />
                 <ButtonWrapper>
                   <button onClick={handleClose}>Close Menu</button>
@@ -119,7 +120,6 @@ const ColorButton = styled.button<{
   min-width: 0;
   min-height: 0;
   height: 24px;
-  background-color: ${(props) =>
-    typeof props.$color !== 'undefined' &&
-    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
+  background-color: ${({ $rgbColor: { r, g, b, a } }) =>
+    `rgba(${r}, ${g}, ${b}, ${a})`};
 `;

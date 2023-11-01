@@ -21,7 +21,7 @@ interface ColorContentProps {
   brightnessSlider?: boolean;
   alpha?: boolean;
   onChangeHsvaProp: (hsva: HsvaColor) => void;
-  onChangeAlphaProp: (alpha: number) => void;
+  onChangeAlphaProp?: (alpha: number) => void;
 }
 
 const ColorContent = observer(
@@ -48,7 +48,7 @@ const ColorContent = observer(
 
     const onChangeAlpha = (hsva: HsvaColor) => {
       setAlpha(String(Math.round(hsva.a * 100)));
-      onChangeAlphaProp(hsva.a);
+      onChangeAlphaProp && onChangeAlphaProp(hsva.a);
     };
 
     const onChangeRGB = action((channel: string, input: string) => {
@@ -92,7 +92,7 @@ const ColorContent = observer(
         alphaValue = '100';
       }
 
-      onChangeAlphaProp(Number(e) / 100);
+      onChangeAlphaProp && onChangeAlphaProp(Number(e) / 100);
     });
     const handleMouseMove = (hsva: HsvaColor) => {
       setColor(hsva);
