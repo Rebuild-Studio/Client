@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { Light } from 'three';
 import { observer } from 'mobx-react';
 import { HsvaColor } from '@uiw/color-convert';
 import Accordion from '@/components/layout/Accordion';
@@ -76,7 +75,7 @@ const TransformMaterialEditor = ({ isLight }: Props) => {
       )}
       {isLight && (
         <Accordion title={'빛속성'}>
-          <LightProperty light={selectedPrimitive.children[0] as Light} />
+          <LightProperty light={selectedPrimitive.children[0] as THREE.Light} />
         </Accordion>
       )}
     </>
