@@ -34,7 +34,7 @@ const LightProperty = ({ light }: Props) => {
         {colorButton}
         {ReactDOM.createPortal(
           <CustomMenu
-            title={'주변광'}
+            title={'컬러'}
             anchorButton={colorButton}
             anchorElement={lightMenu.anchorEl}
             MenuItem={
