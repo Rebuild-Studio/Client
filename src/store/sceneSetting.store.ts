@@ -15,7 +15,7 @@ type BackgroundImageType =
   | 'MX_hdr_outdoor_sunsetLight_02'
   | 'none';
 
-class SceneSettingStore {
+export class SceneSettingStore {
   type = 'none';
   // 씬(Scene) 설정 - 환경광
   // 환경이미지
