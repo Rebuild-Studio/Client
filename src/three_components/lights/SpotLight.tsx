@@ -24,8 +24,19 @@ const SpotLight = (props: PrimitiveProps) => {
   mesh.userData['isLocked'] = false;
 
   useEffect(() => {
-    mesh.attach(spotLightGlb.children[0].children[0]);
+    const spotLight = spotLightGlb.children[0].children[0] as THREE.SpotLight;
+    mesh.add(spotLight);
     primitiveStore.updatePrimitive(props.storeId, mesh);
+
+    const target = new THREE.Mesh(
+      new THREE.BoxGeometry(),
+      new THREE.MeshBasicMaterial()
+    );
+    target.visible = false;
+    mesh.add(target);
+    target.position.set(0, -10, 0);
+    spotLight.target = target;
+
     // history 추가 필요
   }, []);
 
