@@ -259,6 +259,7 @@ export const debugJson = Utils.stringify({
 
   DefaultVariableBooleanNodeName: '불리언 변수',
   DefaultVariableNumberNodeName: '넘버 변수',
+  DefaultVariableNumberSensorNodeName: '넘버 변수 센서',
   DefaultVariableStringNodeName: '문자열 변수',
 
   DefaultConvertNodeName: '변환 상수',
