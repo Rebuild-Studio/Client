@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer';
 import { ResponseDto } from '../webSocket/services/model/commonResponse.model';
+import { TargetService } from '../webSocket/types/targetService';
 import { getChunks } from '../webSocket/utils/getChunks';
 
 globalThis.Buffer = Buffer;
@@ -8,7 +9,7 @@ const isProduction = import.meta.env.PROD;
 const CHUNK_SIZE = 1024 * 1024 * 10;
 
 interface WsModuleConstructor {
-  targetService: string;
+  targetService: TargetService;
   chunkSize?: number;
 }
 
