@@ -154,8 +154,11 @@ class WsModule {
         const response: ResponseDto<T> = await this.handleServerMessage(
           event.data
         );
+        const successRegex = /2[0-9][0-9]/;
         if (response) {
-          //TODO : 여기서 에러 throw 하도록 수정
+          if (!successRegex.test(String(response.resultCode))) {
+            reject(new Error(response.resultMsg));
+          }
           resolve(response.result);
         } else {
           reject(new Error('Request failed'));
