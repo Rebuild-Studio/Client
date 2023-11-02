@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import storeContainer from '@/store/storeContainer';
 import { ProjectInfo } from '@store/project.store.ts';
@@ -6,6 +6,8 @@ import { AddCard } from './card/AddCard';
 import { ProjectCard } from './card/ProjectCard';
 import { StyledGrid } from './projectList.styles';
 import { Project, ProjectList } from '../types/project';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import projectListStore from '../stores/projectList.store';
 
 type Props = {
   projects: ProjectList<Project>;
@@ -14,6 +16,11 @@ type Props = {
 export const ProjectCards = ({ projects }: Props) => {
   const [selectedCompIdx, setSelectedCompIdx] = useState<number>(-2);
   const { projectStore } = storeContainer;
+  const { currentPage } = projectListStore;
+  const [page, setPage] = useState(currentPage);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useInfiniteScroll(containerRef, currentPage, page, setPage);
 
   useEffect(() => {
     if (selectedCompIdx < 0) return;
@@ -30,8 +37,18 @@ export const ProjectCards = ({ projects }: Props) => {
     };
   }, [selectedCompIdx, projectStore, projects]);
 
+  useEffect(() => {
+    projectListStore.setCurrentPage(page);
+  }, [page, projectStore]);
+
+  useEffect(() => {
+    if (currentPage === 1) {
+      setPage(1);
+    }
+  }, [currentPage]);
+
   return (
-    <StyledGrid>
+    <StyledGrid ref={containerRef}>
       <AddCard
         isClicked={selectedCompIdx === -1 ? true : false}
         onClick={() => {

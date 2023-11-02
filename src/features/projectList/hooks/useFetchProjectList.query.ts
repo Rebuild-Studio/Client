@@ -17,14 +17,20 @@ const projectListDataMapper = (data: ResponseGetMxProjectList) => {
 };
 
 interface ProjectListInterface {
+  page: number;
   onError?: (error: unknown) => void;
 }
-export const useFetchProjectList = ({ onError }: ProjectListInterface) => {
+export const useFetchProjectList = ({
+  page,
+  onError
+}: ProjectListInterface) => {
   const query = useQuery({
-    queryKey: ['projectList'],
+    queryKey: ['projectList', page],
     queryFn: () =>
       getProjectServices
-        .getMyMxProjectList()
+        .getMyMxProjectList({
+          page: page
+        })
         .then((res) => projectListDataMapper(res)),
     keepPreviousData: true
   });

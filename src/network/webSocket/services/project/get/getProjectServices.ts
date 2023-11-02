@@ -3,18 +3,23 @@ import {
   RequestGetMxProject,
   ResponseGetMxProject
 } from './model/getMxProject.model';
-import { ResponseGetMxProjectList } from './model/getMxProjectList.model';
+import {
+  RequestGetMxProjectList,
+  ResponseGetMxProjectList
+} from './model/getMxProjectList.model';
 import {
   RequestGetPmxProject,
   ResponseGetPmxProject
 } from './model/getPmxProject.model';
 import { ResponseGetPmxProjectList } from './model/getPmxProjectList.model';
 
-const getMyMxProjectList = async () => {
+const getMyMxProjectList = async (params: RequestGetMxProjectList) => {
   const wsModule = new WsModule({
     targetService: 'FindMyMxController'
   });
-  const message = wsModule.assembleMessage();
+
+  const { encodedBody } = await wsModule.encodeBody({ ...params });
+  const message = wsModule.assembleMessage(encodedBody);
   wsModule.sendInChunks(message);
 
   return wsModule.onReceiveMessage<ResponseGetMxProjectList>();

@@ -1,5 +1,11 @@
-import { MxProjectListData, ProjectList } from "./project.model";
+import {
+  MxProjectListData,
+  ProjectList,
+  RequestGetProjectList
+} from './project.model';
+
+interface RequestGetMxProjectList extends RequestGetProjectList {}
 
 interface ResponseGetMxProjectList extends ProjectList<MxProjectListData> {}
 
-export type { ResponseGetMxProjectList };
+export type { RequestGetMxProjectList, ResponseGetMxProjectList };

@@ -27,4 +27,14 @@ interface PmxProjectListData extends ProjectListData {
 
 type ProjectList<T extends ProjectListData> = T[];
 
-export type { Project, ProjectList, MxProjectListData, PmxProjectListData };
+interface RequestGetProjectList {
+  page: number;
+}
+
+export type {
+  Project,
+  ProjectList,
+  MxProjectListData,
+  PmxProjectListData,
+  RequestGetProjectList
+};
