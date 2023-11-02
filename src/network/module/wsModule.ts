@@ -78,7 +78,7 @@ class WsModule {
     );
   }
 
-  public async encodeBody<T extends { [key: string]: unknown }>(body: T) {
+  public async encodeBody<T extends object>(body: T) {
     const varBody = JSON.stringify(body);
     const encodedBody = new TextEncoder().encode(varBody);
     return {

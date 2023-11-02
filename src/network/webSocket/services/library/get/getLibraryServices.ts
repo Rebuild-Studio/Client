@@ -1,4 +1,4 @@
-import WsModule from '@/network/module/wsModule';
+import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 import {
   RequestGetAsset,
   RequestSearchAsset,
@@ -6,34 +6,18 @@ import {
   ResponseSearchAsset
 } from './models/getLibrary.models';
 
-const getAssets = async (
-  params: RequestGetAsset
-): Promise<ResponseGetAsset[]> => {
-  const wsModule = new WsModule({
-    targetService: 'FindLibraryByDomainAndCategoriesController'
-  });
-
-  const { encodedBody } = await wsModule.encodeBody({ ...params });
-  const message = wsModule.assembleMessage(encodedBody);
-
-  wsModule.send(message);
-
-  return await wsModule.onReceiveMessage<ResponseGetAsset[]>();
+const getAssets = async (params: RequestGetAsset) => {
+  return sasApiHandler<RequestGetAsset, ResponseGetAsset[]>(
+    'FindLibraryByDomainAndCategoriesController',
+    params
+  );
 };
 
-const searchAsset = async (
-  params: RequestSearchAsset
-): Promise<ResponseSearchAsset[]> => {
-  const wsModule = new WsModule({
-    targetService: 'FindLibraryByNameController'
-  });
-
-  const { encodedBody } = await wsModule.encodeBody({ ...params });
-  const message = wsModule.assembleMessage(encodedBody);
-
-  wsModule.send(message);
-
-  return await wsModule.onReceiveMessage<ResponseSearchAsset[]>();
+const searchAsset = async (params: RequestSearchAsset) => {
+  return sasApiHandler<RequestSearchAsset, ResponseSearchAsset[]>(
+    'FindLibraryByNameController',
+    params
+  );
 };
 
 const getLibraryServices = {
