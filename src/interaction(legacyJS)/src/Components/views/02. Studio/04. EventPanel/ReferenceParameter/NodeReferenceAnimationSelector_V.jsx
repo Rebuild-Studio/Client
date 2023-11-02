@@ -15,7 +15,7 @@ const NodeReferenceAnimationSelector = ({
 
   const sheet = eventSystem_store.getSelectedSheet();
   const node = sheet.getNodeByUuid(nodeId);
-  const reference = node.referenceParameter.NODE_DAT_ANIMATION_OBJECT;
+  const reference = node.referenceParameter.NODE_DAT_OBJECT;
 
   let animationItems = null;
 

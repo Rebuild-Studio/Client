@@ -51,7 +51,7 @@ const nodeSchema = {
   outputSocket: [],
   referenceParameter: [
     {
-      name: 'NODE_DAT_ANIMATION_OBJECT',
+      name: 'NODE_DAT_OBJECT',
       defaultValue: '',
       type: 'Object',
       tooltipMessage: '오브젝트를 선택해 주세요'
