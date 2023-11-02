@@ -1,8 +1,17 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Input } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { eventSystem_store } from '../../../../../stores/Interaction_Stores';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff'
+    }
+  }
+});
 
 /**
  * @typedef {object} UxSelectorProps
@@ -20,13 +29,14 @@ const UxSelector = observer(({ node }) => {
     <Box sx={style.Container(scale)}>
       <Box sx={style.KeyInputContainer}>
         <span>키 이름</span>
-        <Input
-          onChange={handleSelectorChange}
-          sx={style.Input}
-          placeholder="MY_KEY"
-          color="white"
-          value={node.uxSelector}
-        />
+        <ThemeProvider theme={theme}>
+          <Input
+            onChange={handleSelectorChange}
+            sx={style.Input}
+            placeholder="MY_KEY"
+            value={node.uxSelector}
+          />
+        </ThemeProvider>
       </Box>
     </Box>
   );
