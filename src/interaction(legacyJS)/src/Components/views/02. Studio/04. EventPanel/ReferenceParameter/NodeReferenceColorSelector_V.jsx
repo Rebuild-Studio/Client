@@ -15,33 +15,31 @@ const NodeReferenceColorSelector = ({ value, setValue, tooltipMessage }) => {
   };
 
   return (
-    <>
-      <Tooltip
-        componentsProps={style.tooltipAndArrow()}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <div style={style.ColorSelectorButton(eventSystem_store.cameraZoom)}>
-          <MxColor
-            label=""
-            color={tempColor}
-            onChange={setTempColor}
-            onChangeSliderAlpha={setTempColor}
-            onChangeInputAlpha={setValue}
-            onChangeInputHex={handleInputChange(hexToHsva)}
-            onChangeInputRGB={handleInputChange(rgbaToHsva)}
-            onMouseUp={handleMouseUp}
-            menuStyle={{ left: -400 }}
-            buttonStyle={style.ColorSelectorButton(
-              eventSystem_store.cameraZoom,
-              value
-            )}
-          />
-        </div>
-      </Tooltip>
-    </>
+    <Tooltip
+      componentsProps={style.tooltipAndArrow()}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <div style={style.ColorSelectorButton(eventSystem_store.cameraZoom)}>
+        <MxColor
+          label=""
+          color={tempColor}
+          onChange={setTempColor}
+          onChangeSliderAlpha={setTempColor}
+          onChangeInputAlpha={setValue}
+          onChangeInputHex={handleInputChange(hexToHsva)}
+          onChangeInputRGB={handleInputChange(rgbaToHsva)}
+          onMouseUp={handleMouseUp}
+          menuStyle={{ left: -400 }}
+          buttonStyle={style.ColorSelectorButton(
+            eventSystem_store.cameraZoom,
+            value
+          )}
+        />
+      </div>
+    </Tooltip>
   );
 };
 
@@ -63,7 +61,7 @@ const style = {
     bgcolor: '#282828CC',
     border: '1px solid grey',
     borderRadius: 3,
-    bottom: '5px !important'
+    bottom: '5px'
   },
   arrow: {
     '&::before': {

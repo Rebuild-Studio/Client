@@ -125,7 +125,7 @@ const style = {
     bgcolor: '#282828CC',
     border: '1px solid grey',
     borderRadius: 3,
-    bottom: '5px !important'
+    bottom: '5px'
   },
   arrow: {
     '&::before': {
