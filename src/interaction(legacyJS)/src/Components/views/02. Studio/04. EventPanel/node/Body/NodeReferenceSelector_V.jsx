@@ -18,7 +18,7 @@ import ReferenceTextField from '../../ReferenceParameter/TextFieldV';
  * -  defaultValue: 10, (or string, any type can be possible)
  * -  name: "NODE_DAT_RANDOM"
  * -  tooltipMessage: "0부터 최대값 사이의 실수값을 반환합니다"
- * -  type: "number"
+ * -  type: "number" <test>
  *
  * @param reference
  * @returns {JSX.Element}
