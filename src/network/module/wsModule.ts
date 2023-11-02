@@ -18,15 +18,20 @@ interface WsModuleConstructor {
  * SAP는 64 바이트 길이의 고정 헤더와 가변 헤더, 바디, 바이너리 데이터로 이루어진다.
  * 가변 헤더, 바디, 바이너리 의 길이는 고정 헤더에 명시된다.
  * @property {string} userId 사용자 아이디(sas 프로토콜에 따라 최대 7자리 - 싱글턴)
- * @property {WebSocket} socket WebSocket 객체 - 싱글톤으로 관리함(채널은 하나만 오픈)
+ * @property {WebSocket} socket WebSocket 객체 - 매 요청당  1채널 사용
  * @property {string} targetService 서비스 명(api 명세에 정의된 서비스 명)
  * @property {number} chunkSize 청크 사이즈
  * @property {Uint8Array} headerBytes 헤더 정보에 대한 Byte Array
  *
+ * @method setUserId 사용자 아이디 설정
  * @method createFixedHeader 고정 헤더 정보에 대한 Byte Array 생성(프라이빗 함수)
- * @method createVariableParts 바디 정보에 대한 Byte Array 생성
+ * @method encodeVarHeader 가변 헤더 정보에 대한 Byte Array 생성
+ * @method encodeBody 바디 정보에 대한 Byte Array 생성
  * @method handleServerMessage 서버로부터 받은 response 메시지 처리
+ * @method send 메시지 전송
  * @method sendInChunks 청크 단위로 메시지 전송
+ * @method assembleMessage 메시지 조립
+ * @method onReceiveMessage 서버로부터 메시지 수신
  */
 class WsModule {
   static userId: string = 'user2';

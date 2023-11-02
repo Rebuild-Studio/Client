@@ -1,5 +1,5 @@
 interface RequestDeletePmxProject {
-  mxId: string;
+  pmxId: string;
 }
 
 type ResponseDeletePmxProject = 'Success To Delete';
