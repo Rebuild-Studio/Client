@@ -5,7 +5,7 @@ import storeContainer from '@/store/storeContainer';
 import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 
 const NodeReferenceAnimationSelector = ({
-  value,
+  value, //selected animation name will be stored, e.g) running, idle
   setValue,
   tooltipMessage,
   nodeId
@@ -35,31 +35,29 @@ const NodeReferenceAnimationSelector = ({
   }
 
   return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="Animation"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
-          >
-            {animationItems}
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="Animation"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          {animationItems}
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 
@@ -87,7 +85,7 @@ const style = {
     bgcolor: '#282828CC',
     border: '1px solid grey',
     borderRadius: 3,
-    bottom: '5px !important'
+    bottom: '5px'
   },
   arrow: {
     '&::before': {

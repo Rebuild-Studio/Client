@@ -11,39 +11,37 @@ const NodeReferenceObjectSelector = ({ value, setValue, tooltipMessage }) => {
   const meshes = primitiveStore.meshes;
 
   return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="Mesh"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
-          >
-            {Object.entries(meshes).map(([uuid, meshData]) => (
-              <MenuItem
-                key={uuid}
-                sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-                value={uuid}
-              >
-                {meshData.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="Mesh"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          {Object.entries(meshes).map(([uuid, meshData]) => (
+            <MenuItem
+              key={uuid}
+              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
+              value={uuid}
+            >
+              {meshData.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 

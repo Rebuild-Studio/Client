@@ -57,7 +57,7 @@ const nodeSchema = {
       tooltipMessage: '오브젝트를 선택해 주세요'
     },
     {
-      name: 'NODE_DAT_ANIMATION_ANIMATIONCLIP',
+      name: 'NODE_DAT_ANIMATIONCLIP',
       defaultValue: '',
       type: 'Animation',
       tooltipMessage: '애니메이션을 선택해 주세요'
