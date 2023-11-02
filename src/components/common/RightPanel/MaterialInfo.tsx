@@ -83,38 +83,34 @@ const Material = ({
           <TitleWrapper>
             <span>{'머터리얼 요소 편집'}</span>
             {materialAnchorButton}
-            {menuType === 'material' &&
-              ReactDOM.createPortal(
-                <CustomMenu
-                  title={'머테리얼'}
-                  anchorButton={materialAnchorButton}
-                  anchorElement={anchorEl}
-                  handleClose={handleClose}
-                  MenuItem={<MaterialTemplate />}
-                />,
-                document.getElementById('menu-root')!
-              )}
+            {menuType === 'material' && (
+              <CustomMenu
+                title={'머테리얼'}
+                anchorButton={materialAnchorButton}
+                anchorElement={anchorEl}
+                handleClose={handleClose}
+                MenuItem={<MaterialTemplate />}
+              />
+            )}
           </TitleWrapper>
           <TitleWrapper>
             <span>{'기본 컬러'}</span>
             {colorAnchorButton}
-            {menuType === 'color' &&
-              ReactDOM.createPortal(
-                <CustomMenu
-                  title={'기본컬러'}
-                  anchorButton={colorAnchorButton}
-                  anchorElement={anchorEl}
-                  handleClose={handleClose}
-                  MenuItem={
-                    <ColorContent
-                      color={color}
-                      onChangeHsvaProp={updateMaterialColor}
-                      onChangeAlphaProp={updateMaterialAlpha}
-                    />
-                  }
-                />,
-                document.getElementById('menu-root')!
-              )}
+            {menuType === 'color' && (
+              <CustomMenu
+                title={'기본컬러'}
+                anchorButton={colorAnchorButton}
+                anchorElement={anchorEl}
+                handleClose={handleClose}
+                MenuItem={
+                  <ColorContent
+                    color={color}
+                    onChangeHsvaProp={updateMaterialColor}
+                    onChangeAlphaProp={updateMaterialAlpha}
+                  />
+                }
+              />
+            )}
           </TitleWrapper>
         </MaterialMenu>
         <Slider

@@ -85,19 +85,16 @@ const HdriSetting = () => {
         <TitleWrapper>
           <span>{'환경이미지'}</span>
           {hdriBackgroundAnchorButton}
-          {sceneSettingStore.hdriBackgroundVisibleToggle &&
-            ReactDOM.createPortal(
-              <CustomMenu
-                title={'환경이미지 템플릿'}
-                anchorButton={hdriBackgroundAnchorButton}
-                anchorElement={hdriMenu.anchorEl}
-                MenuItem={<BackgroundImageTemplate />}
-                handleClose={hdriMenu.handleClose}
-              />,
-              document.getElementById('menu-root')!
-            )}
+          {sceneSettingStore.hdriBackgroundVisibleToggle && (
+            <CustomMenu
+              title={'환경이미지 템플릿'}
+              anchorButton={hdriBackgroundAnchorButton}
+              anchorElement={hdriMenu.anchorEl}
+              MenuItem={<BackgroundImageTemplate />}
+              handleClose={hdriMenu.handleClose}
+            />
+          )}
         </TitleWrapper>
-
         <Slider
           initValue={sceneSettingStore.hdriIntensity}
           onChange={sceneSettingStore.setHdriIntensity}
@@ -129,22 +126,19 @@ const HdriSetting = () => {
         <TitleWrapper>
           <span>{'컬러'}</span>
           {ambientLightColorAnchorButton}
-          {ReactDOM.createPortal(
-            <CustomMenu
-              title={'주변광'}
-              anchorButton={ambientLightColorAnchorButton}
-              anchorElement={ambientLightMenu.anchorEl}
-              MenuItem={
-                <ColorContent
-                  color={ambientLightColor}
-                  onChangeHsvaProp={updateAmbientLightColor}
-                  onChangeAlphaProp={updateAmbientLightAlpha}
-                />
-              }
-              handleClose={ambientLightMenu.handleClose}
-            />,
-            document.getElementById('menu-root')!
-          )}
+          <CustomMenu
+            title={'주변광'}
+            anchorButton={ambientLightColorAnchorButton}
+            anchorElement={ambientLightMenu.anchorEl}
+            MenuItem={
+              <ColorContent
+                color={ambientLightColor}
+                onChangeHsvaProp={updateAmbientLightColor}
+                onChangeAlphaProp={updateAmbientLightAlpha}
+              />
+            }
+            handleClose={ambientLightMenu.handleClose}
+          />
         </TitleWrapper>
       </Accordion>
       <Accordion title={'직사광'}>
@@ -159,22 +153,19 @@ const HdriSetting = () => {
         <TitleWrapper>
           <span>{'컬러'}</span>
           {directionalLightAnchorButton}
-          {ReactDOM.createPortal(
-            <CustomMenu
-              title={'직사광'}
-              anchorButton={directionalLightAnchorButton}
-              anchorElement={directionalLightMenu.anchorEl}
-              MenuItem={
-                <ColorContent
-                  color={directionalLightColor}
-                  onChangeHsvaProp={updateDirectionalLightColor}
-                  onChangeAlphaProp={updateDirectionalLightAlpha}
-                />
-              }
-              handleClose={directionalLightMenu.handleClose}
-            />,
-            document.getElementById('menu-root')!
-          )}
+          <CustomMenu
+            title={'직사광'}
+            anchorButton={directionalLightAnchorButton}
+            anchorElement={directionalLightMenu.anchorEl}
+            MenuItem={
+              <ColorContent
+                color={directionalLightColor}
+                onChangeHsvaProp={updateDirectionalLightColor}
+                onChangeAlphaProp={updateDirectionalLightAlpha}
+              />
+            }
+            handleClose={directionalLightMenu.handleClose}
+          />
         </TitleWrapper>
       </Accordion>
     </>

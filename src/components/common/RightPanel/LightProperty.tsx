@@ -32,23 +32,20 @@ const LightProperty = ({ light }: Props) => {
       <ColorWrapper>
         <span>컬러</span>
         {colorButton}
-        {ReactDOM.createPortal(
-          <CustomMenu
-            title={'컬러'}
-            anchorButton={colorButton}
-            anchorElement={lightMenu.anchorEl}
-            MenuItem={
-              <ColorContent
-                color={hsvaColor}
-                onChangeHsvaProp={(hsva: HsvaColor) => {
-                  light.color.set(hsvaToRgbString(hsva));
-                }}
-              />
-            }
-            handleClose={lightMenu.handleClose}
-          />,
-          document.getElementById('menu-root')!
-        )}
+        <CustomMenu
+          title={'컬러'}
+          anchorButton={colorButton}
+          anchorElement={lightMenu.anchorEl}
+          MenuItem={
+            <ColorContent
+              color={hsvaColor}
+              onChangeHsvaProp={(hsva: HsvaColor) => {
+                light.color.set(hsvaToRgbString(hsva));
+              }}
+            />
+          }
+          handleClose={lightMenu.handleClose}
+        />
       </ColorWrapper>
       <Slider
         min={0}

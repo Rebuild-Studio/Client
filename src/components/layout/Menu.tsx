@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { basicColors, grayColors } from '@/resources/colors/colors';
 
@@ -47,7 +48,7 @@ const CustomMenu = ({
   MenuItem = <></>,
   handleClose
 }: MenuProps) => {
-  return (
+  return ReactDOM.createPortal(
     <Wrapper>
       {anchorElement && (
         <StyledMenu
@@ -66,7 +67,8 @@ const CustomMenu = ({
           </ButtonWrapper>
         </StyledMenu>
       )}
-    </Wrapper>
+    </Wrapper>,
+    document.getElementById('menu-root')!
   );
 };
 export default CustomMenu;
