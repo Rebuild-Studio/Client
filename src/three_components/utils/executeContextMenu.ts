@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import storeContainer from '@/store/storeContainer';
 import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import { MeshType } from '@store/primitive.store.ts';
+import { addToast } from '@hooks/useToast';
 import { copyGroup, copyObject } from './copyObject';
 import {
   renderAsset,
@@ -22,6 +23,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
   switch (contextMenuStore.currentSelectedContextMenu) {
     case '미리보기':
+      addToast('미리보기로 전환합니다');
       break;
     case '그리드 숨기기':
       sceneSettingStore.setIsGridVisible(false);
@@ -77,6 +79,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           }
         }
       });
+      addToast('붙여넣기가 완료되었습니다');
       break;
     case '복사':
       const copyMeshes: MeshType = {};
@@ -99,6 +102,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
             copyMeshes[storeId] = newMesh;
           }
         }
+        addToast('복사하기가 완료되었습니다.');
       });
 
       projectStateStore.updateCurrentCopyPrimitive(copyMeshes);
@@ -106,6 +110,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
     case '그룹':
       const storeId = nanoid();
       primitiveStore.addPrimitive(storeId, renderGroup(storeId));
+      addToast('그룹화가 완료되었습니다');
       break;
     case '그룹 해제':
       const selectedGroupStoreId = Object.keys(
@@ -127,6 +132,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
       primitiveStore.removeSelectedPrimitives(selectedGroupStoreId);
       primitiveStore.removePrimitive(selectedGroupStoreId);
       canvasHistoryStore.differUngroup(selectedGroupStoreId);
+      addToast('그룹해제가 완료되었습니다');
       break;
     case '잠그기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -136,6 +142,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           primitiveStore.updatePrimitive(key, value);
         }
       );
+      addToast('잠금처리 되었습니다');
       break;
     case '잠금 해제':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -145,6 +152,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           primitiveStore.updatePrimitive(key, value);
         }
       );
+      addToast('잠금해제처리 되었습니다');
       break;
     case '숨기기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -154,6 +162,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           primitiveStore.updatePrimitive(key, value);
         }
       );
+      addToast('숨김으로 변경하였습니다');
       break;
     case '보이기':
       Object.entries(primitiveStore.selectedPrimitives).forEach(
@@ -163,6 +172,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
           primitiveStore.updatePrimitive(key, value);
         }
       );
+      addToast('보이도록 변경하였습니다');
       break;
     case '삭제':
       const selectedPrimitives = Object.keys(primitiveStore.selectedPrimitives);
@@ -174,6 +184,7 @@ const executeContextMenu = (scene: THREE.Scene) => {
 
       primitiveStore.clearSelectedPrimitives();
       canvasHistoryStore.differDelete(selectedPrimitives[0]);
+      addToast('삭제가 완료되었습니다');
       break;
   }
   contextMenuStore.updateSelectedContextMenu('NONE');
