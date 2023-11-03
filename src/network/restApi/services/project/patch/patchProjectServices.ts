@@ -1,8 +1,8 @@
+import { RequestUpdateProject } from '@/network/model/project/patch/patchProject.model';
 import apiModule from '@/network/module/apiModule';
-import { RequestUpdateProject } from './models/patchProject.model';
 
 const updateMxProject = async (params: RequestUpdateProject) => {
-  const res = await apiModule.patch(`/mx-project/update`, params);
+  const res = await apiModule.post(`/mx-project/update`, params);
 
   return res;
 };

@@ -1,10 +1,4 @@
 import apiModule from '@/network/module/apiModule';
-import { RequestCreateMxProject } from '@/network/webSocket/services/project/post/model/postMxProject.model';
-import { ResponseCreateMxProject } from './models/postMxProject.model';
-import {
-  RequestCreatePmxProject,
-  ResponseCreatePmxProject
-} from './models/postPmxProject.model';
 
 const createMxProject = async (params: RequestCreateMxProject) => {
   const res = await apiModule
