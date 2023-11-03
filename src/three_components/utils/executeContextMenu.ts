@@ -20,6 +20,18 @@ const executeContextMenu = (scene: THREE.Scene) => {
     sceneSettingStore
   } = storeContainer;
 
+  // 잠금된 오브젝트 있는지 확인
+  const isLocked = Object.values(primitiveStore.selectedPrimitives).find(
+    (value) => {
+      return value.userData['isLocked'] === true;
+    }
+  );
+
+  // 잠금 해제 이벤트 말고는 전부 막기
+  if (isLocked && contextMenuStore.currentSelectedContextMenu !== '잠금 해제') {
+    return;
+  }
+
   switch (contextMenuStore.currentSelectedContextMenu) {
     case '미리보기':
       break;

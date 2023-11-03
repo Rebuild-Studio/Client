@@ -1,9 +1,9 @@
 import Node from '../Node';
 import { ControlType } from '../NodeControl';
 
-const nodeType = 'VariableNumber';
+const nodeType = 'VariableNumberSensor';
 
-export class VariableNumberNode extends Node {
+export class VariableNumberSensorNode extends Node {
   static NODE_TYPE = nodeType;
 
   constructor(name, uuid, type = nodeType) {
@@ -14,7 +14,8 @@ export class VariableNumberNode extends Node {
 }
 
 const nodeSchema = {
-  inputSocket: [
+  inputSocket: [],
+  outputSocket: [
     {
       name: 'number',
       type: ControlType.Number,
@@ -26,7 +27,6 @@ const nodeSchema = {
       }
     }
   ],
-  outputSocket: [],
   control: [
     {
       name: 'uxSelector',

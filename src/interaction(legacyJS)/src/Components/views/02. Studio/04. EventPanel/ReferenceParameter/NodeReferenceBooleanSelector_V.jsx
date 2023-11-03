@@ -6,42 +6,40 @@ import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 const NodeReferenceBooleanSelector = ({ value, setValue, tooltipMessage }) => {
   const classes = useStyles();
   return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="group"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="group"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          <MenuItem
+            sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
+            value={true}
           >
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={true}
-            >
-              참
-            </MenuItem>
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={false}
-            >
-              거짓
-            </MenuItem>
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+            참
+          </MenuItem>
+          <MenuItem
+            sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
+            value={false}
+          >
+            거짓
+          </MenuItem>
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 
@@ -69,7 +67,7 @@ const style = {
     bgcolor: '#282828CC',
     border: '1px solid grey',
     borderRadius: 3,
-    bottom: '5px !important'
+    bottom: '5px'
   },
   arrow: {
     '&::before': {

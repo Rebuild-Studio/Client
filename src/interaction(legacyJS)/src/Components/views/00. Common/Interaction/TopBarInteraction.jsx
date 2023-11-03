@@ -34,6 +34,7 @@ import { ConstVector3Node } from '../../../class/event-system/VariableNode/Const
 import { MeshPhysicalMaterialNode } from '../../../class/event-system/VariableNode/MeshPhysicalMaterialNode';
 import { VariableBooleanNode } from '../../../class/event-system/VariableNode/VariableBooleanNode';
 import { VariableNumberNode } from '../../../class/event-system/VariableNode/VariableNumberNode';
+import { VariableNumberSensorNode } from '../../../class/event-system/VariableNode/VariableNumberSensorNode';
 import { VariableStringNode } from '../../../class/event-system/VariableNode/VariableStringNode';
 
 // TODO : Set Buttons By Mode
@@ -183,6 +184,11 @@ const TopBarEvent = () => {
             node={ObjectSensorNode}
             backgroundImageName="btn_오브젝트센서"
           />
+          {/*변수센서*/}
+          <CreateNodeButton
+            node={VariableNumberSensorNode}
+            backgroundImageName="btn_변수센서"
+          />
         </MainCategory>
         {/*상수*/}
         <MainCategory label="상수">
@@ -198,12 +204,8 @@ const TopBarEvent = () => {
         </MainCategory>
         {/*변수*/}
         <MainCategory label="변수">
-          <CreateNodeMenuButton
-            items={[
-              { node: VariableBooleanNode, label: 'VariableBoolean' },
-              { node: VariableNumberNode, label: 'VariableNumber' },
-              { node: VariableStringNode, label: 'VariableString' }
-            ]}
+          <CreateNodeButton
+            node={VariableNumberNode}
             backgroundImageName="btn_변수"
           />
         </MainCategory>
