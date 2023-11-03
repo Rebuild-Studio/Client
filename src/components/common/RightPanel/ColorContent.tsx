@@ -3,7 +3,6 @@ import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import {
   HsvaColor,
-  RgbaColor,
   hsvaToHex,
   hsvaToRgba,
   rgbaToHsva
@@ -15,7 +14,6 @@ import InputField from '../InputField';
 import Slider from '../Slider';
 
 interface ColorContentProps {
-  rgbColor: RgbaColor;
   color: HsvaColor;
   saturationSlider?: boolean;
   brightnessSlider?: boolean;

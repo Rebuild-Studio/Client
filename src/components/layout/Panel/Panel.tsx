@@ -34,6 +34,7 @@ const PanelWrapper = styled.div`
   z-index: 1;
   width: 271px;
   padding: 10px 0;
+  overflow-y: auto;
   position: relative;
 `;
 

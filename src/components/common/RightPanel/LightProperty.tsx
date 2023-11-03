@@ -1,8 +1,16 @@
 import { Light } from 'three';
-import { hsvaToRgbString, rgbaToHsva } from '@uiw/color-convert';
+import {
+  HsvaColor,
+  RgbaColor,
+  hsvaToRgbString,
+  hsvaToRgba,
+  rgbaToHsva
+} from '@uiw/color-convert';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import ColorPicker from '@components/common/RightPanel/ColorPicker.tsx';
+import CustomMenu, { useCustomMenu } from '@/components/layout/Menu';
 import Slider from '@components/common/Slider.tsx';
+import ColorContent from './ColorContent';
 
 interface Props {
   light: Light;
@@ -11,17 +19,32 @@ interface Props {
 const LightProperty = ({ light }: Props) => {
   const { r, g, b } = light.color;
   const hsvaColor = rgbaToHsva({ r: r * 255, g: g * 255, b: b * 255, a: 1 });
-
+  const lightMenu = useCustomMenu();
+  const colorButton = (
+    <ColorButton
+      $color={hsvaColor}
+      $rgbColor={hsvaToRgba(hsvaColor)}
+      onClick={(event) => lightMenu.handleToggle(event)}
+    />
+  );
   return (
     <div>
       <ColorWrapper>
         <span>컬러</span>
-        <ColorPicker
-          label="컬러"
-          color={hsvaColor}
-          onChangeHsvaProp={(hsva) => {
-            light.color.set(hsvaToRgbString(hsva));
-          }}
+        {colorButton}
+        <CustomMenu
+          title={'컬러'}
+          anchorButton={colorButton}
+          anchorElement={lightMenu.anchorEl}
+          MenuItem={
+            <ColorContent
+              color={hsvaColor}
+              onChangeHsvaProp={(hsva: HsvaColor) => {
+                light.color.set(hsvaToRgbString(hsva));
+              }}
+            />
+          }
+          handleClose={lightMenu.handleClose}
         />
       </ColorWrapper>
       <Slider
@@ -43,4 +66,16 @@ const ColorWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 10px;
+`;
+const ColorButton = styled.button<{
+  $color: HsvaColor;
+  $rgbColor: RgbaColor;
+}>`
+  width: 24px;
+  min-width: 0;
+  min-height: 0;
+  height: 24px;
+  background-color: ${(props) =>
+    typeof props.$color !== 'undefined' &&
+    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

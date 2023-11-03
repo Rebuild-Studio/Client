@@ -8,29 +8,37 @@ const MaterialTemplate = () => {
   const { selectedObjectStore } = storeContainer;
 
   return (
-    <Grid
-      item={dataStore.materialTextureList.map((template, index) => (
-        <ImageStyled
-          key={template[1]}
-          isSelected={template[1] === selectedObjectStore.selectedMaterial}
-          src={`/icons/rightTab/${template[1]}.png`}
-          alt={`item-${index}`}
-          onClick={() => {
-            selectedObjectStore.setSelectedMaterial(template[1]);
-          }}
-        />
-      ))}
-      columns={2}
-    ></Grid>
+    <Wrraper>
+      <Grid
+        item={dataStore.materialTextureList.map((template, index) => (
+          <ImageStyled
+            key={template[1]}
+            $isSelected={template[1] === selectedObjectStore.selectedMaterial}
+            src={`/icons/rightTab/${template[1]}.png`}
+            alt={`item-${index}`}
+            onClick={() => {
+              selectedObjectStore.setSelectedMaterial(template[1]);
+            }}
+          />
+        ))}
+        columns={2}
+      ></Grid>
+    </Wrraper>
   );
 };
 
 const Observer = observer(MaterialTemplate);
 export default Observer;
 
-const ImageStyled = styled.img<{ isSelected: boolean }>`
+const Wrraper = styled.div`
+  display: flex;
+  flex-flow: wrap;
+  height: 57vh;
+`;
+const ImageStyled = styled.img<{ $isSelected: boolean }>`
   width: 10.1vh;
   height: 10.1vh;
   border-radius: 5px;
-  outline: ${(props) => (props.isSelected ? 'solid 0.25vh #e3f853' : 'none')};
+  outline: ${({ $isSelected }) =>
+    $isSelected ? 'solid 0.25vh #e3f853' : 'none'};
 `;

@@ -1,49 +1,62 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { basicColors, grayColors } from '@/resources/colors/colors';
 
 interface MenuProps {
   title: string;
-  MenuItem: React.ReactNode;
+  MenuItem?: React.ReactNode;
   openMenu?: boolean;
   anchorButton?: React.ReactNode;
   anchorElement?: HTMLElement | null;
   handleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  handleToggle?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleClose: () => void;
 }
 
-const CustomMenu = ({
-  title,
-  MenuItem,
-  openMenu = true,
-  anchorButton = <></>,
-  anchorElement = null
-}: MenuProps) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(anchorElement);
-  const [open, setOpen] = useState(openMenu);
+export const useCustomMenu = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
-    !open ? handleOpen(event) : handleClose();
-  };
-
-  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget); // 클릭한 버튼을 앵커로 설정
-    setOpen(true);
+  const handleToggle = (
+    event: React.MouseEvent<HTMLImageElement | HTMLButtonElement>
+  ) => {
+    if (!openMenu) {
+      setAnchorEl(event.currentTarget);
+      setOpenMenu(true);
+    } else {
+      handleClose();
+    }
   };
 
   const handleClose = () => {
-    setAnchorEl(null); // 메뉴 닫기
-    setOpen(false);
+    setAnchorEl(null);
+    setOpenMenu(false);
   };
 
-  return (
+  return {
+    openMenu,
+    anchorEl,
+    handleToggle,
+    handleClose
+  };
+};
+const CustomMenu = ({
+  openMenu = true,
+  title = '',
+  anchorElement = null,
+  MenuItem = <></>,
+  handleClose
+}: MenuProps) => {
+  return ReactDOM.createPortal(
     <Wrapper>
-      <AnchorButton onClick={handleToggle}>Open Menu</AnchorButton>
-      {anchorButton}
-      {anchorEl && (
+      {anchorElement && (
         <StyledMenu
-          anchorTop={anchorEl.offsetTop - anchorEl.clientHeight - 300}
-          open={open}
-          anchorLeft={anchorEl.offsetLeft - 368}
+          $anchorBottom={
+            anchorElement.offsetTop + anchorElement.clientHeight - 200
+          }
+          $open={openMenu}
+          $anchorRight={anchorElement.offsetLeft}
         >
           <TitleWrapper>
             <Title>{title}</Title>
@@ -54,7 +67,8 @@ const CustomMenu = ({
           </ButtonWrapper>
         </StyledMenu>
       )}
-    </Wrapper>
+    </Wrapper>,
+    document.getElementById('menu-root')!
   );
 };
 export default CustomMenu;
@@ -80,17 +94,19 @@ const Title = styled.span`
 `;
 
 const StyledMenu = styled.div<{
-  open: boolean;
-  anchorLeft: number;
-  anchorTop: number;
+  $open: boolean;
+  $anchorRight: number;
+  $anchorBottom: number;
 }>`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: ${({ anchorTop }) => `calc(${anchorTop}px - 2.4vh)`};
-  left: ${({ anchorLeft }) => anchorLeft}px;
-  width: 24.5vh;
-  height: 66.9vh;
+  position: fixed;
+  bottom: ${({ $anchorBottom }) => $anchorBottom}px;
+  right: ${({ $anchorRight }) => $anchorRight}px;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  max-height: 66.9vh;
   border-radius: 3px;
   background-color: ${grayColors['3a3a3a']};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -99,13 +115,16 @@ const StyledMenu = styled.div<{
   transition:
     opacity 0.5ms ease-in-out,
     transform 2s ease-in-out;
-  opacity: ${({ open }) => (open ? 1 : 0)};
-  transform: ${({ open }) => (open ? 'scale(1)' : 'scale(0.8)')};
+  opacity: ${({ $open }) => ($open ? 1 : 0)};
 `;
 
 const ContentWrapper = styled.div`
-  overflow: auto;
-  height: 57vh;
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -114,8 +133,4 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: flex-end;
-`;
-
-const AnchorButton = styled.button`
-  position: relative;
 `;
