@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
