@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import getLibraryServices from '@/network/webSocket/services/library/get/getLibraryServices';
 import {
-  RequestGetAsset,
-  ResponseGetAsset
-} from '@/network/webSocket/services/library/get/models/getLibrary.models';
+  RequestGetAssetList,
+  ResponseGetAssetList
+} from '@/network/model/library/get/getAssetList.model';
 import { LibraryAsset } from '../types/fetchAssetType';
 
-const assetDataMapper = (data: ResponseGetAsset[]) => {
+const { default: getLibraryServices } = await import(
+  `../../../network/${
+    import.meta.env.VITE_NETWORK_TYPE
+  }/services/library/get/getLibraryServices.ts`
+);
+
+const assetDataMapper = (data: ResponseGetAssetList) => {
   const mappedData: LibraryAsset[] = data.map((asset) => {
     return {
       id: asset.id,
@@ -22,13 +27,13 @@ const assetDataMapper = (data: ResponseGetAsset[]) => {
   return mappedData;
 };
 
-export const useFetchLibraryAssets = (queryParam: RequestGetAsset) => {
+export const useFetchLibraryAssets = (queryParam: RequestGetAssetList) => {
   const query = useQuery({
     queryKey: ['libraryAssets', queryParam],
     queryFn: () =>
       getLibraryServices
         .getAssets(queryParam)
-        .then((res) => assetDataMapper(res)),
+        .then((res: ResponseGetAssetList) => assetDataMapper(res)),
     keepPreviousData: true
   });
   useEffect(() => {

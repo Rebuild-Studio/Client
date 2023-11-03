@@ -1,12 +1,13 @@
+import { RequestCreateMxProject } from '@/network/model/project/post/postMxProject.model';
 import postProjectServicesRestApi from '@/network/restApi/services/project/post/postProjectServices';
-import { RequestCreateMxProject } from '@/network/webSocket/services/project/post/model/postMxProject.model';
 import postProjectServicesWebSocket from '@/network/webSocket/services/project/post/postProjectServices';
 import { MxJson } from '@/types/mxJson/mxJson';
 import { SceneJson } from '@/types/scene/scene';
 import createMxJson from '@/utils/json/createMxJson';
 import { ProjectType } from '@store/project.store.ts';
 
-const networkType: string = 'webSocket'; //TODO: networkType을 어떻게 가져올지 고민해보기(localstorage?)
+// worker에서는 import.meta.env.VITE_NETWORK_TYPE을 사용할 수 없다.
+const networkType: string = 'restApi'; //TODO: networkType을 어떻게 가져올지 고민해보기(localstorage?)
 const postProjectServices =
   networkType === 'restApi'
     ? postProjectServicesRestApi
