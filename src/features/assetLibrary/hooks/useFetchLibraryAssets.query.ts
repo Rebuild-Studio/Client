@@ -4,9 +4,14 @@ import {
   RequestGetAssetList,
   ResponseGetAssetList
 } from '@/network/model/library/get/getAssetList.model';
+import GetLibraryServices from '@/network/type/serviceInterface/library/getLibrary.interface';
 import { LibraryAsset } from '../types/fetchAssetType';
 
-const { default: getLibraryServices } = await import(
+const {
+  default: getLibraryServices
+}: {
+  default: GetLibraryServices;
+} = await import(
   `../../../network/${
     import.meta.env.VITE_NETWORK_TYPE
   }/services/library/get/getLibraryServices.ts`
@@ -33,7 +38,7 @@ export const useFetchLibraryAssets = (queryParam: RequestGetAssetList) => {
     queryFn: () =>
       getLibraryServices
         .getAssets(queryParam)
-        .then((res: ResponseGetAssetList) => assetDataMapper(res)),
+        .then((res) => assetDataMapper(res)),
     keepPreviousData: true
   });
   useEffect(() => {

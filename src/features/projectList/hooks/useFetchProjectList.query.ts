@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ResponseGetMxProjectList } from '@/network/model/project/get/getMxProjectList.model';
+import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
 import { Project, ProjectList } from '../types/project';
 
-const { default: getProjectServices } = await import(
+const {
+  default: getProjectServices
+}: {
+  default: GetProjectServices;
+} = await import(
   `../../../network/${
     import.meta.env.VITE_NETWORK_TYPE
   }/services/project/get/getProjectServices.ts`
@@ -36,7 +41,7 @@ export const useFetchProjectList = ({
         .getMyMxProjectList({
           page: page
         })
-        .then((res: ResponseGetMxProjectList) => projectListDataMapper(res)),
+        .then((res) => projectListDataMapper(res)),
     keepPreviousData: true
   });
   useEffect(() => {

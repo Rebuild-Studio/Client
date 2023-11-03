@@ -37,5 +37,3 @@ const getLibraryServices = {
 };
 
 export default getLibraryServices;
-
-type GetLibraryServices = typeof getLibraryServices;

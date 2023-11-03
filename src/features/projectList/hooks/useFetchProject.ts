@@ -1,16 +1,15 @@
 import { useCallback, useState } from 'react';
-import {
-  RequestGetMxProject,
-  ResponseGetMxProject
-} from '@/network/model/project/get/getMxProject.model';
-import {
-  RequestGetPmxProject,
-  ResponseGetPmxProject
-} from '@/network/model/project/get/getPmxProject.model';
+import { RequestGetMxProject } from '@/network/model/project/get/getMxProject.model';
+import { RequestGetPmxProject } from '@/network/model/project/get/getPmxProject.model';
+import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
 import storeContainer from '@/store/storeContainer';
 import { ProjectType } from '@store/project.store.ts';
 
-const { default: getProjectServices } = await import(
+const {
+  default: getProjectServices
+}: {
+  default: GetProjectServices;
+} = await import(
   `../../../network/${
     import.meta.env.VITE_NETWORK_TYPE
   }/services/project/get/getProjectServices.ts`
@@ -31,12 +30,11 @@ export const useFetchProject = (projectType: ProjectType): UseFetchProject => {
 
   const fetchProject = useCallback(async () => {
     try {
-      const reqParam: RequestGetMxProject & RequestGetPmxProject = {
+      const reqParam = {
         mxId: projectStore.projectId,
         pmxId: projectStore.projectId // add pmxId to the request parameters
       };
-      const res: ResponseGetMxProject | ResponseGetPmxProject =
-        await GET_PROJECT_SERVICE[projectType](reqParam);
+      const res = await GET_PROJECT_SERVICE[projectType](reqParam);
       if (!res) {
         // fix problem 1
         throw new Error('프로젝트를 불러오는데 실패했습니다.');
