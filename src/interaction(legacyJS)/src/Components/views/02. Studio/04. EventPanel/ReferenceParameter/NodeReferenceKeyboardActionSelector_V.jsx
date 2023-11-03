@@ -10,42 +10,40 @@ const NodeReferenceKeyboardActionSelector = ({
 }) => {
   const classes = useStyles();
   return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="group"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="group"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          <MenuItem
+            sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
+            value={'spot'}
           >
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'spot'}
-            >
-              스팟
-            </MenuItem>
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'hold'}
-            >
-              홀드
-            </MenuItem>
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+            스팟
+          </MenuItem>
+          <MenuItem
+            sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
+            value={'hold'}
+          >
+            홀드
+          </MenuItem>
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 

@@ -1,9 +1,9 @@
-import ObjectNode from './ObjectNode';
+import Node from '../Node';
 import { ControlType } from '../NodeControl';
 
 const nodeType = 'Camera';
 
-export default class CameraNode extends ObjectNode {
+export default class CameraNode extends Node {
   static NODE_TYPE = nodeType;
 
   constructor(name, uuid, objectId, type = 'Camera') {
