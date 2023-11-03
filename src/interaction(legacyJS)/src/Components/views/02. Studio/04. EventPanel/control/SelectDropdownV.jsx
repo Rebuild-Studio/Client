@@ -9,15 +9,21 @@ const SelectDropdown = observer((props) => {
   const { eventSystem_store, string_store, interactionhistory_store } =
     legacyStoreContainer;
   const { primitiveStore } = storeContainer;
-  const { node, entry } = props;
+  const { node, entry, dropdownData } = props;
   const key = entry[0];
   const data = entry[1];
   const { uuid } = node;
   const [defaultValue, setDefaultValue] = useState('오브젝트');
-  const dropdownData = primitiveStore.meshes;
+  const objectDropdownData = primitiveStore.meshes;
   const disable = useMemo(() => {
-    return Object.values(dropdownData).length > 0 ? false : true;
-  }, [Object.values(dropdownData).length]);
+    return (Object.values(dropdownData).length > 0 ||
+      Object.values(objectDropdownData).length) > 0
+      ? false
+      : true;
+  }, [
+    Object.values(dropdownData).length,
+    Object.values(objectDropdownData).length
+  ]);
 
   const removeObjectValue = useCallback(
     (args) => {
@@ -40,8 +46,8 @@ const SelectDropdown = observer((props) => {
       case 'ObjectSensor':
       case 'Object':
         args.key = 'object';
-        if (dropdownData[data.value]) {
-          setDefaultValue(dropdownData[data.value].name);
+        if (objectDropdownData[data.value]) {
+          setDefaultValue(objectDropdownData[data.value].name);
         } else {
           setDefaultValue('');
           removeObjectValue(args);
@@ -53,8 +59,8 @@ const SelectDropdown = observer((props) => {
       case 'PointLight':
       case 'SpotLight':
         args.key = 'light';
-        if (dropdownData[data.value]) {
-          setDefaultValue(dropdownData[data.value].name);
+        if (objectDropdownData[data.value]) {
+          setDefaultValue(objectDropdownData[data.value].name);
         } else {
           setDefaultValue('');
           removeObjectValue(args);
@@ -62,16 +68,16 @@ const SelectDropdown = observer((props) => {
         break;
       case 'Function':
         args.key = 'function';
-        if (dropdownData[data.value]) {
-          setDefaultValue(dropdownData[data.value].name);
+        if (dropdownData.map.get(data.value)) {
+          setDefaultValue(data.value);
         } else {
           setDefaultValue('');
           removeObjectValue(args);
         }
         break;
       case 'Asset':
-        if (dropdownData[data.value]) {
-          setDefaultValue(dropdownData[data.value].name);
+        if (objectDropdownData[data.value]) {
+          setDefaultValue(objectDropdownData[data.value].name);
         } else {
           setDefaultValue('');
           removeObjectValue(args);
@@ -81,11 +87,17 @@ const SelectDropdown = observer((props) => {
         setDefaultValue(data.value);
         break;
     }
-  }, [dropdownData, data.type, node.type, data.value, removeObjectValue]);
+  }, [data.type, node.type, data.value, objectDropdownData]);
 
   const Options = useCallback(() => {
     switch (data.type) {
       case 'Object':
+        return Object.entries(objectDropdownData).map(([key, mesh]) => (
+          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
+            {mesh.name}
+          </option>
+        ));
+
       case 'Sensor':
       case 'PointLight':
       case 'SpotLight':
@@ -94,26 +106,21 @@ const SelectDropdown = observer((props) => {
             {mesh.name}
           </option>
         ));
-      case 'Function':
-        return Object.entries(dropdownData).map(([key, mesh]) => (
-          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
-            {mesh.name}
-          </option>
-        ));
+
       case 'Asset':
-        return Object.entries(dropdownData).map(([key, mesh]) => (
+        return Object.entries(objectDropdownData).map(([key, mesh]) => (
           <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
             {mesh.name}
           </option>
         ));
       default:
-        return Object.entries(dropdownData).map(([key, mesh]) => (
-          <option key={`${mesh.uuid}-option-${mesh.id}`} value={key}>
-            {mesh.name}
+        return dropdownData.list?.map((type) => (
+          <option key={`${uuid}-option-${type}`} value={type}>
+            {string_store.string(type) || type}
           </option>
         ));
     }
-  }, [dropdownData, data.type, string_store, uuid]);
+  }, [objectDropdownData, data.type, string_store, uuid]);
 
   const handleOnChange = useCallback(
     (event) => {
@@ -140,7 +147,7 @@ const SelectDropdown = observer((props) => {
           case 'Object': {
             const value = {
               value: targetValue,
-              name: dropdownData[targetValue].name
+              name: objectDropdownData[targetValue].name
             };
             interactionhistory_store.execute(
               new SetNodeObjectCommand(
@@ -168,7 +175,7 @@ const SelectDropdown = observer((props) => {
       }
     },
     [
-      dropdownData.map,
+      objectDropdownData,
       eventSystem_store,
       interactionhistory_store,
       key,
