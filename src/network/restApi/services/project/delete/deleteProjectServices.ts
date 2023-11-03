@@ -1,3 +1,4 @@
+import { CommonResponse } from '@/network/model/common/response.model';
 import {
   RequestDeleteMxProject,
   ResponseDeleteMxProject
@@ -9,7 +10,7 @@ import {
 import apiModule from '@/network/module/apiModule';
 
 const deleteMxProject = async (params: RequestDeleteMxProject) => {
-  const res = await apiModule.delete<ResponseDeleteMxProject>(
+  const res = await apiModule.delete<CommonResponse<ResponseDeleteMxProject>>(
     `/mx-project/delete`,
     {
       params: {
@@ -18,11 +19,11 @@ const deleteMxProject = async (params: RequestDeleteMxProject) => {
     }
   );
 
-  return res;
+  return res.data.result;
 };
 
 const deletePmxProject = async (params: RequestDeletePmxProject) => {
-  const res = await apiModule.delete<ResponseDeletePmxProject>(
+  const res = await apiModule.delete<CommonResponse<ResponseDeletePmxProject>>(
     `/pmx-project/delete`,
     {
       params: {
@@ -31,7 +32,7 @@ const deletePmxProject = async (params: RequestDeletePmxProject) => {
     }
   );
 
-  return res;
+  return res.data.result;
 };
 
 const deleteProjectServices = {

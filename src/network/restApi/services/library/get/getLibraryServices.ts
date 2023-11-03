@@ -1,3 +1,4 @@
+import { CommonResponse } from '@/network/model/common/response.model';
 import {
   RequestGetAssetList,
   ResponseGetAssetList
@@ -8,22 +9,26 @@ import {
 } from '@/network/model/library/get/searchAsset.model';
 import apiModule from '@/network/module/apiModule';
 
-const getAssets = async (
-  params: RequestGetAssetList
-): Promise<ResponseGetAssetList> => {
-  const res = await apiModule.get<ResponseGetAssetList>('/library', {
-    params: params
-  });
+const getAssets = async (params: RequestGetAssetList) => {
+  const res = await apiModule.get<CommonResponse<ResponseGetAssetList>>(
+    '/library',
+    {
+      params: params
+    }
+  );
 
-  return res.data;
+  return res.data.result;
 };
 
 const searchAsset = async (params: RequestSearchAsset) => {
-  const res = await apiModule.get<ResponseSearchAsset[]>('/library/search', {
-    params: params
-  });
+  const res = await apiModule.get<CommonResponse<ResponseSearchAsset[]>>(
+    '/library/search',
+    {
+      params: params
+    }
+  );
 
-  return res;
+  return res.data.result;
 };
 
 const getLibraryServices = {
@@ -32,3 +37,5 @@ const getLibraryServices = {
 };
 
 export default getLibraryServices;
+
+type GetLibraryServices = typeof getLibraryServices;

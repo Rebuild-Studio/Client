@@ -1,8 +1,12 @@
+import { CommonResponse } from '@/network/model/common/response.model';
 import {
   RequestGetMxProject,
   ResponseGetMxProject
 } from '@/network/model/project/get/getMxProject.model';
-import { ResponseGetMxProjectList } from '@/network/model/project/get/getMxProjectList.model';
+import {
+  RequestGetMxProjectList,
+  ResponseGetMxProjectList
+} from '@/network/model/project/get/getMxProjectList.model';
 import {
   RequestGetPmxProject,
   ResponseGetPmxProject
@@ -10,20 +14,25 @@ import {
 import { ResponseGetPmxProjectList } from '@/network/model/project/get/getPmxProjectList.model';
 import apiModule from '@/network/module/apiModule';
 
-const getMyMxProjectList = async (): Promise<ResponseGetMxProjectList> => {
-  const res = await apiModule.get<ResponseGetMxProjectList>(
-    `/mx-project/load/list/mine`
+const getMyMxProjectList = async (
+  params: RequestGetMxProjectList
+): Promise<ResponseGetMxProjectList> => {
+  const res = await apiModule.get<CommonResponse<ResponseGetMxProjectList>>(
+    `/mx-project/load/list/mine`,
+    { params }
   );
-
-  return res.data;
+  return res.data.result;
 };
 
 const getMxProject = async (params: RequestGetMxProject) => {
   try {
-    const res = await apiModule.get<ResponseGetMxProject>(`/mx-project/load`, {
-      params
-    });
-    return res;
+    const res = await apiModule.get<CommonResponse<ResponseGetMxProject>>(
+      `/mx-project/load`,
+      {
+        params
+      }
+    );
+    return res.data.result;
   } catch (e) {
     console.error('MX 조회 실패 : ', e);
   }
@@ -42,10 +51,10 @@ const checkDuplicatePmxProjectName = async (param: { projectName: string }) => {
 
 const getAllPmxProjectList = async () => {
   try {
-    const res = await apiModule.get<ResponseGetPmxProjectList>(
+    const res = await apiModule.get<CommonResponse<ResponseGetPmxProjectList>>(
       `/pmx-project/load/list/all`
     );
-    return res;
+    return res.data.result;
   } catch (e) {
     console.error('PMX 리스트 조회 실패 : ', e);
   }
@@ -53,10 +62,10 @@ const getAllPmxProjectList = async () => {
 
 const getMyPmxProjectList = async () => {
   try {
-    const res = await apiModule.get<ResponseGetMxProjectList>(
+    const res = await apiModule.get<CommonResponse<ResponseGetMxProjectList>>(
       `/pmx-project/load/list/mine`
     );
-    return res;
+    return res.data.result;
   } catch (e) {
     console.error('PMX 리스트 조회 실패 : ', e);
   }
@@ -64,13 +73,13 @@ const getMyPmxProjectList = async () => {
 
 const getPmxProject = async (params: RequestGetPmxProject) => {
   try {
-    const res = await apiModule.get<ResponseGetPmxProject>(
+    const res = await apiModule.get<CommonResponse<ResponseGetPmxProject>>(
       `/pmx-project/load`,
       {
         params
       }
     );
-    return res;
+    return res.data.result;
   } catch (e) {
     console.error('PMX 조회 실패 : ', e);
   }
