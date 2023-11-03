@@ -1,55 +1,53 @@
 import { observer } from 'mobx-react';
 import { Box, MenuItem, Select, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import storeContainer from '@/store/storeContainer';
 import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 
-const NodeReferenceKeyboardActionSelector = ({
-  value,
-  setValue,
-  tooltipMessage
-}) => {
+const NodeReferenceObjectSelector = ({ value, setValue, tooltipMessage }) => {
   const classes = useStyles();
+
+  const { primitiveStore } = storeContainer;
+  const meshes = primitiveStore.meshes;
+
   return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
-      >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="group"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
-          >
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="Mesh"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          {Object.entries(meshes).map(([uuid, meshData]) => (
             <MenuItem
+              key={uuid}
               sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'spot'}
+              value={uuid}
             >
-              스팟
+              {meshData.name}
             </MenuItem>
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'hold'}
-            >
-              홀드
-            </MenuItem>
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+          ))}
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 
-export default observer(NodeReferenceKeyboardActionSelector);
+export default observer(NodeReferenceObjectSelector);
+
+// 나머지 코드는 변동 없습니다.
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -73,7 +71,7 @@ const style = {
     bgcolor: '#282828CC',
     border: '1px solid grey',
     borderRadius: 3,
-    bottom: '5px'
+    bottom: '5px !important'
   },
   arrow: {
     '&::before': {
@@ -95,7 +93,8 @@ const style = {
   SelectWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   MenuProps: {
     width: '100%',

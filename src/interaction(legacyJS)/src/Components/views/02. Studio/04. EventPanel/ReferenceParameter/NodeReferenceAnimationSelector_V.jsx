@@ -1,55 +1,67 @@
 import { observer } from 'mobx-react';
 import { Box, MenuItem, Select, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import storeContainer from '@/store/storeContainer';
 import { eventSystem_store } from '../../../../stores/Interaction_Stores';
 
-const NodeReferenceKeyboardActionSelector = ({
-  value,
+const NodeReferenceAnimationSelector = ({
+  value, //selected animation name will be stored, e.g) running, idle
   setValue,
-  tooltipMessage
+  tooltipMessage,
+  nodeId
 }) => {
   const classes = useStyles();
-  return (
-    <>
-      <Tooltip
-        sx={{ display: 'flex', alignSelf: 'center' }}
-        componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
-        arrow
-        disableInteractive
-        placement="top"
-        title={tooltipMessage}
+  const { primitiveStore } = storeContainer;
+
+  const sheet = eventSystem_store.getSelectedSheet();
+  const node = sheet.getNodeByUuid(nodeId);
+  const reference = node.referenceParameter.NODE_DAT_OBJECT;
+
+  let animationItems = null;
+
+  if (reference.defaultValue) {
+    const animationData =
+      primitiveStore.meshes[reference.defaultValue].animations;
+
+    animationItems = animationData.map((anim, index) => (
+      <MenuItem
+        key={index}
+        value={anim.name}
+        sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
       >
-        <Box sx={style.SelectWrapper}>
-          <Select
-            value={value}
-            label="group"
-            onChange={(e) => setValue(e.target.value)}
-            sx={style.SelectArea(eventSystem_store.cameraZoom)}
-            MenuProps={{
-              sx: style.MenuProps,
-              classes: { paper: classes.menuPaper }
-            }}
-          >
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'spot'}
-            >
-              스팟
-            </MenuItem>
-            <MenuItem
-              sx={style.MenuItemArea(eventSystem_store.cameraZoom)}
-              value={'hold'}
-            >
-              홀드
-            </MenuItem>
-          </Select>
-        </Box>
-      </Tooltip>
-    </>
+        {anim.name}
+      </MenuItem>
+    ));
+  }
+
+  return (
+    <Tooltip
+      sx={{ display: 'flex', alignSelf: 'center' }}
+      componentsProps={style.tooltipAndArrow(eventSystem_store.cameraZoom)}
+      arrow
+      disableInteractive
+      placement="top"
+      title={tooltipMessage}
+    >
+      <Box sx={style.SelectWrapper}>
+        <Select
+          value={value}
+          label="Animation"
+          onChange={(e) => setValue(e.target.value)}
+          sx={style.SelectArea(eventSystem_store.cameraZoom)}
+          MenuProps={{
+            sx: style.MenuProps,
+            classes: { paper: classes.menuPaper }
+          }}
+        >
+          {animationItems}
+        </Select>
+      </Box>
+    </Tooltip>
   );
 };
 
-export default observer(NodeReferenceKeyboardActionSelector);
+export default observer(NodeReferenceAnimationSelector);
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -95,7 +107,8 @@ const style = {
   SelectWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   MenuProps: {
     width: '100%',

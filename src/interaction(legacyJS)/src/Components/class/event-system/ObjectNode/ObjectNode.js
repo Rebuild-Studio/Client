@@ -80,13 +80,12 @@ const nodeSchema = {
     }
   ],
   outputSocket: [],
-  control: [
+  referenceParameter: [
     {
-      name: 'object',
-      value: undefined, // 3D Canvas에서 가져온 object의 uuid를 활용하여 Node의 title에 표시
-      type: ControlType.Object,
-      IsDropdown: true,
-      extras: '오브젝트'
+      name: 'NODE_DAT_OBJECT',
+      defaultValue: '',
+      type: 'Object',
+      tooltipMessage: '오브젝트를 선택해 주세요'
     }
   ]
 };

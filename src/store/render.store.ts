@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { CameraControls } from '@react-three/drei';
 
-class RenderStore {
+export class RenderStore {
   controls: CameraControls | null = null;
 
   constructor() {

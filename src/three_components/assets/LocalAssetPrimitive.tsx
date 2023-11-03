@@ -24,6 +24,9 @@ const LocalAssetPrimitiveProps = observer(
     } else {
       mesh = loadedData;
     }
+    //[TBD] 추후 리팩토링으로 중복로직 제거 필요
+    //scene을 벗겨내면서 animation정보가 사라짐. 이를 다시 넣어주는 작업 필요
+    mesh.animations = loadedData.animations;
 
     mesh.name = 'ASSET';
     mesh.userData['storeId'] = storeId;
