@@ -1,17 +1,17 @@
-import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 import {
   RequestGetMxProject,
   ResponseGetMxProject
-} from './model/getMxProject.model';
+} from '@/network/model/project/get/getMxProject.model';
 import {
   RequestGetMxProjectList,
   ResponseGetMxProjectList
-} from './model/getMxProjectList.model';
+} from '@/network/model/project/get/getMxProjectList.model';
 import {
   RequestGetPmxProject,
   ResponseGetPmxProject
-} from './model/getPmxProject.model';
-import { ResponseGetPmxProjectList } from './model/getPmxProjectList.model';
+} from '@/network/model/project/get/getPmxProject.model';
+import { ResponseGetPmxProjectList } from '@/network/model/project/get/getPmxProjectList.model';
+import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
 const getMyMxProjectList = async (params: RequestGetMxProjectList) => {
   return sasApiHandler<RequestGetMxProjectList, ResponseGetMxProjectList>(

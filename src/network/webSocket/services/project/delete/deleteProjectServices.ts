@@ -1,8 +1,12 @@
-import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 import {
   RequestDeleteMxProject,
   ResponseDeleteMxProject
-} from './model/deleteMxProject.model';
+} from '@/network/model/project/delete/deleteMxProject.model';
+import {
+  RequestDeletePmxProject,
+  ResponseDeletePmxProject
+} from '@/network/model/project/delete/deletePmxProject.model';
+import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
 const deleteMxProject = async (params: RequestDeleteMxProject) => {
   return sasApiHandler<RequestDeleteMxProject, ResponseDeleteMxProject>(
@@ -11,8 +15,8 @@ const deleteMxProject = async (params: RequestDeleteMxProject) => {
   );
 };
 
-const deletePmxProject = async (params: RequestDeleteMxProject) => {
-  return sasApiHandler<RequestDeleteMxProject, ResponseDeleteMxProject>(
+const deletePmxProject = async (params: RequestDeletePmxProject) => {
+  return sasApiHandler<RequestDeletePmxProject, ResponseDeletePmxProject>(
     'DeletePmxController',
     params
   );

@@ -1,13 +1,15 @@
-import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 import {
-  RequestGetAsset,
+  RequestGetAssetList,
+  ResponseGetAssetList
+} from '@/network/model/library/get/getAssetList.model';
+import {
   RequestSearchAsset,
-  ResponseGetAsset,
   ResponseSearchAsset
-} from './models/getLibrary.models';
+} from '@/network/model/library/get/searchAsset.model';
+import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
-const getAssets = async (params: RequestGetAsset) => {
-  return sasApiHandler<RequestGetAsset, ResponseGetAsset[]>(
+const getAssets = async (params: RequestGetAssetList) => {
+  return sasApiHandler<RequestGetAssetList, ResponseGetAssetList>(
     'FindLibraryByDomainAndCategoriesController',
     params
   );

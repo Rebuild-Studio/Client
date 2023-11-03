@@ -1,9 +1,9 @@
-import WsModule from '@/network/module/wsModule';
-import { MxJson } from '@/types/mxJson/mxJson';
 import {
   RequestCreateMxProject,
   ResponseCreateMxProject
-} from './model/postMxProject.model';
+} from '@/network/model/project/post/postMxProject.model';
+import WsModule from '@/network/module/wsModule';
+import { MxJson } from '@/types/mxJson/mxJson';
 
 type Variables = {
   mxName: string;

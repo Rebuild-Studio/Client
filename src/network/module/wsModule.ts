@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { ResponseDto } from '../webSocket/services/model/commonResponse.model';
+import { CommonResponse } from '../model/common/response.model';
 import { TargetService } from '../webSocket/types/targetService';
 import { getChunks } from '../webSocket/utils/getChunks';
 
@@ -151,7 +151,7 @@ class WsModule {
   public onReceiveMessage<T>() {
     return new Promise<T>((resolve, reject) => {
       this.socket.onmessage = async (event) => {
-        const response: ResponseDto<T> = await this.handleServerMessage(
+        const response: CommonResponse<T> = await this.handleServerMessage(
           event.data
         );
         const successRegex = /2[0-9][0-9]/;
