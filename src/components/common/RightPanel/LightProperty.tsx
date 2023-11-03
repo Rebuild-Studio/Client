@@ -6,7 +6,6 @@ import {
   hsvaToRgba,
   rgbaToHsva
 } from '@uiw/color-convert';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import CustomMenu, { useCustomMenu } from '@/components/layout/Menu';
 import Slider from '@components/common/Slider.tsx';
@@ -22,7 +21,6 @@ const LightProperty = ({ light }: Props) => {
   const lightMenu = useCustomMenu();
   const colorButton = (
     <ColorButton
-      $color={hsvaColor}
       $rgbColor={hsvaToRgba(hsvaColor)}
       onClick={(event) => lightMenu.handleToggle(event)}
     />
@@ -68,7 +66,6 @@ const ColorWrapper = styled.div`
   font-size: 10px;
 `;
 const ColorButton = styled.button<{
-  $color: HsvaColor;
   $rgbColor: RgbaColor;
 }>`
   width: 24px;
@@ -76,6 +73,5 @@ const ColorButton = styled.button<{
   min-height: 0;
   height: 24px;
   background-color: ${(props) =>
-    typeof props.$color !== 'undefined' &&
     `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import { HsvaColor } from '@uiw/color-convert';
+import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
 import styled from 'styled-components';
 import Switch from '@/components/buttons/SwitchButton';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
 import Accordion from '@/components/layout/Accordion';
+import CustomMenu, { useCustomMenu } from '@/components/layout/Menu';
 import storeContainer from '@/store/storeContainer';
 import ColorContent from '../ColorContent';
 
@@ -15,11 +16,17 @@ const DisplaySetting = () => {
   const [color, setColor] = useState<HsvaColor>(
     sceneSettingStore.canvasBackgroundColor
   );
-
+  const canvasBackgroundMenu = useCustomMenu();
   useEffect(() => {
     setColor(sceneSettingStore.canvasBackgroundColor);
   }, [sceneSettingStore.canvasBackgroundColor]);
 
+  const canvasBackgroundButton = (
+    <ColorButton
+      $rgbColor={hsvaToRgba(color)}
+      onClick={(event) => canvasBackgroundMenu.handleToggle(event)}
+    />
+  );
   return (
     <>
       <Accordion title={'배경 컬러'}>
@@ -30,10 +37,19 @@ const DisplaySetting = () => {
         />
         <TitleWrapper>
           <span>{'배경 컬러'}</span>
-          <ColorContent
-            color={color}
-            onChangeHsvaProp={updateCanvasBackgroundColor}
-            onChangeAlphaProp={updateCanvasBackgroundAlpha}
+          {canvasBackgroundButton}
+          <CustomMenu
+            title="배경컬러"
+            anchorButton={canvasBackgroundButton}
+            anchorElement={canvasBackgroundMenu.anchorEl}
+            handleClose={canvasBackgroundMenu.handleClose}
+            MenuItem={
+              <ColorContent
+                color={color}
+                onChangeHsvaProp={updateCanvasBackgroundColor}
+                onChangeAlphaProp={updateCanvasBackgroundAlpha}
+              />
+            }
           />
         </TitleWrapper>
       </Accordion>
@@ -70,4 +86,14 @@ const GridSwitchWrapper = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 10px;
   }
+`;
+const ColorButton = styled.button<{
+  $rgbColor: RgbaColor;
+}>`
+  width: 24px;
+  min-width: 0;
+  min-height: 0;
+  height: 24px;
+  background-color: ${(props) =>
+    `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;

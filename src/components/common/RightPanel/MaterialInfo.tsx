@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
 import CustomMenu from '@/components/layout/Menu';
@@ -59,7 +58,6 @@ const Material = ({
   );
   const colorAnchorButton = (
     <ColorButton
-      $color={color}
       $rgbColor={rgbColor}
       onClick={(e) => handleToggle(e, 'color')}
     />
@@ -152,7 +150,6 @@ const TitleWrapper = styled.div`
 `;
 
 const ColorButton = styled.button<{
-  $color: HsvaColor;
   $rgbColor: RgbaColor;
 }>`
   width: 24px;
@@ -160,6 +157,5 @@ const ColorButton = styled.button<{
   min-height: 0;
   height: 24px;
   background-color: ${(props) =>
-    typeof props.$color !== 'undefined' &&
     `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;
