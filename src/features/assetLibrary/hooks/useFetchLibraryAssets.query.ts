@@ -22,7 +22,7 @@ const assetDataMapper = (data: ResponseGetAssetList) => {
     return {
       id: asset.id,
       name: asset.name,
-      fileName: asset.filename,
+      fileName: asset.fileName,
       type: 'asset',
       domain: asset.domain,
       createdAt: asset.createdAt,

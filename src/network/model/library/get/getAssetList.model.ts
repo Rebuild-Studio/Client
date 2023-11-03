@@ -10,7 +10,7 @@ interface RequestGetAssetList {
 interface AssetInfo {
   id: string;
   name: string;
-  filename: string;
+  fileName: string;
   type: string;
   domain: DomainType;
   createdAt: string;
