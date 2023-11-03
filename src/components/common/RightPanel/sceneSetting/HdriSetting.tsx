@@ -43,14 +43,12 @@ const HdriSetting = () => {
 
   const ambientLightColorAnchorButton = (
     <ColorButton
-      $color={ambientLightColor}
       $rgbColor={hsvaToRgba(ambientLightColor)}
       onClick={(event) => ambientLightMenu.handleToggle(event)}
     />
   );
   const directionalLightAnchorButton = (
     <ColorButton
-      $color={directionalLightColor}
       $rgbColor={hsvaToRgba(directionalLightColor)}
       onClick={(event) => directionalLightMenu.handleToggle(event)}
     />
@@ -189,7 +187,6 @@ const SwitchWrapper = styled.div`
 `;
 
 const ColorButton = styled.button<{
-  $color: HsvaColor;
   $rgbColor: RgbaColor;
 }>`
   width: 24px;
@@ -197,6 +194,5 @@ const ColorButton = styled.button<{
   min-height: 0;
   height: 24px;
   background-color: ${(props) =>
-    typeof props.$color !== 'undefined' &&
     `rgba(${props.$rgbColor.r},${props.$rgbColor.g},${props.$rgbColor.b},${props.$rgbColor.a})`};
 `;
