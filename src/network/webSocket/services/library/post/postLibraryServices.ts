@@ -7,8 +7,8 @@ import WsModule from '@/network/module/wsModule';
 const postLibraryAssets = async () => {
   const params = await fetch('mock/convertedws.json').then((res) => res.json());
   let count = 0;
-  await params.forEach(
-    async (param: {
+  params.forEach(
+    (param: {
       name: string;
       filename: string;
       type: 'asset';
