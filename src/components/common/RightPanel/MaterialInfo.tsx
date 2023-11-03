@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { HsvaColor, RgbaColor, hsvaToRgba } from '@uiw/color-convert';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import ColorHandler from '@/components/common/RightPanel/ColorHandler';
 import CustomMenu from '@/components/layout/Menu';
