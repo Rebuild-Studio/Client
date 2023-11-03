@@ -16,8 +16,8 @@ type createThumbnailType = 'STRING' | 'ARRAY_BUFFER';
 // ToDo: 컴포넌트 목록 - 새 컴포넌트 만들기에 적절히 활용하기
 const createThumbnail = async (
   props: CreateThumbnailProps,
-  type: createThumbnailType = 'STRING'
-): Promise<string | ArrayBuffer> => {
+  _type: createThumbnailType = 'STRING' //임시로 STRING으로 고정(SAS에서 arraybuffer 형식이 필요함)
+): Promise<string> => {
   const { renderStore, projectStore, sceneSettingStore, primitiveStore } =
     props;
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -37,12 +37,12 @@ const createThumbnail = async (
   screenCamera.copy(camera as THREE.PerspectiveCamera);
   screenCamera.lookAt(0, 0, 0);
 
-  return new Promise<string | ArrayBuffer>((resolve) => {
+  return new Promise<string>((resolve) => {
     setTimeout(() => {
       renderer?.render(scene as THREE.Scene, screenCamera);
       renderer?.domElement.toBlob((blob) => {
         if (blob) {
-          if (type === 'ARRAY_BUFFER') resolve(blob.arrayBuffer());
+          // if (type === 'ARRAY_BUFFER') resolve(blob.arrayBuffer());
 
           const reader = new FileReader();
           reader.onload = () => {

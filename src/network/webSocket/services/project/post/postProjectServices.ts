@@ -1,17 +1,18 @@
-import WsModule from '@/network/module/wsModule';
-import { MxJson } from '@/types/mxJson/mxJson';
 import {
   RequestCreateMxProject,
   ResponseCreateMxProject
-} from './model/postMxProject.model';
+} from '@/network/model/project/post/postMxProject.model';
+import WsModule from '@/network/module/wsModule';
+import PostProjectServices from '@/network/type/serviceInterface/project/postProject.interface';
+import { MxJson } from '@/types/mxJson/mxJson';
 
 type Variables = {
-  taskName: string;
+  mxName: string;
   mxJson: MxJson;
-  thumbnail: ArrayBuffer;
+  thumbnail: string;
 };
 
-async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {
+async function createVariableParts({ mxName, mxJson, thumbnail }: Variables) {
   const thumbnailBuffer = Buffer.from(thumbnail);
   // thumbnail mock
   // const thumbnailBuffer = Buffer.from(
@@ -21,7 +22,7 @@ async function createVariableParts({ taskName, mxJson, thumbnail }: Variables) {
 
   //body
   const varBody = JSON.stringify({
-    taskName: taskName,
+    mxName: mxName,
     fileMetaData: {
       thumbnailFileLength: thumbnailBuffer.byteLength,
       sceneJsonLength: sceneBuffer.byteLength
@@ -50,20 +51,20 @@ const createMxProject = async (params: RequestCreateMxProject) => {
   return wsModule.onReceiveMessage<ResponseCreateMxProject>();
 };
 
-const createPmxProject = async (params: RequestCreateMxProject) => {
-  const wsModule = new WsModule({
-    targetService: 'CreatePmxController'
-  });
-  const { encodedBody, byteArray } = await createVariableParts(params);
-  const message = wsModule.assembleMessage(encodedBody, byteArray);
-  wsModule.sendInChunks(message);
+// const createPmxProject = async (params: RequestCreatePmxProject) => {
+//   const wsModule = new WsModule({
+//     targetService: 'CreatePmxController'
+//   });
+//   const { encodedBody, byteArray } = await createVariableParts(params);
+//   const message = wsModule.assembleMessage(encodedBody, byteArray);
+//   wsModule.sendInChunks(message);
 
-  return wsModule.onReceiveMessage<ResponseCreateMxProject>();
-};
+//   return wsModule.onReceiveMessage<ResponseCreateMxProject>();
+// };
 
-const postProjectServices = {
-  createMxProject,
-  createPmxProject
+const postProjectServices: PostProjectServices = {
+  createMxProject
+  // createPmxProject
 };
 
 export default postProjectServices;

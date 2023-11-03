@@ -1,68 +1,49 @@
-import WsModule from '@/network/module/wsModule';
 import {
   RequestGetMxProject,
   ResponseGetMxProject
-} from './model/getMxProject.model';
-import { ResponseGetMxProjectList } from './model/getMxProjectList.model';
+} from '@/network/model/project/get/getMxProject.model';
+import {
+  RequestGetMxProjectList,
+  ResponseGetMxProjectList
+} from '@/network/model/project/get/getMxProjectList.model';
 import {
   RequestGetPmxProject,
   ResponseGetPmxProject
-} from './model/getPmxProject.model';
-import { ResponseGetPmxProjectList } from './model/getPmxProjectList.model';
+} from '@/network/model/project/get/getPmxProject.model';
+import { ResponseGetPmxProjectList } from '@/network/model/project/get/getPmxProjectList.model';
+import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
+import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
-const getMyMxProjectList = async () => {
-  const wsModule = new WsModule({
-    targetService: 'FindMyMxController'
-  });
-  const message = wsModule.assembleMessage();
-  wsModule.sendInChunks(message);
-
-  return wsModule.onReceiveMessage<ResponseGetMxProjectList>();
+const getMyMxProjectList = async (params: RequestGetMxProjectList) => {
+  return sasApiHandler<RequestGetMxProjectList, ResponseGetMxProjectList>(
+    'FindMyMxController',
+    params
+  );
 };
 
 const getMxProject = async (params: RequestGetMxProject) => {
-  const wsModule = new WsModule({
-    targetService: 'ReadMxController'
-  });
-  const { encodedBody } = await wsModule.encodeBody({ ...params });
-  const message = wsModule.assembleMessage(encodedBody);
-  wsModule.send(message);
-
-  return wsModule.onReceiveMessage<ResponseGetMxProject>();
+  return sasApiHandler<RequestGetMxProject, ResponseGetMxProject>(
+    'ReadMxController',
+    params
+  );
 };
 
 const getAllPmxProjectList = async () => {
-  const wsModule = new WsModule({
-    targetService: 'FindAllPmxController'
-  });
-  const message = wsModule.assembleMessage();
-  wsModule.sendInChunks(message);
-
-  return wsModule.onReceiveMessage<ResponseGetPmxProjectList>();
+  return sasApiHandler<null, ResponseGetPmxProjectList>('FindAllPmxController');
 };
 
 const getMyPmxProjectList = async () => {
-  const wsModule = new WsModule({
-    targetService: 'FindMyPmxController'
-  });
-  const message = wsModule.assembleMessage();
-  wsModule.sendInChunks(message);
-
-  return wsModule.onReceiveMessage<ResponseGetPmxProjectList>();
+  return sasApiHandler<null, ResponseGetPmxProjectList>('FindMyPmxController');
 };
 
 const getPmxProject = async (params: RequestGetPmxProject) => {
-  const wsModule = new WsModule({
-    targetService: 'ReadPmxController'
-  });
-  const { encodedBody } = await wsModule.encodeBody({ ...params });
-  const message = wsModule.assembleMessage(encodedBody);
-  wsModule.send(message);
-
-  return wsModule.onReceiveMessage<ResponseGetPmxProject>();
+  return sasApiHandler<RequestGetPmxProject, ResponseGetPmxProject>(
+    'ReadPmxController',
+    params
+  );
 };
 
-const getProjectServices = {
+const getProjectServices: GetProjectServices = {
   getMyMxProjectList,
   getMxProject,
   getAllPmxProjectList,

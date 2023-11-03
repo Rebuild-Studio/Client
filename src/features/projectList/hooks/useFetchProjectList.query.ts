@@ -1,11 +1,21 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import getProjectServices from '@/network/services/project/get/getProjectServices';
-import { ResponseGetMxProjectList } from '@/network/services/project/get/models/getMxProjectList.model';
+import { ResponseGetMxProjectList } from '@/network/model/project/get/getMxProjectList.model';
+import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
 import { Project, ProjectList } from '../types/project';
 
+const {
+  default: getProjectServices
+}: {
+  default: GetProjectServices;
+} = await import(
+  `../../../network/${
+    import.meta.env.VITE_NETWORK_TYPE
+  }/services/project/get/getProjectServices.ts`
+);
+
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
-  const mappedData: ProjectList<Project> = data.result.map((project) => {
+  const mappedData: ProjectList<Project> = data.map((project) => {
     return {
       id: project.mxId,
       name: project.mxName,
@@ -17,14 +27,20 @@ const projectListDataMapper = (data: ResponseGetMxProjectList) => {
 };
 
 interface ProjectListInterface {
+  page: number;
   onError?: (error: unknown) => void;
 }
-export const useFetchProjectList = ({ onError }: ProjectListInterface) => {
+export const useFetchProjectList = ({
+  page,
+  onError
+}: ProjectListInterface) => {
   const query = useQuery({
-    queryKey: ['projectList'],
+    queryKey: ['projectList', page],
     queryFn: () =>
       getProjectServices
-        .getMyMxProjectList()
+        .getMyMxProjectList({
+          page: page
+        })
         .then((res) => projectListDataMapper(res)),
     keepPreviousData: true
   });

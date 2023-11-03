@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { ResponseDto } from '../webSocket/services/model/commonResponse.model';
+import { CommonResponse } from '../model/common/response.model';
 import { TargetService } from '../webSocket/types/targetService';
 import { getChunks } from '../webSocket/utils/getChunks';
 
@@ -35,7 +35,7 @@ interface WsModuleConstructor {
  * @method onReceiveMessage 서버로부터 메시지 수신
  */
 class WsModule {
-  static userId: string = 'user2';
+  static userId: string = 'junman2';
   public socket: WebSocket;
 
   private targetService: string;
@@ -78,7 +78,7 @@ class WsModule {
     );
   }
 
-  public async encodeBody<T extends { [key: string]: unknown }>(body: T) {
+  public async encodeBody<T extends object>(body: T) {
     const varBody = JSON.stringify(body);
     const encodedBody = new TextEncoder().encode(varBody);
     return {
@@ -151,7 +151,7 @@ class WsModule {
   public onReceiveMessage<T>() {
     return new Promise<T>((resolve, reject) => {
       this.socket.onmessage = async (event) => {
-        const response: ResponseDto<T> = await this.handleServerMessage(
+        const response: CommonResponse<T> = await this.handleServerMessage(
           event.data
         );
         const successRegex = /2[0-9][0-9]/;

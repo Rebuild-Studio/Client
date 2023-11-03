@@ -49,7 +49,7 @@ export class SceneSettingStore {
   SSAOToggle = false;
   bloomToggle = false;
 
-  backgroundImages = [
+  backgroundImages: BackgroundImageType[] = [
     'MX_hdr_indoor_3pointLightStudio_01',
     'MX_hdr_indoor_artistWorkroom_01',
     'MX_hdr_indoor_ballroom_01',

@@ -10,17 +10,31 @@ import ProjectCards from './ProjectCards';
 import { TemplateCards } from './TemplateCards';
 import { useFetchProject } from '../hooks/useFetchProject';
 import { useFetchProjectList } from '../hooks/useFetchProjectList.query.ts';
+import projectListStore from '../stores/projectList.store.ts';
 
 const ProjectList = () => {
   const { projectStateStore, projectStore } = storeContainer;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const { addToast } = useToast();
   const { data } = useFetchProjectList({
+    page: projectListStore.currentPage,
     onError: (error) => {
       addToast(`프로젝트 리스트 불러오기에 실패했습니다. ${error}`);
     }
   });
   const [error, fetchProject] = useFetchProject('MX');
+
+  useEffect(() => {
+    data && projectListStore.setProjectList(data)
+  }, [data]);
+
+  useEffect(() => {
+    return () => {
+      projectListStore.initProjectList();
+      projectListStore.setCurrentPage(1);
+    }
+  }, [])
+
 
   const onClickClose = () => {
     projectStateStore.clearModal();
@@ -63,7 +77,7 @@ const ProjectList = () => {
       </StyledTab>
       <StyledContent>
         {selectedTabIndex == 0 ? (
-          <ProjectCards projects={data ? data : []} />
+          <ProjectCards projects={projectListStore.projectList} />
         ) : (
           <TemplateCards projects={[]} />
         )}
