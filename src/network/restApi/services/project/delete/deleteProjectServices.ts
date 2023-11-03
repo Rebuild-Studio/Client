@@ -8,6 +8,7 @@ import {
   ResponseDeletePmxProject
 } from '@/network/model/project/delete/deletePmxProject.model';
 import apiModule from '@/network/module/apiModule';
+import DeleteProjectServices from '@/network/type/serviceInterface/project/deleteProject.interface';
 
 const deleteMxProject = async (params: RequestDeleteMxProject) => {
   const res = await apiModule.delete<CommonResponse<ResponseDeleteMxProject>>(
@@ -35,7 +36,7 @@ const deletePmxProject = async (params: RequestDeletePmxProject) => {
   return res.data.result;
 };
 
-const deleteProjectServices = {
+const deleteProjectServices: DeleteProjectServices = {
   deleteMxProject,
   deletePmxProject
 };

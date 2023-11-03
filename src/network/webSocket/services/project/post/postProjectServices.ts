@@ -3,6 +3,7 @@ import {
   ResponseCreateMxProject
 } from '@/network/model/project/post/postMxProject.model';
 import WsModule from '@/network/module/wsModule';
+import PostProjectServices from '@/network/type/serviceInterface/project/postProject.interface';
 import { MxJson } from '@/types/mxJson/mxJson';
 
 type Variables = {
@@ -50,20 +51,20 @@ const createMxProject = async (params: RequestCreateMxProject) => {
   return wsModule.onReceiveMessage<ResponseCreateMxProject>();
 };
 
-const createPmxProject = async (params: RequestCreateMxProject) => {
-  const wsModule = new WsModule({
-    targetService: 'CreatePmxController'
-  });
-  const { encodedBody, byteArray } = await createVariableParts(params);
-  const message = wsModule.assembleMessage(encodedBody, byteArray);
-  wsModule.sendInChunks(message);
+// const createPmxProject = async (params: RequestCreatePmxProject) => {
+//   const wsModule = new WsModule({
+//     targetService: 'CreatePmxController'
+//   });
+//   const { encodedBody, byteArray } = await createVariableParts(params);
+//   const message = wsModule.assembleMessage(encodedBody, byteArray);
+//   wsModule.sendInChunks(message);
 
-  return wsModule.onReceiveMessage<ResponseCreateMxProject>();
-};
+//   return wsModule.onReceiveMessage<ResponseCreateMxProject>();
+// };
 
-const postProjectServices = {
-  createMxProject,
-  createPmxProject
+const postProjectServices: PostProjectServices = {
+  createMxProject
+  // createPmxProject
 };
 
 export default postProjectServices;

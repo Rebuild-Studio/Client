@@ -11,6 +11,7 @@ import {
   ResponseGetPmxProject
 } from '@/network/model/project/get/getPmxProject.model';
 import { ResponseGetPmxProjectList } from '@/network/model/project/get/getPmxProjectList.model';
+import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
 import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
 const getMyMxProjectList = async (params: RequestGetMxProjectList) => {
@@ -42,7 +43,7 @@ const getPmxProject = async (params: RequestGetPmxProject) => {
   );
 };
 
-const getProjectServices = {
+const getProjectServices: GetProjectServices = {
   getMyMxProjectList,
   getMxProject,
   getAllPmxProjectList,

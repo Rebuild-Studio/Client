@@ -6,6 +6,7 @@ import {
   RequestSearchAsset,
   ResponseSearchAsset
 } from '@/network/model/library/get/searchAsset.model';
+import GetLibraryServices from '@/network/type/serviceInterface/library/getLibrary.interface';
 import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
 const getAssets = async (params: RequestGetAssetList) => {
@@ -22,7 +23,7 @@ const searchAsset = async (params: RequestSearchAsset) => {
   );
 };
 
-const getLibraryServices = {
+const getLibraryServices: GetLibraryServices = {
   getAssets,
   searchAsset
 };

@@ -22,6 +22,9 @@ interface GetProjectServices {
   getPmxProject: (
     params: RequestGetPmxProject
   ) => Promise<ResponseGetPmxProject>;
+  checkDuplicatePmxProjectName?: (params: {
+    projectName: string;
+  }) => Promise<boolean>;
 }
 
 export default GetProjectServices;

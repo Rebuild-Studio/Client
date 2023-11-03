@@ -8,6 +8,7 @@ import {
   ResponseCreatePmxProject
 } from '@/network/model/project/post/postPmxProject.model';
 import apiModule from '@/network/module/apiModule';
+import PostProjectServices from '@/network/type/serviceInterface/project/postProject.interface';
 
 const createMxProject = async (params: RequestCreateMxProject) => {
   const res = await apiModule
@@ -20,19 +21,14 @@ const createMxProject = async (params: RequestCreateMxProject) => {
 };
 
 const createPmxProject = async (params: RequestCreatePmxProject) => {
-  const res = await apiModule
-    .post<CommonResponse<ResponseCreatePmxProject>>(
-      '/pmx-project/create',
-      params
-    )
-    .catch((e) => {
-      console.error('PMX 생성 실패 : ', e);
-    });
-  if (!res?.data) throw new Error('no data');
+  const res = await apiModule.post<CommonResponse<ResponseCreatePmxProject>>(
+    '/pmx-project/create',
+    params
+  );
   return res.data.result;
 };
 
-const postProjectServices = {
+const postProjectServices: PostProjectServices = {
   createMxProject,
   createPmxProject
 };

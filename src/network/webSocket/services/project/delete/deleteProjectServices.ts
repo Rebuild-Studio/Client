@@ -6,6 +6,7 @@ import {
   RequestDeletePmxProject,
   ResponseDeletePmxProject
 } from '@/network/model/project/delete/deletePmxProject.model';
+import DeleteProjectServices from '@/network/type/serviceInterface/project/deleteProject.interface';
 import sasApiHandler from '@/network/webSocket/utils/sasApiHandler';
 
 const deleteMxProject = async (params: RequestDeleteMxProject) => {
@@ -22,7 +23,7 @@ const deletePmxProject = async (params: RequestDeletePmxProject) => {
   );
 };
 
-const deleteProjectServices = {
+const deleteProjectServices: DeleteProjectServices = {
   deleteMxProject,
   deletePmxProject
 };
