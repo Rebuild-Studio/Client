@@ -2,14 +2,13 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useServerGLTFLoader } from '@/hooks/loader';
 import storeContainer from '@/store/storeContainer';
-import getMinioPath from '@/utils/path/minio';
 import { PrimitiveProps } from '../common/PrimitiveProps';
 
 const PreviewCamera = (props: PrimitiveProps) => {
   const ref = useRef();
   const { primitiveStore } = storeContainer;
   const cameraObject = useServerGLTFLoader(
-    getMinioPath('cinematicCamera', 'libraryGlb')
+    '/glb/camera/cinematicCamera.glb'
   ).scene.clone();
   const perspectiveCamera = new THREE.PerspectiveCamera(
     45,
