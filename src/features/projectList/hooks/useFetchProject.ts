@@ -1,19 +1,9 @@
 import { useCallback, useState } from 'react';
 import { RequestGetMxProject } from '@/network/model/project/get/getMxProject.model';
 import { RequestGetPmxProject } from '@/network/model/project/get/getPmxProject.model';
-import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
+import getProjectServices from '@/network/restApi/services/project/get/getProjectServices';
 import storeContainer from '@/store/storeContainer';
 import { ProjectType } from '@store/project.store.ts';
-
-const {
-  default: getProjectServices
-}: {
-  default: GetProjectServices;
-} = await import(
-  `../../../network/${
-    import.meta.env.VITE_NETWORK_TYPE
-  }/services/project/get/getProjectServices.ts`
-);
 
 const GET_PROJECT_SERVICE = {
   MX: (reqParam: RequestGetMxProject) =>
