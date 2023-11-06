@@ -71,7 +71,7 @@ const renderObjects = (
       case 'GROUP':
         primitiveStore.addPrimitive(
           storeId,
-          renderGroup(storeId, mesh.clone())
+          renderGroup(storeId, mesh)
         );
         break;
 
@@ -81,7 +81,7 @@ const renderObjects = (
       case 'ASSET':
         primitiveStore.addPrimitive(
           storeId,
-          renderAsset(storeId, mesh.clone())
+          renderAsset(storeId, mesh)
         );
         break;
 
@@ -93,7 +93,7 @@ const renderObjects = (
       case 'TORUS':
         primitiveStore.addPrimitive(
           storeId,
-          renderPrimitive(storeId, mesh.clone())
+          renderPrimitive(storeId, mesh)
         );
         break;
       default:
