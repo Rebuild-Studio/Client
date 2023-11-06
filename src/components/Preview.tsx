@@ -8,7 +8,7 @@ import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores
 const Preview = observer(() => {
   const { projectStore } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
-  const sceneForPreview = projectStore.scene?.clone(true);
+  const sceneForPreview = projectStore.scene;
 
   if (!sceneForPreview) {
     return null;
@@ -16,9 +16,7 @@ const Preview = observer(() => {
 
   const cameraMesh = sceneForPreview.getObjectByName('PREVIEW_CAMERA');
   if (cameraMesh) {
-    const camera = getCameraFromMesh(cameraMesh);
-    sceneForPreview.add(camera);
-    sceneForPreview.remove(cameraMesh);
+    restoreCameraTransformation(cameraMesh);
   }
 
   const sceneJson = sceneForPreview.toJSON();
@@ -33,15 +31,12 @@ const Preview = observer(() => {
 
 export default Preview;
 
-const getCameraFromMesh = (cameraMesh: THREE.Object3D) => {
+const restoreCameraTransformation = (cameraMesh: THREE.Object3D) => {
   const camera = cameraMesh.children.find(
     (child) => child instanceof THREE.Camera
   ) as THREE.Camera;
 
-  const newCamera = camera.clone();
-  cameraMesh.getWorldPosition(newCamera.position);
-  cameraMesh.getWorldQuaternion(newCamera.quaternion);
-  newCamera.updateMatrix();
-
-  return newCamera;
+  cameraMesh.getWorldPosition(camera.position);
+  cameraMesh.getWorldQuaternion(camera.quaternion);
+  camera.updateMatrix();
 };
