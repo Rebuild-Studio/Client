@@ -27,12 +27,12 @@ const nodeSchema = {
     }
   ],
   outputSocket: [],
-  control: [
+  referenceParameter: [
     {
-      name: 'uxSelector',
-      value: '',
-      type: ControlType.String,
-      IsUxSelector: true
+      name: 'NODE_DAT_KEY',
+      defaultValue: 'myKey',
+      type: 'String',
+      tooltipMessage: '입력 받을 키를 입력해주십시오.'
     }
   ]
 };
