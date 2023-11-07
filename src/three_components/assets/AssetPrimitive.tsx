@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { observer } from 'mobx-react';
 import { useServerGLTFLoader } from '@/hooks/loader';
 import storeContainer from '@/store/storeContainer';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import canvasHistoryStore from '@store/canvasHistory.store.ts';
 import { PrimitiveProps } from '../common/PrimitiveProps';
 
@@ -43,6 +44,7 @@ const AssetPrimitive = observer(
         mesh as THREE.Mesh
       );
       canvasHistoryStore.differAdd(mesh.userData['storeId']);
+      closeFullScreenLoading();
     }, []);
 
     return (

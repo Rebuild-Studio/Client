@@ -7,6 +7,7 @@ import { basicColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import AssetPrimitive from '@/three_components/assets/AssetPrimitive';
 import { getButtonClickAnimation } from '@/utils/animation/button';
+import { showFullScreenLoading } from '@/utils/loading/loadingHandler';
 import getMinioPath from '@/utils/path/minio';
 import assetLibraryStore from '@store/assetLibrary.store.ts';
 
@@ -16,6 +17,7 @@ const Footer = () => {
   const { projectStateStore, primitiveStore } = storeContainer;
 
   const onClickLoad = useCallback(() => {
+    showFullScreenLoading();
     selectedAssetFileNames.forEach((fileName) => {
       const storeId = nanoid();
       primitiveStore.addPrimitive(
@@ -26,7 +28,6 @@ const Footer = () => {
           url={getMinioPath(fileName, 'libraryGlb')}
         />
       );
-      projectStateStore.clearModal();
     });
   }, [selectedAssetFileNames, primitiveStore, projectStateStore]);
 

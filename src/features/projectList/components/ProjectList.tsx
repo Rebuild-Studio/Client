@@ -25,16 +25,15 @@ const ProjectList = () => {
   const [error, fetchProject] = useFetchProject('MX');
 
   useEffect(() => {
-    data && projectListStore.setProjectList(data)
+    data && projectListStore.setProjectList(data);
   }, [data]);
 
   useEffect(() => {
     return () => {
       projectListStore.initProjectList();
       projectListStore.setCurrentPage(1);
-    }
-  }, [])
-
+    };
+  }, []);
 
   const onClickClose = () => {
     projectStateStore.clearModal();
