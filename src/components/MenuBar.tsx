@@ -17,6 +17,7 @@ import { SubMenu } from './common/subMenu/SubMenu';
 import { ConfirmBox } from './layout/modal/ConfirmBox';
 import BottomPopOver from './layout/popover/BottomPopOver';
 import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
+import { useEffect } from 'react';
 
 const MenuBar = () => {
   const {
@@ -28,7 +29,7 @@ const MenuBar = () => {
   } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
-  const [, , createProject, downloadProject] = useExportMxJson({
+  const [, isProcessing, createProject, downloadProject] = useExportMxJson({
     projectStore,
     interactionStore: eventSystem_store
   });
@@ -117,17 +118,17 @@ const MenuBar = () => {
     {
       label: '인터페이스',
       disabled: false,
-      onClick: () => {}
+      onClick: () => { }
     },
     {
       label: '단축키',
       disabled: false,
-      onClick: () => {}
+      onClick: () => { }
     },
     {
       label: '자동저장',
       disabled: true,
-      onClick: () => {}
+      onClick: () => { }
     }
   ];
 
@@ -135,24 +136,33 @@ const MenuBar = () => {
     {
       label: '사용 안내서',
       disabled: false,
-      onClick: () => {}
+      onClick: () => { }
     },
     {
       label: '새로운 기능',
       disabled: true,
-      onClick: () => {}
+      onClick: () => { }
     },
     {
       label: '오류 보고/개선 제안',
       disabled: false,
-      onClick: () => {}
+      onClick: () => { }
     },
     {
       label: 'Copyright 2023 TmaxMetaverse',
       disabled: true,
-      onClick: () => {}
+      onClick: () => { }
     }
   ];
+
+  useEffect(() => {
+    if (isProcessing) {
+      showFullScreenLoading();
+    } else {
+      closeFullScreenLoading();
+    }
+  }, [isProcessing])
+
 
   return (
     <StyledBar>

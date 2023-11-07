@@ -113,11 +113,10 @@ const useExportMxJson = ({
       if (!projectStore.scene) return;
       setIsProcessing(true);
       setIsSuccess(false);
-      showFullScreenLoading();
+
       const interactionJson = JSON.parse(
         JSON.stringify(interactionStore.toJSON())
       );
-      console.log(interactionJson);
       exportJsonPost(
         projectStore.scene,
         projectType,
@@ -138,7 +137,6 @@ const useExportMxJson = ({
 
     restoreCameraTransformation(projectStore.scene);
 
-    showFullScreenLoading();
     const interactionJson = JSON.parse(
       JSON.stringify(interactionStore.toJSON())
     );
