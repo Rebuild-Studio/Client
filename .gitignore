@@ -25,5 +25,5 @@ dist-ssr
 storybook-static
 
 #env
-.env*
+.env.local
 .npmrc
