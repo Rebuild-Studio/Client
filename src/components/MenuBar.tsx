@@ -5,6 +5,10 @@ import { useToast } from '@/hooks/useToast';
 import { bgColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import useExportMxJson from '@/three_components/hooks/useExportMxJson';
+import {
+  closeFullScreenLoading,
+  showFullScreenLoading
+} from '@/utils/loading/loadingHandler';
 import { createThumbnail } from '@/utils/thumbnail';
 import sceneControlStore from '@store/sceneControl.store.ts';
 import IconButton from './buttons/IconButton';

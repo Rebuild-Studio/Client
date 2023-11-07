@@ -2,6 +2,10 @@ import { Dispatch, useCallback, useEffect, useState } from 'react';
 import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
 import storeContainer from '@/store/storeContainer';
 import downloadFile from '@/utils/file/downloadFile';
+import {
+  closeFullScreenLoading,
+  showFullScreenLoading
+} from '@/utils/loading/loadingHandler';
 import { ProjectStore, ProjectType } from '@store/project.store.ts';
 import {
   MX_WORKER_REQUEST_TYPE,
@@ -35,6 +39,7 @@ const exportJsonFile = async (
     } else {
       console.error('잘못된 요청 타입입니다: ', e.data.type);
     }
+    closeFullScreenLoading();
     mxWorker.terminate();
   };
 };
@@ -74,6 +79,7 @@ const exportJsonPost = async (
       console.error(e.data.error);
       setIsSuccess(false);
     }
+    closeFullScreenLoading();
     mxWorker.terminate();
   };
 };
@@ -106,7 +112,7 @@ const useExportMxJson = ({
       if (!projectStore.scene) return;
       setIsProcessing(true);
       setIsSuccess(false);
-
+      showFullScreenLoading();
       const interactionJson = JSON.parse(
         JSON.stringify(interactionStore.toJSON())
       );
@@ -128,6 +134,7 @@ const useExportMxJson = ({
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
+    showFullScreenLoading();
     const interactionJson = JSON.parse(
       JSON.stringify(interactionStore.toJSON())
     );

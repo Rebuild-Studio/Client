@@ -67,7 +67,6 @@ export const ConfirmBox = observer(
               label={'확인'}
               onClick={() => {
                 onClickConfirm();
-                onClickClose();
               }}
               disabled={false}
             />
