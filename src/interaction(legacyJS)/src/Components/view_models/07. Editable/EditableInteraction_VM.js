@@ -41,18 +41,27 @@ export default function EditableInteraction_VM() {
     return nodeIndex;
   };
 
-  const getVariableSensorNodes = (interactionJson) => {
+  const getVariableTypeNodes = (interactionJson) => {
     const sheetIds = Object.keys(interactionJson.sheets);
-    const variableSensorNodes = [];
+    const variableNumberSensorNodes = [];
+    const variableNumberNodes = [];
     sheetIds.forEach((sheetId) => {
-      variableSensorNodes.push(
+      // 인풋 받는 넘버 센서 노드들
+      variableNumberSensorNodes.push(
         ...interactionJson.sheets[sheetId].nodes.filter(
           (node) => node.type === 'VariableNumberSensor'
         )
       );
+      // 아웃풋으로 나가는 넘버 노드들
+      variableNumberNodes.push(
+        ...interactionJson.sheets[sheetId].nodes.filter(
+          (node) => node.type === 'VariableNumber'
+        )
+      );
     });
     return {
-      variableSensorNodes
+      variableNumberSensorNodes,
+      variableNumberNodes
     };
   };
 
@@ -74,7 +83,7 @@ export default function EditableInteraction_VM() {
       //   getIndexWithInteractionKey_(ANIMATION),
       //   ''
       // )
-      getVariableSensorNodes(interactionJson)
+      getVariableTypeNodes(interactionJson)
     ];
     return metaDataArray;
   };
