@@ -38,7 +38,7 @@ const nodeSchema = {
   control: [
     {
       name: 'sound',
-      value: new Audio(), // ToDo: /public/sound/에 있는 mp3 파일 매핑 필요
+      value: '', // ToDo: /public/sound/에 있는 mp3 파일 매핑 필요
       type: ControlType.Sound,
       IsDropdown: true,
       extras: '사운드 트랙'
