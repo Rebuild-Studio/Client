@@ -1,6 +1,7 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
 import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
 import storeContainer from '@/store/storeContainer';
+import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
 import downloadFile from '@/utils/file/downloadFile';
 import { ProjectStore, ProjectType } from '@store/project.store.ts';
 import {
@@ -128,6 +129,9 @@ const useExportMxJson = ({
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
+
+    restoreCameraTransformation(projectStore.scene);
+
     const interactionJson = JSON.parse(
       JSON.stringify(interactionStore.toJSON())
     );
