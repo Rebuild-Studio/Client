@@ -41,24 +41,49 @@ export default function EditableInteraction_VM() {
     return nodeIndex;
   };
 
-  const toJson = () => {
+  const getVariableTypeNodes = (interactionJson) => {
+    const sheetIds = Object.keys(interactionJson.sheets);
+    const variableNumberSensorNodes = [];
+    const variableNumberNodes = [];
+    sheetIds.forEach((sheetId) => {
+      // 인풋 받는 넘버 센서 노드들
+      variableNumberSensorNodes.push(
+        ...interactionJson.sheets[sheetId].nodes.filter(
+          (node) => node.type === 'VariableNumberSensor'
+        )
+      );
+      // 아웃풋으로 나가는 넘버 노드들
+      variableNumberNodes.push(
+        ...interactionJson.sheets[sheetId].nodes.filter(
+          (node) => node.type === 'VariableNumber'
+        )
+      );
+    });
+    return {
+      variableNumberSensorNodes,
+      variableNumberNodes
+    };
+  };
+
+  const toJson = (interactionJson) => {
     const metaDataArray = [
-      createUxMetaData(
-        'avatarIndex',
-        'number',
-        'Spinner',
-        [0, 20],
-        getIndexWithInteractionKey_(AVATAR),
-        ''
-      ),
-      createUxMetaData(
-        'animationIndex',
-        'number',
-        'Spinner',
-        [0, 20],
-        getIndexWithInteractionKey_(ANIMATION),
-        ''
-      )
+      // createUxMetaData(
+      //   'avatarIndex',
+      //   'number',
+      //   'Spinner',
+      //   [0, 20],
+      //   getIndexWithInteractionKey_(AVATAR),
+      //   ''
+      // ),
+      // createUxMetaData(
+      //   'animationIndex',
+      //   'number',
+      //   'Spinner',
+      //   [0, 20],
+      //   getIndexWithInteractionKey_(ANIMATION),
+      //   ''
+      // )
+      getVariableTypeNodes(interactionJson)
     ];
     return metaDataArray;
   };

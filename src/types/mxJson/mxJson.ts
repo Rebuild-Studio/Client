@@ -15,7 +15,7 @@ type EditableProperty = {
 type MxJson = {
   scene: SceneJson;
   interaction: object; // 추후 타입 정의 필요
-  editableInteraction: EditableProperty[];
+  editableInteraction: Array<unknown>; // 형태가 정해지지 않음 - 정의 필요
   editableScene: EditableProperty[];
 };
 

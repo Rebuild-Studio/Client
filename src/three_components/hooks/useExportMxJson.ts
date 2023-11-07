@@ -1,6 +1,7 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
 import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
 import storeContainer from '@/store/storeContainer';
+import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
 import downloadFile from '@/utils/file/downloadFile';
 import {
   closeFullScreenLoading,
@@ -134,6 +135,9 @@ const useExportMxJson = ({
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
+
+    restoreCameraTransformation(projectStore.scene);
+
     showFullScreenLoading();
     const interactionJson = JSON.parse(
       JSON.stringify(interactionStore.toJSON())

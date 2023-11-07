@@ -10,7 +10,7 @@ export default class Socket {
   wires = [];
   node = null;
   isInput = false;
-  reference = null;
+  reference = [];
 
   constructor(key, type, name, isInput, reference) {
     this.key = key;
@@ -75,7 +75,8 @@ export default class Socket {
       name: this.name,
       wires: this.wires,
       node: this.node,
-      isInput: this.isInput
+      isInput: this.isInput,
+      reference: this.reference
     };
   }
 

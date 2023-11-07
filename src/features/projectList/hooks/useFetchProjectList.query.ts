@@ -1,18 +1,8 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ResponseGetMxProjectList } from '@/network/model/project/get/getMxProjectList.model';
-import GetProjectServices from '@/network/type/serviceInterface/project/getProject.interface';
+import getProjectServices from '@/network/restApi/services/project/get/getProjectServices';
 import { Project, ProjectList } from '../types/project';
-
-const {
-  default: getProjectServices
-}: {
-  default: GetProjectServices;
-} = await import(
-  `../../../network/${
-    import.meta.env.VITE_NETWORK_TYPE
-  }/services/project/get/getProjectServices.ts`
-);
 
 const projectListDataMapper = (data: ResponseGetMxProjectList) => {
   const mappedData: ProjectList<Project> = data.map((project) => {
