@@ -41,24 +41,40 @@ export default function EditableInteraction_VM() {
     return nodeIndex;
   };
 
-  const toJson = () => {
+  const getVariableSensorNodes = (interactionJson) => {
+    const sheetIds = Object.keys(interactionJson.sheets);
+    const variableSensorNodes = [];
+    sheetIds.forEach((sheetId) => {
+      variableSensorNodes.push(
+        ...interactionJson.sheets[sheetId].nodes.filter(
+          (node) => node.type === 'VariableNumberSensor'
+        )
+      );
+    });
+    return {
+      variableSensorNodes
+    };
+  };
+
+  const toJson = (interactionJson) => {
     const metaDataArray = [
-      createUxMetaData(
-        'avatarIndex',
-        'number',
-        'Spinner',
-        [0, 20],
-        getIndexWithInteractionKey_(AVATAR),
-        ''
-      ),
-      createUxMetaData(
-        'animationIndex',
-        'number',
-        'Spinner',
-        [0, 20],
-        getIndexWithInteractionKey_(ANIMATION),
-        ''
-      )
+      // createUxMetaData(
+      //   'avatarIndex',
+      //   'number',
+      //   'Spinner',
+      //   [0, 20],
+      //   getIndexWithInteractionKey_(AVATAR),
+      //   ''
+      // ),
+      // createUxMetaData(
+      //   'animationIndex',
+      //   'number',
+      //   'Spinner',
+      //   [0, 20],
+      //   getIndexWithInteractionKey_(ANIMATION),
+      //   ''
+      // )
+      getVariableSensorNodes(interactionJson)
     ];
     return metaDataArray;
   };
