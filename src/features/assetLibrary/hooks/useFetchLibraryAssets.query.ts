@@ -4,18 +4,8 @@ import {
   RequestGetAssetList,
   ResponseGetAssetList
 } from '@/network/model/library/get/getAssetList.model';
-import GetLibraryServices from '@/network/type/serviceInterface/library/getLibrary.interface';
+import getLibraryServices from '@/network/restApi/services/library/get/getLibraryServices';
 import { LibraryAsset } from '../types/fetchAssetType';
-
-const {
-  default: getLibraryServices
-}: {
-  default: GetLibraryServices;
-} = await import(
-  `../../../network/${
-    import.meta.env.VITE_NETWORK_TYPE
-  }/services/library/get/getLibraryServices.ts`
-);
 
 const assetDataMapper = (data: ResponseGetAssetList) => {
   const mappedData: LibraryAsset[] = data.map((asset) => {
