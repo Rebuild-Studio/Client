@@ -53,8 +53,6 @@ const ProjectList = () => {
     addToast('프로젝트를 불러오는 중입니다.');
     projectStore.setProjectInfo(projectStore.selectedProject);
     await fetchProject();
-
-    closeFullScreenLoading();
   };
 
   useEffect(() => {
