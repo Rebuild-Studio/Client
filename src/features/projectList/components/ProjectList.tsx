@@ -6,6 +6,10 @@ import Tab from '@/components/layout/Tab';
 import { useToast } from '@/hooks/useToast';
 import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
+import {
+  closeFullScreenLoading,
+  showFullScreenLoading
+} from '@/utils/loading/loadingHandler.tsx';
 import ProjectCards from './ProjectCards';
 import { TemplateCards } from './TemplateCards';
 import { useFetchProject } from '../hooks/useFetchProject';
@@ -44,11 +48,13 @@ const ProjectList = () => {
       addToast('프로젝트를 선택해주세요');
       return;
     }
+    showFullScreenLoading();
+
     addToast('프로젝트를 불러오는 중입니다.');
     projectStore.setProjectInfo(projectStore.selectedProject);
     await fetchProject();
 
-    projectStateStore.clearModal();
+    closeFullScreenLoading();
   };
 
   useEffect(() => {
