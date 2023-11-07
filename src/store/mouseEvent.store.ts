@@ -1,4 +1,4 @@
-import { DragEvent, DragEventHandler, MouseEvent } from 'react';
+import { DragEvent, MouseEvent } from 'react';
 import { makeAutoObservable } from 'mobx';
 
 type MouseEventType =
@@ -10,15 +10,16 @@ type MouseEventType =
   | 'onDrop'
   | 'NONE';
 
+type MouseEventHandlerType<T extends HTMLElement> =
+  | DragEvent<T>
+  | MouseEvent<T>
+  | null;
+
 class MouseEventStore {
-  currentMouseEvent: [
-    MouseEventType,
-    (
-      | MouseEvent<HTMLDivElement, MouseEvent>
-      | DragEventHandler<HTMLDivElement>
-      | null
-    )
-  ] = ['NONE', null];
+  currentMouseEvent: [MouseEventType, MouseEventHandlerType<HTMLElement>] = [
+    'NONE',
+    null
+  ];
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -26,9 +27,7 @@ class MouseEventStore {
 
   updateMouseEvent(
     mouseEvent: MouseEventType,
-    eventValue:
-      | MouseEvent<HTMLDivElement, MouseEvent>
-      | DragEvent<HTMLDivElement>
+    eventValue: MouseEvent<HTMLDivElement> | DragEvent<HTMLDivElement>
   ) {
     this.currentMouseEvent = [mouseEvent, eventValue];
   }
