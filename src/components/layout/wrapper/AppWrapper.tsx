@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { bgColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import { isCtrlEventTrigger } from '@/utils/platform/getPlatformKeyboardEvent';
+import editorModeStore from '@store/editorMode.store.ts';
 
 interface AppProps {
   children: React.ReactNode;
@@ -11,9 +12,14 @@ interface AppProps {
 
 const AppWrapper = (props: AppProps) => {
   const { keyboardEventStore, projectStateStore } = storeContainer;
+  const { editorMode } = editorModeStore;
+
   const setOnKeydownListener = (e: KeyboardEvent) => {
     // F12, 모달이 열려있을 때는 키보드 이벤트를 무시한다.
     if (projectStateStore.isModalOpened) {
+      return;
+    }
+    if (editorMode === 'canvas') {
       return;
     }
 
