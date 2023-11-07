@@ -6,8 +6,8 @@ const nodeType = 'Camera';
 export default class CameraNode extends Node {
   static NODE_TYPE = nodeType;
 
-  constructor(name, uuid, objectId, type = 'Camera') {
-    super(name, uuid, objectId, type);
+  constructor(name, uuid, objectId, type = nodeType) {
+    super(name, uuid, type);
     this.category = 'Object';
     this.data = nodeSchema;
     this.addData(type);
