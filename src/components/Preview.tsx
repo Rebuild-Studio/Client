@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import { MxCanvasCore } from '@mv/core';
 import storeContainer from '@/store/storeContainer';
+import { findCameraMesh } from '@/three_components/utils/findCameraMesh.ts';
 import { findLightMeshes } from '@/three_components/utils/findLightMeshes.ts';
 import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
 import createMxJson from '@/utils/json/createMxJson';
@@ -35,6 +36,21 @@ const Preview = observer(() => {
       previewJson.scene.object.children.push(light);
       lightMesh.visible = false;
       lightMesh.children = [];
+    }
+  });
+
+  // 프리뷰 모드에서 카메라 조형물이 보이지 않도록
+  const CameraMesh = findCameraMesh(previewJson.scene.object);
+  CameraMesh.forEach((cameraMesh) => {
+    const camera = cameraMesh.children.find((child) =>
+      child.type.includes('Camera')
+    );
+    if (camera) {
+      const { matrix } = cameraMesh;
+      camera.matrix = matrix;
+      previewJson.scene.object.children.push(camera);
+      cameraMesh.visible = false;
+      cameraMesh.children = [];
     }
   });
 
