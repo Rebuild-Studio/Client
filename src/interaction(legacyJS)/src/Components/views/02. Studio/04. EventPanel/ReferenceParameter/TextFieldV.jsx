@@ -10,7 +10,7 @@ const ReferenceTextField = ({ value, setValue, tooltipMessage, refType }) => {
 
   const onInputChange = (event) => {
     const inputValue = event.target.value;
-    const re = /^[0-9\b.]+$/;
+    const re = /^[0-9\b.-]+$/;
 
     if (inputValue === '') {
       // 빈칸일 경우
