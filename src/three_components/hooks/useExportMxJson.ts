@@ -3,10 +3,7 @@ import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/Even
 import storeContainer from '@/store/storeContainer';
 import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
 import downloadFile from '@/utils/file/downloadFile';
-import {
-  closeFullScreenLoading,
-  showFullScreenLoading
-} from '@/utils/loading/loadingHandler';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { ProjectStore, ProjectType } from '@store/project.store.ts';
 import {
   MX_WORKER_REQUEST_TYPE,

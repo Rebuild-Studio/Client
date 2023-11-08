@@ -1,4 +1,3 @@
-import * as THREE from 'three';
 import { observer } from 'mobx-react';
 import { MxCanvasCore } from '@mv/core';
 import storeContainer from '@/store/storeContainer';

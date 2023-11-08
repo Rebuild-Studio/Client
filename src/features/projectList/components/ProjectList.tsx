@@ -7,7 +7,6 @@ import { useToast } from '@/hooks/useToast';
 import { basicColors, bgColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
 import {
-  closeFullScreenLoading,
   showFullScreenLoading
 } from '@/utils/loading/loadingHandler.tsx';
 import ProjectCards from './ProjectCards';
