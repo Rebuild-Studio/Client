@@ -60,22 +60,6 @@ export default function EditableInteraction_VM() {
       );
     });
 
-    // const mappedvariableNumberSensorNodes = variableNumberSensorNodes.map(
-    //   (node) => {
-    //     return {
-    //       key: node.referenceParameter.NODE_DAT_KEY.defaultValue,
-    //       value: node.outputSockets.number.reference.defaultValue
-    //     };
-    //   }
-    // );
-    //
-    // const mappedvariableNumberNodes = variableNumberNodes.map((node) => {
-    //   return {
-    //     key: node.referenceParameter.NODE_DAT_KEY.defaultValue,
-    //     value: node.inputSockets.number.reference.defaultValue
-    //   };
-    // });
-
     const sensorNodesObject = variableNumberSensorNodes.reduce((obj, node) => {
       obj[node.referenceParameter.NODE_DAT_KEY.defaultValue] =
         node.outputSockets.number.reference.defaultValue;
@@ -88,9 +72,6 @@ export default function EditableInteraction_VM() {
         node.inputSockets.number.reference.defaultValue;
       return obj;
     }, sensorNodesObject); // sensorNodesObject를 초기값으로 사용하여 병합
-
-    // 결과 객체 출력
-    console.log(numberNodesObject);
 
     return {
       numberNodesObject
