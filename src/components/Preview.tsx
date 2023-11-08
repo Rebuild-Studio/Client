@@ -23,6 +23,7 @@ const Preview = observer(() => {
   );
   const previewJson = createMxJson(sceneJson, interactionJson);
 
+  // 프리뷰 모드에서 빛 조형물이 보이지 않도록
   const lightMeshes = findLightMeshes(previewJson.scene.object);
   lightMeshes.forEach((lightMesh) => {
     const light = lightMesh.children.find((child) =>
