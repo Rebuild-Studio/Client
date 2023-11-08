@@ -114,6 +114,7 @@ const RenderScene = () => {
     };
 
     renderLoadedMxJson();
+    closeFullScreenLoading();
   }, [primitiveStore, projectStore.mxJson, scene, addToast, projectStore]);
 
   // 선택 컴포넌트 그룹화 작업
@@ -149,8 +150,8 @@ const RenderScene = () => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-      )}
+          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+        )}
 
       {/* Group 자식용 */}
       <ChildGizmo />
