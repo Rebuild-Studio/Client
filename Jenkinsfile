@@ -29,7 +29,9 @@ node {
       }
     }
     stage('========== Build image ==========') {
+      withNPM(npmrcConfig: 'MxNpmrcConfig'){
       app = docker.build(image_name + ':latest', "--build-arg ACTIVE_ENV=${env.active_env} .")
+      }
     }
     stage('========== Push Image ==========') {
       docker.withRegistry(env.docker_hub_registry_url, 'docker_hub_credential') {
