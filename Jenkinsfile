@@ -29,7 +29,7 @@ node {
       }
     }
     stage('========== Build image ==========') {
-      withNPM(npmrcConfig: 'MxNpmrcConfig'){
+      withNPM(npmrcConfig: 'mx-npmrc-config'){
       app = docker.build(image_name + ':latest', "--build-arg ACTIVE_ENV=${env.active_env} .")
       }
     }
