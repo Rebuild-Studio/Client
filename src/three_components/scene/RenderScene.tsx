@@ -6,6 +6,7 @@ import { useThree } from '@react-three/fiber';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useServerMaterialLoader } from '@/hooks/loader';
 import { useToast } from '@/hooks/useToast';
+import legacyStoreContainer from '@/interaction(legacyJS)/src/Components/stores/storeContainer.js';
 import storeContainer from '@/store/storeContainer';
 import loadMxJson from '@/utils/json/loadMxJson';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
@@ -32,6 +33,7 @@ const RenderScene = () => {
     projectStore,
     transformControlStore
   } = storeContainer;
+  const { eventSystem_store } = legacyStoreContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
 
@@ -109,6 +111,7 @@ const RenderScene = () => {
       primitiveStore.clearPrimitives();
 
       renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true);
+      eventSystem_store.parseInteractions(decodedJson.interaction);
       projectStore.clearMxJson();
       addToast('프로젝트를 불러왔습니다.');
     };
@@ -150,8 +153,8 @@ const RenderScene = () => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-        )}
+        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      )}
 
       {/* Group 자식용 */}
       <ChildGizmo />
