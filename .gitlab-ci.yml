@@ -5,7 +5,7 @@ stages:
 npm:
     stage: install
     only:
-        - fix/variableSensorNode
+        - release
     cache:
         paths:
             - node_modules
@@ -17,7 +17,7 @@ npm:
 build:
     stage: build
     only:
-        - fix/variableSensorNode
+        - release
     before_script:
         - echo 'build start'
     cache:
