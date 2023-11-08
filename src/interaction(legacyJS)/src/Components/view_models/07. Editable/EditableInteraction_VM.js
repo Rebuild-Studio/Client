@@ -59,9 +59,25 @@ export default function EditableInteraction_VM() {
         )
       );
     });
+
+    const mappedvariableNumberSensorNodes = variableNumberSensorNodes.map(
+      (node) => {
+        return {
+          key: node.referenceParameter.NODE_DAT_KEY.defaultValue,
+          value: node.outputSockets.number.reference.defaultValue
+        };
+      }
+    );
+
+    const mappedvariableNumberNodes = variableNumberNodes.map((node) => {
+      return {
+        key: node.referenceParameter.NODE_DAT_KEY.defaultValue,
+        value: node.inputSockets.number.reference.defaultValue
+      };
+    });
     return {
-      variableNumberSensorNodes,
-      variableNumberNodes
+      mappedvariableNumberSensorNodes,
+      mappedvariableNumberNodes
     };
   };
 
