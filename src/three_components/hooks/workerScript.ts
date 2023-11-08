@@ -62,7 +62,7 @@ self.addEventListener(
     data: {
       type: MxWorkerRequestType;
       sceneJson: SceneJson;
-      interactionJson: unknown;
+      interactionJson: object;
       projectInfo?: ProjectInfo;
     };
   }) => {
