@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { PrimitiveStore } from '@store/primitive.store.ts';
 import AssetPrimitive from '../assets/AssetPrimitive';
 import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
@@ -95,6 +96,7 @@ const renderObjects = (
         break;
     }
   }
+  closeFullScreenLoading();
 };
 
 export {
