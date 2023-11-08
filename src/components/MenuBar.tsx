@@ -201,6 +201,7 @@ const StyledBar = styled.div`
   height: 38px;
   padding: 0 2px;
   background-color: ${bgColors[101728]};
+  align-items: center;
 `;
 
 const Left = styled.div`
@@ -216,5 +217,5 @@ const Right = styled.div`
 const MenuButton = styled.button`
   color: white;
   padding: 0 12px;
-  height: 100%;
+  height: 2rem;
 `;

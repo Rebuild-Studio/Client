@@ -99,6 +99,7 @@ const Wrapper = styled.div`
   height: 40px;
   padding: 0 18px;
   background-color: #222222;
+  overflow: hidden;
 
   img {
     margin: 0;
