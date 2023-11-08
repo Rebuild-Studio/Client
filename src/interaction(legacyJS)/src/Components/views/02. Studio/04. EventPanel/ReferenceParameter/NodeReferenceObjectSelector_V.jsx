@@ -21,7 +21,7 @@ const NodeReferenceObjectSelector = ({ value, setValue, tooltipMessage }) => {
     >
       <Box sx={style.SelectWrapper}>
         <Select
-          value={value}
+          value={value || ''}
           label="Mesh"
           onChange={(e) => setValue(e.target.value)}
           sx={style.SelectArea(eventSystem_store.cameraZoom)}
