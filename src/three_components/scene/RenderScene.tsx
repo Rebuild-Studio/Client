@@ -8,6 +8,7 @@ import { useServerMaterialLoader } from '@/hooks/loader';
 import { useToast } from '@/hooks/useToast';
 import storeContainer from '@/store/storeContainer';
 import loadMxJson from '@/utils/json/loadMxJson';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import SceneEffect from '../common/SceneEffect';
 import ChildGizmo from '../gizmo/ChildGizmo';
 import Gizmo from '../gizmo/Gizmo';
@@ -163,6 +164,7 @@ const RenderScene = () => {
             fallback={<></>}
             onError={() => {
               addToast('오브젝트 에러!');
+              closeFullScreenLoading();
             }}
           >
             {primitive}
