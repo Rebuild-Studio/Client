@@ -69,20 +69,14 @@ const renderObjects = (
     const storeId = isNew ? nanoid() : mesh.userData['storeId'];
     switch (mesh.name) {
       case 'GROUP':
-        primitiveStore.addPrimitive(
-          storeId,
-          renderGroup(storeId, mesh)
-        );
+        primitiveStore.addPrimitive(storeId, renderGroup(storeId, mesh));
         break;
 
       case 'SELECTED_GROUP':
         break;
 
       case 'ASSET':
-        primitiveStore.addPrimitive(
-          storeId,
-          renderAsset(storeId, mesh)
-        );
+        primitiveStore.addPrimitive(storeId, renderAsset(storeId, mesh));
         break;
 
       case 'CUBE':
@@ -91,10 +85,11 @@ const renderObjects = (
       case 'CYLINDER':
       case 'SPHERE':
       case 'TORUS':
-        primitiveStore.addPrimitive(
-          storeId,
-          renderPrimitive(storeId, mesh)
-        );
+        primitiveStore.addPrimitive(storeId, renderPrimitive(storeId, mesh));
+        break;
+
+      case 'PREVIEW_CAMERA':
+        primitiveStore.addPrimitive(storeId, renderGroup(storeId, mesh));
         break;
       default:
         break;
