@@ -5,6 +5,7 @@ stages:
 npm:
     stage: install
     only:
+        - develop
         - release
     cache:
         paths:
@@ -17,6 +18,7 @@ npm:
 build:
     stage: build
     only:
+        - develop
         - release
     before_script:
         - echo 'build start'
