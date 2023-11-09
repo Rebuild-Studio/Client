@@ -1,7 +1,6 @@
 import EditableInteraction_VM from '@/interaction(legacyJS)/src/Components/view_models/07. Editable/EditableInteraction_VM';
-import { findLightMeshes } from '@/three_components/utils/findLightMeshes.ts';
 import { MxJson } from '@/types/mxJson/mxJson';
-import { SceneJson } from '@/types/scene/scene';
+import { SceneJson, SceneJsonObject } from '@/types/scene/scene';
 import optimizeSceneJson from './optimizeSceneJson';
 
 const createMxJson = (
@@ -26,37 +25,63 @@ const createMxJson = (
 export default createMxJson;
 
 const removeLightMeshes = (sceneJson: SceneJson) => {
-  const lightMeshes = findLightMeshes(sceneJson.object);
-  lightMeshes.forEach((lightMesh) => {
-    const light = lightMesh.children.find((child) =>
-      child.type.includes('Light')
-    );
-    if (light) {
-      const { matrix } = lightMesh;
-      light.name = lightMesh.name;
-      light.matrix = matrix;
-      sceneJson.object.children.push(light);
-      lightMesh.visible = false;
-      lightMesh.children = [];
-    }
+  findLightMeshes(sceneJson.object, null).forEach(({ lightMesh, parent }) => {
+    removeLightMesh(lightMesh, parent);
   });
 };
 
+const findLightMeshes = (
+  obj: SceneJsonObject,
+  parent: SceneJsonObject | null,
+  result: { lightMesh: SceneJsonObject; parent: SceneJsonObject | null }[] = []
+) => {
+  if (['POINT_LIGHT', 'SPOT_LIGHT'].includes(obj.name)) {
+    result.push({ lightMesh: obj, parent });
+  }
+
+  if (obj.children && obj.children.length > 0) {
+    for (let i = 0; i < obj.children.length; i++) {
+      findLightMeshes(obj.children[i], obj, result);
+    }
+  }
+
+  return result;
+};
+
+const removeLightMesh = (
+  lightMesh: SceneJsonObject,
+  parent: SceneJsonObject | null
+) => {
+  const light = lightMesh.children.find((child) =>
+    child.type.includes('Light')
+  );
+  const target = light?.children[0];
+  if (light && target) {
+    light.matrix = lightMesh.matrix;
+    parent?.children.push(light);
+    console.log(light.angle);
+    const lightMeshIndex = parent?.children.findIndex(
+      (child) => child.uuid === lightMesh.uuid
+    );
+    lightMeshIndex && parent?.children.splice(lightMeshIndex, 1);
+  }
+};
+
 const removeCameraMesh = (sceneJson: SceneJson) => {
-  const cameraMesh = sceneJson.object.children.find(
+  const cameraMeshIndex = sceneJson.object.children.findIndex(
     (child) => child.name === 'PREVIEW_CAMERA'
   );
+  const cameraMesh = sceneJson.object.children[cameraMeshIndex];
+
   if (cameraMesh) {
     const camera = cameraMesh.children.find((child) =>
       child.type.includes('Camera')
     );
     if (camera) {
       const { matrix } = cameraMesh;
-      camera.name = cameraMesh.name;
       camera.matrix = matrix;
+      sceneJson.object.children.splice(cameraMeshIndex, 1);
       sceneJson.object.children.push(camera);
-      cameraMesh.visible = false;
-      cameraMesh.children = [];
     }
   }
 };

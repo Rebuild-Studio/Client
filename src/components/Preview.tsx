@@ -17,6 +17,7 @@ const Preview = observer(() => {
     JSON.stringify(eventSystem_store.toJSON())
   );
   const previewJson = createMxJson(sceneJson, interactionJson);
+  console.log(previewJson);
 
   const data = JSON.stringify(previewJson);
   return <MxCanvasCore data={data} mode={'play'} />;
