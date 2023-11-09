@@ -1,48 +1,16 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
-import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
-import storeContainer from '@/store/storeContainer';
 import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
-import downloadFile from '@/utils/file/downloadFile';
 import createInteractionJson from '@/utils/json/createInteractionJson';
 import createSceneJson from '@/utils/json/createSceneJson';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { ProjectStore, ProjectType } from '@store/project.store.ts';
+import exportJsonFile from './export/exportJsonFile';
+import { JSON_WORKER_REQUEST_TYPE } from './jsonWorker';
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE
 } from './workerScript';
 import MxWorker from './workerScript?worker';
-
-const exportJsonFile = async (
-  scene: THREE.Scene,
-  interactionJson: unknown,
-  setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
-  setIsSuccess: Dispatch<React.SetStateAction<boolean>>
-) => {
-  const mxWorker = new MxWorker();
-  // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
-  const sceneJson = createSceneJson(scene);
-  const { projectStore } = storeContainer;
-
-  mxWorker.postMessage({
-    type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE,
-    sceneJson,
-    interactionJson
-  });
-  mxWorker.onmessage = (e) => {
-    if (e.data.type === MX_WORKER_RESPONSE_TYPE.DOWNLOAD) {
-      const { stringifiedJson } = e.data;
-      downloadFile(stringifiedJson, projectStore.projectName + '.json', 'json');
-
-      setIsProcessing(false);
-      setIsSuccess(true);
-    } else {
-      console.error('잘못된 요청 타입입니다: ', e.data.type);
-    }
-    closeFullScreenLoading();
-    mxWorker.terminate();
-  };
-};
 
 const exportJsonPost = async (
   scene: THREE.Scene,
@@ -134,14 +102,19 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
 
     const interactionJson = createInteractionJson();
     exportJsonFile(
-      projectStore.scene,
-      interactionJson,
+      JSON_WORKER_REQUEST_TYPE.CREATE_MX_JSON,
       setIsProcessing,
-      setIsSuccess
+      setIsSuccess,
+      projectStore.scene,
+      interactionJson
     );
   }, [projectStore.scene]);
 
+  /**
+   * @description Scene Json 생성 함수
+   */
   const downloadSceneJson = useCallback(() => {
+    console.log('in', projectStore.scene);
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
@@ -149,6 +122,12 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
     restoreCameraTransformation(projectStore.scene);
 
     // TODO : sceneJson 파일 다운로드
+    exportJsonFile(
+      JSON_WORKER_REQUEST_TYPE.CREATE_SCENE_JSON,
+      setIsProcessing,
+      setIsSuccess,
+      projectStore.scene
+    );
   }, [projectStore.scene]);
 
   /**
@@ -159,7 +138,14 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
     setIsSuccess(false);
 
     const interactionJson = createInteractionJson();
-    // TODO : interacionJson 파일 다운로드
+    // TODO : 함수 매개변수 타입변경 필요 (undefined)
+    exportJsonFile(
+      JSON_WORKER_REQUEST_TYPE.CREATE_INTERACTION_JSON,
+      setIsProcessing,
+      setIsSuccess,
+      undefined,
+      interactionJson
+    );
   }, []);
 
   return [
