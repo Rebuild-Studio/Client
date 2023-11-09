@@ -110,7 +110,7 @@ const RenderScene = () => {
       const newScene = loader.parse(decodedJson.scene);
       primitiveStore.clearPrimitives();
 
-      renderObjects(primitiveStore, newScene.children, true);
+      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true);
       eventSystem_store.parseInteractions(decodedJson.interaction);
       projectStore.clearMxJson();
       addToast('프로젝트를 불러왔습니다.');

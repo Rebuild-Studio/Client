@@ -1,4 +1,3 @@
-import * as THREE from 'three';
 import { nanoid } from 'nanoid';
 import PreviewCamera from '@/three_components/camera/PreviewCamera.tsx';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
@@ -55,76 +54,60 @@ const renderLocalAsset = (storeId: string, file: File) => {
   return <LocalAssetPrimitive storeId={storeId} file={file} />;
 };
 
-const renderSpotLight = (storeId: string, light: THREE.SpotLight) => {
-  return <SpotLight storeId={storeId} light={light} />;
+const renderSpotLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <SpotLight storeId={storeId} propMesh={propMesh} />;
 };
 
-const renderPointLight = (storeId: string, light: THREE.PointLight) => {
-  return <PointLight storeId={storeId} light={light} />;
+const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <PointLight storeId={storeId} propMesh={propMesh} />;
 };
 
-const renderPreviewCamera = (
-  storeId: string,
-  camera: THREE.PerspectiveCamera
-) => {
-  return <PreviewCamera storeId={storeId} camera={camera} />;
+const renderPreviewCamera = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <PreviewCamera storeId={storeId} propMesh={propMesh} />;
 };
 
 const renderObjects = (
   primitiveStore: PrimitiveStore,
-  objectList: THREE.Object3D[],
+  meshList: THREE.Mesh[],
   isNew?: boolean
 ) => {
-  for (const object of objectList) {
-    const storeId = isNew ? nanoid() : object.userData['storeId'];
-    if (object instanceof THREE.Mesh) {
-      switch (object.name) {
-        case 'GROUP':
-          primitiveStore.addPrimitive(storeId, renderGroup(storeId, object));
-          break;
+  for (const mesh of meshList) {
+    const storeId = isNew ? nanoid() : mesh.userData['storeId'];
+    switch (mesh.name) {
+      case 'GROUP':
+        primitiveStore.addPrimitive(storeId, renderGroup(storeId, mesh));
+        break;
 
-        case 'SELECTED_GROUP':
-          break;
+      case 'SELECTED_GROUP':
+        break;
 
-        case 'ASSET':
-          primitiveStore.addPrimitive(storeId, renderAsset(storeId, object));
-          break;
+      case 'ASSET':
+        primitiveStore.addPrimitive(storeId, renderAsset(storeId, mesh));
+        break;
 
-        case 'CUBE':
-        case 'CAPSULE':
-        case 'CONE':
-        case 'CYLINDER':
-        case 'SPHERE':
-        case 'TORUS':
-          primitiveStore.addPrimitive(
-            storeId,
-            renderPrimitive(storeId, object)
-          );
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (object.type) {
-        case 'PerspectiveCamera':
-          primitiveStore.addPrimitive(
-            storeId,
-            renderPreviewCamera(storeId, object as THREE.PerspectiveCamera)
-          );
-          break;
-        case 'PointLight':
-          primitiveStore.addPrimitive(
-            storeId,
-            renderPointLight(storeId, object as THREE.PointLight)
-          );
-          break;
-        case 'SpotLight':
-          primitiveStore.addPrimitive(
-            storeId,
-            renderSpotLight(storeId, object as THREE.SpotLight)
-          );
-          break;
-      }
+      case 'CUBE':
+      case 'CAPSULE':
+      case 'CONE':
+      case 'CYLINDER':
+      case 'SPHERE':
+      case 'TORUS':
+        primitiveStore.addPrimitive(storeId, renderPrimitive(storeId, mesh));
+        break;
+
+      case 'SPOT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderSpotLight(storeId, mesh));
+        break;
+      case 'POINT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderPointLight(storeId, mesh));
+        break;
+      case 'PREVIEW_CAMERA':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPreviewCamera(storeId, mesh)
+        );
+        break;
+      default:
+        break;
     }
   }
   closeFullScreenLoading();
