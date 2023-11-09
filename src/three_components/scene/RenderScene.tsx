@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as THREE from 'three';
 import { reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -22,6 +22,16 @@ import onMouseDownSceneEvents from '../utils/onMouseDownSceneEvents';
 import onMouseUpSceneEvents from '../utils/onMouseUpSceneEvents';
 import { renderObjects } from '../utils/renderThreeComponents';
 
+const traverseGroupAndUpdateMaterial = (
+  group: THREE.Group,
+  material: THREE.Material
+) => {
+  group.traverse((child) => {
+    if (child instanceof THREE.Mesh) {
+      child.material = material;
+    }
+  });
+};
 const RenderScene = () => {
   const {
     primitiveStore,
@@ -32,7 +42,6 @@ const RenderScene = () => {
     projectStore,
     transformControlStore
   } = storeContainer;
-  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
 
   const raycaster = useThree((state) => state.raycaster);
@@ -136,8 +145,13 @@ const RenderScene = () => {
 
   useEffect(() => {
     if (selectedPrimitive && selectedObjectStore.selectedMaterial) {
-      setNewMesh(selectedPrimitive);
-      newMesh.material = material;
+      if (selectedPrimitive instanceof THREE.Group) {
+        selectedPrimitive.traverse((child) => {
+          (child as THREE.Mesh).material = material;
+        });
+      } else if (selectedPrimitive instanceof THREE.Mesh) {
+        selectedPrimitive.material = material;
+      }
       selectedObjectStore.setSelectedMaterial(materialName);
     }
   }, [selectedObjectStore.selectedMaterial]);
@@ -150,8 +164,8 @@ const RenderScene = () => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-        )}
+        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      )}
 
       {/* Group 자식용 */}
       <ChildGizmo />
