@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import PreviewCamera from '@/three_components/camera/PreviewCamera.tsx';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { PrimitiveStore } from '@store/primitive.store.ts';
 import AssetPrimitive from '../assets/AssetPrimitive';
@@ -61,6 +62,10 @@ const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
   return <PointLight storeId={storeId} propMesh={propMesh} />;
 };
 
+const renderPreviewCamera = (storeId: string, propMesh?: THREE.Mesh) => {
+  return <PreviewCamera storeId={storeId} propMesh={propMesh} />;
+};
+
 const renderObjects = (
   primitiveStore: PrimitiveStore,
   meshList: THREE.Mesh[],
@@ -89,8 +94,17 @@ const renderObjects = (
         primitiveStore.addPrimitive(storeId, renderPrimitive(storeId, mesh));
         break;
 
+      case 'SPOT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderSpotLight(storeId, mesh));
+        break;
+      case 'POINT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderPointLight(storeId, mesh));
+        break;
       case 'PREVIEW_CAMERA':
-        primitiveStore.addPrimitive(storeId, renderGroup(storeId, mesh));
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPreviewCamera(storeId, mesh)
+        );
         break;
       default:
         break;

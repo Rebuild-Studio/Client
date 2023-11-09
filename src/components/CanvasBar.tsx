@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import AssetLibrary from '@/features/assetLibrary';
 import { bgColors, grayColors } from '@/resources/colors/colors';
 import storeContainer from '@/store/storeContainer';
-import PreviewCamera from '@/three_components/camera/PreivewCamera';
+import PreviewCamera from '@/three_components/camera/PreviewCamera.tsx';
 import PointLight from '@/three_components/lights/PointLight';
 import SpotLight from '@/three_components/lights/SpotLight';
 import CapsulePrimitive from '@/three_components/primitives/CapsulePrimitive';
