@@ -16,7 +16,6 @@ import { MenuItemType } from './common/subMenu/MenuItem.types';
 import { SubMenu } from './common/subMenu/SubMenu';
 import { ConfirmBox } from './layout/modal/ConfirmBox';
 import BottomPopOver from './layout/popover/BottomPopOver';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 import { useEffect } from 'react';
 
 const MenuBar = () => {
@@ -27,11 +26,9 @@ const MenuBar = () => {
     primitiveStore,
     sceneSettingStore
   } = storeContainer;
-  const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
   const [, isProcessing, createProject, downloadProject] = useExportMxJson({
-    projectStore,
-    interactionStore: eventSystem_store
+    projectStore
   });
 
   const createMX = () => {
