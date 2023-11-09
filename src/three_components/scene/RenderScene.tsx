@@ -22,16 +22,6 @@ import onMouseDownSceneEvents from '../utils/onMouseDownSceneEvents';
 import onMouseUpSceneEvents from '../utils/onMouseUpSceneEvents';
 import { renderObjects } from '../utils/renderThreeComponents';
 
-const traverseGroupAndUpdateMaterial = (
-  group: THREE.Group,
-  material: THREE.Material
-) => {
-  group.traverse((child) => {
-    if (child instanceof THREE.Mesh) {
-      child.material = material;
-    }
-  });
-};
 const RenderScene = () => {
   const {
     primitiveStore,

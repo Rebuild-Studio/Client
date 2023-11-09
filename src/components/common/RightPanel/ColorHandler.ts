@@ -39,7 +39,14 @@ class ColorHandler {
     const selectedPrimitive = Object.values(
       primitiveStore.selectedPrimitives
     )[0];
-    const selectedMaterial = selectedPrimitive.material;
+    let selectedMaterial;
+    if (selectedPrimitive instanceof THREE.Group) {
+      selectedPrimitive.traverse((child) => {
+        selectedMaterial = (child as THREE.Mesh).material;
+      });
+    } else if (selectedPrimitive instanceof THREE.Mesh) {
+      selectedMaterial = selectedPrimitive.material;
+    }
     const hexColor = hsvaToHex(phsva);
 
     if (selectedMaterial instanceof THREE.MeshStandardMaterial) {
