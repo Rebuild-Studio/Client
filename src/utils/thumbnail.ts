@@ -32,23 +32,46 @@ const createThumbnail = async (
   sceneSettingStore.setIsGridVisible(false);
   sceneSettingStore.setIsAxisVisible(false);
 
+  //씬 가져오고,
   const scene = projectStore.scene;
+  //사진 찍을 카메라 위치 세팅
   const screenCamera = new THREE.PerspectiveCamera();
   screenCamera.copy(camera as THREE.PerspectiveCamera);
-  screenCamera.lookAt(0, 0, 0);
+  screenCamera.lookAt(0, 0, 0.1);
 
   return new Promise<string>((resolve) => {
     setTimeout(() => {
       renderer?.render(scene as THREE.Scene, screenCamera);
+      //캔버스 blob으로 변환
       renderer?.domElement.toBlob((blob) => {
         if (blob) {
-          // if (type === 'ARRAY_BUFFER') resolve(blob.arrayBuffer());
+          // 캔버스 다운사이징 해서 다시 그리고 blob으로 변환
+          // TODO : 순수함수로 바꾸기
+          const img = new Image();
+          img.onload = () => {
+            const downsizedCanvas = document.createElement('canvas');
+            downsizedCanvas.width = 1920 / 5;
+            downsizedCanvas.height = 1080 / 5;
+            const ctx = downsizedCanvas.getContext('2d');
 
-          const reader = new FileReader();
-          reader.onload = () => {
-            resolve((reader.result as string)?.split(',')[1]);
+            ctx?.drawImage(
+              img,
+              0,
+              0,
+              downsizedCanvas.width,
+              downsizedCanvas.height
+            );
+
+            // Convert the downsized image back to a blob
+            downsizedCanvas.toBlob((downsizedBlob) => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                resolve((reader.result as string)?.split(',')[1]);
+              };
+              reader.readAsDataURL(downsizedBlob as Blob);
+            }, 'image/png');
           };
-          reader.readAsDataURL(blob);
+          img.src = URL.createObjectURL(blob);
         } else {
           throw new Error('Blob is null');
         }
