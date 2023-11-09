@@ -3,11 +3,11 @@ import { MxCanvasCore } from '@mv/core';
 import storeContainer from '@/store/storeContainer';
 import { findLightMeshes } from '@/three_components/utils/findLightMeshes.ts';
 import createMxJson from '@/utils/json/createMxJson';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
+import createSceneJson from '@/utils/json/createSceneJson';
+import createInteractionJson from '@/utils/json/createInteractionJson';
 
 const Preview = observer(() => {
   const { projectStore } = storeContainer;
-  const { eventSystem_store } = legacyStoreContainer;
   const sceneForPreview = projectStore.scene;
 
   if (!sceneForPreview) {
@@ -16,10 +16,8 @@ const Preview = observer(() => {
 
   // restoreCameraTransformation(sceneForPreview);
 
-  const sceneJson = sceneForPreview.toJSON();
-  const interactionJson = JSON.parse(
-    JSON.stringify(eventSystem_store.toJSON())
-  );
+  const sceneJson = createSceneJson(sceneForPreview);
+  const interactionJson = createInteractionJson();
   const previewJson = createMxJson(sceneJson, interactionJson);
 
   // 프리뷰 모드에서 빛 조형물이 보이지 않도록
