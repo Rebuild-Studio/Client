@@ -14,6 +14,7 @@ interface SceneJsonObject {
   children: SceneJsonObject[];
   matrix?: number[];
   visible?: boolean;
+  uuid: string;
 }
 
 interface SceneJson {
