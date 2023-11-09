@@ -55,11 +55,9 @@ const removeLightMesh = (
   const light = lightMesh.children.find((child) =>
     child.type.includes('Light')
   );
-  const target = light?.children[0];
-  if (light && target) {
+  if (light) {
     light.matrix = lightMesh.matrix;
     parent?.children.push(light);
-    console.log(light.angle);
     const lightMeshIndex = parent?.children.findIndex(
       (child) => child.uuid === lightMesh.uuid
     );
