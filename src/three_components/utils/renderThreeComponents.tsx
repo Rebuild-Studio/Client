@@ -94,6 +94,12 @@ const renderObjects = (
         primitiveStore.addPrimitive(storeId, renderPrimitive(storeId, mesh));
         break;
 
+      case 'SPOT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderSpotLight(storeId, mesh));
+        break;
+      case 'POINT_LIGHT':
+        primitiveStore.addPrimitive(storeId, renderPointLight(storeId, mesh));
+        break;
       case 'PREVIEW_CAMERA':
         primitiveStore.addPrimitive(
           storeId,
