@@ -110,7 +110,7 @@ const RenderScene = () => {
       const newScene = loader.parse(decodedJson.scene);
       primitiveStore.clearPrimitives();
 
-      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], false);
+      renderObjects(primitiveStore, newScene.children, false);
       eventSystem_store.parseInteractions(decodedJson.interaction);
       projectStore.clearMxJson();
       addToast('프로젝트를 불러왔습니다.');
@@ -153,8 +153,8 @@ const RenderScene = () => {
       {primitiveStore.meshes[
         Object.keys(primitiveStore.selectedPrimitives)[0]
       ] && (
-          <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
-        )}
+        <Gizmo storeId={Object.keys(primitiveStore.selectedPrimitives)[0]} />
+      )}
 
       {/* Group 자식용 */}
       <ChildGizmo />

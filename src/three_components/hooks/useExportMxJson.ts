@@ -1,5 +1,4 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
-import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
 import createInteractionJson from '@/utils/json/createInteractionJson';
 import createSceneJson from '@/utils/json/createSceneJson';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
@@ -98,8 +97,6 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
     setIsProcessing(true);
     setIsSuccess(false);
 
-    restoreCameraTransformation(projectStore.scene);
-
     const interactionJson = createInteractionJson();
     exportJsonFile(
       JSON_WORKER_REQUEST_TYPE.CREATE_MX_JSON,
@@ -118,8 +115,6 @@ const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
-
-    restoreCameraTransformation(projectStore.scene);
 
     // TODO : sceneJson 파일 다운로드
     exportJsonFile(
