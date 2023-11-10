@@ -458,6 +458,8 @@ export default class Sheet {
     ];
 
     sockets.forEach((s) => {
+      // TODO: 소켓 undefined 되는 이유 찾아야 함
+      if (!s) return;
       const found = s.wires.find((w) => {
         w.uuid = wire.uuid;
       });
