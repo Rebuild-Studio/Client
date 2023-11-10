@@ -59,9 +59,22 @@ export default function EditableInteraction_VM() {
         )
       );
     });
+
+    const sensorNodesObject = variableNumberSensorNodes.reduce((obj, node) => {
+      obj[node.referenceParameter.NODE_DAT_KEY.defaultValue] =
+        node.outputSockets.number.reference.defaultValue;
+      return obj;
+    }, {});
+
+    // 그 다음 mappedVariableNumberNodes를 객체로 변환하면서 기존 객체에 병합
+    const numberNodesObject = variableNumberNodes.reduce((obj, node) => {
+      obj[node.referenceParameter.NODE_DAT_KEY.defaultValue] =
+        node.inputSockets.number.reference.defaultValue;
+      return obj;
+    }, sensorNodesObject); // sensorNodesObject를 초기값으로 사용하여 병합
+
     return {
-      variableNumberSensorNodes,
-      variableNumberNodes
+      numberNodesObject
     };
   };
 

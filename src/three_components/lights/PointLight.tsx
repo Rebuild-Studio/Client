@@ -1,39 +1,37 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
-import { useLoader } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import storeContainer from '@/store/storeContainer';
-import { PrimitiveProps } from '../common/PrimitiveProps';
 
-const PointLight = (props: PrimitiveProps) => {
+interface Props {
+  storeId: string;
+  light?: THREE.PointLight;
+}
+
+const PointLight = ({ storeId, light }: Props) => {
   const ref = useRef();
-  const pointLightGlb: THREE.Mesh = useLoader(
-    GLTFLoader,
-    '/glb/light/point_light.glb'
-  ).scene.clone();
   const { primitiveStore } = storeContainer;
   const geometry = new THREE.SphereGeometry(0.23, 16, 8);
   const material = new THREE.MeshPhysicalMaterial();
   material.wireframe = true;
   material.transparent = true;
-  const mesh = props.propMesh ?? new THREE.Mesh(geometry, material);
+  const mesh = new THREE.Mesh(geometry, material);
   mesh.name = 'POINT_LIGHT';
-  mesh.userData['storeId'] = props.storeId;
+  mesh.userData['storeId'] = storeId;
   mesh.userData['isLocked'] = false;
+  const pointLight = light || new THREE.PointLight();
 
   useEffect(() => {
-    mesh.attach(pointLightGlb.children[0].children[0]);
-    primitiveStore.updatePrimitive(props.storeId, mesh);
+    mesh.attach(pointLight);
+    pointLight.getWorldPosition(mesh.position);
+    pointLight.getWorldQuaternion(mesh.quaternion);
+    primitiveStore.updatePrimitive(storeId, mesh);
     // history 추가 필요
   }, []);
 
   return (
     <>
-      <primitive
-        ref={ref}
-        object={primitiveStore.meshes[props.storeId] ?? mesh}
-      />
+      <primitive ref={ref} object={primitiveStore.meshes[storeId] ?? mesh} />
     </>
   );
 };

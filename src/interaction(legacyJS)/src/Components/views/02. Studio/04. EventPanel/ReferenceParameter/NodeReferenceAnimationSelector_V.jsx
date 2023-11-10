@@ -19,11 +19,11 @@ const NodeReferenceAnimationSelector = ({
 
   let animationItems = null;
 
-  if (reference.defaultValue) {
-    const animationData =
-      primitiveStore.meshes[reference.defaultValue].animations;
+  //TBD) 불러왔을 경우, 단순 조건부 렌더링이 아니라 mesh정보를 올바르게 찾아가야 함
+  if (reference.defaultValue && primitiveStore.meshes[reference.defaultValue]) {
+    const mesh = primitiveStore.meshes[reference.defaultValue].animations;
 
-    animationItems = animationData.map((anim, index) => (
+    animationItems = mesh.map((anim, index) => (
       <MenuItem
         key={index}
         value={anim.name}
@@ -45,7 +45,7 @@ const NodeReferenceAnimationSelector = ({
     >
       <Box sx={style.SelectWrapper}>
         <Select
-          value={value}
+          value={value || ''}
           label="Animation"
           onChange={(e) => setValue(e.target.value)}
           sx={style.SelectArea(eventSystem_store.cameraZoom)}

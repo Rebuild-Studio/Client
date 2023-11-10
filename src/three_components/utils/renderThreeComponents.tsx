@@ -1,4 +1,7 @@
+import * as THREE from 'three';
 import { nanoid } from 'nanoid';
+import PreviewCamera from '@/three_components/camera/PreviewCamera.tsx';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { PrimitiveStore } from '@store/primitive.store.ts';
 import AssetPrimitive from '../assets/AssetPrimitive';
 import LocalAssetPrimitive from '../assets/LocalAssetPrimitive';
@@ -52,26 +55,33 @@ const renderLocalAsset = (storeId: string, file: File) => {
   return <LocalAssetPrimitive storeId={storeId} file={file} />;
 };
 
-const renderSpotLight = (storeId: string, propMesh?: THREE.Mesh) => {
-  return <SpotLight storeId={storeId} propMesh={propMesh} />;
+const renderSpotLight = (storeId: string, light: THREE.SpotLight) => {
+  return <SpotLight storeId={storeId} light={light} />;
 };
 
-const renderPointLight = (storeId: string, propMesh?: THREE.Mesh) => {
-  return <PointLight storeId={storeId} propMesh={propMesh} />;
+const renderPointLight = (storeId: string, light: THREE.PointLight) => {
+  return <PointLight storeId={storeId} light={light} />;
+};
+
+const renderPreviewCamera = (
+  storeId: string,
+  camera: THREE.PerspectiveCamera
+) => {
+  return <PreviewCamera storeId={storeId} camera={camera} />;
 };
 
 const renderObjects = (
   primitiveStore: PrimitiveStore,
-  meshList: THREE.Mesh[],
+  objectList: THREE.Object3D[],
   isNew?: boolean
 ) => {
-  for (const mesh of meshList) {
-    const storeId = isNew ? nanoid() : mesh.userData['storeId'];
-    switch (mesh.name) {
+  for (const object of objectList) {
+    const storeId = isNew ? nanoid() : object.userData['storeId'];
+    switch (object.name) {
       case 'GROUP':
         primitiveStore.addPrimitive(
           storeId,
-          renderGroup(storeId, mesh)
+          renderGroup(storeId, object as THREE.Mesh)
         );
         break;
 
@@ -81,7 +91,7 @@ const renderObjects = (
       case 'ASSET':
         primitiveStore.addPrimitive(
           storeId,
-          renderAsset(storeId, mesh)
+          renderAsset(storeId, object as THREE.Mesh)
         );
         break;
 
@@ -93,13 +103,34 @@ const renderObjects = (
       case 'TORUS':
         primitiveStore.addPrimitive(
           storeId,
-          renderPrimitive(storeId, mesh)
+          renderPrimitive(storeId, object as THREE.Mesh)
         );
         break;
       default:
         break;
     }
+    switch (object.type) {
+      case 'PerspectiveCamera':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPreviewCamera(storeId, object as THREE.PerspectiveCamera)
+        );
+        break;
+      case 'PointLight':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderPointLight(storeId, object as THREE.PointLight)
+        );
+        break;
+      case 'SpotLight':
+        primitiveStore.addPrimitive(
+          storeId,
+          renderSpotLight(storeId, object as THREE.SpotLight)
+        );
+        break;
+    }
   }
+  closeFullScreenLoading();
 };
 
 export {
