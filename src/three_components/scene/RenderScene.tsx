@@ -33,6 +33,7 @@ const RenderScene = () => {
     projectStore,
     transformControlStore
   } = storeContainer;
+  const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
 
   const raycaster = useThree((state) => state.raycaster);
