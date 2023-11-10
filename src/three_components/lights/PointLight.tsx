@@ -5,7 +5,7 @@ import storeContainer from '@/store/storeContainer';
 
 interface Props {
   storeId: string;
-  light: THREE.PointLight;
+  light?: THREE.PointLight;
 }
 
 const PointLight = ({ storeId, light }: Props) => {
