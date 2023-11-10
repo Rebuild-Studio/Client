@@ -1,0 +1,29 @@
+stages:
+    - install
+    - build
+
+npm:
+    stage: install
+    only:
+        - develop
+        - merge_requests
+    cache:
+        paths:
+            - node_modules
+    script:
+        - echo ${NPM_PRIVATE_REPOSITORY_PATH}
+        - npm config set @mv:registry=${NPM_PRIVATE_REPOSITORY_PATH}
+        - npm install --legacy-peer-deps
+
+build:
+    stage: build
+    only:
+        - develop
+        - merge_requests
+    before_script:
+        - echo 'build start'
+    cache:
+        paths:
+            - dist
+    script:
+        - npm run build

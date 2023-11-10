@@ -16,7 +16,6 @@ import { MenuItemType } from './common/subMenu/MenuItem.types';
 import { SubMenu } from './common/subMenu/SubMenu';
 import { ConfirmBox } from './layout/modal/ConfirmBox';
 import BottomPopOver from './layout/popover/BottomPopOver';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
 import { useEffect } from 'react';
 
 const MenuBar = () => {
@@ -27,22 +26,27 @@ const MenuBar = () => {
     primitiveStore,
     sceneSettingStore
   } = storeContainer;
-  const { eventSystem_store } = legacyStoreContainer;
   const { addToast } = useToast();
-  const [, isProcessing, createProject, downloadProject] = useExportMxJson({
-    projectStore,
-    interactionStore: eventSystem_store
+  const [, isProcessing, createProject, dwonloadMxJson, downloadSceneJson, downloadInteractionJson] = useExportMxJson({
+    projectStore
   });
 
-  const createMX = () => {
+  const onClickCreateMx = () => {
     sceneControlStore.setExportScene(true);
     createProject('MX');
   };
-  const downloadJSON = () => {
+  const onClickDownloadMxJson = () => {
     sceneControlStore.setExportScene(true);
-    downloadProject();
+    dwonloadMxJson();
   };
-  const createPMX = () => {
+  const onClickDownloadSceneJson = () => {
+    sceneControlStore.setExportScene(true);
+    downloadSceneJson();
+  }
+  const onClickDownloadInteractionJson = () => {
+    downloadInteractionJson();
+  }
+  const onClickCreatePmx = () => {
     sceneControlStore.setExportScene(true);
     createProject('PMX');
   };
@@ -53,7 +57,7 @@ const MenuBar = () => {
       disabled: false,
       onClick: async () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={'컴포넌트 저장'} onClickConfirm={createMX} />
+          <ConfirmBox label={'컴포넌트 저장'} onClickConfirm={onClickCreateMx} />
         );
         projectStateStore.updateModalState(true);
         try {
@@ -78,13 +82,39 @@ const MenuBar = () => {
       }
     },
     {
-      label: 'MX-JSON으로 내보내기',
+      label: 'MX-JSON',
       disabled: false,
       onClick: () => {
         projectStateStore.updateModalComponent(
           <ConfirmBox
-            label={'MX-JSON으로 내보내기'}
-            onClickConfirm={downloadJSON}
+            label={'MX JSON으로 내보내기'}
+            onClickConfirm={onClickDownloadMxJson}
+          />
+        );
+        projectStateStore.updateModalState(true);
+      }
+    },
+    {
+      label: 'SCENE-JSON',
+      disabled: false,
+      onClick: () => {
+        projectStateStore.updateModalComponent(
+          <ConfirmBox
+            label={'SCENE JSON으로 내보내기'}
+            onClickConfirm={onClickDownloadSceneJson}
+          />
+        );
+        projectStateStore.updateModalState(true);
+      }
+    },
+    {
+      label: 'INTERACTION-JSON',
+      disabled: false,
+      onClick: () => {
+        projectStateStore.updateModalComponent(
+          <ConfirmBox
+            label={'INTERACTION JSON으로 내보내기'}
+            onClickConfirm={onClickDownloadInteractionJson}
           />
         );
         projectStateStore.updateModalState(true);
@@ -96,7 +126,7 @@ const MenuBar = () => {
 
       onClick: () => {
         projectStateStore.updateModalComponent(
-          <ConfirmBox label={'PMX 저장'} onClickConfirm={createPMX} />
+          <ConfirmBox label={'PMX 저장'} onClickConfirm={onClickCreatePmx} />
         );
         projectStateStore.updateModalState(true);
       }

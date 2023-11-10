@@ -1,42 +1,20 @@
 import { observer } from 'mobx-react';
 import { MxCanvasCore } from '@mv/core';
-import storeContainer from '@/store/storeContainer';
-import { findLightMeshes } from '@/three_components/utils/findLightMeshes.ts';
-import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
+import createInteractionJson from '@/utils/json/createInteractionJson';
 import createMxJson from '@/utils/json/createMxJson';
-import legacyStoreContainer from '../interaction(legacyJS)/src/Components/stores/storeContainer';
+import createSceneJson from '@/utils/json/createSceneJson';
+import projectStore from '@store/project.store.ts';
 
 const Preview = observer(() => {
-  const { projectStore } = storeContainer;
-  const { eventSystem_store } = legacyStoreContainer;
-  const sceneForPreview = projectStore.scene;
+  const { scene } = projectStore;
 
-  if (!sceneForPreview) {
+  if (!scene) {
     return null;
   }
 
-  restoreCameraTransformation(sceneForPreview);
-
-  const sceneJson = sceneForPreview.toJSON();
-  const interactionJson = JSON.parse(
-    JSON.stringify(eventSystem_store.toJSON())
-  );
+  const sceneJson = createSceneJson(scene);
+  const interactionJson = createInteractionJson();
   const previewJson = createMxJson(sceneJson, interactionJson);
-
-  // 프리뷰 모드에서 빛 조형물이 보이지 않도록
-  const lightMeshes = findLightMeshes(previewJson.scene.object);
-  lightMeshes.forEach((lightMesh) => {
-    const light = lightMesh.children.find((child) =>
-      child.type.includes('Light')
-    );
-    if (light) {
-      const { matrix } = lightMesh;
-      light.matrix = matrix;
-      previewJson.scene.object.children.push(light);
-      lightMesh.visible = false;
-      lightMesh.children = [];
-    }
-  });
 
   const data = JSON.stringify(previewJson);
   return <MxCanvasCore data={data} mode={'play'} />;

@@ -31,7 +31,6 @@ export const ProjectCard = ({
 
 const StyledCardImg = styled.img`
   width: 100%;
-  height: 100%;
 `;
 
 const StyledMenuBtn = styled.div`

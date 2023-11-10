@@ -59,10 +59,6 @@ export default class ObjectNode extends Node {
 const nodeSchema = {
   inputSocket: [
     {
-      name: 'asset',
-      type: ControlType.String
-    },
-    {
       name: 'position',
       type: ControlType.Vector3
     },
