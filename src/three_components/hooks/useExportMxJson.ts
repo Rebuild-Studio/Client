@@ -1,46 +1,15 @@
 import { Dispatch, useCallback, useEffect, useState } from 'react';
-import EventSystemStore from '@/interaction(legacyJS)/src/Components/stores/EventSystem_Store';
-import storeContainer from '@/store/storeContainer';
-import { restoreCameraTransformation } from '@/three_components/utils/restoreCameraTransformation.ts';
-import downloadFile from '@/utils/file/downloadFile';
+import createInteractionJson from '@/utils/json/createInteractionJson';
+import createSceneJson from '@/utils/json/createSceneJson';
 import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import { ProjectStore, ProjectType } from '@store/project.store.ts';
+import exportJsonFile from './export/exportJsonFile';
+import { JSON_WORKER_REQUEST_TYPE } from './jsonWorker';
 import {
   MX_WORKER_REQUEST_TYPE,
   MX_WORKER_RESPONSE_TYPE
 } from './workerScript';
 import MxWorker from './workerScript?worker';
-
-const exportJsonFile = async (
-  scene: THREE.Scene,
-  interactionJson: unknown,
-  setIsProcessing: Dispatch<React.SetStateAction<boolean>>,
-  setIsSuccess: Dispatch<React.SetStateAction<boolean>>
-) => {
-  const mxWorker = new MxWorker();
-  // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
-  const sceneJson = scene.toJSON();
-  const { projectStore } = storeContainer;
-
-  mxWorker.postMessage({
-    type: MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE,
-    sceneJson,
-    interactionJson
-  });
-  mxWorker.onmessage = (e) => {
-    if (e.data.type === MX_WORKER_RESPONSE_TYPE.DOWNLOAD) {
-      const { stringifiedJson } = e.data;
-      downloadFile(stringifiedJson, projectStore.projectName + '.json', 'json');
-
-      setIsProcessing(false);
-      setIsSuccess(true);
-    } else {
-      console.error('잘못된 요청 타입입니다: ', e.data.type);
-    }
-    closeFullScreenLoading();
-    mxWorker.terminate();
-  };
-};
 
 const exportJsonPost = async (
   scene: THREE.Scene,
@@ -53,7 +22,7 @@ const exportJsonPost = async (
   const { projectName, thumbnail } = projectStore;
   const mxWorker = new MxWorker();
   // TODO : toJSON이 사용하는 속성들만을 추출하는 함수를 만들어서 사용하도록 해야함.
-  const sceneJson = scene.toJSON();
+  const sceneJson = createSceneJson(scene);
 
   const projectInfo = {
     projectType,
@@ -83,20 +52,18 @@ const exportJsonPost = async (
 };
 interface Props {
   projectStore: ProjectStore;
-  interactionStore: EventSystemStore;
 }
 
 type hookReturnType = [
   isSuccess: boolean,
   isProcessing: boolean,
   createProject: (projectType: ProjectType) => void,
-  downloadProject: () => void
+  downloadMxJson: () => void,
+  downloadSceneJson: () => void,
+  downloadInteractionJson: () => void
 ];
 
-const useExportMxJson = ({
-  projectStore,
-  interactionStore
-}: Props): hookReturnType => {
+const useExportMxJson = ({ projectStore }: Props): hookReturnType => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -111,9 +78,7 @@ const useExportMxJson = ({
       setIsProcessing(true);
       setIsSuccess(false);
 
-      const interactionJson = JSON.parse(
-        JSON.stringify(interactionStore.toJSON())
-      );
+      const interactionJson = createInteractionJson();
       exportJsonPost(
         projectStore.scene,
         projectType,
@@ -123,29 +88,69 @@ const useExportMxJson = ({
         setIsSuccess
       );
     },
-    [interactionStore, projectStore]
+    [projectStore]
   );
 
-  //다운로드 함수
-  const downloadProject = useCallback(() => {
+  //MXJSON 다운로드 함수
+  const downloadMxJson = useCallback(() => {
     if (!projectStore.scene) return;
     setIsProcessing(true);
     setIsSuccess(false);
 
-    restoreCameraTransformation(projectStore.scene);
-
-    const interactionJson = JSON.parse(
-      JSON.stringify(interactionStore.toJSON())
-    );
+    const interactionJson = createInteractionJson();
     exportJsonFile(
-      projectStore.scene,
-      interactionJson,
+      JSON_WORKER_REQUEST_TYPE.CREATE_MX_JSON,
       setIsProcessing,
-      setIsSuccess
+      setIsSuccess,
+      projectStore.scene,
+      interactionJson
     );
-  }, [projectStore.scene, interactionStore]);
+  }, [projectStore.scene]);
 
-  return [isSuccess, isProcessing, createProject, downloadProject];
+  /**
+   * @description Scene Json 생성 함수
+   */
+  const downloadSceneJson = useCallback(() => {
+    console.log('in', projectStore.scene);
+    if (!projectStore.scene) return;
+    setIsProcessing(true);
+    setIsSuccess(false);
+
+    // TODO : sceneJson 파일 다운로드
+    exportJsonFile(
+      JSON_WORKER_REQUEST_TYPE.CREATE_SCENE_JSON,
+      setIsProcessing,
+      setIsSuccess,
+      projectStore.scene
+    );
+  }, [projectStore.scene]);
+
+  /**
+   * @description Interaction Json 생성 함수
+   */
+  const downloadInteractionJson = useCallback(() => {
+    setIsProcessing(true);
+    setIsSuccess(false);
+
+    const interactionJson = createInteractionJson();
+    // TODO : 함수 매개변수 타입변경 필요 (undefined)
+    exportJsonFile(
+      JSON_WORKER_REQUEST_TYPE.CREATE_INTERACTION_JSON,
+      setIsProcessing,
+      setIsSuccess,
+      undefined,
+      interactionJson
+    );
+  }, []);
+
+  return [
+    isSuccess,
+    isProcessing,
+    createProject,
+    downloadMxJson,
+    downloadSceneJson,
+    downloadInteractionJson
+  ];
 };
 
 export default useExportMxJson;

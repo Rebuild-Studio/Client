@@ -5,7 +5,8 @@ stages:
 npm:
     stage: install
     only:
-        - release
+        - develop
+        - merge_requests
     cache:
         paths:
             - node_modules
@@ -17,7 +18,8 @@ npm:
 build:
     stage: build
     only:
-        - release
+        - develop
+        - merge_requests
     before_script:
         - echo 'build start'
     cache:

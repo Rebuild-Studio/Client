@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import * as THREE from 'three';
 import storeContainer from '@/store/storeContainer';
-import { hasAsset } from './findAsset';
+import { findRootAsset, hasAsset } from './findAsset';
 import { findRootGroup } from './findGroup';
 
 const onContextMenuSceneEvents = (
@@ -28,20 +28,33 @@ const onContextMenuSceneEvents = (
   });
 
   // 그룹 애셋 찾기
-  const selectGroupObject = findRootGroup(
-    intersectObjects.find((value) => {
-      return (
-        value.object.parent?.name === 'GROUP' ||
-        hasAsset(value.object, value.object)
-      );
-    })?.object
-  );
+  const selectChildObject = intersectObjects.find(
+    (value) =>
+      value.object.parent?.name === 'GROUP' ||
+      hasAsset(value.object, value.object)
+  )?.object;
 
-  if (selectGroupObject) {
-    const selectGroupObjectStoreId = selectGroupObject.userData['storeId'];
+  const selectRootObject = findRootGroup(selectChildObject);
+
+  if (selectRootObject) {
+    const selectGroupObjectStoreId = selectRootObject.userData['storeId'];
     primitiveStore.addSelectedPrimitives(
       selectGroupObjectStoreId,
       primitiveStore.meshes[selectGroupObjectStoreId]
+    );
+
+    contextMenuStore.updateContextMenuType('OBJECT', clientX, clientY);
+    contextMenuStore.updateIsContextMenuOpened(true);
+    return;
+  }
+
+  if (selectChildObject && !selectRootObject) {
+    const assetRoot = findRootAsset(selectChildObject);
+    const assetRootStoreId = assetRoot?.userData['storeId'];
+
+    primitiveStore.addSelectedPrimitives(
+      assetRootStoreId,
+      primitiveStore.meshes[assetRootStoreId]
     );
 
     contextMenuStore.updateContextMenuType('OBJECT', clientX, clientY);

@@ -8,13 +8,24 @@ interface Image {
   uuid: string;
 }
 
+interface SceneJsonObject {
+  name: string;
+  type: string;
+  children: SceneJsonObject[];
+  matrix?: number[];
+  visible?: boolean;
+  uuid: string;
+}
+
 interface SceneJson {
   images: Image[];
   geometries: Geometry[];
+  object: SceneJsonObject;
 }
 
 export type {
   SceneJson,
   Geometry as SceneJsonGeometry,
-  Image as SceneJsonImage
+  Image as SceneJsonImage,
+  SceneJsonObject
 };

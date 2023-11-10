@@ -14,12 +14,10 @@ const postProjectServices =
     : postProjectServicesWebSocket;
 
 export const MX_WORKER_REQUEST_TYPE = {
-  EXPORT_JSON_FILE: 'exportJsonFile',
   EXPORT_JSON_POST: 'exportJsonPost'
 } as const;
 
 export const MX_WORKER_RESPONSE_TYPE = {
-  DOWNLOAD: 'download',
   POST_SUCCESS: 'postSuccess',
   POST_FAIL: 'postFail'
 } as const;
@@ -68,16 +66,6 @@ self.addEventListener(
   }) => {
     const { type, sceneJson, interactionJson, projectInfo } = e.data;
     switch (type) {
-      case MX_WORKER_REQUEST_TYPE.EXPORT_JSON_FILE:
-        {
-          const mxJson = createMxJson(sceneJson, interactionJson);
-          const stringifiedJson = JSON.stringify(mxJson);
-          postMessage({
-            type: MX_WORKER_RESPONSE_TYPE.DOWNLOAD,
-            stringifiedJson
-          });
-        }
-        break;
       case MX_WORKER_REQUEST_TYPE.EXPORT_JSON_POST:
         {
           const mxJson = createMxJson(sceneJson, interactionJson);

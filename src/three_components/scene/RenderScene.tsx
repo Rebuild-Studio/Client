@@ -6,8 +6,10 @@ import { useThree } from '@react-three/fiber';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useServerMaterialLoader } from '@/hooks/loader';
 import { useToast } from '@/hooks/useToast';
+import legacyStoreContainer from '@/interaction(legacyJS)/src/Components/stores/storeContainer.js';
 import storeContainer from '@/store/storeContainer';
 import loadMxJson from '@/utils/json/loadMxJson';
+import { closeFullScreenLoading } from '@/utils/loading/loadingHandler';
 import SceneEffect from '../common/SceneEffect';
 import ChildGizmo from '../gizmo/ChildGizmo';
 import Gizmo from '../gizmo/Gizmo';
@@ -31,6 +33,7 @@ const RenderScene = () => {
     projectStore,
     transformControlStore
   } = storeContainer;
+  const { eventSystem_store } = legacyStoreContainer;
   const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
 
@@ -107,12 +110,14 @@ const RenderScene = () => {
       const newScene = loader.parse(decodedJson.scene);
       primitiveStore.clearPrimitives();
 
-      renderObjects(primitiveStore, newScene.children as THREE.Mesh[], true);
+      renderObjects(primitiveStore, newScene.children, false);
+      eventSystem_store.parseInteractions(decodedJson.interaction);
       projectStore.clearMxJson();
       addToast('프로젝트를 불러왔습니다.');
     };
 
     renderLoadedMxJson();
+    closeFullScreenLoading();
   }, [primitiveStore, projectStore.mxJson, scene, addToast, projectStore]);
 
   // 선택 컴포넌트 그룹화 작업
@@ -163,6 +168,7 @@ const RenderScene = () => {
             fallback={<></>}
             onError={() => {
               addToast('오브젝트 에러!');
+              closeFullScreenLoading();
             }}
           >
             {primitive}
