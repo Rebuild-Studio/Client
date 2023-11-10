@@ -30,13 +30,12 @@ const nodeSchema = {
       type: ControlType.Vector3
     }
   ],
-  control: [
+  referenceParameter: [
     {
-      name: 'object',
-      value: undefined,
-      type: ControlType.Object,
-      IsDropdown: true,
-      extras: '오브젝트'
+      name: 'NODE_DAT_OBJECT',
+      defaultValue: '',
+      type: 'Object',
+      tooltipMessage: '오브젝트를 선택해 주세요'
     }
   ]
 };
