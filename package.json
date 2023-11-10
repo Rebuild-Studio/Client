@@ -19,7 +19,7 @@
     "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.13",
     "@mui/styles": "^5.14.13",
-    "@mv/core": "^2.0.9",
+    "@mv/core": "^2.0.12",
     "@react-three/drei": "^9.81.0",
     "@react-three/fiber": "^8.13.7",
     "@react-three/postprocessing": "^2.15.1",
