@@ -28,8 +28,12 @@ const RightPanel = () => {
   const isLight =
     numOfSelectedPrimitives === 1 &&
     ['POINT_LIGHT', 'SPOT_LIGHT'].includes(selectedPrimitive.name);
-
-  const tabs = isLight ? ['오브젝트'] : ['오브젝트', '쉐이프'];
+  const isPrimitive =
+    numOfSelectedPrimitives === 1 &&
+    ['CUBE', 'COME', 'CAPSULE', 'CYLINDER', 'SPHERE', 'TORUS'].includes(
+      selectedPrimitive.name
+    );
+  const tabs = isPrimitive ? ['오브젝트', '쉐이프'] : ['오브젝트'];
 
   return (
     <Panel label={'속성값'} options={undefined}>

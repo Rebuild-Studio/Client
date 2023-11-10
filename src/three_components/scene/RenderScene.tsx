@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as THREE from 'three';
 import { reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -34,7 +34,6 @@ const RenderScene = () => {
     transformControlStore
   } = storeContainer;
   const { eventSystem_store } = legacyStoreContainer;
-  const [newMesh, setNewMesh] = useState(new THREE.Mesh());
   const { addToast } = useToast();
 
   const raycaster = useThree((state) => state.raycaster);
@@ -139,8 +138,13 @@ const RenderScene = () => {
 
   useEffect(() => {
     if (selectedPrimitive && selectedObjectStore.selectedMaterial) {
-      setNewMesh(selectedPrimitive);
-      newMesh.material = material;
+      if (selectedPrimitive instanceof THREE.Group) {
+        selectedPrimitive.traverse((child) => {
+          (child as THREE.Mesh).material = material;
+        });
+      } else if (selectedPrimitive instanceof THREE.Mesh) {
+        selectedPrimitive.material = material;
+      }
       selectedObjectStore.setSelectedMaterial(materialName);
     }
   }, [selectedObjectStore.selectedMaterial]);
