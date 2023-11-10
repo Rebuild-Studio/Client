@@ -61,6 +61,7 @@ import { MaterialTemplateNode } from './VariableNode/MaterialTemplateNode';
 import { MeshPhysicalMaterialNode } from './VariableNode/MeshPhysicalMaterialNode';
 import { VariableBooleanNode } from './VariableNode/VariableBooleanNode';
 import { VariableNumberNode } from './VariableNode/VariableNumberNode';
+import { VariableNumberSensorNode } from './VariableNode/VariableNumberSensorNode';
 import { VariableStringNode } from './VariableNode/VariableStringNode';
 
 export const NodeType = {
@@ -142,6 +143,7 @@ export const NodeType = {
 
   VariableBoolean: VariableBooleanNode,
   VariableNumber: VariableNumberNode,
+  VariableNumberSensor: VariableNumberSensorNode,
   VariableString: VariableStringNode,
 
   MeshPhysicalMaterial: MeshPhysicalMaterialNode,
