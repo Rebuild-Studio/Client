@@ -5,7 +5,7 @@ import storeContainer from '@/store/storeContainer';
 
 interface Props {
   storeId: string;
-  light?: THREE.SpotLight;
+  light?: THREE.SpotLight | THREE.Mesh;
 }
 
 const SpotLight = ({ storeId, light }: Props) => {
@@ -33,10 +33,12 @@ const SpotLight = ({ storeId, light }: Props) => {
         new THREE.BoxGeometry(),
         new THREE.MeshBasicMaterial()
       );
-      target.visible = false;
-      target.position.set(0, -10, 0);
-      spotLight.add(target);
-      spotLight.target = target;
+      if (spotLight instanceof THREE.SpotLight) {
+        target.visible = false;
+        target.position.set(0, -10, 0);
+        spotLight.add(target);
+        spotLight.target = target;
+      }
     }
 
     // history 추가 필요

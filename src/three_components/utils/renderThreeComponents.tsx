@@ -55,11 +55,17 @@ const renderLocalAsset = (storeId: string, file: File) => {
   return <LocalAssetPrimitive storeId={storeId} file={file} />;
 };
 
-const renderSpotLight = (storeId: string, light: THREE.SpotLight) => {
+const renderSpotLight = (
+  storeId: string,
+  light: THREE.SpotLight | THREE.Mesh
+) => {
   return <SpotLight storeId={storeId} light={light} />;
 };
 
-const renderPointLight = (storeId: string, light: THREE.PointLight) => {
+const renderPointLight = (
+  storeId: string,
+  light: THREE.PointLight | THREE.Mesh
+) => {
   return <PointLight storeId={storeId} light={light} />;
 };
 
