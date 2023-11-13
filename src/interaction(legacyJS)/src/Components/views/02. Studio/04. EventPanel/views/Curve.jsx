@@ -33,6 +33,7 @@ export default function Curve(props) {
         zIndex: '-1'
       }}
       style={{
+        pointerEvents: 'none',
         transform: `translate(${translateX}px, ${translateY}px)`
       }}
     >
