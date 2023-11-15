@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import Flow from '@/react-flow/Flow.tsx';
+import InteractionCanvas from '@/interaction-canvas/InteractionCanvas.tsx';
 import DragAreaSelectionBox from './DragAreaSelectionBox_V';
 import GroupContextMenu from './context-menu/GroupContextMenu';
 import NodeContextMenu from './context-menu/NodeContextMenu';
@@ -212,7 +212,7 @@ const InteractionPanel = observer(() => {
         <History />
         <SheetPanel />
       </Box>
-      <Flow />
+      <InteractionCanvas />
       <DataTypeGuideV />
       <DragAreaSelectionBox />
       <RootVKeyboardEvent domElement={_ref?.current?.parentElement} />

@@ -1245,8 +1245,9 @@ export default class Sheet {
   createNodeWithNodeClass = ({ node, uuid, name }) => {
     const nodeInstance = new node(name, uuid);
     this.initNodePosition(nodeInstance, [
-      this.cameraPosition[0],
-      this.cameraPosition[1]
+      // 하드코딩 주의!!
+      this.cameraPosition[0] + 400, // [TBD] 추후에 카메라 포지션을, flow와 동기화시켜줌으로서 현재 시점을 기준으로 노드들이 생성되도록 수정되어야 함
+      this.cameraPosition[1] + 400 // [TBD] 추후에 카메라 포지션을, flow와 동기화시켜줌으로서 현재 시점을 기준으로 노드들이 생성되도록 수정되어야 함
     ]);
     this.addNode(nodeInstance);
     return nodeInstance;

@@ -1,6 +1,5 @@
 import { Node } from 'reactflow';
-import CustomNode from '@/react-flow/CustomNode.tsx';
-import { CustomNodeData } from '@/react-flow/type.ts';
+import { InteractionNodeData } from '@/interaction-canvas/type.ts';
 
 /**
  *
@@ -9,12 +8,12 @@ import { CustomNodeData } from '@/react-flow/type.ts';
  * react-flow에서 "data" 속성에 넣어주어야 CustomNode에서 사용할 수 있음.
  */
 export const transformNodesToReactFlowFormat = (
-  originalNodes: CustomNodeData[]
+  originalNodes: InteractionNodeData[]
 ): Node[] => {
-  const reactFlowNodes = originalNodes.map((node: CustomNodeData) => {
+  const reactFlowNodes = originalNodes.map((node: InteractionNodeData) => {
     return {
       id: node.uuid,
-      type: 'custom',
+      type: 'interaction',
       data: {
         name: node.name,
         inputSockets: node.inputSockets,
@@ -32,5 +31,3 @@ export const transformNodesToReactFlowFormat = (
 
   return reactFlowNodes;
 };
-
-export const nodeTypes = { custom: CustomNode };

@@ -1,4 +1,4 @@
-export type CustomNodeData = {
+export type InteractionNodeData = {
   name: string;
   uuid: string;
   type: string;
@@ -12,7 +12,7 @@ export type CustomNodeData = {
       wires: any[];
       node: string;
       isInput: boolean;
-      reference: any | null;
+      reference?: ReferenceParameter;
     };
   };
   outputSockets: {
@@ -24,14 +24,14 @@ export type CustomNodeData = {
       wires: any[];
       node: string;
       isInput: boolean;
-      reference: any | null;
+      reference?: ReferenceParameter;
     };
   };
   control: unknown; //[TBD] should be changed if keep using contorl format
-  referenceParameter: referenceParameter[];
+  referenceParameter: ReferenceParameter[];
 };
 
-export type referenceParameter = {
+export type ReferenceParameter = {
   name: string;
   type: string;
   defaultValue: unknown;
