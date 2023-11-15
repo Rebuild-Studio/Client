@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
+import Flow from '@/react-flow/Flow.tsx';
 import DragAreaSelectionBox from './DragAreaSelectionBox_V';
 import GroupContextMenu from './context-menu/GroupContextMenu';
 import NodeContextMenu from './context-menu/NodeContextMenu';
@@ -167,6 +168,7 @@ const InteractionPanel = observer(() => {
     eventSystem_store,
     interactionhistory_store
   );
+  const legacyNodesInformation = eventSystem_store.getSelectedSheet().nodes;
   const _ref = useRef();
   useEffect(() => {
     if (!_ref.current) {
@@ -210,7 +212,7 @@ const InteractionPanel = observer(() => {
         <History />
         <SheetPanel />
       </Box>
-      {eventSystem_store.canvasSize && <Canvas />}
+      <Flow />
       <DataTypeGuideV />
       <DragAreaSelectionBox />
       <RootVKeyboardEvent domElement={_ref?.current?.parentElement} />
