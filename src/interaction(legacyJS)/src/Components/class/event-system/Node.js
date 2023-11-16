@@ -53,7 +53,8 @@ export default class Node {
       deleteAllSockets: action,
       dispose: action,
       update: action,
-      setUxSelector: action
+      setUxSelector: action,
+      setPosition: action
     });
   }
 
@@ -180,6 +181,10 @@ export default class Node {
 
   setGroup(group) {
     this.group = group;
+  }
+
+  setPosition(position) {
+    this.position = position;
   }
 
   update() {

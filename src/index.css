@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 button {
   background: none;
   color: inherit;
@@ -17,4 +21,40 @@ button {
     background-color: #808080;
     border-radius: 10px;
   }
+}
+
+/* react flow */
+.react-flow__node {
+  border-radius: 10px;
+}
+
+.react-flow__handle.connectionindicator {
+  cursor: pointer !important;
+}
+
+.react-flow__selection {
+  border: 2px solid #e3f854 !important;
+  border-radius: 10px !important;
+}
+
+.react-flow__nodesselection-rect {
+  display: none !important;
+}
+
+.react-flow__handle {
+  position: absolute;
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #ccd5ff !important;
+  right: -10px !important;
+  z-index: -1 !important;
+
+  &:hover {
+    z-index: 0 !important;
+  }
+}
+
+.react-flow__node.selected,
+.react-flow__node.selectable:focus {
+  box-shadow: 0 0 0 2px #e3f854;
 }
