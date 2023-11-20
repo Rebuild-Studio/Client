@@ -133,6 +133,9 @@ export const debugJson = Utils.stringify({
   AddSelectedPositionCommand: '노드와 그룹 이동',
   MergeNodeAndGroupCommand: '노드와 그룹 병합',
 
+  ChangeNodesPositionCommand: '노드 이동',
+  SelectNodesCommand: '노드 선택',
+
   CreateWireCommand: '노드 연결',
   DeleteWireCommand: '노드 연결 해제',
 

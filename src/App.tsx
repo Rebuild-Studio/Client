@@ -65,6 +65,7 @@ const Main = styled.main`
   flex: 1;
   min-height: 0;
   min-width: 0;
+  overflow: hidden;
 `;
 
 const EditorWrapper = styled.div<{ $visible: boolean }>`

@@ -31,7 +31,7 @@ const UndoButton = (props) => {
 
 const RedoButton = (props) => {
   return (
-    <HistoryButton {...props} color="#aaa" url="/Icons/Studio/icon_비표시" />
+    <HistoryButton {...props} color="#aaa" url="/icons/studio/icon_비표시" />
   );
 };
 
