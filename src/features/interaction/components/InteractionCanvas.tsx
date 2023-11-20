@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
 import ReactFlow, {
   MiniMap,
+  Node,
   NodeDragHandler,
   useNodesState,
   useOnSelectionChange
@@ -15,12 +15,14 @@ import SelectNodesCommand from '@/features/interaction/commands/select-nodes.ts'
 import InteractionNode from '@/features/interaction/components/nodes/InteractionNode';
 import { arraysEqual } from '@/features/interaction/utils/arrays-equal.ts';
 import { transformNodesToReactFlowFormat } from '@/features/interaction/utils/react-flow';
+import DeleteNodeAndGroupCommand from '@/interaction(legacyJS)/src/Components/class/commands/Interaction/DeleteNodeAndGroupCommand.js';
 import { eventSystem_store } from '@/interaction(legacyJS)/src/Components/stores/Interaction_Stores.js';
 
 const nodeTypes = { interaction: InteractionNode };
 
 const InteractionCanvas = () => {
   const nodeData = eventSystem_store.nodes;
+  const sheet = eventSystem_store.getSelectedSheet();
   const [nodes, setNodes, onNodesChange] = useNodesState(
     transformNodesToReactFlowFormat(nodeData)
   );
@@ -63,11 +65,23 @@ const InteractionCanvas = () => {
     }
   };
 
+  const onNodesDelete = (nodes: Node[]) => {
+    const uuids = nodes.map((node: Node) => node.id);
+    executeCommand(
+      new DeleteNodeAndGroupCommand(
+        eventSystem_store,
+        sheet.uuid,
+        sheet.selectedGroups,
+        uuids
+      )
+    );
+  };
+
   useEffect(() => {
-    autorun(() => {
-      setNodes(transformNodesToReactFlowFormat(nodeData));
-    });
-  }, [nodeData, setNodes]);
+    setNodes(transformNodesToReactFlowFormat(nodeData));
+  }, [nodeData.length]);
+
+  console.log([...nodes]);
 
   return (
     <Wrapper>
@@ -78,6 +92,7 @@ const InteractionCanvas = () => {
         onNodeDragStart={handleNodeDragStart}
         onNodeDragStop={handleNodeDragStop}
         onSelectionEnd={handleSelectionEnd}
+        onNodesDelete={onNodesDelete}
       >
         <MiniMap zoomable pannable />
       </ReactFlow>
